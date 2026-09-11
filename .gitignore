@@ -16,3 +16,6 @@ Claude outputs/
 
 .DS_Store
 Thumbs.db
+
+# vercel link 的本地项目信息，每台机器各自生成
+.vercel/

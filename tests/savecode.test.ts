@@ -22,6 +22,7 @@ const sample = (): SaveV1 => ({
   endingsUnlocked: [],
   letters: [{ id: "lt_ch01_shenheng_01", state: "replied", dueAt: 1789000, repliedWith: "plain:a" }],
   lastSeenAt: 1789000000000,
+  dataVersion: 1,
 });
 
 test("导出再导入，逐字节还原", async () => {

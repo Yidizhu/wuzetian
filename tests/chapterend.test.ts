@@ -167,3 +167,124 @@ test("有一封写着会被截：超上限时截的正是它", () => {
   assert.ok(got.includes("b:intercepted"), `该截 b，实际 ${got.join("、")}`);
   assert.equal(got.filter((x) => x.endsWith("arrived")).length, 3);
 });
+
+/**
+ * 旧档配新剧本（D-037 第 3 条）。
+ * 存档存的是「哪一场、第几句」，剧本一改行数那个句号就指到别的话上去了。
+ */
+const saveApi = await import("../src/engine/save.ts");
+const { DATA_VERSION } = await import("../src/engine/schema.ts");
+
+/** 三场一章：a -> b -> c，a 是章首（没有同章场景指向它） */
+const chapterScenes = (): Scene[] => [
+  scene("ch01_b", 1, { goto: "ch01_c" }),
+  scene("ch01_c", 1, { chapterEnd: true }),
+  scene("ch01_a", 1, { goto: "ch01_b" }),
+];
+
+async function resumeFrom(dataVersion: number | undefined, sceneId: string, lineIndex: number) {
+  mem.clear();
+  const store = new Store();
+  const s = saveApi.serialize(store.state, sceneId, lineIndex);
+  if (dataVersion === undefined) delete (s as { dataVersion?: number }).dataVersion;
+  else (s as { dataVersion?: number }).dataVersion = dataVersion;
+  saveApi.write(saveApi.AUTO_SLOT, s);
+
+  const kinds: string[] = [];
+  const story = new Story(
+    chapterScenes(), [], [], [], store, noopRenderer,
+    { async duel() { return true; }, async chapterEnd() {} },
+    "ch01_a",
+  );
+  story.on((e) => kinds.push(e.kind));
+  await story.start();
+  await drain();
+  return { at: `${story.sceneId}#${story.lineIndex}`, kinds };
+}
+
+test("版本对得上：从存档那一句接着走", async () => {
+  const r = await resumeFrom(DATA_VERSION, "ch01_b", 0);
+  assert.equal(r.at, "ch01_b#0");
+  assert.ok(!r.kinds.includes("rewound"));
+});
+
+test("版本对不上：退回本章开头，并且告诉她一声", async () => {
+  const r = await resumeFrom(DATA_VERSION + 1, "ch01_b", 0);
+  assert.equal(r.at, "ch01_a#0", "该退到章首 ch01_a");
+  assert.ok(r.kinds.includes("rewound"), `没有告诉玩家，事件是 ${r.kinds.join("、")}`);
+});
+
+test("B8 之前的老档没有这个字段，一样按对不上处理", async () => {
+  const r = await resumeFrom(undefined, "ch01_c", 0);
+  assert.equal(r.at, "ch01_a#0");
+});
+
+test("章首认的是「没有同章场景指向它」，不是 id 最小", async () => {
+  // ch01_a 排在数组最后、id 也不是最小的那个规则能认出来
+  const r = await resumeFrom(0, "ch01_c", 0);
+  assert.equal(r.at, "ch01_a#0");
+});
+
+test("退回去的只是位置：数值、好感、flag、诗一件不少", async () => {
+  mem.clear();
+  const store = new Store();
+  store.state.stats.cai = 11;
+  store.state.affinity.shenheng = 9;
+  store.state.flags.trial_recopy = true;
+  store.state.poemsCollected.add("wangwei_shanjuqiuming");
+  const s = saveApi.serialize(store.state, "ch01_b", 3);
+  (s as { dataVersion?: number }).dataVersion = DATA_VERSION + 1;
+  saveApi.write(saveApi.AUTO_SLOT, s);
+
+  const fresh = new Store();
+  const story = new Story(
+    chapterScenes(), [], [], [], fresh, noopRenderer,
+    { async duel() { return true; }, async chapterEnd() {} },
+    "ch01_a",
+  );
+  await story.start();
+  await drain();
+  assert.equal(story.sceneId, "ch01_a");
+  assert.equal(fresh.state.stats.cai, 11);
+  assert.equal(fresh.state.affinity.shenheng, 9);
+  assert.equal(fresh.state.flags.trial_recopy, true);
+  assert.ok(fresh.state.poemsCollected.has("wangwei_shanjuqiuming"));
+});
+
+/**
+ * 墨层的覆盖面积 = 她的权力进度（D-010 第 3 条、CC3 待协调第 1 条）。
+ */
+const { inkLevel } = await import("../src/engine/ink.ts");
+
+const withShi = (shi: number, flags: Record<string, boolean> = {}) => {
+  const st = new Store().state;
+  st.stats.shi = shi;
+  Object.assign(st.flags, flags);
+  return st;
+};
+
+test("幕数是地板：势再高也够不到下一幕的起点", () => {
+  assert.ok(inkLevel(withShi(20), 1) < inkLevel(withShi(0), 2), "一幕满势不该比二幕零势还墨");
+  assert.ok(inkLevel(withShi(20), 2) < inkLevel(withShi(0), 3), "二幕满势不该比三幕零势还墨");
+});
+
+test("第一幕朝廷全金碧：零势那一刻一点墨都没有", () => {
+  assert.equal(inkLevel(withShi(0), 1), 0);
+});
+
+test("同一幕里，势越高墨越多", () => {
+  assert.ok(inkLevel(withShi(12), 2) > inkLevel(withShi(2), 2));
+});
+
+test("登基那一场整片盖掉，不管势是多少", () => {
+  assert.equal(inkLevel(withShi(0, { enthroned: true }), 1), 1);
+});
+
+test("永远落在 0 到 1 之间", () => {
+  for (const act of [1, 2, 3, 4]) {
+    for (const shi of [-5, 0, 7, 20, 99]) {
+      const v = inkLevel(withShi(shi), act);
+      assert.ok(v >= 0 && v <= 1, `幕${act} 势${shi} 算出 ${v}`);
+    }
+  }
+});

@@ -1,7 +1,8 @@
-import type { Choice, Ending, Scene } from "./types.ts";
+import { DATA_VERSION, type Choice, type Ending, type Scene } from "./types.ts";
 import { pickEnding, resolveBody } from "./endings.ts";
 import { Store, subst } from "./state.ts";
 import { meets, missingReason } from "./conditions.ts";
+import { inkLevel } from "./ink.ts";
 import * as save from "./save.ts";
 import type { SceneRenderer } from "../scene/SceneRenderer.ts";
 import type { LetterT, PoemDuelT } from "./schema.ts";
@@ -31,6 +32,8 @@ export type StoryEvent =
   | { kind: "letters"; unread: number; arrived: string[] }
   /** 一章走完了，下一章的数据还没有。不是错误，是当前这版的边界（D-034） */
   | { kind: "toBeContinued"; chapter: number }
+  /** 旧档遇上改过结构的剧本，位置被退回章首（D-037 第 3 条） */
+  | { kind: "rewound"; chapter: number }
   | { kind: "end" };
 
 /**
@@ -98,10 +101,11 @@ export class Story {
     if (s && this.scenes.has(s.sceneId)) {
       const { state, sceneId, lineIndex } = save.deserialize(s);
       this.store.replace(state);
+      const at = this.reconcile(s, sceneId, lineIndex);
       // 不在的这段时间到的信一次收齐，一封不少
       const arrived = this.letters.deliver();
       this.emit({ kind: "letters", unread: this.letters.unreadCount(), arrived });
-      await this.enter(sceneId, lineIndex);
+      await this.enter(at.sceneId, at.lineIndex);
       return;
     }
     await this.enter(this.startId, 0);
@@ -150,6 +154,9 @@ export class Story {
     const d = { key: scene.scene, palette: scene.palette, act: scene.act };
     await this.renderer.load(d);
     await this.renderer.show(d);
+    // 墨层的覆盖面积就是她的权力进度（D-010 第 3 条）。
+    // show() 之后才调：show 会把墨层按幕数重置成默认值，先调会被它盖掉。
+    this.renderer.setInk?.(inkLevel(this.store.state, scene.act));
 
     this.emit({ kind: "scene", scene });
     this.present();
@@ -252,6 +259,48 @@ export class Story {
     await next();
   }
 
+  /**
+   * 旧档配新剧本（D-037 第 3 条）。
+   *
+   * 存档记的是「哪一场、第几句」。剧本一改行数，那个句号就指到别的话上去了；
+   * 玩家看到的是一段接不上的对白，而且不知道为什么。所以结构版本对不上就退回章首。
+   *
+   * 退的只是位置。数值、好感、flag、收到的诗、案上的信全部留着——
+   * 那些是她这一路做的决定，凭什么因为我们改了剧本就作废。
+   */
+  private reconcile(s: { dataVersion?: number }, sceneId: string, lineIndex: number): { sceneId: string; lineIndex: number } {
+    if ((s.dataVersion ?? 0) === DATA_VERSION) return { sceneId, lineIndex };
+    const chapter = this.scenes.get(sceneId)?.chapter;
+    const head = chapter === undefined ? null : this.chapterStart(chapter);
+    if (!head) return { sceneId, lineIndex: 0 };   // 认不出章，至少退到这一场开头
+    console.info(`[save] 剧本结构版本从 ${s.dataVersion ?? 0} 变成 ${DATA_VERSION}，位置退回第 ${chapter} 章开头 ${head}`);
+    this.emit({ kind: "rewound", chapter: chapter! });
+    return { sceneId: head, lineIndex: 0 };
+  }
+
+  /**
+   * 一章从哪一场开始：这一章里没有任何同章场景指向它的那一个。
+   * 不用 id 排序是因为 id 由场景标题生成，不保证能排出剧情顺序（D-037 第 2 条）。
+   * 万一算不出唯一答案（多个入口，或者互相成环），再退回按 id 取最小的那个。
+   */
+  private chapterStart(chapter: number): string | null {
+    const inChapter = [...this.scenes.values()].filter((x) => x.chapter === chapter);
+    if (!inChapter.length) return null;
+    const pointedAt = new Set<string>();
+    for (const x of inChapter) {
+      for (const to of [...(x.choices ?? []).map((c) => c.goto), x.goto]) {
+        if (to && this.scenes.get(to)?.chapter === chapter) pointedAt.add(to);
+      }
+      const d = x.duel ? this.duels.get(x.duel) : undefined;
+      for (const to of [d?.onWin?.goto, d?.onLose?.goto]) {
+        if (to && this.scenes.get(to)?.chapter === chapter) pointedAt.add(to);
+      }
+    }
+    const heads = inChapter.filter((x) => !pointedAt.has(x.id));
+    if (heads.length === 1) return heads[0]!.id;
+    return [...inChapter].sort((a, b) => a.id.localeCompare(b.id))[0]!.id;
+  }
+
   private judgeEnding(): Ending | null {
     const e = pickEnding(this.endingOrder, this.store.state);
     if (!e) console.error("[story] 结局表没有兜底项。最后一条的判定必须留空");
@@ -327,7 +376,8 @@ export class Story {
     this.duelDone.clear();
     this.chapterDone.clear();
     this.poemsThisChapter = [];
-    await this.enter(sceneId, lineIndex);
+    const at = this.reconcile(s, sceneId, lineIndex);
+    await this.enter(at.sceneId, at.lineIndex);
   }
 
   private autosave(): void {

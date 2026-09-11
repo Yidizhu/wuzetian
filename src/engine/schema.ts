@@ -291,6 +291,9 @@ export const Ending = z.object({
  * flag 互斥。来自 C-B 结局树第四节，成对写而不是分组写，
  * 因为并非所有末段选择都互相排斥：落选给李令仪之后仍然可以去办学或行路。
  */
+/** 剧本结构版本（D-037 第 3 条）。定义在 types.ts，那边写了为什么不放这里 */
+export { DATA_VERSION } from "./types.ts";
+
 export const FLAG_CONFLICTS: [string, string][] = [
   ["name_tian", "name_zhao"], ["name_tian", "name_kept"], ["name_zhao", "name_kept"],
   ["enthroned", "declined_crown"], ["enthroned", "liqinghe_won"],

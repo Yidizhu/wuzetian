@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite --host",
-    "build": "npm run validate && npm test && npm run smoke && tsc --noEmit && vite build",
+    "build": "npm run validate && npm test && npm run smoke && tsc --noEmit && vite build && npm run check:bundle",
     "preview": "vite preview --host",
     "validate": "node --experimental-strip-types tools/validate-story.ts",
     "validate:demo": "node --experimental-strip-types tools/validate-story.ts tools/fixtures/broken",
@@ -17,7 +17,8 @@
     "build:adult": "node --experimental-strip-types tools/build-adult.ts",
     "smoke": "node --experimental-strip-types tools/smoke-chapter.ts",
     "smoke:converted": "node --experimental-strip-types tools/smoke-chapter.ts converted",
-    "build:web": "npm run validate && npm run test:engine && npm run smoke && tsc --noEmit && vite build"
+    "build:web": "npm run validate && npm run test:engine && npm run smoke && tsc --noEmit && vite build && npm run check:bundle",
+    "check:bundle": "node --experimental-strip-types tools/check-bundle.ts"
   },
   "devDependencies": {
     "@types/three": "^0.170.0",

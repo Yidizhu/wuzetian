@@ -1,5 +1,5 @@
 import { newState, type GameState } from "./state.ts";
-import { STAT_KEYS, type LetterSlot, type StatKey } from "./types.ts";
+import { DATA_VERSION, STAT_KEYS, type LetterSlot, type StatKey } from "./types.ts";
 
 /**
  * 存档。五条要点见 story-schema 2.3：
@@ -20,6 +20,10 @@ export const AUTO_SLOT = 0;
 
 export interface SaveV1 {
   version: 1;
+  /**
+   * 存档格式版本。改的是这个文件里的字段形状，走 MIGRATIONS 迁移链。
+   * 剧本结构变了是另一回事，看 dataVersion。
+   */
   savedAt: number;
   sceneId: string;
   lineIndex: number;
@@ -32,6 +36,11 @@ export interface SaveV1 {
   endingsUnlocked: string[];
   letters: LetterSlot[];
   lastSeenAt: number;
+  /**
+   * 存这份档时剧本结构的版本（D-037 第 3 条）。缺这个字段的是 B8 之前的老档，
+   * 按 0 算，一定对不上——那些档本来就是旧剧本的，退回章首是对的。
+   */
+  dataVersion?: number;
 }
 
 type AnySave = { version?: number } & Record<string, unknown>;
@@ -56,6 +65,7 @@ export function serialize(s: GameState, sceneId: string, lineIndex: number): Sav
     endingsUnlocked: [...s.endingsUnlocked],
     letters: s.letters.map((l) => ({ ...l })),
     lastSeenAt: Date.now(),
+    dataVersion: DATA_VERSION,
   };
 }
 

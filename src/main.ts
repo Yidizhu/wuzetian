@@ -12,7 +12,7 @@ import { ChoiceList } from "./ui/ChoiceList.ts";
 import { StatusBar } from "./ui/StatusBar.ts";
 import { PoemDuel } from "./ui/PoemDuel.ts";
 import { ChapterSummary } from "./ui/ChapterSummary.ts";
-import { showFirstRunNotice } from "./ui/FirstRunNotice.ts";
+import { showFirstRunNotice, showNotice } from "./ui/FirstRunNotice.ts";
 import { SaveSlots } from "./ui/SaveSlots.ts";
 import * as saveApi from "./engine/save.ts";
 import { NAMES } from "./ui/names.ts";
@@ -155,6 +155,11 @@ story.on((e) => {
       app.appendChild(title);
       break;
     }
+    // 剧本改过结构，旧档的句号对不上了，位置退回章首（D-037 第 3 条）。
+    // 说清楚保住了什么：她会想知道自己这一路做的决定还在不在。
+    case "rewound":
+      showNotice(app, `剧本更新过，这一章重新开始。你的数值、好感和收到的诗都还在。`, { sticky: true });
+      break;
     // 章走完了，下一章还没有。这句话是说给玩家听的，不是报错（D-034）
     case "toBeContinued":
       choices.hide();

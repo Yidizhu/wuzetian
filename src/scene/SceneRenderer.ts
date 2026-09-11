@@ -22,6 +22,13 @@ export interface SceneRenderer {
   show(d: SceneDescriptor): Promise<void>;
   /** 关键 beat 的缓慢推拉。CSS 版做轻微缩放，3D 版动相机 */
   beat(name: string): void;
+  /**
+   * 水墨侵入朝廷的覆盖面积，0–1（D-010 第 3 条）。引擎每次换场算一次，见 engine/ink.ts。
+   *
+   * 可选：没实现的 renderer（空渲染器、CSS 版）当它不存在，引擎不会因此少做别的事。
+   * 这一层只在金碧场景上显形，那个判断归 renderer——引擎不该知道墨叠在什么上面。
+   */
+  setInk?(v: number): void;
   resize(w: number, h: number): void;
   dispose(): void;
 }
