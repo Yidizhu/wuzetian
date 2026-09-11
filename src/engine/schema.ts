@@ -1,0 +1,319 @@
+import { z } from "zod";
+
+/**
+ * 运行时校验的唯一来源。`docs/story-schema.md` 第二部分是它的说明书，
+ * 两边不一致时以这个文件为准，然后立刻回去改文档。
+ *
+ * 引擎启动时不跑校验（开销白付），构建期由 tools/validate-story.ts 跑。
+ */
+
+/** 角色 key 冻结于指挥日志 D-016。加人先改那里。 */
+export const CHARACTER_KEYS = [
+  "wuze", "shenheng", "peizhaoye", "wenqiao", "liqinghe",
+  "songhuizhen", "hetaihou", "xujinghe", "tangjian", "adi",
+] as const;
+export const CharacterKey = z.enum(CHARACTER_KEYS, {
+  errorMap: () => ({ message: `不是 D-016 冻结的角色 key。只能是：${CHARACTER_KEYS.join("、")}` }),
+});
+
+/** 说话人还可以是主角内心和旁白，它们不是角色 */
+export const SpeakerKey = z.union([CharacterKey, z.enum(["self", "narr"])], {
+  errorMap: () => ({ message: `说话人只能是角色 key，或 self（主角内心）、narr（旁白）` }),
+});
+
+export const SCENE_KEYS = [
+  "yeting", "zhaoyang", "shuge", "nvguan",
+  "shishe", "yuanye", "hanyuan", "wuzibei",
+] as const;
+export const SceneKeyEnum = z.enum(SCENE_KEYS, {
+  errorMap: () => ({ message: `不是 art-style 里那八个场景之一：${SCENE_KEYS.join("、")}` }),
+});
+export const PaletteEnum = z.enum(["ink", "gold"], {
+  errorMap: () => ({ message: "色板只有 ink（水墨）和 gold（金碧）两种，见 D-010" }),
+});
+
+const Cmp = z.object({
+  gte: z.number().optional(), lte: z.number().optional(),
+  gt: z.number().optional(), lt: z.number().optional(), eq: z.number().optional(),
+}).strict();
+
+const STAT_RE = /^(shi|ming|cai|xin)$/;
+const REF_RE = /^(affinity|flag)\.[a-z][a-z0-9_]*$/;
+
+/** 条件与效果的键：四个数值，或 affinity.<key>，或 flag.<name> */
+const keyed = <T extends z.ZodTypeAny>(value: T) =>
+  z.record(z.string(), value).superRefine((obj, ctx) => {
+    for (const k of Object.keys(obj)) {
+      if (STAT_RE.test(k) || REF_RE.test(k)) continue;
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        path: [k],
+        message: `认不出的键「${k}」。只能是 shi/ming/cai/xin，或 affinity.<角色key>，或 flag.<小写下划线名>`,
+      });
+    }
+  });
+
+export const Condition = keyed(z.union([Cmp, z.boolean()]));
+export const Effects = keyed(z.union([z.number(), z.boolean()]));
+
+export const Line = z.object({
+  id: z.string().min(1),
+  /** 逐句条件（D-026）。不满足就跳过这一句。空 = 总是播放 */
+  when: z.lazy(() => Condition).optional(),
+  who: SpeakerKey,
+  expr: z.enum(["default", "guarded", "open"], {
+    errorMap: () => ({ message: "表情差分只有三种：default、guarded、open" }),
+  }).optional(),
+  kind: z.enum(["say", "inner", "aside", "poem"], {
+    errorMap: () => ({ message: "类型只有 say（说）、inner（内心）、aside（旁白）、poem（诗）" }),
+  }).default("say"),
+  text: z.string().min(1, "台词不能是空的").max(40, "一句台词不超过 40 字，手机装不下"),
+});
+
+export const Choice = z.object({
+  id: z.string().min(1),
+  text: z.string().min(1).max(24),
+  require: Condition.optional(),
+  lockHint: z.string().optional(),
+  effects: Effects.optional(),
+  irreversible: z.boolean().default(false),
+  goto: z.string().min(1),
+});
+
+export const Scene = z.object({
+  id: z.string().min(1),
+  chapter: z.number().int().min(0),
+  act: z.number().int().min(1, "幕只有 1 到 3").max(3, "幕只有 1 到 3"),
+  scene: SceneKeyEnum,
+  palette: PaletteEnum,
+  bgm: z.string().optional(),
+  cast: z.array(CharacterKey),
+  require: Condition.optional(),
+  weightless: z.boolean().default(false),
+  leavesLetter: z.array(CharacterKey).default([]),
+  purpose: z.string().min(1, "说不出目的的场景应该被合并或删掉"),
+  lines: z.array(Line).min(1),
+  /** 台词读完之后先打一局对诗，再进选项。对局在 duels.json 里 */
+  duel: z.string().optional(),
+  /** 走到这里就按结局表从上往下取首个满足者。全游戏只有一个这样的点 */
+  judgeEnding: z.boolean().optional(),
+  /**
+   * 章末出口（D-034）。走到这里先出结算页；`goto` 指向下一章第一场时接着走，
+   * 没写或那一场还不存在，就停在结算页显示「下章待续」。
+   *
+   * 为什么要显式写而不是靠章号变了自动判断：最后一章的最后一场后面没有下一场，
+   * 章号永远不变，自动判断在那里什么都不会发生。剧本要能说「这里是一章的头」。
+   */
+  chapterEnd: z.boolean().optional(),
+  choices: z.array(Choice).optional(),
+  goto: z.string().optional(),
+  ending: z.string().optional(),
+}).superRefine((s, ctx) => {
+  // duel 也算出口（D-026）：胜负各自的 goto 带玩家离开。两条都得有，校验器另查
+  if (!(s.choices?.length || s.goto || s.ending || s.judgeEnding || s.duel || s.chapterEnd)) {
+    ctx.addIssue({
+      code: z.ZodIssueCode.custom,
+      message: "场景没有出口：choices、goto、ending、judgeEnding、duel、chapterEnd 六者至少要有一个，否则玩家会卡死在这里",
+    });
+  }
+  if (s.chapterEnd && (s.ending || s.judgeEnding)) {
+    ctx.addIssue({
+      code: z.ZodIssueCode.custom,
+      path: ["chapterEnd"],
+      message: "章末是翻页，结局是落幕，一场戏不能既翻页又落幕。要收全局就用 judgeEnding",
+    });
+  }
+  if (s.chapterEnd && s.choices?.length) {
+    ctx.addIssue({
+      code: z.ZodIssueCode.custom,
+      path: ["chapterEnd"],
+      message: "章末场不要带选项：结算页一出，玩家已经离开这一场了，选项没有人会看到",
+    });
+  }
+  if (s.ending && s.judgeEnding) {
+    ctx.addIssue({
+      code: z.ZodIssueCode.custom,
+      path: ["judgeEnding"],
+      message: "ending 是钉死一个结局，judgeEnding 是按表判定，两个不能同时写",
+    });
+  }
+});
+
+export const Poem = z.object({
+  id: z.string().min(1),
+  title: z.string().min(1),
+  author: z.string().min(1),
+  /** 一行一句，不含换行符 */
+  lines: z.array(z.string().min(1)).min(1),
+  source: z.string().min(1),
+  sourceUrl: z.string().url().optional(),
+  tags: z.array(z.string().min(1)).min(1),
+  mood: z.array(z.string().min(1)).min(1),
+  occasion: z.string().min(1),
+  difficulty: z.number().int().min(1).max(3),
+  note: z.string().optional(),
+});
+
+export const PoemDuel = z.object({
+  id: z.string().min(1),
+  title: z.string().min(1),
+  opponent: CharacterKey.optional(),          // 场景定稿时再绑对手
+  sceneId: z.string().optional(),
+  prompt: z.string().min(1),                  // 出句
+  poemRef: z.string().min(1),                 // 出句来自哪一首
+  /**
+   * 给玩家的题面：这一局到底限定了什么。
+   * 有了它，错项才是「没满足写明的限制」，而不是「意境不对」这种说不清的判词。
+   */
+  brief: z.string().min(1),
+  judgingFocus: z.string().min(1),
+  difficulty: z.number().int().min(1).max(3),
+  options: z.array(z.object({
+    key: z.string().length(1),
+    text: z.string().min(1),
+    correct: z.boolean(),
+    why: z.string().min(10, "错项必须说得出理由，这是游戏唯一的教学环节"),
+  })).length(4),
+  /** 胜负各自的效果、去向，以及一句专属台词（D-026）。台词由对话框播，不塞进判题页 */
+  onWin: z.object({ effects: Effects.optional(), goto: z.string().optional(), line: z.lazy(() => Line).optional() }).optional(),
+  onLose: z.object({ effects: Effects.optional(), goto: z.string().optional(), line: z.lazy(() => Line).optional() }).optional(),
+}).superRefine((d, ctx) => {
+  const n = d.options.filter((o) => o.correct).length;
+  if (n !== 1) {
+    ctx.addIssue({
+      code: z.ZodIssueCode.custom,
+      path: ["options"],
+      message: `有且只有一个正确对句，现在有 ${n} 个`,
+    });
+  }
+});
+
+const SolarTerm = z.enum(["shangyuan", "hanshi", "qixi", "zhongqiu"]);
+
+const LetterTrigger = z.discriminatedUnion("kind", [
+  z.object({
+    kind: z.literal("scene"),
+    sceneId: z.string().min(1),
+    // 下限 1（D-034 / R-006）：军中素笺本来就该快，隔一场就到才对
+    afterScenes: z.number().int().min(1).max(4),
+  }),
+  z.object({
+    kind: z.literal("solarTerm"),
+    term: SolarTerm,
+    minAffinity: z.number().int().default(5),
+  }),
+]);
+
+const ReplyOutcome = z.object({
+  effects: Effects.optional(),
+  reaction: z.string().min(1, "每种回信都要有她的反应，否则回信就是没有后果的按钮"),
+  goto: z.string().optional(),
+});
+
+export const Letter = z.object({
+  id: z.string().min(1),
+  from: CharacterKey,
+  trigger: LetterTrigger,
+  // 下限 5 分钟（R-006）。再短就不像「过了一会儿」，像系统弹窗
+  delayMinutes: z.number().int().min(5).max(180),
+  paper: z.enum(["huangma", "junzhong", "nijin", "huajian", "chang"]),
+  body: z.object({
+    surface: z.string().min(1),
+    poem: z.object({ ref: z.string(), line: z.string() }).optional(),
+    poemMeans: z.string().optional(),
+    blank: z.string().min(1),
+  }),
+  sheMayNotReply: Condition.optional(),
+  interceptable: z.boolean().default(false),
+  onIntercept: z.object({ goto: z.string().min(1) }).optional(),
+  replies: z.object({
+    plain: z.array(ReplyOutcome.extend({
+      id: z.string().min(1),
+      text: z.string().min(1).max(30),
+    })).length(3),
+    poem: z.object({
+      resonantTags: z.array(z.string().min(1)).min(1),
+      onResonant: ReplyOutcome,
+      onMismatch: ReplyOutcome,
+    }),
+    silence: ReplyOutcome,
+  }),
+}).superRefine((l, ctx) => {
+  if (l.interceptable && !l.onIntercept) {
+    ctx.addIssue({
+      code: z.ZodIssueCode.custom,
+      path: ["onIntercept"],
+      message: "会被截的信必须写明被截之后去哪一场",
+    });
+  }
+});
+
+/**
+ * 改名三个 flag。D-020：三选无优劣，任何结局判定都不许拿它们当门槛，
+ * 只能用来切文本变体。校验器会强制这一条。
+ */
+export const NAME_FLAGS = ["flag.name_tian", "flag.name_zhao", "flag.name_kept"] as const;
+
+/**
+ * 结局正文。登基线的结局要按玩家选的那个字给三段变体，
+ * 因为登基后的名字是她自己挑的，结局卡不能对此毫无反应（R-003 第 2 条）。
+ */
+export const EndingBody = z.union([
+  z.string().min(1),
+  z.object({
+    tian: z.string().min(1),
+    zhao: z.string().min(1),
+    kept: z.string().min(1),
+  }),
+]);
+
+export const Ending = z.object({
+  key: z.string().min(1),
+  title: z.string().min(1),
+  require: Condition.optional(),        // 留空 = 兜底
+  palette: PaletteEnum,
+  theme: z.string().min(1),
+  body: EndingBody,
+  card: z.string().optional(),
+}).superRefine((e, ctx) => {
+  for (const f of NAME_FLAGS) {
+    if (e.require && f in e.require) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        path: ["require", f],
+        message: `结局判定不许用 ${f}（D-020）。改名三选没有优劣之分，一旦拿它当门槛，那一幕就有了「正确答案」。要区分就用 body 的三段变体`,
+      });
+    }
+  }
+});
+
+/**
+ * flag 互斥。来自 C-B 结局树第四节，成对写而不是分组写，
+ * 因为并非所有末段选择都互相排斥：落选给李令仪之后仍然可以去办学或行路。
+ */
+export const FLAG_CONFLICTS: [string, string][] = [
+  ["name_tian", "name_zhao"], ["name_tian", "name_kept"], ["name_zhao", "name_kept"],
+  ["enthroned", "declined_crown"], ["enthroned", "liqinghe_won"],
+  ["enthroned", "founded_school"], ["enthroned", "road_agreement"],
+  ["declined_crown", "liqinghe_won"], ["declined_crown", "liqinghe_together"],
+  ["declined_crown", "founded_school"], ["declined_crown", "road_agreement"],
+  ["founded_school", "road_agreement"],
+  // 名单开还是关是第四章那一下的两个方向，也是满殿无声与无字碑的分水岭（D-028）。
+  // 两个都为真时结局表只会取到排在前面的那个，玩家做的另一半决定就悄悄消失了。
+  ["ch04_nomination_open", "ch04_nomination_closed"],
+];
+
+/** flag 的前置条件：写真之前，被依赖的那个必须已经为真 */
+export const FLAG_REQUIRES: Record<string, string> = {
+  enthroned: "succession_open",
+  liqinghe_together: "liqinghe_won",
+  name_tian: "enthroned",
+  name_zhao: "enthroned",
+  name_kept: "enthroned",
+};
+
+export type SceneT = z.infer<typeof Scene>;
+export type PoemT = z.infer<typeof Poem>;
+export type PoemDuelT = z.infer<typeof PoemDuel>;
+export type LetterT = z.infer<typeof Letter>;
+export type EndingT = z.infer<typeof Ending>;

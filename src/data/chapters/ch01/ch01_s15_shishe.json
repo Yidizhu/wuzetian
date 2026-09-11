@@ -1,0 +1,109 @@
+{
+  "id": "ch01_s15_shishe",
+  "chapter": 1,
+  "act": 1,
+  "scene": "shishe",
+  "palette": "ink",
+  "cast": [
+    "wuze",
+    "wenqiao"
+  ],
+  "require": {
+    "affinity.wenqiao": {
+      "gte": 5
+    }
+  },
+  "weightless": true,
+  "leavesLetter": [],
+  "purpose": "只听两张纸的声音，猜错也可以笑",
+  "lines": [
+    {
+      "id": "ch01_s15_shishe.l1",
+      "who": "narr",
+      "kind": "aside",
+      "text": "竹架滴水渐慢，温荞拿两张干废纸，在你耳边轻轻抖。"
+    },
+    {
+      "id": "ch01_s15_shishe.l2",
+      "who": "wenqiao",
+      "expr": "open",
+      "kind": "say",
+      "text": "闭眼。哪张薄？"
+    },
+    {
+      "id": "ch01_s15_shishe.l3",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "近的。"
+    },
+    {
+      "id": "ch01_s15_shishe.l4",
+      "who": "wenqiao",
+      "expr": "open",
+      "kind": "say",
+      "text": "两张一样近。"
+    },
+    {
+      "id": "ch01_s15_shishe.l5",
+      "who": "wuze",
+      "expr": "open",
+      "kind": "say",
+      "text": "响的。"
+    },
+    {
+      "id": "ch01_s15_shishe.l6",
+      "who": "wenqiao",
+      "expr": "open",
+      "kind": "say",
+      "text": "你说得这么含糊，我把哪一张递给你，你都能点头说早就猜到了。"
+    },
+    {
+      "id": "ch01_s15_shishe.l7",
+      "who": "narr",
+      "kind": "aside",
+      "text": "你睁开一只眼，她立刻把两张纸都藏到身后。"
+    },
+    {
+      "id": "ch01_s15_shishe.l8",
+      "who": "wenqiao",
+      "expr": "open",
+      "kind": "say",
+      "text": "这还用偷看？"
+    },
+    {
+      "id": "ch01_s15_shishe.l9",
+      "who": "wuze",
+      "expr": "open",
+      "kind": "say",
+      "text": "给我抖一回，你闭眼听着，若也猜错了，今日这两张纸就都算厚的。"
+    },
+    {
+      "id": "ch01_s15_shishe.l10",
+      "who": "narr",
+      "kind": "aside",
+      "text": "她把纸递给你，闭眼前还特意将头偏向另一边。"
+    },
+    {
+      "id": "ch01_s15_shishe.l11",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "现在呢？"
+    },
+    {
+      "id": "ch01_s15_shishe.l12",
+      "who": "wenqiao",
+      "expr": "open",
+      "kind": "say",
+      "text": "你笑得比纸响。"
+    },
+    {
+      "id": "ch01_s15_shishe.l13",
+      "who": "narr",
+      "kind": "aside",
+      "text": "你只好等自己不笑了，再抖一次。"
+    }
+  ],
+  "goto": "ch01_s17_yeting"
+}

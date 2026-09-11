@@ -1,0 +1,86 @@
+{
+  "id": "lt_ch01_shenheng_01",
+  "from": "shenheng",
+  "trigger": {
+    "kind": "scene",
+    "sceneId": "ch01_s04_shuge",
+    "afterScenes": 3
+  },
+  "delayMinutes": 18,
+  "paper": "huangma",
+  "body": {
+    "surface": "与你争过的那卷，我又看了一遍。仍没有能补进卷里的话。窗外倒有两只蝉，隔着树也不妨碍各叫各的。你若来，可以还坐灯边。",
+    "poem": {
+      "ref": "xuetao_chan",
+      "line": "声声似相接，各在一枝栖。"
+    },
+    "poemMeans": "她愿意继续相应，不要求对方先移到自己的枝上",
+    "blank": "（她没写谁说服了谁。灯边的位置留着，我不必先改口才去坐。）"
+  },
+  "sheMayNotReply": {
+    "affinity.shenheng": {
+      "lt": 5
+    }
+  },
+  "interceptable": false,
+  "replies": {
+    "plain": [
+      {
+        "effects": {
+          "affinity.shenheng": 2,
+          "flag.shenheng_seek_voice": true
+        },
+        "reaction": "“可以问。别先替她定下该答什么。”她把未合的卷留在一边，没用它拦住门。",
+        "id": "lt_ch01_shenheng_01.rA",
+        "text": "我来。卷外的话，我仍想找人问。"
+      },
+      {
+        "effects": {
+          "cai": 1,
+          "flag.shenheng_check_record": true
+        },
+        "reaction": "“存疑可以，不能拿它抵一份证言。”她另取一纸，不给旧字添笔。",
+        "id": "lt_ch01_shenheng_01.rB",
+        "text": "先陪你核卷。不能补的话，也请留一处存疑。"
+      },
+      {
+        "effects": {
+          "shi": 1,
+          "affinity.shenheng": -1,
+          "flag.shenheng_defer_visit": true
+        },
+        "reaction": "“好。找到以后，先问她肯不肯来。”多摆的坐席收回，下次会面须再相约。",
+        "id": "lt_ch01_shenheng_01.rC",
+        "text": "今日不来。等我找到人，再与你争。"
+      }
+    ],
+    "poem": {
+      "resonantTags": [
+        "蝉",
+        "叶",
+        "远声",
+        "远近",
+        "溪",
+        "日月"
+      ],
+      "onResonant": {
+        "effects": {
+          "affinity.shenheng": 2
+        },
+        "reaction": "她在诗句旁停了停笔：“各在一处，也能听见。”没有替对方改掉落脚的地方。"
+      },
+      "onMismatch": {
+        "effects": {
+          "affinity.shenheng": 1
+        },
+        "reaction": "她读完：“这一句，你来时讲给我听。”邀约仍在，不冒称已经明白你的用意。"
+      }
+    },
+    "silence": {
+      "effects": {
+        "flag.silent_to_shenheng": true
+      },
+      "reaction": "她收起多取的纸。下次见面照常办事，不再紧接着重复那一次私邀。"
+    }
+  }
+}

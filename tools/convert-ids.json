@@ -1,0 +1,176 @@
+{
+  "duels": [
+    {
+      "id": "pd_songjianyue",
+      "title": "松间月",
+      "prompt": "明月松间照"
+    },
+    {
+      "id": "pd_yuyedeng",
+      "title": "雨夜灯",
+      "prompt": "野径云俱黑"
+    },
+    {
+      "id": "pd_xuezhicangxin",
+      "title": "雪纸藏信",
+      "prompt": "尺素如残雪"
+    },
+    {
+      "id": "pd_lunongyueluo",
+      "title": "露浓月落",
+      "prompt": "露浓香被冷"
+    }
+  ],
+  "poems": [
+    {
+      "id": "xuetao_chan",
+      "title": "蝉",
+      "author": "薛涛"
+    },
+    {
+      "id": "xuetao_chishangshuangniao",
+      "title": "池上双鸟",
+      "author": "薛涛"
+    },
+    {
+      "id": "xuetao_yuanyangcao",
+      "title": "鸳鸯草",
+      "author": "薛涛"
+    },
+    {
+      "id": "xuetao_mudan",
+      "title": "牡丹",
+      "author": "薛涛"
+    },
+    {
+      "id": "xuetao_songyouren",
+      "title": "送友人",
+      "author": "薛涛"
+    },
+    {
+      "id": "xuetao_yilizhi",
+      "title": "忆荔枝",
+      "author": "薛涛"
+    },
+    {
+      "id": "xuetao_songyaoyuanwai",
+      "title": "送姚员外",
+      "author": "薛涛"
+    },
+    {
+      "id": "xuetao_xiangsi",
+      "title": "乡思",
+      "author": "薛涛"
+    },
+    {
+      "id": "xuetao_tanglihua",
+      "title": "棠梨花和李太尉",
+      "author": "薛涛"
+    },
+    {
+      "id": "xuetao_chouyongxiucai",
+      "title": "酬雍秀才贻巴峡图",
+      "author": "薛涛"
+    },
+    {
+      "id": "yuxuanji_youchongzhenguan",
+      "title": "游崇真观南楼，睹新及第题名处",
+      "author": "鱼玄机"
+    },
+    {
+      "id": "yuxuanji_tiyinwuting",
+      "title": "题隐雾亭",
+      "author": "鱼玄机"
+    },
+    {
+      "id": "yuxuanji_fangzhaolianshi",
+      "title": "访赵炼师不遇",
+      "author": "鱼玄机"
+    },
+    {
+      "id": "yuxuanji_qianhuai",
+      "title": "遣怀",
+      "author": "鱼玄机"
+    },
+    {
+      "id": "yuxuanji_zaoqiu",
+      "title": "早秋",
+      "author": "鱼玄机"
+    },
+    {
+      "id": "yuxuanji_heyouren",
+      "title": "和友人次韵",
+      "author": "鱼玄机"
+    },
+    {
+      "id": "liye_bazhi",
+      "title": "八至",
+      "author": "李冶"
+    },
+    {
+      "id": "liye_jiesuyu",
+      "title": "结素鱼贻友人",
+      "author": "李冶"
+    },
+    {
+      "id": "liye_mingyueyeliubie",
+      "title": "明月夜留别",
+      "author": "李冶"
+    },
+    {
+      "id": "liye_ouju",
+      "title": "偶居",
+      "author": "李冶"
+    },
+    {
+      "id": "shangguanwaner_caishuyuan",
+      "title": "彩书怨",
+      "author": "上官婉儿"
+    },
+    {
+      "id": "shangguanwaner_lichun",
+      "title": "奉和圣制立春日侍宴内殿出剪彩花应制",
+      "author": "上官婉儿"
+    },
+    {
+      "id": "shangguanwaner_chongyang",
+      "title": "九月九日上幸慈恩寺登浮图群臣上菊花寿酒",
+      "author": "上官婉儿"
+    },
+    {
+      "id": "liucaichun_luogongqu2",
+      "title": "啰唝曲六首·其二",
+      "author": "刘采春"
+    },
+    {
+      "id": "liucaichun_luogongqu6",
+      "title": "啰唝曲六首·其六",
+      "author": "刘采春"
+    },
+    {
+      "id": "wangwei_shanjuqiuming",
+      "title": "山居秋暝",
+      "author": "王维"
+    },
+    {
+      "id": "wangwei_zhuliguan",
+      "title": "竹里馆",
+      "author": "王维"
+    },
+    {
+      "id": "libai_duzuojingtingshan",
+      "title": "独坐敬亭山",
+      "author": "李白"
+    },
+    {
+      "id": "dufu_chunyexiyu",
+      "title": "春夜喜雨",
+      "author": "杜甫"
+    },
+    {
+      "id": "wangzhihuan_denguqueLou",
+      "title": "登鹳雀楼",
+      "author": "王之涣"
+    }
+  ]
+}

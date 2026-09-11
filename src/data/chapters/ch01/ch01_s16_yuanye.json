@@ -1,0 +1,115 @@
+{
+  "id": "ch01_s16_yuanye",
+  "chapter": 1,
+  "act": 1,
+  "scene": "yuanye",
+  "palette": "ink",
+  "cast": [
+    "wuze",
+    "liqinghe"
+  ],
+  "require": {
+    "affinity.liqinghe": {
+      "gte": 5
+    }
+  },
+  "weightless": true,
+  "leavesLetter": [],
+  "purpose": "公主与主角用落叶投石缝，风把输赢一起吹走",
+  "lines": [
+    {
+      "id": "ch01_s16_yuanye.l1",
+      "who": "narr",
+      "kind": "aside",
+      "text": "石缝还湿着，公主捡了一片卷边的叶子，站到影子外。"
+    },
+    {
+      "id": "ch01_s16_yuanye.l2",
+      "who": "liqinghe",
+      "expr": "default",
+      "kind": "say",
+      "text": "你近了半步。"
+    },
+    {
+      "id": "ch01_s16_yuanye.l3",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "我这片轻。"
+    },
+    {
+      "id": "ch01_s16_yuanye.l4",
+      "who": "liqinghe",
+      "expr": "open",
+      "kind": "say",
+      "text": "换。"
+    },
+    {
+      "id": "ch01_s16_yuanye.l5",
+      "who": "narr",
+      "kind": "aside",
+      "text": "换过叶子，两个人都没投进。"
+    },
+    {
+      "id": "ch01_s16_yuanye.l6",
+      "who": "wuze",
+      "expr": "open",
+      "kind": "say",
+      "text": "这回可以怪风了？"
+    },
+    {
+      "id": "ch01_s16_yuanye.l7",
+      "who": "liqinghe",
+      "expr": "open",
+      "kind": "say",
+      "text": "你方才怪叶子，如今又怪风，留一点给自己的手吧，它也忙了好一阵。"
+    },
+    {
+      "id": "ch01_s16_yuanye.l8",
+      "who": "narr",
+      "kind": "aside",
+      "text": "你后退半步，公主也跟着退了半步。"
+    },
+    {
+      "id": "ch01_s16_yuanye.l9",
+      "who": "wuze",
+      "expr": "open",
+      "kind": "say",
+      "text": "这不是白退了。"
+    },
+    {
+      "id": "ch01_s16_yuanye.l10",
+      "who": "liqinghe",
+      "expr": "open",
+      "kind": "say",
+      "text": "你还没投。"
+    },
+    {
+      "id": "ch01_s16_yuanye.l11",
+      "who": "wuze",
+      "expr": "open",
+      "kind": "say",
+      "text": "最后一片若飞远了，就让它走吧，我可不想沿着这条水沟追到园门外头。"
+    },
+    {
+      "id": "ch01_s16_yuanye.l12",
+      "who": "narr",
+      "kind": "aside",
+      "text": "叶子一离手就翻了个身，越过石缝，贴到另一片叶上。"
+    },
+    {
+      "id": "ch01_s16_yuanye.l13",
+      "who": "liqinghe",
+      "expr": "open",
+      "kind": "say",
+      "text": "那便不追。"
+    },
+    {
+      "id": "ch01_s16_yuanye.l14",
+      "who": "narr",
+      "kind": "aside",
+      "text": "她把手里的也放下，没有问这一片算谁的。"
+    }
+  ],
+  "goto": "ch01_s17_yeting"
+}

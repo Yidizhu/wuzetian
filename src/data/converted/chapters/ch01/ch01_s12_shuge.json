@@ -1,0 +1,290 @@
+{
+  "id": "ch01_s12_shuge",
+  "chapter": 1,
+  "act": 1,
+  "scene": "shuge",
+  "palette": "gold",
+  "cast": [
+    "wuze",
+    "shenheng",
+    "tangjian"
+  ],
+  "weightless": false,
+  "leavesLetter": [],
+  "purpose": "主角把阿荻私话写成可辨认的匿名例证，自以为署名就能承担后果",
+  "lines": [
+    {
+      "id": "ch01_s12_shuge.l1",
+      "when": {
+        "flag.wen_editor_only": true
+      },
+      "who": "narr",
+      "kind": "aside",
+      "text": "温荞圈过的一处空话还在页上，旁边留着你的改笔。"
+    },
+    {
+      "id": "ch01_s12_shuge.l2",
+      "when": {
+        "flag.wen_editor_only": true
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "她只看过前面的条目，后添的例证由我负责，不能拿她的名字替我作保。"
+    },
+    {
+      "id": "ch01_s12_shuge.l3",
+      "when": {
+        "flag.wen_editor_only": true
+      },
+      "who": "shenheng",
+      "expr": "default",
+      "kind": "say",
+      "text": "那就只署你自己；谁看过哪一段也照实说，不要让一句请教变成联署。"
+    },
+    {
+      "id": "ch01_s12_shuge.l4",
+      "when": {
+        "flag.wen_paper_only": true
+      },
+      "who": "narr",
+      "kind": "aside",
+      "text": "买来的纸还带着竹架的细纹，字全是你自己写的。"
+    },
+    {
+      "id": "ch01_s12_shuge.l5",
+      "when": {
+        "flag.wen_paper_only": true
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "纸钱已经给了，话仍是我的，她没有看过这一份，不能算她也答应过。"
+    },
+    {
+      "id": "ch01_s12_shuge.l6",
+      "when": {
+        "flag.wen_paper_only": true
+      },
+      "who": "shenheng",
+      "expr": "default",
+      "kind": "say",
+      "text": "那就从头再读一次，缺的地方你自己补上，别因为纸好就以为话也齐了。"
+    },
+    {
+      "id": "ch01_s12_shuge.l7",
+      "who": "narr",
+      "kind": "aside",
+      "text": "檐水一滴一滴敲着石阶，封递用的油布已铺在唐简膝上。"
+    },
+    {
+      "id": "ch01_s12_shuge.l8",
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "只剩你这份。"
+    },
+    {
+      "id": "ch01_s12_shuge.l9",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "往后分人核，往前欠的也该准她们查。"
+    },
+    {
+      "id": "ch01_s12_shuge.l10",
+      "who": "shenheng",
+      "expr": "default",
+      "kind": "say",
+      "text": "这句要写明白：没有旧记认，不等于做过的工便可以一笔不算。"
+    },
+    {
+      "id": "ch01_s12_shuge.l11",
+      "who": "narr",
+      "kind": "aside",
+      "text": "你在“准追旧欠”下留了两行。"
+    },
+    {
+      "id": "ch01_s12_shuge.l12",
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "泛说有旧欠，回来先问哪一批，来回就是一程。"
+    },
+    {
+      "id": "ch01_s12_shuge.l13",
+      "who": "self",
+      "kind": "inner",
+      "text": "（初八。西库。十一件。）"
+    },
+    {
+      "id": "ch01_s12_shuge.l14",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "我知道一批。"
+    },
+    {
+      "id": "ch01_s12_shuge.l15",
+      "who": "shenheng",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "是你经手的？"
+    },
+    {
+      "id": "ch01_s12_shuge.l16",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "不是。来处我知道，我先署名提出，请他们核原账。"
+    },
+    {
+      "id": "ch01_s12_shuge.l17",
+      "who": "shenheng",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "那只能作待核的例，不是已定的欠数，更不能替经手的人画押。"
+    },
+    {
+      "id": "ch01_s12_shuge.l18",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "好，写待核。我不写她的名字，回头若问，就先来找我。"
+    },
+    {
+      "id": "ch01_s12_shuge.l19",
+      "who": "narr",
+      "kind": "aside",
+      "text": "你写下“初八，西库，旧衣十一件，工钱未付，待核”。"
+    },
+    {
+      "id": "ch01_s12_shuge.l20",
+      "who": "narr",
+      "kind": "aside",
+      "text": "人名那一处被你划掉，日期、库名、件数都留下了。"
+    },
+    {
+      "id": "ch01_s12_shuge.l21",
+      "who": "self",
+      "kind": "inner",
+      "text": "（她能领到钱，又不必站到前头。这样最好。）"
+    },
+    {
+      "id": "ch01_s12_shuge.l22",
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "留一份抄件。封了就不是伸手能拿回来的。"
+    },
+    {
+      "id": "ch01_s12_shuge.l23",
+      "who": "narr",
+      "kind": "aside",
+      "text": "你把自己的名字写在末尾，将纸放进已经摊开的油布。"
+    },
+    {
+      "id": "ch01_s12_shuge.l24",
+      "who": "narr",
+      "kind": "aside",
+      "text": "封口一合。门外的脚步很快被水声盖住。"
+    },
+    {
+      "id": "ch01_s12_shuge.l25",
+      "who": "shenheng",
+      "expr": "default",
+      "kind": "say",
+      "text": "这不是准了追欠，只是递上去请议。回来还有得问。"
+    },
+    {
+      "id": "ch01_s12_shuge.l26",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "至少这一批不再只在她心里记着，我去把抄件给她看，让她知道已经有人问了。"
+    },
+    {
+      "id": "ch01_s12_shuge.l27",
+      "who": "narr",
+      "kind": "aside",
+      "text": "唐简收起油布的余角，把封递时刻添到簿边。"
+    },
+    {
+      "id": "ch01_s12_shuge.l28",
+      "who": "narr",
+      "kind": "aside",
+      "text": "你把抄件贴身收好，想起还有片刻可以坐一坐。"
+    }
+  ],
+  "choices": [
+    {
+      "id": "ch01_s12_shuge.cA",
+      "text": "和沈衡坐片刻",
+      "require": {
+        "affinity.shenheng": {
+          "gte": 5
+        }
+      },
+      "lockHint": "与沈衡尚未到识",
+      "effects": {
+        "flag.petition_sent": true
+      },
+      "irreversible": false,
+      "goto": "ch01_s13_shuge"
+    },
+    {
+      "id": "ch01_s12_shuge.cB",
+      "text": "到园里找裴照夜",
+      "require": {
+        "affinity.peizhaoye": {
+          "gte": 5
+        }
+      },
+      "lockHint": "与裴照夜尚未到识",
+      "effects": {
+        "flag.petition_sent": true
+      },
+      "irreversible": false,
+      "goto": "ch01_s14_yuanye"
+    },
+    {
+      "id": "ch01_s12_shuge.cC",
+      "text": "去听温荞说纸声",
+      "require": {
+        "affinity.wenqiao": {
+          "gte": 5
+        }
+      },
+      "lockHint": "与温荞尚未到识",
+      "effects": {
+        "flag.petition_sent": true
+      },
+      "irreversible": false,
+      "goto": "ch01_s15_shishe"
+    },
+    {
+      "id": "ch01_s12_shuge.cD",
+      "text": "和公主玩一会儿",
+      "require": {
+        "affinity.liqinghe": {
+          "gte": 5
+        }
+      },
+      "lockHint": "与李令仪尚未到识",
+      "effects": {
+        "flag.petition_sent": true
+      },
+      "irreversible": false,
+      "goto": "ch01_s16_yuanye"
+    },
+    {
+      "id": "ch01_s12_shuge.cE",
+      "text": "直接去找阿荻",
+      "effects": {
+        "flag.petition_sent": true
+      },
+      "irreversible": false,
+      "goto": "ch01_s17_yeting"
+    }
+  ]
+}

@@ -1,0 +1,85 @@
+{
+  "id": "lt_ch01_wenqiao_01",
+  "from": "wenqiao",
+  "trigger": {
+    "kind": "scene",
+    "sceneId": "ch01_s11_shishe",
+    "afterScenes": 1
+  },
+  "delayMinutes": 12,
+  "paper": "huajian",
+  "body": {
+    "surface": "那张裂纸晒干了，短了半寸，还能写字。你听过的半行，我又划掉两个字。剩下的先不给旁人看，免得他们比我更急着说写完了。你若想听，须把不喜欢的地方也带来。",
+    "poem": {
+      "ref": "liye_jiesuyu",
+      "line": "欲知心里事，看取腹中书。"
+    },
+    "poemMeans": "她愿意让主角看见尚未完成的自己，但分享不等于准许转送或代改",
+    "blank": "（她把未写好的地方也寄来了，并没有请我替她说它好。纸短了一点，轮到我说的话倒不能敷衍。）"
+  },
+  "sheMayNotReply": {
+    "affinity.wenqiao": {
+      "lt": 5
+    }
+  },
+  "interceptable": false,
+  "replies": {
+    "plain": [
+      {
+        "effects": {
+          "affinity.wenqiao": 2,
+          "flag.wen_private_critique": true
+        },
+        "reaction": "“带来。太顺耳的我自己会说。”她又试着念了一遍，没把圈改处藏起来。",
+        "id": "lt_ch01_wenqiao_01.rA",
+        "text": "我来听，也带一句不顺耳的。"
+      },
+      {
+        "effects": {
+          "cai": 1,
+          "flag.wen_read_without_verdict": true
+        },
+        "reaction": "“也好。只是别把不评写成全都喜欢。”她不催判词，也没宣布两人已经看法相同。",
+        "id": "lt_ch01_wenqiao_01.rB",
+        "text": "我先只读不评，免得替你定它写完了。"
+      },
+      {
+        "effects": {
+          "xin": 1,
+          "flag.wen_defer_private_visit": true
+        },
+        "reaction": "“收着可以，替我传出去不行。”她留下这次约未成的事实，照常做自己的纸。",
+        "id": "lt_ch01_wenqiao_01.rC",
+        "text": "这张我收着，今日先不赴私约。"
+      }
+    ],
+    "poem": {
+      "resonantTags": [
+        "尺素",
+        "双鱼",
+        "书",
+        "诗笺",
+        "匣",
+        "手书"
+      ],
+      "onResonant": {
+        "effects": {
+          "affinity.wenqiao": 2
+        },
+        "reaction": "她把回诗放在未成稿旁：“这张倒不用我裁短。”笑过以后，仍没急着给自己的诗落结尾。"
+      },
+      "onMismatch": {
+        "effects": {
+          "affinity.wenqiao": 1
+        },
+        "reaction": "“你从这里想到那里，路还挺远。”她读完，不给你的回诗另排高下。"
+      }
+    },
+    "silence": {
+      "effects": {
+        "flag.silent_to_wenqiao": true
+      },
+      "reaction": "她把下一次试改留在自己的桌上，没有继续寄。诗会照开，私人未成稿不再默认给主角看。"
+    }
+  }
+}

@@ -1,0 +1,109 @@
+{
+  "id": "ch01_s13_shuge",
+  "chapter": 1,
+  "act": 1,
+  "scene": "shuge",
+  "palette": "ink",
+  "cast": [
+    "wuze",
+    "shenheng"
+  ],
+  "require": {
+    "affinity.shenheng": {
+      "gte": 5
+    }
+  },
+  "weightless": true,
+  "leavesLetter": [],
+  "purpose": "两个人为茶的浓淡认真一会儿，又不必分出答案",
+  "lines": [
+    {
+      "id": "ch01_s13_shuge.l1",
+      "who": "narr",
+      "kind": "aside",
+      "text": "两只杯沿映着窗光，茶面上一点热气也没有。"
+    },
+    {
+      "id": "ch01_s13_shuge.l2",
+      "who": "shenheng",
+      "expr": "default",
+      "kind": "say",
+      "text": "左边淡。"
+    },
+    {
+      "id": "ch01_s13_shuge.l3",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "你方才说右边。"
+    },
+    {
+      "id": "ch01_s13_shuge.l4",
+      "who": "shenheng",
+      "expr": "default",
+      "kind": "say",
+      "text": "你换过。"
+    },
+    {
+      "id": "ch01_s13_shuge.l5",
+      "who": "wuze",
+      "expr": "open",
+      "kind": "say",
+      "text": "我换的是自己的手，杯子没动，你若不信，就把两杯都喝一口再说。"
+    },
+    {
+      "id": "ch01_s13_shuge.l6",
+      "who": "narr",
+      "kind": "aside",
+      "text": "沈衡各试了一口，眉头很轻地皱起来。"
+    },
+    {
+      "id": "ch01_s13_shuge.l7",
+      "who": "shenheng",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "都淡。"
+    },
+    {
+      "id": "ch01_s13_shuge.l8",
+      "who": "wuze",
+      "expr": "open",
+      "kind": "say",
+      "text": "那怎么还分出左右了？"
+    },
+    {
+      "id": "ch01_s13_shuge.l9",
+      "who": "shenheng",
+      "expr": "open",
+      "kind": "say",
+      "text": "总有一杯要更淡些，我方才明明喝出来了，偏偏给你问得记不得。"
+    },
+    {
+      "id": "ch01_s13_shuge.l10",
+      "who": "narr",
+      "kind": "aside",
+      "text": "你把左杯推过去，她把右杯推回来。"
+    },
+    {
+      "id": "ch01_s13_shuge.l11",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "这一回算换过。"
+    },
+    {
+      "id": "ch01_s13_shuge.l12",
+      "who": "shenheng",
+      "expr": "open",
+      "kind": "say",
+      "text": "算。"
+    },
+    {
+      "id": "ch01_s13_shuge.l13",
+      "who": "narr",
+      "kind": "aside",
+      "text": "两人又喝了一口，没有再报浓淡。"
+    }
+  ],
+  "goto": "ch01_s17_yeting"
+}

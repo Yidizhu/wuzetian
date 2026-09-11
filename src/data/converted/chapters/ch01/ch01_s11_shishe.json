@@ -1,0 +1,314 @@
+{
+  "id": "ch01_s11_shishe",
+  "chapter": 1,
+  "act": 1,
+  "scene": "shishe",
+  "palette": "ink",
+  "cast": [
+    "wuze",
+    "wenqiao"
+  ],
+  "weightless": false,
+  "leavesLetter": [
+    "wenqiao"
+  ],
+  "purpose": "雨中抢收纸张，温荞先付抄工，再让主角看自己被撤掉的署名",
+  "lines": [
+    {
+      "id": "ch01_s11_shishe.l1",
+      "who": "narr",
+      "kind": "aside",
+      "text": "雨忽然砸在檐口，晾纸绳一抖，水沿着纸角往下淌。"
+    },
+    {
+      "id": "ch01_s11_shishe.l2",
+      "who": "wenqiao",
+      "expr": "default",
+      "kind": "say",
+      "text": "别拉角！托住底下，纸湿了比你脾气软。"
+    },
+    {
+      "id": "ch01_s11_shishe.l3",
+      "who": "narr",
+      "kind": "aside",
+      "text": "你来不及答，双手接住垂下的一大片纸。"
+    },
+    {
+      "id": "ch01_s11_shishe.l4",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "放哪儿？"
+    },
+    {
+      "id": "ch01_s11_shishe.l5",
+      "who": "wenqiao",
+      "expr": "default",
+      "kind": "say",
+      "text": "里头竹架。慢点，脚下有水。"
+    },
+    {
+      "id": "ch01_s11_shishe.l6",
+      "who": "narr",
+      "kind": "aside",
+      "text": "她一脚抵住门，腾出两手，和你抬过湿滑的门槛。"
+    },
+    {
+      "id": "ch01_s11_shishe.l7",
+      "who": "wenqiao",
+      "expr": "open",
+      "kind": "say",
+      "text": "好，今日没有把明日的饭钱全淋掉。"
+    },
+    {
+      "id": "ch01_s11_shishe.l8",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "这张裂了。"
+    },
+    {
+      "id": "ch01_s11_shishe.l9",
+      "who": "wenqiao",
+      "expr": "default",
+      "kind": "say",
+      "text": "晒干做小笺。别忙着替它办丧事。"
+    },
+    {
+      "id": "ch01_s11_shishe.l10",
+      "who": "narr",
+      "kind": "aside",
+      "text": "她把钱分成几堆，逐堆压在抄好的卷下。"
+    },
+    {
+      "id": "ch01_s11_shishe.l11",
+      "who": "wenqiao",
+      "expr": "default",
+      "kind": "say",
+      "text": "这几堆是抄工的，入不入选都得给，你替她们争的那句话，我听见了。"
+    },
+    {
+      "id": "ch01_s11_shishe.l12",
+      "when": {
+        "flag.self_submit_cap": true
+      },
+      "who": "narr",
+      "kind": "aside",
+      "text": "第七份卷用干布包着，没有压进那六份里。"
+    },
+    {
+      "id": "ch01_s11_shishe.l13",
+      "when": {
+        "flag.self_submit_cap": true
+      },
+      "who": "wenqiao",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "她来晚了，六份已经满了；你定下的止处，今日真有人站在外头。"
+    },
+    {
+      "id": "ch01_s11_shishe.l14",
+      "when": {
+        "flag.self_submit_cap": true
+      },
+      "who": "wuze",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "我不能悄悄替她塞进去，只能把这份退回，问她愿不愿等下一次试收。"
+    },
+    {
+      "id": "ch01_s11_shishe.l15",
+      "when": {
+        "flag.self_submit_cap": true
+      },
+      "who": "wenqiao",
+      "expr": "default",
+      "kind": "say",
+      "text": "我去问。她若不等，也别替她可惜一辈子。"
+    },
+    {
+      "id": "ch01_s11_shishe.l16",
+      "when": {
+        "flag.self_submit_window": true
+      },
+      "who": "narr",
+      "kind": "aside",
+      "text": "收卷篮满了，旁边又添一只，雨水滴在空篮沿上。"
+    },
+    {
+      "id": "ch01_s11_shishe.l17",
+      "when": {
+        "flag.self_submit_window": true
+      },
+      "who": "wenqiao",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "午后前来的都收了，评期也真往后挪了，她们要问等到哪一日，我得逐一答。"
+    },
+    {
+      "id": "ch01_s11_shishe.l18",
+      "when": {
+        "flag.self_submit_window": true
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "多出来的抄工照价记，不能让你们通夜赶完，替我装作这个办法没有耽误人。"
+    },
+    {
+      "id": "ch01_s11_shishe.l19",
+      "when": {
+        "flag.self_submit_window": true
+      },
+      "who": "wenqiao",
+      "expr": "default",
+      "kind": "say",
+      "text": "我已分两日做。等的人骂急了，也照实回。"
+    },
+    {
+      "id": "ch01_s11_shishe.l20",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "你的钱呢？"
+    },
+    {
+      "id": "ch01_s11_shishe.l21",
+      "who": "narr",
+      "kind": "aside",
+      "text": "她从最下面抽出一张印样，题下有一块刮薄的纸。"
+    },
+    {
+      "id": "ch01_s11_shishe.l22",
+      "who": "wenqiao",
+      "expr": "default",
+      "kind": "say",
+      "text": "这首不收了。要用，不要名字。"
+    },
+    {
+      "id": "ch01_s11_shishe.l23",
+      "who": "wuze",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "你的句子也认得出来。"
+    },
+    {
+      "id": "ch01_s11_shishe.l24",
+      "who": "wenqiao",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "认得出来是读者的本事，写上名字是他们该做的事，我不拿前一个抵后一个。"
+    },
+    {
+      "id": "ch01_s11_shishe.l25",
+      "who": "narr",
+      "kind": "aside",
+      "text": "她把印样折起，先把抄工的钱放回原处。"
+    },
+    {
+      "id": "ch01_s11_shishe.l26",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "我有一份呈文，想请你看看。"
+    },
+    {
+      "id": "ch01_s11_shishe.l27",
+      "who": "wenqiao",
+      "expr": "default",
+      "kind": "say",
+      "text": "要借我的纸，还是借我的嘴？"
+    },
+    {
+      "id": "ch01_s11_shishe.l28",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "都想借一点。"
+    },
+    {
+      "id": "ch01_s11_shishe.l29",
+      "who": "wenqiao",
+      "expr": "open",
+      "kind": "say",
+      "text": "倒实在。纸能卖，嘴不论尺。"
+    },
+    {
+      "id": "ch01_s11_shishe.l30",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "若我出了纸钱，你还是会写让我难堪的话？"
+    },
+    {
+      "id": "ch01_s11_shishe.l31",
+      "who": "wenqiao",
+      "expr": "default",
+      "kind": "say",
+      "text": "你若要我写得像我，就得容我有不顺你耳朵的时候，钱不能把这一处买走。"
+    },
+    {
+      "id": "ch01_s11_shishe.l32",
+      "who": "narr",
+      "kind": "aside",
+      "text": "她把裂开的纸背翻过来，上头只有半行未成的字。"
+    },
+    {
+      "id": "ch01_s11_shishe.l33",
+      "who": "wenqiao",
+      "expr": "open",
+      "kind": "say",
+      "text": "这半行没写好，旁人还没看过，你先听一遍，不喜欢也不准替我藏着。"
+    },
+    {
+      "id": "ch01_s11_shishe.l34",
+      "who": "narr",
+      "kind": "aside",
+      "text": "她念到一半先笑了，把后面的字含在唇边，又重新起头。"
+    },
+    {
+      "id": "ch01_s11_shishe.l35",
+      "who": "wuze",
+      "expr": "open",
+      "kind": "say",
+      "text": "你还没念，我已经看见你喜欢哪里了。"
+    },
+    {
+      "id": "ch01_s11_shishe.l36",
+      "who": "wenqiao",
+      "expr": "open",
+      "kind": "say",
+      "text": "那不行。你得听。"
+    },
+    {
+      "id": "ch01_s11_shishe.l37",
+      "who": "narr",
+      "kind": "aside",
+      "text": "檐外雨声薄下去，你们把湿纸挪到风能吹到的一层。"
+    }
+  ],
+  "choices": [
+    {
+      "id": "ch01_s11_shishe.cA",
+      "text": "请你挑错，呈文由我自己署",
+      "effects": {
+        "cai": 1,
+        "affinity.wenqiao": 4,
+        "flag.wen_editor_only": true
+      },
+      "irreversible": false,
+      "goto": "ch01_s12_shuge"
+    },
+    {
+      "id": "ch01_s11_shishe.cB",
+      "text": "今日不借你的话，只买这一张纸",
+      "effects": {
+        "shi": 1,
+        "affinity.wenqiao": 4,
+        "flag.wen_paper_only": true
+      },
+      "irreversible": false,
+      "goto": "ch01_s12_shuge"
+    }
+  ]
+}

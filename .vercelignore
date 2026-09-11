@@ -1,0 +1,11 @@
+# 部署只需要 dist。这些进不了产物，也没必要上传。
+docs/
+tests/
+tools/fixtures/
+dist-3d/
+dist-adult/
+dist-artifact/
+Claude outputs/
+src/data/adult/
+src/data/converted/
+开发计划.md

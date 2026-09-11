@@ -1,0 +1,51 @@
+/* 双色板。值来自 .claude/skills/art-style/references/palette.md，改那边再改这里。
+   组件只认变量名，切色板就是在根元素上改一个 data-palette 属性。 */
+
+:root,
+[data-palette="ink"] {
+  --c-line:   #1A1815;   /* 焦墨 */
+  --c-ink-1:  #33302B;   /* 浓墨 */
+  --c-ink-2:  #55524A;   /* 重墨 */
+  --c-ink-3:  #8C8880;   /* 淡墨 */
+  --c-ink-4:  #C9C4B8;   /* 清墨 */
+  --c-accent: #A8232A;   /* 朱砂：她的欲望与决断 */
+  --c-ground: #EDE7DA;   /* 纸 */
+  --c-ground-night: #D8D2C4;
+
+  /* 文字取色单独走这两个变量。水墨板的正文是浓墨，金碧板的正文是焦墨，
+     不能直接绑 --c-ink-1，否则金碧场景的台词会变成石青色。 */
+  --c-text: #33302B;        /* 浓墨 */
+  --c-text-soft: #8C8880;   /* 淡墨 */
+
+  /* 水墨侵入金碧用的墨色（D-010 第 3 条）。不是第 13 个值，就是水墨板的浓墨——
+     它必须不随色板变，因为金碧场景里的 --c-ink-1 是石青，她带进来的那件东西要是墨的。
+     两块色板都不重新声明它。 */
+  --c-ink-wash: #33302B;
+
+  /* 一点紫（D-035）。受限色，不属于任何一块色板，只许出现在结契者的衣缘或簪头上，
+     面积规矩比朱砂更严：见 art-style/references/palette.md「一点紫」专节。
+     金碧板里它和朱砂一样被收掉（置为 initial），朝廷不认这个记号。 */
+  --c-purple: #6A4470;
+}
+
+[data-palette="gold"] {
+  --c-line:   #1A1815;   /* 两板共用线色 */
+  --c-ink-1:  #2F5C8F;   /* 石青 */
+  --c-ink-2:  #5B8C6A;   /* 石绿 */
+  --c-ink-3:  #8B4A2F;   /* 赭石 */
+  --c-ink-4:  #B8964F;   /* 泥金 */
+  --c-ground: #E6D9B9;   /* 绢 */
+  --c-ground-night: #D6C6A0;
+  --c-text: #1A1815;        /* 焦墨。两板的文字与线都是焦墨 */
+  --c-text-soft: #8B4A2F;   /* 赭石 */
+  /* 没有 --c-accent。金碧板里没有红——朝廷画面上的每一点朱砂都是叙事事件。
+     唯一的例外由 .choice[data-picked] 单独声明。
+
+     必须写成 initial 而不是「不声明」：`:root` 和 `[data-palette="gold"]` 特指度相同，
+     不声明的那个属性会从 :root 那条规则继续生效，于是金碧场景里 --c-accent 仍是朱砂，
+     立绘和信箱那些 var(--c-accent, var(--c-ink-4)) 的回退永远轮不到——
+     D-010 第 1 条「金碧板里没有红」就被静静地破了。initial 让自定义属性取「保证无效」值，
+     var() 才会落到括号里的回退（泥金）。紫同理。 */
+  --c-accent: initial;
+  --c-purple: initial;
+}

@@ -1,0 +1,205 @@
+[
+  {
+    "id": "pd_01",
+    "title": "松间月",
+    "opponent": "shenheng",
+    "sceneId": "ch01_s04_shuge",
+    "prompt": "明月松间照",
+    "poemRef": "wangwei_shanjuqiuming",
+    "brief": "接五字句：自然物、处所、动作三层相应；末字用平声。",
+    "judgingFocus": "词组结构、句脚；不要求玩家背整首",
+    "difficulty": 1,
+    "options": [
+      {
+        "key": "A",
+        "text": "清泉穿石冷",
+        "correct": false,
+        "why": "末字「冷」为上声，未满足题面要求的平声句脚。不是泉水这个意象本身不合"
+      },
+      {
+        "key": "B",
+        "text": "清泉石上流",
+        "correct": true,
+        "why": "「清泉／石上／流」与「明月／松间／照」三层相应，「流」是平声，也正是原诗的对句"
+      },
+      {
+        "key": "C",
+        "text": "昨夜有归舟",
+        "correct": false,
+        "why": "「昨夜」是时间，「有归舟」是存在叙述，没有按题面把自然物、处所、动作逐层对应"
+      },
+      {
+        "key": "D",
+        "text": "清泉石上长流",
+        "correct": false,
+        "why": "六个字，多了一个「长」，不满足本局五字句的字数与节奏限制"
+      }
+    ],
+    "onWin": {
+      "effects": {
+        "cai": 2,
+        "affinity.shenheng": 3
+      },
+      "goto": "ch01_s05_yuanye",
+      "line": {
+        "id": "pd_01.win",
+        "who": "shenheng",
+        "kind": "say",
+        "text": "接得好。方才那句话，我仍不同意。"
+      }
+    },
+    "onLose": {
+      "effects": {
+        "cai": 1,
+        "affinity.shenheng": 1
+      },
+      "goto": "ch01_s05_yuanye",
+      "line": {
+        "id": "pd_01.lose",
+        "who": "shenheng",
+        "kind": "say",
+        "text": "这句不合题。方才的话，可没因此算你输。"
+      }
+    }
+  },
+  {
+    "id": "pd_songjianyue",
+    "title": "松间月",
+    "prompt": "明月松间照",
+    "poemRef": "wangwei_shanjuqiuming",
+    "brief": "接五字句：自然物、处所、动作三层相应；末字用平声。",
+    "judgingFocus": "词组结构、句脚；不要求玩家背整首",
+    "difficulty": 1,
+    "options": [
+      {
+        "key": "A",
+        "text": "清泉穿石冷",
+        "correct": false,
+        "why": "末字“冷”为上声，未满足题面的平声句脚；不是泉水意象本身不合。"
+      },
+      {
+        "key": "B",
+        "text": "清泉石上流",
+        "correct": true,
+        "why": "“清泉／石上／流”与“明月／松间／照”三层相应，“流”是平声；也是原诗对句。"
+      },
+      {
+        "key": "C",
+        "text": "昨夜有归舟",
+        "correct": false,
+        "why": "“昨夜”是时间，“有归舟”是存在叙述；没有按题面把自然物、处所、动作逐层对应。"
+      },
+      {
+        "key": "D",
+        "text": "清泉石上长流",
+        "correct": false,
+        "why": "六个字，多了“长”，不满足本局五字句的节奏与字数限制。"
+      }
+    ]
+  },
+  {
+    "id": "pd_yuyedeng",
+    "title": "雨夜灯",
+    "prompt": "野径云俱黑",
+    "poemRef": "dufu_chunyexiyu",
+    "brief": "接五字句：仍写同一雨夜，以一处亮光映满天云黑；第二、第四字与上句平仄相对。",
+    "judgingFocus": "暗与明、众与独、关键字位声律",
+    "difficulty": 2,
+    "options": [
+      {
+        "key": "A",
+        "text": "江船火独暗",
+        "correct": false,
+        "why": "“暗”继续写暗，失去题面要求的一处亮光；两行可以同暗，但不是此题所求的反衬。"
+      },
+      {
+        "key": "B",
+        "text": "江岸火独明",
+        "correct": false,
+        "why": "第二字“岸”为去声，与“径”的去声同仄，违反题面第二字平仄相对的明确要求；画面本身可以成立。"
+      },
+      {
+        "key": "C",
+        "text": "江船日独明",
+        "correct": false,
+        "why": "虽字数、句法相近，却把灯火换成太阳，违背题面同一雨夜的限制。"
+      },
+      {
+        "key": "D",
+        "text": "江船火独明",
+        "correct": true,
+        "why": "“江船”对“野径”，“独”对“俱”，“明”对“黑”；第二字船平／径仄，第四字独入声仄／俱平。"
+      }
+    ]
+  },
+  {
+    "id": "pd_xuezhicangxin",
+    "title": "雪纸藏信",
+    "prompt": "尺素如残雪",
+    "poemRef": "liye_jiesuyu",
+    "brief": "把纸结成一个能藏信的形状，接五字句；不另引入人物，句末平声。",
+    "judgingFocus": "纸、双鱼、腹中书的意象连贯；这不是律诗中间联的严格工对题",
+    "difficulty": 2,
+    "options": [
+      {
+        "key": "A",
+        "text": "结为双鲤鱼",
+        "correct": true,
+        "why": "承接纸的材质，把尺素结成双鱼形状，下一层“腹中书”才有着落；“鱼”为平声。"
+      },
+      {
+        "key": "B",
+        "text": "散作满庭霜",
+        "correct": false,
+        "why": "把纸变作庭中散霜，不能完成题面要求的“结成藏信形状”；用于另一首诗并非天然错误。"
+      },
+      {
+        "key": "C",
+        "text": "结为双玉燕",
+        "correct": false,
+        "why": "“燕”作鸟名是去声，末字仄，不满足本局平声句脚；不是说燕子不能做纸形。"
+      },
+      {
+        "key": "D",
+        "text": "客向故园归",
+        "correct": false,
+        "why": "改写一位旅人归乡，既另引人物，也没有承接纸的折结动作与藏信用途。"
+      }
+    ]
+  },
+  {
+    "id": "pd_lunongyueluo",
+    "title": "露浓月落",
+    "prompt": "露浓香被冷",
+    "poemRef": "shangguanwaner_caishuyuan",
+    "brief": "接五字句：前二字主谓，后三字为二字物件加状态；第二、第四字平仄相对，末字平声。",
+    "judgingFocus": "句法对称与传统声调；被读被褥之被，屏读屏风之屏",
+    "difficulty": 3,
+    "options": [
+      {
+        "key": "A",
+        "text": "月明锦屏虚",
+        "correct": false,
+        "why": "“明”是平声，与上句第二字“浓”同平，违反本局第二字相对的限制；不是月明与露浓不能共存。"
+      },
+      {
+        "key": "B",
+        "text": "月落锦屏冷",
+        "correct": false,
+        "why": "末字“冷”是上声，题面要求平声句脚；同时重复上句结字，不能提供原诗“冷／虚”的不同感受。"
+      },
+      {
+        "key": "C",
+        "text": "月落锦屏虚",
+        "correct": true,
+        "why": "“月落／锦屏虚”对应“露浓／香被冷”；落为入声仄对浓平，屏平对被仄，虚平收句。"
+      },
+      {
+        "key": "D",
+        "text": "月落看归雁",
+        "correct": false,
+        "why": "后三字“看归雁”是动作加宾语，不是“香被冷”这样的物件加状态，违背题面规定的句法。"
+      }
+    ]
+  }
+]

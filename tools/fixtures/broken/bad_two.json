@@ -1,0 +1,13 @@
+{
+  "id": "bad_two",
+  "chapter": 1,
+  "act": 1,
+  "scene": "yeting",
+  "palette": "ink",
+  "cast": ["wuze"],
+  "weightless": false,
+  "purpose": "没有任何出口，玩家会卡死在这里",
+  "lines": [
+    { "id": "bad_two.l1", "who": "wuze", "kind": "say", "text": "然后呢？" }
+  ]
+}

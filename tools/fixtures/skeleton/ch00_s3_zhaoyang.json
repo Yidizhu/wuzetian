@@ -1,0 +1,47 @@
+{
+  "id": "ch00_s3_zhaoyang",
+  "chapter": 0,
+  "act": 1,
+  "scene": "zhaoyang",
+  "palette": "gold",
+  "cast": [
+    "wuze",
+    "shenheng"
+  ],
+  "weightless": false,
+  "purpose": "M1 占位。切到金碧板，验证 data-palette 和 UI 底色一起换",
+  "lines": [
+    {
+      "id": "ch00_s3.l1",
+      "who": "narr",
+      "kind": "aside",
+      "text": "（占位文本）殿上是另一种颜色。石青的柱，泥金的匾。"
+    },
+    {
+      "id": "ch00_s3.l2",
+      "who": "shenheng",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "（占位文本）新来的才人，站到那边去。"
+    },
+    {
+      "id": "ch00_s3.l3",
+      "who": "self",
+      "kind": "inner",
+      "text": "（占位文本）这里没有一点红。"
+    },
+    {
+      "id": "ch00_s3.l4",
+      "who": "narr",
+      "kind": "poem",
+      "text": "至近至远东西，至深至浅清溪。"
+    },
+    {
+      "id": "ch00_s3.l5",
+      "who": "narr",
+      "kind": "aside",
+      "text": "（占位文本）她记住了这一殿的颜色。"
+    }
+  ],
+  "goto": "ch01_s1_shuge"
+}

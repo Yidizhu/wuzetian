@@ -1,0 +1,8 @@
+# 工具链（Node、vite、转换器）一律写 LF。让 git 也按 LF 存和取，
+# 否则在 Windows 上签出一次，每个文件都会显示成整份改动，diff 就没法看了。
+* text=auto eol=lf
+
+# 立绘是生成出来的 SVG，按文本存没问题；二进制资源另说
+*.png binary
+*.jpg binary
+*.woff2 binary

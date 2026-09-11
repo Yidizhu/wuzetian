@@ -1,0 +1,85 @@
+{
+  "id": "lt_ch01_peizhaoye_01",
+  "from": "peizhaoye",
+  "trigger": {
+    "kind": "scene",
+    "sceneId": "ch01_s07_yuanye",
+    "afterScenes": 2
+  },
+  "delayMinutes": 8,
+  "paper": "junzhong",
+  "body": {
+    "surface": "马具已送还内厩。欠饷未齐，去催核的日子能定，归期还不能写。石上的路干了，我另画在背面。那家饼铺若还开着，慢也是它的长处。",
+    "poem": {
+      "ref": "xuetao_chouyongxiucai",
+      "line": "感君识我枕流意，重示瞿塘峡口图。"
+    },
+    "poemMeans": "她想让主角看见自己愿去的地方，不只是必须赶到的地方",
+    "blank": "（背面的弯画得很慢，旁边没有军程。她没问我肯不肯一起走，也给我留了看路的工夫。）"
+  },
+  "sheMayNotReply": {
+    "affinity.peizhaoye": {
+      "lt": 5
+    }
+  },
+  "interceptable": false,
+  "replies": {
+    "plain": [
+      {
+        "effects": {
+          "affinity.peizhaoye": 2,
+          "flag.pei_accept_open_date": true
+        },
+        "reaction": "“好。不是约好了明年，是我记得你愿意。”她把路图留着，没有添一个出发日期。",
+        "id": "lt_ch01_peizhaoye_01.rA",
+        "text": "我愿同去，不先向你讨一个日子。"
+      },
+      {
+        "effects": {
+          "cai": 1,
+          "flag.pei_prioritize_accounts": true
+        },
+        "reaction": "“会叫你，别把这也当陪我散步。”她把要核的项目另放，路图不夹进公务。",
+        "id": "lt_ch01_peizhaoye_01.rB",
+        "text": "催核时叫我，闲路留到事情办完。"
+      },
+      {
+        "effects": {
+          "xin": 1,
+          "flag.pei_decline_shared_road": true
+        },
+        "reaction": "“那我先认路。你有你的去处。”她仍说清该说的欠饷，不以私邀被拒停止共事。",
+        "id": "lt_ch01_peizhaoye_01.rC",
+        "text": "那条路你先走，我不许一个未定的同行。"
+      }
+    ],
+    "poem": {
+      "resonantTags": [
+        "山水画",
+        "峡",
+        "流水",
+        "舟",
+        "帆",
+        "江水"
+      ],
+      "onResonant": {
+        "effects": {
+          "affinity.peizhaoye": 2
+        },
+        "reaction": "她看完诗，沿图上的弯又走了一遍指尖：“原来你也看见了这一段。”"
+      },
+      "onMismatch": {
+        "effects": {
+          "affinity.peizhaoye": 1
+        },
+        "reaction": "“这条路没有诗里那样远。”她轻轻笑一下，仍把诗折好。"
+      }
+    },
+    "silence": {
+      "effects": {
+        "flag.silent_to_peizhaoye": true
+      },
+      "reaction": "她没有把第二张图送来。催核仍照约进行，私下的同行不再被当成已经答应。"
+    }
+  }
+}

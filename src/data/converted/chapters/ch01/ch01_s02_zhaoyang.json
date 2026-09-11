@@ -1,0 +1,207 @@
+{
+  "id": "ch01_s02_zhaoyang",
+  "chapter": 1,
+  "act": 1,
+  "scene": "zhaoyang",
+  "palette": "gold",
+  "cast": [
+    "wuze",
+    "shenheng",
+    "peizhaoye"
+  ],
+  "weightless": false,
+  "leavesLetter": [],
+  "purpose": "把先告知再署名写进本批试才手续，并承担更正成本",
+  "lines": [
+    {
+      "id": "ch01_s02_zhaoyang.l1",
+      "who": "narr",
+      "kind": "aside",
+      "text": "裴照夜站在阶下，绳垂着，没有绷紧。"
+    },
+    {
+      "id": "ch01_s02_zhaoyang.l2",
+      "who": "peizhaoye",
+      "expr": "default",
+      "kind": "say",
+      "text": "看耳朵。还在找那只桶。"
+    },
+    {
+      "id": "ch01_s02_zhaoyang.l3",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "等它不找了再走？"
+    },
+    {
+      "id": "ch01_s02_zhaoyang.l4",
+      "who": "peizhaoye",
+      "expr": "default",
+      "kind": "say",
+      "text": "先等。等也是本事。"
+    },
+    {
+      "id": "ch01_s02_zhaoyang.l5",
+      "who": "narr",
+      "kind": "aside",
+      "text": "沈衡另取一纸，写下“牵行”。"
+    },
+    {
+      "id": "ch01_s02_zhaoyang.l6",
+      "who": "shenheng",
+      "expr": "default",
+      "kind": "say",
+      "text": "起处、止处，都请裴将军写明。"
+    },
+    {
+      "id": "ch01_s02_zhaoyang.l7",
+      "who": "peizhaoye",
+      "expr": "default",
+      "kind": "say",
+      "text": "不上鞍。走不动，可以停。"
+    },
+    {
+      "id": "ch01_s02_zhaoyang.l8",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "骑试另问，不能拿这个名字顶过去。"
+    },
+    {
+      "id": "ch01_s02_zhaoyang.l9",
+      "who": "shenheng",
+      "expr": "default",
+      "kind": "say",
+      "text": "写。看过试项，再署名。"
+    },
+    {
+      "id": "ch01_s02_zhaoyang.l10",
+      "who": "narr",
+      "kind": "aside",
+      "text": "她将新纸压在旧纸上，却没把旧纸揉掉。"
+    },
+    {
+      "id": "ch01_s02_zhaoyang.l11",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "错的还留着？"
+    },
+    {
+      "id": "ch01_s02_zhaoyang.l12",
+      "who": "shenheng",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "旧纸要留下，否则明日有人再问，就只剩我们几个人的说法。"
+    },
+    {
+      "id": "ch01_s02_zhaoyang.l13",
+      "who": "peizhaoye",
+      "expr": "default",
+      "kind": "say",
+      "text": "马能等到午后。我不能留到夜里。"
+    },
+    {
+      "id": "ch01_s02_zhaoyang.l14",
+      "who": "shenheng",
+      "expr": "default",
+      "kind": "say",
+      "text": "两种办法。全批重抄，试次另排。"
+    },
+    {
+      "id": "ch01_s02_zhaoyang.l15",
+      "who": "shenheng",
+      "expr": "default",
+      "kind": "say",
+      "text": "原定抄录的人，今日领物也要迟。"
+    },
+    {
+      "id": "ch01_s02_zhaoyang.l16",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "误掉的抄工，我去补。"
+    },
+    {
+      "id": "ch01_s02_zhaoyang.l17",
+      "who": "shenheng",
+      "expr": "default",
+      "kind": "say",
+      "text": "或逐张附改，旧字仍在，更正处共署。"
+    },
+    {
+      "id": "ch01_s02_zhaoyang.l18",
+      "who": "shenheng",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "今日能续试。以后查问，你得来说明。"
+    },
+    {
+      "id": "ch01_s02_zhaoyang.l19",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "只问我？"
+    },
+    {
+      "id": "ch01_s02_zhaoyang.l20",
+      "who": "shenheng",
+      "expr": "default",
+      "kind": "say",
+      "text": "经我手的，也问我。"
+    },
+    {
+      "id": "ch01_s02_zhaoyang.l21",
+      "who": "narr",
+      "kind": "aside",
+      "text": "她在更正栏写下自己的名字。"
+    },
+    {
+      "id": "ch01_s02_zhaoyang.l22",
+      "who": "peizhaoye",
+      "expr": "default",
+      "kind": "say",
+      "text": "马能走几步，由我看着；你们把纸改清楚，也别替它答应走到底。"
+    },
+    {
+      "id": "ch01_s02_zhaoyang.l23",
+      "who": "narr",
+      "kind": "aside",
+      "text": "阶下的马低了低头，仍未走近。"
+    },
+    {
+      "id": "ch01_s02_zhaoyang.l24",
+      "who": "self",
+      "kind": "inner",
+      "text": "（它还不肯。至少纸不能替它肯。）"
+    }
+  ],
+  "choices": [
+    {
+      "id": "ch01_s02_zhaoyang.cA",
+      "text": "全批重抄，我补误掉的抄工",
+      "effects": {
+        "cai": 1,
+        "shi": -1,
+        "affinity.shenheng": 2,
+        "affinity.peizhaoye": 2,
+        "flag.trial_recopy": true
+      },
+      "irreversible": false,
+      "goto": "ch01_s03_yeting"
+    },
+    {
+      "id": "ch01_s02_zhaoyang.cB",
+      "text": "逐张附改，我留名备查",
+      "effects": {
+        "shi": 1,
+        "ming": -1,
+        "affinity.shenheng": 2,
+        "affinity.peizhaoye": 2,
+        "flag.trial_append": true
+      },
+      "irreversible": false,
+      "goto": "ch01_s03_yeting"
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "id": "ch01_s1_shuge",
+  "chapter": 1,
+  "act": 1,
+  "scene": "shuge",
+  "palette": "ink",
+  "cast": [
+    "wuze",
+    "shenheng"
+  ],
+  "weightless": false,
+  "purpose": "M3 占位。跑通对诗小游戏；同时是 3D 舞台的水墨夜景样板（书阁，一盏灯）",
+  "duel": "pd_songjianyue",
+  "lines": [
+    {
+      "id": "ch01_s1.l1",
+      "who": "narr",
+      "kind": "aside",
+      "text": "（占位文本）夜里只点一盏灯，窗棂在纸上留下一排影。"
+    },
+    {
+      "id": "ch01_s1.l2",
+      "who": "shenheng",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "（占位文本）接一句。末字用平声。"
+    }
+  ],
+  "goto": "ch01_s2_wuzibei"
+}

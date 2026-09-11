@@ -1,0 +1,109 @@
+{
+  "id": "ch01_s14_yuanye",
+  "chapter": 1,
+  "act": 1,
+  "scene": "yuanye",
+  "palette": "ink",
+  "cast": [
+    "wuze",
+    "peizhaoye"
+  ],
+  "require": {
+    "affinity.peizhaoye": {
+      "gte": 5
+    }
+  },
+  "weightless": true,
+  "leavesLetter": [],
+  "purpose": "两人慢慢拆开一个越帮越紧的衣带结",
+  "lines": [
+    {
+      "id": "ch01_s14_yuanye.l1",
+      "who": "narr",
+      "kind": "aside",
+      "text": "风把树上的水珠吹下来，落在裴照夜膝头的衣带上。"
+    },
+    {
+      "id": "ch01_s14_yuanye.l2",
+      "who": "peizhaoye",
+      "expr": "default",
+      "kind": "say",
+      "text": "别拉。"
+    },
+    {
+      "id": "ch01_s14_yuanye.l3",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "是你在拉。"
+    },
+    {
+      "id": "ch01_s14_yuanye.l4",
+      "who": "peizhaoye",
+      "expr": "default",
+      "kind": "say",
+      "text": "我在稳住它。"
+    },
+    {
+      "id": "ch01_s14_yuanye.l5",
+      "who": "narr",
+      "kind": "aside",
+      "text": "两人同时松手。结仍老老实实待在原处。"
+    },
+    {
+      "id": "ch01_s14_yuanye.l6",
+      "who": "wuze",
+      "expr": "open",
+      "kind": "say",
+      "text": "它倒比我们稳得多。"
+    },
+    {
+      "id": "ch01_s14_yuanye.l7",
+      "who": "peizhaoye",
+      "expr": "open",
+      "kind": "say",
+      "text": "你捏这头就好，别替我使劲；方才两个人一起帮忙，它反而更紧了。"
+    },
+    {
+      "id": "ch01_s14_yuanye.l8",
+      "who": "narr",
+      "kind": "aside",
+      "text": "你用指尖挑出一点松隙，衣带边缘有些发痒。"
+    },
+    {
+      "id": "ch01_s14_yuanye.l9",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "有一点了。"
+    },
+    {
+      "id": "ch01_s14_yuanye.l10",
+      "who": "peizhaoye",
+      "expr": "default",
+      "kind": "say",
+      "text": "看见了。再一点。"
+    },
+    {
+      "id": "ch01_s14_yuanye.l11",
+      "who": "wuze",
+      "expr": "open",
+      "kind": "say",
+      "text": "若再解不开，就让它多坐一会儿吧，我今日还没有同一个结耗过这么久。"
+    },
+    {
+      "id": "ch01_s14_yuanye.l12",
+      "who": "peizhaoye",
+      "expr": "open",
+      "kind": "say",
+      "text": "它也没有。"
+    },
+    {
+      "id": "ch01_s14_yuanye.l13",
+      "who": "narr",
+      "kind": "aside",
+      "text": "你们又停了一会儿，才从刚才那点松隙继续。"
+    }
+  ],
+  "goto": "ch01_s17_yeting"
+}

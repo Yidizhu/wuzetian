@@ -1,0 +1,28 @@
+{
+  "id": "lt_ch00_shenheng_placeholder",
+  "from": "shenheng",
+  "trigger": { "kind": "scene", "sceneId": "ch00_s1_yeting", "afterScenes": 2 },
+  "delayMinutes": 10,
+  "paper": "huangma",
+  "body": {
+    "surface": "（占位信）门房今日换了人。你上回记下的那一位，调去了西边的库房。若要再看，须早些去。",
+    "poem": { "ref": "xuetao_chan", "line": "声声似相接，各在一枝栖。" },
+    "poemMeans": "她愿意继续相应，不要求对方先移到自己的枝上",
+    "blank": "（她没写为什么要告诉我。库房的门是她管的。她把钥匙的事空着，等我自己去问。）"
+  },
+  "sheMayNotReply": { "affinity.shenheng": { "lt": 2 } },
+  "interceptable": false,
+  "replies": {
+    "plain": [
+      { "id": "a", "text": "我明日去。钥匙的事，当面问你。", "effects": { "affinity.shenheng": 2 }, "reaction": "她把钥匙放在案角，没有递过来。" },
+      { "id": "b", "text": "先谢你。库房的事我另有法子。", "effects": { "xin": 1 }, "reaction": "她没有再提库房。" },
+      { "id": "c", "text": "不必告诉我这些。", "effects": { "affinity.shenheng": -1 }, "reaction": "此后她只写公文体。" }
+    ],
+    "poem": {
+      "resonantTags": ["蝉", "远声", "远近"],
+      "onResonant": { "effects": { "affinity.shenheng": 3 }, "reaction": "她在那句旁边停了停笔。" },
+      "onMismatch": { "effects": { "affinity.shenheng": 1 }, "reaction": "她读完，只说：好诗。" }
+    },
+    "silence": { "effects": { "affinity.shenheng": -1, "flag.silent_to_shenheng": true }, "reaction": "她再没提过库房。" }
+  }
+}

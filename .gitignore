@@ -1,0 +1,18 @@
+node_modules/
+
+# 构建产物。四个目录都是 npm run build / build:artifact / build:3d / build:adult 出来的，
+# 随时可以重生成，进版本库只会让每次提交都带上几百 KB 的噪声。
+dist/
+dist-3d/
+dist-adult/
+dist-artifact/
+
+# 18+ 数据包（D-029）。由 YIDI 本人写，不进版本库、不进构建、不上传。
+# 这一条是有意的：版本库一旦推到任何远端，历史里的东西就删不干净了。
+src/data/adult/chapters/
+
+# Claude Code 的会话产物
+Claude outputs/
+
+.DS_Store
+Thumbs.db

@@ -1,0 +1,211 @@
+{
+  "id": "ch01_s10_yeting",
+  "chapter": 1,
+  "act": 1,
+  "scene": "yeting",
+  "palette": "ink",
+  "cast": [
+    "songhuizhen",
+    "tangjian"
+  ],
+  "weightless": false,
+  "leavesLetter": [],
+  "purpose": "两个经办女人自行安排病舍核领，不等主角来解题",
+  "lines": [
+    {
+      "id": "ch01_s10_yeting.l1",
+      "when": {
+        "flag.supply_issue_now": true
+      },
+      "who": "narr",
+      "kind": "aside",
+      "text": "一束新领的线压着余数簿，窗外传来剪刀开合的声响。"
+    },
+    {
+      "id": "ch01_s10_yeting.l2",
+      "when": {
+        "flag.supply_issue_now": true
+      },
+      "who": "songhuizhen",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "布先领到了，今日能接着裁，可补这一束线，我又从东头走来一趟。"
+    },
+    {
+      "id": "ch01_s10_yeting.l3",
+      "when": {
+        "flag.supply_issue_now": true
+      },
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "余数还在，没给你抹；下回约同一处交，不让每个人各跑一遍。"
+    },
+    {
+      "id": "ch01_s10_yeting.l4",
+      "when": {
+        "flag.supply_issue_now": true
+      },
+      "who": "songhuizhen",
+      "expr": "default",
+      "kind": "say",
+      "text": "这次是我来。下次不能还靠谁顺路。"
+    },
+    {
+      "id": "ch01_s10_yeting.l5",
+      "when": {
+        "flag.supply_wait_full": true
+      },
+      "who": "narr",
+      "kind": "aside",
+      "text": "昨夜的灯盏还没洗，案角结着一小片黑灯花。"
+    },
+    {
+      "id": "ch01_s10_yeting.l6",
+      "when": {
+        "flag.supply_wait_full": true
+      },
+      "who": "songhuizhen",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "整份是齐了，昨日的亮光也等没了，她们今日还得赶回那半日的裁工。"
+    },
+    {
+      "id": "ch01_s10_yeting.l7",
+      "when": {
+        "flag.supply_wait_full": true
+      },
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "新才人把答应的页抄完才走，我核到末行，不能明夜还照这样熬。"
+    },
+    {
+      "id": "ch01_s10_yeting.l8",
+      "when": {
+        "flag.supply_wait_full": true
+      },
+      "who": "songhuizhen",
+      "expr": "default",
+      "kind": "say",
+      "text": "我留了灯下两处位子。夜核的人也得轮。"
+    },
+    {
+      "id": "ch01_s10_yeting.l9",
+      "who": "songhuizhen",
+      "expr": "default",
+      "kind": "say",
+      "text": "病舍那份，我送。"
+    },
+    {
+      "id": "ch01_s10_yeting.l10",
+      "who": "tangjian",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "送得去，谁见证她领了？"
+    },
+    {
+      "id": "ch01_s10_yeting.l11",
+      "who": "songhuizhen",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "又是我不够？"
+    },
+    {
+      "id": "ch01_s10_yeting.l12",
+      "who": "tangjian",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "不是不够。你送、你核、你代答，出了错，全在你一个人身上。"
+    },
+    {
+      "id": "ch01_s10_yeting.l13",
+      "who": "narr",
+      "kind": "aside",
+      "text": "宋蕙贞把包布的结解开，折过的地方露出一道白痕。"
+    },
+    {
+      "id": "ch01_s10_yeting.l14",
+      "who": "songhuizhen",
+      "expr": "default",
+      "kind": "say",
+      "text": "那你跟我去。"
+    },
+    {
+      "id": "ch01_s10_yeting.l15",
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "今日可以。明日我在库里，走不开。"
+    },
+    {
+      "id": "ch01_s10_yeting.l16",
+      "who": "songhuizhen",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "我明日还要陪人看病，也不能守着这一包东西，从早等到你收案。"
+    },
+    {
+      "id": "ch01_s10_yeting.l17",
+      "who": "narr",
+      "kind": "aside",
+      "text": "两人望着那一包布，谁也没有说再想办法。"
+    },
+    {
+      "id": "ch01_s10_yeting.l18",
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "今日我去，明日换核簿的当值人。"
+    },
+    {
+      "id": "ch01_s10_yeting.l19",
+      "who": "songhuizhen",
+      "expr": "default",
+      "kind": "say",
+      "text": "病舍这边也轮一个，不总是我。"
+    },
+    {
+      "id": "ch01_s10_yeting.l20",
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "名字写在门内，换值先交代未领的。"
+    },
+    {
+      "id": "ch01_s10_yeting.l21",
+      "who": "songhuizhen",
+      "expr": "default",
+      "kind": "say",
+      "text": "不会写的，就当面说给下一位听。"
+    },
+    {
+      "id": "ch01_s10_yeting.l22",
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "说完，让她复一遍。我记。"
+    },
+    {
+      "id": "ch01_s10_yeting.l23",
+      "who": "narr",
+      "kind": "aside",
+      "text": "宋蕙贞拎起布包，唐简把笔插回笔袋，也站起来。"
+    },
+    {
+      "id": "ch01_s10_yeting.l24",
+      "who": "songhuizhen",
+      "expr": "open",
+      "kind": "say",
+      "text": "走慢些。我这一边重。"
+    },
+    {
+      "id": "ch01_s10_yeting.l25",
+      "who": "tangjian",
+      "expr": "open",
+      "kind": "say",
+      "text": "递过来一半。"
+    }
+  ],
+  "goto": "ch01_s11_shishe"
+}

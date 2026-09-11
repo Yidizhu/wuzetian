@@ -1,0 +1,101 @@
+{
+  "inputs": [
+    {
+      "file": "docs/C-2-第一章前六场.md",
+      "sha256": "47ed4788f3141c63d36d01d8d8cf40c5835c6873faabdf37552f59e1848d5f1c"
+    },
+    {
+      "file": "docs/C-3-第一章后十二场.md",
+      "sha256": "97ad98f8051643cf4d95b717118ad36972791d637f8f3d5880981291ca9ed770"
+    },
+    {
+      "file": "docs/C-4-第一章书信.md",
+      "sha256": "75eb8d2b35258a782898b747c7ef80fa9f79396062c340c2fd9840074c7b6126"
+    },
+    {
+      "file": "docs/C0-2-诗词库与对诗.md",
+      "sha256": "8651df46250eb3fa41e28308076bcb0e3d0ad4ea6f8ae2a675e4040c56891706"
+    },
+    {
+      "file": "docs/C-B-结局树.md",
+      "sha256": "a2407cb44d74307fe44be87ed0416f98905c983f589b2453f8eddd7c10f7e861"
+    }
+  ],
+  "scenes": [
+    "ch01_s01_zhaoyang",
+    "ch01_s02_zhaoyang",
+    "ch01_s03_yeting",
+    "ch01_s04_shuge",
+    "ch01_s05_yuanye",
+    "ch01_s06_yeting",
+    "ch01_s07_yuanye",
+    "ch01_s08_shuge",
+    "ch01_s09_shuge",
+    "ch01_s10_yeting",
+    "ch01_s11_shishe",
+    "ch01_s12_shuge",
+    "ch01_s13_shuge",
+    "ch01_s14_yuanye",
+    "ch01_s15_shishe",
+    "ch01_s16_yuanye",
+    "ch01_s17_yeting",
+    "ch01_s18_zhaoyang"
+  ],
+  "poems": [
+    "xuetao_chan",
+    "xuetao_chishangshuangniao",
+    "xuetao_yuanyangcao",
+    "xuetao_mudan",
+    "xuetao_songyouren",
+    "xuetao_yilizhi",
+    "xuetao_songyaoyuanwai",
+    "xuetao_xiangsi",
+    "xuetao_tanglihua",
+    "xuetao_chouyongxiucai",
+    "yuxuanji_youchongzhenguan",
+    "yuxuanji_tiyinwuting",
+    "yuxuanji_fangzhaolianshi",
+    "yuxuanji_qianhuai",
+    "yuxuanji_zaoqiu",
+    "yuxuanji_heyouren",
+    "liye_bazhi",
+    "liye_jiesuyu",
+    "liye_mingyueyeliubie",
+    "liye_ouju",
+    "shangguanwaner_caishuyuan",
+    "shangguanwaner_lichun",
+    "shangguanwaner_chongyang",
+    "liucaichun_luogongqu2",
+    "liucaichun_luogongqu6",
+    "wangwei_shanjuqiuming",
+    "wangwei_zhuliguan",
+    "libai_duzuojingtingshan",
+    "dufu_chunyexiyu",
+    "wangzhihuan_denguqueLou",
+    "poem_236e745594cc1f8d"
+  ],
+  "duels": [
+    "pd_01",
+    "pd_songjianyue",
+    "pd_yuyedeng",
+    "pd_xuezhicangxin",
+    "pd_lunongyueluo"
+  ],
+  "letters": [
+    "lt_ch01_shenheng_01",
+    "lt_ch01_peizhaoye_01",
+    "lt_ch01_liqinghe_01",
+    "lt_ch01_wenqiao_01"
+  ],
+  "endings": [
+    "mandianwusheng",
+    "wuzibei",
+    "weijingzhizhao",
+    "liangxizhijian",
+    "kaimenshouzi",
+    "bushou",
+    "guanshanyouxin",
+    "zhishangyouming"
+  ],
+  "issues": 0
+}

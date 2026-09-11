@@ -1,0 +1,69 @@
+{
+  "id": "ch00_s1_yeting",
+  "chapter": 0,
+  "act": 1,
+  "scene": "yeting",
+  "palette": "ink",
+  "cast": [
+    "wuze"
+  ],
+  "weightless": false,
+  "purpose": "M1 占位。验证台词推进、色板、存档三件事，不是剧情",
+  "lines": [
+    {
+      "id": "ch00_s1.l1",
+      "who": "narr",
+      "kind": "aside",
+      "text": "（占位文本）车停在掖庭门外，雨刚停。"
+    },
+    {
+      "id": "ch00_s1.l2",
+      "who": "self",
+      "kind": "inner",
+      "text": "（占位文本）门比想象的窄。"
+    },
+    {
+      "id": "ch00_s1.l3",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "（占位文本）{名}。她们念我的名字时，总把末一个字念得很轻。"
+    }
+  ],
+  "choices": [
+    {
+      "id": "ch00_s1.cA",
+      "text": "先记住门房的脸",
+      "effects": {
+        "xin": 2,
+        "affinity.shenheng": 1
+      },
+      "goto": "ch00_s2a_yeting"
+    },
+    {
+      "id": "ch00_s1.cB",
+      "text": "先把名牌上的字看清楚",
+      "irreversible": true,
+      "effects": {
+        "cai": 3,
+        "ming": 1,
+        "flag.read_the_tablet": true
+      },
+      "goto": "ch00_s2b_yeting"
+    },
+    {
+      "id": "ch00_s1.cC",
+      "text": "开口问她们凭什么",
+      "require": {
+        "shi": {
+          "gte": 8
+        }
+      },
+      "effects": {
+        "shi": 2
+      },
+      "goto": "ch00_s2a_yeting",
+      "lockHint": "势 不足"
+    }
+  ]
+}

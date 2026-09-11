@@ -1,0 +1,15 @@
+{
+  "id": "ch01_s2_wuzibei",
+  "chapter": 1,
+  "act": 1,
+  "scene": "wuzibei",
+  "palette": "ink",
+  "cast": ["wuze"],
+  "weightless": true,
+  "purpose": "M3 占位。终局判定点，验证按结局表顺序取首个满足者",
+  "judgeEnding": true,
+  "lines": [
+    { "id": "ch01_s2.l1", "who": "narr", "kind": "aside", "text": "（占位文本）碑面是空的。" },
+    { "id": "ch01_s2.l2", "who": "self", "kind": "inner", "text": "（占位。真剧本三幕之后才走到这里。）" }
+  ]
+}

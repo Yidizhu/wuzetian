@@ -1,0 +1,123 @@
+/* ---------- 信箱：案上的信 ---------- */
+
+.inbox__badge {
+  font: inherit; font-family: var(--font); font-size: 12px; letter-spacing: 0.04em;
+  color: var(--c-text-soft); background: none;
+  border: 1px solid var(--c-ink-4); border-radius: 2px; padding: 4px 9px; min-height: 28px; cursor: pointer;
+}
+/* 有未拆的信：角标前面一点朱砂。金碧场景里这一点会自动变泥金 */
+.inbox__badge[data-unread="1"]::before {
+  content: ""; display: inline-block; width: 6px; height: 6px; border-radius: 50%;
+  background: var(--c-accent, var(--c-ink-4)); margin-right: 6px; vertical-align: middle;
+}
+
+.inbox {
+  position: absolute; inset: 0; z-index: 7;
+  display: flex; align-items: center; justify-content: center;
+  background: color-mix(in srgb, var(--c-line) 22%, transparent);
+  overflow-y: auto; padding: 16px;
+}
+.inbox__panel {
+  width: min(440px, 90vw); padding: 22px 20px;
+  background: var(--c-ground);
+  border-top: 1px solid var(--c-line); border-bottom: 1px solid var(--c-line);
+}
+.inbox__title, .letter__repliesHead {
+  font-size: 13px; letter-spacing: 0.2em; color: var(--c-text-soft); text-align: center; margin-bottom: 14px;
+}
+.inbox__empty { text-align: center; color: var(--c-text-soft); font-size: 15px; padding: 18px 0; }
+.inbox__row {
+  display: grid; grid-template-columns: 1fr auto auto; gap: 12px; align-items: center;
+  width: 100%; text-align: left; min-height: 48px; padding: 10px 4px;
+  font-family: inherit; font-size: 16px; color: var(--c-text);
+  background: none; border: 0; border-bottom: 1px solid var(--c-ink-4); cursor: pointer;
+}
+.inbox__paper { font-size: 12px; color: var(--c-text-soft); }
+.inbox__mark { font-size: 12px; color: var(--c-text-soft); min-width: 2em; text-align: right; }
+.inbox__row[data-state="arrived"] .inbox__mark { color: var(--c-accent, var(--c-ink-4)); }
+.inbox__close {
+  display: block; margin: 18px auto 0; padding: 0 22px; min-height: 36px;
+  font-family: inherit; font-size: 14px; color: var(--c-text-soft);
+  background: none; border: 1px solid var(--c-ink-4); border-radius: 2px; cursor: pointer;
+}
+
+/* ---------- 一封信：拿起来展开 ---------- */
+
+.letter {
+  width: min(460px, 92vw); padding: 26px 24px 22px;
+  background: var(--c-ground);
+  border-top: 1px solid var(--c-ink-4); border-bottom: 1px solid var(--c-ink-4);
+  transform: translateY(14px) rotate(-0.6deg); opacity: 0;
+  transition: transform 520ms var(--ease), opacity 420ms var(--ease);
+}
+.letter--open { transform: none; opacity: 1; }
+/* 各家的笺：只在纸色上做极轻的差别，不越色板 */
+.letter[data-paper="junzhong"] { background: color-mix(in srgb, var(--c-ground) 94%, var(--c-ink-4)); }
+.letter[data-paper="nijin"]    { border-top-color: var(--c-ink-4); border-bottom-color: var(--c-ink-4); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--c-ink-4) 40%, transparent); }
+.letter[data-paper="huajian"]  { background: color-mix(in srgb, var(--c-ground) 97%, var(--c-accent, var(--c-ink-4))); }
+
+.letter__head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 16px; }
+.letter__from { font-size: 15px; letter-spacing: 0.1em; color: var(--c-text); }
+.letter__paperName { font-size: 12px; color: var(--c-text-soft); }
+
+.letter__surface { font-size: 16px; line-height: 2.0; color: var(--c-text); text-indent: 2em; }
+
+.letter__poem {
+  display: block; width: 100%; text-align: center; margin: 18px 0 6px; padding: 10px 0;
+  background: none; border: 0; border-top: 1px solid var(--c-ink-4); border-bottom: 1px solid var(--c-ink-4);
+  font-family: inherit; color: var(--c-text); cursor: pointer;
+}
+.letter__poemLine { display: block; font-size: 17px; line-height: 2.0; letter-spacing: 0.08em; }
+.letter__poemFrom { display: block; font-size: 12px; color: var(--c-text-soft); }
+.letter__poemMeans { display: block; font-size: 13px; line-height: 1.8; color: var(--c-text-soft); margin-top: 6px; }
+
+/* 她没写的：一片空白，点了才有字 */
+.letter__blank {
+  display: block; width: 100%; min-height: 72px; margin: 6px 0 14px; padding: 10px 2px;
+  background: none; border: 0; text-align: left; font-family: inherit; cursor: pointer;
+}
+.letter__blank:not([data-opened="1"]):hover { background: color-mix(in srgb, var(--c-ink-4) 18%, transparent); }
+.letter__inner { font-size: 15px; line-height: 1.9; color: var(--c-text-soft); animation: fade-in 600ms var(--ease) both; }
+
+.letter__replies { border-top: 1px solid var(--c-ink-4); padding-top: 14px; }
+.letter__reply {
+  display: flex; align-items: center; gap: 12px; width: 100%; min-height: 44px; padding: 8px 4px;
+  background: none; border: 0; text-align: left; font-family: inherit; font-size: 16px; line-height: 1.7;
+  color: var(--c-text); cursor: pointer;
+}
+.letter__reply:disabled { color: var(--c-ink-4); cursor: default; }
+.letter__mark { flex: none; width: 18px; height: 1px; background: var(--c-ink-4); }
+.letter__reply:hover:not(:disabled) .letter__mark { background: var(--c-text); width: 26px; }
+.letter__hint { margin-left: auto; font-size: 13px; color: var(--c-text-soft); }
+.letter__picker { display: flex; flex-direction: column; gap: 6px; padding: 6px 0 6px 30px; }
+.letter__pick {
+  text-align: left; background: none; border: 0; border-bottom: 1px solid var(--c-ink-4);
+  padding: 8px 2px; min-height: 44px; font-family: inherit; color: var(--c-text); cursor: pointer;
+}
+.letter__pick span { display: block; font-size: 16px; letter-spacing: 0.06em; }
+.letter__pick small { display: block; font-size: 12px; color: var(--c-text-soft); }
+.letter__reaction, .letter__done {
+  font-size: 15px; line-height: 1.9; color: var(--c-text); padding: 6px 2px; text-indent: 2em;
+  animation: fade-in 600ms var(--ease) both;
+}
+
+/* ---------- 存档码（D-031） ---------- */
+
+.slots__codebar { display: flex; gap: 8px; justify-content: center; margin-top: 16px; }
+.slots__codebar button {
+  font-family: inherit; font-size: 14px; color: var(--c-text-soft);
+  background: none; border: 1px solid var(--c-ink-4); border-radius: 2px;
+  min-height: 36px; padding: 0 14px; cursor: pointer;
+}
+.slots__codebar button:hover { color: var(--c-text); border-color: var(--c-ink-2); }
+.slots__codeout { margin-top: 14px; border-top: 1px solid var(--c-ink-4); padding-top: 12px; }
+.slots__codehint { font-size: 13px; line-height: 1.8; color: var(--c-text-soft); margin-bottom: 8px; }
+.slots__codebox {
+  width: 100%; min-height: 96px; resize: vertical;
+  font-family: ui-monospace, "SFMono-Regular", Menlo, monospace; font-size: 12px; line-height: 1.7;
+  color: var(--c-text); background: color-mix(in srgb, var(--c-ink-4) 22%, transparent);
+  border: 1px solid var(--c-ink-4); border-radius: 2px; padding: 8px;
+  word-break: break-all;
+}
+.slots__codemsg { font-size: 13px; line-height: 1.8; color: var(--c-text-soft); margin-top: 8px; }
+.slots__codemsg[data-bad="1"] { color: var(--c-accent, var(--c-ink-3)); }

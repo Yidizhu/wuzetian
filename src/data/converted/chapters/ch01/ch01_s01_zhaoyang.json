@@ -1,0 +1,193 @@
+{
+  "id": "ch01_s01_zhaoyang",
+  "chapter": 1,
+  "act": 1,
+  "scene": "zhaoyang",
+  "palette": "gold",
+  "cast": [
+    "wuze",
+    "shenheng",
+    "peizhaoye"
+  ],
+  "weightless": false,
+  "leavesLetter": [],
+  "purpose": "发现先签自愿的试项与牵马人的实际安排不符",
+  "lines": [
+    {
+      "id": "ch01_s01_zhaoyang.l1",
+      "who": "narr",
+      "kind": "aside",
+      "text": "纸上已经写好：自愿试骑。"
+    },
+    {
+      "id": "ch01_s01_zhaoyang.l2",
+      "who": "narr",
+      "kind": "aside",
+      "text": "下面空着一个名字。"
+    },
+    {
+      "id": "ch01_s01_zhaoyang.l3",
+      "who": "shenheng",
+      "expr": "default",
+      "kind": "say",
+      "text": "署在这里。"
+    },
+    {
+      "id": "ch01_s01_zhaoyang.l4",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "骑什么？"
+    },
+    {
+      "id": "ch01_s01_zhaoyang.l5",
+      "who": "narr",
+      "kind": "aside",
+      "text": "殿外一声响。马蹄踢翻了空桶。"
+    },
+    {
+      "id": "ch01_s01_zhaoyang.l6",
+      "who": "peizhaoye",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "先别签。"
+    },
+    {
+      "id": "ch01_s01_zhaoyang.l7",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "这马是谁的？"
+    },
+    {
+      "id": "ch01_s01_zhaoyang.l8",
+      "who": "peizhaoye",
+      "expr": "default",
+      "kind": "say",
+      "text": "内厩的。昨日送来。"
+    },
+    {
+      "id": "ch01_s01_zhaoyang.l9",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "为什么要驯？"
+    },
+    {
+      "id": "ch01_s01_zhaoyang.l10",
+      "who": "peizhaoye",
+      "expr": "default",
+      "kind": "say",
+      "text": "换了生地方，怕响。先让它认路。"
+    },
+    {
+      "id": "ch01_s01_zhaoyang.l11",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "我今日是来替它认路的？"
+    },
+    {
+      "id": "ch01_s01_zhaoyang.l12",
+      "who": "peizhaoye",
+      "expr": "default",
+      "kind": "say",
+      "text": "试你会不会看它。原定只牵一段。"
+    },
+    {
+      "id": "ch01_s01_zhaoyang.l13",
+      "who": "narr",
+      "kind": "aside",
+      "text": "沈衡把纸转向自己。"
+    },
+    {
+      "id": "ch01_s01_zhaoyang.l14",
+      "who": "shenheng",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "牵行？送来的式样写的是骑试。"
+    },
+    {
+      "id": "ch01_s01_zhaoyang.l15",
+      "who": "peizhaoye",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "那就换式样。它不识公文。"
+    },
+    {
+      "id": "ch01_s01_zhaoyang.l16",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "不愿骑的人，这一试算不算败？"
+    },
+    {
+      "id": "ch01_s01_zhaoyang.l17",
+      "who": "shenheng",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "依这张纸，签了便算应下。"
+    },
+    {
+      "id": "ch01_s01_zhaoyang.l18",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "那没签呢？"
+    },
+    {
+      "id": "ch01_s01_zhaoyang.l19",
+      "who": "narr",
+      "kind": "aside",
+      "text": "沈衡的笔停在名册上方。"
+    },
+    {
+      "id": "ch01_s01_zhaoyang.l20",
+      "who": "shenheng",
+      "expr": "default",
+      "kind": "say",
+      "text": "还没应下。"
+    },
+    {
+      "id": "ch01_s01_zhaoyang.l21",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "请把要试什么，先写在名字前头。"
+    },
+    {
+      "id": "ch01_s01_zhaoyang.l22",
+      "who": "shenheng",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "更正这一批，后面等着的人也要误时，不能只问你一个肯不肯等。"
+    },
+    {
+      "id": "ch01_s01_zhaoyang.l23",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "那就先让她们看清要等多久，别替她们签下另一个自愿。"
+    },
+    {
+      "id": "ch01_s01_zhaoyang.l24",
+      "who": "peizhaoye",
+      "expr": "default",
+      "kind": "say",
+      "text": "我把马牵远些。别再敲桶。"
+    },
+    {
+      "id": "ch01_s01_zhaoyang.l25",
+      "who": "narr",
+      "kind": "aside",
+      "text": "她没向马扬鞭，先扶起了挡路的桶。"
+    },
+    {
+      "id": "ch01_s01_zhaoyang.l26",
+      "who": "narr",
+      "kind": "aside",
+      "text": "名册翻过一页。你的名字仍空着。"
+    }
+  ],
+  "goto": "ch01_s02_zhaoyang"
+}

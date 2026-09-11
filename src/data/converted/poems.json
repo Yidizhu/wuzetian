@@ -1,0 +1,809 @@
+[
+  {
+    "id": "xuetao_chan",
+    "title": "蝉（一作闻蝉）",
+    "author": "薛涛",
+    "lines": [
+      "露涤清音远，",
+      "风吹数叶齐。",
+      "声声似相接，",
+      "各在一枝栖。"
+    ],
+    "source": "全唐诗卷803",
+    "sourceUrl": "https://zh.wikisource.org/wiki/全唐詩/卷803",
+    "tags": [
+      "蝉",
+      "叶",
+      "远声"
+    ],
+    "mood": [
+      "清朗",
+      "相应"
+    ],
+    "occasion": "两人隔窗听蝉，不交换情报",
+    "difficulty": 1
+  },
+  {
+    "id": "xuetao_chishangshuangniao",
+    "title": "池上双鸟（一作凫）",
+    "author": "薛涛",
+    "lines": [
+      "双栖绿池上，",
+      "朝暮共飞还。",
+      "更忆将雏日，",
+      "同心莲叶间。"
+    ],
+    "source": "全唐诗卷803",
+    "sourceUrl": "https://zh.wikisource.org/wiki/全唐詩/卷803",
+    "tags": [
+      "池",
+      "双鸟",
+      "莲叶"
+    ],
+    "mood": [
+      "安稳",
+      "照料"
+    ],
+    "occasion": "议论共同生活；“将雏”不转作必须生育的训诫",
+    "difficulty": 1
+  },
+  {
+    "id": "xuetao_yuanyangcao",
+    "title": "鸳鸯草",
+    "author": "薛涛",
+    "lines": [
+      "绿英满香砌，",
+      "两两鸳鸯小。",
+      "但娱春日长，",
+      "不管秋风早。"
+    ],
+    "source": "全唐诗卷803",
+    "sourceUrl": "https://zh.wikisource.org/wiki/全唐詩/卷803",
+    "tags": [
+      "草",
+      "双生",
+      "春日"
+    ],
+    "mood": [
+      "轻快",
+      "珍惜当下"
+    ],
+    "occasion": "恋人午后看草，不埋死亡预兆",
+    "difficulty": 1
+  },
+  {
+    "id": "xuetao_mudan",
+    "title": "牡丹",
+    "author": "薛涛",
+    "lines": [
+      "去春零落暮春时，",
+      "泪湿红笺怨别离。",
+      "常恐便同巫峡散，",
+      "因何重有武陵期。",
+      "传情每向馨香得，",
+      "不语还应彼此知。",
+      "只欲栏边安枕席，",
+      "夜深闲共说相思。"
+    ],
+    "source": "全唐诗卷803",
+    "sourceUrl": "https://zh.wikisource.org/wiki/全唐詩/卷803",
+    "tags": [
+      "花",
+      "笺",
+      "栏",
+      "夜"
+    ],
+    "mood": [
+      "重逢",
+      "欲望"
+    ],
+    "occasion": "争论结束后的另日相见；亲密不是政治让步的报偿",
+    "difficulty": 3
+  },
+  {
+    "id": "xuetao_songyouren",
+    "title": "送友人",
+    "author": "薛涛",
+    "lines": [
+      "水国蒹葭夜有霜，",
+      "月寒山色共苍苍。",
+      "谁言千里自今夕，",
+      "离梦杳如关塞长。"
+    ],
+    "source": "全唐诗卷803",
+    "sourceUrl": "https://zh.wikisource.org/wiki/全唐詩/卷803",
+    "tags": [
+      "蒹葭",
+      "霜",
+      "月",
+      "关塞"
+    ],
+    "mood": [
+      "深情",
+      "辽远"
+    ],
+    "occasion": "女将赴边，承认分离而非要求留下",
+    "difficulty": 2
+  },
+  {
+    "id": "xuetao_yilizhi",
+    "title": "忆荔枝",
+    "author": "薛涛",
+    "lines": [
+      "传闻象郡隔南荒，",
+      "绛实丰肌不可忘。",
+      "近有青衣连楚水，",
+      "素浆还得类琼浆。"
+    ],
+    "source": "全唐诗卷803",
+    "sourceUrl": "https://zh.wikisource.org/wiki/全唐詩/卷803",
+    "tags": [
+      "荔枝",
+      "南方",
+      "浆"
+    ],
+    "mood": [
+      "贪甜",
+      "怀乡"
+    ],
+    "occasion": "分果闲谈，不把食物全变成政治隐喻",
+    "difficulty": 2
+  },
+  {
+    "id": "xuetao_songyaoyuanwai",
+    "title": "送姚员外",
+    "author": "薛涛",
+    "lines": [
+      "万条江柳早秋枝，",
+      "袅地翻风色未衰。",
+      "欲折尔来将赠别，",
+      "莫教烟月两乡悲。"
+    ],
+    "source": "全唐诗卷803",
+    "sourceUrl": "https://zh.wikisource.org/wiki/全唐詩/卷803",
+    "tags": [
+      "柳",
+      "风",
+      "烟月"
+    ],
+    "mood": [
+      "惜别",
+      "有节制"
+    ],
+    "occasion": "朋友离京，原题受赠人保留于图鉴",
+    "difficulty": 2
+  },
+  {
+    "id": "xuetao_xiangsi",
+    "title": "乡思",
+    "author": "薛涛",
+    "lines": [
+      "峨嵋山下水如油，",
+      "怜我心同不系舟。",
+      "何日片帆离锦浦，",
+      "棹声齐唱发中流。"
+    ],
+    "source": "全唐诗卷803",
+    "sourceUrl": "https://zh.wikisource.org/wiki/全唐詩/卷803",
+    "tags": [
+      "舟",
+      "帆",
+      "江水"
+    ],
+    "mood": [
+      "思归",
+      "盼动身"
+    ],
+    "occasion": "辞出后的路途，不能把自由写成惩罚",
+    "difficulty": 2
+  },
+  {
+    "id": "xuetao_tanglihua",
+    "title": "棠梨花和李太尉",
+    "author": "薛涛",
+    "lines": [
+      "吴均蕙圃移嘉木，",
+      "正及东溪春雨时。",
+      "日晚莺啼何所为，",
+      "浅深红腻压繁枝。"
+    ],
+    "source": "全唐诗卷803",
+    "sourceUrl": "https://zh.wikisource.org/wiki/全唐詩/卷803",
+    "tags": [
+      "棠梨",
+      "春雨",
+      "莺"
+    ],
+    "mood": [
+      "饱满",
+      "明亮"
+    ],
+    "occasion": "小园赏花；诗中颜色不是画面必须新增的色值",
+    "difficulty": 2
+  },
+  {
+    "id": "xuetao_chouyongxiucai",
+    "title": "酬雍秀才贻巴峡图",
+    "author": "薛涛",
+    "lines": [
+      "千叠云峰万顷湖，",
+      "白波分去绕荆吴。",
+      "感君识我枕流意，",
+      "重示瞿塘峡口图。"
+    ],
+    "source": "全唐诗卷803",
+    "sourceUrl": "https://zh.wikisource.org/wiki/全唐詩/卷803",
+    "tags": [
+      "山水画",
+      "峡",
+      "流水"
+    ],
+    "mood": [
+      "被理解",
+      "向往"
+    ],
+    "occasion": "收到朋友画卷，画卷不藏军事密码",
+    "difficulty": 2
+  },
+  {
+    "id": "yuxuanji_youchongzhenguan",
+    "title": "游崇真观南楼，睹新及第题名处",
+    "author": "鱼玄机",
+    "lines": [
+      "云峰满目放春晴，",
+      "历历银钩指下生。",
+      "自恨罗衣掩诗句，",
+      "举头空羡榜中名。"
+    ],
+    "source": "全唐诗卷804",
+    "sourceUrl": "https://zh.wikisource.org/wiki/全唐詩/卷804",
+    "tags": [
+      "题名",
+      "书法",
+      "罗衣"
+    ],
+    "mood": [
+      "不平",
+      "向往"
+    ],
+    "occasion": "第一章夜谈一的引子：想被看见与想被记录是否相同；不当暧昧谜底，不误当本世界已全面开放",
+    "difficulty": 2
+  },
+  {
+    "id": "yuxuanji_tiyinwuting",
+    "title": "题隐雾亭",
+    "author": "鱼玄机",
+    "lines": [
+      "春花秋月入诗篇，",
+      "白日清宵是散仙。",
+      "空卷珠帘不曾下，",
+      "长移一榻对山眠。"
+    ],
+    "source": "全唐诗卷804",
+    "sourceUrl": "https://zh.wikisource.org/wiki/全唐詩/卷804",
+    "tags": [
+      "帘",
+      "榻",
+      "山"
+    ],
+    "mood": [
+      "自在",
+      "懒散"
+    ],
+    "occasion": "无用场景：挪榻找阴凉",
+    "difficulty": 1
+  },
+  {
+    "id": "yuxuanji_fangzhaolianshi",
+    "title": "访赵炼师不遇",
+    "author": "鱼玄机",
+    "lines": [
+      "何处同仙侣，",
+      "青衣独在家。",
+      "暖炉留煮药，",
+      "邻院为煎茶。",
+      "画壁灯光暗，",
+      "幡竿日影斜。",
+      "殷勤重回首，",
+      "墙外数枝花。"
+    ],
+    "source": "全唐诗卷804",
+    "sourceUrl": "https://zh.wikisource.org/wiki/全唐詩/卷804",
+    "tags": [
+      "药炉",
+      "茶",
+      "日影",
+      "花"
+    ],
+    "mood": [
+      "惦念",
+      "日常"
+    ],
+    "occasion": "探友不遇，不强迫被访者为主角待命",
+    "difficulty": 2
+  },
+  {
+    "id": "yuxuanji_qianhuai",
+    "title": "遣怀",
+    "author": "鱼玄机",
+    "lines": [
+      "闲散身无事，",
+      "风光独自游。",
+      "断云江上月，",
+      "解缆海中舟。",
+      "琴弄萧梁寺，",
+      "诗吟庾亮楼。",
+      "丛篁堪作伴，",
+      "片石好为俦。",
+      "燕雀徒为贵，",
+      "金银志不求。",
+      "满杯春酒绿，",
+      "对月夜窗幽。",
+      "绕砌澄清沼，",
+      "抽簪映细流。",
+      "卧床书册遍，",
+      "半醉起梳头。"
+    ],
+    "source": "全唐诗卷804",
+    "sourceUrl": "https://zh.wikisource.org/wiki/全唐詩/卷804",
+    "tags": [
+      "书",
+      "酒",
+      "竹",
+      "解缆"
+    ],
+    "mood": [
+      "松弛",
+      "自足"
+    ],
+    "occasion": "不登基路线的生活片段；长诗拆句呈现",
+    "difficulty": 3
+  },
+  {
+    "id": "yuxuanji_zaoqiu",
+    "title": "早秋",
+    "author": "鱼玄机",
+    "lines": [
+      "嫩菊含新彩，",
+      "远山闲夕烟。",
+      "凉风惊绿树，",
+      "清韵入朱弦。",
+      "思妇机中锦，",
+      "征人塞外天。",
+      "雁飞鱼在水，",
+      "书信若为传。"
+    ],
+    "source": "全唐诗卷804",
+    "sourceUrl": "https://zh.wikisource.org/wiki/全唐詩/卷804",
+    "tags": [
+      "菊",
+      "琴",
+      "织机",
+      "书信"
+    ],
+    "mood": [
+      "思念",
+      "遥隔"
+    ],
+    "occasion": "留守者与赴边者各有工作，不只等待",
+    "difficulty": 2
+  },
+  {
+    "id": "yuxuanji_heyouren",
+    "title": "和友人次韵",
+    "author": "鱼玄机",
+    "lines": [
+      "何事能销旅馆愁，",
+      "红笺开处见银钩。",
+      "蓬山雨洒千峰小，",
+      "嶰谷风吹万叶秋。",
+      "字字朝看轻碧玉，",
+      "篇篇夜诵在衾裯。",
+      "欲将香匣收藏却，",
+      "且惜时吟在手头。"
+    ],
+    "source": "全唐诗卷804",
+    "sourceUrl": "https://zh.wikisource.org/wiki/全唐詩/卷804",
+    "tags": [
+      "诗笺",
+      "匣",
+      "手书"
+    ],
+    "mood": [
+      "珍爱",
+      "反复读信"
+    ],
+    "occasion": "恋人爱惜字迹；不声称原作对象必为女性",
+    "difficulty": 3
+  },
+  {
+    "id": "liye_bazhi",
+    "title": "八至",
+    "author": "李冶",
+    "lines": [
+      "至近至远东西，",
+      "至深至浅清溪。",
+      "至高至明日月，",
+      "至亲至疏夫妻。"
+    ],
+    "source": "全唐诗卷805",
+    "sourceUrl": "https://zh.wikisource.org/wiki/全唐詩/卷805",
+    "tags": [
+      "远近",
+      "溪",
+      "日月"
+    ],
+    "mood": [
+      "机敏",
+      "复杂亲密"
+    ],
+    "occasion": "夜读，允许两人对末句理解不同",
+    "difficulty": 2
+  },
+  {
+    "id": "liye_jiesuyu",
+    "title": "结素鱼贻友人",
+    "author": "李冶",
+    "lines": [
+      "尺素如残雪，",
+      "结为双鲤鱼。",
+      "欲知心里事，",
+      "看取腹中书。"
+    ],
+    "source": "全唐诗卷805",
+    "sourceUrl": "https://zh.wikisource.org/wiki/全唐詩/卷805",
+    "tags": [
+      "尺素",
+      "双鱼",
+      "书"
+    ],
+    "mood": [
+      "俏皮",
+      "亲近"
+    ],
+    "occasion": "折纸送信，不附好感门槛",
+    "difficulty": 1
+  },
+  {
+    "id": "liye_mingyueyeliubie",
+    "title": "明月夜留别",
+    "author": "李冶",
+    "lines": [
+      "离人无语月无声，",
+      "明月有光人有情。",
+      "别后相思人似月，",
+      "云间水上到层城。"
+    ],
+    "source": "全唐诗卷805",
+    "sourceUrl": "https://zh.wikisource.org/wiki/全唐詩/卷805",
+    "tags": [
+      "月",
+      "云",
+      "水",
+      "城"
+    ],
+    "mood": [
+      "留恋",
+      "笃定"
+    ],
+    "occasion": "暂别，不能等同永诀",
+    "difficulty": 2
+  },
+  {
+    "id": "liye_ouju",
+    "title": "偶居",
+    "author": "李冶",
+    "lines": [
+      "心远浮云知不还，",
+      "心云并在有无间。",
+      "狂风何事相摇荡，",
+      "吹向南山复北山。"
+    ],
+    "source": "全唐诗卷805",
+    "sourceUrl": "https://zh.wikisource.org/wiki/全唐詩/卷805",
+    "tags": [
+      "云",
+      "风",
+      "山"
+    ],
+    "mood": [
+      "游移",
+      "自问"
+    ],
+    "occasion": "辞任前独处，不把犹疑写成软弱",
+    "difficulty": 3
+  },
+  {
+    "id": "shangguanwaner_caishuyuan",
+    "title": "彩书怨",
+    "author": "上官婉儿",
+    "lines": [
+      "叶下洞庭初，",
+      "思君万里余。",
+      "露浓香被冷，",
+      "月落锦屏虚。",
+      "欲奏江南曲，",
+      "贪封蓟北书。",
+      "书中无别意，",
+      "惟怅久离居。"
+    ],
+    "source": "全唐诗卷005",
+    "sourceUrl": "https://zh.wikisource.org/wiki/全唐詩/卷005",
+    "tags": [
+      "书",
+      "屏",
+      "露",
+      "南北"
+    ],
+    "mood": [
+      "惦念",
+      "克制"
+    ],
+    "occasion": "女官私信；“君”保留原文，不附会作者情史",
+    "difficulty": 2
+  },
+  {
+    "id": "shangguanwaner_lichun",
+    "title": "奉和圣制立春日侍宴内殿出剪彩花应制",
+    "author": "上官婉儿",
+    "lines": [
+      "密叶因裁吐，",
+      "新花逐剪舒。",
+      "攀条虽不谬，",
+      "摘蕊讵知虚。",
+      "春至由来发，",
+      "秋还未肯疏。",
+      "借问桃将李，",
+      "相乱欲何如。"
+    ],
+    "source": "全唐诗卷005",
+    "sourceUrl": "https://zh.wikisource.org/wiki/全唐詩/卷005",
+    "tags": [
+      "剪彩",
+      "花",
+      "真假"
+    ],
+    "mood": [
+      "灵巧",
+      "含蓄"
+    ],
+    "occasion": "内廷节宴，关注宫人的制作手艺",
+    "difficulty": 3
+  },
+  {
+    "id": "shangguanwaner_chongyang",
+    "title": "九月九日上幸慈恩寺登浮图群臣上菊花寿酒",
+    "author": "上官婉儿",
+    "lines": [
+      "帝里重阳节，",
+      "香园万乘来。",
+      "却邪萸入佩，",
+      "献寿菊传杯。",
+      "塔类承天涌，",
+      "门疑待佛开。",
+      "睿词悬日月，",
+      "长得仰昭回。"
+    ],
+    "source": "全唐诗卷005",
+    "sourceUrl": "https://zh.wikisource.org/wiki/全唐詩/卷005",
+    "tags": [
+      "菊",
+      "茱萸",
+      "塔",
+      "寿酒"
+    ],
+    "mood": [
+      "典礼庄重"
+    ],
+    "occasion": "金碧朝廷的颂圣诗范本；不把颂圣态度自动当主角立场",
+    "difficulty": 3
+  },
+  {
+    "id": "liucaichun_luogongqu2",
+    "title": "啰唝曲六首·其二",
+    "author": "刘采春（古籍署名）",
+    "lines": [
+      "借问东园柳，",
+      "枯来得几年。",
+      "自无枝叶分，",
+      "莫恐太阳偏。"
+    ],
+    "source": "全唐诗卷802",
+    "sourceUrl": "https://zh.wikisource.org/wiki/全唐詩/卷802",
+    "tags": [
+      "柳",
+      "枝叶",
+      "日光"
+    ],
+    "mood": [
+      "苦涩",
+      "质问"
+    ],
+    "occasion": "资深才人谈资格；末句可被人物反驳，不当作者给弱者的判词",
+    "difficulty": 2
+  },
+  {
+    "id": "liucaichun_luogongqu6",
+    "title": "啰唝曲六首·其六",
+    "author": "刘采春（古籍署名）",
+    "lines": [
+      "昨日北风寒，",
+      "牵船浦里安。",
+      "潮来打缆断，",
+      "摇橹始知难。"
+    ],
+    "source": "全唐诗卷802",
+    "sourceUrl": "https://zh.wikisource.org/wiki/全唐詩/卷802",
+    "tags": [
+      "舟",
+      "缆",
+      "潮",
+      "橹"
+    ],
+    "mood": [
+      "清醒",
+      "艰难"
+    ],
+    "occasion": "艺人谈谋生与技艺；困难有解决工作，不全是悲歌",
+    "difficulty": 1
+  },
+  {
+    "id": "wangwei_shanjuqiuming",
+    "title": "山居秋暝",
+    "author": "王维",
+    "lines": [
+      "空山新雨后，",
+      "天气晚来秋。",
+      "明月松间照，",
+      "清泉石上流。",
+      "竹喧归浣女，",
+      "莲动下渔舟。",
+      "随意春芳歇，",
+      "王孙自可留。"
+    ],
+    "source": "原诗／全唐诗卷126",
+    "sourceUrl": "https://zh.wikisource.org/wiki/山居秋暝",
+    "tags": [
+      "月",
+      "松",
+      "泉",
+      "浣女"
+    ],
+    "mood": [
+      "清润",
+      "安定"
+    ],
+    "occasion": "入门对诗；原诗有人，不能教成山水诗一律不许写人",
+    "difficulty": 1
+  },
+  {
+    "id": "wangwei_zhuliguan",
+    "title": "竹里馆",
+    "author": "王维",
+    "lines": [
+      "独坐幽篁里，",
+      "弹琴复长啸。",
+      "深林人不知，",
+      "明月来相照。"
+    ],
+    "source": "辋川集／全唐诗卷128",
+    "sourceUrl": "https://zh.wikisource.org/wiki/輞川集_%28王維%29/竹里館",
+    "tags": [
+      "竹",
+      "琴",
+      "月"
+    ],
+    "mood": [
+      "自得",
+      "不受打扰"
+    ],
+    "occasion": "独处是享受，不是无人爱她",
+    "difficulty": 1
+  },
+  {
+    "id": "libai_duzuojingtingshan",
+    "title": "独坐敬亭山",
+    "author": "李白",
+    "lines": [
+      "众鸟高飞尽，",
+      "孤云独去闲。",
+      "相看两不厌，",
+      "只有敬亭山。"
+    ],
+    "source": "原诗",
+    "sourceUrl": "https://zh.wikisource.org/wiki/獨坐敬亭山",
+    "tags": [
+      "鸟",
+      "云",
+      "山"
+    ],
+    "mood": [
+      "寂静",
+      "亲近"
+    ],
+    "occasion": "同看山，沉默不是等待告白的倒计时",
+    "difficulty": 1
+  },
+  {
+    "id": "dufu_chunyexiyu",
+    "title": "春夜喜雨",
+    "author": "杜甫",
+    "lines": [
+      "好雨知时节，",
+      "当春乃发生。",
+      "随风潜入夜，",
+      "润物细无声。",
+      "野径云俱黑，",
+      "江船火独明。",
+      "晓看红湿处，",
+      "花重锦官城。"
+    ],
+    "source": "原诗／全唐诗卷226",
+    "sourceUrl": "https://zh.wikisource.org/wiki/春夜喜雨",
+    "tags": [
+      "雨",
+      "径",
+      "灯火",
+      "花"
+    ],
+    "mood": [
+      "喜悦",
+      "滋养"
+    ],
+    "occasion": "夜雨入门声律题；画面仍守当前色板",
+    "difficulty": 1
+  },
+  {
+    "id": "wangzhihuan_denguqueLou",
+    "title": "登鹳雀楼",
+    "author": "王之涣（通行署名）",
+    "lines": [
+      "白日依山尽，",
+      "黄河入海流。",
+      "欲穷千里目，",
+      "更上一层楼。"
+    ],
+    "source": "原诗及异署说明",
+    "sourceUrl": "https://zh.wikisource.org/wiki/登鸛雀樓_%28王之渙%29",
+    "tags": [
+      "日",
+      "河",
+      "楼"
+    ],
+    "mood": [
+      "开阔",
+      "求见"
+    ],
+    "occasion": "登楼看景；不把“更上”强解为皇位才是成功",
+    "difficulty": 1
+  },
+  {
+    "id": "poem_236e745594cc1f8d",
+    "title": "终南别业",
+    "author": "王维",
+    "lines": [
+      "中岁颇好道，",
+      "晚家南山陲。",
+      "兴来每独往，",
+      "胜事空自知。",
+      "行到水穷处，",
+      "坐看云起时。",
+      "偶然值林叟，",
+      "谈笑无还期。"
+    ],
+    "source": "原诗／全唐诗卷126",
+    "sourceUrl": "https://zh.wikisource.org/wiki/終南別業",
+    "tags": [
+      "水",
+      "云",
+      "山",
+      "林叟"
+    ],
+    "mood": [
+      "自在",
+      "未定"
+    ],
+    "occasion": "第三幕夜谈三：受位或拒位之前谈走到尽头；不把坐看写成劝退，不作正确答案",
+    "difficulty": 2
+  }
+]

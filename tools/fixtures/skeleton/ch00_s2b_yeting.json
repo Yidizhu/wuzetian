@@ -1,0 +1,15 @@
+{
+  "id": "ch00_s2b_yeting",
+  "chapter": 0,
+  "act": 1,
+  "scene": "nvguan",
+  "palette": "ink",
+  "cast": ["wuze"],
+  "weightless": false,
+  "purpose": "M1 占位。换一个场景 key，用来验证背景层真的换了",
+  "lines": [
+    { "id": "ch00_s2b.l1", "who": "narr", "kind": "aside", "text": "（占位文本）名牌上写着两个字，写得很潦草。" },
+    { "id": "ch00_s2b.l2", "who": "wuze", "expr": "guarded", "kind": "say", "text": "（占位文本）写字的人不打算让人看清。" }
+  ],
+  "goto": "ch00_s3_zhaoyang"
+}

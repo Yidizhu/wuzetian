@@ -1,0 +1,208 @@
+{
+  "id": "ch01_s04_shuge",
+  "chapter": 1,
+  "act": 1,
+  "scene": "shuge",
+  "palette": "ink",
+  "cast": [
+    "wuze",
+    "shenheng"
+  ],
+  "weightless": false,
+  "leavesLetter": [
+    "shenheng"
+  ],
+  "purpose": "两人对沉默如何入卷互不让步，却愿意继续相处",
+  "lines": [
+    {
+      "id": "ch01_s04_shuge.l1",
+      "who": "narr",
+      "kind": "aside",
+      "text": "沈衡把两卷纸摊开，中间留着一掌宽。"
+    },
+    {
+      "id": "ch01_s04_shuge.l2",
+      "who": "shenheng",
+      "expr": "default",
+      "kind": "say",
+      "text": "坐这边。灯不会被你挡住。"
+    },
+    {
+      "id": "ch01_s04_shuge.l3",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "你待纸比待人周到。"
+    },
+    {
+      "id": "ch01_s04_shuge.l4",
+      "who": "shenheng",
+      "expr": "default",
+      "kind": "say",
+      "text": "人会自己找亮处。"
+    },
+    {
+      "id": "ch01_s04_shuge.l5",
+      "who": "narr",
+      "kind": "aside",
+      "text": "你坐下。她还是把灯往你这边挪了些。"
+    },
+    {
+      "id": "ch01_s04_shuge.l6",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "这句“无异辞”，是人人都答了？"
+    },
+    {
+      "id": "ch01_s04_shuge.l7",
+      "who": "shenheng",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "卷上只留了这三个字。"
+    },
+    {
+      "id": "ch01_s04_shuge.l8",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "没答，也能算在里面。"
+    },
+    {
+      "id": "ch01_s04_shuge.l9",
+      "who": "shenheng",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "能。但我不能添一句“她不肯”。"
+    },
+    {
+      "id": "ch01_s04_shuge.l10",
+      "who": "wuze",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "那这三个字倒替她肯了。"
+    },
+    {
+      "id": "ch01_s04_shuge.l11",
+      "who": "shenheng",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "所以要找原问辞，找当日的人。"
+    },
+    {
+      "id": "ch01_s04_shuge.l12",
+      "who": "wuze",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "找不着，就一直算她肯？"
+    },
+    {
+      "id": "ch01_s04_shuge.l13",
+      "who": "narr",
+      "kind": "aside",
+      "text": "沈衡伸手去压卷角，压偏了半寸。"
+    },
+    {
+      "id": "ch01_s04_shuge.l14",
+      "who": "shenheng",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "我找过。"
+    },
+    {
+      "id": "ch01_s04_shuge.l15",
+      "who": "narr",
+      "kind": "aside",
+      "text": "她把手收回来。纸角又慢慢翘起。"
+    },
+    {
+      "id": "ch01_s04_shuge.l16",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "她还在么？"
+    },
+    {
+      "id": "ch01_s04_shuge.l17",
+      "who": "shenheng",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "不在这里了。"
+    },
+    {
+      "id": "ch01_s04_shuge.l18",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "我不是要你编。我怕等得太久。"
+    },
+    {
+      "id": "ch01_s04_shuge.l19",
+      "who": "shenheng",
+      "expr": "default",
+      "kind": "say",
+      "text": "我怕写得太快，她还没来得及张口，卷里就已经有了替她说的话。"
+    },
+    {
+      "id": "ch01_s04_shuge.l20",
+      "who": "narr",
+      "kind": "aside",
+      "text": "灯芯响了一声。谁都没有让步。"
+    },
+    {
+      "id": "ch01_s04_shuge.l21",
+      "who": "shenheng",
+      "expr": "default",
+      "kind": "say",
+      "text": "换半句。这个我知道怎么判。"
+    },
+    {
+      "id": "ch01_s04_shuge.l22",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "也先把规矩告诉我。"
+    },
+    {
+      "id": "ch01_s04_shuge.l23",
+      "who": "shenheng",
+      "expr": "open",
+      "kind": "say",
+      "text": "五个字。物、处所、动作，末字平声。"
+    },
+    {
+      "id": "ch01_s04_shuge.l24",
+      "who": "shenheng",
+      "expr": "default",
+      "kind": "poem",
+      "text": "明月松间照。"
+    },
+    {
+      "id": "ch01_s04_shuge.l25",
+      "who": "wuze",
+      "expr": "open",
+      "kind": "say",
+      "text": "接错了呢？"
+    },
+    {
+      "id": "ch01_s04_shuge.l26",
+      "who": "shenheng",
+      "expr": "open",
+      "kind": "say",
+      "text": "接错了也可以再坐一会儿，我留下这盏灯，并不是只为听一个对句。"
+    },
+    {
+      "id": "ch01_s04_shuge.l27",
+      "who": "narr",
+      "kind": "aside",
+      "text": "你看了一眼门。门原来一直开着。"
+    },
+    {
+      "id": "ch01_s04_shuge.l28",
+      "who": "self",
+      "kind": "inner",
+      "text": "（留下，便不是因为走不了。）"
+    }
+  ],
+  "duel": "pd_01"
+}

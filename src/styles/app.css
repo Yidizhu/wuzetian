@@ -1,0 +1,398 @@
+@import "./palette.css";
+@import "./inbox.css";
+
+/* 字体：M5 会换成子集化的思源宋体。现在先用系统衬线，保证排版结构对。 */
+:root {
+  --font: "Source Han Serif SC", "Noto Serif SC", "Songti SC", "SimSun", "STSong", serif;
+  --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0; height: 100%;
+  background: var(--c-ground);
+  color: var(--c-text);
+  font-family: var(--font);
+  -webkit-text-size-adjust: 100%;
+  overscroll-behavior: none;
+  transition: background 420ms var(--ease);
+}
+
+#app {
+  position: relative;
+  height: 100dvh;
+  overflow: hidden;
+  cursor: pointer;
+  user-select: none;
+}
+
+/* ---------- 背景层 ---------- */
+
+.stage { position: absolute; inset: 0; z-index: 0; }
+
+.stage__layer {
+  position: absolute; inset: -6%;
+  transform: translate3d(var(--px, 0), var(--py, 0), 0);
+  transition: transform 600ms var(--ease), opacity 300ms var(--ease), background 320ms var(--ease);
+}
+.stage__sky    { opacity: 0.34; }
+.stage__mid    { opacity: 0.5; }
+.stage__ground { opacity: 0.58; }
+
+/* 金碧的颜料本身饱和度高得多，同样的不透明度会糊成一团色云。
+   压到水墨板的一半左右，画面才是「满」而不是「脏」。 */
+[data-palette="gold"] .stage__sky    { opacity: 0.16; }
+[data-palette="gold"] .stage__mid    { opacity: 0.22; }
+[data-palette="gold"] .stage__ground { opacity: 0.26; }
+
+/* 纸纹：细密噪声叠 multiply，让画面不像机器渲染的 */
+.stage__paper {
+  position: absolute; inset: 0;
+  mix-blend-mode: multiply; opacity: 0.16; pointer-events: none;
+  background-image: url("data:image/svg+xml;utf8,\
+<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'>\
+<filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/>\
+<feColorMatrix type='saturate' values='0'/></filter>\
+<rect width='140' height='140' filter='url(%23n)' opacity='0.5'/></svg>");
+}
+
+/* 绢纹：比宣纹细、规整、带经纬。金碧场景换这一层，两套画面连质感都不一样
+   （art-style/palette.md 末节）。经纬是两道 1px 的重复线，不是噪声。 */
+[data-palette="gold"] .stage__paper {
+  opacity: 0.2;
+  background-image:
+    repeating-linear-gradient(90deg, rgba(0,0,0,0.055) 0 1px, transparent 1px 3px),
+    repeating-linear-gradient(0deg,  rgba(0,0,0,0.045) 0 1px, transparent 1px 3px),
+    url("data:image/svg+xml;utf8,\
+<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'>\
+<filter id='s'><feTurbulence type='fractalNoise' baseFrequency='1.6' numOctaves='2'/>\
+<feColorMatrix type='saturate' values='0'/></filter>\
+<rect width='120' height='120' filter='url(%23s)' opacity='0.34'/></svg>");
+}
+
+/* 水墨侵入层（D-010 第 3 条）。覆盖面积 = 她的权力进度，由 --ink-cover（0–1）驱动。
+   墨色走 --c-ink-wash：金碧板的 --c-ink-1 是石青，她带进来的东西不能是石青的。
+   遮罩从左下那个角扩出去——她是从下面进这座殿的，不是从天上来的。 */
+.stage__ink {
+  position: absolute; inset: 0; pointer-events: none;
+  mix-blend-mode: multiply;
+  background-color: var(--c-ink-wash);
+  opacity: calc(0.26 + var(--ink-cover, 0) * 0.46);
+  transition: opacity 900ms var(--ease), -webkit-mask-size 900ms var(--ease), mask-size 900ms var(--ease);
+  /* 噪声让墨边不规整：边缘软、内部不均，和地面墨晕同一条规矩 */
+  background-image: url("data:image/svg+xml;utf8,\
+<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'>\
+<filter id='w'><feTurbulence type='fractalNoise' baseFrequency='0.02 0.035' numOctaves='4'/>\
+<feColorMatrix type='saturate' values='0'/></filter>\
+<rect width='200' height='200' filter='url(%23w)' opacity='0.55'/></svg>");
+  background-size: 180% 180%;
+  -webkit-mask-image: radial-gradient(ellipse at 26% 84%,
+    #000 0%, #000 calc(var(--ink-cover, 0) * 82%), transparent calc(var(--ink-cover, 0) * 124% + 6%));
+  mask-image: radial-gradient(ellipse at 26% 84%,
+    #000 0%, #000 calc(var(--ink-cover, 0) * 82%), transparent calc(var(--ink-cover, 0) * 124% + 6%));
+}
+
+.stage[data-night="1"] { background: var(--c-ground-night); }
+
+/* 墨晕开：转场不用淡入淡出 */
+.stage--wiping .stage__layer { opacity: 0; }
+.stage--beat   { animation: beat 900ms var(--ease); }
+@keyframes beat { 50% { transform: scale(1.015); } }
+
+/* ---------- 状态条：右上题跋区 ---------- */
+
+.status {
+  position: absolute; top: max(18px, env(safe-area-inset-top)); right: 20px;
+  z-index: 3; display: flex; gap: 14px;
+}
+.status__cell { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+.status__line {
+  width: 2px; height: 56px;
+  background: linear-gradient(to top,
+    currentColor 0, currentColor var(--fill, 20%), transparent var(--fill, 20%));
+  color: var(--c-ink-4);
+  transition: color 400ms var(--ease), --fill 400ms var(--ease);
+}
+/* 五级色阶，不是连续渐变——水墨是分级的 */
+.status__line[data-tone="0"] { color: var(--c-ink-4); }
+.status__line[data-tone="1"] { color: var(--c-ink-3); }
+.status__line[data-tone="2"] { color: var(--c-ink-2); }
+.status__line[data-tone="3"] { color: var(--c-ink-1); }
+.status__line[data-tone="4"] { color: var(--c-line); }
+.status__label { font-size: 13px; color: var(--c-text-soft); letter-spacing: 0.05em; }
+
+.status__line--bloom { animation: bloom 700ms var(--ease); }
+@keyframes bloom {
+  0%   { filter: blur(0); transform: scaleX(1); }
+  35%  { filter: blur(1.4px); transform: scaleX(3.2); }
+  100% { filter: blur(0); transform: scaleX(1); }
+}
+
+/* ---------- 对话框：宣纸卷轴的一段，左右不封口 ---------- */
+
+.dlg {
+  position: absolute; left: 0; right: 0;
+  bottom: max(24px, env(safe-area-inset-bottom));
+  z-index: 2;
+  padding: 18px clamp(20px, 6vw, 96px) 22px;
+  background: color-mix(in srgb, var(--c-ground) 92%, transparent);
+  border-top: 1px solid var(--c-ink-4);
+  border-bottom: 1px solid var(--c-ink-4);
+  transition: background 420ms var(--ease);
+}
+.dlg__name {
+  font-size: 19px; line-height: 1.4; color: var(--c-text);
+  margin-bottom: 6px; letter-spacing: 0.06em;
+}
+.dlg__text {
+  font-size: 17px; line-height: 1.9; color: var(--c-text);
+  min-height: calc(17px * 1.9 * 2);
+}
+.dlg[data-kind="inner"]  .dlg__text { color: color-mix(in srgb, var(--c-text) 78%, var(--c-ground)); }
+.dlg[data-kind="aside"]  .dlg__text { color: var(--c-text-soft); text-indent: 2em; }
+.dlg[data-kind="poem"]   .dlg__text {
+  font-size: 18px; line-height: 2.1; letter-spacing: 0.08em; text-align: center;
+}
+
+/* ---------- 选项：竖排，左侧一条短墨线 ---------- */
+
+.choices {
+  position: absolute; left: 0; right: 0;
+  bottom: max(24px, env(safe-area-inset-bottom));
+  z-index: 4;
+  padding: 16px clamp(20px, 6vw, 96px) 24px;
+  display: flex; flex-direction: column; gap: 12px;
+  background: color-mix(in srgb, var(--c-ground) 94%, transparent);
+  border-top: 1px solid var(--c-ink-4);
+}
+.choice {
+  display: flex; align-items: center; gap: 12px;
+  min-height: 44px; padding: 8px 4px;      /* 触控目标不小于 44px */
+  background: none; border: 0; cursor: pointer;
+  font-family: inherit; font-size: 17px; line-height: 1.7;
+  color: var(--c-text); text-align: left;
+}
+.choice__mark {
+  flex: none; width: 18px; height: 1px; background: var(--c-ink-4);
+  transition: background 200ms var(--ease), width 200ms var(--ease);
+}
+.choice:hover:not(:disabled) .choice__mark,
+.choice:active:not(:disabled) .choice__mark { background: var(--c-text); width: 26px; }
+.choice:disabled { color: var(--c-ink-4); cursor: default; }
+.choice__hint {
+  margin-left: auto; font-size: 14px; color: var(--c-text-soft); letter-spacing: 0.04em;
+}
+
+/* 选中的一瞬间亮朱砂。金碧场景里这是整屏唯一的红，所以它在这里显式声明，
+   而不是从 --c-accent 取——金碧板根本没有那个变量。 */
+.choice[data-picked="1"] .choice__mark {
+  background: #A8232A; width: 8px; height: 8px; border-radius: 50%;
+  animation: vermilion 420ms var(--ease);
+}
+@keyframes vermilion { 0% { transform: scale(0.2); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
+
+/* ---------- 角落里的小工具，M1 验收用 ---------- */
+
+.hud {
+  position: absolute; left: 16px; top: max(16px, env(safe-area-inset-top));
+  z-index: 5; display: flex; gap: 10px; align-items: center;
+  font-size: 12px; color: var(--c-text-soft); letter-spacing: 0.04em;
+}
+.hud button {
+  font: inherit; font-family: var(--font); color: var(--c-text-soft);
+  background: none; border: 1px solid var(--c-ink-4); border-radius: 2px;
+  padding: 4px 9px; cursor: pointer; min-height: 28px;
+}
+.hud button:hover { color: var(--c-text); border-color: var(--c-ink-2); }
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+
+/* ---------- 结局题名 ---------- */
+
+.ending-title {
+  position: absolute; left: 0; right: 0; top: 38%;
+  z-index: 3; text-align: center;
+  font-size: 30px; letter-spacing: 0.35em; text-indent: 0.35em;
+  color: var(--c-text);
+  animation: ending-in 1200ms var(--ease) both;
+}
+@keyframes ending-in {
+  from { opacity: 0; letter-spacing: 0.9em; filter: blur(3px); }
+  to   { opacity: 1; }
+}
+
+/* ---------- 对诗：题面在上，四个候选在下，答完摊开全部理由 ---------- */
+
+.duel, .summary {
+  position: absolute; inset: 0; z-index: 6;
+  overflow-y: auto; -webkit-overflow-scrolling: touch;
+  padding: max(24px, env(safe-area-inset-top)) clamp(20px, 6vw, 96px)
+           max(28px, env(safe-area-inset-bottom));
+  background: color-mix(in srgb, var(--c-ground) 96%, transparent);
+}
+
+.duel__title {
+  font-size: 13px; letter-spacing: 0.2em; color: var(--c-text-soft);
+  text-align: center; margin-bottom: 20px;
+}
+.duel__prompt {
+  font-size: 24px; line-height: 1.9; letter-spacing: 0.16em; text-indent: 0.16em;
+  text-align: center; color: var(--c-text); margin-bottom: 14px;
+}
+/* 题面必须在选项之前读到。没有它，四个候选里往往不止一个成立 */
+.duel__brief {
+  font-size: 14px; line-height: 1.9; color: var(--c-text-soft);
+  text-align: center; margin: 0 auto 22px; max-width: 30em;
+  padding-bottom: 16px; border-bottom: 1px solid var(--c-ink-4);
+}
+.duel__options { display: flex; flex-direction: column; gap: 10px; }
+.duel__option {
+  display: grid; grid-template-columns: 22px 1fr; gap: 10px 12px;
+  align-items: baseline; text-align: left;
+  min-height: 44px; padding: 10px 6px;
+  background: none; border: 0; border-bottom: 1px solid transparent;
+  font-family: inherit; font-size: 18px; line-height: 1.8;
+  color: var(--c-text); cursor: pointer;
+}
+.duel__key { color: var(--c-text-soft); font-size: 14px; }
+.duel__option:hover:not(:disabled) { border-bottom-color: var(--c-ink-4); }
+.duel__option:disabled { cursor: default; }
+.duel__option[data-state="right"] { border-bottom-color: var(--c-line); }
+.duel__option[data-state="right"] .duel__key { color: #A8232A; }
+.duel__option[data-state="wrong"] .duel__text {
+  text-decoration: line-through; text-decoration-thickness: 1px; color: var(--c-text-soft);
+}
+/* 每一项的理由都摊开。只讲选中那一项，玩家学不到另外两条限制 */
+.duel__why {
+  grid-column: 2; font-size: 13px; line-height: 1.85; color: var(--c-text-soft);
+  animation: fade-in 500ms var(--ease) both;
+}
+@keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+
+.duel__next, .summary__next {
+  display: block; margin: 26px auto 0; min-height: 44px; padding: 8px 28px;
+  font-family: inherit; font-size: 16px; letter-spacing: 0.12em;
+  color: var(--c-text); background: none;
+  border: 1px solid var(--c-ink-4); border-radius: 2px; cursor: pointer;
+}
+.duel__next:hover, .summary__next:hover { border-color: var(--c-ink-2); }
+
+/* ---------- 章末结算 ---------- */
+
+.summary__title {
+  font-size: 22px; letter-spacing: 0.3em; text-indent: 0.3em;
+  text-align: center; color: var(--c-text); margin-bottom: 30px;
+}
+.summary__stats { display: flex; justify-content: center; gap: 34px; margin-bottom: 34px; }
+.summary__stat { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+/* 结算页也不给精确数字。读得出数值，玩家就会开始刷数值 */
+.summary__bar {
+  width: 2px; height: 74px;
+  background: linear-gradient(to top,
+    currentColor 0, currentColor var(--fill, 20%), transparent var(--fill, 20%));
+  color: var(--c-ink-4);
+}
+.summary__bar[data-tone="1"] { color: var(--c-ink-3); }
+.summary__bar[data-tone="2"] { color: var(--c-ink-2); }
+.summary__bar[data-tone="3"] { color: var(--c-ink-1); }
+.summary__bar[data-tone="4"] { color: var(--c-line); }
+.summary__statLabel { font-size: 13px; color: var(--c-text-soft); letter-spacing: 0.05em; }
+
+.summary__block { margin-bottom: 28px; }
+.summary__head {
+  font-size: 13px; letter-spacing: 0.2em; color: var(--c-text-soft);
+  padding-bottom: 8px; border-bottom: 1px solid var(--c-ink-4); margin-bottom: 14px;
+}
+.summary__empty { font-size: 15px; color: var(--c-text-soft); line-height: 1.9; }
+.summary__people { display: flex; flex-direction: column; gap: 8px; }
+.summary__person { display: flex; align-items: baseline; gap: 14px; font-size: 17px; }
+.summary__band { font-size: 14px; color: var(--c-text-soft); }
+.summary__poem { margin-bottom: 12px; }
+.summary__poemLine { font-size: 17px; line-height: 2.1; letter-spacing: 0.06em; }
+.summary__poemFrom { font-size: 13px; color: var(--c-text-soft); }
+
+/* ---------- 存档槽 ---------- */
+
+.slots {
+  position: absolute; inset: 0; z-index: 7;
+  display: flex; align-items: center; justify-content: center;
+  background: color-mix(in srgb, var(--c-line) 22%, transparent);
+}
+.slots__panel {
+  width: min(420px, 88vw); padding: 22px 20px;
+  background: var(--c-ground);
+  border-top: 1px solid var(--c-line); border-bottom: 1px solid var(--c-line);
+}
+.slots__title {
+  font-size: 13px; letter-spacing: 0.2em; color: var(--c-text-soft);
+  text-align: center; margin-bottom: 16px;
+}
+.slots__row {
+  display: grid; grid-template-columns: 20px 1fr auto; gap: 12px;
+  align-items: center; padding: 10px 0; border-bottom: 1px solid var(--c-ink-4);
+}
+.slots__no { color: var(--c-text-soft); font-size: 14px; }
+.slots__where { font-size: 15px; color: var(--c-text); word-break: break-all; }
+.slots__where--empty { color: var(--c-ink-4); }
+.slots__when { font-size: 12px; color: var(--c-text-soft); margin-top: 2px; }
+.slots__act { display: flex; gap: 8px; }
+.slots__act button, .slots__close {
+  font-family: inherit; font-size: 14px; color: var(--c-text-soft);
+  background: none; border: 1px solid var(--c-ink-4); border-radius: 2px;
+  min-width: 44px; min-height: 32px; cursor: pointer;
+}
+.slots__act button:hover:not(:disabled), .slots__close:hover {
+  color: var(--c-text); border-color: var(--c-ink-2);
+}
+.slots__act button:disabled { color: var(--c-ink-4); cursor: default; }
+.slots__close { display: block; margin: 18px auto 0; padding: 0 22px; min-height: 36px; }
+
+/* ---------- 立绘层：背景之上，对话框之下 ---------- */
+
+.cast { position: absolute; inset: 0; z-index: 1; pointer-events: none; overflow: hidden; }
+.cast__slot {
+  position: absolute; bottom: -4%;
+  height: 78%;                       /* art-style：占视口高 62% 到 78% */
+  aspect-ratio: 2 / 3;
+  transition: transform 520ms var(--ease), opacity 520ms var(--ease), filter 520ms var(--ease);
+  opacity: 0.94;
+}
+.cast__slot svg {
+  width: 100%; height: 100%; display: block;
+  /* 呼吸：art-director 第 10 条要静态图里有一处「将动未动」。
+     6 秒一次、0.6% 的起伏，看不出在动，但停掉就看得出画面是死的。
+     变换原点在脚下，人才像站着而不是浮着。整体动效语言仍只有墨晕一种。 */
+  transform-origin: 50% 100%;
+  animation: breath 6.4s ease-in-out infinite;
+}
+/* 说话的人呼吸略快，退后的略慢。十个人错开相位，免得两个人同频像机器 */
+.cast__slot[data-active="1"] svg { animation-duration: 5.2s; }
+.cast__slot[data-side="right"] svg { animation-delay: -2.1s; }
+@keyframes breath {
+  0%, 100% { transform: scaleY(1) translateY(0); }
+  50%      { transform: scaleY(1.006) translateY(-0.35%); }
+}
+/* 画布 1024 宽但人只占中间三成，槽位要往两边探出去，人才落在屏幕的 30% 和 70% 处。
+   主角偏左下，留白在右上题跋区；第二个人在右，退半步 */
+.cast__slot[data-side="left"]  { left: -18%;  transform: translateX(0) scale(1); }
+.cast__slot[data-side="right"] { right: -18%; transform: translateX(0) scale(0.96); }
+/* 不说话的人退后、转淡。舞台调度，不是特效 */
+.cast__slot:not([data-active="1"]) { opacity: 0.55; filter: blur(0.4px); }
+.cast__slot[data-side="left"]:not([data-active="1"])  { transform: translateX(-3%) scale(0.97); }
+.cast__slot[data-side="right"]:not([data-active="1"]) { transform: translateX(3%) scale(0.93); }
+/* 不可逆决定：她的朱砂点亮回朱砂，金碧场景里也是 */
+.cast__slot[data-flare="1"] .accent { fill: #A8232A !important; animation: vermilion 420ms var(--ease); }
+/* 手机竖屏只放得下一个人半身，第二个人再往边上退 */
+@media (max-width: 480px) {
+  .cast__slot { height: 64%; }
+  .cast__slot[data-side="left"]  { left: -24%; }
+  .cast__slot[data-side="right"] { right: -26%; }
+}
+/* 3D 舞台的画布 */
+.stage__canvas { position: absolute; inset: 0; width: 100% !important; height: 100% !important; display: block; }
+.stage--three .stage__paper { opacity: 0.22; }
+/* 绢纹在 3D 舞台上要比宣纹再压一点，经纬线叠在平涂面上很容易抢戏 */
+[data-palette="gold"] .stage--three .stage__paper { opacity: 0.17; }

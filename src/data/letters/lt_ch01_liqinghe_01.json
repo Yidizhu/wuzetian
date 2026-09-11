@@ -1,0 +1,85 @@
+{
+  "id": "lt_ch01_liqinghe_01",
+  "from": "liqinghe",
+  "trigger": {
+    "kind": "scene",
+    "sceneId": "ch01_s09_shuge",
+    "afterScenes": 2
+  },
+  "delayMinutes": 26,
+  "paper": "nijin",
+  "body": {
+    "surface": "那一处见证人，我重算过了。多出来的脚程不能从账上省掉。你再看时，仍照自己的话写，不必替我留好看的余地。这一回不附母亲的批语。",
+    "poem": {
+      "ref": "liye_bazhi",
+      "line": "至近至远东西，至深至浅清溪。"
+    },
+    "poemMeans": "她承认两人能靠近，也承认靠近不能让政治距离凭空消失",
+    "blank": "（她把重算的地方给我看，却没有借母亲的话垫在前头。是想让我认出她，也仍准备让我挑错。）"
+  },
+  "sheMayNotReply": {
+    "affinity.liqinghe": {
+      "lt": 5
+    }
+  },
+  "interceptable": false,
+  "replies": {
+    "plain": [
+      {
+        "effects": {
+          "affinity.liqinghe": 2,
+          "flag.liqinghe_affection_with_dissent": true
+        },
+        "reaction": "“我也没同意你。来时仍可以坐近些。”她把两个不同意都留着，没有拿相见当撤议。",
+        "id": "lt_ch01_liqinghe_01.rA",
+        "text": "我想再见你，宗籍那一处仍不同意。"
+      },
+      {
+        "effects": {
+          "cai": 1,
+          "flag.liqinghe_keep_both_drafts": true
+        },
+        "reaction": "“好。我的改处也不免，别只挑你自己的旧错。”她留下原稿，新页单独夹起。",
+        "id": "lt_ch01_liqinghe_01.rB",
+        "text": "先各留一份原稿，改过也不换掉旧话。"
+      },
+      {
+        "effects": {
+          "shi": 1,
+          "flag.liqinghe_public_only": true
+        },
+        "reaction": "“知道了。那就照策问的时辰见。”她不再把公事后的片刻算作两人的私约。",
+        "id": "lt_ch01_liqinghe_01.rC",
+        "text": "这回只谈策问，私下的话暂且不答。"
+      }
+    ],
+    "poem": {
+      "resonantTags": [
+        "远近",
+        "溪",
+        "日月",
+        "云",
+        "风",
+        "山"
+      ],
+      "onResonant": {
+        "effects": {
+          "affinity.liqinghe": 2
+        },
+        "reaction": "她在诗边写：“此处近，彼处远。”落笔很稳，没有替远的那一处画一道桥。"
+      },
+      "onMismatch": {
+        "effects": {
+          "affinity.liqinghe": 1
+        },
+        "reaction": "“这首我读了两遍，还想听你自己讲。”她没有命人送来一首所谓更合适的诗。"
+      }
+    },
+    "silence": {
+      "effects": {
+        "flag.silent_to_liqinghe": true
+      },
+      "reaction": "私笺没有再来。公开的收卷仍照原定办法进行，她没有把未答私话折成资格处分。"
+    }
+  }
+}

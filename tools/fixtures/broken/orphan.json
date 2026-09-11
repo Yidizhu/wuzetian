@@ -1,0 +1,14 @@
+{
+  "id": "orphan_scene",
+  "chapter": 1,
+  "act": 1,
+  "scene": "nvguan",
+  "palette": "ink",
+  "cast": ["xujinghe"],
+  "weightless": false,
+  "purpose": "没有任何场景指向这里",
+  "lines": [
+    { "id": "orphan_scene.l1", "who": "xujinghe", "kind": "say", "text": "没人走得到这里。" }
+  ],
+  "goto": "bad_two"
+}

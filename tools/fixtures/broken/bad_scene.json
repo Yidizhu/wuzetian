@@ -1,0 +1,21 @@
+{
+  "id": "bad_one",
+  "chapter": 1,
+  "act": 9,
+  "scene": "taijidian",
+  "palette": "qinglv",
+  "cast": ["shangguan", "wuze"],
+  "weightless": false,
+  "purpose": "",
+  "lines": [
+    { "id": "bad_one.l1", "who": "shangguan", "kind": "say",
+      "text": "这一句故意写得很长很长很长很长很长很长很长很长很长很长很长，超过四十个字，手机屏幕根本装不下它。" },
+    { "id": "bad_one.l2", "who": "narr", "kind": "singing", "text": "类型是编的" }
+  ],
+  "choices": [
+    { "id": "bad_one.cA", "text": "去一个不存在的地方",
+      "effects": { "cai": 9, "wuqi": 1 }, "goto": "nowhere_at_all" },
+    { "id": "bad_one.cB", "text": "条件键也是编的",
+      "require": { "affinity.Shen Heng": { "gte": 3 } }, "goto": "bad_two" }
+  ]
+}

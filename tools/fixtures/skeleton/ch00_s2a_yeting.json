@@ -1,0 +1,15 @@
+{
+  "id": "ch00_s2a_yeting",
+  "chapter": 0,
+  "act": 1,
+  "scene": "yeting",
+  "palette": "ink",
+  "cast": ["wuze"],
+  "weightless": true,
+  "purpose": "M1 占位。这一场标了 weightless，用来验证校验工具日后能查到它",
+  "lines": [
+    { "id": "ch00_s2a.l1", "who": "narr", "kind": "aside", "text": "（占位文本）门房的脸记住了。她没有说出来。" },
+    { "id": "ch00_s2a.l2", "who": "self", "kind": "inner", "text": "（占位文本）记下来不要钱。" }
+  ],
+  "goto": "ch00_s3_zhaoyang"
+}

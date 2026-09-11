@@ -1,0 +1,678 @@
+# story-schema：剧情数据格式
+
+> 这份文件是全项目的地基。ChatGPT 按第一部分交付，Codex 按第二部分转换和校验，Claude Code 按第二部分写引擎。
+> 三方读同一份规范，才不会互相打架。任何一方觉得规范不够用，改这份文件，不要各自变通。
+
+---
+
+## 谁读哪一部分
+
+| 你是 | 读 | 不用读 |
+|---|---|---|
+| ChatGPT（编剧） | **第一部分**，还有第三部分的对照示例 | 第二部分（JSON 与 zod） |
+| Codex（转换） | 全部 | |
+| Claude Code（引擎） | 第二、四部分 | |
+
+**ChatGPT 只交 markdown 表格和纯文本，不写 JSON，不写 id。** 机器 id 由 Codex 生成，人写 id 一定会重复和错字。
+
+---
+
+# 第一部分 · ChatGPT 的交付格式
+
+## 1.1 全局约定
+
+- **角色一律用 key**，不用中文名。两个特殊 key：`self`（主角内心独白）、`narr`（旁白）。
+- **角色 key 已由指挥日志 D-016 冻结成十个，写进了 schema 的 enum**：`wuze`、`shenheng`、`peizhaoye`、`wenqiao`、`liqinghe`、`songhuizhen`、`hetaihou`、`xujinghe`、`tangjian`、`adi`。写别的会被校验器当场拦下。要加人，先改指挥日志。
+- **主角显示名不要写死。** 需要出现主角名字的地方写 `{名}`，引擎会替换成当时的名字（改名前是「吾则添」，改名后是玩家选的那个字）。
+- **数值只有四个**：`shi`（势）、`ming`（名）、`cai`（才）、`xin`（心）。范围 0 到 20，开局各 3。
+- **好感写成 `好感.角色key`**，范围 0 到 20，四档：疏 0-4、识 5-9、契 10-15、盟 16-20。
+- **flag 写成 `flag.名字`**，只有真假两种值，名字用英文小写下划线，见名知意（`flag.took_seal`、`flag.refused_marriage`）。
+- **flag 名不许出现同音撞车。** 改名 beat 的三个 flag 已经定死为 `flag.name_tian`（天）、`flag.name_zhao`（曌）、`flag.name_kept`（不改），不要再用「添」的拼音另起一个。
+- **一次改动不要超过 4 点。** 数值变化太大玩家会去猜阈值，而不是去想她是谁。
+
+## 1.2 场景表（每个场景一张）
+
+```
+### 场景 ch01-03 昭阳殿一角
+
+| 字段 | 值 |
+|---|---|
+| 章 | 1 |
+| 幕 | 1 |
+| 地点 key | zhaoyang |
+| 色板 | gold |
+| 在场 | shenheng, wuze |
+| 进入条件 | flag.entered_palace |
+| 无用场景 | 否 |
+| 对诗 | pd_songjianyue |
+| 终局判定 | 否 |
+| 去向 | ch01-04 |
+| 一句话目的 | 她第一次被上位者当作一个人试探，而不是当作一个才人清点 |
+```
+
+后三行多数场景都留空：
+
+- **对诗**：填一个对局 id，台词读完先打这一局，再进选项。输赢的效果写在对局表里。
+- **终局判定**：全游戏只填一次「是」。走到那一场就按结局表从上往下取首个满足者。别的场景要指定结局请直接写去向。
+- **去向**：这一场没有选项表时，台词读完往哪走。有选项表就不要填，去向写在选项表里。
+
+**「去向」有一个特殊值：`章末`。**（D-034）写了它，玩家读完这一场先看章末结算页——这一章的四项数值、已识之人、本章所得的诗——再翻页。下一章的数据在就接着走，不在就停在结算页上，画面显示「下章待续」。
+
+一章的最后一场就这么写：
+
+```
+| 去向 | 章末 |
+```
+
+不要写「第二章（待交）」「待续」「ch02-01（还没写）」这类话，转换器会当成一个不存在的场景 id 报错。下一章交上来之后也**不用回头改**：章末页翻过去自然就进第二章第一场。
+
+**「无用场景」这一列是硬要求，不是装饰。** 每一幕至少要有一个填「是」的场景：不加数值、不推剧情、只是两个女人在一起。这条对应精神指南 2.2 节，校验工具会检查，缺了会报错。这些场景反而是玩家记住这个游戏的地方。
+
+「一句话目的」用来自查：如果一个场景说不出目的，它就该被合并或删掉。
+
+## 1.3 台词表
+
+```
+| # | 说话人 | 表情 | 类型 | 条件 | 台词 |
+|---|---|---|---|---|---|
+| 1 | narr | | 旁白 | | 砚台推过来半寸，停住。 |
+| 2 | shenheng | guarded | 说 | | 才人识得这方砚么？ |
+| 3 | self | | 内心 | flag.trial_recopy | （她在试我，试的是上回那卷。） |
+| 4 | self | | 内心 | 非 flag.trial_recopy | （她在试我。） |
+| 5 | wuze | default | 说 | | 不识。但识得用它的人。 |
+```
+
+- 表情只有三个值：`default`、`guarded`、`open`。`narr` 和 `self` 不填。
+- 类型：`说` / `内心` / `旁白` / `诗`。类型「诗」的会用诗词排版（居中、加字距、放宽行高）。
+- **「条件」列（D-026）**：写法同选项表的「需要」列（`flag.x`、`非 flag.x`、`cai >= 6`，多个用 `且`）。空 = 总是播放。引擎逐句求值，不满足就跳过。**同一场里按 flag 分岔的段落就这样写，条件行和无条件行按顺序混排**，不再分「入场承接 A / 承接 B / 公共正文」。
+- 一句台词不超过 40 字。超了就断成两句，手机屏幕装不下。
+
+## 1.4 选项表
+
+```
+| # | 选项文本 | 需要 | 效果 | 去向 | 备注 |
+|---|---|---|---|---|---|
+| A | 如实说不识 | | xin +1, 好感.shenheng +2 | ch01-04a | |
+| B | 顺着砚台谈虞世南的书法 | cai >= 6 | cai +2, ming +1, 好感.shenheng +4 | ch01-04b | 不满足时提示「才 不足」 |
+| C | 把砚推回去 | | 好感.shenheng -1, flag.pushed_back = 真 | ch01-04c | 不可逆，会亮朱砂 |
+```
+
+- **「需要」列的写法**：`cai >= 6`、`好感.shenheng >= 10`、`flag.took_seal`、`非 flag.refused_marriage`。多个条件用 `且` 连接。
+- 条件不满足时选项不隐藏，转清墨并标出缺什么。**不给理由的灰选项是在惩罚玩家，不是在设计。**
+- 「备注」列写不可逆、写朱砂、写任何给 Claude Code 的提示。
+
+## 1.5 对诗对局表
+
+```
+### 对诗 pd-01 · 场景 ch01-06 · 对手 shenheng
+
+| 字段 | 值 |
+|---|---|
+| 出句 | 明月松间照 |
+| 出处 | 王维《山居秋暝》 |
+| 难度 | 1 |
+| 题面 | 接五字句：自然物、处所、动作三层相应；末字用平声。 |
+| 判题重点 | 词组结构、句脚；不要求玩家背整首 |
+
+| 选项 | 对句 | 对错 | 为什么 |
+|---|---|---|---|
+| A | 清泉穿石冷 | 错 | 末字「冷」为上声，未满足题面要求的平声句脚。不是泉水这个意象本身不合 |
+| B | 清泉石上流 | 对 | 「清泉／石上／流」与「明月／松间／照」三层相应，「流」是平声，也正是原诗的对句 |
+| C | 昨夜有归舟 | 错 | 「昨夜」是时间，「有归舟」是存在叙述，没有按题面把自然物、处所、动作逐层对应 |
+| D | 清泉石上长流 | 错 | 六个字，多了一个「长」，不满足本局五字句的字数与节奏限制 |
+
+| 结果 | 效果 | 去向 | 她说 |
+|---|---|---|---|
+| 赢 | cai +3, 好感.shenheng +4 | ch01-07win | shenheng：接得好。方才那句话，我仍不同意。 |
+| 输 | xin +1, 好感.shenheng +1 | ch01-07lose | shenheng：这句不合题。方才的话，可没因此算你输。 |
+```
+
+- **「她说」列（D-026）**：胜负各自一句专属台词，格式 `角色key：台词`，可空。判题页摊完四个理由之后，这一句由普通对话框播出，玩家点一下再往下走。它是人物的话，不是判题解释，两者不混。
+- **对诗可以是一场的出口**：场景表写 `| 对诗 | pd-01 |`，赢和输的「去向」各自把玩家带走。这种场景可以没有选项表，但**两条去向都必须填**。
+- **第四列是台词，不是散文。** 表头写「她说」或「台词」都认。赢一句、输一句，各自由对手在普通对话框里说出来——不要把胜负反馈写在判题页的解释里，那是教学，这是戏。写成 `shenheng：接得好。` 可以指定说话人，不写说话人就默认是表头那个对手。
+
+**「题面」这一行是这套题的关键，不是装饰。** 题面写明本局限定了什么（几个字、哪个字位的平仄、末字平仄、不许引入什么），错项就是「没满足写明的限制」，而不是「意境不对」这种说不清的判词。没有题面，四个选项里往往不止一个在文学上成立，玩家答错了也不服。
+
+**「为什么」这一列必须指回题面。** 这是游戏唯一的教学环节，玩家答错时看到的就是这句话。写不出具体理由的错项说明这个题目本身有问题，换一个。校验器会拦下用「意境不对」「感觉不对」这类词的错项。
+
+**两条不能当作通则的东西**（这一版据 C0-2 的意见更正，此前的示例写错了）：
+
+- **对仗不是一概禁止重字。** 李冶《八至》通篇反复「至」就是修辞。要禁重字，得在题面里写明这一局禁。
+- **山水诗不是不许写人。** 《山居秋暝》原诗后半就有「竹喧归浣女，莲动下渔舟」。用「出现了人所以意象冲突」判错是错的。
+
+**输不是死路。** 输了走另一条对话分支，而且也给一点好感（对方欣赏她敢接），这对应精神指南 2.2 节的「允许失败」。
+
+## 1.6 结局表
+
+```
+| 字段 | 值 |
+|---|---|
+| 结局 key | wuzibei |
+| 标题 | 无字之碑 |
+| 判定 | shi >= 14 且 xin >= 12 且 flag.name_tian |
+| 色板 | ink |
+| 主题 | 她把评价权留给后人，拒绝被任何人定义 |
+| 正文 | （两百字左右） |
+```
+
+四条硬要求：
+
+1. **判定条件用数值阈值和 flag 表达，不要用文学化描述。** 「如果她已经足够坚定」没法执行。
+2. **至少一个不登基但更好的结局，至少一个「她选择不要」的结局。** 登基不是通关，这是 D-002 的红线。
+3. **如果这个结局是「她变成了她推翻的那个人」（势高心低），色板填 `gold`。** 画面回到金碧就是判词，正文里不用再说破。
+4. **判定里不许出现 `flag.name_tian` / `name_zhao` / `name_kept`。** 这是 D-020：改名三选通向的是不同的自我命名方式，不是好坏分级。一旦拿它当门槛，改名那一幕就有了「正确答案」，整个 beat 就废了。校验器会当场拦下。
+
+判定按表格顺序从上往下取第一个满足的，**所以最后一个结局的判定必须留空**，作为兜底。除最后一条之外，任何一条判定留空都会吃掉它后面所有的结局，校验器也会拦。
+
+### 1.6.1 登基结局要写三段正文
+
+登基之后的名字是玩家亲手选的，结局卡不能对此毫无反应（R-003）。所以**要求 `flag.enthroned` 的结局，正文写三段变体**，格式是三行而不是一行：
+
+```
+| 正文 · 天 | （选「天」时读到的这一版） |
+| 正文 · 曌 | （选「曌」时读到的这一版） |
+| 正文 · 不改 | （选不改时读到的这一版） |
+```
+
+三段的主体可以一样，差别落在名字出现的那一两句上。三段之间**不分高下**，不要写成「选天最圆满、不改最遗憾」。
+
+非登基结局只写一行 `| 正文 |`，因为改名只发生在登基线上，那些结局拿不到 name_* ，读不到变体。这两条校验器都会查。
+
+## 1.7 改名 beat
+
+全游戏只有一处，格式单独说明。
+
+```
+### 改名 ch03-18
+
+| 字段 | 值 |
+|---|---|
+| 候选 | 天 / 曌 / 不改 |
+| 天 · 含义 | 我即为天。她给自己的名字 |
+| 天 · 通向 | 结局判定加 flag.name_tian |
+| 曌 · 含义 | 日月当空。造一个字，连字本身都是新的 |
+| 曌 · 通向 | flag.name_zhao |
+| 不改 · 含义 | 她留下别人给的名字，但意思由她定 |
+| 不改 · 通向 | flag.name_kept |
+```
+
+「添」是别人给她的名字，添丁、添福、锦上添花，一个被期待去增补别人的女人。「天」是她给自己的名字。**这一幕写成她第一次自己命名自己，不是加冕的炫耀。**
+
+## 1.8 信件表（笺系统）
+
+机制见 `机制设计-v1.md` 第 1 节。信不是额外内容，是这个世界里关系真正发生的地方——唐代宫中不能随便见面，信是唯一能穿过墙的东西。
+
+### 1.8.1 场景表要加一列
+
+哪一场戏结束时她「有话没说完」，就在那一场的场景表里加一行：
+
+```
+| 留信 | shenheng |
+```
+
+一场可以留多封（写成 `shenheng, wenqiao`），也可以不留。**同游场景必须留信**，写的是她没当面说的那句。
+
+### 1.8.2 信件表
+
+```
+### 信 lt-ch01-shenheng-01
+
+| 字段 | 值 |
+|---|---|
+| 发信人 | shenheng |
+| 触发 | 场景 ch01-06 之后第 3 场 |
+| 节气 | （空。节气信才填：上元 / 寒食 / 七夕 / 中秋） |
+| 笺 | 黄麻纸 |
+| 明面 | （她信上真的写了的话，三到五句） |
+| 引诗 | 鱼玄机《游崇真观南楼》· 自恨罗衣掩诗句 |
+| 引诗要说的 | （这句诗在这封信里替她说了什么，一句话） |
+| 空白 | （她没写的。玩家点信纸空白处，主角内心独白，两三句） |
+| 她可能不回 | 好感.shenheng < 5 |
+| 会被截 | 是 |
+| 被截去向 | ch02-11 |
+
+| 回信 | 内容 | 效果 | 去向 |
+|---|---|---|---|
+| 直言 A | （回信文本） | 好感.shenheng +2 | |
+| 直言 B | （回信文本） | xin +1 | |
+| 直言 C | （回信文本） | 好感.shenheng -1 | |
+| 以诗代答 · 合意象 | 不甘, 才名 | 好感.shenheng +4, cai +1 | |
+| 以诗代答 · 不合 | | 好感.shenheng +1 | |
+| 不回 | | 好感.shenheng -1, flag.silent_to_shenheng = 真 | |
+
+| 回信 | 她的反应 |
+|---|---|
+| 直言 A | （她下次见面第一句话） |
+| 以诗代答 · 合意象 | （她读到那句诗之后的反应） |
+| 不回 | （不回也是回答。她会记得） |
+```
+
+### 1.8.3 五条写信规则
+
+1. **三层结构缺一不可。** 明面、引诗、空白。「空白」那一层是这套机制的核心：她没写的话比写了的更重要，玩家点一下空白处才看得到主角怎么猜。只写明面的信会被退回。
+2. **引诗必须是唐及唐以前**，见 tone-bible 第六节。诗从 `C0-2-诗词库与对诗.md` 里挑，写清楚是哪首哪句。
+3. **「以诗代答 · 合意象」那一行填的是意象标签，不是具体某首诗。** 玩家从图鉴里挑任意一首，只要标签命中就算合。这样诗词库越大玩家的表达空间越大，而不是猜一个正确答案。
+4. **她可以不回。** 「她可能不回」那一列写条件。好感低，或者主角在朝堂上做了她反对的事，信就石沉大海，直到当面把话说开。关系是双向的，不是进度条。
+5. **第二幕至少一封信要被截并在朝堂上念出来。** 「会被截」填是，「被截去向」填那个朝廷场景。这是 tone-bible 「关系有政治后果」最直接的实现，也让玩家写信时真的会掂量。
+
+**两个下限（R-006 放宽过一次）**：「延迟分钟」5 到 180，「之后第 N 场」N 取 1 到 4。军中素笺本来就该快——裴照夜隔一场、过五分钟就到，是对的。再短就不像「过了一会儿」，像系统弹窗。
+
+### 1.8.4 每个角色的笺
+
+笺本身进图鉴，所以要固定，不要一封一个样。
+
+| 角色类型 | 笺 | 送信快慢 |
+|---|---|---|
+| 女官 | 秘书省黄麻纸 | 中 |
+| 女将 | 军中素笺 | 快 |
+| 公主 | 泥金笺 | 慢，信要绕道 |
+| 女诗人 | 自制花笺 | 中 |
+| 其他 | 常笺 | 中 |
+
+---
+
+# 第二部分 · 机器格式
+
+## 2.1 场景 JSON
+
+```json
+{
+  "id": "ch01_s03_zhaoyang",
+  "chapter": 1,
+  "act": 1,
+  "scene": "zhaoyang",
+  "palette": "gold",
+  "bgm": "bgm/court_quiet.mp3",
+  "cast": ["shenheng", "wuze"],
+  "require": { "flag.entered_palace": true },
+  "weightless": false,
+  "purpose": "她第一次被上位者当作一个人试探",
+  "lines": [
+    { "id": "ch01_s03.l1", "who": "narr", "kind": "aside", "text": "砚台推过来半寸，停住。" },
+    { "id": "ch01_s03.l2", "who": "shenheng", "expr": "guarded", "kind": "say", "text": "才人识得这方砚么？" },
+    { "id": "ch01_s03.l3", "who": "self", "kind": "inner", "text": "（她在试我。）" }
+  ],
+  "choices": [
+    {
+      "id": "ch01_s03.cA",
+      "text": "如实说不识",
+      "effects": { "xin": 1, "affinity.shenheng": 2 },
+      "goto": "ch01_s04a"
+    },
+    {
+      "id": "ch01_s03.cB",
+      "text": "顺着砚台谈虞世南的书法",
+      "require": { "cai": { "gte": 6 } },
+      "lockHint": "才 不足",
+      "effects": { "cai": 2, "ming": 1, "affinity.shenheng": 4 },
+      "goto": "ch01_s04b"
+    },
+    {
+      "id": "ch01_s03.cC",
+      "text": "把砚推回去",
+      "irreversible": true,
+      "effects": { "affinity.shenheng": -1, "flag.pushed_back": true },
+      "goto": "ch01_s04c"
+    }
+  ]
+}
+```
+
+`irreversible` 为真时，选中的一瞬间亮朱砂。在 `palette: "gold"` 的场景里，这是整屏唯一的红。
+
+## 2.2 zod schema（Codex 用这个校验）
+
+```ts
+import { z } from "zod";
+
+const StatKey = z.enum(["shi", "ming", "cai", "xin"]);
+const Cmp = z.object({
+  gte: z.number().optional(), lte: z.number().optional(),
+  gt: z.number().optional(),  lt: z.number().optional(),
+  eq: z.number().optional(),
+});
+
+/** 条件：键是 "cai" | "affinity.<key>" | "flag.<name>"；值是比较式或布尔 */
+const Condition = z.record(z.string(), z.union([Cmp, z.boolean()]));
+
+/** 效果：数值键是增量（可负），flag 键是绝对值 */
+const Effects = z.record(z.string(), z.union([z.number(), z.boolean()]));
+
+const Line = z.object({
+  id: z.string(),
+  who: z.string(),                                   // 角色 key | "self" | "narr"
+  expr: z.enum(["default", "guarded", "open"]).optional(),
+  kind: z.enum(["say", "inner", "aside", "poem"]).default("say"),
+  text: z.string().max(40, "一句台词不超过 40 字，手机装不下"),
+});
+
+const Choice = z.object({
+  id: z.string(),
+  text: z.string().max(24),
+  require: Condition.optional(),
+  lockHint: z.string().optional(),                   // 条件不满足时显示的原因
+  effects: Effects.optional(),
+  irreversible: z.boolean().default(false),
+  goto: z.string(),
+});
+
+export const Scene = z.object({
+  id: z.string(),
+  chapter: z.number().int(),
+  act: z.number().int().min(1).max(3),
+  scene: z.enum(["yeting","zhaoyang","shuge","nvguan","shishe","yuanye","hanyuan","wuzibei"]),
+  palette: z.enum(["ink", "gold"]),
+  bgm: z.string().optional(),
+  cast: z.array(z.string()),
+  require: Condition.optional(),
+  weightless: z.boolean().default(false),
+  /** 这一场结束时谁「有话没说完」。对应场景表的「留信」一列。同游场景必须非空。 */
+  leavesLetter: z.array(z.string()).default([]),
+  purpose: z.string().min(1, "说不出目的的场景应该被合并或删掉"),
+  lines: z.array(Line).min(1),
+  duel: z.string().optional(),                       // 台词读完先打一局对诗
+  judgeEnding: z.boolean().optional(),               // 按结局表判定，全游戏一处
+  chapterEnd: z.boolean().optional(),                // 章末结算页（D-034）
+  choices: z.array(Choice).optional(),
+  goto: z.string().optional(),                       // 无选项时的线性去向
+  ending: z.string().optional(),                     // 直接进结局
+}).refine(
+  s => !!(s.choices?.length || s.goto || s.ending || s.judgeEnding || s.duel || s.chapterEnd),
+  "场景必须有出口：choices、goto、ending、judgeEnding、duel、chapterEnd 六者至少一个，否则玩家会卡死在这里"
+);
+
+// chapterEnd 与 ending / judgeEnding 互斥：章末是翻页，结局是落幕。
+// chapterEnd 的 goto 指向下一章第一场；没写、或那一场还不存在，就停在结算页显示「下章待续」。
+// 这一段是摘录，以 src/engine/schema.ts 为准。
+
+export const PoemDuel = z.object({
+  id: z.string(),
+  title: z.string(),
+  sceneId: z.string().optional(),                    // 场景定稿时再绑
+  opponent: CharacterKey.optional(),
+  prompt: z.string(),                                // 出句
+  poemRef: z.string(),                               // 出句来自诗词库哪一首
+  brief: z.string(),                                 // 给玩家的题面：本局限定了什么
+  judgingFocus: z.string(),
+  difficulty: z.number().int().min(1).max(3),
+  options: z.array(z.object({
+    key: z.string().length(1),
+    text: z.string(),
+    correct: z.boolean(),
+    why: z.string().min(10, "错项必须说得出理由，这是游戏唯一的教学环节"),
+  })).length(4),
+  onWin:  z.object({ effects: Effects.optional(), goto: z.string().optional() }).optional(),
+  onLose: z.object({ effects: Effects.optional(), goto: z.string().optional() }).optional(),
+}).refine(o => o.options.filter(x => x.correct).length === 1, "有且只有一个正确对句");
+
+export const Ending = z.object({
+  key: z.string(),
+  title: z.string(),
+  require: Condition.optional(),                     // 留空 = 兜底
+  palette: z.enum(["ink", "gold"]),
+  theme: z.string(),
+  body: z.string(),
+  card: z.string().optional(),
+});
+
+export const RenameBeat = z.object({
+  id: z.string(),
+  candidates: z.array(z.object({
+    char: z.string().length(1),
+    meaning: z.string(),
+    effects: Effects,
+  })).min(2),
+});
+```
+
+## 2.3 存档结构
+
+```ts
+export const SaveV1 = z.object({
+  version: z.literal(1),
+  savedAt: z.number(),                               // epoch ms
+  sceneId: z.string(),
+  lineIndex: z.number().int(),                       // 存到具体哪一句，不是存到章
+  stats: z.object({ shi: z.number(), ming: z.number(), cai: z.number(), xin: z.number() }),
+  affinity: z.record(z.string(), z.number()),
+  flags: z.record(z.string(), z.boolean()),
+  protagonistName: z.string(),                       // 快照，不是渲染时查全局
+  seenLineIds: z.array(z.string()),                  // skip 只跳读过的
+  poemsCollected: z.array(z.string()),
+  endingsUnlocked: z.array(z.string()),
+  /** 信箱。真实时间延迟靠 dueAt 这个时间戳，见 2.4 */
+  letters: z.array(z.object({
+    id: z.string(),
+    state: z.enum(["pending", "arrived", "read", "replied", "intercepted", "lost"]),
+    dueAt: z.number(),                               // epoch ms，到点才算送达
+    repliedWith: z.string().nullable().default(null),
+  })).default([]),
+  /** 上次关掉游戏的时刻。回来时用它算这段时间里有哪些信到了 */
+  lastSeenAt: z.number(),
+});
+```
+
+五条要点，前四条来自已装的 `save-systems` 和 `visual-novel` 技能，都吃过亏：
+
+1. **`version` 从第一天就有。** 第一次改剧情结构时，没有版本号的旧存档就是一堆猜谜。迁移函数写成 `v -> v+1` 的纯函数链。
+2. **随处可存。** 存 `sceneId` 加 `lineIndex`，不是存章节检查点。视觉小说的玩家期望读档回到同一句话。
+3. **`protagonistName` 存的是当时的快照。** 改名前的存档回看仍显示「添」，这是叙事要求，不是实现细节。
+4. **`seenLineIds` 决定 skip 的范围。** 只跳读过的文本，否则玩家会一路跳过没看过的内容然后抱怨没剧情。
+5. **信箱存的是 `dueAt` 绝对时间戳，不是剩余分钟数。** 存倒计时的话，关掉游戏这段时间就白等了，等于变相要求玩家挂着——那正是我们不做的东西。存绝对时间，关多久信就走多久。
+
+存档写 localStorage。`save-systems` 里那套临时文件加重命名的原子写是文件系统语境，这里不适用；对应的做法是写之前先把旧值抄进 `<slot>.bak`，解析失败时回退。
+
+## 2.4 信件 JSON 与 zod
+
+```json
+{
+  "id": "lt_ch01_shenheng_01",
+  "from": "shenheng",
+  "trigger": { "kind": "scene", "sceneId": "ch01_s06_shuge", "afterScenes": 3 },
+  "delayMinutes": 18,
+  "paper": "huangma",
+  "body": {
+    "surface": "……砚是虞世南旧物，你既说识得用它的人，便该识得它的来处。",
+    "poem": { "ref": "yuxuanji_youchongzhenguan", "line": "自恨罗衣掩诗句" },
+    "poemMeans": "她在说自己也曾被一身衣裳挡住过",
+    "blank": "（她把这一句抄在最后，抄完又空了三行。三行能写很多字。）"
+  },
+  "sheMayNotReply": { "affinity.shenheng": { "lt": 5 } },
+  "interceptable": true,
+  "onIntercept": { "goto": "ch02_s11_zhaoyang" },
+  "replies": {
+    "plain": [
+      { "id": "a", "text": "来处我不问，用处我记住了。",
+        "effects": { "affinity.shenheng": 2 }, "reaction": "她下次见你，先开口。" },
+      { "id": "b", "text": "我识得的是你。",
+        "effects": { "xin": 1 }, "reaction": "她没接这句，但把砚留下了。" },
+      { "id": "c", "text": "秘书省的纸，写这个太贵。",
+        "effects": { "affinity.shenheng": -1 }, "reaction": "她此后只写公文体。" }
+    ],
+    "poem": {
+      "resonantTags": ["不甘", "才名"],
+      "onResonant": { "effects": { "affinity.shenheng": 4, "cai": 1 },
+                      "reaction": "她把你抄的那句压在砚下，压了很久。" },
+      "onMismatch": { "effects": { "affinity.shenheng": 1 },
+                      "reaction": "她说：好诗。只说了这两个字。" }
+    },
+    "silence": { "effects": { "affinity.shenheng": -1, "flag.silent_to_shenheng": true },
+                 "reaction": "她再没提过那方砚。" }
+  }
+}
+```
+
+```ts
+const SolarTerm = z.enum(["shangyuan", "hanshi", "qixi", "zhongqiu"]);
+
+const LetterTrigger = z.discriminatedUnion("kind", [
+  z.object({
+    kind: z.literal("scene"),
+    sceneId: z.string(),
+    afterScenes: z.number().int().min(2).max(4),      // 过 2 到 4 场戏才送来
+  }),
+  z.object({
+    kind: z.literal("solarTerm"),
+    term: SolarTerm,
+    minAffinity: z.number().int().default(5),         // 好感到「识」才收得到
+  }),
+]);
+
+const ReplyOutcome = z.object({
+  effects: Effects.optional(),
+  reaction: z.string().min(1, "每种回信都要有她的反应，否则回信就是没有后果的按钮"),
+  goto: z.string().optional(),
+});
+
+export const Letter = z.object({
+  id: z.string(),
+  from: z.string(),
+  trigger: LetterTrigger,
+  /** 真实时间延迟。角色不同速度不同：女将快，公主要绕道。下限 5（R-006） */
+  delayMinutes: z.number().int().min(5).max(180),
+  paper: z.enum(["huangma", "junzhong", "nijin", "huajian", "chang"]),
+  body: z.object({
+    surface: z.string().min(1),                       // 明面上说的事
+    poem: z.object({ ref: z.string(), line: z.string() }).optional(),
+    poemMeans: z.string().optional(),                 // 这句诗替她说了什么
+    blank: z.string().min(1),                         // 她没写的。点空白处才看得到
+  }),
+  /** 满足这个条件时，玩家的回信石沉大海，直到当面把话说开 */
+  sheMayNotReply: Condition.optional(),
+  interceptable: z.boolean().default(false),
+  onIntercept: z.object({ goto: z.string() }).optional(),
+  replies: z.object({
+    plain: z.array(ReplyOutcome.extend({
+      id: z.string(), text: z.string().max(30),
+    })).length(3),
+    poem: z.object({
+      resonantTags: z.array(z.string()).min(1),       // 意象标签，不是指定某一首
+      onResonant: ReplyOutcome,
+      onMismatch: ReplyOutcome,
+    }),
+    silence: ReplyOutcome,                            // 不回也是回答
+  }),
+}).refine(
+  (l) => !l.interceptable || !!l.onIntercept,
+  "会被截的信必须写明被截之后去哪一场"
+);
+```
+
+### 三条实现要点
+
+**不堆积。** 未读上限 3 封。第 4 封到达时，最旧的一封转成 `intercepted`，跳它的 `onIntercept`。这不是惩罚，是剧情：宫里有人在看你的信。
+
+**不绑架。** 玩家回来时，把 `lastSeenAt` 到现在之间所有 `dueAt` 已过的信一次性送达，一封不少。任何内容都不会因为「没登录」而错过。节气信错过了明年还有，诗词图鉴里会留一句「那年上元，有一封信没送到」。
+
+**节气日期必须打表，不能算。** 上元（正月十五）、七夕（七月初七）、中秋（八月十五）都是农历，公历日期逐年不同；寒食在清明前一两日，清明是节气可以算，但和另外三个不是一套历法。为这个引一个农历库不值得，Codex 出一张 2026 到 2032 年的日期表就够了，七年之后这个游戏要么早已经改版要么已经没人玩。
+
+---
+
+# 第三部分 · 从 markdown 到 JSON 的对照
+
+Codex 的转换规则，一一对应，不要发挥。
+
+| ChatGPT 写的 | 转成 |
+|---|---|
+| 表头「场景 ch01-03 昭阳殿一角」 | `id: "ch01_s03_zhaoyang"`，短横改下划线，序号补零，尾部接地点 key |
+| 台词表第 n 行 | `lines[n-1]`，`id` 自动生成为 `<sceneId>.l<n>` |
+| 选项表第 A 行 | `choices[0]`，`id` 自动生成为 `<sceneId>.cA` |
+| 类型「说 / 内心 / 旁白 / 诗」 | `kind: "say" / "inner" / "aside" / "poem"` |
+| `cai >= 6` | `require: { cai: { gte: 6 } }` |
+| `好感.shenheng >= 10` | `require: { "affinity.shenheng": { gte: 10 } }` |
+| `非 flag.refused_marriage` | `require: { "flag.refused_marriage": false }` |
+| `cai +2, ming +1` | `effects: { cai: 2, ming: 1 }` |
+| `flag.took_seal = 真` | `effects: { "flag.took_seal": true }` |
+| 备注含「不可逆」 | `irreversible: true` |
+| 台词表「条件」列 | `lines[n].when`，写法同 require |
+| 对诗表「她说」列 `shenheng：……` | `onWin.line` / `onLose.line`，一个完整的 Line（id 由转换器生成 `<duelId>.win` / `<duelId>.lose`） |
+| 场景表「对诗」行 | `duel: "<duelId>"`，赢输的 goto 即出口 |
+| 场景表「去向 \| 章末」 | `chapterEnd: true`，不生成 goto；下一章交上来之后也不用改（D-034） |
+| 无用场景「是」 | `weightless: true` |
+| 场景表的「留信 \| shenheng」 | `leavesLetter: ["shenheng"]` |
+| 信件表头「信 lt-ch01-shenheng-01」 | `id: "lt_ch01_shenheng_01"` |
+| 触发「场景 ch01-06 之后第 3 场」 | `trigger: { kind: "scene", sceneId: "ch01_s06_...", afterScenes: 3 }` |
+| 节气「七夕」 | `trigger: { kind: "solarTerm", term: "qixi" }` |
+| 笺「黄麻纸 / 军中素笺 / 泥金笺 / 自制花笺 / 常笺」 | `paper: "huangma" / "junzhong" / "nijin" / "huajian" / "chang"` |
+| 「以诗代答 · 合意象」那一格的标签 | `replies.poem.resonantTags` |
+| 「她可能不回」 | `sheMayNotReply`，写法同 require |
+| 「会被截」是 + 「被截去向」 | `interceptable: true` 加 `onIntercept.goto` |
+| `{名}` | 保留原样，引擎运行时替换 |
+
+**id 由 Codex 生成，ChatGPT 不写 id。** 人写 id 一定会重复和错字，而机器生成的 id 天然唯一且可回溯到出处。
+
+关于 line id 的一句说明：按 D-005 我们只做中文，本来可以直接内联文本、不要 id。仍然给每句配 id，是因为存档要记「读到哪一句」、skip 要记「哪些读过」、诗词图鉴要记「收过哪一句」，这三件事都需要一个稳定的句级标识。顺带把日后抽字符串表做外语版的路留着了，代价接近于零。
+
+---
+
+# 第四部分 · 校验工具要查什么
+
+`tools/validate-story.ts` 的检查清单。前四条是硬错误，后五条是警告。
+
+校验器已实现，跑法：
+
+```bash
+npm run validate        # 查真实数据
+npm run validate:demo   # 拿一份故意写错的文件演示报错长什么样
+npm run graph           # 导出 docs/story-graph.md
+npm test                # 引擎单测：数值夹取、flag 互斥、结局判定顺序与变体
+npm run build           # validate + test + 类型检查 + 打包，任何一步不过就停
+npm run build:artifact  # 再压成一份单文件 HTML，用来发 Artifact 或 itch.io
+```
+
+`npm run build` 会先跑 validate，硬错误直接挡住构建。
+
+**硬错误（不通过就不能进构建）**
+
+1. **schema 不合法**，任何一条 zod 规则不过。
+2. **死路**：`goto` 指向不存在的场景 id；或场景没有任何出口。这一条对着原始 JSON 里的 id 查，不对着通过校验的场景查——否则一份文件的形状错误会把它的断链一起藏起来，也会让指向它的场景全都报假错。
+3. **孤儿**：从开场走不到的场景。
+4. **结局不可达**：有结局的判定条件在任何一条路径上都无法满足。这条要靠遍历所有路径的数值上下界来算，不能只看有没有引用。
+
+**警告（要人看一眼）**
+
+5. **某一幕没有 `weightless: true` 的场景。** 对应精神指南 2.2，这是我们最容易在赶工时丢掉的东西，所以让机器盯着。
+6. **某个对诗的错项 `why` 少于 10 个字。** 敷衍的理由等于没有理由。
+7. **单次数值改动超过 4 点。**
+8. **`palette: "gold"` 的场景里有 `irreversible: true` 之外的朱砂引用。** 金碧板没有红，见 art-style。
+9. **某个角色连续三个场景没出现却仍在 `cast` 里。**
+
+**结局与 flag 相关**
+
+10. 硬错误：最后一个结局的判定不为空，或者中间某个结局的判定为空。
+11. 硬错误：任何结局的判定里出现 `flag.name_*`（D-020）。
+12. 硬错误：非登基结局写了三段变体（拿不到 name_* ，读不到）。
+13. 警告：登基结局只写了一段正文。
+14. 硬错误：同一个选项同时把两个互斥的 flag 置真（互斥表见 C-B 结局树第四节，已编码进 `src/engine/types.ts` 的 `FLAG_CONFLICTS`）。
+15. 警告：某个 flag 有地方置真，但全剧本没有任何地方置真它依赖的前置 flag。
+16. 警告：有多于一个场景标了终局判定。C-B 约定终局快照只取一次。
+
+引擎在运行时也守着互斥表：一个 flag 置真会把与它冲突的那些清掉，并在控制台 warn 出来。选择清掉而不是报错退出，是因为一份已经存在的档里同时挂着登基和拒位，会让结局判定取到错的那一个，玩家看到的是一个和自己经历对不上的结尾；清掉能自愈，warn 保证作者看得见。
+
+**信件相关**
+
+17. 硬错误：`leavesLetter` 里的角色 key 不存在，或者没有任何一封信的 `trigger.sceneId` 指向这一场。留了信却没写信是最容易漏的。
+18. 硬错误：`interceptable` 为真但 `onIntercept.goto` 指向不存在的场景。
+19. 硬错误：`replies.plain` 不是三条。
+20. 警告：某封信的 `body.blank` 少于 15 个字。三层结构里「她没写的」那一层最容易被敷衍成一句话。
+21. 警告：整个第二幕没有一封 `interceptable` 的信。tone-bible 要求关系有政治后果，这是它的实现。
+22. 警告：某个同游场景的 `leavesLetter` 是空的。同游结束必定来信，写的是她没当面说的那句。
+23. 警告：`body.poem` 引的诗不在诗词库里，或者诗词库里标了它是唐以后的。
+
+另有 `tools/story-graph.ts` 导出分支图，人眼扫一遍比读报错快。
+
+---
+
+## 附：字段速查
+
+| 概念 | markdown 列 | JSON 字段 |
+|---|---|---|
+| 势 | `shi` | `stats.shi` |
+| 名 | `ming` | `stats.ming` |
+| 才 | `cai` | `stats.cai` |
+| 心 | `xin` | `stats.xin` |
+| 好感 | `好感.<key>` | `affinity.<key>` |
+| 标记 | `flag.<name>` | `flags.<name>` |
+| 主角内心 | `self` | `who: "self"` |
+| 旁白 | `narr` | `who: "narr"` |
+| 主角名占位 | `{名}` | 运行时替换 `protagonistName` |

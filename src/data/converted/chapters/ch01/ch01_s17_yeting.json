@@ -1,0 +1,232 @@
+{
+  "id": "ch01_s17_yeting",
+  "chapter": 1,
+  "act": 1,
+  "scene": "yeting",
+  "palette": "ink",
+  "cast": [
+    "wuze",
+    "adi",
+    "songhuizhen"
+  ],
+  "require": {
+    "flag.petition_sent": true
+  },
+  "weightless": false,
+  "leavesLetter": [],
+  "purpose": "玩家先看见阿荻认出细节，再看主角发现善意并没有取得许可",
+  "lines": [
+    {
+      "id": "ch01_s17_yeting.l1",
+      "who": "narr",
+      "kind": "aside",
+      "text": "天又落起细雨，宋蕙贞把半扇窗关上，留下案边一点亮光。"
+    },
+    {
+      "id": "ch01_s17_yeting.l2",
+      "who": "wuze",
+      "expr": "open",
+      "kind": "say",
+      "text": "我带了件东西。"
+    },
+    {
+      "id": "ch01_s17_yeting.l3",
+      "who": "narr",
+      "kind": "aside",
+      "text": "抄件展开。阿荻先看见“十一”，握针的手停住了。"
+    },
+    {
+      "id": "ch01_s17_yeting.l4",
+      "who": "narr",
+      "kind": "aside",
+      "text": "你还在解外层的干布，没有看见她把针放进篮底。"
+    },
+    {
+      "id": "ch01_s17_yeting.l5",
+      "who": "wuze",
+      "expr": "open",
+      "kind": "say",
+      "text": "这一处，宋才人替你看也好。我已请他们查旧欠，不必再只等西库开口。"
+    },
+    {
+      "id": "ch01_s17_yeting.l6",
+      "who": "adi",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "你念。"
+    },
+    {
+      "id": "ch01_s17_yeting.l7",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "初八，西库，旧衣十一件，工钱未付，待核。"
+    },
+    {
+      "id": "ch01_s17_yeting.l8",
+      "who": "narr",
+      "kind": "aside",
+      "text": "阿荻把自己的袖口翻下来，盖住掌心。"
+    },
+    {
+      "id": "ch01_s17_yeting.l9",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "我没写你的名字。"
+    },
+    {
+      "id": "ch01_s17_yeting.l10",
+      "who": "adi",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "那天西库收的十一件，都是我送的；你不写名字，他们就不知道是谁了吗？"
+    },
+    {
+      "id": "ch01_s17_yeting.l11",
+      "who": "narr",
+      "kind": "aside",
+      "text": "你准备好的后半句话没说出来。"
+    },
+    {
+      "id": "ch01_s17_yeting.l12",
+      "who": "wuze",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "我署了名，问起来我去。"
+    },
+    {
+      "id": "ch01_s17_yeting.l13",
+      "who": "adi",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "你署的是你的名，可衣不是你缝的，他们问那天的事，你替我答得出么？"
+    },
+    {
+      "id": "ch01_s17_yeting.l14",
+      "who": "songhuizhen",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "递了没有？"
+    },
+    {
+      "id": "ch01_s17_yeting.l15",
+      "who": "wuze",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "递了。"
+    },
+    {
+      "id": "ch01_s17_yeting.l16",
+      "who": "narr",
+      "kind": "aside",
+      "text": "雨点从窗隙打进来，抄件一角慢慢洇湿。"
+    },
+    {
+      "id": "ch01_s17_yeting.l17",
+      "who": "adi",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "我只说给你听。"
+    },
+    {
+      "id": "ch01_s17_yeting.l18",
+      "who": "wuze",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "我以为这样能帮你领到。"
+    },
+    {
+      "id": "ch01_s17_yeting.l19",
+      "who": "adi",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "我也想领到，可想不想去问、什么时候去，怎么连问我一句的工夫都没有？"
+    },
+    {
+      "id": "ch01_s17_yeting.l20",
+      "who": "narr",
+      "kind": "aside",
+      "text": "宋蕙贞把湿纸移开，没替任何一个人接话。"
+    },
+    {
+      "id": "ch01_s17_yeting.l21",
+      "who": "wuze",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "是我先替你定了。不是你说得不清楚。"
+    },
+    {
+      "id": "ch01_s17_yeting.l22",
+      "who": "adi",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "现在到哪里了？"
+    },
+    {
+      "id": "ch01_s17_yeting.l23",
+      "who": "wuze",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "封递以后，我不知道。"
+    },
+    {
+      "id": "ch01_s17_yeting.l24",
+      "who": "songhuizhen",
+      "expr": "default",
+      "kind": "say",
+      "text": "追，得去署门。留这里，得把递了什么说全。"
+    },
+    {
+      "id": "ch01_s17_yeting.l25",
+      "who": "adi",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "别再说一句“有我”就走，我要知道他们可能问什么，也要知道那张纸还追不追得上。"
+    },
+    {
+      "id": "ch01_s17_yeting.l26",
+      "who": "wuze",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "我不能两处同时赶到。先做哪一处，另一处的误时也由我认。"
+    },
+    {
+      "id": "ch01_s17_yeting.l27",
+      "who": "songhuizhen",
+      "expr": "default",
+      "kind": "say",
+      "text": "我在这里。她不会一个人等。"
+    },
+    {
+      "id": "ch01_s17_yeting.l28",
+      "who": "narr",
+      "kind": "aside",
+      "text": "你走到门边，冷水已顺着阶沿往下流。"
+    }
+  ],
+  "choices": [
+    {
+      "id": "ch01_s17_yeting.cA",
+      "text": "我先追原牒，请宋才人陪你",
+      "effects": {
+        "shi": 1,
+        "xin": -1,
+        "flag.petition_chase_first": true
+      },
+      "irreversible": false,
+      "goto": "ch01_s18_zhaoyang"
+    },
+    {
+      "id": "ch01_s17_yeting.cB",
+      "text": "先把话说全，再带补说明去",
+      "effects": {
+        "xin": 1,
+        "shi": -1,
+        "flag.petition_explain_first": true
+      },
+      "irreversible": false,
+      "goto": "ch01_s18_zhaoyang"
+    }
+  ]
+}
