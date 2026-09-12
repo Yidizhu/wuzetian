@@ -91,6 +91,8 @@ export class CssParallaxRenderer implements SceneRenderer {
     mid.style.background = `radial-gradient(ellipse ${look.mid})`;
     ground.style.background = `radial-gradient(ellipse ${look.ground})`;
     this.root.dataset.night = look.night ? "1" : "";
+    // CSS 版没有真的地平线，给立绘层一个固定值。变量的说明见 ThreeStageRenderer.markFloor
+    document.documentElement.style.setProperty("--stage-floor", "22%");
     this.root.classList.remove("stage--wiping");
     await wait(320);
   }

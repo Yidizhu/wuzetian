@@ -1,0 +1,85 @@
+{
+  "id": "lt_ch02_peizhaoye_01",
+  "from": "peizhaoye",
+  "trigger": {
+    "kind": "scene",
+    "sceneId": "ch02_s07_yuanye",
+    "afterScenes": 2
+  },
+  "delayMinutes": 8,
+  "paper": "junzhong",
+  "body": {
+    "surface": "我去问过，她另接修具的差，不等转粮那一队了。欠她的俸已列清，不拿补齐换她重写一份申请。今日抬袋的那一头，我松手时还想托回去，后来忍住了。你说慢些松，倒比我说得早。",
+    "poem": {
+      "ref": "xuetao_chouyongxiucai",
+      "line": "千叠云峰万顷湖，白波分去绕荆吴。"
+    },
+    "poemMeans": "她能记下各自的路，不必把所有人留在自己看得见的一段",
+    "blank": "（她只写我没摔。袋子落下那一下，我的手还抓着，不敢先松。）"
+  },
+  "sheMayNotReply": {
+    "affinity.peizhaoye": {
+      "lt": 5
+    }
+  },
+  "interceptable": false,
+  "replies": {
+    "plain": [
+      {
+        "effects": {
+          "affinity.peizhaoye": 2,
+          "flag.pei_ch02_spare_time": true
+        },
+        "reaction": "“有空先问你。没答应，不叫人备马。”她把值次核完才另记自己的时辰。",
+        "id": "lt_ch02_peizhaoye_01.rA",
+        "text": "下次有自己的空闲，再来找我。"
+      },
+      {
+        "effects": {
+          "cai": 1,
+          "flag.pei_ch02_check_again": true
+        },
+        "reaction": "“只核你答应的。多出的我另请人。”她没有把一回合作写成往后的常差。",
+        "id": "lt_ch02_peizhaoye_01.rB",
+        "text": "我愿再核一次，仍按各自答应的办。"
+      },
+      {
+        "effects": {
+          "flag.pei_ch02_pause_help": true
+        },
+        "reaction": "“好。核账另请。”她收回那页待核项，路书仍归自己。",
+        "id": "lt_ch02_peizhaoye_01.rC",
+        "text": "我不再接核账，也不另约同行。"
+      }
+    ],
+    "poem": {
+      "resonantTags": [
+        "舟",
+        "缆",
+        "潮",
+        "橹",
+        "山水画",
+        "峡",
+        "流水"
+      ],
+      "onResonant": {
+        "effects": {
+          "affinity.peizhaoye": 2
+        },
+        "reaction": "“走到哪儿，写到哪儿。”她把纸折好，不替诗里的人定下归期。"
+      },
+      "onMismatch": {
+        "effects": {
+          "affinity.peizhaoye": 1
+        },
+        "reaction": "她把诗读了两遍：“这句我先留着，还想不明白。”没有把空白处填成承诺。"
+      }
+    },
+    "silence": {
+      "effects": {
+        "flag.pei_ch02_letter_silent": true
+      },
+      "reaction": "她继续补俸与交差，私下不再追问那一次邀约。再见仍由双方新约。"
+    }
+  }
+}

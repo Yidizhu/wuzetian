@@ -1,0 +1,72 @@
+/* 序幕题记（E5 第 3 条）。和标题画面同一张纸：纸纹、墨晕、竖排都照 title.css。
+   标题把字放左下、右上空着；题记就写在那块空处，两屏连起来是一幅立轴。 */
+
+.tiji {
+  position: fixed; inset: 0; z-index: 60;
+  background: var(--c-ground);
+  cursor: pointer; user-select: none; -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.tiji__paper {
+  position: absolute; inset: 0; pointer-events: none;
+  mix-blend-mode: multiply; opacity: 0.13;
+  background-image: url("data:image/svg+xml;utf8,\
+<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'>\
+<filter id='tn'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/>\
+<feColorMatrix type='saturate' values='0'/></filter>\
+<rect width='140' height='140' filter='url(%23tn)' opacity='0.5'/></svg>");
+}
+
+/* 右上起笔，从右往左一句一列。列高给到屏高的六成：
+   诏书那一句二十二个字，竖屏 844 高的手机上一列写得下，横屏桌面上会折成两列——折就折，
+   题跋本来就是写到纸边换列 */
+.tiji__cols {
+  position: absolute;
+  right: clamp(24px, 9vw, 150px);
+  top: clamp(56px, 13vh, 132px);
+  height: min(62vh, 600px);
+  max-width: calc(100% - 2 * clamp(24px, 9vw, 150px));
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  display: flex; flex-direction: column;   /* vertical-rl 下 column 就是从右往左 */
+  gap: clamp(14px, 3.6vw, 26px);          /* flex 列方向上隔开项目的是 row-gap，两个一起给 */
+}
+
+/* 字号比 ui.md 表里的「题跋 15px 淡墨」大一档、重一档：那一行说的是画边上的小注，
+   这里整屏只有这几句，它就是画本身。落款才回到 15px 淡墨 */
+.tiji__col {
+  margin: 0;
+  font-family: var(--font);
+  font-size: clamp(17px, 4.6vw, 21px);
+  line-height: 1.7;
+  letter-spacing: 0.14em;
+  color: var(--c-text);
+}
+.tiji__sign {
+  font-size: 15px; letter-spacing: 0.1em;
+  color: var(--c-text-soft);
+  padding-top: 3.2em;            /* 落款低于正文起笔，照题跋的格 */
+}
+
+/* 一列一列写下去：遮罩从上往下推。不做逐字打字机——那是台词的手感，题记是一笔一笔落的 */
+.tiji__col {
+  -webkit-mask-image: linear-gradient(to bottom, #000 calc(var(--w) - 14%), transparent var(--w));
+  mask-image: linear-gradient(to bottom, #000 calc(var(--w) - 14%), transparent var(--w));
+  animation: tiji-write var(--t, 900ms) cubic-bezier(0.45, 0.05, 0.4, 1) var(--d, 0ms) both;
+}
+@keyframes tiji-write { from { --w: 0%; } to { --w: 118%; } }
+@property --w { syntax: "<percentage>"; inherits: false; initial-value: 118%; }
+.tiji[data-done="1"] .tiji__col { animation: none; }
+
+/* 墨晕：从题记起笔那一角（右上）扩出去。标题从字那一处（左下）扩，一左一右，同一种笔 */
+.tiji[data-state] {
+  -webkit-mask-image: radial-gradient(circle at 76% 28%, #000 0%, #000 var(--r, 160%), transparent calc(var(--r, 160%) + 12%));
+  mask-image: radial-gradient(circle at 76% 28%, #000 0%, #000 var(--r, 160%), transparent calc(var(--r, 160%) + 12%));
+}
+.tiji[data-state="in"]  { animation: title-in 620ms var(--ease) both; }
+.tiji[data-state="out"] { animation: title-out 460ms var(--ease) both; }
+
+@media (prefers-reduced-motion: reduce) {
+  .tiji[data-state="in"], .tiji[data-state="out"], .tiji__col { animation: none; }
+}

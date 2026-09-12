@@ -1,0 +1,395 @@
+{
+  "id": "ch03_s12_hanyuan",
+  "chapter": 3,
+  "act": 3,
+  "scene": "hanyuan",
+  "palette": "gold",
+  "cast": [
+    "wuze",
+    "liqinghe",
+    "shenheng",
+    "tangjian",
+    "hetaihou"
+  ],
+  "weightless": false,
+  "leavesLetter": [],
+  "purpose": "将答受、辞受或李获授分别落实为已完成的身份事实",
+  "lines": [
+    {
+      "id": "ch03_s12_hanyuan.l1",
+      "who": "narr",
+      "kind": "aside",
+      "text": "殿前的席撤去两张，三席签过的原卷仍在案上。唐将新抄的受辞记录逐字核回。"
+    },
+    {
+      "id": "ch03_s12_hanyuan.l2",
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "口中所答已经录下，原议与今日答辞分别存留；后来的交接不能改掉先前的胜负。"
+    },
+    {
+      "id": "ch03_s12_hanyuan.l3",
+      "who": "hetaihou",
+      "expr": "default",
+      "kind": "say",
+      "text": "旧差交给谁，欠的钱怎么付，都须另有接手。今日改了位置，旧日的账还在。"
+    },
+    {
+      "id": "ch03_s12_hanyuan.l4",
+      "when": {
+        "flag.ch03_accept_offer": true
+      },
+      "who": "narr",
+      "kind": "aside",
+      "text": "三日后，同一座殿。你的手臂抬在礼服里，袖口的重量比试衣时沉。"
+    },
+    {
+      "id": "ch03_s12_hanyuan.l5",
+      "when": {
+        "flag.ch03_accept_offer": true
+      },
+      "who": "shenheng",
+      "expr": "default",
+      "kind": "say",
+      "text": "授位制书按原名写妥，异议副本随交接卷送入，不附贺词里。"
+    },
+    {
+      "id": "ch03_s12_hanyuan.l6",
+      "when": {
+        "flag.ch03_accept_offer": true
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "有说我不堪任的，也留着？"
+    },
+    {
+      "id": "ch03_s12_hanyuan.l7",
+      "when": {
+        "flag.ch03_accept_offer": true
+      },
+      "who": "shenheng",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "有。"
+    },
+    {
+      "id": "ch03_s12_hanyuan.l8",
+      "when": {
+        "flag.ch03_accept_offer": true
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "那卷先放在我看得见的地方。"
+    },
+    {
+      "id": "ch03_s12_hanyuan.l9",
+      "when": {
+        "flag.ch03_accept_offer": true
+      },
+      "who": "narr",
+      "kind": "aside",
+      "text": "女皇起身，将印绶亲交到你手中。你行礼受下，转向阶下，群臣依次成礼。"
+    },
+    {
+      "id": "ch03_s12_hanyuan.l10",
+      "when": {
+        "flag.ch03_accept_offer": true
+      },
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "{名}受位，礼成。"
+    },
+    {
+      "id": "ch03_s12_hanyuan.l11",
+      "when": {
+        "flag.ch03_accept_offer": true
+      },
+      "who": "narr",
+      "kind": "aside",
+      "text": "你坐下时，膝上的织纹绷直了。有人依新称谓呈卷，你伸出手，卷尾碰到袖缘。"
+    },
+    {
+      "id": "ch03_s12_hanyuan.l12",
+      "when": {
+        "flag.ch03_accept_offer": true
+      },
+      "who": "liqinghe",
+      "expr": "default",
+      "kind": "say",
+      "text": "我的两处轮值照常开。撤掉未准的扩办请示以前，我还会再来辩一次。"
+    },
+    {
+      "id": "ch03_s12_hanyuan.l13",
+      "when": {
+        "flag.ch03_accept_offer": true
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "来。先前的理由也带来。"
+    },
+    {
+      "id": "ch03_s12_hanyuan.l14",
+      "when": {
+        "flag.ch03_accept_offer": true
+      },
+      "who": "self",
+      "kind": "inner",
+      "text": "（礼已经完了。我还在等下一声鼓。）"
+    },
+    {
+      "id": "ch03_s12_hanyuan.l15",
+      "when": {
+        "flag.ch03_decline_offer": true
+      },
+      "who": "narr",
+      "kind": "aside",
+      "text": "你将辞受牒摊开，末行仍是亲口答过的不受。唐把授位制书另收，没有撕去。"
+    },
+    {
+      "id": "ch03_s12_hanyuan.l16",
+      "when": {
+        "flag.ch03_decline_offer": true
+      },
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "辞受已奉准。授位与辞受两件同存，不能改写成你未曾获授。"
+    },
+    {
+      "id": "ch03_s12_hanyuan.l17",
+      "when": {
+        "flag.ch03_decline_offer": true
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "重推不必等我再说一遍。我的经手卷，交给谁？"
+    },
+    {
+      "id": "ch03_s12_hanyuan.l18",
+      "when": {
+        "flag.ch03_decline_offer": true
+      },
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "由原署收，三席重开荐期。陛下续理政务，另定授位前不留空位。"
+    },
+    {
+      "id": "ch03_s12_hanyuan.l19",
+      "when": {
+        "flag.ch03_decline_offer": true
+      },
+      "who": "hetaihou",
+      "expr": "default",
+      "kind": "say",
+      "text": "奉准的重推令今日发。李令仪仍可参议，不能把这一席私下拨给她。"
+    },
+    {
+      "id": "ch03_s12_hanyuan.l20",
+      "when": {
+        "flag.ch03_decline_offer": true
+      },
+      "who": "liqinghe",
+      "expr": "default",
+      "kind": "say",
+      "text": "我还会递自己的案，不拿你的辞受添到我的支持里。"
+    },
+    {
+      "id": "ch03_s12_hanyuan.l21",
+      "when": {
+        "flag.ch03_decline_offer": true
+      },
+      "who": "narr",
+      "kind": "aside",
+      "text": "唐核完交接目录，署下收讫。你解下候选差牌，放回原署的匣里。"
+    },
+    {
+      "id": "ch03_s12_hanyuan.l22",
+      "when": {
+        "flag.ch03_decline_offer": true
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "剩下几项钱款我还要亲交，不要拿收了牌当作已经两清。"
+    },
+    {
+      "id": "ch03_s12_hanyuan.l23",
+      "when": {
+        "flag.ch03_decline_offer": true
+      },
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "已列另单。辞受交接办讫，余项照单续交。"
+    },
+    {
+      "id": "ch03_s12_hanyuan.l24",
+      "when": {
+        "flag.ch03_decline_offer": true
+      },
+      "who": "self",
+      "kind": "inner",
+      "text": "（腰上少了一块。手还往挂牌的地方去。）"
+    },
+    {
+      "id": "ch03_s12_hanyuan.l25",
+      "when": {
+        "flag.ch03_offer_li": true
+      },
+      "who": "narr",
+      "kind": "aside",
+      "text": "三日后的受位礼，你站在阶下。李令仪的衣袖垂到印绶前，她先向女皇行礼。"
+    },
+    {
+      "id": "ch03_s12_hanyuan.l26",
+      "when": {
+        "flag.ch03_offer_li": true
+      },
+      "who": "narr",
+      "kind": "aside",
+      "text": "女皇亲交印绶。李双手接住，依仪登席，阶下朝礼成列。"
+    },
+    {
+      "id": "ch03_s12_hanyuan.l27",
+      "when": {
+        "flag.ch03_offer_li": true
+      },
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "李令仪受位，礼成。"
+    },
+    {
+      "id": "ch03_s12_hanyuan.l28",
+      "when": {
+        "flag.ch03_offer_li": true
+      },
+      "who": "narr",
+      "kind": "aside",
+      "text": "你跟着行完这一礼。起身时，提案的硬角硌着手掌。你把它换到另一只手。"
+    },
+    {
+      "id": "ch03_s12_hanyuan.l29",
+      "when": {
+        "flag.ch03_offer_li": true
+      },
+      "who": "liqinghe",
+      "expr": "default",
+      "kind": "say",
+      "text": "{名}那份扩办案仍留议次。我不同意其中的钱从哪里出，还要她来答。"
+    },
+    {
+      "id": "ch03_s12_hanyuan.l30",
+      "when": {
+        "flag.ch03_offer_li": true
+      },
+      "who": "wuze",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "我会重算。不撤。"
+    },
+    {
+      "id": "ch03_s12_hanyuan.l31",
+      "when": {
+        "flag.ch03_offer_li": true
+      },
+      "who": "shenheng",
+      "expr": "default",
+      "kind": "say",
+      "text": "未获授位照实记，原案归提出人续补，不写成自愿退让。"
+    },
+    {
+      "id": "ch03_s12_hanyuan.l32",
+      "when": {
+        "flag.ch03_offer_li": true
+      },
+      "who": "liqinghe",
+      "expr": "default",
+      "kind": "say",
+      "text": "也别写成我劝她留下。她接不接后面的差，还要另问。"
+    },
+    {
+      "id": "ch03_s12_hanyuan.l33",
+      "when": {
+        "flag.ch03_offer_li": true
+      },
+      "who": "self",
+      "kind": "inner",
+      "text": "（她坐到那里了。我还得走下这几级阶。）"
+    },
+    {
+      "id": "ch03_s12_hanyuan.l34",
+      "who": "narr",
+      "kind": "aside",
+      "text": "午光穿过殿门，照到那块垫案脚的薄木片。案上的水碗仍旧放得平。"
+    },
+    {
+      "id": "ch03_s12_hanyuan.l35",
+      "who": "liqinghe",
+      "expr": "default",
+      "kind": "say",
+      "text": "今日的胜负已经落了字。那夜答应彼此照实争的话，我没有收回。"
+    },
+    {
+      "id": "ch03_s12_hanyuan.l36",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "我也没有。往后的话，往后再亲口问。"
+    }
+  ],
+  "choices": [
+    {
+      "id": "ch03_s12_hanyuan.cA",
+      "text": "收下新卷，去交清旧差",
+      "require": {
+        "flag.ch03_accept_offer": true
+      },
+      "effects": {
+        "affinity.liqinghe": 3,
+        "flag.enthroned": true,
+        "flag.declined_crown": false,
+        "flag.liqinghe_won": false
+      },
+      "irreversible": false,
+      "goto": "ch03_s13_yeting"
+    },
+    {
+      "id": "ch03_s12_hanyuan.cB",
+      "text": "辞受已办，去交清余项",
+      "require": {
+        "flag.ch03_decline_offer": true
+      },
+      "effects": {
+        "affinity.liqinghe": 3,
+        "flag.declined_crown": true,
+        "flag.enthroned": false,
+        "flag.liqinghe_won": false
+      },
+      "irreversible": false,
+      "goto": "ch03_s13_yeting"
+    },
+    {
+      "id": "ch03_s12_hanyuan.cC",
+      "text": "收好提案，去交清旧差",
+      "require": {
+        "flag.ch03_offer_li": true
+      },
+      "effects": {
+        "affinity.liqinghe": 3,
+        "flag.liqinghe_won": true,
+        "flag.enthroned": false,
+        "flag.declined_crown": false
+      },
+      "irreversible": false,
+      "goto": "ch03_s13_yeting"
+    }
+  ]
+}

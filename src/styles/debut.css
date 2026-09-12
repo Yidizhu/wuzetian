@@ -1,0 +1,52 @@
+/* 首次登场卡（E5 第 2 条）。挂在对话框里、名字右边：一行小字，纸色底，不盖立绘。
+   结构见 src/scene/Debut.ts：.dlg__name 后面紧跟 .dlg__role 与 .dlg__line 两个兄弟。 */
+
+.dlg[data-debut] .dlg__name {
+  display: inline-block; vertical-align: baseline;
+  margin: 0 0 4px;
+}
+
+/* 职务：名字后面隔一条淡墨短竖线，像题跋起首那一笔。字比名字小三号、墨淡一档 */
+.dlg__role, .dlg__line {
+  display: inline-block; vertical-align: baseline;
+  font-size: 13px; line-height: 1.5; letter-spacing: 0.06em;
+  /* 纸色底：对话框本身是 92% 的纸，这两行字压实成 100%，
+     背后万一透上来一道深的墨线，小字不会被切断 */
+  background: var(--c-ground);
+  padding: 0 4px;
+}
+.dlg__role {
+  margin-left: 10px; padding-left: 12px;
+  color: var(--c-text);
+  background-image: linear-gradient(var(--c-ink-3), var(--c-ink-3));
+  background-size: 1px 0.95em; background-repeat: no-repeat; background-position: 2px 55%;
+}
+.dlg__line { color: var(--c-text-soft); margin-left: 2px; }
+
+/* 进来：跟在名字后面从左往右写开，比台词的逐字慢一点，比墨晕快。
+   只进不出——下一句台词它直接没了，不做收的动效，免得和打字机抢 */
+.dlg__role, .dlg__line {
+  -webkit-mask-image: linear-gradient(to right, #000 calc(var(--dw) - 18%), transparent var(--dw));
+  mask-image: linear-gradient(to right, #000 calc(var(--dw) - 18%), transparent var(--dw));
+  animation: debut-in 420ms var(--ease) 80ms both;
+}
+.dlg__line { animation-delay: 240ms; }
+@keyframes debut-in { from { --dw: 0%; } to { --dw: 124%; } }
+@property --dw { syntax: "<percentage>"; inherits: false; initial-value: 124%; }
+
+/* 竖屏：职务留在名字那一行，一句话落到下一行。
+   收掉框的上内边距 8px 和名字下面的 4px，框只比平时高出几像素——E4 刚把人的脚提到框顶之上，
+   登场卡不能把它们吃回去 */
+@media (max-width: 480px) {
+  .dlg[data-debut] { padding-top: 10px; }
+  .dlg[data-debut] .dlg__name { margin-bottom: 0; }
+  .dlg__line {
+    display: block; width: fit-content;
+    margin: -1px 0 3px; padding-left: 0;
+    font-size: 12.5px; letter-spacing: 0.04em;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dlg__role, .dlg__line { animation: none; }
+}

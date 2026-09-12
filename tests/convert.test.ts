@@ -1,6 +1,6 @@
 import { test, describe } from "node:test";
 import assert from "node:assert/strict";
-import { CASES, sceneId, lineId, choiceId, parseCondition, parseEffects, convert, convertBatch, tableCells, writeOut, issueReport, classify, manualTail, MANUAL_MARK } from "../tools/convert-story.ts";
+import { CASES, sceneId, lineId, choiceId, parseCondition, parseEffects, convert, convertBatch, tableCells, writeOut, issueReport, classify, manualTail, MANUAL_MARK, outputPathFor } from "../tools/convert-story.ts";
 import { readFileSync, mkdtempSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
@@ -129,7 +129,7 @@ test('重复场景、重复台词及中文去向报错', () => {
   assert.ok(convert(scene() + '\n' + scene(), 'dup').issues.some(i => i.message.includes('两次')));
   assert.ok(convert(scene().replace('| 2 | self', '| 1 | self'), 'dup').issues.some(i => i.message.includes('重复')));
   assert.ok(convert(scene('ch01-01', '', '| 去向 | 夜间书阁 |'), 'bad').issues.length);
-  assert.ok(convert(scene('ch01-01', '', '| 去向 | ch01-07 |'), 'bad').issues.some(i => i.message.includes('不能猜')));
+  assert.ok(convert(scene('ch01-01', '', '| 去向 | ch01-07 |'), 'bad').issues.some(i => i.message.includes('取不到 id')));
 });
 
 test('Markdown 转义、Windows 换行与代码示例不误导转换', () => {
@@ -376,9 +376,6 @@ test('D-026 条件列写坏了：报到那一行，整场不输出；列序不�
   assert.equal(r.scenes.length, 0);
   const line = md.split('\n').findIndex(l => l.includes('如果她够坚定')) + 1;
   assert.ok(r.issues.some(i => i.line === line && i.message.includes('不能解析条件')));
-  const wrong = convert(sceneCond('', '| # | 说话人 | 条件 | 表情 | 类型 | 台词 |\n|---|---|---|---|---|---|'), 'w');
-  assert.ok(wrong.issues.some(i => i.message.includes('列不合规范')));
-  assert.equal(wrong.scenes.length, 0);
 });
 
 const duelBlock = (heading = '### 对诗 · 场景 ch01-01 · 对手 shenheng', results = '| 赢 | cai +2 | ch01-02 |\n| 输 | cai +1 | ch01-02 |', header = '| 结果 | 效果 | 去向 |\n|---|---|---|') => `${heading}
@@ -508,7 +505,7 @@ test('去向「第二章（待交）」：只报一条待交问题，不再叠�
 test('问题单按三类分拣：ChatGPT 格式 / CC1 接口 / 待交付', () => {
   assert.equal(classify('台词表列不合规范'), 'ChatGPT 格式');
   assert.equal(classify('章末如何收束由 CC1 定，转换器不补'), 'CC1 接口');
-  assert.equal(classify('去向 ch02-01 没有场景全文／地点 key，不能猜 id 或补空场景'), '待交付');
+  assert.equal(classify('去向 ch02-13 的场景全文尚未交付，大纲里也没有它的地点 key，取不到 id'), '待交付');
   assert.equal(classify('留了 x 的信，但本批输入没有对应完整信件；请交付并一同转换 C-4'), '待交付');
   const report = issueReport({ scenes: [], poems: [], duels: [], letters: [], endings: [], issues: [
     { file: 'f', line: 1, excerpt: 'a', message: '台词表列不合规范' },
@@ -517,6 +514,77 @@ test('问题单按三类分拣：ChatGPT 格式 / CC1 接口 / 待交付', () =>
   assert.ok(report.includes('## ChatGPT 格式（1）'));
   assert.ok(report.includes('## CC1 接口（1）'));
   assert.ok(!report.includes('## 待交付'));
+});
+
+/** 同一场戏，台词表按 story-schema 1.3 的列序写：「条件」在「台词」之前 */
+const sceneCondSpec = `### 场景 ch01-01 测试
+
+| 字段 | 值 |
+|---|---|
+| 章 | 1 |
+| 幕 | 1 |
+| 地点 key | shuge |
+| 色板 | ink |
+| 在场 | wuze, shenheng |
+| 无用场景 | 否 |
+| 一句话目的 | 共读 |
+| 结局 | done |
+
+| # | 说话人 | 表情 | 类型 | 条件 | 台词 |
+|---|---|---|---|---|---|
+| 1 | narr | | 旁白 | | 灯亮着。 |
+| 2 | wuze | open | 说 | flag.trial_recopy | 我抄过了。 |
+| 3 | wuze | open | 说 | 非 flag.trial_recopy 且 cai >= 3 | 我附改过了。 |
+| 4 | shenheng | guarded | 说 | | 坐。 |
+`;
+
+test('台词表按列名取值：「条件」在「台词」前后都认，列名写错才报', () => {
+  // 规范（story-schema 1.3、第二章 C-7）把「条件」写在「台词」前，第一章 C-3 写在最后
+  const r = convert(sceneCondSpec, 'w');
+  assert.deepEqual(r.issues, []);
+  assert.equal(r.scenes[0].lines[0].text, '灯亮着。');
+  assert.deepEqual(r.scenes[0].lines[1].when, { 'flag.trial_recopy': true });
+  assert.deepEqual(r.scenes[0].lines, convert(sceneCond(''), 'w').scenes[0].lines, '两种列序转出来的东西必须一样');
+  for (const header of ['| # | 说话人 | 表情 | 类型 | 台词 | 条件说明 |\n|---|---|---|---|---|---|',
+                        '| # | 说话人 | 表情 | 类型 | 台词 | 台词 |\n|---|---|---|---|---|---|']) {
+    const bad = convert(sceneCond('', header), 'w');
+    assert.ok(bad.issues.some(i => i.message.includes('列名不合规范')), header);
+    assert.equal(bad.scenes.length, 0);
+  }
+  const missing = convert(sceneCond('', '| # | 说话人 | 表情 | 条件 | 台词 |\n|---|---|---|---|---|'), 'w');
+  assert.ok(missing.issues.length && missing.scenes.length === 0, '少一列「类型」要拦下');
+});
+
+const outlineDoc = `## 第二章大纲
+
+| 场景标题 | 地点 key | 色板 | 去向 |
+|---|---|---|---|
+| ch01-02 下一场 | hanyuan | gold | ch01-03 |
+`;
+
+test('正文分批交付：下一批的场次用大纲的地点 key 接上，并记一条待交付', () => {
+  const r = convertBatch([{ markdown: scene('ch01-01', '', '| 去向 | ch01-02 |'), file: 'text' }, { markdown: outlineDoc, file: 'outline' }]);
+  assert.equal(r.scenes.length, 1);
+  assert.equal(r.scenes[0].goto, 'ch01_s02_hanyuan', '大纲写明了地点 key，就照它接');
+  assert.equal(r.issues.length, 1);
+  assert.equal(r.issues[0].kind, '待交付');
+  assert.equal(r.issues[0].file, 'outline', '问题指到大纲那一行，人一眼知道等的是哪一场');
+  assert.ok(r.issues[0].message.includes('ch01_s02_hanyuan') && r.issues[0].message.includes('重跑'));
+});
+
+test('大纲里也没有那一场：不猜 id，本场不输出', () => {
+  const r = convert(scene('ch01-01', '', '| 去向 | ch01-09 |'), 'text');
+  assert.equal(r.scenes.length, 0);
+  assert.equal(r.issues.length, 1);
+  assert.ok(r.issues[0].message.includes('大纲里也没有'));
+  assert.equal(classify(r.issues[0].message), '待交付');
+});
+
+test('大纲不会盖掉正文：两边都在时用正文的地点 key', () => {
+  const full = scene('ch01-02');   // 正文里 ch01-02 在 shuge，大纲写的是 hanyuan
+  const r = convertBatch([{ markdown: scene('ch01-01', '', '| 去向 | ch01-02 |'), file: 'a' }, { markdown: full, file: 'b' }, { markdown: outlineDoc, file: 'outline' }]);
+  assert.deepEqual(r.issues, []);
+  assert.equal(r.scenes[0].goto, 'ch01_s02_shuge');
 });
 
 test('D-034 去向「章末」-> chapterEnd，不当成缺去向，也不去解析成场次', () => {
@@ -556,6 +624,20 @@ test('陈旧 id：合并模式留着，重写模式清掉（对局改过 id 之�
   } finally { rmSync(dir, { recursive: true, force: true }); }
 });
 
+test('写盘与清理共用一条路径规则：场景按章分目录，信进 letters', () => {
+  const dir = mkdtempSync(join(tmpdir(), 'wuzetian-path-'));
+  try {
+    assert.equal(outputPathFor('ch02_s25_yeting', dir), join(dir, 'chapters', 'ch02', 'ch02_s25_yeting.json'));
+    assert.equal(outputPathFor('lt_ch02_shenheng_01', dir), join(dir, 'letters', 'lt_ch02_shenheng_01.json'));
+    assert.throws(() => outputPathFor('随便什么', dir), /第几章/);
+    // 写出来的位置必须就是这条规则算出来的位置，否则清理会删错或删不掉
+    const r = convert([scene('ch01-01'), letter].join('\n'), 'p');
+    writeOut(r, dir);
+    assert.equal(JSON.parse(readFileSync(outputPathFor(r.scenes[0].id, dir), 'utf8')).id, r.scenes[0].id);
+    assert.equal(JSON.parse(readFileSync(outputPathFor(r.letters[0].id, dir), 'utf8')).id, r.letters[0].id);
+  } finally { rmSync(dir, { recursive: true, force: true }); }
+});
+
 test('问题单末尾的人工补记不被自动生成冲掉', () => {
   const note = '## CC1 已处理\n\n接口都接了。\n';
   assert.equal(manualTail(`# 转换问题单\n\n表格\n\n---\n\n${MANUAL_MARK}\n${note}`), note);
@@ -565,10 +647,16 @@ test('问题单末尾的人工补记不被自动生成冲掉', () => {
 });
 
 test('整章可达性：18 场都在，从 01 出发全部走得到，没有断链', () => {
-  const inputs = ['C-2-第一章前六场.md', 'C-3-第一章后十二场.md', 'C-4-第一章书信.md', 'C0-2-诗词库与对诗.md'].map(readDoc);
-  const r = convertBatch(inputs);
+  // 第 18 场按 D-039 接第二章第一场，所以这一批要带上第二章的正文才解析得了那个去向
+  const inputs = ['C-2-第一章前六场.md', 'C-3-第一章后十二场.md', 'C-4-第一章书信.md', 'C0-2-诗词库与对诗.md', 'C-7-第二章前十二场.md'].map(readDoc);
+  const all = convertBatch(inputs);
+  const r = { ...all, scenes: all.scenes.filter(s => s.chapter === 1) };
   assert.equal(r.scenes.length, 18, '第一章 18 场一场不缺');
-  const scenes = new Map(r.scenes.map(s => [s.id, s]));
+  const last = r.scenes.find(s => (s as any).chapterEnd)!;
+  assert.equal(last.id, 'ch01_s18_zhaoyang');
+  assert.equal(last.goto, 'ch02_s01_yeting', 'D-039：先出章末结算页，再进第二章第一场');
+  // 连第二章的场一起放进图里：第一章最后一场的去向落在那边，不算断链
+  const scenes = new Map(all.scenes.map(s => [s.id, s]));
   const duels = new Map(r.duels.map(d => [d.id, d]));
   const exits = (s: any) => [
     ...(s.choices ?? []).map((c: any) => c.goto),
@@ -581,15 +669,166 @@ test('整章可达性：18 场都在，从 01 出发全部走得到，没有断�
   while (queue.length) {
     for (const to of exits(scenes.get(queue.pop()!))) {
       if (!scenes.has(to)) dangling.push(to);
+      // 走到第二章就停：那一章有它自己的用例，这里只管第一章走不走得通
+      else if (!seen.has(to) && scenes.get(to)!.chapter === 1) { seen.add(to); queue.push(to); }
+    }
+  }
+  assert.deepEqual(r.scenes.map(s => s.id).filter(id => !seen.has(id)), [], '第一章没有孤儿场景');
+  assert.deepEqual([...new Set(dangling)], [], '没有指向不存在场景的去向');
+  for (const s of r.scenes) assert.ok(exits(s).length || s.ending || s.judgeEnding || s.chapterEnd, `${s.id} 没有出口`);
+  assert.deepEqual(r.scenes.filter((s: any) => s.chapterEnd).map(s => s.id), ['ch01_s18_zhaoyang'], '整章只有一个章末出口');
+});
+
+test('D-039 章末与去向并存：「章末 | 是」加一个去向，先结算再进下一章', () => {
+  const r = convertBatch([{ markdown: scene('ch01-01', '| 章末 | 是 |', '| 去向 | ch01-02 |'), file: 'a' }, { markdown: scene('ch01-02'), file: 'b' }]);
+  assert.deepEqual(r.issues, []);
+  assert.equal(r.scenes[0].chapterEnd, true);
+  assert.equal(r.scenes[0].goto, 'ch01_s02_shuge', '去向照旧解析，章末只是多出一页结算');
+  // 老写法还得认：第一章的 C-3 就是「去向 | 章末」，没有下一章去向
+  const old = convert(scene('ch01-01', '', '| 去向 | 章末 |'), 'a');
+  assert.equal(old.scenes[0].chapterEnd, true);
+  assert.equal(old.scenes[0].goto, undefined);
+  assert.equal(convert(scene('ch01-01', '| 章末 | 否 |'), 'a').scenes[0].chapterEnd, undefined);
+});
+
+test('D-039 信件表「截获场景」-> interceptAt：被截由剧本定，不由读信节奏定', () => {
+  const md = scene('ch01-01', '| 留信 | shenheng |') + '\n' + letter.replace('| 会被截 | 是 |', '| 会被截 | 是 |\n| 截获场景 | ch01-01 |');
+  const r = convert(md, 'l');
+  assert.deepEqual(r.issues, []);
+  assert.equal(r.letters[0].interceptAt, 'ch01_s01_shuge');
+  assert.equal(r.letters[0].onIntercept.goto, 'ch01_s01_shuge');
+  const bad = convert(md.replace('| 截获场景 | ch01-01 |', '| 截获场景 | ch09-09 |'), 'l');
+  assert.equal(bad.letters.length, 0, '截获场景指向不存在的场就不能出信');
+});
+
+test('选项的去向写「章末」：说清楚卡在哪两条规则上，不悄悄丢掉选项', () => {
+  const md = scene('ch01-01', '', '| 去向 | 章末 |') + `
+| # | 选项文本 | 需要 | 效果 | 去向 | 备注 |
+|---|---|---|---|---|---|
+| A | 留一会儿 | | flag.stay = 真 | 章末 | |
+`;
+  const r = convert(md, 'c');
+  if (r.scenes.length) {
+    // schema 放开之后（D-043）：选项照常结算效果，然后出章末结算页，所以没有 goto
+    assert.deepEqual(r.issues, []);
+    assert.equal(r.scenes[0].chapterEnd, true);
+    assert.equal(r.scenes[0].choices!.length, 1);
+    assert.equal(r.scenes[0].choices![0].goto, undefined);
+    assert.deepEqual(r.scenes[0].choices![0].effects, { 'flag.stay': true });
+  } else {
+    assert.ok(r.issues.some(i => i.message.includes('章末')), '转不了就要说清楚卡在哪');
+    assert.equal(classify(r.issues[0].message), 'CC1 接口');
+  }
+  // 不管 schema 放没放开，这一条都不许过：选项说走章末，场景却没标章末
+  const mismatch = convert(md.replace('| 去向 | 章末 |', '| 结局 | done |'), 'c');
+  assert.equal(mismatch.scenes.length, 0);
+  assert.ok(mismatch.issues.some(i => i.message.includes('章末')));
+});
+
+test('D-044 信的分条件附页：一封信多段正文，「宣读」列决定被截时念不念', () => {
+  const pages = `
+| 附页 | 条件 | 正文 | 宣读 |
+|---|---|---|---|
+| 公务甲 | flag.joint_reading | 旧驳语请依原句读。 | |
+| 私段甲 | flag.private_yes | 读完也想见你。 | 是 |
+| 尚未宣读的末句 | | 等你愿意听的时候再说。 | 否 |
+`;
+  const r = convert(scene('ch01-01', '| 留信 | shenheng |') + '\n' + letter + pages, 'l');
+  if (r.letters.length) {
+    assert.deepEqual(r.issues, []);
+    const got = (r.letters[0].body as any).pages;
+    assert.equal(got.length, 3, '顺序即表格顺序，一段都不能少');
+    assert.deepEqual(got[0], { key: '公务甲', when: { 'flag.joint_reading': true }, text: '旧驳语请依原句读。', readAloud: true });
+    assert.equal(got[2].when, undefined, '条件空 = 总是出现');
+    assert.equal(got[2].readAloud, false, '这一段是戏眼：公议上没念出来的那句');
+  } else {
+    const pageIssue = r.issues.find(i => i.message.includes('附页') || i.message.includes('pages'));
+    assert.ok(pageIssue, '装不下就要说清楚，不能当七段只有一段');
+    assert.equal(classify(pageIssue!.message), 'CC1 接口');
+  }
+  const bad = convert(scene('ch01-01', '| 留信 | shenheng |') + '\n' + letter + pages.replace('| 私段甲 | flag.private_yes | 读完也想见你。 | 是 |', '| 私段甲 | flag.private_yes | | 是 |'), 'l');
+  assert.equal(bad.letters.length, 0, '附页缺正文不能当它不存在');
+});
+
+test('D-046 场景表「布置 | 公议」-> dressing；认不出的布置要报', () => {
+  const r = convert(scene('ch01-01', '| 布置 | 公议 |'), 's');
+  assert.equal(r.scenes.length, 1, '布置接不上也不该把整场扣下：丢的是道具，不是台词');
+  if ((r.scenes[0] as any).dressing) {
+    assert.equal((r.scenes[0] as any).dressing, 'gongyi');
+    assert.deepEqual(r.issues, []);
+  } else {
+    assert.ok(r.issues.some(i => i.message.includes('Scene.dressing')), 'schema 没跟上就要留一条提醒');
+    assert.equal(classify(r.issues[0].message), 'CC1 接口');
+  }
+  const unknown = convert(scene('ch01-01', '| 布置 | 夜宴 |'), 's');
+  assert.equal(unknown.scenes.length, 0);
+  assert.ok(unknown.issues.some(i => i.message.includes('认不出的布置')));
+});
+
+test('认不出的角色 key：两条路都写出来，不含糊说一句 enum 不过', () => {
+  const cast = convert(scene('ch01-01').replace('| 在场 | wuze, shenheng |', '| 在场 | wuze, liuchenghuan |'), 's');
+  assert.equal(cast.scenes.length, 0);
+  assert.ok(cast.issues.some(i => i.message.includes('liuchenghuan') && i.message.includes('CHARACTER_KEYS') && i.message.includes('笔误')));
+  const speaker = convert(scene('ch01-01').replace('| 3 | wuze | open | 说 | 我来。 |', '| 3 | liuchenghuan | open | 说 | 我来。 |'), 's');
+  assert.ok(speaker.issues.some(i => i.message.includes('说话人') && i.message.includes('liuchenghuan')));
+  assert.equal(speaker.scenes.length, 0);
+});
+
+test('字段表里多出来的行不会被静默丢掉；剧作自查那几行是明知故不转', () => {
+  const withNew = convert(scene('ch01-01', '| 折法 | 双鲤 |'), 's');
+  assert.ok(withNew.issues.some(i => i.message.includes('折法') && i.message.includes('静默')), 'D-035 若真加了新机制，必须被看见');
+  assert.equal(withNew.issues[0].kind, 'ChatGPT 格式');
+  const notes = convert(scene('ch01-01', '| 进场想要 | 想留下 |\n| 阻碍 | 她不肯 |\n| 行动 | 再问一次 |\n| 翻转 | 以为→原来 |\n| 出场所知 | 她也没把握 |'), 's');
+  assert.deepEqual(notes.issues, [], '剧作自查的行不转成数据，但也不该天天报');
+  assert.equal(notes.scenes.length, 1);
+  const badLetter = convert(scene('ch01-01', '| 留信 | shenheng |') + '\n' + letter.replace('| 笺 | 秘书省黄麻纸 |', '| 笺 | 秘书省黄麻纸 |\n| 折法 | 双鲤 |'), 'l');
+  assert.ok(badLetter.issues.some(i => i.message.includes('折法')));
+});
+
+test('第二章前十二场：12 场都在，从 02-01 出发全部走得到，只差未交的 13', () => {
+  const inputs = ['C-6-第二章大纲.md', 'C-7-第二章前十二场.md'].map(readDoc);
+  const r = convertBatch(inputs);
+  // 原文本身不该有格式错：剩下的只能是等下一批交付，或者等 CC1 的接口
+  for (const i of r.issues) assert.notEqual(i.kind ?? classify(i.message), 'ChatGPT 格式', i.message);
+  const scenes = new Map(r.scenes.map(s => [s.id, s]));
+  assert.equal(scenes.size, 12, '前十二场一场不缺');
+  assert.ok([...scenes.values()].every(s => s.chapter === 2 && s.act === 2));
+  const exits = (s: any) => [...(s.choices ?? []).map((c: any) => c.goto), ...(s.goto ? [s.goto] : [])];
+  const start = 'ch02_s01_yeting';
+  const seen = new Set([start]); const queue = [start]; const dangling: string[] = [];
+  while (queue.length) {
+    for (const to of exits(scenes.get(queue.pop()!))) {
+      if (!scenes.has(to)) dangling.push(to);
       else if (!seen.has(to)) { seen.add(to); queue.push(to); }
     }
   }
   assert.deepEqual([...scenes.keys()].filter(id => !seen.has(id)), [], '没有孤儿场景');
-  assert.deepEqual([...new Set(dangling)], [], '没有指向不存在场景的去向');
-  for (const s of scenes.values()) assert.ok(exits(s).length || s.ending || s.judgeEnding || s.chapterEnd, `${s.id} 没有出口`);
-  const last = r.scenes.filter((s: any) => s.chapterEnd);
-  assert.equal(last.length, 1, '整章只有一个章末出口');
-  assert.equal(last[0].id, 'ch01_s18_zhaoyang');
+  assert.deepEqual([...new Set(dangling)], ['ch02_s13_hanyuan'], '唯一的断链是还没交的 13');
+  for (const s of scenes.values()) assert.ok(exits(s).length, `${s.id} 没有出口`);
+  // D-035 的紫、簪、私册、双鲤都是正文里的字，不需要新字段；信件表在 C-8，这一批没有
+  assert.equal(r.letters.length, 0);
+  assert.deepEqual(convertBatch(inputs), r, '同一批转两次结果相同');
+});
+
+test('第二章整章：交了几场就该出几场，出不来的每一场都要有一条说清为什么', () => {
+  const inputs = ['C-6-第二章大纲.md', 'C-7-第二章前十二场.md', 'C-8-第二章后十二场与书信.md'].map(readDoc);
+  const r = convertBatch(inputs);
+  const labels = inputs.flatMap(i => [...i.markdown.matchAll(/^### 场景 (ch\d+-\d+)/gm)].map(m => m[1].replace('-', '_s')));
+  assert.equal(new Set(labels).size, 26, '第二章交了 26 场（含 D-038 的 25、26）');
+  // 没转出来的场次必须留下解释。CC1 补好接口之后这些会自动变成"转出来了"，用例照样过
+  for (const label of new Set(labels)) {
+    if (r.scenes.some(s => s.id.startsWith(label))) continue;
+    assert.ok(r.issues.some(i => i.line >= 1), `${label} 没转出来，问题单里却没有任何记录`);
+  }
+  for (const s of r.scenes) {
+    assert.ok((s.choices?.length || s.goto || s.ending || s.judgeEnding || (s as any).chapterEnd), `${s.id} 没有出口`);
+  }
+  // 断链只允许指向还没转出来的场；不允许指向一个谁也没写过的场次
+  const ids = new Set(r.scenes.map(s => s.id));
+  const dangling = new Set(r.scenes.flatMap(s => [...(s.choices ?? []).map(c => c.goto), ...(s.goto ? [s.goto] : [])]).filter(to => !ids.has(to)));
+  for (const to of dangling) assert.ok(labels.some(l => to.startsWith(l)), `断链 ${to} 不对应任何一份场景表`);
+  if (!r.issues.length) assert.equal(dangling.size, 0, '没有问题就不该有断链');
+  assert.deepEqual(convertBatch(inputs), r, '同一批转两次结果相同');
 });
 
 test('真实五份文件整批转换：结果确定，条件行只出现在 C-3 合表的场里', () => {

@@ -229,7 +229,7 @@
       "effects": {
         "flag.petition_sent": true
       },
-      "irreversible": false,
+      "irreversible": true,
       "goto": "ch01_s13_shuge"
     },
     {
@@ -244,7 +244,7 @@
       "effects": {
         "flag.petition_sent": true
       },
-      "irreversible": false,
+      "irreversible": true,
       "goto": "ch01_s14_yuanye"
     },
     {
@@ -259,7 +259,7 @@
       "effects": {
         "flag.petition_sent": true
       },
-      "irreversible": false,
+      "irreversible": true,
       "goto": "ch01_s15_shishe"
     },
     {
@@ -274,7 +274,7 @@
       "effects": {
         "flag.petition_sent": true
       },
-      "irreversible": false,
+      "irreversible": true,
       "goto": "ch01_s16_yuanye"
     },
     {
@@ -283,7 +283,7 @@
       "effects": {
         "flag.petition_sent": true
       },
-      "irreversible": false,
+      "irreversible": true,
       "goto": "ch01_s17_yeting"
     }
   ]

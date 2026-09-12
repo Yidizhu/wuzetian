@@ -1,0 +1,84 @@
+{
+  "id": "lt_ch02_wenqiao_01",
+  "from": "wenqiao",
+  "trigger": {
+    "kind": "scene",
+    "sceneId": "ch02_s09_shishe",
+    "afterScenes": 2
+  },
+  "delayMinutes": 12,
+  "paper": "huajian",
+  "body": {
+    "surface": "稿照她说的送回去了，我没有去。想添的那句辩白还在手边，纸越换越小，话倒没少。今日合读时，你慢下来，我才听见自己多抢了半拍。现在把这封折成双鱼，折坏的那张留给我。",
+    "poem": {
+      "ref": "liye_jiesuyu",
+      "line": "欲知心里事，看取腹中书。"
+    },
+    "poemMeans": "她愿把没能说漂亮的话只交给一位读者，不替对方规定回应",
+    "blank": "（纸上有两道旧折，折过又拆开。她会不会也想过，这回不寄了。）"
+  },
+  "sheMayNotReply": {
+    "affinity.wenqiao": {
+      "lt": 5
+    }
+  },
+  "interceptable": false,
+  "replies": {
+    "plain": [
+      {
+        "effects": {
+          "affinity.wenqiao": 2,
+          "flag.wen_ch02_read_again": true
+        },
+        "reaction": "“我跟着。读岔了也不替你把句尾吞掉。”她将两份稿分开放，不替对方领读。",
+        "id": "lt_ch02_wenqiao_01.rA",
+        "text": "下回合读，我还照自己的快慢。"
+      },
+      {
+        "effects": {
+          "xin": 1,
+          "flag.wen_ch02_keep_without_pardon": true
+        },
+        "reaction": "“知道。她那一张，不拿到你这里求收。”她将退来的与要寄的分开。",
+        "id": "lt_ch02_wenqiao_01.rB",
+        "text": "这封我收。她退不退，别再替她猜。"
+      },
+      {
+        "effects": {
+          "flag.wen_ch02_private_pause": true
+        },
+        "reaction": "“好，私笺停在这里。”她没有把下一封伪装成请教文字。",
+        "id": "lt_ch02_wenqiao_01.rC",
+        "text": "我先不接新的私笺，见面只谈公事。"
+      }
+    ],
+    "poem": {
+      "resonantTags": [
+        "尺素",
+        "双鱼",
+        "书",
+        "诗笺",
+        "匣",
+        "手书"
+      ],
+      "onResonant": {
+        "effects": {
+          "affinity.wenqiao": 2
+        },
+        "reaction": "她把折口掀开一角又合上：“这两条鱼，这回往你那边去。”"
+      },
+      "onMismatch": {
+        "effects": {
+          "affinity.wenqiao": 1
+        },
+        "reaction": "“你挑的是这一句。”她念完停下，没有替它补成自己的答案。"
+      }
+    },
+    "silence": {
+      "effects": {
+        "flag.wen_ch02_letter_silent": true
+      },
+      "reaction": "她收起余笺，不托诗社旁人来问缘故。公事往来仍照原约。"
+    }
+  }
+}

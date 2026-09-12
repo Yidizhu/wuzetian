@@ -21,6 +21,8 @@ interface Shot {
   label: string;
   /** 覆盖 setInk 的默认值 */
   ink?: number;
+  /** 布置：`gongyi` 或空 */
+  dress?: string;
 }
 
 const SHOTS: Shot[] = [
@@ -35,6 +37,10 @@ const SHOTS: Shot[] = [
   { key: "wuzibei",  palette: "ink",  act: 1, label: "无字碑 · 正面平光" },
   { key: "zhaoyang", palette: "gold", act: 2, label: "昭阳殿 · 二幕 · 墨屏进殿" },
   { key: "hanyuan",  palette: "gold", act: 3, label: "含元殿 · 三幕 · 墨盖过来" },
+  { key: "zhaoyang", palette: "gold", act: 2, label: "昭阳殿 · 公议", dress: "gongyi" },
+  { key: "hanyuan",  palette: "gold", act: 3, label: "含元殿 · 公议", dress: "gongyi" },
+  { key: "nvguan",   palette: "ink",  act: 3, label: "女冠观 · 夜雨（三章 10 夜谈三）", dress: "yeyu" },
+  { key: "hanyuan",  palette: "gold", act: 3, label: "含元殿 · 受位议决（三章 12）", dress: "shouwei" },
 ];
 
 /** 两块色板的全部色值，按 palette.css。分类用，不参与绘制 */
@@ -143,6 +149,8 @@ stage.style.cssText = single
 const renderer = new ThreeStageRenderer();
 renderer.mount(stage);
 renderer.resize(W, H);
+// 抽查台上留一个把手：在控制台里 __stage.setDressing("yeyu") 就能验「show 之后再改布置」那条路
+(window as unknown as { __stage: ThreeStageRenderer }).__stage = renderer;
 
 /** 底色：白天与夜里的纸都算留白，画布透明处露的也是它 */
 function groundsOf(): string[] {
@@ -156,11 +164,13 @@ async function run(): Promise<void> {
         key: single, palette: (qs.get("palette") as Palette) ?? "ink",
         act: Number(qs.get("act") ?? 1), label: single,
         ink: qs.get("ink") ? Number(qs.get("ink")) : undefined,
+        dress: qs.get("dress") ?? undefined,
       }]
     : SHOTS;
   const rows: string[] = [];
   for (const s of shots) {
     document.documentElement.dataset.palette = s.palette;
+    renderer.setDressing(s.dress ?? "");
     await renderer.show({ key: s.key, palette: s.palette, act: s.act });
     if (s.ink !== undefined) renderer.setInk(s.ink);
     renderer.settle();
@@ -190,6 +200,12 @@ async function run(): Promise<void> {
         ink.style.setProperty("--ink-cover", inkNow);
         shot.appendChild(ink);
       }
+      if (s.dress === "yeyu") {
+        const rain = document.createElement("div");
+        rain.className = "stage__rain";
+        rain.style.opacity = "0.5";
+        shot.appendChild(rain);
+      }
       const paper = document.createElement("div");
       paper.className = "stage__paper";
       shot.appendChild(paper);
@@ -199,7 +215,7 @@ async function run(): Promise<void> {
     const minBlank = s.palette === "gold" ? 30 : 40;
     const ok = (v: boolean) => (v ? "✓" : "✗");
     cap.innerHTML = `<b>${s.label}</b>`
-      + `<span>${s.key} · ${s.palette} · 第${s.act}幕 · 墨层 ${inkNow}</span>`
+      + `<span>${s.key} · ${s.palette} · 第${s.act}幕 · 墨层 ${inkNow}${s.dress ? " · " + s.dress : ""}</span>`
       + `<span>${tris} 面 ${ok(tris <= 1500)} · ${ms.toFixed(2)} ms/帧 ${ok(ms <= 3)}</span>`
       + `<span>留白 ${m.blank.toFixed(1)}%（格 ${m.blankCells}/100）${ok(m.blank >= minBlank)}`
       + ` · 朱砂 ${m.accent.toFixed(2)}% ${ok(m.accent <= 3)}</span>`

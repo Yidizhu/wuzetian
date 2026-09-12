@@ -20,11 +20,14 @@ import { NAMES } from "./ui/names.ts";
 import { CharacterLayer } from "./ui/CharacterLayer.ts";
 import { Inbox } from "./ui/Inbox.ts";
 import { mountTitle } from "./scene/TitleScreen.ts";
+import { attachDebut } from "./scene/Debut.ts";
+import { debutsOn, setDebutsOn } from "./ui/prefs.ts";
 import endingData from "./data/endings.json";
 import adultScenes from "virtual:adult-scenes";
 import converted from "virtual:converted-data";
 import poemData from "./data/poems.json";
 import duelData from "./data/duels.json";
+import introData from "./data/intros.json";
 import type { LetterT, PoemT, PoemDuelT } from "./engine/schema.ts";
 
 // 剧本数据全部来自 JSON，引擎里没有一句硬编码剧情。
@@ -121,6 +124,7 @@ const slots = new SaveSlots(
   (n, s) => { saveApi.write(n, s); slots.hide(); void story.loadFrom(n); },
   () => void story.restart(),
 );
+slots.addToggle("登场卡", debutsOn, setDebutsOn);
 // 信箱要挂在 HUD 上，HUD 在后面才建；先声明，建好 HUD 再接
 let inbox: Inbox | null = null;
 
@@ -145,6 +149,15 @@ story.on((e) => {
       void cast.speak(e.who, e.expr as "default" | "guarded" | "open");
       // 读过的句子直接显示完整，没读过的逐字来。skip 只跳读过的文本。
       dlg.show(e.who, e.text, e.lineKind, store.state, !e.first);
+      // 登场卡（D-048）：这个人第一次开口时，名字旁一行职务加一句话，只介绍一次。
+      // 皮肤和「只活一句台词」的节奏是 CC3 定的（src/scene/Debut.ts）；
+      // 谁出过了、要不要出，归这里。玩家在存档面板里关掉，就再也不出。
+      {
+        const card = (introData.cards as Record<string, { role: string; line: string }>)[e.who];
+        const fresh = !!card && !store.state.introsSeen.has(e.who);
+        if (fresh) store.state.introsSeen.add(e.who);
+        attachDebut(dlg.element, fresh && debutsOn() ? card! : null);
+      }
       break;
     case "choices":
       dlg.setVisible(false);

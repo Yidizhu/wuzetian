@@ -2,6 +2,8 @@
 @import "./inbox.css";
 @import "./tihua.css";
 @import "./title.css";
+@import "./epigraph.css";
+@import "./debut.css";
 
 /* 字体：M5 会换成子集化的思源宋体。现在先用系统衬线，保证排版结构对。 */
 :root {
@@ -475,3 +477,11 @@ html, body {
   min-height: 44px; padding: 0 12px;      /* 手机上的最小可点尺寸 */
 }
 .slots__danger button[data-armed] { color: var(--c-accent, var(--c-ink-4)); }
+
+/* 存档面板里的偏好开关（B11）。和「清档重来」同一种不起眼的写法，排在它上面 */
+.slots__toggle { display: flex; justify-content: center; margin-top: 10px; }
+.slots__toggle button {
+  appearance: none; background: none; border: 0;
+  font-family: var(--font); font-size: 14px; letter-spacing: 0.08em;
+  color: var(--c-text-soft); cursor: pointer; min-height: 44px; padding: 0 12px;
+}

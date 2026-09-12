@@ -1,0 +1,52 @@
+/* 题画（D-014）。全屏盖住游戏，只剩一张立轴。
+   样式故意做得极少：这一层不该像一个「分享弹窗」，该像把一张纸举起来看。 */
+
+.tihua {
+  position: fixed; inset: 0; z-index: 40;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 14px; padding: 16px;
+  background: color-mix(in srgb, var(--c-ground) 88%, var(--c-line));
+  animation: tihua-in 320ms var(--ease);
+}
+@keyframes tihua-in { from { opacity: 0; } to { opacity: 1; } }
+
+.tihua__img {
+  max-width: min(100%, 520px);
+  max-height: 62vh;
+  width: auto; height: auto;
+  display: block;
+  /* 一张纸搁在桌上会有一点点影，但不做卡片阴影 */
+  box-shadow: 0 1px 0 color-mix(in srgb, var(--c-line) 30%, transparent);
+}
+
+.tihua__rows { display: flex; flex-direction: column; gap: 8px; }
+.tihua__row { display: flex; align-items: center; gap: 10px; }
+.tihua__rowname { color: var(--c-text-soft); font-size: 14px; letter-spacing: 0.08em; min-width: 2.6em; }
+
+/* 挑选：和选项同一套语言——左边一条短墨线，选中转浓，不用按钮底色（ui.md） */
+.tihua__chip {
+  appearance: none; background: none; border: 0; cursor: pointer;
+  min-height: 44px; padding: 6px 10px;
+  display: inline-flex; align-items: center; gap: 8px;
+  color: var(--c-text); font: inherit; font-size: 15px;
+}
+.tihua__chip::before {
+  content: ""; width: 14px; height: 1px; background: var(--c-ink-4);
+  transition: background 200ms var(--ease), width 200ms var(--ease);
+}
+.tihua__chip[data-on="1"]::before { background: var(--c-text); width: 22px; }
+.tihua__chip[data-on="1"] { color: var(--c-text); }
+.tihua__chip:not([data-on="1"]) { color: var(--c-text-soft); }
+
+.tihua__bar { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; justify-content: center; }
+
+.tihua__btn {
+  appearance: none; background: none; cursor: pointer;
+  border: 0; border-top: 1px solid var(--c-line); border-bottom: 1px solid var(--c-line);
+  padding: 8px 18px; min-height: 44px;
+  color: var(--c-text); font: inherit; font-size: 16px; text-decoration: none;
+  display: inline-flex; align-items: center;
+}
+.tihua__btn:hover { border-color: var(--c-text); }
+
+.tihua__hint { color: var(--c-text-soft); font-size: 13px; }

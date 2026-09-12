@@ -1,0 +1,386 @@
+{
+  "id": "ch03_s08_hanyuan",
+  "chapter": 3,
+  "act": 3,
+  "scene": "hanyuan",
+  "palette": "gold",
+  "cast": [
+    "wuze",
+    "liqinghe",
+    "shenheng",
+    "tangjian",
+    "hetaihou",
+    "wenqiao"
+  ],
+  "weightless": false,
+  "leavesLetter": [],
+  "purpose": "公开双方已经办成与尚未办成的事，以有限人手选择补证取舍",
+  "lines": [
+    {
+      "id": "ch03_s08_hanyuan.l1",
+      "who": "narr",
+      "kind": "aside",
+      "text": "两张长案拼到一起，案脚高低不齐。唐垫进薄木片，水碗才不往一侧滑。"
+    },
+    {
+      "id": "ch03_s08_hanyuan.l2",
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "本轮只比三项，月前已贴榜：钱从哪里来，递件能否到人，错办能否追核。"
+    },
+    {
+      "id": "ch03_s08_hanyuan.l3",
+      "who": "hetaihou",
+      "expr": "default",
+      "kind": "say",
+      "text": "三项各录双方实据，得两项支持者奏请授位。陛下已准，不能临场再添题。"
+    },
+    {
+      "id": "ch03_s08_hanyuan.l4",
+      "who": "narr",
+      "kind": "aside",
+      "text": "度支核账官、别署录事、外署校案官分别入席。三人都交了无亲故的回避牒。"
+    },
+    {
+      "id": "ch03_s08_hanyuan.l5",
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "各席只核自己那一项，具名写理由。我宣读，太后监议，都不另投一票。"
+    },
+    {
+      "id": "ch03_s08_hanyuan.l6",
+      "who": "shenheng",
+      "expr": "default",
+      "kind": "say",
+      "text": "我只交经手凭据。候选差撤了，往来的事实仍在，不入评议席。"
+    },
+    {
+      "id": "ch03_s08_hanyuan.l7",
+      "who": "liqinghe",
+      "expr": "default",
+      "kind": "say",
+      "text": "我的亲署也退席。预算由别人问。"
+    },
+    {
+      "id": "ch03_s08_hanyuan.l8",
+      "when": {
+        "flag.nomination_joint_review": true
+      },
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "上回走三处联署，核签钱已付。无署可荐的人仍进不来，这项要答。"
+    },
+    {
+      "id": "ch03_s08_hanyuan.l9",
+      "when": {
+        "flag.nomination_open_questions": true
+      },
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "上回限期试问，来者可自递。远处人的盘缠未足，这项要答。"
+    },
+    {
+      "id": "ch03_s08_hanyuan.l10",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "两条都留。我这次给无荐者留自递，也给路远的人留代递。"
+    },
+    {
+      "id": "ch03_s08_hanyuan.l11",
+      "who": "liqinghe",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "代递的工钱呢？不能叫观里再接。"
+    },
+    {
+      "id": "ch03_s08_hanyuan.l12",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "不从观里抽人。从扩办的钱里出。"
+    },
+    {
+      "id": "ch03_s08_hanyuan.l13",
+      "when": {
+        "flag.nvguan_halfday_pay": true
+      },
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "观中半日校读已照约结钱，不列作此回可随调的人手。"
+    },
+    {
+      "id": "ch03_s08_hanyuan.l14",
+      "when": {
+        "flag.nvguan_trip_pay": true
+      },
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "观中按次验封已结钱，不列作此回可随调的人手。"
+    },
+    {
+      "id": "ch03_s08_hanyuan.l15",
+      "who": "wenqiao",
+      "expr": "default",
+      "kind": "say",
+      "text": "我的十页核完了。工钱收了，颂文撤了，不再拿那句已经有衣去招人。"
+    },
+    {
+      "id": "ch03_s08_hanyuan.l16",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "撤文的回执在这。十页的钱另列。"
+    },
+    {
+      "id": "ch03_s08_hanyuan.l17",
+      "when": {
+        "flag.chenghuan_accept_2": true
+      },
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "三夜由柳承欢接下，省了工费。她失去的三日休也列在这一页，不能当零。"
+    },
+    {
+      "id": "ch03_s08_hanyuan.l18",
+      "when": {
+        "flag.chenghuan_refuse_2": true
+      },
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "三夜另雇两人，工费已支；半日交班由你亲做，不能再算作备议。"
+    },
+    {
+      "id": "ch03_s08_hanyuan.l19",
+      "when": {
+        "flag.chenghuan_accept_3": true
+      },
+      "who": "shenheng",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "底簿的两处错牒由柳承欢核出。公开摘要合记总办，不能据此说都是你亲核。"
+    },
+    {
+      "id": "ch03_s08_hanyuan.l20",
+      "when": {
+        "flag.chenghuan_accept_3": true
+      },
+      "who": "wuze",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "我准的合记。请把这句留在本次问答里。"
+    },
+    {
+      "id": "ch03_s08_hanyuan.l21",
+      "when": {
+        "flag.chenghuan_refuse_3": true
+      },
+      "who": "shenheng",
+      "expr": "default",
+      "kind": "say",
+      "text": "底簿与摘要同列柳承欢经手，你署总办，逐项功记没有合到你名下。"
+    },
+    {
+      "id": "ch03_s08_hanyuan.l22",
+      "who": "narr",
+      "kind": "aside",
+      "text": "核账官用指背碰了碰未盖印的一栏。李将那页从自己面前转过去。"
+    },
+    {
+      "id": "ch03_s08_hanyuan.l23",
+      "who": "liqinghe",
+      "expr": "default",
+      "kind": "say",
+      "text": "我的扩办款要下月合署拨付。眼前只能保两处轮值，不能说今日便全开。"
+    },
+    {
+      "id": "ch03_s08_hanyuan.l24",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "那两处，已经有人递到？"
+    },
+    {
+      "id": "ch03_s08_hanyuan.l25",
+      "who": "liqinghe",
+      "expr": "default",
+      "kind": "say",
+      "text": "有回执。没有代递的地方也圈了。"
+    },
+    {
+      "id": "ch03_s08_hanyuan.l26",
+      "who": "shenheng",
+      "expr": "default",
+      "kind": "say",
+      "text": "李令仪的异议答复已核一轮，原件可查。再核限三日，尚未试过跨署追签。"
+    },
+    {
+      "id": "ch03_s08_hanyuan.l27",
+      "when": {
+        "flag.ch03_objection_public": true
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "我的不利页已经交过本人核签。今夜能再对原件，但要占复核的两个人。"
+    },
+    {
+      "id": "ch03_s08_hanyuan.l28",
+      "when": {
+        "flag.ch03_objection_deferred": true
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "我的不利页还只收了件。核证人已出署，终议前补不齐那一轮签。"
+    },
+    {
+      "id": "ch03_s08_hanyuan.l29",
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "你原定扩六处。若先缩为两处，余下的钱够保即期开支，也够把代递办实。"
+    },
+    {
+      "id": "ch03_s08_hanyuan.l30",
+      "who": "wuze",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "六处已经有人等着来。"
+    },
+    {
+      "id": "ch03_s08_hanyuan.l31",
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "要逐处告延期。两名复核人也须出去验代递，今夜不能又留下对原件。"
+    },
+    {
+      "id": "ch03_s08_hanyuan.l32",
+      "who": "liqinghe",
+      "expr": "default",
+      "kind": "say",
+      "text": "你两处能有自递、代递，我只有轮值。这一项，你办实便比我多一步。"
+    },
+    {
+      "id": "ch03_s08_hanyuan.l33",
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "也可只补钱，或只补代递，留两人在案前核卷。没补的那项照原样记。"
+    },
+    {
+      "id": "ch03_s08_hanyuan.l34",
+      "when": {
+        "flag.ch03_objection_public": true
+      },
+      "who": "shenheng",
+      "expr": "default",
+      "kind": "say",
+      "text": "你已交逐人回签。留下的人能核全前后两版，比只查原件多一层经手可追。"
+    },
+    {
+      "id": "ch03_s08_hanyuan.l35",
+      "when": {
+        "flag.ch03_objection_deferred": true
+      },
+      "who": "shenheng",
+      "expr": "default",
+      "kind": "say",
+      "text": "只留核卷人也不够，缺的是出署之人的签。不能让留在这里的代他认字。"
+    },
+    {
+      "id": "ch03_s08_hanyuan.l36",
+      "who": "hetaihou",
+      "expr": "default",
+      "kind": "say",
+      "text": "不愿缩六处，也可照原案送，留人核卷。写下六处，不等于眼前已有可付的钱。"
+    },
+    {
+      "id": "ch03_s08_hanyuan.l37",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "已领来的不退给人等。新增的四处，若缓，逐处写明另议的时限。"
+    },
+    {
+      "id": "ch03_s08_hanyuan.l38",
+      "who": "narr",
+      "kind": "aside",
+      "text": "门外两名受雇复核人等着领差。日影已移到门槛，她们今天只够走一趟。"
+    },
+    {
+      "id": "ch03_s08_hanyuan.l39",
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "三席各把可核的凭据列了。你选哪份支出，今日就办，明早照实核，不补空票。"
+    },
+    {
+      "id": "ch03_s08_hanyuan.l40",
+      "who": "self",
+      "kind": "inner",
+      "text": "（钱不是多出来的。拿给这一处，另一处就得等。）"
+    }
+  ],
+  "choices": [
+    {
+      "id": "ch03_s08_hanyuan.cA",
+      "text": "缩为两处，先付钱并办实代递",
+      "effects": {
+        "affinity.wenqiao": 3,
+        "flag.ch03_plan_pair": true,
+        "flag.ch03_evidence_majority": true
+      },
+      "irreversible": false,
+      "goto": "ch03_s09_yuanye"
+    },
+    {
+      "id": "ch03_s08_hanyuan.cB",
+      "text": "缩办保经费，留人核卷",
+      "require": {
+        "flag.ch03_objection_public": true
+      },
+      "effects": {
+        "affinity.wenqiao": 3,
+        "flag.ch03_plan_budget": true,
+        "flag.ch03_evidence_majority": true
+      },
+      "irreversible": false,
+      "goto": "ch03_s09_yuanye"
+    },
+    {
+      "id": "ch03_s08_hanyuan.cC",
+      "text": "先办代递，留人核卷",
+      "require": {
+        "flag.ch03_objection_public": true
+      },
+      "effects": {
+        "affinity.wenqiao": 3,
+        "flag.ch03_plan_access": true,
+        "flag.ch03_evidence_majority": true
+      },
+      "irreversible": false,
+      "goto": "ch03_s09_yuanye"
+    },
+    {
+      "id": "ch03_s08_hanyuan.cD",
+      "text": "保留六处扩办案，先交现有凭据",
+      "effects": {
+        "affinity.wenqiao": 3,
+        "flag.ch03_plan_full": true,
+        "flag.ch03_evidence_majority": false
+      },
+      "irreversible": false,
+      "goto": "ch03_s09_yuanye"
+    }
+  ]
+}

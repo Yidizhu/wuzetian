@@ -1,0 +1,202 @@
+{
+  "id": "ch03_s05_shishe",
+  "chapter": 3,
+  "act": 3,
+  "scene": "shishe",
+  "palette": "ink",
+  "cast": [
+    "wuze",
+    "wenqiao"
+  ],
+  "weightless": false,
+  "leavesLetter": [
+    "wenqiao"
+  ],
+  "purpose": "温退掉颂文的印资，仍为主角留一段不必唱好的声音",
+  "lines": [
+    {
+      "id": "ch03_s05_shishe.l1",
+      "when": {
+        "flag.pei_ch03_hug": true
+      },
+      "who": "narr",
+      "kind": "aside",
+      "text": "裴抱住你，等你松手才退开。走到诗社时，衣襟还留着她袍上的皂香。"
+    },
+    {
+      "id": "ch03_s05_shishe.l2",
+      "when": {
+        "flag.pei_ch03_stand": true
+      },
+      "who": "narr",
+      "kind": "aside",
+      "text": "裴陪你站到换岗鼓响。你们各走一边，谁也没有补问刚才那一句。"
+    },
+    {
+      "id": "ch03_s05_shishe.l3",
+      "who": "narr",
+      "kind": "aside",
+      "text": "诗社窗下晒着空纸。温用一块石头压住纸角，另一只手攥着退回的银袋。"
+    },
+    {
+      "id": "ch03_s05_shishe.l4",
+      "who": "wenqiao",
+      "expr": "default",
+      "kind": "say",
+      "text": "来得好。替我压一下，你那篇颂文，我正好拿去垫了这个摇晃的桌脚。"
+    },
+    {
+      "id": "ch03_s05_shishe.l5",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "我何时有了颂文？"
+    },
+    {
+      "id": "ch03_s05_shishe.l6",
+      "who": "wenqiao",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "送来请我署名的。开头便写，寒者有衣。"
+    },
+    {
+      "id": "ch03_s05_shishe.l7",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "那还没做到。"
+    },
+    {
+      "id": "ch03_s05_shishe.l8",
+      "who": "wenqiao",
+      "expr": "default",
+      "kind": "say",
+      "text": "是啊。拿我的名字替冬天多添一件衣？"
+    },
+    {
+      "id": "ch03_s05_shishe.l9",
+      "who": "narr",
+      "kind": "aside",
+      "text": "她把银袋系好，放在出门要带的筐里。墙边两只纸槽都干着。"
+    },
+    {
+      "id": "ch03_s05_shishe.l10",
+      "who": "wenqiao",
+      "expr": "default",
+      "kind": "say",
+      "text": "不署，这笔印钱便收回。师傅已经算好了新槽的尺寸，我得去说先别做。"
+    },
+    {
+      "id": "ch03_s05_shishe.l11",
+      "who": "wuze",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "我把钱补给你。"
+    },
+    {
+      "id": "ch03_s05_shishe.l12",
+      "who": "wenqiao",
+      "expr": "default",
+      "kind": "say",
+      "text": "你的备议钱也有数。要请我核稿，照页给工钱；新槽我另想。"
+    },
+    {
+      "id": "ch03_s05_shishe.l13",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "先核十页，照原价。未做的那句，撤下来。"
+    },
+    {
+      "id": "ch03_s05_shishe.l14",
+      "who": "wenqiao",
+      "expr": "open",
+      "kind": "say",
+      "text": "好。十页只管字，不管替你招人喜欢。"
+    },
+    {
+      "id": "ch03_s05_shishe.l15",
+      "who": "narr",
+      "kind": "aside",
+      "text": "你们合力挪稳桌子。温松手时，掌根被压出一道白痕。"
+    },
+    {
+      "id": "ch03_s05_shishe.l16",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "疼不疼？"
+    },
+    {
+      "id": "ch03_s05_shishe.l17",
+      "who": "wenqiao",
+      "expr": "default",
+      "kind": "say",
+      "text": "桌子倒不疼。"
+    },
+    {
+      "id": "ch03_s05_shishe.l18",
+      "who": "narr",
+      "kind": "aside",
+      "text": "她甩两下手。你用脚把靠窗的坐垫拨过来，挪到她那只旁边。"
+    },
+    {
+      "id": "ch03_s05_shishe.l19",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "我也想唱一回。能不能坐你旁边？错了你听见就好，不必叫整屋人来听。"
+    },
+    {
+      "id": "ch03_s05_shishe.l20",
+      "who": "wenqiao",
+      "expr": "open",
+      "kind": "say",
+      "text": "要我教你唱，还是陪你唱错？"
+    },
+    {
+      "id": "ch03_s05_shishe.l21",
+      "who": "wuze",
+      "expr": "open",
+      "kind": "say",
+      "text": "先陪我唱错。教的那份，另算钱。"
+    },
+    {
+      "id": "ch03_s05_shishe.l22",
+      "who": "self",
+      "kind": "inner",
+      "text": "（说出口了。她还没答。坐垫被我挪得太近。）"
+    },
+    {
+      "id": "ch03_s05_shishe.l23",
+      "who": "wenqiao",
+      "expr": "open",
+      "kind": "say",
+      "text": "坐这边。我想听你唱；唱一半要走，也给你把尾音接完，不算你欠我。"
+    }
+  ],
+  "choices": [
+    {
+      "id": "ch03_s05_shishe.cA",
+      "text": "稿照实付，今夜一起唱",
+      "effects": {
+        "affinity.wenqiao": 3,
+        "flag.wen_meng_no_praise": true,
+        "flag.wen_ch03_sing": true
+      },
+      "irreversible": false,
+      "goto": "ch03_s06_shuge"
+    },
+    {
+      "id": "ch03_s05_shishe.cB",
+      "text": "稿照实付，合唱另约",
+      "effects": {
+        "affinity.wenqiao": 3,
+        "flag.wen_meng_no_praise": true,
+        "flag.wen_ch03_leave": true
+      },
+      "irreversible": false,
+      "goto": "ch03_s06_shuge"
+    }
+  ]
+}

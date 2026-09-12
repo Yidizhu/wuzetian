@@ -1,0 +1,428 @@
+{
+  "id": "ch03_s11_hanyuan",
+  "chapter": 3,
+  "act": 3,
+  "scene": "hanyuan",
+  "palette": "gold",
+  "cast": [
+    "wuze",
+    "liqinghe",
+    "shenheng",
+    "tangjian",
+    "hetaihou"
+  ],
+  "weightless": false,
+  "leavesLetter": [],
+  "purpose": "按三席具名理由得出实际授位结果，只有获授者可以亲口拒绝",
+  "lines": [
+    {
+      "id": "ch03_s11_hanyuan.l1",
+      "who": "narr",
+      "kind": "aside",
+      "text": "次日，门槛的露水还没干。三席将封好的核凭摆上案，李和你同时起身。"
+    },
+    {
+      "id": "ch03_s11_hanyuan.l2",
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "昨日支出已经办完。三席各自核签，原凭在案，先读每一项，再读授位之名。"
+    },
+    {
+      "id": "ch03_s11_hanyuan.l3",
+      "who": "narr",
+      "kind": "aside",
+      "text": "殿上另设了女皇的御席。何太后移到监议的位置，案前留下两条进退的路。"
+    },
+    {
+      "id": "ch03_s11_hanyuan.l4",
+      "when": {
+        "flag.ch03_plan_pair": true
+      },
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "新增四处已各收延期牒，两处代递收了首件。核卷人随行，原案复对未成。"
+    },
+    {
+      "id": "ch03_s11_hanyuan.l5",
+      "when": {
+        "flag.ch03_plan_budget": true
+      },
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "缩办后的即期钱已入账。两人核完前后卷，新增代递未开，待递者收到缓办牒。"
+    },
+    {
+      "id": "ch03_s11_hanyuan.l6",
+      "when": {
+        "flag.ch03_plan_access": true
+      },
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "新代递已收件，前后卷也核完。余款支去，未取得下月续费的拨凭。"
+    },
+    {
+      "id": "ch03_s11_hanyuan.l7",
+      "when": {
+        "flag.ch03_plan_full": true
+      },
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "六处仍待扩办。原案如实附上，未借临时换名目添出今日尚不存在的钱。"
+    },
+    {
+      "id": "ch03_s11_hanyuan.l8",
+      "when": {
+        "flag.ch03_objection_public": true
+      },
+      "who": "shenheng",
+      "expr": "default",
+      "kind": "say",
+      "text": "不利页的逐人回签在此，证人细节另封。本轮未复对的部分，也未盖已核。"
+    },
+    {
+      "id": "ch03_s11_hanyuan.l9",
+      "when": {
+        "flag.ch03_objection_deferred": true
+      },
+      "who": "shenheng",
+      "expr": "default",
+      "kind": "say",
+      "text": "不利页仍标待核，原件在封中。未回的签没有代填，不能算作核全。"
+    },
+    {
+      "id": "ch03_s11_hanyuan.l10",
+      "when": {
+        "flag.chenghuan_accept_3": true
+      },
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "柳承欢的经手凭据另附。问答已录你准合记，摘要尚须更正，不能算亲核。"
+    },
+    {
+      "id": "ch03_s11_hanyuan.l11",
+      "when": {
+        "flag.chenghuan_refuse_3": true
+      },
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "柳承欢的经手与总办并列，所做两项各有回签，没有借去她的亲核之名。"
+    },
+    {
+      "id": "ch03_s11_hanyuan.l12",
+      "who": "narr",
+      "kind": "aside",
+      "text": "度支核账官将两份收支并排，手指停在拨款日期。唐照她签下的评语宣读。"
+    },
+    {
+      "id": "ch03_s11_hanyuan.l13",
+      "when": {
+        "flag.ch03_plan_pair": true
+      },
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "财政项支持{名}。缩办损了规模，但即期钱已到；李案的扩办款仍待下月。"
+    },
+    {
+      "id": "ch03_s11_hanyuan.l14",
+      "when": {
+        "flag.ch03_plan_budget": true
+      },
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "财政项支持{名}。实际缩支足付本轮；李案额度已核，即期仍未全部拨到。"
+    },
+    {
+      "id": "ch03_s11_hanyuan.l15",
+      "when": {
+        "flag.ch03_plan_access": true
+      },
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "财政项支持李令仪。合署额度已有核准；{名}的新增续费还没有出处。"
+    },
+    {
+      "id": "ch03_s11_hanyuan.l16",
+      "when": {
+        "flag.ch03_plan_full": true
+      },
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "财政项支持李令仪。两处能续；{名}所请六处，尚不能据现有款项开办。"
+    },
+    {
+      "id": "ch03_s11_hanyuan.l17",
+      "who": "narr",
+      "kind": "aside",
+      "text": "别署录事取出昨日收件的回执。上面的掌印有一枚压得歪，已经当面补认。"
+    },
+    {
+      "id": "ch03_s11_hanyuan.l18",
+      "when": {
+        "flag.ch03_plan_pair": true
+      },
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "可及项支持{名}。两处已有自递与代递，路远者确能交到；李案仍止于轮值。"
+    },
+    {
+      "id": "ch03_s11_hanyuan.l19",
+      "when": {
+        "flag.ch03_plan_access": true
+      },
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "可及项支持{名}。代递已收首件，不必本人到署；李案的远处代递尚未开。"
+    },
+    {
+      "id": "ch03_s11_hanyuan.l20",
+      "when": {
+        "flag.ch03_plan_budget": true
+      },
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "可及项支持李令仪。两处轮值已开；{名}的新代递缓了，不能凭将来抵今日。"
+    },
+    {
+      "id": "ch03_s11_hanyuan.l21",
+      "when": {
+        "flag.ch03_plan_full": true
+      },
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "可及项支持李令仪。六处的许诺尚未开门，不能多画四处便多算四处。"
+    },
+    {
+      "id": "ch03_s11_hanyuan.l22",
+      "who": "narr",
+      "kind": "aside",
+      "text": "外署校案官把初稿与改稿分放，核证人的回签夹在两页当中。"
+    },
+    {
+      "id": "ch03_s11_hanyuan.l23",
+      "when": {
+        "flag.ch03_plan_budget": true
+      },
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "纠错项支持{名}。不利页、前后稿与逐人回签已复对，退改沿路有据可查。"
+    },
+    {
+      "id": "ch03_s11_hanyuan.l24",
+      "when": {
+        "flag.ch03_plan_access": true
+      },
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "纠错项支持{名}。两名核卷人对完经手回签，谁改过哪一处都留得下。"
+    },
+    {
+      "id": "ch03_s11_hanyuan.l25",
+      "when": {
+        "flag.ch03_plan_pair": true
+      },
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "纠错项支持李令仪。李案完成原件复对；{名}的人手外派，本轮少这一道。"
+    },
+    {
+      "id": "ch03_s11_hanyuan.l26",
+      "when": {
+        "flag.ch03_plan_full": true,
+        "flag.ch03_objection_public": true
+      },
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "纠错项支持{名}。既有回签已随原案核对；这一项不能替六处生出钱来。"
+    },
+    {
+      "id": "ch03_s11_hanyuan.l27",
+      "when": {
+        "flag.ch03_plan_full": true,
+        "flag.ch03_objection_deferred": true
+      },
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "纠错项支持李令仪。{名}的回签未齐，李案虽只核一轮，这一轮已经办完。"
+    },
+    {
+      "id": "ch03_s11_hanyuan.l28",
+      "who": "liqinghe",
+      "expr": "default",
+      "kind": "say",
+      "text": "我的三日追核还没有全试过，请把保留意见也读完，别随支持一同收起来。"
+    },
+    {
+      "id": "ch03_s11_hanyuan.l29",
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "已读，照留。支持的是本轮这一项，不保往后每一项。"
+    },
+    {
+      "id": "ch03_s11_hanyuan.l30",
+      "when": {
+        "flag.ch03_evidence_majority": true
+      },
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "{名}得两项支持，李令仪得一项。三席具名奏请授位，陛下已阅。"
+    },
+    {
+      "id": "ch03_s11_hanyuan.l31",
+      "when": {
+        "flag.ch03_plan_full": true,
+        "flag.ch03_objection_public": true
+      },
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "李令仪得两项支持，{名}得一项。三席具名奏请授位，陛下已阅。"
+    },
+    {
+      "id": "ch03_s11_hanyuan.l32",
+      "when": {
+        "flag.ch03_plan_full": true,
+        "flag.ch03_objection_deferred": true
+      },
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "李令仪得三项支持。{名}的扩办案另存，三席具名奏请授位，陛下已阅。"
+    },
+    {
+      "id": "ch03_s11_hanyuan.l33",
+      "who": "narr",
+      "kind": "aside",
+      "text": "御席前的授位制书交到唐手里。殿中静下来，只有展开纸卷的响声。"
+    },
+    {
+      "id": "ch03_s11_hanyuan.l34",
+      "when": {
+        "flag.ch03_evidence_majority": true
+      },
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "制授{名}承位。问受否；若辞，仍依原议重推，不将辞受改记为失选。"
+    },
+    {
+      "id": "ch03_s11_hanyuan.l35",
+      "when": {
+        "flag.ch03_evidence_majority": false
+      },
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "制授李令仪承位。问受否。"
+    },
+    {
+      "id": "ch03_s11_hanyuan.l36",
+      "when": {
+        "flag.ch03_evidence_majority": false
+      },
+      "who": "liqinghe",
+      "expr": "default",
+      "kind": "say",
+      "text": "受。未到的拨款与未试完的追核，我按今日的答复继续办。"
+    },
+    {
+      "id": "ch03_s11_hanyuan.l37",
+      "when": {
+        "flag.ch03_evidence_majority": true
+      },
+      "who": "liqinghe",
+      "expr": "default",
+      "kind": "say",
+      "text": "我落下的那一项也照录。你受不受，这一次的比较都不改。"
+    },
+    {
+      "id": "ch03_s11_hanyuan.l38",
+      "who": "hetaihou",
+      "expr": "default",
+      "kind": "say",
+      "text": "授位之名已经读出。受要自己答，辞也要自己答，旁人不替她说已经愿意。"
+    },
+    {
+      "id": "ch03_s11_hanyuan.l39",
+      "when": {
+        "flag.ch03_evidence_majority": true
+      },
+      "who": "self",
+      "kind": "inner",
+      "text": "（名已到我这里。还有一个字，要从我口里出去。）"
+    },
+    {
+      "id": "ch03_s11_hanyuan.l40",
+      "when": {
+        "flag.ch03_evidence_majority": false
+      },
+      "who": "self",
+      "kind": "inner",
+      "text": "（她答得很稳。我的手为什么还压着那份提案。）"
+    }
+  ],
+  "choices": [
+    {
+      "id": "ch03_s11_hanyuan.cA",
+      "text": "我受这一席",
+      "require": {
+        "flag.ch03_evidence_majority": true
+      },
+      "effects": {
+        "flag.ch03_offer_wuze": true,
+        "flag.ch03_offer_li": false,
+        "flag.ch03_accept_offer": true
+      },
+      "irreversible": false,
+      "goto": "ch03_s12_hanyuan"
+    },
+    {
+      "id": "ch03_s11_hanyuan.cB",
+      "text": "我不受，请依原议重推",
+      "require": {
+        "flag.ch03_evidence_majority": true
+      },
+      "effects": {
+        "flag.ch03_offer_wuze": true,
+        "flag.ch03_offer_li": false,
+        "flag.ch03_decline_offer": true
+      },
+      "irreversible": false,
+      "goto": "ch03_s12_hanyuan"
+    },
+    {
+      "id": "ch03_s11_hanyuan.cC",
+      "text": "听完制书，收好自己的提案",
+      "require": {
+        "flag.ch03_evidence_majority": false
+      },
+      "effects": {
+        "flag.ch03_offer_li": true,
+        "flag.ch03_offer_wuze": false
+      },
+      "irreversible": false,
+      "goto": "ch03_s12_hanyuan"
+    }
+  ]
+}

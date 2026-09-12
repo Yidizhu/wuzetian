@@ -23,11 +23,11 @@ import { ROOT } from "./load.ts";
 
 type Tone = "line" | "ink-1" | "ink-2" | "ink-3" | "ink-4";
 type Expr = "default" | "guarded" | "open";
-type Hair = "shuanghuan" | "gaoji" | "duoma" | "putou" | "shufa" | "huangguan" | "gaoguan" | "shuangya";
+type Hair = "shuanghuan" | "gaoji" | "duoma" | "putou" | "shufa" | "huangguan" | "gaoguan" | "shuangya" | "banfan";
 type Robe = "ruqun" | "yuanling" | "kai" | "yuyi" | "dapao" | "duanru";
-type Prop = "none" | "bi" | "jian" | "zhi" | "zhangben" | "chi" | "shu" | "zhenbao" | "yan";
-type Accent = "cuff" | "seal" | "tassel" | "paperline" | "hairpin" | "ruler" | "crown" | "belt" | "needle";
-type Hands = "down" | "front" | "sleeve" | "outR" | "upR" | "belt" | "table" | "backR" | "bend";
+type Prop = "none" | "bi" | "jian" | "zhi" | "zhangben" | "chi" | "shu" | "zhenbao" | "yan" | "gao";
+type Accent = "cuff" | "seal" | "tassel" | "paperline" | "hairpin" | "ruler" | "crown" | "belt" | "needle" | "cord";
+type Hands = "down" | "front" | "sleeve" | "outR" | "upR" | "belt" | "table" | "backR" | "bend" | "hold" | "offer";
 
 interface Pose {
   /** 肩线倾斜（度）。正值右肩低 */
@@ -48,6 +48,10 @@ interface Char {
   prop: Prop; accent: Accent; height: number; width: number;
   /** 结契者：衣缘上一线紫。规矩见 art-style/references/character.md「一点紫」 */
   jieqi?: boolean;
+  /** 这几个表情不画道具。柳承欢的 guarded 是「空手却仍维持托纸姿势」，手势在、纸不在 */
+  hidePropOn?: Expr[];
+  /** 另出一套无朱砂的 `_bare`。柳承欢归还之后，那根朱绳还给了主角（D-038 第 8 条） */
+  bare?: boolean;
   poses: Record<Expr, Pose>; note: string;
 }
 
@@ -102,6 +106,19 @@ const CHARS: Char[] = [
       guarded: { shoulder: 3, hip: -2, head: 0, headFwd: 0, hands: "belt", lean: 0 },
       open:    { shoulder: -5, hip: 5, head: -8, headFwd: 0, hands: "down", lean: -3 },
     } },
+  // 第 11 人（D-038）。她不是四条恋爱线之一，是主角差点成为的那种人。
+  // 剪影上要一眼看出来的只有一件事：**胸前那一叠稿**，以及 guarded 时纸没了、姿势还在
+  { key: "liuchenghuan", name: "柳承欢", tone: "ink-2", hair: "banfan", robe: "ruqun", peibo: false,
+    prop: "gao", accent: "cord", height: 1.0, width: 1.06, hidePropOn: ["guarded"], bare: true,
+    note: "稿托在胸前、偏向主角那一侧。朱砂是主角暂借的系稿朱绳，在腕上；归还之后收回（_bare）",
+    poses: {
+      // 先留出通道：身子让开半步，稿偏左递着
+      default: { shoulder: 2, hip: -4, head: 6, headFwd: 10, hands: "hold", lean: -6 },
+      // 空手，姿势不变。手还端着一份不存在的稿——这一张是她这个人的全部
+      guarded: { shoulder: 4, hip: -2, head: 10, headFwd: 4, hands: "hold", lean: -2 },
+      // 说完很短的愿望，又等人接
+      open:    { shoulder: -3, hip: 3, head: -6, headFwd: 16, hands: "offer", lean: 6 },
+    } },
   { key: "hetaihou", name: "何太后", tone: "line", hair: "gaoguan", robe: "dapao", peibo: true,
     prop: "none", accent: "hairpin", height: 1.0, width: 1.18,
     note: "动作少，先把坐具扶稳再落座。最宽的剪影。朱砂在冠上的簪头",
@@ -142,7 +159,18 @@ const W = 1024, H = 1536, CX = 512;
 const FALLBACK: Record<Tone, string> = {
   line: "#1A1815", "ink-1": "#33302B", "ink-2": "#55524A", "ink-3": "#8C8880", "ink-4": "#C9C4B8",
 };
-const v = (t: Tone) => `var(--c-${t}, ${FALLBACK[t]})`;
+/**
+ * 人身上的颜色走 `--c-char-*`，**不是** `--c-ink-*`（E4）。
+ *
+ * 原来直接绑色板变量，金碧场景里 --c-ink-1 是石青，于是主角整个人被渲染成石青，
+ * 和殿柱同色同位，剪影当场糊掉——手机实机才看出来，桌面上因为屏幕大不明显。
+ * 规矩：金碧只属于场景与器物，人永远走墨色。
+ */
+const CHAR_VAR: Record<Tone, string> = {
+  line: "--c-char-line", "ink-1": "--c-char-1", "ink-2": "--c-char-2",
+  "ink-3": "--c-char-3", "ink-4": "--c-char-4",
+};
+const v = (t: Tone) => `var(${CHAR_VAR[t]}, ${FALLBACK[t]})`;
 const GROUND = "var(--c-ground, #EDE7DA)";
 const ACCENT = "var(--c-accent, var(--c-ink-4, #A8232A))";
 /** 一点紫（D-035）：结契者的暗号。金碧板里 --c-purple 置为 initial，和朱砂一样回退到泥金 */
@@ -280,6 +308,19 @@ function hair(kind: Hair, f: Frame, fill: string): string {
         stroke([x + 58, y - r - 44], [x + 66, y - r], [x + 62, y + 30], 3, 1, fill) +
         stroke([x - 58, y - r - 44], [x - 66, y - r], [x - 62, y + 30], 3, 1, fill) +
         `<circle cx="${x + 62}" cy="${y + 34}" r="4" fill="${fill}"/><circle cx="${x - 62}" cy="${y + 34}" r="4" fill="${fill}"/>`);
+    case "banfan": {
+      // 单刀半翻髻：一片头发从后往前翻上去，顶是一道斜的直边，像一把刀立在头上。
+      // 唐初到盛唐的常见样式，剪影上和高髻（圆）、堕马髻（低垂一侧）分得很开
+      // 宽 > 高：一片斜过头顶的扁髻。第一版立得太高太尖，纯剪影下是一支蜡烛
+      return g(cap +
+        shape([
+          { p: [x - 54, y - r + 8] },
+          { p: [x - 46, y - r - 22], c: [x - 66, y - r - 4] },
+          { p: [x + 58, y - r - 52], c: [x - 6, y - r - 52] },
+          { p: [x + 50, y - r - 20], c: [x + 74, y - r - 40] },
+          { p: [x + 44, y - r + 8], c: [x + 56, y - r - 8] },
+        ], fill));
+    }
     case "shuangya": // 双丫髻：两个小髻高高扎在头顶两侧，小
       return g(cap +
         `<circle cx="${x - 30}" cy="${y - r - 18}" r="15" fill="${fill}"/>` +
@@ -422,6 +463,19 @@ function arms(c: Char, f: Frame, fill: string): string {
       out.push(L([lx + 8, ly + 18], [lx - 26, ly + 200], [lx - 18, hipY - 30]), cuff([lx - 18, hipY - 30], -1));
       out.push(L([rx - 8, ry + 18], [rx - 4, ry + 60], [rx - 24, ry + 130], sw * 0.3));
       break;
+    case "hold": { // 双手托在胸前：肘往外撑开，袖子先鼓出去再收回来托住。
+      // 控制点贴着身子的那一版，肩膀整个消失，剪影像一盏油灯——捧东西的人肘是开的
+      const y0 = f.chestY - 34;
+      out.push(L([lx + 8, ly + 18], [lx - 78, ly + 150], [f.hx - 54, y0], sw * 0.9), cuff([f.hx - 54, y0], -1));
+      out.push(L([rx - 8, ry + 18], [rx + 78, ry + 150], [f.hx + 54, y0], sw * 0.9), cuff([f.hx + 54, y0], 1));
+      break;
+    }
+    case "offer": { // 递出去一点，又停住：肘仍外开，两袖向前下伸，袖口朝上翻
+      const y0 = f.chestY + 18;
+      out.push(L([lx + 8, ly + 18], [lx - 86, ly + 160], [f.hx - 74, y0], sw * 0.86), cuff([f.hx - 74, y0], -1));
+      out.push(L([rx - 8, ry + 18], [rx + 90, ry + 160], [f.hx + 78, y0 + 10], sw * 0.86), cuff([f.hx + 78, y0 + 10], 1));
+      break;
+    }
     case "bend": // 弯身解带：两袖向前下方
       out.push(L([lx + 8, ly + 18], [lx + 10, ly + 170], [f.hx - 30, hipY - 60], sw * 0.8));
       out.push(L([rx - 8, ry + 18], [rx - 10, ry + 170], [f.hx + 36, hipY - 60], sw * 0.8));
@@ -446,13 +500,14 @@ function peibo(f: Frame, fill: string): string {
   );
 }
 
-/** 道具与朱砂点 */
-function propAndAccent(c: Char, f: Frame): string {
+/** 道具与朱砂点。`expr` 用来判断这一张要不要画道具，`bare` 是无朱砂的那一套 */
+function propAndAccent(c: Char, f: Frame, expr: Expr, bare: boolean): string {
   const [lx] = f.shL, [rx, ry] = f.shR;
   const hipY = (f.hipL[1] + f.hipR[1]) / 2, x = f.hx;
   const dot = (cx: number, cy: number, r = 9) => `<circle class="accent" cx="${f1(cx)}" cy="${f1(cy)}" r="${r}" fill="${ACCENT}"/>`;
   const out: string[] = [];
-  switch (c.prop) {
+  const showProp = !(c.hidePropOn ?? []).includes(expr);
+  if (showProp) switch (c.prop) {
     case "bi": out.push(stroke([rx + 22, hipY - 70], [rx + 44, hipY + 10], [rx + 60, hipY + 96], 8, 2, v("line"))); break;
     case "jian": out.push(stroke([lx - 26, hipY - 130], [lx - 56, hipY + 40], [lx - 72, hipY + 250], 16, 6, v("line"))); break;
     case "zhi": out.push(shape([{ p: [rx + 128, ry + 156] }, { p: [rx + 188, ry + 138] }, { p: [rx + 198, ry + 206], c: [rx + 200, ry + 170] }, { p: [rx + 138, ry + 224] }], GROUND, ' opacity="0.9"')); break;
@@ -461,12 +516,29 @@ function propAndAccent(c: Char, f: Frame): string {
     case "shu": out.push(`<rect x="${lx - 52}" y="${hipY - 72}" width="70" height="90" rx="2" fill="${GROUND}" opacity="0.85"/>`); break;
     case "zhenbao": out.push(`<ellipse cx="${x + 72}" cy="${hipY - 42}" rx="30" ry="22" fill="${GROUND}" opacity="0.8"/>`); break;
     case "yan": out.push(`<rect x="${rx + 44}" y="${hipY - 36}" width="120" height="22" rx="4" fill="${v("line")}"/>`); break;
+    case "gao": {
+      // 一叠核过两遍的稿：托在胸前，偏向主角那一侧（主角总在左），略歪。
+      // 纸色实心，是这个人剪影里唯一的亮块——远看认她就认这一块
+      const ty = f.chestY - 60, tw = 104, th = 62;
+      out.push(`<g transform="rotate(-5 ${f1(x)} ${f1(ty)})">`
+        + `<rect x="${f1(x - tw - 12)}" y="${f1(ty)}" width="${tw * 2}" height="${th}" rx="3" fill="${GROUND}"/>`
+        + stroke([x - tw + 4, ty + 20], [x, ty + 22], [x + tw - 24, ty + 20], 3, 3, v("ink-3"), ' opacity="0.55"')
+        + stroke([x - tw + 4, ty + 40], [x, ty + 42], [x + tw - 40, ty + 40], 3, 3, v("ink-3"), ' opacity="0.45"')
+        + `</g>`);
+      break;
+    }
   }
   // 一点紫：簪头上一枚比朱砂点更小的圆。只给结契者（D-035：结契的两人互换发簪）。
   // 试过画成衣缘的一道线，面积反而比朱砂点大，破了 art-style 里自己定的规矩；簪头这处也更有出处
   if (c.jieqi) {
     out.push(`<circle class="purple" cx="${f1(x - 58)}" cy="${f1(f.hy + 30)}" r="5" fill="${PURPLE}"/>`);
   }
+  // 一点紫：簪头上一枚比朱砂点更小的圆。只给结契者（D-035：结契的两人互换发簪）。
+  // 试过画成衣缘的一道线，面积反而比朱砂点大，破了 art-style 里自己定的规矩；簪头这处也更有出处
+  if (c.jieqi) {
+    out.push(`<circle class="purple" cx="${f1(x - 58)}" cy="${f1(f.hy + 30)}" r="5" fill="${PURPLE}"/>`);
+  }
+  if (bare) return out.join("");     // 归还之后那一处朱砂不在了，别的都不动
   switch (c.accent) {
     case "cuff": out.push(dot(rx + 96, hipY - 6, 8)); break;
     case "seal": out.push(`<rect class="accent" x="${x + 30}" y="${hipY - 118}" width="22" height="22" fill="${ACCENT}"/>`); break;
@@ -477,11 +549,20 @@ function propAndAccent(c: Char, f: Frame): string {
     case "crown": out.push(dot(x, f.hy - f.hr - 82, 8)); break;
     case "belt": out.push(dot(x - 30, hipY - 118, 8)); break;
     case "needle": out.push(stroke([x + 94, hipY - 52], [x + 106, hipY - 74], [x + 120, hipY - 92], 4, 1, ACCENT).replace("<polygon", '<polygon class="accent"')); break;
+    case "cord": {
+      // 系稿的朱绳，绕在右腕上。不是首饰，是一件工具——而且是主角的工具，暂借给她的
+      const wy = f.pose.hands === "offer" ? f.chestY + 18 : f.chestY - 34;
+      const wx = f.pose.hands === "offer" ? x + 74 : x + 52;
+      out.push(stroke([wx - 26, wy + 26], [wx, wy + 38], [wx + 26, wy + 24], 6, 6, ACCENT)
+        .replace("<polygon", '<polygon class="accent"'));
+      out.push(`<circle class="accent" cx="${f1(wx + 24)}" cy="${f1(wy + 30)}" r="5" fill="${ACCENT}"/>`);
+      break;
+    }
   }
   return out.join("");
 }
 
-function render(c: Char, expr: Expr): string {
+function render(c: Char, expr: Expr, bare = false): string {
   const pose = c.poses[expr];
   const f = frame(c, pose);
   const fill = v(c.tone);
@@ -494,14 +575,14 @@ function render(c: Char, expr: Expr): string {
     stroke([f.hx, f.hy + f.hr - 10], [f.hx, f.neckY], [f.hx, f.neckY + 16], 26, 46, fill),
     `<g transform="rotate(${pose.head} ${f.hx} ${f.hy})"><ellipse cx="${f.hx}" cy="${f.hy}" rx="${f.hr}" ry="${f.hr + 8}" fill="${fill}"/></g>`,
     hair(c.hair, f, fill),
-    propAndAccent(c, f),
+    propAndAccent(c, f, expr, bare),
     // 焦墨提精神：肩线一笔、下摆一笔、重心侧的衣褶一笔。粗到细
     stroke([f.shL[0] + 6, f.shL[1] + 2], [f.hx, f.shL[1] - 10], [f.shR[0] - 6, f.shR[1] + 2], 7, 2, line),
     stroke([CX - f.halfW * 0.9, f.hemY - 6], [CX, f.hemY + 4], [CX + f.halfW * 0.9 + f.side * 14, f.hemY - 6], 2, 6, line),
     stroke([CX + f.side * f.halfW * 0.3, f.chestY + 40], [CX + f.side * f.halfW * 0.55, (f.chestY + f.hemY) / 2], [CX + f.side * f.halfW * 0.8, f.hemY - 40], 1, 5, line, ' opacity="0.55"'),
   ];
-  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" data-char="${c.key}" data-expr="${expr}">
-<!-- ${c.name} · ${expr} · ${c.note} -->
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" data-char="${c.key}" data-expr="${expr}"${bare ? ' data-bare="1"' : ""}>
+<!-- ${c.name} · ${expr}${bare ? " · 无朱砂" : ""} · ${c.note} -->
 ${parts.filter(Boolean).join("\n")}
 </svg>
 `;
@@ -514,27 +595,45 @@ const OUT = join(ROOT, "src", "char");
 mkdirSync(OUT, { recursive: true });
 const exprs: Expr[] = ["default", "guarded", "open"];
 let n = 0;
+/** 对照表要把 SVG **内联**进去，见下面的注释 */
+const inline: Record<string, string> = {};
 for (const c of CHARS) for (const e of exprs) {
-  writeFileSync(join(OUT, `${c.key}_${e}.svg`), render(c, e), "utf8");
+  const one = render(c, e);
+  writeFileSync(join(OUT, `${c.key}_${e}.svg`), one, "utf8");
+  inline[`${c.key}_${e}`] = one;
   n++;
+  // 无朱砂的一套：文件名 `<key>_<expr>_bare.svg`，归还之后引擎切过去（D-038 第 8 条）
+  if (c.bare) {
+    const bare = render(c, e, true);
+    writeFileSync(join(OUT, `${c.key}_${e}_bare.svg`), bare, "utf8");
+    inline[`${c.key}_${e}_bare`] = bare;
+    n++;
+  }
 }
 
 const sheet = `<!doctype html><html lang="zh-Hans"><head><meta charset="utf-8"><title>立绘对照表</title>
 <style>
-:root{--c-line:#1A1815;--c-ink-1:#33302B;--c-ink-2:#55524A;--c-ink-3:#8C8880;--c-ink-4:#C9C4B8;--c-accent:#A8232A;--c-ground:#EDE7DA}
-body.gold{--c-line:#1A1815;--c-ink-1:#2F5C8F;--c-ink-2:#5B8C6A;--c-ink-3:#8B4A2F;--c-ink-4:#B8964F;--c-accent:initial;--c-ground:#E6D9B9}
+:root{--c-line:#1A1815;--c-ink-1:#33302B;--c-ink-2:#55524A;--c-ink-3:#8C8880;--c-ink-4:#C9C4B8;--c-accent:#A8232A;--c-ground:#EDE7DA;
+--c-char-line:#1A1815;--c-char-1:#33302B;--c-char-2:#55524A;--c-char-3:#8C8880;--c-char-4:#C9C4B8;--c-purple:#6A4470}
+/* 金碧板只换场景与器物的色。--c-char-* 不在这里重声明——人永远走墨色（E4） */
+body.gold{--c-line:#1A1815;--c-ink-1:#2F5C8F;--c-ink-2:#5B8C6A;--c-ink-3:#8B4A2F;--c-ink-4:#B8964F;--c-accent:initial;--c-purple:initial;--c-ground:#E6D9B9}
 body{margin:0;background:var(--c-ground);font-family:"Noto Serif SC","Songti SC",serif;color:var(--c-line);padding:24px}
 h1{font-weight:normal;font-size:18px;letter-spacing:.2em;margin:0 0 12px}
 .row{display:grid;grid-template-columns:120px repeat(3,1fr);gap:12px;align-items:center;border-top:1px solid var(--c-ink-4);padding:10px 0}
 .row .n{font-size:14px}.row .n small{display:block;color:var(--c-ink-3);font-size:11px;line-height:1.6;margin-top:4px}
-.row img{width:100%;max-width:210px;display:block;margin:0 auto}
-.sil .row img{filter:brightness(0)}
+.row .fig{width:100%;max-width:210px;display:block;margin:0 auto}
+.row .fig svg{width:100%;height:auto;display:block}
+.sil .row .fig{filter:brightness(0)}
 button{font:inherit;border:1px solid var(--c-ink-4);background:none;padding:4px 10px;margin-right:8px;cursor:pointer;color:inherit}
 </style></head><body>
 <h1>立绘对照表 · ${n} 张</h1>
+<!-- SVG 是**内联**的，不是 <img src>。用 img 引进来的 SVG 是一个独立文档，
+     拿不到这个页面的 CSS 变量——「切色板」按钮那时候等于没接线，
+     不管切成哪一板，图都用自己的回退色，看不出金碧下人会变成什么样。
+     E4 那个「主角在昭阳殿里整个人是石青」的 bug，正是因为这一页当时验不出来。 -->
 <p><button onclick="document.body.classList.toggle('gold')">切色板</button><button onclick="document.body.classList.toggle('sil')">纯剪影</button>
 <span style="font-size:12px;color:var(--c-ink-3)">纯剪影用来查 art-director 第 1 条：涂黑还认不认得出</span></p>
-${CHARS.map((c) => `<div class="row"><div class="n">${c.name}<small>${c.key} · ${c.tone}<br>${c.note}</small></div>${exprs.map((e) => `<img src="../src/char/${c.key}_${e}.svg" alt="${c.name} ${e}">`).join("")}</div>`).join("\n")}
+${CHARS.map((c) => `<div class="row"><div class="n">${c.name}<small>${c.key} · ${c.tone}<br>${c.note}</small></div>${exprs.map((e) => `<div class="fig">${inline[`${c.key}_${e}`]}</div>`).join("")}</div>`).join("\n")}
 </body></html>`;
 writeFileSync(join(ROOT, "docs", "char-sheet.html"), sheet, "utf8");
 

@@ -1,0 +1,247 @@
+{
+  "id": "ch02_s07_yuanye",
+  "chapter": 2,
+  "act": 2,
+  "scene": "yuanye",
+  "palette": "ink",
+  "cast": [
+    "wuze",
+    "peizhaoye"
+  ],
+  "weightless": false,
+  "leavesLetter": [
+    "peizhaoye"
+  ],
+  "purpose": "裴请主角一起复核她压住的放行安排",
+  "lines": [
+    {
+      "id": "ch02_s07_yuanye.l1",
+      "who": "narr",
+      "kind": "aside",
+      "text": "廊外堆着粮袋。裴照夜扎好袍角，裤脚收进靴筒。"
+    },
+    {
+      "id": "ch02_s07_yuanye.l2",
+      "who": "wuze",
+      "expr": "open",
+      "kind": "say",
+      "text": "何为此装束？"
+    },
+    {
+      "id": "ch02_s07_yuanye.l3",
+      "who": "narr",
+      "kind": "aside",
+      "text": "你学着席间的腔调笑了一声，指的是她塞起的袍角。"
+    },
+    {
+      "id": "ch02_s07_yuanye.l4",
+      "who": "peizhaoye",
+      "expr": "default",
+      "kind": "say",
+      "text": "衣裳合身，不必合谁的意。"
+    },
+    {
+      "id": "ch02_s07_yuanye.l5",
+      "who": "wuze",
+      "expr": "open",
+      "kind": "say",
+      "text": "那这一头给我。"
+    },
+    {
+      "id": "ch02_s07_yuanye.l6",
+      "who": "peizhaoye",
+      "expr": "default",
+      "kind": "say",
+      "text": "重。试一下，抬不起就放。"
+    },
+    {
+      "id": "ch02_s07_yuanye.l7",
+      "who": "narr",
+      "kind": "aside",
+      "text": "你攥紧麻布。她托着袋底，等你的手不再滑。"
+    },
+    {
+      "id": "ch02_s07_yuanye.l8",
+      "when": {
+        "flag.pei_accept_open_date": true
+      },
+      "who": "peizhaoye",
+      "expr": "default",
+      "kind": "say",
+      "text": "路还没定。你信里那句话，我记着。"
+    },
+    {
+      "id": "ch02_s07_yuanye.l9",
+      "when": {
+        "flag.pei_prioritize_accounts": true
+      },
+      "who": "peizhaoye",
+      "expr": "default",
+      "kind": "say",
+      "text": "先核账。你要看的那份在袋后。"
+    },
+    {
+      "id": "ch02_s07_yuanye.l10",
+      "when": {
+        "flag.pei_decline_shared_road": true
+      },
+      "who": "peizhaoye",
+      "expr": "default",
+      "kind": "say",
+      "text": "今日核衣粮。走不走同一条路，照你先前说的。"
+    },
+    {
+      "id": "ch02_s07_yuanye.l11",
+      "when": {
+        "flag.silent_to_peizhaoye": true
+      },
+      "who": "peizhaoye",
+      "expr": "default",
+      "kind": "say",
+      "text": "不必补信。来核就核，旧话不追着问。"
+    },
+    {
+      "id": "ch02_s07_yuanye.l12",
+      "who": "peizhaoye",
+      "expr": "default",
+      "kind": "say",
+      "text": "这一头交给你，行么？"
+    },
+    {
+      "id": "ch02_s07_yuanye.l13",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "行。你慢些松。"
+    },
+    {
+      "id": "ch02_s07_yuanye.l14",
+      "who": "narr",
+      "kind": "aside",
+      "text": "她松开托底的手。重量沉下来，你们一同挪到檐下。"
+    },
+    {
+      "id": "ch02_s07_yuanye.l15",
+      "who": "peizhaoye",
+      "expr": "open",
+      "kind": "say",
+      "text": "放。别砸脚。"
+    },
+    {
+      "id": "ch02_s07_yuanye.l16",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "这页写着暂缓。"
+    },
+    {
+      "id": "ch02_s07_yuanye.l17",
+      "who": "peizhaoye",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "我写的。她想领一队去转粮。"
+    },
+    {
+      "id": "ch02_s07_yuanye.l18",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "她做不了？"
+    },
+    {
+      "id": "ch02_s07_yuanye.l19",
+      "who": "peizhaoye",
+      "expr": "default",
+      "kind": "say",
+      "text": "做得了。路不熟。"
+    },
+    {
+      "id": "ch02_s07_yuanye.l20",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "你头一回认路时，谁替你写了暂缓？"
+    },
+    {
+      "id": "ch02_s07_yuanye.l21",
+      "who": "narr",
+      "kind": "aside",
+      "text": "裴解开腕上勒出的麻线，搓了搓那一道红痕。"
+    },
+    {
+      "id": "ch02_s07_yuanye.l22",
+      "who": "peizhaoye",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "她又来问过两回，我都叫她等等。今日翻到这里，还是我写的那两个字。"
+    },
+    {
+      "id": "ch02_s07_yuanye.l23",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "她还肯去么？"
+    },
+    {
+      "id": "ch02_s07_yuanye.l24",
+      "who": "peizhaoye",
+      "expr": "default",
+      "kind": "say",
+      "text": "先问她。不能拖过了，又替她说愿意。"
+    },
+    {
+      "id": "ch02_s07_yuanye.l25",
+      "who": "peizhaoye",
+      "expr": "default",
+      "kind": "say",
+      "text": "你陪我核这一趟的衣粮，缺哪一项照实写；别因我说稳妥就替我删掉。"
+    },
+    {
+      "id": "ch02_s07_yuanye.l26",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "你自己去问她。"
+    },
+    {
+      "id": "ch02_s07_yuanye.l27",
+      "who": "peizhaoye",
+      "expr": "default",
+      "kind": "say",
+      "text": "我去。回来写信，把她答的和我欠办的分开。"
+    }
+  ],
+  "choices": [
+    {
+      "id": "ch02_s07_yuanye.cA",
+      "text": "我核欠项，你去问她",
+      "effects": {
+        "affinity.peizhaoye": 3,
+        "flag.pei_shared_check": true,
+        "flag.pei_check_supply": true
+      },
+      "irreversible": false,
+      "goto": "ch02_s08_shuge"
+    },
+    {
+      "id": "ch02_s07_yuanye.cB",
+      "text": "我核脚程，你把粮数列齐",
+      "effects": {
+        "affinity.peizhaoye": 3,
+        "flag.pei_shared_check": true,
+        "flag.pei_check_route": true
+      },
+      "irreversible": false,
+      "goto": "ch02_s08_shuge"
+    },
+    {
+      "id": "ch02_s07_yuanye.cC",
+      "text": "我今日接不下，另请人核",
+      "effects": {
+        "flag.pei_check_declined": true
+      },
+      "irreversible": false,
+      "goto": "ch02_s08_shuge"
+    }
+  ]
+}

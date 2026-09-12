@@ -1,0 +1,159 @@
+{
+  "id": "ch02_s23_hanyuan",
+  "chapter": 2,
+  "act": 2,
+  "scene": "hanyuan",
+  "palette": "gold",
+  "cast": [
+    "wuze",
+    "liqinghe",
+    "shenheng",
+    "tangjian",
+    "hetaihou"
+  ],
+  "weightless": false,
+  "leavesLetter": [],
+  "purpose": "正式开放非宗室提名，本轮候选名单公布",
+  "lines": [
+    {
+      "id": "ch02_s23_hanyuan.l1",
+      "who": "narr",
+      "kind": "aside",
+      "text": "正式议决那日，唐简展开颁牒。案后的帘已卷起。"
+    },
+    {
+      "id": "ch02_s23_hanyuan.l2",
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "奉诏，承统受荐，不限宗姓。"
+    },
+    {
+      "id": "ch02_s23_hanyuan.l3",
+      "when": {
+        "flag.nomination_joint_review": true
+      },
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "本轮依三处联署核验，利害回避、申辩及复核照所附条文施行。"
+    },
+    {
+      "id": "ch02_s23_hanyuan.l4",
+      "when": {
+        "flag.nomination_open_questions": true
+      },
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "本轮依限期试问核验，寄卷、旅费与复核照所附条文施行。"
+    },
+    {
+      "id": "ch02_s23_hanyuan.l5",
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "此后变更须再议，不得只为一人破例。"
+    },
+    {
+      "id": "ch02_s23_hanyuan.l6",
+      "who": "hetaihou",
+      "expr": "default",
+      "kind": "say",
+      "text": "陛下依议颁条。受位之人仍待比较，不在今日定。"
+    },
+    {
+      "id": "ch02_s23_hanyuan.l7",
+      "who": "liqinghe",
+      "expr": "default",
+      "kind": "say",
+      "text": "名册。"
+    },
+    {
+      "id": "ch02_s23_hanyuan.l8",
+      "who": "narr",
+      "kind": "aside",
+      "text": "唐简另展开一页，本轮核准处有两行。"
+    },
+    {
+      "id": "ch02_s23_hanyuan.l9",
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "李令仪。{名}。"
+    },
+    {
+      "id": "ch02_s23_hanyuan.l10",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "都已经核过？"
+    },
+    {
+      "id": "ch02_s23_hanyuan.l11",
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "两人履历、支出与未决之事都附了。你的擅引，她那份旧支出，一样在册后。"
+    },
+    {
+      "id": "ch02_s23_hanyuan.l12",
+      "who": "shenheng",
+      "expr": "default",
+      "kind": "say",
+      "text": "有异议仍可依限送来。今日入册，不封后面的口。"
+    },
+    {
+      "id": "ch02_s23_hanyuan.l13",
+      "who": "liqinghe",
+      "expr": "default",
+      "kind": "say",
+      "text": "我明日交全稿。你也交。"
+    },
+    {
+      "id": "ch02_s23_hanyuan.l14",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "不只让人挑自己愿给看的那几页。"
+    },
+    {
+      "id": "ch02_s23_hanyuan.l15",
+      "who": "liqinghe",
+      "expr": "default",
+      "kind": "say",
+      "text": "全部。"
+    },
+    {
+      "id": "ch02_s23_hanyuan.l16",
+      "who": "narr",
+      "kind": "aside",
+      "text": "你看着两行字。自己的名字旁边，没有比另一行多一寸位置。"
+    },
+    {
+      "id": "ch02_s23_hanyuan.l17",
+      "who": "hetaihou",
+      "expr": "default",
+      "kind": "say",
+      "text": "这一步走到了，后面不能再拿来路苦当作答复。要问的事只会更多。"
+    },
+    {
+      "id": "ch02_s23_hanyuan.l18",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "那就从全稿问起。"
+    }
+  ],
+  "choices": [
+    {
+      "id": "ch02_s23_hanyuan.cA",
+      "text": "收下候选文牒，准备比较",
+      "effects": {
+        "flag.succession_open": true
+      },
+      "irreversible": false,
+      "goto": "ch02_s26_shuge"
+    }
+  ]
+}

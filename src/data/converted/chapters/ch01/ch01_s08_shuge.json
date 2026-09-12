@@ -233,7 +233,7 @@
         "affinity.wenqiao": 1,
         "flag.self_submit_cap": true
       },
-      "irreversible": false,
+      "irreversible": true,
       "goto": "ch01_s09_shuge"
     },
     {
@@ -246,7 +246,7 @@
         "affinity.wenqiao": 1,
         "flag.self_submit_window": true
       },
-      "irreversible": false,
+      "irreversible": true,
       "goto": "ch01_s09_shuge"
     }
   ]

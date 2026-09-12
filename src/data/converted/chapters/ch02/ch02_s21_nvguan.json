@@ -1,0 +1,132 @@
+{
+  "id": "ch02_s21_nvguan",
+  "chapter": 2,
+  "act": 2,
+  "scene": "nvguan",
+  "palette": "ink",
+  "cast": [
+    "wenqiao",
+    "xujinghe"
+  ],
+  "weightless": false,
+  "leavesLetter": [],
+  "purpose": "温与许为学徒谋生、病者休息协商时辰，不经主角",
+  "lines": [
+    {
+      "id": "ch02_s21_nvguan.l1",
+      "who": "narr",
+      "kind": "aside",
+      "text": "许把晒干的药筛端进屋。温荞站在门边，没敲病舍的门。"
+    },
+    {
+      "id": "ch02_s21_nvguan.l2",
+      "who": "wenqiao",
+      "expr": "default",
+      "kind": "say",
+      "text": "今晚借东间？"
+    },
+    {
+      "id": "ch02_s21_nvguan.l3",
+      "who": "xujinghe",
+      "expr": "default",
+      "kind": "say",
+      "text": "今晚不借。隔壁才睡下。"
+    },
+    {
+      "id": "ch02_s21_nvguan.l4",
+      "who": "wenqiao",
+      "expr": "default",
+      "kind": "say",
+      "text": "我们不高声。"
+    },
+    {
+      "id": "ch02_s21_nvguan.l5",
+      "who": "xujinghe",
+      "expr": "default",
+      "kind": "say",
+      "text": "你们笑起来，自己听不见多响。"
+    },
+    {
+      "id": "ch02_s21_nvguan.l6",
+      "who": "narr",
+      "kind": "aside",
+      "text": "温隔着门听了片刻，把抬起的手放下。"
+    },
+    {
+      "id": "ch02_s21_nvguan.l7",
+      "who": "wenqiao",
+      "expr": "default",
+      "kind": "say",
+      "text": "白日她们在纸坊，少半日的钱，我这一场也补不起所有人。"
+    },
+    {
+      "id": "ch02_s21_nvguan.l8",
+      "who": "xujinghe",
+      "expr": "default",
+      "kind": "say",
+      "text": "那先问几个人想来，不必凑满一屋。"
+    },
+    {
+      "id": "ch02_s21_nvguan.l9",
+      "who": "wenqiao",
+      "expr": "default",
+      "kind": "say",
+      "text": "午后两个人，轮着来。我付这半日。"
+    },
+    {
+      "id": "ch02_s21_nvguan.l10",
+      "who": "xujinghe",
+      "expr": "default",
+      "kind": "say",
+      "text": "取你自己的钱，还是社里的？"
+    },
+    {
+      "id": "ch02_s21_nvguan.l11",
+      "who": "wenqiao",
+      "expr": "default",
+      "kind": "say",
+      "text": "我的。三场，再多须另商量。"
+    },
+    {
+      "id": "ch02_s21_nvguan.l12",
+      "who": "xujinghe",
+      "expr": "default",
+      "kind": "say",
+      "text": "我能留东间三日，过后有人要住；你若还教，得另外找能开门的地方。"
+    },
+    {
+      "id": "ch02_s21_nvguan.l13",
+      "who": "wenqiao",
+      "expr": "open",
+      "kind": "say",
+      "text": "成。不在你门上写长久。"
+    },
+    {
+      "id": "ch02_s21_nvguan.l14",
+      "who": "narr",
+      "kind": "aside",
+      "text": "温拿自己的小纸记下三日，许添了可用的时辰。"
+    },
+    {
+      "id": "ch02_s21_nvguan.l15",
+      "who": "xujinghe",
+      "expr": "default",
+      "kind": "say",
+      "text": "茶自己烧。"
+    },
+    {
+      "id": "ch02_s21_nvguan.l16",
+      "who": "wenqiao",
+      "expr": "open",
+      "kind": "say",
+      "text": "这个倒要记在最上头。"
+    },
+    {
+      "id": "ch02_s21_nvguan.l17",
+      "who": "narr",
+      "kind": "aside",
+      "text": "两人抬起东间的矮桌，挪到离病舍远的一侧。"
+    }
+  ],
+  "goto": "ch02_s25_yeting"
+}

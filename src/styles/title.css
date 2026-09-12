@@ -1,0 +1,104 @@
+/* 标题画面（E3 第 3 条）。一张纸、三个竖排的字、一枚印，其余全空。
+   进来的时候墨晕开一次——全游戏只有墨晕这一种动效语言（ui.md）。 */
+
+.title {
+  position: fixed; inset: 0; z-index: 60;
+  background: var(--c-ground);
+  cursor: pointer; user-select: none;
+  display: block;
+}
+
+/* 纸纹：和舞台上那一层同一张噪声，压得更淡。标题这一屏最空，纹重了就只剩纹 */
+.title__paper {
+  position: absolute; inset: 0; pointer-events: none;
+  mix-blend-mode: multiply; opacity: 0.13;
+  background-image: url("data:image/svg+xml;utf8,\
+<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'>\
+<filter id='tn'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/>\
+<feColorMatrix type='saturate' values='0'/></filter>\
+<rect width='140' height='140' filter='url(%23tn)' opacity='0.5'/></svg>");
+}
+
+/* 字在左三分之一、略偏下。右上那一大块空着，正是游戏里题跋区的位置 */
+.title__wrap {
+  position: absolute;
+  left: clamp(28px, 14vw, 150px);
+  /* 主体偏左下（composition.md）。居中的那一版上下一样空，画面没有方向 */
+  top: 54%; transform: translateY(-44%);
+  display: flex; align-items: flex-start; gap: clamp(10px, 2.4vw, 20px);
+}
+
+.title__col { display: flex; flex-direction: column; }
+.title__ch {
+  font-family: var(--font);
+  font-size: clamp(56px, 17vw, 132px);
+  line-height: 1.04;
+  color: var(--c-line);
+  letter-spacing: 0;
+}
+
+.title__rule {
+  width: 1px; align-self: stretch;
+  background: var(--c-ink-3);
+  margin: 10px 0 -6px;
+  opacity: 0.7;
+}
+
+/* 印：字脚下一枚朱砂方印，阳文。全屏唯一的红，占不到千分之三。
+   压在最后一个字上的那一版是错的——印盖在款的末尾，不盖在字上 */
+.title__seal {
+  position: absolute; left: 2px; bottom: -74px;
+  width: 46px; height: 46px;
+  display: grid; place-items: center;
+  background: var(--c-accent, var(--c-ink-4));
+  color: var(--c-ground);
+  font-family: var(--font); font-size: 15px; line-height: 1.05;
+  writing-mode: vertical-rl;
+  /* 手刻的印不是正方，四角略有出入 */
+  clip-path: polygon(2% 0, 100% 3%, 97% 100%, 0 96%);
+}
+
+/* 两个入口在右下角上下叠。「入宫」在下、重一档，是这一屏的主句；
+   「接着上次」在它上方、淡一档，只有存档存在时才出现（D-046 原话是「主入口上方」）。
+   两个都竖排：这一屏没有一个横着的字。 */
+.title__ways {
+  position: absolute;
+  right: clamp(20px, 7vw, 64px); bottom: clamp(28px, 9vh, 76px);
+  display: flex; flex-direction: column; align-items: center;
+  gap: clamp(16px, 3vh, 26px);
+}
+.title__enter, .title__resume {
+  appearance: none; background: none; border: 0; cursor: pointer;
+  min-height: 44px; min-width: 44px; padding: 8px 4px;
+  font-family: var(--font); letter-spacing: 0.3em;
+  writing-mode: vertical-rl;
+}
+.title__enter { font-size: 20px; color: var(--c-text); }
+.title__resume { font-size: 15px; color: var(--c-text-soft); }
+.title__enter:hover, .title__resume:hover { color: var(--c-line); }
+
+.title__sub {
+  position: absolute; left: clamp(28px, 14vw, 150px); bottom: clamp(24px, 7vh, 56px);
+  margin: 0; max-width: 62vw;
+  font-family: var(--font); font-size: 14px; line-height: 1.9;
+  color: var(--c-text-soft);
+}
+
+/* 墨晕：从字那一处扩出去，边不规整。进来开，出去合 */
+.title[data-state] {
+  -webkit-mask-image: radial-gradient(circle at 26% 52%, #000 0%, #000 var(--r, 160%), transparent calc(var(--r, 160%) + 12%));
+  mask-image: radial-gradient(circle at 26% 52%, #000 0%, #000 var(--r, 160%), transparent calc(var(--r, 160%) + 12%));
+}
+.title[data-state="in"]  { animation: title-in 620ms var(--ease) both; }
+.title[data-state="out"] { animation: title-out 460ms var(--ease) both; }
+@keyframes title-in  { from { --r: 0%; } to { --r: 160%; } }
+@keyframes title-out { from { --r: 160%; } to { --r: 0%; } }
+@property --r { syntax: "<percentage>"; inherits: false; initial-value: 160%; }
+
+/* 字一个接一个显出来，像写下去的顺序。只有 240ms 的错开，不做成打字机 */
+.title__ch { animation: title-ch 520ms var(--ease) both; animation-delay: calc(var(--i) * 120ms + 120ms); }
+@keyframes title-ch { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: none; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .title[data-state="in"], .title[data-state="out"], .title__ch { animation: none; }
+}

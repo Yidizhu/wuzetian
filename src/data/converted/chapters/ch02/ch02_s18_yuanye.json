@@ -1,0 +1,97 @@
+{
+  "id": "ch02_s18_yuanye",
+  "chapter": 2,
+  "act": 2,
+  "scene": "yuanye",
+  "palette": "ink",
+  "cast": [
+    "wuze",
+    "liqinghe"
+  ],
+  "require": {
+    "affinity.liqinghe": {
+      "gte": 10
+    },
+    "flag.liqinghe_cost_check": true
+  },
+  "weightless": true,
+  "leavesLetter": [],
+  "purpose": "猜枝的方向，不立输赢与赴约凭据",
+  "lines": [
+    {
+      "id": "ch02_s18_yuanye.l1",
+      "who": "narr",
+      "kind": "aside",
+      "text": "墙边一枝弯得很低，枝尖悬在李令仪袖口上方。"
+    },
+    {
+      "id": "ch02_s18_yuanye.l2",
+      "who": "liqinghe",
+      "expr": "default",
+      "kind": "say",
+      "text": "明日往这边。"
+    },
+    {
+      "id": "ch02_s18_yuanye.l3",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "今日已经往这边了。"
+    },
+    {
+      "id": "ch02_s18_yuanye.l4",
+      "who": "liqinghe",
+      "expr": "open",
+      "kind": "say",
+      "text": "再往一点。"
+    },
+    {
+      "id": "ch02_s18_yuanye.l5",
+      "who": "wuze",
+      "expr": "open",
+      "kind": "say",
+      "text": "你拿袖口挨着它，风一来就把它推回去；这样猜，明日还是你说的方向。"
+    },
+    {
+      "id": "ch02_s18_yuanye.l6",
+      "who": "narr",
+      "kind": "aside",
+      "text": "李令仪收回袖子，枝尖弹开。"
+    },
+    {
+      "id": "ch02_s18_yuanye.l7",
+      "who": "liqinghe",
+      "expr": "open",
+      "kind": "say",
+      "text": "好，你猜。"
+    },
+    {
+      "id": "ch02_s18_yuanye.l8",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "往上。"
+    },
+    {
+      "id": "ch02_s18_yuanye.l9",
+      "who": "liqinghe",
+      "expr": "open",
+      "kind": "say",
+      "text": "那你得替它等一夜，我可不等；明日若忘了今日怎么说，也别来问我。"
+    },
+    {
+      "id": "ch02_s18_yuanye.l10",
+      "who": "wuze",
+      "expr": "open",
+      "kind": "say",
+      "text": "不问。"
+    },
+    {
+      "id": "ch02_s18_yuanye.l11",
+      "who": "narr",
+      "kind": "aside",
+      "text": "你们绕过低枝，在另一边的阴影里坐下。"
+    }
+  ],
+  "goto": "ch02_s20_hanyuan"
+}

@@ -1,0 +1,159 @@
+{
+  "id": "ch03_s01_shuge",
+  "chapter": 3,
+  "act": 3,
+  "scene": "shuge",
+  "palette": "gold",
+  "cast": [
+    "wuze",
+    "shenheng",
+    "tangjian"
+  ],
+  "weightless": false,
+  "leavesLetter": [],
+  "purpose": "决定自己的不利材料是否和荐文一同交给复核人",
+  "lines": [
+    {
+      "id": "ch03_s01_shuge.l1",
+      "who": "narr",
+      "kind": "aside",
+      "text": "荐卷少了一页。窗纸透着白光，抽出的那页压在镇尺底下。"
+    },
+    {
+      "id": "ch03_s01_shuge.l2",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "谁抽的？"
+    },
+    {
+      "id": "ch03_s01_shuge.l3",
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "荐署掌案请求暂撤，署了本名。她说这页放进去，复核的人会迟疑。"
+    },
+    {
+      "id": "ch03_s01_shuge.l4",
+      "who": "narr",
+      "kind": "aside",
+      "text": "唐把来牒翻到落款。沈没有替你把镇尺挪开。"
+    },
+    {
+      "id": "ch03_s01_shuge.l5",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "她替我省了哪一句？"
+    },
+    {
+      "id": "ch03_s01_shuge.l6",
+      "who": "shenheng",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "擅引未获许可的私话，补牒晚于原牒。"
+    },
+    {
+      "id": "ch03_s01_shuge.l7",
+      "who": "wuze",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "字是你的。"
+    },
+    {
+      "id": "ch03_s01_shuge.l8",
+      "who": "shenheng",
+      "expr": "default",
+      "kind": "say",
+      "text": "是。驳语也留了我自己的错。"
+    },
+    {
+      "id": "ch03_s01_shuge.l9",
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "原件不能撤。你可附入本轮复核，也可先补证，保留尚未答清的标记。"
+    },
+    {
+      "id": "ch03_s01_shuge.l10",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "后一种要等多久？"
+    },
+    {
+      "id": "ch03_s01_shuge.l11",
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "核证人明日出署。这回不送，终议以前只够收件，不够逐人核签。"
+    },
+    {
+      "id": "ch03_s01_shuge.l12",
+      "who": "shenheng",
+      "expr": "default",
+      "kind": "say",
+      "text": "已隐去可认出证人的细节。那人未许公开的，不在这一页里。"
+    },
+    {
+      "id": "ch03_s01_shuge.l13",
+      "who": "self",
+      "kind": "inner",
+      "text": "（留下会迟疑。抽走，他们先读的就是荐我的话。）"
+    },
+    {
+      "id": "ch03_s01_shuge.l14",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "我想再补一段，说明当时为什么急。"
+    },
+    {
+      "id": "ch03_s01_shuge.l15",
+      "who": "shenheng",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "可以补。不能替换这一页。"
+    },
+    {
+      "id": "ch03_s01_shuge.l16",
+      "who": "narr",
+      "kind": "aside",
+      "text": "镇尺底下露着一个“晚”字。你把拇指从字上拿开。"
+    },
+    {
+      "id": "ch03_s01_shuge.l17",
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "荐署那位也得留在经手簿上。准不准她抽，由你署答，不能只记她。"
+    },
+    {
+      "id": "ch03_s01_shuge.l18",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "两份都给我。"
+    }
+  ],
+  "choices": [
+    {
+      "id": "ch03_s01_shuge.cA",
+      "text": "不利页与补答一同交核",
+      "effects": {
+        "flag.ch03_objection_public": true
+      },
+      "irreversible": true,
+      "goto": "ch03_s02_shuge"
+    },
+    {
+      "id": "ch03_s01_shuge.cB",
+      "text": "暂缓公开，先补证",
+      "effects": {
+        "flag.ch03_objection_deferred": true
+      },
+      "irreversible": true,
+      "goto": "ch03_s02_shuge"
+    }
+  ]
+}

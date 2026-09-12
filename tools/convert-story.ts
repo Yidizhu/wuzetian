@@ -19,11 +19,11 @@
  *   node --experimental-strip-types tools/convert-story.ts docs/C-C-第一章.md
  *   node --experimental-strip-types tools/convert-story.ts --all
  */
-import { readFileSync, writeFileSync, mkdirSync, existsSync, readdirSync } from "node:fs";
+import { readFileSync, writeFileSync, mkdirSync, existsSync, readdirSync, rmSync } from "node:fs";
 import { join, resolve, dirname, relative } from "node:path";
 import { pathToFileURL } from "node:url";
 import { createHash } from "node:crypto";
-import { Scene, Line, Poem, PoemDuel, Letter, Ending, CHARACTER_KEYS, SCENE_KEYS } from "../src/engine/schema.ts";
+import { Scene, Line, Choice, Poem, PoemDuel, Letter, Ending, CHARACTER_KEYS, SCENE_KEYS } from "../src/engine/schema.ts";
 import type { SceneT, PoemT, PoemDuelT, LetterT, EndingT } from "../src/engine/schema.ts";
 import type { Condition } from "../src/engine/types.ts";
 
@@ -154,14 +154,25 @@ export function convert(markdown: string, file: string): ConvertResult {
  *   直接按本批重写，把改过 id 或删掉的条目清出去；否则只合并，免得只转一份文件
  *   就把别处来的条目冲掉。判断在 runCli 里做，靠 manifest 记的输入清单。
  */
+/**
+ * 一个场景或一封信写在哪。写盘和清理陈旧文件共用这一条规则，
+ * 两边各写一遍的话，删的和写的迟早对不上。
+ */
+export function outputPathFor(id: string, outDir: string): string {
+  if (id.startsWith("lt_")) return join(outDir, "letters", `${id}.json`);
+  const chapter = /^ch(\d+)/.exec(id)?.[1];
+  if (!chapter) throw new Error(`认不出这是第几章的东西：${id}`);
+  return join(outDir, "chapters", `ch${chapter}`, `${id}.json`);
+}
+
 export function writeOut(r: ConvertResult, outDir: string, replace = false): void {
   const write = (path: string, value: unknown) => {
     mkdirSync(dirname(path), { recursive: true });
     writeFileSync(path, JSON.stringify(value, null, 2) + "\n", "utf8");
   };
-  for (const s of r.scenes) write(join(outDir, "chapters", `ch${String(s.chapter).padStart(2, "0")}`, `${s.id}.json`), s);
+  for (const s of r.scenes) write(outputPathFor(s.id, outDir), s);
   // Runtime loader expects one object per letter in letters/, not an array.
-  for (const l of r.letters) write(join(outDir, "letters", `${l.id}.json`), l);
+  for (const l of r.letters) write(outputPathFor(l.id, outDir), l);
   for (const group of ["poems", "duels", "endings"] as const) {
     if (!r[group].length) continue;
     const path = join(outDir, `${group}.json`);
@@ -171,6 +182,29 @@ export function writeOut(r: ConvertResult, outDir: string, replace = false): voi
     for (const x of r[group]) merged.set((x as any)[key], x);
     write(path, group === "endings" ? r.endings : [...merged.values()]);
   }
+}
+
+/** 取 zod 对象的字段表；superRefine 包了一层，要先剥开 */
+function shapeOf(schema: unknown): Record<string, unknown> {
+  const s = schema as any;
+  try { return s?.innerType?.()?.shape ?? s?.shape ?? {}; } catch { return {}; }
+}
+/**
+ * schema 跟上没有。跟上了才写那个字段，没跟上就报一条接口问题、并且不输出这个对象——
+ * 硬塞一个引擎不认的字段，等于把"这段信文读不到"变成没人发现的事。
+ */
+const SCHEMA_HAS = {
+  interceptAt: "interceptAt" in shapeOf(Letter),                              // D-039
+  letterPages: "pages" in shapeOf(shapeOf(Letter).body),                      // D-044
+  dressing: "dressing" in shapeOf(Scene),                                     // D-046
+  chapterEndChoice: Choice.safeParse({ id: "x", text: "y" }).success,         // D-043
+};
+
+/** 说话人允许的取值：十个冻结角色，加主角内心与旁白 */
+const SPEAKERS = new Set<string>([...CHARACTER_KEYS, "self", "narr"]);
+/** 认不出的角色 key：可能是新批准的角色还没进枚举，也可能是笔误。两条路都写出来 */
+function unknownCharacter(key: string, where: string): string {
+  return `${where}的角色 key「${key}」不在 D-016 冻结的十个里。若这是指挥日志新批准的角色，要 CC1 先加进 src/engine/schema.ts 的 CHARACTER_KEYS 和角色表；若是笔误，请 ChatGPT 改原文。在那之前这一场不输出`;
 }
 
 // ------------------------------------------------------------ Markdown reader
@@ -252,14 +286,28 @@ function integer(s: string): number {
   if (!/^\d+$/.test(s)) throw new Error(`应为整数：${s}`);
   return Number(s);
 }
-const LINE_HEADER = "#|说话人|表情|类型|台词";
-/** 台词表：五列基本表，或按 D-026 在末尾多一列「条件」。别的列序一律不认，不猜。 */
-function lineTable(b: Block): Table {
-  const exact = b.tables.find(t => [LINE_HEADER, `${LINE_HEADER}|条件`].includes(t.header.join("|")));
-  if (exact) return exact;
+const LINE_COLUMNS = ["#", "说话人", "表情", "类型", "台词"] as const;
+/**
+ * 台词表：五列基本表，或按 D-026 多一列「条件」。
+ *
+ * 取值按列名，不按位置：story-schema 1.3 把「条件」写在「台词」之前，
+ * 第一章的 C-3 写在最后，两种都得认，否则不是第一章断就是第二章断。
+ * 列名认不出来才报错——那说明真的写错了，不是排法不同。
+ */
+function lineTable(b: Block): { table: Table; at: (row: Row, name: string) => string } {
+  const ok = (t: Table) => {
+    const names = new Set(t.header);
+    return names.size === t.header.length && LINE_COLUMNS.every(c => names.has(c)) &&
+      [...names].every(c => (LINE_COLUMNS as readonly string[]).includes(c) || c === "条件");
+  };
+  const table = b.tables.find(ok);
+  if (table) {
+    const index = new Map(table.header.map((name, i) => [name, i]));
+    return { table, at: (row, name) => (index.has(name) ? row.cells[index.get(name)!] : "") };
+  }
   const near = b.tables.find(t => t.header[0] === "#" && t.header.includes("台词"));
-  if (near) throw new Error(`台词表列不合规范：应为「# | 说话人 | 表情 | 类型 | 台词」，可在末尾加一列「条件」（D-026）；实际「${near.header.join(" | ")}」`);
-  throw new Error("缺少规范台词表（# | 说话人 | 表情 | 类型 | 台词，可加第六列「条件」）。承接段正文请按 D-026 合并进本表，用「条件」列标条件");
+  if (near) throw new Error(`台词表列名不合规范：要有且只有「# | 说话人 | 表情 | 类型 | 台词」，可另加一列「条件」（D-026）；实际「${near.header.join(" | ")}」`);
+  throw new Error("缺少规范台词表（# | 说话人 | 表情 | 类型 | 条件 | 台词）。承接段正文请按 D-026 合并进本表，用「条件」列标条件");
 }
 type ZodLike = { issues: { path: (string | number)[]; message: string }[] };
 /** 把 zod 的报错压成一行给人看，不要整段 JSON；常见的英文数值报错顺手译成中文。 */
@@ -279,11 +327,40 @@ function duelIdOf(s: string): string {
   if (!/^pd_[a-z0-9_]+$/.test(id)) throw new Error(`对诗 id 须为 pd-01 这类写法：${s}`);
   return id;
 }
+/**
+ * 各类「字段 | 值」表认得的字段名。
+ *
+ * 认不出的字段一律报问题，不静默丢：新机制（比如 D-035 的双鲤折法）要是只在
+ * markdown 里多写一行，而转换器默默忽略，那这件事就从剧本里消失了，谁也不会发现。
+ * 剧作自查用的那几行（进场想要、阻碍……）是明知故不转，列在这里免得天天报。
+ */
+const KNOWN_FIELDS: Record<string, { data: string[]; notes?: string[] }> = {
+  场景: {
+    data: ["章", "幕", "地点 key", "色板", "在场", "进入条件", "无用场景", "一句话目的", "去向", "章末", "布置", "留信", "对诗", "终局判定", "结局", "BGM"],
+    notes: ["进场想要", "阻碍", "行动", "翻转", "出场所知"],
+  },
+  信: { data: ["发信人", "触发", "延迟分钟", "节气", "笺", "明面", "引诗", "引诗要说的", "空白", "她可能不回", "会被截", "被截去向", "截获场景"] },
+  对诗: { data: ["出句", "出处", "难度", "题面", "给玩家的题面", "判题重点", "正确答案"] },
+  结局: { data: ["结局 key", "标题", "判定", "色板", "主题", "正文", "正文 · 天", "正文 · 曌", "正文 · 不改", "结局卡"] },
+};
+
+/**
+ * 各类块认得的表。认不出的表要报出来：C-8 的沈衡信多了一张「附页 | 条件 | 正文」，
+ * 那是七段按 flag 分岔的信文，schema 的 body.surface 只装得下一段。
+ * 静默丢掉的话，这封信会"转换成功"，而玩家永远读不到那七段。
+ */
+const KNOWN_TABLES: Record<string, string[]> = {
+  场景: ["字段|值", "#|选项文本|需要|效果|去向|备注"],
+  信: ["字段|值", "回信|内容|效果|去向", "回信|她的反应", "附页|条件|正文", "附页|条件|正文|宣读"],
+  对诗: ["字段|值", "选项|对句|对错|为什么", "结果|效果|去向", "结果|效果|去向|她说", "结果|效果|去向|台词"],
+  结局: ["字段|值"],
+};
+
 /** 问题分类：给人分拣用。规则以关键词为准，写问题文案时要带上这些词。 */
 export type IssueKind = "ChatGPT 格式" | "CC1 接口" | "待交付";
 export function classify(message: string): IssueKind {
   if (/CC1|架构方|schema/.test(message)) return "CC1 接口";
-  if (/待交|未交付|没有场景全文|一同转换 C-/.test(message)) return "待交付";
+  if (/待交|未交付|尚未交付|一同转换/.test(message)) return "待交付";
   return "ChatGPT 格式";
 }
 
@@ -325,6 +402,23 @@ export function convertBatch(inputs: { markdown: string; file: string }[]): Conv
   }
   /** 场景表「对诗」一行：sceneId -> 对局 id。对局块没写 id 时就用它。 */
   const declaredDuels = new Map<string, { id: string; row: Row }>();
+  /**
+   * 大纲的场次索引：场次 -> 地点 key。大纲（C-1、C-6 这类）有一张总表，
+   * 每行一场，写着地点 key。正文分批交付时，前一批的末场会指向后一批的场次，
+   * 那时全文还没有，但大纲已经写明了地点 key——用它接上，比丢掉一整场正文强。
+   * 这不是猜：来源是已审过的大纲，而且每用一次都记一条问题，C-8 到了必须重跑确认。
+   */
+  const outline = new Map<string, { key: string; block: Block; row: Row }>();
+  for (const b of blocks) for (const t of b.tables) {
+    const title = t.header.indexOf("场景标题"), place = t.header.indexOf("地点 key");
+    if (title < 0 || place < 0) continue;
+    for (const row of t.rows) {
+      try { const label = sceneLabel(row.cells[title]); if (!outline.has(label)) outline.set(label, { key: row.cells[place], block: b, row }); }
+      catch { /* 大纲里夹着的说明行不是场次，跳过就好 */ }
+    }
+  }
+  /** 这一批里靠大纲接上的前向去向，最后每个记一条问题 */
+  const fromOutline = new Map<string, { id: string; block: Block; row: Row }>();
   for (const b of blocks.filter(b => b.heading.startsWith("场景 "))) {
     attempt(b, undefined, () => {
       const f = fields(b); const label = sceneLabel(b.heading.slice(3));
@@ -335,14 +429,25 @@ export function convertBatch(inputs: { markdown: string; file: string }[]): Conv
     });
   }
   const ref = (value: string): string => {
+    // 选项的去向写「章末」：选完这一句就该出结算页。现在 schema 既不许章末场带选项，
+    // 选项本身又必须有去向，两头都堵着，只能等 CC1 定（建议：章末场允许带选项，选项的去向可空）。
+    if (value.trim() === "章末") throw new Error("选项的去向写的是「章末」：这一场要先让玩家选（各自记 flag），再出章末结算页。现在 schema 不许章末场带选项，Choice.goto 也不能空，两条都要 CC1 松一处才转得了（D-039 只定了场景级的章末＋去向）");
     // 「第二章（待交）」这类占位不是错字，是下一章还没交；单独说清楚，别混进格式错误里。
     if (/待交/.test(value)) throw new Error(`去向标为待交：${value}。章末出口已由 D-034 定为 chapterEnd，请把「去向」改填「章末」；转换器不替原文改`);
     const key = sceneLabel(value);
     // References must be a bare scene label, never a Chinese title or prose suffix.
     if (value.trim() !== /^ch\d+-\d+[a-z]*/.exec(value.trim())?.[0]) throw new Error(`去向只能填写场次：${value}`);
     const id = sceneRefs.get(key);
-    if (!id) throw new Error(`去向 ${value} 没有场景全文／地点 key，不能猜 id 或补空场景`);
-    return id;
+    if (id) return id;
+    // 同章后面的场次还没交（第二章 13+ 在 C-8），这是排期，不是写错。
+    // 大纲写明了地点 key 就照它接上并记一条；大纲也没有才停下，不猜 id、不补空场景。
+    const planned = outline.get(key);
+    if (planned) {
+      const forward = sceneId(key, planned.key);
+      if (!fromOutline.has(key)) fromOutline.set(key, { id: forward, block: planned.block, row: planned.row });
+      return forward;
+    }
+    throw new Error(`去向 ${value} 的场景全文尚未交付，大纲里也没有它的地点 key，取不到 id；本场暂不输出，那一批交了重跑即可`);
   };
   // Poem library is independent of input file ordering.
   for (const b of blocks) for (const t of b.tables.filter(t => t.header.includes("完整原文（／换行）"))) {
@@ -364,10 +469,29 @@ export function convertBatch(inputs: { markdown: string; file: string }[]): Conv
     if (!result.poems.some(p => p.id === id) && !registry.poems.some((p: any) => p.id === id)) throw new Error(`诗词引用不在本批诗库或冻结 id 表中：${source}`);
     return id;
   };
+  /** 字段表里认不出的行：报出来，绝不静默丢。见 KNOWN_FIELDS 的说明 */
+  const checkFields = (b: Block, kind: keyof typeof KNOWN_FIELDS, f: Record<string, Row>) => {
+    const known = KNOWN_FIELDS[kind];
+    for (const [name, row] of Object.entries(f)) {
+      if (known.data.includes(name) || known.notes?.includes(name)) continue;
+      addIssue(b, row, `${kind}的字段表里有认不出的一行「${name}」：转换器不会静默丢掉它。若是新机制（例如双鲤折法这类 D-035 的东西）要先定 schema 字段；若是笔误或改了名，请改原文`, "ChatGPT 格式");
+    }
+  };
+  /** 认不出的整张表：同样不静默丢。台词表列名另有 lineTable() 把关 */
+  const checkTables = (b: Block, kind: keyof typeof KNOWN_TABLES) => {
+    for (const t of b.tables) {
+      const head = t.header.join("|");
+      if (KNOWN_TABLES[kind].includes(head)) continue;
+      if (kind === "场景" && t.header.includes("台词")) continue;   // 台词表由 lineTable() 认
+      addIssue(b, t.rows[0], `${kind}里有一张认不出的表「${t.header.join(" | ")}」：转换器读不了，也不会假装它不存在。这多半是个新机制，需要先定 schema 字段（找 CC1）；若只是格式写岔了请改原文`, "CC1 接口");
+    }
+  };
+
   // Duels are compiled before scenes so the source scene can reference its duel.
   const boundDuels = new Map<string, string>();
   for (const b of blocks.filter(b => /^(对诗\s|第[一二三四五六七八九十\d]+局\s)/.test(b.heading))) attempt(b, undefined, () => {
     const f = fields(b); const v = (k: string) => f[k]?.cells[1] ?? "";
+    checkFields(b, "对诗", f); checkTables(b, "对诗");
     const base = registry.duels.find((d: any) => d.prompt === v("出句"));
     const binding = /场景\s+(ch\d+-\d+[a-z]*)/.exec(b.heading);
     const bound = binding ? ref(binding[1]) : undefined;
@@ -426,6 +550,8 @@ export function convertBatch(inputs: { markdown: string; file: string }[]): Conv
   });
   for (const b of blocks.filter(b => b.heading.startsWith("场景 "))) attempt(b, undefined, () => {
     const f = fields(b); const v = (k: string) => f[k]?.cells[1] ?? "";
+    checkFields(b, "场景", f); checkTables(b, "场景");
+    for (const who of list(v("在场"))) if (!(CHARACTER_KEYS as readonly string[]).includes(who)) throw new LocatedError(f["在场"], unknownCharacter(who, "在场"));
     const id = sceneId(b.heading.slice(3), v("地点 key")); unique("scene", id);
     const value: any = { id, chapter: integer(v("章")), act: integer(v("幕")), scene: v("地点 key"), palette: v("色板"), cast: list(v("在场")),
       require: attempt(b, f["进入条件"], () => parseCondition(v("进入条件"))), weightless: yes(v("无用场景")), leavesLetter: list(v("留信")), purpose: v("一句话目的"), lines: [] };
@@ -436,12 +562,14 @@ export function convertBatch(inputs: { markdown: string; file: string }[]): Conv
     if (v("终局判定")) value.judgeEnding = yes(v("终局判定"));
     if (v("结局")) value.ending = v("结局");
     const lt = lineTable(b);
-    for (const row of lt.rows) attempt(b, row, () => {
-      const [n, who, expr, kind, text, cond = ""] = row.cells;
+    for (const row of lt.table.rows) attempt(b, row, () => {
+      const cell = (name: string) => lt.at(row, name);
+      const [n, who, expr, kind, text, cond] = [cell("#"), cell("说话人"), cell("表情"), cell("类型"), cell("台词"), cell("条件")];
       const number = integer(n); const lid = lineId(id, number); unique("line", lid);
       if (number !== value.lines.length + 1) throw new Error("台词序号须从 1 连续递增");
       const mapped = ({ 说: "say", 内心: "inner", 旁白: "aside", 诗: "poem" } as Record<string, string>)[kind];
       if (!mapped) throw new Error(`未知台词类型：${kind}`);
+      if (!SPEAKERS.has(who)) throw new Error(unknownCharacter(who, "说话人"));
       const line: any = { id: lid, who, ...(expr ? { expr } : {}), kind: mapped, text };
       // Validate each line at its own source row for precise diagnostics.
       const checked = Line.safeParse(line);
@@ -450,16 +578,42 @@ export function convertBatch(inputs: { markdown: string; file: string }[]): Conv
       if (cond.trim()) line.when = parseCondition(cond);
       value.lines.push(line);
     });
+    // 先看这一场是不是章末：选项去向写「章末」时要对得上（D-043）
+    const chapterEndHere = v("去向").trim() === "章末" || (!!v("章末") && attempt(b, f["章末"], () => yes(v("章末"))) === true);
     const choices = b.tables.find(t => t.header.join("|") === "#|选项文本|需要|效果|去向|备注");
     if (choices) value.choices = choices.rows.map(row => attempt(b, row, () => {
       const [key, text, require, effects, dest, note] = row.cells;
       const cid = choiceId(id, key); unique("choice", cid);
+      // D-043：去向写「章末」= 结算这个选项的效果，然后出章末结算页，再走场景级的去向
+      // 去向空着：要么忘了填，要么本意是"选完就进章末结算页"——后者按 D-043 要写「章末」两个字
+      if (!dest.trim()) throw new LocatedError(row, chapterEndHere
+        ? "选项的去向空着。这一场标了章末，若本意是选完就出结算页，请按 D-043 在去向里写「章末」两个字；空格子看不出是本意还是漏填"
+        : "选项的去向空着：每个选项都要写去向，否则玩家选完不知道去哪");
+      if (dest.trim() === "章末") {
+        if (!SCHEMA_HAS.chapterEndChoice) throw new LocatedError(row, "选项的去向写「章末」（D-043）：效果结算完出章末结算页。schema 还不许 Choice 省略 goto，等 CC1 改完再转");
+        if (!chapterEndHere) throw new LocatedError(row, "选项的去向写「章末」，但这一场没标「章末 | 是」。两处要一致（D-043）");
+        return { id: cid, text, ...(require ? { require: parseCondition(require) } : {}), effects: parseEffects(effects), irreversible: note.includes("不可逆"),
+          ...(note.match(/提示[「“]([^」”]+)[」”]/) ? { lockHint: note.match(/提示[「“]([^」”]+)[」”]/)![1] } : {}) };
+      }
       return { id: cid, text, ...(require ? { require: parseCondition(require) } : {}), effects: parseEffects(effects), goto: ref(dest), irreversible: note.includes("不可逆"),
         ...(note.match(/提示[「“]([^」”]+)[」”]/) ? { lockHint: note.match(/提示[「“]([^」”]+)[」”]/)![1] } : {}) };
     })).filter(Boolean);
-    // 「去向 | 章末」= 本章到此为止，引擎显示章末结算页（D-034）。下一章有没有交不影响这一场。
+    // 章末结算页。两种写法：D-034 的「去向 | 章末」，和 D-039 的「章末 | 是」——
+    // 后者可以和「去向」并存：先出结算页，翻过去再进下一章第一场。
     else if (v("去向").trim() === "章末") value.chapterEnd = true;
     else if (v("去向")) value.goto = attempt(b, f["去向"], () => ref(v("去向")));
+    if (v("章末")) attempt(b, f["章末"], () => { if (yes(v("章末"))) value.chapterEnd = true; });
+    // D-046：场景表「布置 | 公议」-> Scene.dressing。哪几场是公议写在剧本里，不写进引擎白名单，
+    // 否则改一句标题就悄悄少一排案，而且没有任何东西会报错。
+    // schema 没跟上时照常输出这一场，只把布置记一条：丢的是一排道具，戏文一句不少。
+    // 为此不能挡住整章——别的地方（信的附页、角色 key）丢的是玩家读不到的正文，那才要拦。
+    let dressingNote: string | undefined;
+    if (v("布置")) attempt(b, f["布置"], () => {
+      const key = ({ 公议: "gongyi" } as Record<string, string>)[v("布置").trim()];
+      if (!key) throw new Error(`认不出的布置「${v("布置")}」：现在只有「公议」。要加新的先定 schema 与渲染（D-046）`);
+      if (SCHEMA_HAS.dressing) value.dressing = key;
+      else dressingNote = "场景表写了「布置 | 公议」，但 schema 还没有 Scene.dressing（D-046）。这一场照常输出，只是暂时不带公议布置；CC1 加上字段后重跑就有了";
+    });
     // 对诗出口：场景表「对诗」一行与本场绑定的对局块必须指同一局；对局要真的存在，不猜。
     const declared = declaredDuels.get(id); const bound = boundDuels.get(id);
     if (declared && bound && declared.id !== bound) throw new LocatedError(declared.row, `场景表「对诗」${declared.id} 与本场对诗表头 id ${bound} 不一致`);
@@ -483,12 +637,15 @@ export function convertBatch(inputs: { markdown: string; file: string }[]): Conv
       // Line.when 由 schema 收录（D-026）；万一 schema 回退成剥掉未知键的版本，这里按原位补回，JSON 里必须有它。
       value.lines.forEach((l: any, i: number) => { if (l.when && !parsed.lines[i].when) parsed.lines[i].when = l.when; });
       result.scenes.push(parsed);
+      // 记在这一场输出之后：它是一条提醒，不是挡住这一场的错
+      if (dressingNote) addIssue(b, f["布置"], dressingNote, "CC1 接口");
     }
   });
   /** 所有试过转换的信（含失败的），留信核对时用来区分「没交信」和「信交了但没转过」 */
   const letterAttempts: { id: string; from: string; sceneId?: string }[] = [];
   for (const b of blocks.filter(b => /^信\s/.test(b.heading))) attempt(b, undefined, () => {
     const f = fields(b); const v = (k: string) => f[k]?.cells[1] ?? "";
+    checkFields(b, "信", f); checkTables(b, "信");
     const id = b.heading.slice(2).trim().replace(/-/g, "_");
     if (!/^lt_[a-z0-9_]+$/.test(id)) throw new Error("信件表头须为 lt-ch01-shenheng-01 格式");
     unique("letter", id);
@@ -513,12 +670,26 @@ export function convertBatch(inputs: { markdown: string; file: string }[]): Conv
       replies[key] = { text, effects: parseEffects(effects), reaction: reactions.get(key), ...(dest ? { goto: ref(dest) } : {}) };
     }
     const outcome = (key: string) => { if (!replies[key]) throw new Error(`缺少回信：${key}`); const { text, ...o } = replies[key]; return o; };
+    // D-044：附页表 = 同一封信在不同路线上的正文。顺序即表格顺序，条件空 = 总是出现。
+    // 「宣读」空或「是」= 被截宣读时当众念出来；「否」= 只有私下读信才看得见。
+    const pageTable = b.tables.find(t => ["附页|条件|正文", "附页|条件|正文|宣读"].includes(t.header.join("|")));
+    const pages = pageTable?.rows.map(row => {
+      const [key, when, text, aloud = ""] = row.cells;
+      if (!key.trim() || !text.trim()) throw new LocatedError(row, "附页要有名目和正文");
+      const readAloud = aloud.trim() === "" ? true : yes(aloud.trim());
+      const cond = when.trim() ? (() => { try { return parseCondition(when); } catch (e) { throw new LocatedError(row, (e as Error).message); } })() : undefined;
+      return { key: key.trim(), ...(cond ? { when: cond } : {}), text: text.trim(), readAloud };
+    });
+    if (pages?.length && !SCHEMA_HAS.letterPages) {
+      throw new Error("这封信有分条件的附页（D-044 的 Letter.body.pages），schema 还没有这个字段。不输出——七段正文只留一段，等于把玩家读不到的东西说成已经转好了。等 CC1 加上再转");
+    }
     const quote = v("引诗").split(/\s*·\s*/);
     if (quote.length !== 2) throw new LocatedError(f["引诗"], "引诗须写作者《题名》· 诗句");
     const mayNot = attempt(b, f["她可能不回"], () => parseCondition(v("她可能不回")));
     const value = { id, from: v("发信人"), trigger: term ? { kind: "solarTerm", term } : { kind: "scene", sceneId: ref(trigger![1]), afterScenes: Number(trigger![2]) },
-      delayMinutes: integer(v("延迟分钟")), paper, body: { surface: v("明面"), poem: { ref: poemRef(quote[0]), line: quote[1] }, poemMeans: v("引诗要说的"), blank: v("空白") },
+      delayMinutes: integer(v("延迟分钟")), paper, body: { surface: v("明面"), poem: { ref: poemRef(quote[0]), line: quote[1] }, poemMeans: v("引诗要说的"), blank: v("空白"), ...(pages?.length ? { pages } : {}) },
       ...(mayNot && Object.keys(mayNot).length ? { sheMayNotReply: mayNot } : {}), interceptable: yes(v("会被截")), ...(v("被截去向") ? { onIntercept: { goto: ref(v("被截去向")) } } : {}),
+      ...(v("截获场景") ? { interceptAt: attempt(b, f["截获场景"], () => ref(v("截获场景"))) } : {}),
       replies: { plain: ["A", "B", "C"].map(k => ({ id: `${id}.r${k}`, text: replies[`直言 ${k}`]?.text, ...outcome(`直言 ${k}`) })),
         poem: { resonantTags: list(replies["以诗代答 · 合意象"]?.text ?? ""), onResonant: outcome("以诗代答 · 合意象"), onMismatch: outcome("以诗代答 · 不合") }, silence: outcome("不回") } };
     // zod 报错尽量落到出错字段那一行，人回去改 markdown 才知道改哪里。
@@ -540,10 +711,18 @@ export function convertBatch(inputs: { markdown: string; file: string }[]): Conv
     const parsed = take(b, undefined, Letter, value,
       path => path[0] === "body" ? f[bodyRow[path[1] as string]] : path[0] === "replies" ? replyRow(path) : f[fieldRow[path[0] as string]],
       path => { const text = bounds[path.join(".")]; return text ? { text, kind: "ChatGPT 格式" } : undefined; });
-    if (parsed && !blockHasErrors(b)) result.letters.push(parsed);
+    if (parsed && !blockHasErrors(b)) {
+      if (value.interceptAt && !SCHEMA_HAS.interceptAt) {
+        addIssue(b, f["截获场景"], "这封信要在固定场景被截（D-039 的 Letter.interceptAt），但 schema 还没有这个字段。不写进 JSON——否则被截与否会退回成「未读满三封才截」，由玩家读信节奏决定，不是剧本决定。等 CC1 加上再转", "CC1 接口");
+        return;
+      }
+      if (value.interceptAt) (parsed as any).interceptAt = value.interceptAt;
+      result.letters.push(parsed);
+    }
   });
   for (const b of blocks.filter(b => b.tables.some(t => t.rows.some(r => r.cells[0] === "结局 key")))) attempt(b, undefined, () => {
     const f = fields(b); const v = (k: string) => f[k]?.cells[1] ?? "";
+    checkFields(b, "结局", f); checkTables(b, "结局");
     const key = v("结局 key"); unique("ending", key);
     const variants = ["正文 · 天", "正文 · 曌", "正文 · 不改"];
     if (v("正文") && variants.some(k => v(k))) throw new Error("正文与三段变体不能同时填写");
@@ -560,14 +739,19 @@ export function convertBatch(inputs: { markdown: string; file: string }[]): Conv
     for (const from of list(row.cells[1])) {
       if (result.letters.some(l => l.from === from && l.trigger.kind === "scene" && l.trigger.sceneId === id)) continue;
       const tried = letterAttempts.find(l => l.from === from && l.sceneId === id);
-      addIssue(b, row, tried ? `留了 ${from} 的信，对应信件 ${tried.id} 未通过转换，见该信的问题` : `留了 ${from} 的信，但本批输入没有对应完整信件；请交付并一同转换 C-4`);
+      addIssue(b, row, tried
+        ? `留了 ${from} 的信，对应信件 ${tried.id} 未通过转换，见该信的问题`
+        : `留了 ${from} 的信，但本批输入没有对应完整信件；请把本章的书信文件一并交付并一同转换`);
     }
   });
   // Even an unsupported nested section can contain a concrete missing destination.
   for (const b of blocks) for (const t of b.tables) {
     const column = t.header.indexOf("去向");
     if (column < 0 || !(t.header.includes("选项文本") || ["结果", "回信"].includes(t.header[0]))) continue;
-    for (const row of t.rows) if (row.cells[column]) attempt(b, row, () => ref(row.cells[column]));
+    for (const row of t.rows) if (row.cells[column] && row.cells[column].trim() !== "章末") attempt(b, row, () => ref(row.cells[column]));
+  }
+  for (const [label, { id, block, row }] of fromOutline) {
+    addIssue(block, row, `${label} 的正文尚未交付；指向它的去向按大纲的地点 key 先接成 ${id}，那一批交了必须重跑确认地点没改`, "待交付");
   }
   const uniqueIssues = new Set<string>();
   result.issues = result.issues.filter(i => {
@@ -698,6 +882,20 @@ export function runCli(args: string[]): number {
     } catch { /* manifest 坏了就当没有，不因为它挡住转换 */ }
   }
   writeOut(result, out, replace);
+  // 上一批写出过、这一批不再产出的场景与信：把文件删掉。
+  // 留着的话，一份因为改名或转换失败而作废的 JSON 会继续冒充有效数据，
+  // 校验器只看得见文件，看不见它已经和原文对不上了。
+  if (replace && existsSync(manifestPath)) {
+    try {
+      const prev = JSON.parse(readFileSync(manifestPath, "utf8"));
+      const now = new Set([...result.scenes.map(x => x.id), ...result.letters.map(x => x.id)]);
+      for (const id of [...(prev.scenes ?? []), ...(prev.letters ?? [])]) {
+        if (now.has(id)) continue;
+        const path = outputPathFor(id, out);
+        if (existsSync(path)) { rmSync(path); console.log(`删掉不再产出的 ${relative(root, path)}`); }
+      }
+    } catch { /* manifest 坏了就不删，宁可留着也不误删 */ }
+  }
   writeFileSync(manifestPath, JSON.stringify({
     inputs: inputs.map(i => ({ file: i.file, sha256: createHash("sha256").update(i.markdown).digest("hex") })),
     scenes: result.scenes.map(s => s.id), poems: result.poems.map(p => p.id), duels: result.duels.map(d => d.id), letters: result.letters.map(l => l.id), endings: result.endings.map(e => e.key),
@@ -719,7 +917,10 @@ export function runCli(args: string[]): number {
   const tail = existsSync(issuePath) ? manualTail(readFileSync(issuePath, "utf8")) : "";
   writeFileSync(issuePath, issueReport(result) + `\n---\n\n${MANUAL_MARK}\n${tail}`, "utf8");
   console.log(`转换至 ${relative(root, out)}：${result.scenes.length} 场，${result.poems.length} 首诗，${result.duels.length} 局，${result.letters.length} 封信；${result.issues.length} 个问题。`);
-  return result.issues.length ? 1 : 0;
+  // 「待交付」是排期，不是错：原文没毛病，等下一批交了重跑就好，不该让它挡住别人的流水线
+  const blocking = result.issues.filter(i => (i.kind ?? classify(i.message)) !== "待交付");
+  if (!blocking.length && result.issues.length) console.log(`其中 ${result.issues.length} 条都是待交付，等下一批原文，不算错。`);
+  return blocking.length ? 1 : 0;
 }
 if (process.argv[1] && pathToFileURL(resolve(process.argv[1])).href === import.meta.url) {
   try { process.exitCode = runCli(process.argv.slice(2)); }

@@ -41,6 +41,8 @@ export interface SaveV1 {
    * 按 0 算，一定对不上——那些档本来就是旧剧本的，退回章首是对的。
    */
   dataVersion?: number;
+  /** 见过登场卡的角色（D-048）。老档没有这个字段，按空算：卡会再出一次，不会出错 */
+  introsSeen?: string[];
 }
 
 type AnySave = { version?: number } & Record<string, unknown>;
@@ -66,6 +68,7 @@ export function serialize(s: GameState, sceneId: string, lineIndex: number): Sav
     letters: s.letters.map((l) => ({ ...l })),
     lastSeenAt: Date.now(),
     dataVersion: DATA_VERSION,
+    introsSeen: [...s.introsSeen],
   };
 }
 
@@ -77,6 +80,7 @@ export function deserialize(d: SaveV1): { state: GameState; sceneId: string; lin
   state.protagonistName = d.protagonistName || state.protagonistName;
   state.seenLineIds = new Set(d.seenLineIds ?? []);
   state.poemsCollected = new Set(d.poemsCollected ?? []);
+  state.introsSeen = new Set(d.introsSeen ?? []);
   state.endingsUnlocked = new Set(d.endingsUnlocked ?? []);
   state.letters = (d.letters ?? []).map((l) => ({ ...l }));
   // 读档时保留存档里那个时刻，M4 靠它算「你不在的这段时间有哪些信到了」

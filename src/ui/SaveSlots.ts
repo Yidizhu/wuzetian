@@ -31,6 +31,13 @@ export class SaveSlots {
     });
   }
 
+  private toggles: { label: string; get: () => boolean; set: (on: boolean) => void }[] = [];
+
+  /** 面板里一行开关（登场卡之类的偏好）。只是开和关，不做成设置页 */
+  addToggle(label: string, get: () => boolean, set: (on: boolean) => void): void {
+    this.toggles.push({ label, get, set });
+  }
+
   get visible(): boolean { return !this.el.hidden; }
   hide(): void { this.el.hidden = true; }
   toggle(): void { if (this.el.hidden) this.show(); else this.hide(); }
@@ -90,6 +97,17 @@ export class SaveSlots {
     panel.appendChild(out);
     this.out = out;
 
+    for (const t of this.toggles) {
+      const row = document.createElement("div");
+      row.className = "slots__toggle";
+      const b = document.createElement("button");
+      b.type = "button";
+      const paint = () => { b.textContent = `${t.label}：${t.get() ? "开" : "关"}`; b.setAttribute("aria-pressed", String(t.get())); };
+      paint();
+      b.addEventListener("click", (e) => { e.stopPropagation(); t.set(!t.get()); paint(); });
+      row.appendChild(b);
+      panel.appendChild(row);
+    }
     if (this.onRestart) panel.appendChild(this.restartRow());
 
     const close = document.createElement("button");

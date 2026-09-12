@@ -1,0 +1,104 @@
+{
+  "id": "ch02_s05_yeting",
+  "chapter": 2,
+  "act": 2,
+  "scene": "yeting",
+  "palette": "ink",
+  "cast": [
+    "wuze",
+    "songhuizhen"
+  ],
+  "weightless": true,
+  "leavesLetter": [],
+  "purpose": "两人只是把帕子折来折去，不谈旧事",
+  "lines": [
+    {
+      "id": "ch02_s05_yeting.l1",
+      "who": "narr",
+      "kind": "aside",
+      "text": "帘下漏进一小块日光，正照着帕子翘起的角。"
+    },
+    {
+      "id": "ch02_s05_yeting.l2",
+      "who": "songhuizhen",
+      "expr": "default",
+      "kind": "say",
+      "text": "换这边。"
+    },
+    {
+      "id": "ch02_s05_yeting.l3",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "换过了。"
+    },
+    {
+      "id": "ch02_s05_yeting.l4",
+      "who": "songhuizhen",
+      "expr": "open",
+      "kind": "say",
+      "text": "我没看见，再换一回。"
+    },
+    {
+      "id": "ch02_s05_yeting.l5",
+      "who": "narr",
+      "kind": "aside",
+      "text": "你转了半圈，宋按住另一角。"
+    },
+    {
+      "id": "ch02_s05_yeting.l6",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "这回是你那边长。"
+    },
+    {
+      "id": "ch02_s05_yeting.l7",
+      "who": "songhuizhen",
+      "expr": "open",
+      "kind": "say",
+      "text": "我的手还没动呢，你先别赖我；松开一点，我瞧瞧底下压了什么。"
+    },
+    {
+      "id": "ch02_s05_yeting.l8",
+      "who": "narr",
+      "kind": "aside",
+      "text": "两人一起松手，帕子摊开，折痕全朝不同方向。"
+    },
+    {
+      "id": "ch02_s05_yeting.l9",
+      "who": "wuze",
+      "expr": "open",
+      "kind": "say",
+      "text": "更皱了。"
+    },
+    {
+      "id": "ch02_s05_yeting.l10",
+      "who": "songhuizhen",
+      "expr": "default",
+      "kind": "say",
+      "text": "那就卷。"
+    },
+    {
+      "id": "ch02_s05_yeting.l11",
+      "who": "wuze",
+      "expr": "open",
+      "kind": "say",
+      "text": "你压着的那个角一直在外头，卷起来也看得见；不如让它在外头待着。"
+    },
+    {
+      "id": "ch02_s05_yeting.l12",
+      "who": "songhuizhen",
+      "expr": "open",
+      "kind": "say",
+      "text": "好，叫它晒着。"
+    },
+    {
+      "id": "ch02_s05_yeting.l13",
+      "who": "narr",
+      "kind": "aside",
+      "text": "她把帕子放在光里。你收回手，掌心还留着一道折印。"
+    }
+  ],
+  "goto": "ch02_s06_yeting"
+}

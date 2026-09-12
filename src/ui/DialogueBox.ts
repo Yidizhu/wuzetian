@@ -63,4 +63,7 @@ export class DialogueBox {
   }
 
   setVisible(v: boolean): void { this.el.hidden = !v; }
+
+  /** `.dlg` 本体。登场卡（CC3 的 attachDebut）挂在它里面、名字右边 */
+  get element(): HTMLElement { return this.el; }
 }

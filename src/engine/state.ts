@@ -25,6 +25,11 @@ export interface GameState {
   letters: LetterSlot[];
   /** 上次关掉游戏的时刻。回来时用它算这段时间里有哪些信到了。 */
   lastSeenAt: number;
+  /**
+   * 见过登场卡的角色（D-048）。一个人只介绍一次——
+   * 十一个人每次出场都报一遍职务，第三次就成了噪音。
+   */
+  introsSeen: Set<string>;
 }
 
 export const DEFAULT_NAME = "吾则添";
@@ -42,6 +47,7 @@ export function newState(): GameState {
     endingsUnlocked: new Set(),
     letters: [],
     lastSeenAt: Date.now(),
+    introsSeen: new Set(),
   };
 }
 

@@ -1,0 +1,128 @@
+{
+  "id": "ch03_s10_nvguan",
+  "chapter": 3,
+  "act": 3,
+  "scene": "nvguan",
+  "palette": "ink",
+  "cast": [
+    "wuze",
+    "xujinghe"
+  ],
+  "weightless": true,
+  "leavesLetter": [],
+  "purpose": "受位前夜两人读半联诗，许被问住，仍没有答案",
+  "lines": [
+    {
+      "id": "ch03_s10_nvguan.l1",
+      "when": {
+        "flag.li_ch03_walk": true
+      },
+      "who": "narr",
+      "kind": "aside",
+      "text": "到观前有灯的岔口，你们各自道别。李拢好自己的衣领，没有跟进来。"
+    },
+    {
+      "id": "ch03_s10_nvguan.l2",
+      "when": {
+        "flag.li_ch03_apart": true
+      },
+      "who": "narr",
+      "kind": "aside",
+      "text": "你独自走到观前。鞋带松了一边，蹲在灯下重系，才叩门。"
+    },
+    {
+      "id": "ch03_s10_nvguan.l3",
+      "who": "narr",
+      "kind": "aside",
+      "text": "许把访客簿合上。清墨轮廓留在灯外，壶嘴滴下一点水，落在碟沿。"
+    },
+    {
+      "id": "ch03_s10_nvguan.l4",
+      "who": "xujinghe",
+      "expr": "default",
+      "kind": "say",
+      "text": "坐这里。那块垫子还湿着。"
+    },
+    {
+      "id": "ch03_s10_nvguan.l5",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "走到门口，想起一句诗。白日没想起来，方才系鞋带，倒记得整整齐齐。"
+    },
+    {
+      "id": "ch03_s10_nvguan.l6",
+      "who": "xujinghe",
+      "expr": "open",
+      "kind": "say",
+      "text": "那就念。"
+    },
+    {
+      "id": "ch03_s10_nvguan.l7",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "poem",
+      "text": "行到水穷处，坐看云起时。"
+    },
+    {
+      "id": "ch03_s10_nvguan.l8",
+      "who": "narr",
+      "kind": "aside",
+      "text": "壶盖被热气顶了一下。你伸手去扶，碰到盖沿，又收回手指。"
+    },
+    {
+      "id": "ch03_s10_nvguan.l9",
+      "who": "xujinghe",
+      "expr": "default",
+      "kind": "say",
+      "text": "烫。先放着。"
+    },
+    {
+      "id": "ch03_s10_nvguan.l10",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "念到坐下，我还在等后一句，等那条断了的路自己又接上，好让我接着走。"
+    },
+    {
+      "id": "ch03_s10_nvguan.l11",
+      "who": "xujinghe",
+      "expr": "default",
+      "kind": "say",
+      "text": "你刚才坐下了么？"
+    },
+    {
+      "id": "ch03_s10_nvguan.l12",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "坐下了。脚还抵着门槛。"
+    },
+    {
+      "id": "ch03_s10_nvguan.l13",
+      "who": "narr",
+      "kind": "aside",
+      "text": "许把碟子移远一些。你收回抵在门槛上的脚，灯影空出一小块。"
+    },
+    {
+      "id": "ch03_s10_nvguan.l14",
+      "who": "wuze",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "你出家，是无待，还是逃？"
+    },
+    {
+      "id": "ch03_s10_nvguan.l15",
+      "who": "narr",
+      "kind": "aside",
+      "text": "许的手停在碟边。水珠沿着缺口往下滴，她没有伸手去接。"
+    },
+    {
+      "id": "ch03_s10_nvguan.l16",
+      "who": "narr",
+      "kind": "aside",
+      "text": "她拿起灯签，拨了一下灯芯。"
+    }
+  ],
+  "goto": "ch03_s11_hanyuan"
+}
