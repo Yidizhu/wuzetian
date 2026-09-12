@@ -1,4 +1,5 @@
 import type { LetterT, PoemT } from "../engine/schema.ts";
+import { pagesFor } from "../engine/letters.ts";
 import type { GameState } from "../engine/state.ts";
 import type { ReplyKind, ReplyResult } from "../engine/letters.ts";
 import { NAMES } from "./names.ts";
@@ -104,6 +105,14 @@ export class Inbox {
     surface.className = "letter__surface";
     surface.textContent = l.body.surface;
     sheet.appendChild(surface);
+
+    // 附页（D-044）：一封信几段正文，按当时的 flag 各取一段。顺序就是剧本里的顺序。
+    for (const pg of pagesFor(l, this.state())) {
+      const p = document.createElement("div");
+      p.className = "letter__page";
+      p.textContent = pg.text;
+      sheet.appendChild(p);
+    }
 
     // 二层：引诗。点一下看她借这句说了什么
     if (l.body.poem) {

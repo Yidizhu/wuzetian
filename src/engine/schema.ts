@@ -8,9 +8,16 @@ import { z } from "zod";
  */
 
 /** 角色 key 冻结于指挥日志 D-016。加人先改那里。 */
+/**
+ * 冻结的角色 key（D-016，D-045 加了第十一个）。
+ *
+ * 冻结的意思是「不改」，不是「不加」：新增一个 key 不动任何已有存档、
+ * 结局判定或立绘；改名或删 key 才会动到那三样。以后批准新人物同此办理。
+ */
 export const CHARACTER_KEYS = [
   "wuze", "shenheng", "peizhaoye", "wenqiao", "liqinghe",
   "songhuizhen", "hetaihou", "xujinghe", "tangjian", "adi",
+  "liuchenghuan",
 ] as const;
 export const CharacterKey = z.enum(CHARACTER_KEYS, {
   errorMap: () => ({ message: `不是 D-016 冻结的角色 key。只能是：${CHARACTER_KEYS.join("、")}` }),
@@ -77,7 +84,12 @@ export const Choice = z.object({
   lockHint: z.string().optional(),
   effects: Effects.optional(),
   irreversible: z.boolean().default(false),
-  goto: z.string().min(1),
+  /**
+   * 去向。**章末场的选项可以不写**（D-043）：那时候的语义是
+   * 「结算这个选项的效果 → 章末结算页 → 场景级 goto」。
+   * 其余场景不写去向就是死路，Scene 的 superRefine 会拦。
+   */
+  goto: z.string().min(1).optional(),
 });
 
 export const Scene = z.object({
@@ -93,6 +105,14 @@ export const Scene = z.object({
   leavesLetter: z.array(CharacterKey).default([]),
   purpose: z.string().min(1, "说不出目的的场景应该被合并或删掉"),
   lines: z.array(Line).min(1),
+  /**
+   * 场景布置（D-046 第 2 条）。自由字符串，现在只有 `"gongyi"`（公议：多几张案、一面收封簿）。
+   *
+   * 为什么写进数据而不是让美术按场景 id 列一张白名单：场景 id 由标题生成，
+   * 而标题是会改的（D-037 说改内容零影响）。白名单等于给剧本的自由加一道暗锁——
+   * 改一句标题就悄悄少了一排案，而且没有任何东西会报错。写在这里，剧本改到哪儿它跟到哪儿。
+   */
+  dressing: z.string().min(1).optional(),
   /** 台词读完之后先打一局对诗，再进选项。对局在 duels.json 里 */
   duel: z.string().optional(),
   /** 走到这里就按结局表从上往下取首个满足者。全游戏只有一个这样的点 */
@@ -125,12 +145,17 @@ export const Scene = z.object({
       message: "章末是翻页，结局是落幕，一场戏不能既翻页又落幕。要收全局就用 judgeEnding",
     });
   }
-  if (s.chapterEnd && s.choices?.length) {
-    ctx.addIssue({
-      code: z.ZodIssueCode.custom,
-      path: ["chapterEnd"],
-      message: "章末场不要带选项：结算页一出，玩家已经离开这一场了，选项没有人会看到",
-    });
+  // D-043 松开了「章末不许带选项」：第二章最后一场要玩家先答一句再进结算。
+  // 那一问是整章最后一个由玩家出手的动作，挪到别处会削掉整章的收尾。
+  // 选项去向可以空，意思是「结算这个选项的效果 → 章末结算页 → 场景级 goto」。
+  for (const c of s.choices ?? []) {
+    if (!c.goto && !s.chapterEnd) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        path: ["choices"],
+        message: `选项 ${c.id} 没有去向。只有章末场的选项可以空着去向（走章末结算页），这一场没标章末`,
+      });
+    }
   }
   if (s.ending && s.judgeEnding) {
     ctx.addIssue({
@@ -221,6 +246,26 @@ export const Letter = z.object({
   paper: z.enum(["huangma", "junzhong", "nijin", "huajian", "chang"]),
   body: z.object({
     surface: z.string().min(1),
+    /**
+     * 分条件的附页（D-044）。一封信、几段正文，按当时的 flag 各取一段。
+     *
+     * 为什么不拆成几封信：一封信在不同路线上说不同的话，正是它作为
+     * 「只给一个人读的东西」的全部意义。拆开的话，案上会多出几封根本不存在的信。
+     *
+     * `when` 空 = 总是出现；顺序就是表格里的顺序。
+     */
+    pages: z.array(z.object({
+      key: z.string().min(1),
+      when: Condition.optional(),
+      text: z.string().min(1),
+      /**
+       * 被截宣读时，这一段会不会当众被念出来。默认会。
+       *
+       * 填「否」的那一段是整封信的戏眼：被截的伤害不在于念了什么，
+       * 在于她还有一句没来得及给你，而所有人都听见了前面那些。
+       */
+      readAloud: z.boolean().default(true),
+    })).optional(),
     poem: z.object({ ref: z.string(), line: z.string() }).optional(),
     poemMeans: z.string().optional(),
     blank: z.string().min(1),

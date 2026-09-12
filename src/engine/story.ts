@@ -161,7 +161,7 @@ export class Story {
     // 色板跟着场景走。整个 UI 只认 CSS 变量，不知道自己在哪套色板里。
     document.documentElement.dataset.palette = scene.palette;
 
-    const d = { key: scene.scene, palette: scene.palette, act: scene.act };
+    const d = { key: scene.scene, palette: scene.palette, act: scene.act, dressing: scene.dressing };
     await this.renderer.load(d);
     await this.renderer.show(d);
     // 墨层的覆盖面积就是她的权力进度（D-010 第 3 条）。
@@ -353,6 +353,19 @@ export class Story {
     if (!meets(c.require, this.store.state)) return;
     this.store.apply(c.effects);
     if (c.irreversible) { this.renderer.beat("irreversible"); this.emit({ kind: "flare", who: "wuze" }); }
+    // 章末场的选项可以不写去向（D-043）：答完这一句，直接进章末结算页。
+    // 第二章最后那一问就是这样——它是整章最后一个由玩家出手的动作，
+    // 结算页要出现在选择之后，那才叫「这一章你做完了这些」。
+    if (!c.goto) {
+      if (scene.chapterEnd && !this.chapterDone.has(scene.id)) {
+        this.chapterDone.add(scene.id);
+        await this.runChapterEnd(scene);
+        return;
+      }
+      console.error(`[story] 选项 ${c.id} 没有去向，而这一场也不是章末。就地收尾`);
+      this.emit({ kind: "end" });
+      return;
+    }
     await this.enter(c.goto, 0);
   }
 

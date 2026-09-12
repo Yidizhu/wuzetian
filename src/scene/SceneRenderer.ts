@@ -11,6 +11,11 @@ export interface SceneDescriptor {
   key: SceneKey;
   palette: Palette;
   act: number;
+  /**
+   * 场景布置（D-046 第 2 条）。自由字符串，现在只有 `"gongyi"`（公议：多几张案、一面收封簿）。
+   * 由剧本的场景表给，不由场景 id 推——id 是从标题生成的，标题会改。
+   */
+  dressing?: string;
 }
 
 export interface SceneRenderer {

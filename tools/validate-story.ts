@@ -71,7 +71,12 @@ for (const { file, raw } of sceneFiles) {
   if (typeof o.duel === "string") rawDuelRefs.push({ file, id, duel: o.duel });
   if (Array.isArray(o.choices)) {
     for (const c of o.choices as Record<string, unknown>[]) {
-      if (typeof c?.goto === "string") rawExits.push({ file, id, to: c.goto });
+      if (typeof c?.goto === "string" && c.goto) rawExits.push({ file, id, to: c.goto });
+      // 选项去向写「章末」而这一场没标章末（D-043）：转换器会把去向留空，
+      // 于是这个选项既没有去处、也走不到结算页，玩家点下去什么都不会发生。
+      else if (o.chapterEnd !== true) {
+        err(file, `${String(c?.id ?? "?")}.goto`, "选项没有去向。只有标了「章末 | 是」的场景，选项才可以空着去向（走章末结算页）");
+      }
     }
   }
 }

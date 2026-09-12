@@ -206,6 +206,31 @@ export class Letters {
   }
 }
 
+/**
+ * 这封信此刻该显示哪几段附页（D-044）。
+ *
+ * `when` 空的段落总是出现；其余按当时的 flag 取。顺序就是剧本里的顺序。
+ *
+ * 放在引擎而不是 Inbox：哪几段出现是**规则**，不是画法。信被截了在朝堂上宣读，
+ * 走的也是这条规则，那一处根本没有信箱界面。
+ */
+export function pagesFor(l: LetterT, state: GameState): { key: string; text: string; readAloud: boolean }[] {
+  return (l.body.pages ?? [])
+    .filter((p) => meets(p.when, state))
+    .map((p) => ({ key: p.key, text: p.text, readAloud: p.readAloud !== false }));
+}
+
+/**
+ * 被截之后当众念出来的那几段。
+ *
+ * 和 pagesFor 的差别只有一处：`readAloud: false` 的那一段被留下了。
+ * 被截的伤害不在于念了什么，在于她还有一句没来得及给你，
+ * 而所有人都听见了前面那些。
+ */
+export function readAloudPages(l: LetterT, state: GameState): string[] {
+  return pagesFor(l, state).filter((p) => p.readAloud).map((p) => p.text);
+}
+
 /** 给 UI 用：从图鉴里已收的诗挑意象标签 */
 export function poemTagsOf(poemId: string, poems: Map<string, { tags: string[] }>): string[] {
   return poems.get(poemId)?.tags ?? [];

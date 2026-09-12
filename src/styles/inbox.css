@@ -121,3 +121,12 @@
 }
 .slots__codemsg { font-size: 13px; line-height: 1.8; color: var(--c-text-soft); margin-top: 8px; }
 .slots__codemsg[data-bad="1"] { color: var(--c-accent, var(--c-ink-3)); }
+
+/* 附页（D-044）：一封信里按路线取的那几段。和明面同一种字，但上面隔一行，
+   读起来是同一封信接着往下写，不是另起一段引文。 */
+.letter__page {
+  margin-top: 14px;
+  font-size: 15px; line-height: 2;
+  color: var(--c-text);
+  white-space: pre-wrap;
+}

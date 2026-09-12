@@ -369,3 +369,101 @@ test("章末与去向并存（D-039 第 1 条）：先结算，再进下一章",
   assert.deepEqual(seen, [1], "结算页只该开一次");
   assert.equal(story.sceneId, "ch02_first", "翻过结算页要真的进第二章");
 });
+
+/**
+ * D-043 / D-044 / D-045 / D-046 的四处 schema 变动。
+ */
+test("D-045 柳承欢进了冻结角色表，其余十个一个没少", async () => {
+  const { CHARACTER_KEYS } = await import("../src/engine/schema.ts");
+  assert.ok(CHARACTER_KEYS.includes("liuchenghuan" as never));
+  for (const k of ["wuze", "shenheng", "peizhaoye", "wenqiao", "liqinghe",
+                   "songhuizhen", "hetaihou", "xujinghe", "tangjian", "adi"]) {
+    assert.ok(CHARACTER_KEYS.includes(k as never), `${k} 不该消失——冻结的意思是不改，不是不加`);
+  }
+});
+
+test("D-043 章末场可以带选项，选项去向可以空", () => {
+  const s = {
+    ...scene("ch02_s24", 2, { chapterEnd: true, goto: "ch03_s01" }),
+    choices: [{ id: "a", text: "留她一会儿", effects: { xin: 1 } },
+              { id: "b", text: "让她走", goto: "ch03_s01" }],
+  };
+  const r = SceneSchema.safeParse(s);
+  assert.ok(r.success, JSON.stringify(r.success ? "" : r.error.issues));
+});
+
+test("不是章末的场，选项去向仍然不许空——那是死路", () => {
+  const s = { ...scene("x", 2, {}), choices: [{ id: "a", text: "走" }] };
+  const r = SceneSchema.safeParse(s);
+  assert.ok(!r.success);
+  assert.match(JSON.stringify(r.error?.issues), /章末/);
+});
+
+test("章末场里选空去向的选项：效果照算，然后进结算页", async () => {
+  mkChapterEndChoice: {
+    mem.clear();
+    const store = new Store();
+    const seen: number[] = [];
+    const s = {
+      ...scene("ch02_s24", 2, { chapterEnd: true }),
+      choices: [{ id: "stay", text: "留她一会儿", effects: { xin: 2 } }],
+    } as unknown as Scene;
+    const story = new Story(
+      [s], [], [], [], store, noopRenderer,
+      { async duel() { return true; }, async chapterEnd(ch) { seen.push(ch); } },
+      "ch02_s24",
+    );
+    const kinds: string[] = [];
+    story.on((e) => kinds.push(e.kind));
+    await story.start();
+    for (let i = 0; i < 6; i++) { story.advance(); await drain(); }
+    await story.choose("stay");
+    await drain();
+    assert.equal(store.state.stats.xin, 5, "选项的效果要照算（开局 3 加 2）");
+    assert.deepEqual(seen, [2], "然后才出结算页");
+    assert.ok(kinds.includes("toBeContinued"));
+    break mkChapterEndChoice;
+  }
+});
+
+test("D-046 场景布置是自由字符串，传给美术层", async () => {
+  const s = scene("x", 2, { goto: "x", dressing: "gongyi" });
+  assert.ok(SceneSchema.safeParse(s).success);
+  mem.clear();
+  const got: (string | undefined)[] = [];
+  const store = new Store();
+  const story = new Story(
+    [s], [], [], [], store,
+    { ...noopRenderer, async show(d: { dressing?: string }) { got.push(d.dressing); } },
+    { async duel() { return true; }, async chapterEnd() {} },
+    "x",
+  );
+  await story.start();
+  await drain();
+  assert.deepEqual(got, ["gongyi"]);
+});
+
+test("D-044 附页按 flag 各取一段，宣读那一列默认是「会」", async () => {
+  const { pagesFor, readAloudPages } = await import("../src/engine/letters.ts");
+  const parsed = LetterSchema.parse(letter({
+    body: {
+      surface: "一行字。",
+      blank: "没写的那句。",
+      pages: [
+        { key: "p1", text: "公共的一段。" },
+        { key: "p2", when: { "flag.took_seal": true }, text: "只有拿了印的人看得到。" },
+        { key: "p3", text: "尚未宣读的末句。", readAloud: false },
+      ],
+    },
+  }));
+  const st = new Store().state;
+  assert.deepEqual(pagesFor(parsed, st).map((p) => p.key), ["p1", "p3"]);
+  st.flags.took_seal = true;
+  assert.deepEqual(pagesFor(parsed, st).map((p) => p.key), ["p1", "p2", "p3"]);
+  // 被截宣读时，填「否」的那一段留了下来——这是整封信的戏眼
+  assert.deepEqual(readAloudPages(parsed, st), ["公共的一段。", "只有拿了印的人看得到。"]);
+});
+
+test("D-044 没有附页的信照常能用：老信一封都不用改", () => {
+  assert.ok(LetterSchema.safeParse(letter({})).success);
+});

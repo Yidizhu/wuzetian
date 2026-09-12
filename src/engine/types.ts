@@ -66,7 +66,8 @@ export interface Choice {
   lockHint?: string;
   effects?: Effects;
   irreversible?: boolean;
-  goto: string;
+  /** 章末场的选项可以不写去向（D-043）：结算效果 → 章末结算页 → 场景级 goto */
+  goto?: string;
 }
 
 export interface Scene {
@@ -85,6 +86,8 @@ export interface Scene {
   judgeEnding?: boolean;
   /** 章末出口（D-034）。先出结算页；goto 有下一章就接着走，没有就停在「下章待续」 */
   chapterEnd?: boolean;
+  /** 场景布置（D-046 第 2 条）。现在只有 "gongyi"。美术按它换陈设，引擎只负责传 */
+  dressing?: string;
   /** 这一场结束时谁「有话没说完」。对应场景表的「留信」一列，笺系统在 M4 用它。 */
   leavesLetter?: string[];
   purpose: string;
