@@ -21,7 +21,9 @@ import { CharacterLayer } from "./ui/CharacterLayer.ts";
 import { Inbox } from "./ui/Inbox.ts";
 import { mountTitle } from "./scene/TitleScreen.ts";
 import { attachDebut } from "./scene/Debut.ts";
-import { debutsOn, setDebutsOn } from "./ui/prefs.ts";
+import { debutsOn, setDebutsOn, soundOn, setSoundOn } from "./ui/prefs.ts";
+import { Ambient } from "./audio/ambient.ts";
+import { cuesForScene, cuesForLine, newCueState, type Cue } from "./audio/cues.ts";
 import endingData from "./data/endings.json";
 import adultScenes from "virtual:adult-scenes";
 import converted from "virtual:converted-data";
@@ -130,9 +132,20 @@ let inbox: Inbox | null = null;
 
 store.subscribe((s) => status.update(s));
 
+// 环境声（D-053）。默认静音；真正出声要等玩家在手势里打开（iOS 的规矩）
+const ambient = new Ambient();
+const cueState = newCueState();
+const play = (cues: Cue[]): void => {
+  for (const c of cues) {
+    if (c.kind === "drum") ambient.drum(c.beats);
+    else ambient.rain(c.on);
+  }
+};
+
 story.on((e) => {
   switch (e.kind) {
     case "scene":
+      play(cuesForScene(e.scene, cueState, performance.now()));
       // 先对一遍台上的人再换阵容：上一场出口写的 flag（比如归还戏的 chenghuan_returned）
       // 要在这一场第一眼就生效，不能等到她下一次开口
       void cast.refresh().then(() => cast.setCast(e.scene.cast));
@@ -144,6 +157,7 @@ story.on((e) => {
       inbox?.setUnread(e.unread, story.letters.onDesk().length + e.unread);
       break;
     case "line":
+      play(cuesForLine(e.who, e.lineKind, e.text, cueState, performance.now()));
       choices.hide();
       dlg.setVisible(true);
       void cast.speak(e.who, e.expr as "default" | "guarded" | "open");
@@ -232,6 +246,25 @@ slotsBtn.type = "button";
 slotsBtn.textContent = "存档";
 slotsBtn.addEventListener("click", (e) => { e.stopPropagation(); slots.toggle(); });
 hud.append(slotsBtn);
+// 声音开关。点它本身就是一次手势，所以 ?notitle 跳过标题的场合也能在这里解锁
+const soundBtn = document.createElement("button");
+soundBtn.type = "button";
+const paintSound = (): void => {
+  soundBtn.textContent = ambient.enabled ? "声：开" : "声：关";
+  soundBtn.setAttribute("aria-pressed", String(ambient.enabled));
+};
+soundBtn.addEventListener("click", (e) => {
+  e.stopPropagation();
+  ambient.unlock();
+  const on = !ambient.enabled;
+  ambient.setEnabled(on);
+  setSoundOn(on);
+  // 刚打开的时候，如果这一场该有雨，现在补上
+  if (on) play(cuesForScene({ id: story.sceneId, act: story.currentScene?.act ?? 1, dressing: story.currentScene?.dressing }, { lastAct: story.currentScene?.act ?? null, lastDrumAt: 0 }, 0));
+  paintSound();
+});
+paintSound();
+hud.append(soundBtn);
 if (dev) {
   const swap = document.createElement("button");
   swap.type = "button";
@@ -284,6 +317,10 @@ if (new URLSearchParams(location.search).has("tapdebug")) {
  * `?notitle=1` 跳过，给无头验收和抽查用。
  */
 const begin = (fresh: boolean): void => {
+  // 「入宫」这一下是手机上唯一合法的解锁音频的时机（D-053）。解锁不等于出声：
+  // 上次开着声音的人这里才真的开，第一次来的人仍是静的
+  ambient.unlock();
+  if (soundOn()) { ambient.setEnabled(true); paintSound(); }
   showFirstRunNotice(app, () => slots.show());
   void story.start({ fresh });
 };

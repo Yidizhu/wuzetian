@@ -11,7 +11,7 @@
     "validate:demo": "node --experimental-strip-types tools/validate-story.ts tools/fixtures/broken",
     "graph": "node --experimental-strip-types tools/story-graph.ts",
     "test": "node --experimental-strip-types --test tests/*.test.ts",
-    "test:engine": "node --experimental-strip-types --test tests/engine.test.ts tests/savecode.test.ts tests/chapterend.test.ts tests/tap.test.ts",
+    "test:engine": "node --experimental-strip-types --test tests/engine.test.ts tests/savecode.test.ts tests/chapterend.test.ts tests/tap.test.ts tests/cues.test.ts",
     "build:artifact": "npm run build && node --experimental-strip-types tools/build-artifact.ts",
     "build:3d": "node --experimental-strip-types tools/build-3d.ts",
     "build:adult": "node --experimental-strip-types tools/build-adult.ts",
