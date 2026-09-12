@@ -1,11 +1,20 @@
-# 部署只需要 dist。这些进不了产物，也没必要上传。
-docs/
-tests/
-tools/fixtures/
+# 部署上传什么，这份说了算。少传是好事，但少传了构建要用的东西就是这次 404 的来由：
+# tests/ 被挡掉，而 buildCommand 里的 test:engine 要跑它，构建当场就死。
+# 所以规矩改成：只挡「构建用不到、或者不该离开这台机器」的东西。
+
+# 构建用不到
+node_modules/
+dist/
 dist-3d/
 dist-adult/
 dist-artifact/
+docs/
+tools/fixtures/
 Claude outputs/
-src/data/adult/
-src/data/converted/
 开发计划.md
+
+# 不该离开这台机器（D-029）：18+ 数据包。默认构建本来就不读它，这里再挡一道
+src/data/adult/
+
+# 没过 validate 的预览数据，只给本地 ?data=converted 用
+src/data/converted/

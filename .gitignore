@@ -19,3 +19,6 @@ Thumbs.db
 
 # vercel link 的本地项目信息，每台机器各自生成
 .vercel/
+
+# Vercel CLI 自己生成的。.env.local 里是 OIDC token，绝不能进版本库
+.env*

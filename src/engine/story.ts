@@ -126,6 +126,16 @@ export class Story {
       return;
     }
 
+    // 固定截获点（D-039 第 2 条）：走进这一场，那封信当场被截，不看延迟也不看未读数。
+    // 放在换场结算之前：这封信要在玩家看到这一场的第一句之前就已经在朝堂上了。
+    const forced = this.letters.forceInterceptAt(sceneId);
+    if (forced) {
+      const to = this.letters.consumeIntercept(forced.id);
+      this.emit({ kind: "letters", unread: this.letters.unreadCount(), arrived: [] });
+      // 去向通常就是这一场本身（信在这里被当众展开），那就别再进一次，会绕回来
+      if (to && to !== sceneId && this.scenes.has(to)) { this.cur = null; await this.enter(to, 0); return; }
+    }
+
     // 离开上一场：触发本场留的信，推进在路上的信的场次门
     if (this.cur && this.cur.id !== sceneId) {
       this.letters.onSceneEnd(this.cur.id);

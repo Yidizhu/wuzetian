@@ -5,6 +5,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta name="theme-color" content="#EDE7DA" />
     <title>吾则天</title>
+    <meta name="description" content="唐宫叙事游戏。她从掖庭走到含元殿，一路靠诗、靠人、靠自己拿的主意。" />
+
+    <!--
+      分享卡（OG / Twitter）。链接发到微信、微博、任何聊天窗口时，展开的就是这一张。
+      没有这几行的话，展开的是一个灰方块加一条网址——那种链接没人点。
+
+      图是题画合成器出的默认那一幅（御花园夜），1200×630、38 KB，整幅放进去不裁，
+      两边留纸色。裁成 1.91:1 会把右上的题跋切掉，那半张纸才是这张图的意思所在。
+      重新生成：开 /src/scene/tihua-preview.html，把第一张导成 jpeg 存到 public/share.jpg。
+
+      og:url 和 og:image 必须是绝对地址，抓取的机器不在这个页面上，解不了相对路径。
+      换自定义域名的时候这两行要一起改，docs/部署.md 里记了这件事。
+    -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="吾则天" />
+    <meta property="og:title" content="吾则天" />
+    <meta property="og:description" content="唐宫叙事游戏。她从掖庭走到含元殿，一路靠诗、靠人、靠自己拿的主意。" />
+    <meta property="og:url" content="https://wuzetianle.vercel.app/" />
+    <meta property="og:image" content="https://wuzetianle.vercel.app/share.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="水墨立轴：月下两个女子并肩站在栏前，右上题鱼玄机句「自恨罗衣掩诗句，举头空羡榜中名」，下钤朱砂印。" />
+    <meta property="og:locale" content="zh_CN" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="吾则天" />
+    <meta name="twitter:description" content="唐宫叙事游戏。她从掖庭走到含元殿，一路靠诗、靠人、靠自己拿的主意。" />
+    <meta name="twitter:image" content="https://wuzetianle.vercel.app/share.jpg" />
   </head>
   <body>
     <div id="app"></div>

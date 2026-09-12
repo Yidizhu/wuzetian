@@ -98,11 +98,13 @@ export const Scene = z.object({
   /** 走到这里就按结局表从上往下取首个满足者。全游戏只有一个这样的点 */
   judgeEnding: z.boolean().optional(),
   /**
-   * 章末出口（D-034）。走到这里先出结算页；`goto` 指向下一章第一场时接着走，
-   * 没写或那一场还不存在，就停在结算页显示「下章待续」。
+   * 章末出口（D-034、D-039 第 1 条）。**和 goto 并存**：
+   * 先出结算页，翻过去再进 goto；没写 goto、或者那一章还没交，就停在结算页显示「下章待续」。
    *
    * 为什么要显式写而不是靠章号变了自动判断：最后一章的最后一场后面没有下一场，
    * 章号永远不变，自动判断在那里什么都不会发生。剧本要能说「这里是一章的头」。
+   *
+   * 剧本里写成场景表的一行 `| 章末 | 是 |`，去向照常写下一章第一场。
    */
   chapterEnd: z.boolean().optional(),
   choices: z.array(Choice).optional(),
@@ -225,6 +227,15 @@ export const Letter = z.object({
   }),
   sheMayNotReply: Condition.optional(),
   interceptable: z.boolean().default(false),
+  /**
+   * 固定截获点（D-039 第 2 条）。玩家走进这一场时，这封信如果还在路上、
+   * 或者已经到了还没读，一律强制「送达并被截」，然后进被截去向。
+   *
+   * 为什么不交给真实延迟和未读数：那两样是玩家的节奏，快的人可能早就读完回完了，
+   * 慢的人可能还没收到。可这封信被当众展开是剧情的支点，不能看运气。
+   * 已经回过的信不再被截——她要是已经把话说完了，那一幕就不该再发生。
+   */
+  interceptAt: z.string().min(1).optional(),
   onIntercept: z.object({ goto: z.string().min(1) }).optional(),
   replies: z.object({
     plain: z.array(ReplyOutcome.extend({
@@ -239,11 +250,18 @@ export const Letter = z.object({
     silence: ReplyOutcome,
   }),
 }).superRefine((l, ctx) => {
-  if (l.interceptable && !l.onIntercept) {
+  if ((l.interceptable || l.interceptAt) && !l.onIntercept) {
     ctx.addIssue({
       code: z.ZodIssueCode.custom,
       path: ["onIntercept"],
       message: "会被截的信必须写明被截之后去哪一场",
+    });
+  }
+  if (l.interceptAt && !l.interceptable) {
+    ctx.addIssue({
+      code: z.ZodIssueCode.custom,
+      path: ["interceptable"],
+      message: "写了截获场景就等于这封信会被截。「会被截」也要填是，两处别打架",
     });
   }
 });

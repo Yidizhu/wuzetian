@@ -288,3 +288,84 @@ test("永远落在 0 到 1 之间", () => {
     }
   }
 });
+
+/**
+ * 固定截获点（D-039 第 2 条）。走进那一场，信当场被截，不看真实延迟也不看未读数。
+ */
+function interceptRun(letterOver: Record<string, unknown>, path: string[], preset?: (box: InstanceType<typeof Letters>, store: InstanceType<typeof Store>) => void) {
+  mem.clear();
+  const store = new Store();
+  const defs = [letter({ id: "lt_x", interceptable: true, interceptAt: "ch02_s11", onIntercept: { goto: "ch02_s11" }, ...letterOver })];
+  const scenes = path.map((id, i) => scene(id, 2, i + 1 < path.length ? { goto: path[i + 1]! } : { chapterEnd: true }));
+  const story = new Story(
+    scenes, [], [], defs as never, store, noopRenderer,
+    { async duel() { return true; }, async chapterEnd() {} },
+    path[0]!,
+  );
+  preset?.(story.letters, store);
+  return { story, store };
+}
+
+test("信还在路上，走到截获点也照样被截", async () => {
+  const { story, store } = interceptRun({}, ["ch02_s10", "ch02_s11"]);
+  await story.start();
+  for (let i = 0; i < 20; i++) { story.advance(); await drain(); }
+  const slot = store.state.letters.find((x) => x.id === "lt_x");
+  assert.equal(slot?.state, "intercepted", `实际 ${JSON.stringify(store.state.letters)}`);
+  assert.equal(story.sceneId, "ch02_s11", "被截去向就是这一场本身，不该绕出去");
+});
+
+test("已经回过的信不再被截：话说完了那一幕就不该发生", async () => {
+  const { story, store } = interceptRun({}, ["ch02_s10", "ch02_s11"], (_box, st) => {
+    st.state.letters.push({ id: "lt_x", state: "replied", dueAt: 1, repliedWith: "plainA", scenesLeft: 0 });
+  });
+  await story.start();
+  for (let i = 0; i < 20; i++) { story.advance(); await drain(); }
+  assert.equal(store.state.letters.find((x) => x.id === "lt_x")?.state, "replied");
+});
+
+test("没走到那一场就不截", async () => {
+  const { story, store } = interceptRun({}, ["ch02_s10"]);
+  await story.start();
+  for (let i = 0; i < 20; i++) { story.advance(); await drain(); }
+  assert.notEqual(store.state.letters.find((x) => x.id === "lt_x")?.state, "intercepted");
+});
+
+test("被截去向指向别处时，玩家被带过去", async () => {
+  const { story } = interceptRun(
+    { onIntercept: { goto: "ch02_s12" } },
+    ["ch02_s10", "ch02_s11", "ch02_s12"],
+  );
+  await story.start();
+  for (let i = 0; i < 6; i++) { story.advance(); await drain(); }
+  assert.equal(story.sceneId, "ch02_s12");
+});
+
+test("写了截获场景却没写被截去向，schema 拦下来", () => {
+  const bad = letter({ interceptable: true, interceptAt: "ch02_s11" });
+  assert.ok(!LetterSchema.safeParse(bad).success);
+});
+
+test("写了截获场景但「会被截」填否，schema 也拦：两处不能打架", () => {
+  const bad = letter({ interceptable: false, interceptAt: "ch02_s11", onIntercept: { goto: "ch02_s11" } });
+  assert.ok(!LetterSchema.safeParse(bad).success);
+});
+
+test("章末与去向并存（D-039 第 1 条）：先结算，再进下一章", async () => {
+  const scenes = [
+    scene("ch01_last", 1, { chapterEnd: true, goto: "ch02_first" }),
+    scene("ch02_first", 2, { goto: "ch02_first" }),
+  ];
+  mem.clear();
+  const store = new Store();
+  const seen: number[] = [];
+  const story = new Story(
+    scenes, [], [], [], store, noopRenderer,
+    { async duel() { return true; }, async chapterEnd(ch) { seen.push(ch); } },
+    "ch01_last",
+  );
+  await story.start();
+  for (let i = 0; i < 10; i++) { story.advance(); await drain(); }
+  assert.deepEqual(seen, [1], "结算页只该开一次");
+  assert.equal(story.sceneId, "ch02_first", "翻过结算页要真的进第二章");
+});

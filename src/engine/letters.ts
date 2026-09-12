@@ -30,6 +30,8 @@ export interface ReplyResult {
 export class Letters {
   private byId = new Map<string, LetterT>();
   private bySceneTrigger = new Map<string, LetterT[]>();
+  /** 有固定截获点的信，按那一场分组（D-039 第 2 条） */
+  private byInterceptAt = new Map<string, LetterT[]>();
 
   /** 同 story.ts：engine 下不用构造参数属性，否则无头工具跑不起来 */
   private store: Store;
@@ -42,6 +44,11 @@ export class Letters {
         const arr = this.bySceneTrigger.get(l.trigger.sceneId) ?? [];
         arr.push(l);
         this.bySceneTrigger.set(l.trigger.sceneId, arr);
+      }
+      if (l.interceptAt) {
+        const arr = this.byInterceptAt.get(l.interceptAt) ?? [];
+        arr.push(l);
+        this.byInterceptAt.set(l.interceptAt, arr);
       }
     }
   }
@@ -116,6 +123,33 @@ export class Letters {
       .filter((x) => x.state === "arrived" || x.state === "read")
       .map((x) => this.byId.get(x.id))
       .filter((l): l is LetterT => !!l);
+  }
+
+  /**
+   * 固定截获点（D-039 第 2 条）：走进这一场，该被截的那封信当场被截。
+   *
+   * 三种状态都要截：还在路上（pending）、到了没读（arrived）、读了没回（read）。
+   * 唯独**已经回过的不截**——她要是已经把话说完了，这封信在公议上被展开就没有戏了，
+   * 那一幕会变成重复交代一件玩家已经处理完的事。
+   *
+   * 返回被截的那封，没有就是 null。
+   */
+  forceInterceptAt(sceneId: string): LetterT | null {
+    const s = this.store.state;
+    for (const l of this.byInterceptAt.get(sceneId) ?? []) {
+      let slot = this.slot(l.id);
+      if (!slot) {
+        // 还没触发就走到了截获点：信照样存在，只是玩家没等到它送来
+        slot = { id: l.id, state: "pending", dueAt: 0, repliedWith: null, scenesLeft: 0 };
+        s.letters.push(slot);
+      }
+      if (slot.state === "replied" || slot.repliedWith) continue;
+      if (slot.state === "intercepted") continue;
+      slot.state = "intercepted";
+      console.info(`[letters] ${l.id} 在 ${sceneId} 被强制截下（D-039）`);
+      return l;
+    }
+    return null;
   }
 
   /** 被截了、还没进那个朝廷场景的信 */
