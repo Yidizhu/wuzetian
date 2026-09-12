@@ -1,5 +1,7 @@
 @import "./palette.css";
 @import "./inbox.css";
+@import "./tihua.css";
+@import "./title.css";
 
 /* 字体：M5 会换成子集化的思源宋体。现在先用系统衬线，保证排版结构对。 */
 :root {
@@ -17,19 +19,36 @@ html, body {
   -webkit-text-size-adjust: 100%;
   overscroll-behavior: none;
   transition: background 420ms var(--ease);
+  /* 手机上的三件事（D-047）：不等双击判定、点下去不闪灰块、长按不选中文字。
+     少了第一条，每一次推进都要多等 300ms，玩起来像卡了。 */
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
 }
 
 #app {
   position: relative;
+  /* 两行都要留。dvh 是 iOS 16.4 才有的，老机器上那一行整条无效，
+     只剩 height:auto——而这一层的孩子全是绝对定位，auto 就是 0 高，
+     于是画面照常显示，但所有东西都长在一个零高的盒子里。先写 vh 兜住。 */
+  height: 100vh;
   height: 100dvh;
   overflow: hidden;
   cursor: pointer;
   user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
 }
+
+/* 藏起来就要真的不在（D-047）。满屏的面板（对诗、结算、存档、信箱）一旦
+   只是视觉上看不见而元素还铺在那里，它就会安静地吃掉每一次触摸，
+   画面一切正常，玩家只觉得游戏点不动。这一条比任何单独的修补都值钱。 */
+[hidden] { display: none !important; }
 
 /* ---------- 背景层 ---------- */
 
-.stage { position: absolute; inset: 0; z-index: 0; }
+/* 背景层不接触摸（D-047）。它满屏铺着，又在最底下，任何一次推进都要先穿过它。
+   让它彻底透明于事件，就少了一整类「点不动但看不出来」的故障。 */
+.stage { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
 
 .stage__layer {
   position: absolute; inset: -6%;
@@ -93,6 +112,29 @@ html, body {
     #000 0%, #000 calc(var(--ink-cover, 0) * 82%), transparent calc(var(--ink-cover, 0) * 124% + 6%));
 }
 
+/* 雨丝（E4，女冠观的夜雨）。水墨里的雨是斜过画面的一排细线，不是粒子——
+   negative.md 禁的是粒子和发光，一层匀速平移的细线不在其内。
+   只在 data-dress="yeyu" 时显形，别的场景这一层是零成本的空 div。 */
+.stage__rain {
+  position: absolute; inset: -20%; pointer-events: none;
+  opacity: 0; transition: opacity 700ms var(--ease);
+  /* 两组不同疏密的斜线叠在一起，间距不成整数倍，看上去就不是一把梳子。
+     一组匀速的雨在水墨里是假的，两组错开才像 */
+  background-image:
+    repeating-linear-gradient(74deg,
+      color-mix(in srgb, var(--c-ink-3) 60%, transparent) 0 1px, transparent 1px 23px),
+    repeating-linear-gradient(71deg,
+      color-mix(in srgb, var(--c-ink-4) 70%, transparent) 0 1px, transparent 1px 37px);
+}
+.stage[data-dress="yeyu"] .stage__rain {
+  opacity: 0.42;
+  animation: rain 900ms linear infinite;
+}
+@keyframes rain { to { transform: translate(-26px, 92px); } }
+@media (prefers-reduced-motion: reduce) {
+  .stage[data-dress="yeyu"] .stage__rain { animation: none; }
+}
+
 .stage[data-night="1"] { background: var(--c-ground-night); }
 
 /* 墨晕开：转场不用淡入淡出 */
@@ -105,21 +147,24 @@ html, body {
 .status {
   position: absolute; top: max(18px, env(safe-area-inset-top)); right: 20px;
   z-index: 3; display: flex; gap: 14px;
+  pointer-events: none;                 /* 状态条只是看的，别挡住右上角的触摸 */
 }
 .status__cell { display: flex; flex-direction: column; align-items: center; gap: 6px; }
 .status__line {
-  width: 2px; height: 56px;
+  width: 3px; height: 56px;
   background: linear-gradient(to top,
     currentColor 0, currentColor var(--fill, 20%), transparent var(--fill, 20%));
   color: var(--c-ink-4);
   transition: color 400ms var(--ease), --fill 400ms var(--ease);
 }
-/* 五级色阶，不是连续渐变——水墨是分级的 */
-.status__line[data-tone="0"] { color: var(--c-ink-4); }
-.status__line[data-tone="1"] { color: var(--c-ink-3); }
-.status__line[data-tone="2"] { color: var(--c-ink-2); }
-.status__line[data-tone="3"] { color: var(--c-ink-1); }
-.status__line[data-tone="4"] { color: var(--c-line); }
+/* 五级色阶，不是连续渐变——水墨是分级的。
+   E4 手机实机：原来第 0 档用清墨 #C9C4B8，画在纸上根本看不见，头两档也分不开。
+   现在从淡墨起步，四档墨色 + 最高一档加粗，手机上「淡→重」那一跳看得出来。 */
+.status__line[data-tone="0"] { color: var(--c-ink-3); opacity: 0.75; }
+.status__line[data-tone="1"] { color: var(--c-ink-2); }
+.status__line[data-tone="2"] { color: var(--c-ink-1); }
+.status__line[data-tone="3"] { color: var(--c-line); }
+.status__line[data-tone="4"] { color: var(--c-line); width: 5px; }
 .status__label { font-size: 13px; color: var(--c-text-soft); letter-spacing: 0.05em; }
 
 .status__line--bloom { animation: bloom 700ms var(--ease); }
@@ -135,7 +180,11 @@ html, body {
   position: absolute; left: 0; right: 0;
   bottom: max(24px, env(safe-area-inset-bottom));
   z-index: 2;
+  pointer-events: none;                 /* 对话框里没有可点的东西，点它等于点屏幕 */
   padding: 18px clamp(20px, 6vw, 96px) 22px;
+  /* 前一行给不认识 color-mix 的浏览器（iOS 16.2 以下）。少了它整条声明会被丢掉，
+     对话框变全透明，台词直接压在画面上，暗场里读不出字。 */
+  background: var(--c-ground);
   background: color-mix(in srgb, var(--c-ground) 92%, transparent);
   border-top: 1px solid var(--c-ink-4);
   border-bottom: 1px solid var(--c-ink-4);
@@ -163,6 +212,7 @@ html, body {
   z-index: 4;
   padding: 16px clamp(20px, 6vw, 96px) 24px;
   display: flex; flex-direction: column; gap: 12px;
+  background: var(--c-ground);
   background: color-mix(in srgb, var(--c-ground) 94%, transparent);
   border-top: 1px solid var(--c-ink-4);
 }
@@ -214,7 +264,7 @@ html, body {
 
 .ending-title {
   position: absolute; left: 0; right: 0; top: 38%;
-  z-index: 3; text-align: center;
+  z-index: 3; text-align: center; pointer-events: none;
   font-size: 30px; letter-spacing: 0.35em; text-indent: 0.35em;
   color: var(--c-text);
   animation: ending-in 1200ms var(--ease) both;
@@ -231,6 +281,7 @@ html, body {
   overflow-y: auto; -webkit-overflow-scrolling: touch;
   padding: max(24px, env(safe-area-inset-top)) clamp(20px, 6vw, 96px)
            max(28px, env(safe-area-inset-bottom));
+  background: var(--c-ground);
   background: color-mix(in srgb, var(--c-ground) 96%, transparent);
 }
 
@@ -354,8 +405,16 @@ html, body {
 
 .cast { position: absolute; inset: 0; z-index: 1; pointer-events: none; overflow: hidden; }
 .cast__slot {
-  position: absolute; bottom: -4%;
-  height: 78%;                       /* art-style：占视口高 62% 到 78% */
+  position: absolute;
+  /* 脚对地：3D 舞台把地平线在屏幕上的位置写成 --stage-floor（离底边的百分比），
+     立绘往下挪到那条线上。画面里人脚在 SVG 的 93% 处，所以还要减掉那 7% 的空底
+     （7% × 槽高 76% ≈ 5.3%）。CSS 版没有真地平线，用默认值 22%。
+     写死一个 bottom 的话，掖庭的人会陷进地里，含元殿的人会浮在半空。
+
+     地平线的下限由 markFloor 卡在 21%（对话框顶边之上）：脚要露出来，
+     不能被对话框切在小腿上。E4 手机实机的第一条意见就是这个。 */
+  bottom: calc(var(--stage-floor, 22%) - 5.3%);
+  height: 76%;                       /* art-style：占视口高 62% 到 78% */
   aspect-ratio: 2 / 3;
   transition: transform 520ms var(--ease), opacity 520ms var(--ease), filter 520ms var(--ease);
   opacity: 0.94;
@@ -379,15 +438,20 @@ html, body {
    主角偏左下，留白在右上题跋区；第二个人在右，退半步 */
 .cast__slot[data-side="left"]  { left: -18%;  transform: translateX(0) scale(1); }
 .cast__slot[data-side="right"] { right: -18%; transform: translateX(0) scale(0.96); }
-/* 不说话的人退后、转淡。舞台调度，不是特效 */
-.cast__slot:not([data-active="1"]) { opacity: 0.55; filter: blur(0.4px); }
+/* 不说话的人退后、转淡。舞台调度，不是特效。
+   0.55 太透了：旁白那种没人说话的时刻所有人都不是 active，两个人一起变成半透明的影子，
+   贴在 3D 舞台上像没渲染完。退后靠位置和大小就够，透明度只降一点点。
+   E4 又提了一档到 0.86：人改走墨色之后本来就压在同样是墨的场景上，再透就没有剪影了。 */
+.cast__slot:not([data-active="1"]) { opacity: 0.86; filter: blur(0.3px); }
 .cast__slot[data-side="left"]:not([data-active="1"])  { transform: translateX(-3%) scale(0.97); }
 .cast__slot[data-side="right"]:not([data-active="1"]) { transform: translateX(3%) scale(0.93); }
 /* 不可逆决定：她的朱砂点亮回朱砂，金碧场景里也是 */
 .cast__slot[data-flare="1"] .accent { fill: #A8232A !important; animation: vermilion 420ms var(--ease); }
 /* 手机竖屏只放得下一个人半身，第二个人再往边上退 */
+/* 手机竖屏：人再放大一档。64% 的时候画的人只占到画面一半高，头顶上空着三分之一，
+   而这一屏本来就窄——上方的留白要收，人要顶上去 */
 @media (max-width: 480px) {
-  .cast__slot { height: 64%; }
+  .cast__slot { height: 72%; bottom: calc(var(--stage-floor, 22%) - 5%); }
   .cast__slot[data-side="left"]  { left: -24%; }
   .cast__slot[data-side="right"] { right: -26%; }
 }
@@ -396,3 +460,18 @@ html, body {
 .stage--three .stage__paper { opacity: 0.22; }
 /* 绢纹在 3D 舞台上要比宣纹再压一点，经纬线叠在平涂面上很容易抢戏 */
 [data-palette="gold"] .stage--three .stage__paper { opacity: 0.17; }
+
+/* 清档重来（B10 第 2 条）。收在存档面板最下面，和上面的东西隔开一条线。
+   举起刀的那一下（data-armed）才染朱砂——在金碧板里它自动落到泥金，规矩不破。 */
+.slots__danger {
+  margin-top: 18px; padding-top: 14px;
+  border-top: 1px solid var(--c-ink-4);
+  display: flex; justify-content: center;
+}
+.slots__danger button {
+  appearance: none; background: none; border: 0;
+  font-family: var(--font); font-size: 14px; letter-spacing: 0.12em;
+  color: var(--c-ink-3); cursor: pointer;
+  min-height: 44px; padding: 0 12px;      /* 手机上的最小可点尺寸 */
+}
+.slots__danger button[data-armed] { color: var(--c-accent, var(--c-ink-4)); }

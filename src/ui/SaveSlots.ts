@@ -18,6 +18,8 @@ export class SaveSlots {
     private onLoad: (slot: number) => void,
     /** 导入一份外来存档：写进指定槽，然后读它 */
     private onImport?: (slot: number, s: save.SaveV1) => void,
+    /** 清档重来。收在这里面，而且要点两下——见 restartRow */
+    private onRestart?: () => void,
   ) {
     this.el = document.createElement("div");
     this.el.className = "slots";
@@ -88,6 +90,8 @@ export class SaveSlots {
     panel.appendChild(out);
     this.out = out;
 
+    if (this.onRestart) panel.appendChild(this.restartRow());
+
     const close = document.createElement("button");
     close.type = "button"; close.className = "slots__close"; close.textContent = "合上";
     close.addEventListener("click", (e) => { e.stopPropagation(); this.hide(); });
@@ -95,6 +99,36 @@ export class SaveSlots {
 
     this.el.appendChild(panel);
     this.el.hidden = false;
+  }
+
+  /**
+   * 清档重来。要点两下。
+   *
+   * 原来它是左上角那一条里的一个两字按钮，紧挨着「存档」。
+   * 两个字、一寸远、没有确认——点错一次就是整局从头来，而且没有任何办法找回。
+   * 现在收进面板深处，第一下只是把话说清楚，第二下才真的动手。
+   */
+  private restartRow(): HTMLElement {
+    const row = document.createElement("div");
+    row.className = "slots__danger";
+    const b = document.createElement("button");
+    b.type = "button";
+    b.textContent = "清档重来";
+    let armed = false;
+    b.addEventListener("click", (e) => {
+      e.stopPropagation();
+      if (!armed) {
+        armed = true;
+        b.textContent = "真的清掉？再点一次";
+        b.dataset.armed = "1";
+        // 犹豫五秒就当她改了主意。一个一直举着刀的按钮比没有确认还糟
+        window.setTimeout(() => { armed = false; b.textContent = "清档重来"; delete b.dataset.armed; }, 5000);
+        return;
+      }
+      this.onRestart?.();
+    });
+    row.appendChild(b);
+    return row;
   }
 
   /** 导出：优先取自动存档（进度最新的那一份） */

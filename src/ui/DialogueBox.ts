@@ -22,13 +22,22 @@ export class DialogueBox {
     this.textEl = this.el.querySelector(".dlg__text")!;
   }
 
-  /** 正在逐字显示则补完并返回 true，调用方据此决定这一下点击算不算推进 */
+  /**
+   * 正在逐字显示则补完并返回 true，调用方据此决定这一下点击算不算推进。
+   *
+   * 「已经显示全了就不要吃这一下」（D-047）。原来只看 revealing 这个旗子：
+   * 最后一个字已经画出来、而清旗子的那一拍定时器还没跑到，这时候点一下就被白白吃掉。
+   * 更糟的是定时器被系统节流的时候——iOS 在页面刚打开、还没交互过时会压 timer——
+   * 旗子可能一直举着，玩家怎么点都只是在「补完一段已经完整的话」，
+   * 画面毫无变化，看上去就是点不动。所以这里按**字**判断，不按旗子判断。
+   */
   complete(): boolean {
     if (!this.revealing) return false;
     window.clearInterval(this.timer);
     this.revealing = false;
+    const already = this.textEl.textContent === this.full;
     this.textEl.textContent = this.full;
-    return true;
+    return !already;
   }
 
   show(who: string, text: string, kind: string, state: GameState, instant: boolean): void {

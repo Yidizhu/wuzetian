@@ -13,6 +13,7 @@ import { StatusBar } from "./ui/StatusBar.ts";
 import { PoemDuel } from "./ui/PoemDuel.ts";
 import { ChapterSummary } from "./ui/ChapterSummary.ts";
 import { showFirstRunNotice, showNotice } from "./ui/FirstRunNotice.ts";
+import { onTap, mountTapDebug } from "./ui/tap.ts";
 import { SaveSlots } from "./ui/SaveSlots.ts";
 import * as saveApi from "./engine/save.ts";
 import { NAMES } from "./ui/names.ts";
@@ -117,6 +118,7 @@ const slots = new SaveSlots(
   (n) => story.saveTo(n),
   (n) => void story.loadFrom(n),
   (n, s) => { saveApi.write(n, s); slots.hide(); void story.loadFrom(n); },
+  () => void story.restart(),
 );
 // 信箱要挂在 HUD 上，HUD 在后面才建；先声明，建好 HUD 再接
 let inbox: Inbox | null = null;
@@ -174,11 +176,19 @@ story.on((e) => {
 });
 
 // 点一下：正在逐字就补完，已经完整就推进。第二下才算翻页。
-// 对诗、结算页、存档面板打开时不吃这一下，它们各自有自己的按钮。
-app.addEventListener("click", () => {
+//
+// 走 ui/tap.ts 而不是 app 上的 click（D-047）：那个写法靠事件冒泡，
+// 中间任何一层挡一下，游戏就点不动而画面毫无异样。现在在 window 的捕获阶段听，
+// 谁都挡不住；「点在选项／对诗／面板上不该翻页」由 tap.ts 按元素判断。
+//
+// 面板是否打开仍旧要看：对诗和结算页是满屏的，它们开着时点空白处不该往下走。
+const openPanel = (sel: string): boolean => {
+  const el = document.querySelector<HTMLElement>(sel);
+  return !!el && !el.hidden;
+};
+onTap(() => {
   if (slots.visible || inbox?.visible) return;
-  if (!document.querySelector<HTMLElement>(".duel")?.hidden) return;
-  if (!document.querySelector<HTMLElement>(".summary")?.hidden) return;
+  if (openPanel(".duel") || openPanel(".summary")) return;
   if (dlg.complete()) return;
   story.advance();
 });
@@ -190,36 +200,42 @@ window.addEventListener("keydown", (e) => {
 });
 window.addEventListener("resize", () => renderer.resize(window.innerWidth, window.innerHeight));
 
-// M1 验收用的小工具条，正式版会去掉
+/**
+ * 左上角那一条。玩家默认只看得见「存档」和「案上」两个字（B10 第 2 条）。
+ *
+ * 渲染器名、切渲染器、帧数这些是验收工具，`?dev=1` 才出现。
+ * 「清档重来」收进了存档面板并且要点两下——它挨着「存档」放在一起时太危险了，
+ * 两个字的按钮，一寸远，一下点错就是整局没了。
+ */
+const dev = new URLSearchParams(location.search).has("dev");
 const hud = document.createElement("div");
 hud.className = "hud";
-hud.innerHTML = `<span>渲染器：${(renderer as { name?: string }).name ?? "?"}</span>`;
-const reset = document.createElement("button");
-reset.type = "button";
-reset.textContent = "清档重来";
-reset.addEventListener("click", (e) => { e.stopPropagation(); void story.restart(); });
+if (dev) hud.innerHTML = `<span>渲染器：${(renderer as { name?: string }).name ?? "?"}</span>`;
 const slotsBtn = document.createElement("button");
 slotsBtn.type = "button";
 slotsBtn.textContent = "存档";
 slotsBtn.addEventListener("click", (e) => { e.stopPropagation(); slots.toggle(); });
-const swap = document.createElement("button");
-swap.type = "button";
-swap.textContent = (renderer as { name?: string }).name === "null" ? "切回 CSS 版" : "切空渲染器";
-swap.addEventListener("click", (e) => {
-  e.stopPropagation();
-  const u = new URL(location.href);
-  if ((renderer as { name?: string }).name === "null") u.searchParams.delete("renderer");
-  else u.searchParams.set("renderer", "null");
-  location.href = u.toString();
-});
-hud.append(slotsBtn, swap, reset);
+hud.append(slotsBtn);
+if (dev) {
+  const swap = document.createElement("button");
+  swap.type = "button";
+  swap.textContent = (renderer as { name?: string }).name === "null" ? "切回 CSS 版" : "切空渲染器";
+  swap.addEventListener("click", (e) => {
+    e.stopPropagation();
+    const u = new URL(location.href);
+    if ((renderer as { name?: string }).name === "null") u.searchParams.delete("renderer");
+    else u.searchParams.set("renderer", "null");
+    location.href = u.toString();
+  });
+  hud.append(swap);
+}
 inbox = new Inbox(app, hud, {
   poems,
   onRead: (id) => story.markLetterRead(id),
   onReply: (id, kind, tags) => story.replyLetter(id, kind, tags),
 }, () => story.letters.onDesk(), () => store.state);
 inbox.setUnread(story.letters.unreadCount(), story.letters.onDesk().length);
-if ((renderer as { name?: string }).name === "three-stage") {
+if (dev && (renderer as { name?: string }).name === "three-stage") {
   const three = renderer as ThreeStageRenderer;
   const perf = document.createElement("span");
   perf.className = "hud__perf";
@@ -236,6 +252,11 @@ app.appendChild(hud);
 
 // 首屏提示（D-034）：存档只在这一个浏览器里。放在 start() 之前，她还没往下点
 showFirstRunNotice(app, () => slots.show());
+
+// `?tapdebug=1`：把最近几次触摸打在屏幕上。微信里开不了控制台，出事只能靠截图（D-047）
+if (new URLSearchParams(location.search).has("tapdebug")) {
+  mountTapDebug(app, () => `${story.sceneId} 第 ${story.lineIndex} 句`);
+}
 
 void story.start();
 }
