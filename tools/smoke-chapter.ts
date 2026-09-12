@@ -19,6 +19,7 @@ import { Story } from "../src/engine/story.ts";
 import { meets } from "../src/engine/conditions.ts";
 import type { Scene, Ending } from "../src/engine/types.ts";
 import type { LetterT, PoemDuelT } from "../src/engine/schema.ts";
+import { SPRITE_RULES } from "../src/char/sprite-rules.ts";
 
 // ------------------------------------------------------- 浏览器那点东西的替身
 // Story 只碰 document.documentElement.dataset.palette 和 localStorage，各给一个假的
@@ -61,6 +62,20 @@ async function drain(): Promise<void> {
 
 interface Stuck { scene: string; line: number; why: string }
 
+/**
+ * 不变式（B11 第 3 步）。卡死之外，还有三件事「走得通」证明不了：
+ *
+ * 1. 章末结算页真的出了——尤其是章末场带选项、选项去向空着的那种（D-043，ch02-24）。
+ *    漏了它玩家照样能走进下一章，只是这一章做完了什么，谁也没告诉她。
+ * 2. 固定截获点真的截了（D-039，ch02-11）。没截的话那封信还躺在案上，
+ *    朝堂上却在念它——剧情和信箱各说各的。
+ * 3. 换图规则的 flag 真的会被写真，而且换过去的那几张图真的存在（D-046，ch03-15）。
+ *    表里写了、图也画了，可剧本出口忘了写 flag，柳承欢腕上那点红就永远不会褪。
+ */
+interface Broken { scene: string; why: string }
+const broken: Broken[] = [];
+const flagsEverTrue = new Set<string>();
+
 /** 沿着一条选择序列走到底。返回走过的场次，或者卡住的地方 */
 let winDuels = false;
 
@@ -77,13 +92,15 @@ async function walk(picks: number[]): Promise<{ path: string[]; stuck: Stuck | n
   let pending: { items: { enabled: boolean }[] } | null = null;
   let ended = false;
   const forks: number[] = [];
+  const summarized = new Set<string>();
 
   const story = new Story(
     scenes, endings, duels, letters, store, noop,
     {
       // 对诗输赢两种都要跑：赢了才攒得起好感，专属闲处场是好感门槛后面的
       async duel() { return winDuels; },
-      async chapterEnd() {},
+      // 结算页出的那一刻，引擎的当前场景还是章末那一场
+      async chapterEnd() { summarized.add(story.sceneId); },
     },
     START,
   );
@@ -124,18 +141,41 @@ async function walk(picks: number[]): Promise<{ path: string[]; stuck: Stuck | n
     }
   }
   if (!ended && !stuck) stuck = { scene: story.sceneId, line: story.lineIndex, why: "六千步还没走到结局，可能有环" };
+
+  if (!stuck) {
+    const note = (scene: string, why: string) => {
+      if (!broken.some((b) => b.scene === scene && b.why === why)) broken.push({ scene, why });
+    };
+    // 不变式 1：走过的章末场都出过结算页。卡住的路径不查——那是没走完，不是漏了
+    for (const id of path) {
+      const sc = scenes.find((x) => x.id === id);
+      if (sc?.chapterEnd && !summarized.has(id)) note(id, "走过这一场章末，结算页却没有出");
+    }
+    // 不变式 2：走进固定截获点，那封信要么被截了，要么玩家已经回过
+    for (const l of letters) {
+      if (!l.interceptAt || !path.includes(l.interceptAt)) continue;
+      const slot = store.state.letters.find((x) => x.id === l.id);
+      if (!slot || !(slot.state === "intercepted" || slot.state === "replied" || slot.repliedWith)) {
+        note(l.interceptAt, `走进了截获点，${l.id} 却没有被截（状态：${slot?.state ?? "还没触发"}）`);
+      }
+    }
+    for (const [f, v] of Object.entries(store.state.flags)) if (v) flagsEverTrue.add(f);
+  }
   return { path, stuck, forks };
 }
 
 // --------------------------------------------------------------- 穷举所有分支
 
+const MAX_RUNS = Number(process.env.SMOKE_RUNS ?? 400);
+const MAX_DEPTH = Number(process.env.SMOKE_DEPTH ?? 48);
 const seen = new Set<string>();
 const stucks: Stuck[] = [];
 let runs = 0;
 let longest: string[] = [];
 
 async function explore(picks: number[], depth: number): Promise<void> {
-  if (depth > 16 || runs > 120) return;
+  // 三章的岔路比一章多得多。上限可以用环境变量调，默认够第一到第三章走遍
+  if (depth > MAX_DEPTH || runs > MAX_RUNS) return;
   runs++;
   const { path, stuck, forks } = await walk(picks);
   for (const s of path) seen.add(s);
@@ -182,6 +222,26 @@ for (const id of unreached) {
   if (!from?.length) console.log(`  走不到 ${id}：没有任何场景指向它`);
   else console.log(`  走不到 ${id}：${from.join("、")} 指向它，但进入条件没达到（${JSON.stringify(req) ?? "无"}）`);
 }
+// 不变式 3：换图规则（D-046）。flag 从来没被写真 = 那张图永远换不上
+for (const r of SPRITE_RULES) {
+  const who = scenes.some((x) => x.cast.includes(r.who));
+  if (!who) continue;                                   // 这个人还没出场的数据，不查
+  if (!flagsEverTrue.has(r.flag)) {
+    broken.push({ scene: `(${r.who})`, why: `换图规则要的 flag.${r.flag} 在所有路径上都没被写真，${r.who}_*_${r.suffix} 永远换不上` });
+    continue;
+  }
+  for (const expr of ["default", "guarded", "open"]) {
+    const f = join(ROOT, "src", "char", `${r.who}_${expr}_${r.suffix}.svg`);
+    if (!existsSync(f)) broken.push({ scene: `(${r.who})`, why: `flag.${r.flag} 会写真，但图 ${r.who}_${expr}_${r.suffix}.svg 不存在` });
+  }
+}
+if (broken.length) {
+  console.log(`
+  不变式没守住的地方：`);
+  for (const b of broken) console.log(`    ${b.scene} —— ${b.why}`);
+} else {
+  console.log(`  三条不变式都守住了：章末都出了结算页、截获点都截了、换图的 flag 都会写真。`);
+}
 if (stucks.length) {
   console.log(`\n  卡住的地方：`);
   for (const s of stucks) console.log(`    ${s.scene} 第 ${s.line} 句 —— ${s.why}`);
@@ -189,4 +249,4 @@ if (stucks.length) {
   console.log(`  没有卡住的地方。`);
 }
 console.log();
-process.exit(stucks.length ? 1 : 0);
+process.exit(stucks.length || broken.length ? 1 : 0);

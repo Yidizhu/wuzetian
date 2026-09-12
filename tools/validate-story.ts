@@ -296,6 +296,23 @@ if (mainRun) {
     if (l.body.blank.length < 15) {
       warn(`letters/${l.id}`, "body.blank", "「她没写的」那一层少于 15 字。三层结构里这一层最容易被敷衍成一句话，而它才是这套机制的核心");
     }
+    if (l.interceptAt && !scenes.has(l.interceptAt)) {
+      err(`letters/${l.id}`, "interceptAt", `截获场景 ${l.interceptAt} 不存在。信永远不会被截，那一幕公议念的是一封没截到的信`);
+    }
+    // 「不宣读」的那一段不许出现在截获那一场的台词里（D-044）。
+    // 它是整封信的戏眼：公议上被叫停，她还有一句没来得及给你。剧本要是把它念出来了，
+    // 这封信就只剩一次剧情事故——而且没有任何别的检查会发现。
+    if (l.interceptAt && scenes.has(l.interceptAt)) {
+      const sc = scenes.get(l.interceptAt)!.s;
+      const spoken = sc.lines.map((x) => x.text).join("|");
+      for (const pg of l.body.pages ?? []) {
+        if (pg.readAloud !== false) continue;
+        const probe = pg.text.replace(/[\s「」“”，。！？、；：…—]/g, "").slice(0, 12);
+        if (probe.length >= 6 && spoken.replace(/[\s「」“”，。！？、；：…—]/g, "").includes(probe)) {
+          err(`letters/${l.id}`, `body.pages.${pg.key}`, `这一段标了「不宣读」，却在截获场景 ${l.interceptAt} 的台词里被念出来了`);
+        }
+      }
+    }
     if (l.interceptable && l.onIntercept && !scenes.has(l.onIntercept.goto)) {
       err(`letters/${l.id}`, "onIntercept.goto", `被截去向 ${l.onIntercept.goto} 不存在`);
     }
