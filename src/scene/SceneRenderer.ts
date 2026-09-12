@@ -34,6 +34,11 @@ export interface SceneRenderer {
    * 这一层只在金碧场景上显形，那个判断归 renderer——引擎不该知道墨叠在什么上面。
    */
   setInk?(v: number): void;
+  /**
+   * 场景布置（D-046 第 2 条）。空串 = 平常；现有 `gongyi`、`yeyu`、`shouwei`。
+   * 可选，和 setInk 同一个用法：引擎在 show 之后每场调一次。值由剧本给，引擎不解释它。
+   */
+  setDressing?(name: string): void;
   resize(w: number, h: number): void;
   dispose(): void;
 }

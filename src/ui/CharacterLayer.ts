@@ -1,4 +1,5 @@
 import type { Expr } from "../engine/types.ts";
+import { spriteKey } from "../char/sprite-rules.ts";
 
 /**
  * 立绘层。叠在背景层之上、对话框之下。
@@ -17,8 +18,11 @@ export class CharacterLayer {
   private el: HTMLElement;
   private slots = new Map<string, HTMLElement>();   // 角色 key -> 容器
 
-  /** sprites：`wuze_default` -> SVG 文本 */
-  constructor(root: HTMLElement, private sprites: Record<string, string>) {
+  /**
+   * sprites：`wuze_default` -> SVG 文本。
+   * hasFlag：给换图规则用（D-046 第 1 条）。规则表归 CC3，flag 归引擎，这里只是把两边接上。
+   */
+  constructor(root: HTMLElement, private sprites: Record<string, string>, private hasFlag: (flag: string) => boolean = () => false) {
     this.el = document.createElement("div");
     this.el.className = "cast";
     root.appendChild(this.el);
@@ -94,11 +98,23 @@ export class CharacterLayer {
   private async show(who: string, expr: Expr): Promise<void> {
     const node = this.slots.get(who);
     if (!node) return;
-    if (node.dataset.expr === expr) return;
-    const svg = await this.load(`${who}_${expr}`);
+    // 缓存按「最终用哪张图」记，不按表情记：同一个表情在归还戏之后要换成 _bare，
+    // 按表情记的话，flag 变了图也不会变。
+    const want = spriteKey(who, expr, this.hasFlag);
+    const name = this.sprites[want] ? want : `${who}_${expr}`;   // 表里写了但图不在：退回原图，不白屏
+    if (node.dataset.sprite === name) return;
+    const svg = await this.load(name);
     if (!svg) return;
     node.innerHTML = svg;
     node.dataset.expr = expr;
+    node.dataset.sprite = name;
+  }
+
+  /** flag 变了之后重新对一遍台上的人（归还戏的出口会用到） */
+  async refresh(): Promise<void> {
+    for (const [who, node] of this.slots) {
+      await this.show(who, (node.dataset.expr as Expr) || "default");
+    }
   }
 
   private async load(name: string): Promise<string | null> {

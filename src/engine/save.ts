@@ -153,6 +153,30 @@ export function listSlots(): SlotInfo[] {
   return MANUAL_SLOTS.map((slot) => ({ slot, save: read(slot) }));
 }
 
+/**
+ * 标题画面要不要出「接着上次」。只看自动存档：手动槽是玩家自己的书签，
+ * 标题这一屏不替她挑哪一个。
+ */
+export function hasResumable(): boolean {
+  return read(AUTO_SLOT) !== null;
+}
+
+const PREV = "wuzetian.save.0.prev";
+
+/**
+ * 点「入宫」从头来之前，把上一局的自动存档挪到一边。
+ *
+ * 标题上「接着上次」就在「入宫」正上方，一寸远。点错一次，上一局就被新一局的
+ * 第一次自动存档盖掉——.bak 也只多撑一次写入。这一份不给玩家看，
+ * 是留给「我刚才点错了」那一句话的：CC1 能从这里捞回来。
+ */
+export function stashAutosave(): void {
+  try {
+    const cur = localStorage.getItem(KEY(AUTO_SLOT));
+    if (cur) localStorage.setItem(PREV, cur);
+  } catch { /* 存不住档的环境里本来就没有可挪的 */ }
+}
+
 export function clear(slot: number): void {
   try {
     localStorage.removeItem(KEY(slot));

@@ -95,8 +95,17 @@ export class Story {
   get lineIndex(): number { return this.idx; }
   get currentScene(): Scene | null { return this.cur; }
 
-  /** 从存档或开头启动 */
-  async start(): Promise<void> {
+  /**
+   * 启动。`fresh` 为真是标题上的「入宫」：不管有没有自动存档，从第一场开始。
+   * 否则是「接着上次」（或者没有标题画面的场合，比如无头工具）：有档读档，没有就从头。
+   */
+  async start(opts: { fresh?: boolean } = {}): Promise<void> {
+    if (opts.fresh) {
+      save.stashAutosave();
+      save.clear(save.AUTO_SLOT);
+      await this.enter(this.startId, 0);
+      return;
+    }
     const s = save.read(save.AUTO_SLOT);
     if (s && this.scenes.has(s.sceneId)) {
       const { state, sceneId, lineIndex } = save.deserialize(s);
@@ -167,6 +176,9 @@ export class Story {
     // 墨层的覆盖面积就是她的权力进度（D-010 第 3 条）。
     // show() 之后才调：show 会把墨层按幕数重置成默认值，先调会被它盖掉。
     this.renderer.setInk?.(inkLevel(this.store.state, scene.act));
+    // 布置（D-046 第 2 条）：和墨层一样在 show 之后调，空串 = 平常的样子。
+    // descriptor 里也带着 dressing，这一行是给 CC3 那条「show 之后再改」的路。
+    this.renderer.setDressing?.(scene.dressing ?? "");
 
     this.emit({ kind: "scene", scene });
     this.present();

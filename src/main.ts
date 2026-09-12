@@ -19,6 +19,7 @@ import * as saveApi from "./engine/save.ts";
 import { NAMES } from "./ui/names.ts";
 import { CharacterLayer } from "./ui/CharacterLayer.ts";
 import { Inbox } from "./ui/Inbox.ts";
+import { mountTitle } from "./scene/TitleScreen.ts";
 import endingData from "./data/endings.json";
 import adultScenes from "virtual:adult-scenes";
 import converted from "virtual:converted-data";
@@ -97,7 +98,7 @@ const renderer = await pickRenderer();
 renderer.mount(stageRoot);
 
 const store = new Store();
-const cast = new CharacterLayer(app, sprites);
+const cast = new CharacterLayer(app, sprites, (f) => store.state.flags[f] === true);
 const status = new StatusBar(app);
 const dlg = new DialogueBox(app);
 
@@ -128,7 +129,9 @@ store.subscribe((s) => status.update(s));
 story.on((e) => {
   switch (e.kind) {
     case "scene":
-      void cast.setCast(e.scene.cast);
+      // 先对一遍台上的人再换阵容：上一场出口写的 flag（比如归还戏的 chenghuan_returned）
+      // 要在这一场第一眼就生效，不能等到她下一次开口
+      void cast.refresh().then(() => cast.setCast(e.scene.cast));
       break;
     case "flare":
       cast.flare(e.who);
@@ -250,15 +253,35 @@ if (dev && (renderer as { name?: string }).name === "three-stage") {
 }
 app.appendChild(hud);
 
-// 首屏提示（D-034）：存档只在这一个浏览器里。放在 start() 之前，她还没往下点
-showFirstRunNotice(app, () => slots.show());
-
 // `?tapdebug=1`：把最近几次触摸打在屏幕上。微信里开不了控制台，出事只能靠截图（D-047）
 if (new URLSearchParams(location.search).has("tapdebug")) {
   mountTapDebug(app, () => `${story.sceneId} 第 ${story.lineIndex} 句`);
 }
 
-void story.start();
+/**
+ * 首屏是标题画面（D-048 第 1 条）。
+ *
+ * 在这之前玩家打开网址，第一眼就是「纸上已经写好：自愿试骑。」——没有书名、没有人、
+ * 没有地方，YIDI 以为那是个范例。标题 CC3 在 E3 就做好了，只是一直没挂上来。
+ *
+ * 游戏在她点了之后才开始，不在页面加载时开始。两个理由：
+ * 一，「入宫」那一下是手机上唯一合法的解锁音频的时机（D-053）；
+ * 二，首屏提示要等她进了游戏再说，压在标题上它就成了第四样东西。
+ *
+ * `?notitle=1` 跳过，给无头验收和抽查用。
+ */
+const begin = (fresh: boolean): void => {
+  showFirstRunNotice(app, () => slots.show());
+  void story.start({ fresh });
+};
+if (new URLSearchParams(location.search).has("notitle")) {
+  begin(false);
+} else {
+  mountTitle(document.body, {
+    resume: saveApi.hasResumable() ? { onResume: () => begin(false) } : undefined,
+    onStart: () => begin(true),
+  });
+}
 }
 
 void main();
