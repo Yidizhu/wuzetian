@@ -21,7 +21,9 @@
 
 ## 1.1 全局约定
 
-- **角色一律用 key**，不用中文名。两个特殊 key：`self`（主角内心独白）、`narr`（旁白）。
+- **角色一律用 key**，不用中文名。三个特殊的说话人：`self`（主角内心独白）、`narr`（旁白）、**题记**（D-063）。
+- **题记**：说话人一栏写「题记」，转换出来是 `who: "tiji"`。连续几句题记会被收成一张纸，竖排、墨晕进出，不进对话框。序幕开头和第二、三章开头的短序都这么写。**一处题记三句以内**——三句写不完说明还没想清楚（剧本结构指南七点五节），多了校验器报警告。
+- **地点 key 九个**：`yeting` 掖庭、`zhaoyang` 昭阳殿、`shuge` 书阁、`nvguan` 女冠观、`shishe` 诗社、`yuanye` 御花园、`hanyuan` 含元殿、`wuzibei` 无字碑、**`yilu` 驿路**（D-062，第四章行路线用）。
 - **角色 key 由指挥日志 D-016 冻结，写进了 schema 的 enum**：`wuze`、`shenheng`、`peizhaoye`、`wenqiao`、`liqinghe`、`songhuizhen`、`hetaihou`、`xujinghe`、`tangjian`、`adi`、`liuchenghuan`（第十一个，D-045 加）。写别的会被校验器当场拦下。
   **冻结的意思是「不改」，不是「不加」**：加一个新 key 不动任何已有存档、结局判定或立绘；改名或删 key 才动。要加人，先在指挥日志记一条。
 - **主角显示名不要写死。** 需要出现主角名字的地方写 `{名}`，引擎会替换成当时的名字（改名前是「吾则添」，改名后是玩家选的那个字）。
@@ -410,7 +412,7 @@ export const Scene = z.object({
   id: z.string(),
   chapter: z.number().int(),
   act: z.number().int().min(1).max(3),
-  scene: z.enum(["yeting","zhaoyang","shuge","nvguan","shishe","yuanye","hanyuan","wuzibei"]),
+  scene: z.enum(["yeting","zhaoyang","shuge","nvguan","shishe","yuanye","hanyuan","wuzibei","yilu"]),
   palette: z.enum(["ink", "gold"]),
   bgm: z.string().optional(),
   cast: z.array(z.string()),
@@ -735,7 +737,7 @@ npm run build:artifact  # 再压成一份单文件 HTML，用来发 Artifact 或
 22. 警告：某个同游场景的 `leavesLetter` 是空的。同游结束必定来信，写的是她没当面说的那句。
 23. 警告：`body.poem` 引的诗不在诗词库里，或者诗词库里标了它是唐以后的。
 
-另有 `tools/story-graph.ts` 导出分支图，人眼扫一遍比读报错快。
+分支图 `docs/story-graph.md` 由 CC2 的转换器每次转换后重画（D-063），读转换产物、从序幕起画三章。`npm run graph` 就是跑一次完整转换。
 
 ---
 

@@ -24,16 +24,29 @@ export const CharacterKey = z.enum(CHARACTER_KEYS, {
 });
 
 /** 说话人还可以是主角内心和旁白，它们不是角色 */
-export const SpeakerKey = z.union([CharacterKey, z.enum(["self", "narr"])], {
-  errorMap: () => ({ message: `说话人只能是角色 key，或 self（主角内心）、narr（旁白）` }),
+/**
+ * 说话人还可以是主角内心、旁白，以及题记（D-063）。
+ *
+ * 题记不是一个人在说话，是纸上先写好的几行。剧本「说话人」一栏写「题记」，转换器出 `tiji`；
+ * 引擎把连续的题记句收成一次，交给 CC3 的题记层（竖排、墨晕进出），不进对话框。
+ * 不加新字段：它就是台词的一种说话人，序幕和第二、三章开头的短序都走这一条。
+ */
+export const SpeakerKey = z.union([CharacterKey, z.enum(["self", "narr", "tiji"])], {
+  errorMap: () => ({ message: `说话人只能是角色 key，或 self（主角内心）、narr（旁白）、tiji（题记）` }),
 });
 
+/**
+ * 地点。D-062 加了第九个 `yilu`（驿路），给第四章行路线的启程与驿旁。
+ * 「关山有信」是八个结局之一，没有自己的画面那个结局立不住——她走了，画面上得真的有一条路。
+ * 加 key 不动存档与结局判定，同 D-045。
+ */
 export const SCENE_KEYS = [
   "yeting", "zhaoyang", "shuge", "nvguan",
   "shishe", "yuanye", "hanyuan", "wuzibei",
+  "yilu",
 ] as const;
 export const SceneKeyEnum = z.enum(SCENE_KEYS, {
-  errorMap: () => ({ message: `不是 art-style 里那八个场景之一：${SCENE_KEYS.join("、")}` }),
+  errorMap: () => ({ message: `不是 art-style 里的场景之一：${SCENE_KEYS.join("、")}` }),
 });
 export const PaletteEnum = z.enum(["ink", "gold"], {
   errorMap: () => ({ message: "色板只有 ink（水墨）和 gold（金碧）两种，见 D-010" }),

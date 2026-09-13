@@ -191,6 +191,13 @@ for (const [act, list] of [...byAct].sort((a, b) => a[0] - b[0])) {
 }
 
 for (const { file, s } of scenes.values()) {
+  // 一处题记三句以内（剧本结构指南七点五节，D-063）。版式也只给三列留了位，多的会挤到左半边
+  let run = 0;
+  for (const l of [...s.lines, { who: "" }]) {
+    if (l.who === "tiji") { run += 1; continue; }
+    if (run > 3) warn(file, "lines", `一处题记连着 ${run} 句。三句写不完说明还没想清楚，版式也只留了三列`);
+    run = 0;
+  }
   for (const c of s.choices ?? []) {
     for (const [k, v] of Object.entries(c.effects ?? {})) {
       if (typeof v === "number" && Math.abs(v) > 4) {

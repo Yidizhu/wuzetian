@@ -21,6 +21,7 @@ import { CharacterLayer } from "./ui/CharacterLayer.ts";
 import { Inbox } from "./ui/Inbox.ts";
 import { mountTitle } from "./scene/TitleScreen.ts";
 import { attachDebut } from "./scene/Debut.ts";
+import { mountEpigraph } from "./scene/Epigraph.ts";
 import { debutsOn, setDebutsOn, soundOn, setSoundOn } from "./ui/prefs.ts";
 import { Ambient } from "./audio/ambient.ts";
 import { cuesForScene, cuesForLine, newCueState, type Cue } from "./audio/cues.ts";
@@ -115,6 +116,12 @@ const story = new Story(
   {
     duel: (d) => { dlg.setVisible(false); return duelUi.play(d).finally(() => dlg.setVisible(true)); },
     chapterEnd: (ch, ps) => { dlg.setVisible(false); return summary.show(store.state, { chapter: ch, poemsThisChapter: ps }).finally(() => dlg.setVisible(true)); },
+    // 题记（D-063）：CC3 的那张纸，和标题同一套版式。看它的时候对话框和选项都收起来
+    epigraph: (lines) => new Promise<void>((resolve) => {
+      dlg.setVisible(false);
+      choices.hide();
+      mountEpigraph(document.body, { lines, onDone: () => { dlg.setVisible(true); resolve(); } });
+    }),
   },
   START,
 );

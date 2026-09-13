@@ -15,6 +15,11 @@ import { Letters, type ReplyKind } from "./letters.ts";
 export interface StoryHooks {
   duel(d: PoemDuelT): Promise<boolean>;
   chapterEnd(chapter: number, poemsThisChapter: string[]): Promise<void>;
+  /**
+   * 题记（D-063）：一张纸，几行竖排，玩家看完了才 resolve。
+   * 可选：无头工具不画纸，引擎直接跳过这几句往下走。
+   */
+  epigraph?(lines: string[]): Promise<void>;
 }
 
 export interface ChoiceView {
@@ -194,6 +199,8 @@ export class Story {
     }
     if (this.idx < scene.lines.length) {
       const line = scene.lines[this.idx]!;
+      // 题记不进对话框：连着的几句收成一张纸，交给题记层
+      if (line.who === "tiji") { void this.runEpigraph(scene); return; }
       const first = this.store.markSeen(line.id);
       this.emit({
         kind: "line",
@@ -232,6 +239,40 @@ export class Story {
     if (e) { this.finish(e); return; }
     if (scene.ending) console.error(`[story] 场景 ${scene.id} 指向不存在的结局 ${scene.ending}`);
     this.emit({ kind: "end" });
+  }
+
+  /** 题记那张纸还在屏幕上。这时候的推进（键盘回车之类）一律不算，否则会叠出第二张 */
+  private epigraphing = false;
+
+  /**
+   * 把从当前位置起连续的题记句收成一次（D-063）。
+   *
+   * 条件不满足的句子照常跳过，而且不打断收集——剧本在两句题记之间夹一句带条件的旁白，
+   * 不该让玩家看见两张各写一行的纸。
+   *
+   * 自动存档停在题记的第一句：看到一半关掉网页，回来再看一次这张纸，而不是从纸后面接着读。
+   */
+  private async runEpigraph(scene: Scene): Promise<void> {
+    const texts: string[] = [];
+    let i = this.idx;
+    while (i < scene.lines.length) {
+      const l = scene.lines[i]!;
+      if (!meets(l.when, this.store.state)) { i += 1; continue; }
+      if (l.who !== "tiji") break;
+      this.store.markSeen(l.id);
+      texts.push(subst(l.text, this.store.state));
+      i += 1;
+    }
+    this.autosave();
+    this.epigraphing = true;
+    try {
+      await this.hooks.epigraph?.(texts);
+    } finally {
+      this.epigraphing = false;
+    }
+    if (this.cur !== scene) return;        // 看题记的时候读了档，别把位置写回去
+    this.idx = i;
+    this.present();
   }
 
   private duelDone = new Set<string>();
@@ -351,6 +392,7 @@ export class Story {
 
   /** 点一下：推进一句，或者到了句尾就交给选项 */
   advance(): void {
+    if (this.epigraphing) return;
     if (this.resume) { const r = this.resume; this.resume = null; r(); return; }
     if (!this.cur) return;
     if (this.idx < this.cur.lines.length) this.idx += 1;

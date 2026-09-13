@@ -467,3 +467,68 @@ test("D-044 附页按 flag 各取一段，宣读那一列默认是「会」", as
 test("D-044 没有附页的信照常能用：老信一封都不用改", () => {
   assert.ok(LetterSchema.safeParse(letter({})).success);
 });
+
+/**
+ * 题记（D-063）。连着的几句收成一张纸，不进对话框；看纸的时候按回车不叠出第二张。
+ */
+test("连着的题记收成一张纸，纸看完才接着往下读旁白", async () => {
+  mem.clear();
+  const store = new Store();
+  const sheets: string[][] = [];
+  const lines: string[] = [];
+  let release: (() => void) | null = null;
+  const s = scene("ch01_s00", 1, { goto: "ch01_s00" });
+  s.lines = [
+    { id: "t1", who: "tiji", kind: "aside", text: "女皇临朝十四年。" },
+    { id: "t2", who: "tiji", kind: "aside", text: "长安，秋末。" },
+    { id: "n1", who: "narr", kind: "aside", text: "门还没开。" },
+  ] as Scene["lines"];
+  const story = new Story(
+    [s], [], [], [], store, noopRenderer,
+    {
+      async duel() { return true; },
+      async chapterEnd() {},
+      epigraph: (ls) => new Promise<void>((r) => { sheets.push(ls); release = r; }),
+    },
+    "ch01_s00",
+  );
+  story.on((e) => { if (e.kind === "line") lines.push(e.text); });
+  await story.start();
+  await drain();
+  assert.deepEqual(sheets, [["女皇临朝十四年。", "长安，秋末。"]], "两句题记该是一张纸");
+  assert.deepEqual(lines, [], "纸还在屏幕上，对话框里不该有字");
+
+  // 看纸的时候按回车（advance），不该叠出第二张，也不该偷偷往下走
+  story.advance(); story.advance();
+  await drain();
+  assert.equal(sheets.length, 1);
+
+  release!();
+  await drain();
+  assert.deepEqual(lines, ["门还没开。"], "纸收起来之后才读到旁白");
+});
+
+test("无头工具不画纸：没有 epigraph 钩子时题记直接跳过", async () => {
+  mem.clear();
+  const store = new Store();
+  const lines: string[] = [];
+  const s = scene("x", 1, { goto: "x" });
+  s.lines = [
+    { id: "t1", who: "tiji", kind: "aside", text: "一行题记。" },
+    { id: "n1", who: "narr", kind: "aside", text: "旁白。" },
+  ] as Scene["lines"];
+  const story = new Story([s], [], [], [], store, noopRenderer,
+    { async duel() { return true; }, async chapterEnd() {} }, "x");
+  story.on((e) => { if (e.kind === "line") lines.push(e.text); });
+  await story.start();
+  await drain();
+  assert.deepEqual(lines, ["旁白。"]);
+});
+
+test("题记是合法的说话人，地点多了驿路（D-062、D-063）", () => {
+  const s = scene("x", 4, { goto: "x", scene: "yilu" as Scene["scene"] });
+  s.lines = [{ id: "t", who: "tiji", kind: "aside", text: "一行。" }] as Scene["lines"];
+  const r = SceneSchema.safeParse(s);
+  assert.ok(r.success, JSON.stringify(r.success ? "" : r.error.issues));
+});
+

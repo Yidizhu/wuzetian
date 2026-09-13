@@ -24,7 +24,8 @@ export type StatKey = "shi" | "ming" | "cai" | "xin";
 export type Palette = "ink" | "gold";
 export type SceneKey =
   | "yeting" | "zhaoyang" | "shuge" | "nvguan"
-  | "shishe" | "yuanye" | "hanyuan" | "wuzibei";
+  | "shishe" | "yuanye" | "hanyuan" | "wuzibei"
+  | "yilu";                                // 驿路，第九个地点（D-062）
 
 export const STAT_KEYS: StatKey[] = ["shi", "ming", "cai", "xin"];
 export const STAT_LABEL: Record<StatKey, string> = {
