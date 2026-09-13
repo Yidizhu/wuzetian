@@ -14,6 +14,7 @@ import { PoemDuel } from "./ui/PoemDuel.ts";
 import { ChapterSummary } from "./ui/ChapterSummary.ts";
 import { showFirstRunNotice, showNotice } from "./ui/FirstRunNotice.ts";
 import { onTap, mountTapDebug } from "./ui/tap.ts";
+import { FrameJudge } from "./ui/frameJudge.ts";
 import { SaveSlots } from "./ui/SaveSlots.ts";
 import * as saveApi from "./engine/save.ts";
 import { NAMES } from "./ui/names.ts";
@@ -80,20 +81,55 @@ if (useConverted) console.info(`[data] 预览 CC2 转换产物：${baseScenes.le
  * 注册一个什么都不画的渲染器，游戏必须照常从头跑到尾。
  * 跑得通才说明 D-003 那条退路是真的。
  */
-async function pickRenderer(): Promise<SceneRenderer> {
+/**
+ * 默认是 3D 舞台（D-069）。分叉写清楚，因为上一次这个分叉只活在一行注释里，六轮没人看见：
+ *
+ * | 条件 | 走哪个 |
+ * |---|---|
+ * | 什么都不加（玩家） | **3D** |
+ * | 这台设备七天内因为太卡退过 | CSS（记在 localStorage；过七天自动再试一次 3D，`?renderer=three` 立刻重试） |
+ * | 3D 那个包加载失败，或者没有 WebGL | CSS，并记下来 |
+ * | 3D 跑起来之后连续卡（见 ui/frameJudge.ts） | 当场换成 CSS，不打断当前场景，并记下来 |
+ * | `?renderer=css` | CSS（验收用） |
+ * | `?renderer=null` | 空渲染器（M1 验收：不画背景，游戏照常跑完） |
+ *
+ * 单文件版里没有 3D 那个分包，走的是「加载失败」那一行。
+ */
+const FALLBACK_KEY = "wuzetian.renderer.fallback";
+
+function rememberFallback(why: string): void {
+  try { localStorage.setItem(FALLBACK_KEY, JSON.stringify({ why, at: Date.now() })); } catch { /* 记不住就下次再试一次 3D */ }
+}
+
+async function pickRenderer(root: HTMLElement): Promise<SceneRenderer> {
   const want = new URLSearchParams(location.search).get("renderer");
-  if (want === "null") return new NullRenderer();
-  // three.js 动态加载：默认的 CSS 版不背这 120KB，D-003 的退路才是真的轻
+  const mountCss = (): SceneRenderer => { const r = new CssParallaxRenderer(); r.mount(root); return r; };
+  if (want === "null") { const r = new NullRenderer(); r.mount(root); return r; }
+  if (want === "css") return mountCss();
   if (want === "three") {
-    try {
-      return new (await import("./scene/ThreeStageRenderer.ts")).ThreeStageRenderer();
-    } catch (e) {
-      // 单文件 Artifact 里没有那个 chunk，或者设备不支持 WebGL：退回 CSS 版，游戏照常
-      console.warn("[renderer] 3D 舞台加载失败，退回 CSS 版", e);
+    try { localStorage.removeItem(FALLBACK_KEY); } catch { /* 无痕模式 */ }
+  } else {
+    let prior: string | null = null;
+    try { prior = localStorage.getItem(FALLBACK_KEY); } catch { /* 读不了就当没退过 */ }
+    // 七天后再给 3D 一次机会：一次发烫降频、一次后台下载占满带宽，不该让这台手机永远看不到场景
+    const stale = (() => { try { return Date.now() - (JSON.parse(prior ?? "{}").at ?? 0) > 7 * 86400_000; } catch { return true; } })();
+    if (prior && stale) { try { localStorage.removeItem(FALLBACK_KEY); } catch { /* */ } prior = null; }
+    if (prior) {
+      console.info("[renderer] 这台设备上次退回过 CSS 版，这次直接用它。加 ?renderer=three 重试 3D", prior);
+      return mountCss();
     }
   }
-  // 默认仍是 CSS 版。3D 版过了 D-003 的性能闸门再切成默认。
-  return new CssParallaxRenderer();
+  try {
+    const r = new (await import("./scene/ThreeStageRenderer.ts")).ThreeStageRenderer();
+    r.mount(root);          // 没有 WebGL 时是这一行抛
+    return r;
+  } catch (e) {
+    console.warn("[renderer] 3D 舞台起不来，退回 CSS 版", e);
+    root.innerHTML = "";
+    root.className = "";
+    rememberFallback(`加载失败：${e instanceof Error ? e.message : String(e)}`);
+    return mountCss();
+  }
 }
 
 async function main(): Promise<void> {
@@ -101,8 +137,7 @@ const app = document.querySelector<HTMLElement>("#app")!;
 const stageRoot = document.createElement("div");
 app.appendChild(stageRoot);
 
-const renderer = await pickRenderer();
-renderer.mount(stageRoot);
+let renderer = await pickRenderer(stageRoot);
 
 const store = new Store();
 const cast = new CharacterLayer(app, sprites, (f) => store.state.flags[f] === true);
@@ -237,6 +272,45 @@ window.addEventListener("keydown", (e) => {
   story.advance();
 });
 window.addEventListener("resize", () => renderer.resize(window.innerWidth, window.innerHeight));
+
+/**
+ * 3D 跑起来之后看帧数，扛不住就当场换 CSS 版（D-069）。一次性的：退了不回来，看够了就不看。
+ * `?renderer=three` 是「我就要 3D」，不自动退——验收真机帧数时要看的正是它慢的样子。
+ */
+if ((renderer as { name?: string }).name === "three-stage" && new URLSearchParams(location.search).get("renderer") !== "three") {
+  const judge = new FrameJudge();
+  let last = performance.now();
+  let raf = 0;
+  const tick = (now: number): void => {
+    const v = judge.push(now - last);
+    last = now;
+    if (v === "ok") { console.info("[renderer] 3D 帧数稳定，不再监看"); return; }
+    if (v === "slow") { fallBackToCss("帧数过低"); return; }
+    raf = requestAnimationFrame(tick);
+  };
+  const fallBackToCss = (why: string): Promise<void> => {
+    console.warn(`[renderer] 3D 退回 CSS 版：${why}`);
+    cancelAnimationFrame(raf);
+    rememberFallback(why);
+    const next = new CssParallaxRenderer();
+    // 新的一层先铺上、再拆旧的：换的那一下画面不空
+    const holder = document.createElement("div");
+    stageRoot.after(holder);
+    next.mount(holder);
+    return story.replaceRenderer(next).then(() => { stageRoot.replaceWith(holder); renderer = next; });
+  };
+  // ?dev=1 留一个把手：手机帧数模拟不出来的时候，直接验「换的那一下不打断当前场景」
+  if (new URLSearchParams(location.search).has("dev")) {
+    (window as unknown as { __fallBackToCss?: () => Promise<void> }).__fallBackToCss = () => fallBackToCss("手动触发（dev）");
+  }
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden) { cancelAnimationFrame(raf); return; }
+    judge.reset();
+    last = performance.now();
+    if (!judge.verdict) raf = requestAnimationFrame(tick);
+  });
+  raf = requestAnimationFrame(tick);
+}
 
 /**
  * 左上角那一条。玩家默认只看得见「存档」和「案上」两个字（B10 第 2 条）。

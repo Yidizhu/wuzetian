@@ -101,6 +101,27 @@ export class Story {
   get currentScene(): Scene | null { return this.cur; }
 
   /**
+   * 换一个背景层，**不打断当前这一场**（D-069：3D 扛不住时退回 CSS 版）。
+   *
+   * 台词、选项、对诗、题记全都不动，玩家手上正在做的事照常；只是背景层按当前这一场
+   * 重新 load/show 一遍，墨层和布置补上，然后旧的那一层才释放。先建后拆，中间不会闪一下空白。
+   * 调用方负责把新的一层 mount 到同一个容器里。
+   */
+  async replaceRenderer(next: SceneRenderer): Promise<void> {
+    const old = this.renderer;
+    this.renderer = next;
+    const scene = this.cur;
+    if (scene) {
+      const d = { key: scene.scene, palette: scene.palette, act: scene.act, dressing: scene.dressing };
+      await next.load(d);
+      await next.show(d);
+      next.setInk?.(inkLevel(this.store.state, scene.act));
+      next.setDressing?.(scene.dressing ?? "");
+    }
+    old.dispose();
+  }
+
+  /**
    * 启动。`fresh` 为真是标题上的「入宫」：不管有没有自动存档，从第一场开始。
    * 否则是「接着上次」（或者没有标题画面的场合，比如无头工具）：有档读档，没有就从头。
    */
