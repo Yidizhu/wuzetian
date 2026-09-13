@@ -1,0 +1,266 @@
+{
+  "id": "ch02_s08_shuge",
+  "chapter": 2,
+  "act": 2,
+  "scene": "shuge",
+  "palette": "gold",
+  "cast": [
+    "wuze",
+    "xujinghe",
+    "peizhaoye",
+    "liqinghe",
+    "tangjian"
+  ],
+  "weightless": false,
+  "leavesLetter": [],
+  "purpose": "女冠校读正式给俸并限差务，同时把调笺授权摆到台前",
+  "lines": [
+    {
+      "id": "ch02_s08_shuge.l1",
+      "who": "narr",
+      "kind": "aside",
+      "text": "案上金纹压着旧算筹，李令仪将最短的一根挑出来。"
+    },
+    {
+      "id": "ch02_s08_shuge.l2",
+      "who": "liqinghe",
+      "expr": "default",
+      "kind": "say",
+      "text": "这半日，谁算的？"
+    },
+    {
+      "id": "ch02_s08_shuge.l3",
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "从入署算到出署。"
+    },
+    {
+      "id": "ch02_s08_shuge.l4",
+      "who": "xujinghe",
+      "expr": "default",
+      "kind": "say",
+      "text": "我从观里来，光等入门便多半个时辰。"
+    },
+    {
+      "id": "ch02_s08_shuge.l5",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "门外那一段没算。"
+    },
+    {
+      "id": "ch02_s08_shuge.l6",
+      "who": "liqinghe",
+      "expr": "default",
+      "kind": "say",
+      "text": "那就一起核。你走过，别照我纸上的猜。"
+    },
+    {
+      "id": "ch02_s08_shuge.l7",
+      "when": {
+        "flag.pei_check_supply": true
+      },
+      "who": "peizhaoye",
+      "expr": "default",
+      "kind": "say",
+      "text": "欠的护袋布找出来了，补领已有凭。"
+    },
+    {
+      "id": "ch02_s08_shuge.l8",
+      "when": {
+        "flag.pei_check_route": true
+      },
+      "who": "peizhaoye",
+      "expr": "default",
+      "kind": "say",
+      "text": "往返漏了卸袋的一程，时辰须添上。"
+    },
+    {
+      "id": "ch02_s08_shuge.l9",
+      "when": {
+        "flag.pei_check_declined": true
+      },
+      "who": "peizhaoye",
+      "expr": "default",
+      "kind": "say",
+      "text": "我另请人核过。往返和缺项分开写了。"
+    },
+    {
+      "id": "ch02_s08_shuge.l10",
+      "when": {
+        "flag.adi_pay_advance": true
+      },
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "九件已付清。东廊刷栏延到下旬，做工的都已告知。"
+    },
+    {
+      "id": "ch02_s08_shuge.l11",
+      "when": {
+        "flag.adi_pay_original": true
+      },
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "六件先付了。余三件已催原项，今夜回报，催款另记工时。"
+    },
+    {
+      "id": "ch02_s08_shuge.l12",
+      "who": "liqinghe",
+      "expr": "default",
+      "kind": "say",
+      "text": "这笔也列上。别只给我看省了多少。"
+    },
+    {
+      "id": "ch02_s08_shuge.l13",
+      "who": "xujinghe",
+      "expr": "default",
+      "kind": "say",
+      "text": "今日核旧卷可以。明日的病舍不能也叫我挪开，药不会自己煎好。"
+    },
+    {
+      "id": "ch02_s08_shuge.l14",
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "这差只校读、验封。别的须另问你。"
+    },
+    {
+      "id": "ch02_s08_shuge.l15",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "按次给，还是连往返算整半日？"
+    },
+    {
+      "id": "ch02_s08_shuge.l16",
+      "who": "liqinghe",
+      "expr": "default",
+      "kind": "say",
+      "text": "按次省款，却要她逐次记路；整半日少些零账，空出的时辰也得付。"
+    },
+    {
+      "id": "ch02_s08_shuge.l17",
+      "who": "xujinghe",
+      "expr": "default",
+      "kind": "say",
+      "text": "两样都能接。半日满了，我就回去。"
+    },
+    {
+      "id": "ch02_s08_shuge.l18",
+      "who": "narr",
+      "kind": "aside",
+      "text": "唐简揭开另一只匣。封笺还未拆，旁边夹着调令。"
+    },
+    {
+      "id": "ch02_s08_shuge.l19",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "这封是给我的。"
+    },
+    {
+      "id": "ch02_s08_shuge.l20",
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "沈司记交的，与调卷回执同送，还在待发匣。"
+    },
+    {
+      "id": "ch02_s08_shuge.l21",
+      "who": "wuze",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "怎么到了这里？"
+    },
+    {
+      "id": "ch02_s08_shuge.l22",
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "太后具令调旧案往返。外封有案号，依旧例先停发。"
+    },
+    {
+      "id": "ch02_s08_shuge.l23",
+      "who": "liqinghe",
+      "expr": "default",
+      "kind": "say",
+      "text": "母亲委祖母核旧案。今夜公议，调令在这里。"
+    },
+    {
+      "id": "ch02_s08_shuge.l24",
+      "who": "narr",
+      "kind": "aside",
+      "text": "她展开委牒，唐简指给你看案号与签发处。"
+    },
+    {
+      "id": "ch02_s08_shuge.l25",
+      "who": "xujinghe",
+      "expr": "default",
+      "kind": "say",
+      "text": "我只验原封。这里没开过。"
+    },
+    {
+      "id": "ch02_s08_shuge.l26",
+      "who": "wuze",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "里头的私话也要读？"
+    },
+    {
+      "id": "ch02_s08_shuge.l27",
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "调取没另分。怎么读，须在席上问。"
+    },
+    {
+      "id": "ch02_s08_shuge.l28",
+      "who": "liqinghe",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "先把你的异议记下。不能说你看见了便是答应。"
+    },
+    {
+      "id": "ch02_s08_shuge.l29",
+      "who": "narr",
+      "kind": "aside",
+      "text": "唐简在封簿旁写了一行，笺仍留在匣中。"
+    },
+    {
+      "id": "ch02_s08_shuge.l30",
+      "who": "liqinghe",
+      "expr": "default",
+      "kind": "say",
+      "text": "许的俸钱先定。她今日的脚程已经走了。"
+    }
+  ],
+  "choices": [
+    {
+      "id": "ch02_s08_shuge.cA",
+      "text": "连往返按半日给俸",
+      "effects": {
+        "affinity.liqinghe": 3,
+        "affinity.peizhaoye": 2,
+        "flag.liqinghe_cost_check": true,
+        "flag.nvguan_halfday_pay": true
+      },
+      "irreversible": false,
+      "goto": "ch02_s09_shishe"
+    },
+    {
+      "id": "ch02_s08_shuge.cB",
+      "text": "按次给俸，往返另记",
+      "effects": {
+        "affinity.liqinghe": 3,
+        "affinity.peizhaoye": 2,
+        "flag.liqinghe_cost_check": true,
+        "flag.nvguan_trip_pay": true
+      },
+      "irreversible": false,
+      "goto": "ch02_s09_shishe"
+    }
+  ]
+}

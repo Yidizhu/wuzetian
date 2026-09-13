@@ -18,7 +18,12 @@
  * 运行时只要从那边取一个整数，整个 zod 就会被打进玩家下载的包里——实测多 62 KB。
  * schema.ts 仍然把它再导出一次，文档上那里还是它的家。
  */
-export const DATA_VERSION = 1;
+export const DATA_VERSION = 2;
+/*
+ * 版本记录（每次 +1 都在这里记一行，写清改了什么结构）
+ *   1  B8   第一章 18 场
+ *   2  B12  第一至三章接入：第一章前面加序幕 ch01-00，第二章 01 场、第三章 01 场前插旁白、行号重排
+ */
 
 export type StatKey = "shi" | "ming" | "cai" | "xin";
 export type Palette = "ink" | "gold";

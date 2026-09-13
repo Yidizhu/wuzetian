@@ -181,7 +181,7 @@
       "id": "ch01_s12_shuge.l23",
       "who": "narr",
       "kind": "aside",
-      "text": "你把自己的名字写在末尾，将纸放进已经摊开的油布。"
+      "text": "麻纸硬边擦过手背，你署好名，把它放进摊开的油布。"
     },
     {
       "id": "ch01_s12_shuge.l24",
@@ -229,7 +229,7 @@
       "effects": {
         "flag.petition_sent": true
       },
-      "irreversible": false,
+      "irreversible": true,
       "goto": "ch01_s13_shuge"
     },
     {
@@ -244,7 +244,7 @@
       "effects": {
         "flag.petition_sent": true
       },
-      "irreversible": false,
+      "irreversible": true,
       "goto": "ch01_s14_yuanye"
     },
     {
@@ -259,7 +259,7 @@
       "effects": {
         "flag.petition_sent": true
       },
-      "irreversible": false,
+      "irreversible": true,
       "goto": "ch01_s15_shishe"
     },
     {
@@ -274,7 +274,7 @@
       "effects": {
         "flag.petition_sent": true
       },
-      "irreversible": false,
+      "irreversible": true,
       "goto": "ch01_s16_yuanye"
     },
     {
@@ -283,7 +283,7 @@
       "effects": {
         "flag.petition_sent": true
       },
-      "irreversible": false,
+      "irreversible": true,
       "goto": "ch01_s17_yeting"
     }
   ]

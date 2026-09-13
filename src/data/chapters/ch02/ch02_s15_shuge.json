@@ -1,0 +1,103 @@
+{
+  "id": "ch02_s15_shuge",
+  "chapter": 2,
+  "act": 2,
+  "scene": "shuge",
+  "palette": "ink",
+  "cast": [
+    "wuze",
+    "shenheng"
+  ],
+  "require": {
+    "affinity.shenheng": {
+      "gte": 10
+    },
+    "flag.shen_joint_reading": true
+  },
+  "weightless": true,
+  "leavesLetter": [],
+  "purpose": "乱认墨渍，不鉴字也不谈旧案",
+  "lines": [
+    {
+      "id": "ch02_s15_shuge.l1",
+      "who": "narr",
+      "kind": "aside",
+      "text": "废纸上溅着一团墨，细尾拖到案沿。"
+    },
+    {
+      "id": "ch02_s15_shuge.l2",
+      "who": "wuze",
+      "expr": "open",
+      "kind": "say",
+      "text": "一条鱼。"
+    },
+    {
+      "id": "ch02_s15_shuge.l3",
+      "who": "shenheng",
+      "expr": "default",
+      "kind": "say",
+      "text": "四条腿。"
+    },
+    {
+      "id": "ch02_s15_shuge.l4",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "鱼也想上岸呢。"
+    },
+    {
+      "id": "ch02_s15_shuge.l5",
+      "who": "shenheng",
+      "expr": "open",
+      "kind": "say",
+      "text": "你把纸转过来看看，这边明明还有一只耳朵；这条鱼得长得多忙。"
+    },
+    {
+      "id": "ch02_s15_shuge.l6",
+      "who": "narr",
+      "kind": "aside",
+      "text": "你转纸，长尾朝上。"
+    },
+    {
+      "id": "ch02_s15_shuge.l7",
+      "who": "wuze",
+      "expr": "open",
+      "kind": "say",
+      "text": "又多一只。"
+    },
+    {
+      "id": "ch02_s15_shuge.l8",
+      "who": "shenheng",
+      "expr": "default",
+      "kind": "say",
+      "text": "别转了，再转要站起来。"
+    },
+    {
+      "id": "ch02_s15_shuge.l9",
+      "who": "wuze",
+      "expr": "open",
+      "kind": "say",
+      "text": "你先前认的四条腿，我只找到三条；剩下那条，许是被你压在袖子底下了。"
+    },
+    {
+      "id": "ch02_s15_shuge.l10",
+      "who": "narr",
+      "kind": "aside",
+      "text": "沈抬起袖子，底下仍是一块空白。"
+    },
+    {
+      "id": "ch02_s15_shuge.l11",
+      "who": "shenheng",
+      "expr": "open",
+      "kind": "say",
+      "text": "跑了。"
+    },
+    {
+      "id": "ch02_s15_shuge.l12",
+      "who": "narr",
+      "kind": "aside",
+      "text": "她把袖子放回去，你们谁也没拿笔补那一条。"
+    }
+  ],
+  "goto": "ch02_s20_hanyuan"
+}

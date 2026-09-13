@@ -1,0 +1,307 @@
+{
+  "id": "ch02_s22_shuge",
+  "chapter": 2,
+  "act": 2,
+  "scene": "shuge",
+  "palette": "gold",
+  "cast": [
+    "wuze",
+    "shenheng",
+    "liqinghe",
+    "tangjian",
+    "wenqiao"
+  ],
+  "weightless": false,
+  "leavesLetter": [],
+  "purpose": "留反对与经办缺口；温面对未被原谅，也主动约主角",
+  "lines": [
+    {
+      "id": "ch02_s22_shuge.l1",
+      "who": "narr",
+      "kind": "aside",
+      "text": "次日，案上多了来回批注。温荞把两摞抄件分开放稳。"
+    },
+    {
+      "id": "ch02_s22_shuge.l2",
+      "when": {
+        "flag.nomination_joint_review": true
+      },
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "三处荐署各核过所知，互有利害的另列，不准替对方核。"
+    },
+    {
+      "id": "ch02_s22_shuge.l3",
+      "when": {
+        "flag.nomination_joint_review": true
+      },
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "找不到荐署的申辩另收。眼下仍进不来，这个缺口留着。"
+    },
+    {
+      "id": "ch02_s22_shuge.l4",
+      "when": {
+        "flag.nomination_open_questions": true
+      },
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "自呈试问已收，寄卷与旅费从试办款支，评期延后十日。"
+    },
+    {
+      "id": "ch02_s22_shuge.l5",
+      "when": {
+        "flag.nomination_open_questions": true
+      },
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "补助仍未及所有远处。名单和未能受助的数一并附上。"
+    },
+    {
+      "id": "ch02_s22_shuge.l6",
+      "when": {
+        "flag.nvguan_halfday_pay": true
+      },
+      "who": "liqinghe",
+      "expr": "default",
+      "kind": "say",
+      "text": "校读按半日付过。空余的时辰也入了支出，不从许的俸里扣回。"
+    },
+    {
+      "id": "ch02_s22_shuge.l7",
+      "when": {
+        "flag.nvguan_trip_pay": true
+      },
+      "who": "liqinghe",
+      "expr": "default",
+      "kind": "say",
+      "text": "校读按次付过。记脚程多用的人工也付了，不叫观中另贴。"
+    },
+    {
+      "id": "ch02_s22_shuge.l8",
+      "when": {
+        "flag.adi_pay_advance": true
+      },
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "原项款已归垫项，东廊刷栏仍按下旬的约，不再催工人抢回。"
+    },
+    {
+      "id": "ch02_s22_shuge.l9",
+      "when": {
+        "flag.adi_pay_original": true
+      },
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "催回的三件款阿荻已经领过，催款人多走的脚程也核了。"
+    },
+    {
+      "id": "ch02_s22_shuge.l10",
+      "when": {
+        "flag.letter_keep_sealed": true
+      },
+      "who": "shenheng",
+      "expr": "default",
+      "kind": "say",
+      "text": "原笺限阅，保管人与查阅次数均列。今次只核已准的公务摘录。"
+    },
+    {
+      "id": "ch02_s22_shuge.l11",
+      "when": {
+        "flag.letter_return_private": true
+      },
+      "who": "shenheng",
+      "expr": "default",
+      "kind": "say",
+      "text": "私笺已退，今次复核摘录另请双方核认，多用的一轮时辰记下。"
+    },
+    {
+      "id": "ch02_s22_shuge.l12",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "反对这两法的呢？"
+    },
+    {
+      "id": "ch02_s22_shuge.l13",
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "在末册。拟只存底。"
+    },
+    {
+      "id": "ch02_s22_shuge.l14",
+      "who": "wuze",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "一同送。我看得见的坏处，不能让作决定的人只听见我们说可行。"
+    },
+    {
+      "id": "ch02_s22_shuge.l15",
+      "who": "liqinghe",
+      "expr": "default",
+      "kind": "say",
+      "text": "宗室这边的缺口也送。我没有改成赞同你。"
+    },
+    {
+      "id": "ch02_s22_shuge.l16",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "我的擅引记在何处？"
+    },
+    {
+      "id": "ch02_s22_shuge.l17",
+      "who": "shenheng",
+      "expr": "default",
+      "kind": "say",
+      "text": "履历的过失栏。改正做了多少，另写多少。"
+    },
+    {
+      "id": "ch02_s22_shuge.l18",
+      "who": "narr",
+      "kind": "aside",
+      "text": "唐简写下受理人、复核日与答复期限，四人分别核过。"
+    },
+    {
+      "id": "ch02_s22_shuge.l19",
+      "who": "wenqiao",
+      "expr": "default",
+      "kind": "say",
+      "text": "少了一页。等我取。"
+    },
+    {
+      "id": "ch02_s22_shuge.l20",
+      "who": "narr",
+      "kind": "aside",
+      "text": "她从袖中摸出一张退回的短笺，认清以后，又塞回去。"
+    },
+    {
+      "id": "ch02_s22_shuge.l21",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "她退来的？"
+    },
+    {
+      "id": "ch02_s22_shuge.l22",
+      "who": "wenqiao",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "嗯。稿收了，别的不要。"
+    },
+    {
+      "id": "ch02_s22_shuge.l23",
+      "who": "wenqiao",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "我把那句歉话删了又写，写到不认识自己的字，还是没地方送。她不欠我一个收处。"
+    },
+    {
+      "id": "ch02_s22_shuge.l24",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "不再送了？"
+    },
+    {
+      "id": "ch02_s22_shuge.l25",
+      "who": "wenqiao",
+      "expr": "default",
+      "kind": "say",
+      "text": "不送。留着提醒我也嫌它吵，先放抽屉里。"
+    },
+    {
+      "id": "ch02_s22_shuge.l26",
+      "who": "narr",
+      "kind": "aside",
+      "text": "她找到缺的公页交给唐简，退笺仍在自己袖中。"
+    },
+    {
+      "id": "ch02_s22_shuge.l27",
+      "who": "wenqiao",
+      "expr": "open",
+      "kind": "say",
+      "text": "你往门边站一点。"
+    },
+    {
+      "id": "ch02_s22_shuge.l28",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "挡光了？"
+    },
+    {
+      "id": "ch02_s22_shuge.l29",
+      "who": "wenqiao",
+      "expr": "open",
+      "kind": "say",
+      "text": "没有。我想收完最后一摞，一抬头就看见你。"
+    },
+    {
+      "id": "ch02_s22_shuge.l30",
+      "who": "self",
+      "kind": "inner",
+      "text": "（我还在找她指的那道光。她说的是我。）"
+    },
+    {
+      "id": "ch02_s22_shuge.l31",
+      "who": "wenqiao",
+      "expr": "default",
+      "kind": "say",
+      "text": "愿意就等一会儿。不愿也别替我送这张退笺，我自己收。"
+    },
+    {
+      "id": "ch02_s22_shuge.l32",
+      "who": "narr",
+      "kind": "aside",
+      "text": "她抱起最后一摞纸，留下门边一人宽的空处。"
+    },
+    {
+      "id": "ch02_s22_shuge.l33",
+      "when": {
+        "flag.chenghuan_accept_1": true
+      },
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "昨夜柳誊完送来了，你空出的半日，稿也备齐了。她的缺试另记，不从这里抹掉。"
+    },
+    {
+      "id": "ch02_s22_shuge.l34",
+      "when": {
+        "flag.chenghuan_refuse_1": true
+      },
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "昨夜你自己留着誊，备稿延后半日，今日依延后的时辰收齐。"
+    }
+  ],
+  "choices": [
+    {
+      "id": "ch02_s22_shuge.cA",
+      "text": "我在门边等你",
+      "effects": {
+        "flag.wen_ch02_wait_together": true
+      },
+      "irreversible": false,
+      "goto": "ch02_s23_hanyuan"
+    },
+    {
+      "id": "ch02_s22_shuge.cB",
+      "text": "今日先走，你慢慢收",
+      "effects": {
+        "flag.wen_ch02_leave_first": true
+      },
+      "irreversible": false,
+      "goto": "ch02_s23_hanyuan"
+    }
+  ]
+}

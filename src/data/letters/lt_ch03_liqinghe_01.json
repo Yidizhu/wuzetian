@@ -1,0 +1,107 @@
+{
+  "id": "lt_ch03_liqinghe_01",
+  "from": "liqinghe",
+  "trigger": {
+    "kind": "scene",
+    "sceneId": "ch03_s09_yuanye",
+    "afterScenes": 1
+  },
+  "delayMinutes": 26,
+  "paper": "nijin",
+  "body": {
+    "surface": "袍角那条松线剪掉了，别的还结实，不添一件。明日的账我又算过一遍，没有挪你那边的一笔来补我这边。风筝的线也再试过，够长，但还没有送出去。今晚写到这里，不把等人回头的日子填进来。",
+    "pages": [
+      {
+        "key": "同行",
+        "when": {
+          "flag.li_ch03_walk": true
+        },
+        "text": "岔口分开后，又走了一段才发现没在想答卷。那段路，想同你再走。",
+        "readAloud": false
+      },
+      {
+        "key": "各回",
+        "when": {
+          "flag.li_ch03_apart": true
+        },
+        "text": "各自回去的那段，我也没多算一笔。今夜不走，往后的邀请仍可另答。",
+        "readAloud": false
+      },
+      {
+        "key": "私纸",
+        "text": "受谁的位，不在这张笺里议。若要见我，另写时辰，我也亲口答。",
+        "readAloud": false
+      }
+    ],
+    "poem": {
+      "ref": "liye_mingyueyeliubie",
+      "line": "离人无语月无声，明月有光人有情。"
+    },
+    "poemMeans": "私下惦念不替任何人消除公议中的距离",
+    "blank": "（她说风筝还没送。那条线已经试过多少回了？我把笺往灯前挪，不知道该先回哪一句。）"
+  },
+  "sheMayNotReply": {
+    "affinity.liqinghe": {
+      "lt": 5
+    }
+  },
+  "interceptable": false,
+  "replies": {
+    "plain": [
+      {
+        "effects": {
+          "affinity.liqinghe": 2,
+          "flag.li_ch03_letter_walk": true
+        },
+        "reaction": "“先约一段。”她只写这次相见，不替以后的日子作答。",
+        "id": "lt_ch03_liqinghe_01.rA",
+        "text": "想再走一段，有空时重新约。"
+      },
+      {
+        "effects": {
+          "flag.li_ch03_letter_separate": true
+        },
+        "reaction": "“我知道。”她将账收回公案，风筝留在自己的屋里。",
+        "id": "lt_ch03_liqinghe_01.rB",
+        "text": "账各自算，风筝不必今晚送。"
+      },
+      {
+        "effects": {
+          "flag.li_ch03_letter_stop": true
+        },
+        "reaction": "“公事照议。”她收起私邀，不退掉对你提案的意见。",
+        "id": "lt_ch03_liqinghe_01.rC",
+        "text": "先只谈公事，私约停一停。"
+      }
+    ],
+    "poem": {
+      "resonantTags": [
+        "月",
+        "云",
+        "水",
+        "城",
+        "远近",
+        "溪",
+        "日月"
+      ],
+      "onResonant": {
+        "effects": {
+          "affinity.liqinghe": 2
+        },
+        "reaction": "她读到最后：“这句留给我。”公议原案没有挪过来。"
+      },
+      "onMismatch": {
+        "effects": {
+          "affinity.liqinghe": 1
+        },
+        "reaction": "“这边的景，我还不熟。”她折好笺，没有替你换一句。"
+      }
+    },
+    "silence": {
+      "effects": {
+        "flag.li_ch03_letter_silent": true
+      },
+      "reaction": "她收好风筝，不托人问为什么未答，公事按原定时辰办。"
+    }
+  }
+}

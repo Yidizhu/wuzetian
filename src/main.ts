@@ -71,7 +71,8 @@ const duels: PoemDuelT[] = pick(converted.duels, duelData as unknown as PoemDuel
 const poems = new Map<string, PoemT>(
   pick(converted.poems, poemData as unknown as PoemT[]).map((p) => [p.id, p]),
 );
-const START = useConverted ? (baseScenes[0]?.id ?? "ch01_s01_zhaoyang") : "ch01_s01_zhaoyang";
+// 开场是序幕 ch01-00（C10、D-048）：题记三句、她的身体与位置三句，然后才是「纸上已经写好」
+const START = "ch01_s00_zhaoyang";
 if (useConverted) console.info(`[data] 预览 CC2 转换产物：${baseScenes.length} 场，起点 ${START}`);
 
 /**

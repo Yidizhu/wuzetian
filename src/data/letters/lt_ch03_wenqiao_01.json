@@ -1,0 +1,106 @@
+{
+  "id": "lt_ch03_wenqiao_01",
+  "from": "wenqiao",
+  "trigger": {
+    "kind": "scene",
+    "sceneId": "ch03_s05_shishe",
+    "afterScenes": 1
+  },
+  "delayMinutes": 12,
+  "paper": "huajian",
+  "body": {
+    "surface": "你说先陪你唱错，我回头试了一下，错处倒比正调容易记。桌脚已经垫稳，那篇没署名的颂文抽出来了，换了一块废木片。钱袋照样退回，师傅收了新槽的尺寸，说木头先别裁。我答好，回屋又量了一回旧槽。",
+    "pages": [
+      {
+        "key": "已唱",
+        "when": {
+          "flag.wen_ch03_sing": true
+        },
+        "text": "第三遍才收住，第二遍倒更想再听。你先错的那一拍，我没忘。",
+        "readAloud": false
+      },
+      {
+        "key": "另约",
+        "when": {
+          "flag.wen_ch03_leave": true
+        },
+        "text": "你先走，那一回我唱完了。另约不填哪日，别赶来替我补一个听众。",
+        "readAloud": false
+      },
+      {
+        "key": "槽沿",
+        "text": "下回你开口，我也得有空才答。没空会说，不拿唱错逗你来加夜工。",
+        "readAloud": false
+      }
+    ],
+    "poem": {
+      "ref": "yuxuanji_tiyinwuting",
+      "line": "空卷珠帘不曾下，长移一榻对山眠。"
+    },
+    "poemMeans": "留给两人的坐席可以没有成果，歌声不必替主角造名",
+    "blank": "（又量了一回。钱退回去的时候，她拿得很稳。我只问她手疼不疼。）"
+  },
+  "sheMayNotReply": {
+    "affinity.wenqiao": {
+      "lt": 5
+    }
+  },
+  "interceptable": false,
+  "replies": {
+    "plain": [
+      {
+        "effects": {
+          "affinity.wenqiao": 2,
+          "flag.wen_ch03_letter_sing": true
+        },
+        "reaction": "“这回先不分谁错。”她哼了半句，自己停住笑了。",
+        "id": "lt_ch03_wenqiao_01.rA",
+        "text": "下次再问你，也想听你唱错。"
+      },
+      {
+        "effects": {
+          "flag.wen_ch03_letter_fair_pay": true
+        },
+        "reaction": "“那是我的工钱，谁准它自己去买槽？”她把两笔分开。",
+        "id": "lt_ch03_wenqiao_01.rB",
+        "text": "新槽的钱另算，别从稿工里扣。"
+      },
+      {
+        "effects": {
+          "flag.wen_ch03_letter_stop": true
+        },
+        "reaction": "“好，另请另答。”她没给下一次合唱留你的名字。",
+        "id": "lt_ch03_wenqiao_01.rC",
+        "text": "暂不约合唱，核稿另请。"
+      }
+    ],
+    "poem": {
+      "resonantTags": [
+        "帘",
+        "榻",
+        "山",
+        "诗笺",
+        "匣",
+        "手书"
+      ],
+      "onResonant": {
+        "effects": {
+          "affinity.wenqiao": 2
+        },
+        "reaction": "“这地方能坐。”她把诗笺放在窗边，没接着写颂文。"
+      },
+      "onMismatch": {
+        "effects": {
+          "affinity.wenqiao": 1
+        },
+        "reaction": "她换个调念：“还没找对。先不改你的字。”"
+      }
+    },
+    "silence": {
+      "effects": {
+        "flag.wen_ch03_letter_silent": true
+      },
+      "reaction": "她将旧槽刷净，搭在院里晾，没有托人催信。"
+    }
+  }
+}

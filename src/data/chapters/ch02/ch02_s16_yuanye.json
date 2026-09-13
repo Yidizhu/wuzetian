@@ -1,0 +1,104 @@
+{
+  "id": "ch02_s16_yuanye",
+  "chapter": 2,
+  "act": 2,
+  "scene": "yuanye",
+  "palette": "ink",
+  "cast": [
+    "wuze",
+    "peizhaoye"
+  ],
+  "require": {
+    "affinity.peizhaoye": {
+      "gte": 10
+    },
+    "flag.pei_shared_check": true
+  },
+  "weightless": true,
+  "leavesLetter": [],
+  "purpose": "掰饼不论军粮，只吃眼前这一块",
+  "lines": [
+    {
+      "id": "ch02_s16_yuanye.l1",
+      "who": "narr",
+      "kind": "aside",
+      "text": "饼边一掰就掉渣，纸上落了一圈。"
+    },
+    {
+      "id": "ch02_s16_yuanye.l2",
+      "who": "peizhaoye",
+      "expr": "default",
+      "kind": "say",
+      "text": "你这块小。"
+    },
+    {
+      "id": "ch02_s16_yuanye.l3",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "添一点。"
+    },
+    {
+      "id": "ch02_s16_yuanye.l4",
+      "who": "narr",
+      "kind": "aside",
+      "text": "裴掰下一角，反倒掉成三块。"
+    },
+    {
+      "id": "ch02_s16_yuanye.l5",
+      "who": "peizhaoye",
+      "expr": "open",
+      "kind": "say",
+      "text": "现在都是小的。"
+    },
+    {
+      "id": "ch02_s16_yuanye.l6",
+      "who": "wuze",
+      "expr": "open",
+      "kind": "say",
+      "text": "你别再补了，方才还是两块，再掰下去，我得拿这张纸捧着吃。"
+    },
+    {
+      "id": "ch02_s16_yuanye.l7",
+      "who": "peizhaoye",
+      "expr": "default",
+      "kind": "say",
+      "text": "捧着也能吃。"
+    },
+    {
+      "id": "ch02_s16_yuanye.l8",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "风要吃。"
+    },
+    {
+      "id": "ch02_s16_yuanye.l9",
+      "who": "peizhaoye",
+      "expr": "open",
+      "kind": "say",
+      "text": "那就趁它没来，先吃你手上这一口；剩下的你想拿哪块，就拿哪块。"
+    },
+    {
+      "id": "ch02_s16_yuanye.l10",
+      "who": "narr",
+      "kind": "aside",
+      "text": "你们各拿一块。裴把纸折高半寸，挡住细渣。"
+    },
+    {
+      "id": "ch02_s16_yuanye.l11",
+      "who": "wuze",
+      "expr": "open",
+      "kind": "say",
+      "text": "这块脆。"
+    },
+    {
+      "id": "ch02_s16_yuanye.l12",
+      "who": "peizhaoye",
+      "expr": "open",
+      "kind": "say",
+      "text": "我的也脆。"
+    }
+  ],
+  "goto": "ch02_s20_hanyuan"
+}

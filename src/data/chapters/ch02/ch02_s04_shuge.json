@@ -1,0 +1,250 @@
+{
+  "id": "ch02_s04_shuge",
+  "chapter": 2,
+  "act": 2,
+  "scene": "shuge",
+  "palette": "ink",
+  "cast": [
+    "wuze",
+    "shenheng"
+  ],
+  "weightless": false,
+  "leavesLetter": [
+    "shenheng"
+  ],
+  "purpose": "沈请主角面对她当年驳语，求助与私人相见分别询问",
+  "lines": [
+    {
+      "id": "ch02_s04_shuge.l1",
+      "who": "narr",
+      "kind": "aside",
+      "text": "沈衡压着一页旧纸，窗光照出纸里断开的纤维。"
+    },
+    {
+      "id": "ch02_s04_shuge.l2",
+      "when": {
+        "flag.shenheng_seek_voice": true
+      },
+      "who": "shenheng",
+      "expr": "default",
+      "kind": "say",
+      "text": "你想先访人。人还没请到，别凭这张纸补她的话。"
+    },
+    {
+      "id": "ch02_s04_shuge.l3",
+      "when": {
+        "flag.shenheng_check_record": true
+      },
+      "who": "shenheng",
+      "expr": "default",
+      "kind": "say",
+      "text": "你说先看旧记。我取来了。"
+    },
+    {
+      "id": "ch02_s04_shuge.l4",
+      "when": {
+        "flag.shenheng_defer_visit": true
+      },
+      "who": "shenheng",
+      "expr": "default",
+      "kind": "say",
+      "text": "你先前说暂缓。今日只核公事，别的再问。"
+    },
+    {
+      "id": "ch02_s04_shuge.l5",
+      "when": {
+        "flag.silent_to_shenheng": true
+      },
+      "who": "shenheng",
+      "expr": "default",
+      "kind": "say",
+      "text": "上封信不用补答。今日的事另算。"
+    },
+    {
+      "id": "ch02_s04_shuge.l6",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "经手人写在哪里？"
+    },
+    {
+      "id": "ch02_s04_shuge.l7",
+      "who": "shenheng",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "末行。"
+    },
+    {
+      "id": "ch02_s04_shuge.l8",
+      "who": "narr",
+      "kind": "aside",
+      "text": "她挪开手指。末行是她自己的名。"
+    },
+    {
+      "id": "ch02_s04_shuge.l9",
+      "who": "shenheng",
+      "expr": "default",
+      "kind": "say",
+      "text": "“口称欠付，无券，不录。”"
+    },
+    {
+      "id": "ch02_s04_shuge.l10",
+      "who": "wuze",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "连她怎样说的，都没留下。"
+    },
+    {
+      "id": "ch02_s04_shuge.l11",
+      "who": "shenheng",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "当时少两份领券，又不能——"
+    },
+    {
+      "id": "ch02_s04_shuge.l12",
+      "who": "narr",
+      "kind": "aside",
+      "text": "她拿起另一张纸，停住，又放回原处。"
+    },
+    {
+      "id": "ch02_s04_shuge.l13",
+      "who": "shenheng",
+      "expr": "default",
+      "kind": "say",
+      "text": "我又在说那两份券。"
+    },
+    {
+      "id": "ch02_s04_shuge.l14",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "你记得她站在哪儿？"
+    },
+    {
+      "id": "ch02_s04_shuge.l15",
+      "who": "shenheng",
+      "expr": "default",
+      "kind": "say",
+      "text": "门外。日头晒得到。"
+    },
+    {
+      "id": "ch02_s04_shuge.l16",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "等了多久？"
+    },
+    {
+      "id": "ch02_s04_shuge.l17",
+      "who": "shenheng",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "没记。"
+    },
+    {
+      "id": "ch02_s04_shuge.l18",
+      "who": "narr",
+      "kind": "aside",
+      "text": "旧纸的一角翘着，沈没有再去压。"
+    },
+    {
+      "id": "ch02_s04_shuge.l19",
+      "who": "shenheng",
+      "expr": "default",
+      "kind": "say",
+      "text": "再读时，你能坐在这里么？我若抢着解释，先把那一句念完，别停。"
+    },
+    {
+      "id": "ch02_s04_shuge.l20",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "你要我替你找漏处，还是替你说，当年已经尽力了？这两件我不能都答。"
+    },
+    {
+      "id": "ch02_s04_shuge.l21",
+      "who": "shenheng",
+      "expr": "default",
+      "kind": "say",
+      "text": "找漏处。后一件不请你。"
+    },
+    {
+      "id": "ch02_s04_shuge.l22",
+      "who": "self",
+      "kind": "inner",
+      "text": "（她的手还放在那一行旁边。我想……先别。）"
+    },
+    {
+      "id": "ch02_s04_shuge.l23",
+      "who": "shenheng",
+      "expr": "open",
+      "kind": "say",
+      "text": "读完以后，我也想见你。可以另选一日。"
+    },
+    {
+      "id": "ch02_s04_shuge.l24",
+      "who": "shenheng",
+      "expr": "default",
+      "kind": "say",
+      "text": "不愿也直说。旧卷仍照约核。"
+    },
+    {
+      "id": "ch02_s04_shuge.l25",
+      "who": "narr",
+      "kind": "aside",
+      "text": "她取出一张窄笺，与待交的调卷回执并放。"
+    },
+    {
+      "id": "ch02_s04_shuge.l26",
+      "who": "shenheng",
+      "expr": "default",
+      "kind": "say",
+      "text": "时辰写给你。回执也须你收，我请署里一同送。"
+    }
+  ],
+  "choices": [
+    {
+      "id": "ch02_s04_shuge.cA",
+      "text": "一起读。读完也想见你",
+      "effects": {
+        "affinity.shenheng": 3,
+        "flag.shen_joint_reading": true,
+        "flag.shen_ch02_private_yes": true
+      },
+      "irreversible": false,
+      "goto": "ch02_s05_yeting"
+    },
+    {
+      "id": "ch02_s04_shuge.cB",
+      "text": "一起读，私下相见先缓缓",
+      "effects": {
+        "affinity.shenheng": 3,
+        "flag.shen_joint_reading": true,
+        "flag.shen_ch02_private_wait": true
+      },
+      "irreversible": false,
+      "goto": "ch02_s05_yeting"
+    },
+    {
+      "id": "ch02_s04_shuge.cC",
+      "text": "我只核这卷，不约私见",
+      "effects": {
+        "affinity.shenheng": 3,
+        "flag.shen_joint_reading": true,
+        "flag.shen_ch02_private_no": true
+      },
+      "irreversible": false,
+      "goto": "ch02_s05_yeting"
+    },
+    {
+      "id": "ch02_s04_shuge.cD",
+      "text": "这次陪读我也接不下",
+      "effects": {
+        "flag.shen_ch02_help_no": true
+      },
+      "irreversible": false,
+      "goto": "ch02_s05_yeting"
+    }
+  ]
+}

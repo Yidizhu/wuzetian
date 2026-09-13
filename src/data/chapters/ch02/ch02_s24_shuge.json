@@ -1,0 +1,228 @@
+{
+  "id": "ch02_s24_shuge",
+  "chapter": 2,
+  "act": 2,
+  "scene": "shuge",
+  "palette": "ink",
+  "cast": [
+    "wuze",
+    "liqinghe"
+  ],
+  "weightless": false,
+  "leavesLetter": [
+    "liqinghe"
+  ],
+  "purpose": "公主交出会失支持的财政稿，也问一次完全私人的相见",
+  "lines": [
+    {
+      "id": "ch02_s24_shuge.l1",
+      "who": "narr",
+      "kind": "aside",
+      "text": "灯只点一盏。李令仪先放下厚稿，又放下一页撤署。"
+    },
+    {
+      "id": "ch02_s24_shuge.l2",
+      "who": "liqinghe",
+      "expr": "default",
+      "kind": "say",
+      "text": "全稿。末页也给你。"
+    },
+    {
+      "id": "ch02_s24_shuge.l3",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "这一处从你的旧供给里减？"
+    },
+    {
+      "id": "ch02_s24_shuge.l4",
+      "who": "liqinghe",
+      "expr": "default",
+      "kind": "say",
+      "text": "是。腾出来付远处寄卷与核验。"
+    },
+    {
+      "id": "ch02_s24_shuge.l5",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "她原先署过名。"
+    },
+    {
+      "id": "ch02_s24_shuge.l6",
+      "who": "liqinghe",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "她说不再荐我。"
+    },
+    {
+      "id": "ch02_s24_shuge.l7",
+      "who": "narr",
+      "kind": "aside",
+      "text": "李令仪沿着撤署的折痕压了一遍，手指没有越过原名。"
+    },
+    {
+      "id": "ch02_s24_shuge.l8",
+      "who": "liqinghe",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "她从我很小就替我收拾这些账，今日却说，以后不用再拿给她看了。"
+    },
+    {
+      "id": "ch02_s24_shuge.l9",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "你想拿回去改么？"
+    },
+    {
+      "id": "ch02_s24_shuge.l10",
+      "who": "liqinghe",
+      "expr": "default",
+      "kind": "say",
+      "text": "想过。改了这一笔，另一边的钱就没有来处。"
+    },
+    {
+      "id": "ch02_s24_shuge.l11",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "我不会为你把撤署那页藏起来。"
+    },
+    {
+      "id": "ch02_s24_shuge.l12",
+      "who": "liqinghe",
+      "expr": "default",
+      "kind": "say",
+      "text": "所以给你。明日照样驳。"
+    },
+    {
+      "id": "ch02_s24_shuge.l13",
+      "who": "narr",
+      "kind": "aside",
+      "text": "她把手收回去，没有把稿换成更薄的一摞。"
+    },
+    {
+      "id": "ch02_s24_shuge.l14",
+      "who": "liqinghe",
+      "expr": "default",
+      "kind": "say",
+      "text": "还有一件。"
+    },
+    {
+      "id": "ch02_s24_shuge.l15",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "也是明日的？"
+    },
+    {
+      "id": "ch02_s24_shuge.l16",
+      "who": "liqinghe",
+      "expr": "open",
+      "kind": "say",
+      "text": "今夜的。我想见你。"
+    },
+    {
+      "id": "ch02_s24_shuge.l17",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "已经见着了。"
+    },
+    {
+      "id": "ch02_s24_shuge.l18",
+      "who": "liqinghe",
+      "expr": "open",
+      "kind": "say",
+      "text": "方才来的是递稿的人。稿已经交了，我想再留一会儿，只等你答这一句。"
+    },
+    {
+      "id": "ch02_s24_shuge.l19",
+      "who": "self",
+      "kind": "inner",
+      "text": "（她没有拿起那一页。是真的在等。）"
+    },
+    {
+      "id": "ch02_s24_shuge.l20",
+      "when": {
+        "flag.liqinghe_public_only": true
+      },
+      "who": "liqinghe",
+      "expr": "default",
+      "kind": "say",
+      "text": "你先前只约公事。今日可以仍这样答。"
+    },
+    {
+      "id": "ch02_s24_shuge.l21",
+      "when": {
+        "flag.liqinghe_keep_both_drafts": true
+      },
+      "who": "liqinghe",
+      "expr": "default",
+      "kind": "say",
+      "text": "两份原稿都留。私下的话也不替公议改字。"
+    },
+    {
+      "id": "ch02_s24_shuge.l22",
+      "when": {
+        "flag.liqinghe_affection_with_dissent": true
+      },
+      "who": "liqinghe",
+      "expr": "default",
+      "kind": "say",
+      "text": "你信里说过，喜欢也仍要驳我。今晚我记着两句。"
+    },
+    {
+      "id": "ch02_s24_shuge.l23",
+      "when": {
+        "flag.silent_to_liqinghe": true
+      },
+      "who": "liqinghe",
+      "expr": "default",
+      "kind": "say",
+      "text": "上封不必补答。今日这句，照今日的心意说。"
+    },
+    {
+      "id": "ch02_s24_shuge.l24",
+      "who": "narr",
+      "kind": "aside",
+      "text": "她移开袖边的稿，露出半张席，却没有径自坐下。"
+    },
+    {
+      "id": "ch02_s24_shuge.l25",
+      "who": "liqinghe",
+      "expr": "default",
+      "kind": "say",
+      "text": "若不留，我就走。明日不会因此少给你看哪一页。"
+    }
+  ],
+  "chapterEnd": true,
+  "choices": [
+    {
+      "id": "ch02_s24_shuge.cA",
+      "text": "留一会儿。明日我仍会驳你",
+      "effects": {
+        "flag.li_ch02_private_yes": true
+      },
+      "irreversible": false
+    },
+    {
+      "id": "ch02_s24_shuge.cB",
+      "text": "今夜想独处，改日再问",
+      "effects": {
+        "flag.li_ch02_private_wait": true
+      },
+      "irreversible": false
+    },
+    {
+      "id": "ch02_s24_shuge.cC",
+      "text": "我只约你明日论议",
+      "effects": {
+        "flag.li_ch02_private_no": true
+      },
+      "irreversible": false
+    }
+  ],
+  "goto": "ch03_s01_shuge"
+}

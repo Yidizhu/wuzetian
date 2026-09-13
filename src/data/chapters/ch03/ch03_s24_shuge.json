@@ -1,0 +1,214 @@
+{
+  "id": "ch03_s24_shuge",
+  "chapter": 3,
+  "act": 3,
+  "scene": "shuge",
+  "palette": "ink",
+  "cast": [
+    "wuze",
+    "tangjian"
+  ],
+  "weightless": false,
+  "leavesLetter": [],
+  "purpose": "给三种身份各递来下一件事，留给第四章实际作答",
+  "lines": [
+    {
+      "id": "ch03_s24_shuge.l1",
+      "who": "narr",
+      "kind": "aside",
+      "text": "翌日，唐将小账与原卷分放。你买的纸已有收据，新递来的东西压在砚边。"
+    },
+    {
+      "id": "ch03_s24_shuge.l2",
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "今日送来的，还没有写进已办那一栏。你可以先看，也可以留下时辰再答。"
+    },
+    {
+      "id": "ch03_s24_shuge.l3",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "哪一份找我？"
+    },
+    {
+      "id": "ch03_s24_shuge.l4",
+      "when": {
+        "flag.enthroned": true
+      },
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "有人反对你处置候选差务的旧例，问新署仍由近人经手，会不会换名不换人。"
+    },
+    {
+      "id": "ch03_s24_shuge.l5",
+      "when": {
+        "flag.enthroned": true
+      },
+      "who": "wuze",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "是礼成以后递的？"
+    },
+    {
+      "id": "ch03_s24_shuge.l6",
+      "when": {
+        "flag.enthroned": true
+      },
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "是。具名来的，还有两份同议。不在授位旧卷里，要由今日在位的人答。"
+    },
+    {
+      "id": "ch03_s24_shuge.l7",
+      "when": {
+        "flag.enthroned": true
+      },
+      "who": "narr",
+      "kind": "aside",
+      "text": "你揭开封面，第一行顶着新称谓。纸的背面还空着。"
+    },
+    {
+      "id": "ch03_s24_shuge.l8",
+      "when": {
+        "flag.enthroned": true
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "把同议也放来。先读，不替我添批。"
+    },
+    {
+      "id": "ch03_s24_shuge.l9",
+      "when": {
+        "flag.enthroned": true
+      },
+      "who": "self",
+      "kind": "inner",
+      "text": "（昨天才把我的名字念完。今天已经有人在下面写，不妥。）"
+    },
+    {
+      "id": "ch03_s24_shuge.l10",
+      "when": {
+        "flag.declined_crown": true
+      },
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "辞受与重推另存。给你的这一张，是往后寄东西到哪儿，只留了空行。"
+    },
+    {
+      "id": "ch03_s24_shuge.l11",
+      "when": {
+        "flag.declined_crown": true
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "一定得今日填？"
+    },
+    {
+      "id": "ch03_s24_shuge.l12",
+      "when": {
+        "flag.declined_crown": true
+      },
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "不用。住处未改，就还照现在投递；没有新职，也不是这张漏了一项。"
+    },
+    {
+      "id": "ch03_s24_shuge.l13",
+      "when": {
+        "flag.declined_crown": true
+      },
+      "who": "narr",
+      "kind": "aside",
+      "text": "你将纸摊到亮处。空行够写很长一串字，笔尖没有落下。"
+    },
+    {
+      "id": "ch03_s24_shuge.l14",
+      "when": {
+        "flag.declined_crown": true
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "先留着。我今日想晚一点再出门。"
+    },
+    {
+      "id": "ch03_s24_shuge.l15",
+      "when": {
+        "flag.liqinghe_won": true
+      },
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "下一次公议问扩办款，你的提案仍列着。去不去听，可以先答，领不领差另说。"
+    },
+    {
+      "id": "ch03_s24_shuge.l16",
+      "when": {
+        "flag.liqinghe_won": true
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "我的反对也能当面念？"
+    },
+    {
+      "id": "ch03_s24_shuge.l17",
+      "when": {
+        "flag.liqinghe_won": true
+      },
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "能。主持那位已经签了受理，时辰在末行。带哪几页，由你自己挑。"
+    },
+    {
+      "id": "ch03_s24_shuge.l18",
+      "when": {
+        "flag.liqinghe_won": true
+      },
+      "who": "narr",
+      "kind": "aside",
+      "text": "你将邀请牒折到时辰那一行，放在自己的提案上。纸角没有再硌着掌心。"
+    },
+    {
+      "id": "ch03_s24_shuge.l19",
+      "when": {
+        "flag.liqinghe_won": true
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "我先看。不替我答应新的差。"
+    },
+    {
+      "id": "ch03_s24_shuge.l20",
+      "who": "narr",
+      "kind": "aside",
+      "text": "唐将砚盖揭开，墨面上浮着一丝窗光。门外有人走过，没有进来催。"
+    },
+    {
+      "id": "ch03_s24_shuge.l21",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "这一回先不写已经办成。你把原件放这里，我看完以后，亲手落下一笔。"
+    },
+    {
+      "id": "ch03_s24_shuge.l22",
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "好。"
+    }
+  ],
+  "chapterEnd": true,
+  "goto": "ch04_s01_zhaoyang"
+}

@@ -20,7 +20,7 @@
       },
       "who": "narr",
       "kind": "aside",
-      "text": "晨光落在你的指腹上，昨夜补抄的墨还没洗净。"
+      "text": "晨光落在你的指腹上，补抄的墨还没洗净。"
     },
     {
       "id": "ch01_s08_shuge.l2",
@@ -69,7 +69,7 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "昨日试次虽续上了，这份新旧并存的纸仍待说明，先说清楚才能开卷。"
+      "text": "那日试次虽续上了，这份新旧并存的纸仍待说明，先说清楚才能开卷。"
     },
     {
       "id": "ch01_s08_shuge.l7",
@@ -95,127 +95,133 @@
       "id": "ch01_s08_shuge.l9",
       "who": "narr",
       "kind": "aside",
-      "text": "公主把册子翻到末尾。荐名栏尽了，纸却还有半页。"
+      "text": "李令仪扶住高冠，拢起大袖礼衣的袖子，再将册子压平。"
     },
     {
       "id": "ch01_s08_shuge.l10",
+      "who": "narr",
+      "kind": "aside",
+      "text": "风从书阁门缝钻进来；公主翻到末尾，荐名栏尽了，纸还剩半页。"
+    },
+    {
+      "id": "ch01_s08_shuge.l11",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
       "text": "无人荐的，放哪里？"
     },
     {
-      "id": "ch01_s08_shuge.l11",
+      "id": "ch01_s08_shuge.l12",
       "who": "liqinghe",
       "expr": "default",
       "kind": "say",
       "text": "这一批没有。"
     },
     {
-      "id": "ch01_s08_shuge.l12",
+      "id": "ch01_s08_shuge.l13",
       "who": "wuze",
       "expr": "guarded",
       "kind": "say",
       "text": "题不是只给荐名的人看得懂。"
     },
     {
-      "id": "ch01_s08_shuge.l13",
+      "id": "ch01_s08_shuge.l14",
       "who": "liqinghe",
       "expr": "guarded",
       "kind": "say",
       "text": "人手却不是半页空纸，写得下十个名字，不等于明日有人看完十份卷。"
     },
     {
-      "id": "ch01_s08_shuge.l14",
+      "id": "ch01_s08_shuge.l15",
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
       "text": "我还要核病舍领物。不能另添一夜。"
     },
     {
-      "id": "ch01_s08_shuge.l15",
+      "id": "ch01_s08_shuge.l16",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
       "text": "抄副卷的工钱，能从誊写颂辞那笔里移么？"
     },
     {
-      "id": "ch01_s08_shuge.l16",
+      "id": "ch01_s08_shuge.l17",
       "who": "liqinghe",
       "expr": "default",
       "kind": "say",
       "text": "省下誊本可以，原文仍留一份。多少？"
     },
     {
-      "id": "ch01_s08_shuge.l17",
+      "id": "ch01_s08_shuge.l18",
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
       "text": "温荞那里接得下几份。价钱须先定。"
     },
     {
-      "id": "ch01_s08_shuge.l18",
+      "id": "ch01_s08_shuge.l19",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
       "text": "让她们照所抄的领钱，不因卷子没有入选，就白白抄过一遍。"
     },
     {
-      "id": "ch01_s08_shuge.l19",
+      "id": "ch01_s08_shuge.l20",
       "who": "liqinghe",
       "expr": "default",
       "kind": "say",
       "text": "这条可以。抄工与评卷分记。"
     },
     {
-      "id": "ch01_s08_shuge.l20",
+      "id": "ch01_s08_shuge.l21",
       "who": "narr",
       "kind": "aside",
       "text": "公主抽走两份重复的颂辞誊本，空出一处实实在在的位置。"
     },
     {
-      "id": "ch01_s08_shuge.l21",
+      "id": "ch01_s08_shuge.l22",
       "who": "liqinghe",
       "expr": "default",
       "kind": "say",
       "text": "自呈另收。不过，要有个止处。"
     },
     {
-      "id": "ch01_s08_shuge.l22",
+      "id": "ch01_s08_shuge.l23",
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
       "text": "定份数，先满先止；或定时辰，到时的收齐。"
     },
     {
-      "id": "ch01_s08_shuge.l23",
+      "id": "ch01_s08_shuge.l24",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
       "text": "定份数，晚知道的人吃亏。"
     },
     {
-      "id": "ch01_s08_shuge.l24",
+      "id": "ch01_s08_shuge.l25",
       "who": "liqinghe",
       "expr": "default",
       "kind": "say",
       "text": "定时辰，来的多就得延后评完，荐名卷也要等。你选哪一笔代价？"
     },
     {
-      "id": "ch01_s08_shuge.l25",
+      "id": "ch01_s08_shuge.l26",
       "who": "narr",
       "kind": "aside",
       "text": "唐简拿起木夹，把“自呈”两字夹在空出的案边。"
     },
     {
-      "id": "ch01_s08_shuge.l26",
+      "id": "ch01_s08_shuge.l27",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
       "text": "收下以后，不能仍压在荐名卷底下。"
     },
     {
-      "id": "ch01_s08_shuge.l27",
+      "id": "ch01_s08_shuge.l28",
       "who": "liqinghe",
       "expr": "default",
       "kind": "say",
@@ -233,7 +239,7 @@
         "affinity.wenqiao": 1,
         "flag.self_submit_cap": true
       },
-      "irreversible": false,
+      "irreversible": true,
       "goto": "ch01_s09_shuge"
     },
     {
@@ -246,7 +252,7 @@
         "affinity.wenqiao": 1,
         "flag.self_submit_window": true
       },
-      "irreversible": false,
+      "irreversible": true,
       "goto": "ch01_s09_shuge"
     }
   ]

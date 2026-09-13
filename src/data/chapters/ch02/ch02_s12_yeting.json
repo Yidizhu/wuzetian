@@ -1,0 +1,219 @@
+{
+  "id": "ch02_s12_yeting",
+  "chapter": 2,
+  "act": 2,
+  "scene": "yeting",
+  "palette": "ink",
+  "cast": [
+    "wuze",
+    "adi",
+    "songhuizhen"
+  ],
+  "weightless": false,
+  "leavesLetter": [],
+  "purpose": "主角亲历曝光后仍不能以相似受伤索取阿荻谅解",
+  "lines": [
+    {
+      "id": "ch02_s12_yeting.l1",
+      "who": "narr",
+      "kind": "aside",
+      "text": "宋将一碗温水挪到席边。阿荻在灯下缝自己的针包。"
+    },
+    {
+      "id": "ch02_s12_yeting.l2",
+      "who": "songhuizhen",
+      "expr": "default",
+      "kind": "say",
+      "text": "水在这里。"
+    },
+    {
+      "id": "ch02_s12_yeting.l3",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "我坐一会儿。"
+    },
+    {
+      "id": "ch02_s12_yeting.l4",
+      "who": "adi",
+      "expr": "default",
+      "kind": "say",
+      "text": "别坐线。"
+    },
+    {
+      "id": "ch02_s12_yeting.l5",
+      "who": "narr",
+      "kind": "aside",
+      "text": "你低头把那根线挑开，坐到另一边。"
+    },
+    {
+      "id": "ch02_s12_yeting.l6",
+      "when": {
+        "flag.adi_pay_advance": true
+      },
+      "who": "adi",
+      "expr": "default",
+      "kind": "say",
+      "text": "九件钱都数过了。补栏延后的话，我也听见了。"
+    },
+    {
+      "id": "ch02_s12_yeting.l7",
+      "when": {
+        "flag.adi_pay_original": true
+      },
+      "who": "adi",
+      "expr": "default",
+      "kind": "say",
+      "text": "余三件方才送来，我数过了。九件齐了，领凭在这里。"
+    },
+    {
+      "id": "ch02_s12_yeting.l8",
+      "who": "narr",
+      "kind": "aside",
+      "text": "她点了点针包下面的窄纸，没有递过来。"
+    },
+    {
+      "id": "ch02_s12_yeting.l9",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "今日她们把沈衡给我的信读了。"
+    },
+    {
+      "id": "ch02_s12_yeting.l10",
+      "who": "adi",
+      "expr": "default",
+      "kind": "say",
+      "text": "我没去。"
+    },
+    {
+      "id": "ch02_s12_yeting.l11",
+      "who": "wuze",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "她叫停了，前头那些却已经——"
+    },
+    {
+      "id": "ch02_s12_yeting.l12",
+      "who": "adi",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "不必念给我听。"
+    },
+    {
+      "id": "ch02_s12_yeting.l13",
+      "who": "self",
+      "kind": "inner",
+      "text": "（我不是想念。我想叫她说……）"
+    },
+    {
+      "id": "ch02_s12_yeting.l14",
+      "who": "narr",
+      "kind": "aside",
+      "text": "你伸向水碗的手停了一下。宋把碗留在原处。"
+    },
+    {
+      "id": "ch02_s12_yeting.l15",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "我才知道那一刻，旁人都听着，自己却插不进一句话。昨晚你也是——"
+    },
+    {
+      "id": "ch02_s12_yeting.l16",
+      "who": "adi",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "昨晚是昨晚。"
+    },
+    {
+      "id": "ch02_s12_yeting.l17",
+      "who": "songhuizhen",
+      "expr": "default",
+      "kind": "say",
+      "text": "碗要凉了。"
+    },
+    {
+      "id": "ch02_s12_yeting.l18",
+      "who": "adi",
+      "expr": "default",
+      "kind": "say",
+      "text": "钱到了，我认。你补了什么，也照实记。可你今日难受，不能来要我说不怪你。"
+    },
+    {
+      "id": "ch02_s12_yeting.l19",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "是。我方才在等这句。"
+    },
+    {
+      "id": "ch02_s12_yeting.l20",
+      "who": "adi",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "我不说。"
+    },
+    {
+      "id": "ch02_s12_yeting.l21",
+      "who": "narr",
+      "kind": "aside",
+      "text": "阿荻咬断线，把针插回包沿。"
+    },
+    {
+      "id": "ch02_s12_yeting.l22",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "你的私话，我不再借了。先前那份还要追清。"
+    },
+    {
+      "id": "ch02_s12_yeting.l23",
+      "who": "adi",
+      "expr": "default",
+      "kind": "say",
+      "text": "追清再告诉我。别替我答好。"
+    },
+    {
+      "id": "ch02_s12_yeting.l24",
+      "who": "songhuizhen",
+      "expr": "default",
+      "kind": "say",
+      "text": "今晚还有事？"
+    },
+    {
+      "id": "ch02_s12_yeting.l25",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "还要核原封与调令。"
+    },
+    {
+      "id": "ch02_s12_yeting.l26",
+      "who": "songhuizhen",
+      "expr": "default",
+      "kind": "say",
+      "text": "喝完去。我陪她坐。"
+    },
+    {
+      "id": "ch02_s12_yeting.l27",
+      "who": "narr",
+      "kind": "aside",
+      "text": "你喝完温水，把碗放回她够得着的地方。"
+    },
+    {
+      "id": "ch02_s12_yeting.l28",
+      "who": "adi",
+      "expr": "default",
+      "kind": "say",
+      "text": "灯留下。针眼还没穿好。"
+    },
+    {
+      "id": "ch02_s12_yeting.l29",
+      "who": "narr",
+      "kind": "aside",
+      "text": "你走出门，屋里的灯没有跟来。"
+    }
+  ],
+  "goto": "ch02_s13_hanyuan"
+}

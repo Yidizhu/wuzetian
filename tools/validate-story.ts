@@ -18,7 +18,7 @@ import type { SceneT, PoemT, PoemDuelT, LetterT, EndingT } from "../src/engine/s
  * 开场。M1 那四场骨架（ch00_*）是我写的占位文字，不是剧本，已退到
  * tools/fixtures/skeleton/。正式开场就是第一章第一场：她站在昭阳殿外。
  */
-const START = "ch01_s01_zhaoyang";
+const START = "ch01_s00_zhaoyang";
 
 type Level = "错误" | "警告";
 interface Finding { level: Level; file: string; where: string; msg: string }

@@ -1,0 +1,70 @@
+{
+  "id": "ch01_s00_zhaoyang",
+  "chapter": 1,
+  "act": 1,
+  "scene": "zhaoyang",
+  "palette": "ink",
+  "cast": [
+    "wuze"
+  ],
+  "weightless": false,
+  "leavesLetter": [],
+  "purpose": "交代女皇在位的长安、宗籍门槛与主角此刻的身体，将她送到试才的纸前",
+  "lines": [
+    {
+      "id": "ch01_s00_zhaoyang.l1",
+      "who": "narr",
+      "kind": "aside",
+      "text": "女皇临朝第十四年，长安，秋末。"
+    },
+    {
+      "id": "ch01_s00_zhaoyang.l2",
+      "who": "narr",
+      "kind": "aside",
+      "text": "皇子、公主皆可承统，宗室以外的人还不在册上。"
+    },
+    {
+      "id": "ch01_s00_zhaoyang.l3",
+      "who": "narr",
+      "kind": "aside",
+      "text": "这一年，将有人要求把自己的名字也写进去。"
+    },
+    {
+      "id": "ch01_s00_zhaoyang.l4",
+      "who": "self",
+      "kind": "inner",
+      "text": "（二十四岁，才人，入宫第四十一日；还在昭阳殿外候名。）"
+    },
+    {
+      "id": "ch01_s00_zhaoyang.l5",
+      "who": "narr",
+      "kind": "aside",
+      "text": "你握着从家里带来的旧鸡距笔，秃锋扫过掌心裂开的冻疮。"
+    },
+    {
+      "id": "ch01_s00_zhaoyang.l6",
+      "who": "narr",
+      "kind": "aside",
+      "text": "母亲留的素帕压在袖里，今日不打算拿它擦手。"
+    },
+    {
+      "id": "ch01_s00_zhaoyang.l7",
+      "who": "narr",
+      "kind": "aside",
+      "text": "晓鼓还未歇，阶下已有人连姓叫你的名字。"
+    },
+    {
+      "id": "ch01_s00_zhaoyang.l8",
+      "who": "narr",
+      "kind": "aside",
+      "text": "你拢住帔帛走过柱影，双环望仙髻下，襦裙的袖口挽着一折。"
+    },
+    {
+      "id": "ch01_s00_zhaoyang.l9",
+      "who": "narr",
+      "kind": "aside",
+      "text": "门敞着，冷风从里面吹到你裂开的掌心。"
+    }
+  ],
+  "goto": "ch01_s01_zhaoyang"
+}

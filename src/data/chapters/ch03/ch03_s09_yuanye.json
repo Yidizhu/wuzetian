@@ -1,0 +1,211 @@
+{
+  "id": "ch03_s09_yuanye",
+  "chapter": 3,
+  "act": 3,
+  "scene": "yuanye",
+  "palette": "ink",
+  "cast": [
+    "wuze",
+    "liqinghe"
+  ],
+  "weightless": false,
+  "leavesLetter": [
+    "liqinghe"
+  ],
+  "purpose": "李不撤选也不求让位，今夜的同行另问一次",
+  "lines": [
+    {
+      "id": "ch03_s09_yuanye.l1",
+      "who": "narr",
+      "kind": "aside",
+      "text": "苑中枯叶堆在石凳一端。李坐另一端，双脚踩着自己的外袍下摆。"
+    },
+    {
+      "id": "ch03_s09_yuanye.l2",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "衣裳要被你踩坏了。"
+    },
+    {
+      "id": "ch03_s09_yuanye.l3",
+      "who": "liqinghe",
+      "expr": "default",
+      "kind": "say",
+      "text": "松开就灌风。我今日不想讲究。"
+    },
+    {
+      "id": "ch03_s09_yuanye.l4",
+      "who": "narr",
+      "kind": "aside",
+      "text": "你替她拣去一片带刺的叶梗。她抬脚，袍角被你抽出来半寸。"
+    },
+    {
+      "id": "ch03_s09_yuanye.l5",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "方才你替我说了代递的长处。"
+    },
+    {
+      "id": "ch03_s09_yuanye.l6",
+      "who": "liqinghe",
+      "expr": "default",
+      "kind": "say",
+      "text": "账上有，隐去也还在。但明日我会争，我的两处轮值也确实已经开门。"
+    },
+    {
+      "id": "ch03_s09_yuanye.l7",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "我没有请你撤。"
+    },
+    {
+      "id": "ch03_s09_yuanye.l8",
+      "who": "liqinghe",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "我知道。先说清，免得今晚走完这段，明日你听见我争，会多疼一下。"
+    },
+    {
+      "id": "ch03_s09_yuanye.l9",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "你若输了，最舍不得什么？"
+    },
+    {
+      "id": "ch03_s09_yuanye.l10",
+      "who": "liqinghe",
+      "expr": "default",
+      "kind": "say",
+      "text": "那些肯先来当值的人。合署的钱批了，她们才肯辞旧差，如今又悬着。"
+    },
+    {
+      "id": "ch03_s09_yuanye.l11",
+      "who": "wuze",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "你答应过她们？"
+    },
+    {
+      "id": "ch03_s09_yuanye.l12",
+      "who": "liqinghe",
+      "expr": "default",
+      "kind": "say",
+      "text": "说过我能争下来。我说得太满。"
+    },
+    {
+      "id": "ch03_s09_yuanye.l13",
+      "who": "narr",
+      "kind": "aside",
+      "text": "她从袍角抽出一截松线，绕了一圈，没有扯断。"
+    },
+    {
+      "id": "ch03_s09_yuanye.l14",
+      "who": "liqinghe",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "上回撤署的那个人，小时候替我藏过一只坏掉的风筝。我还没把它还她。"
+    },
+    {
+      "id": "ch03_s09_yuanye.l15",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "还回去，她也未必回头。"
+    },
+    {
+      "id": "ch03_s09_yuanye.l16",
+      "who": "liqinghe",
+      "expr": "default",
+      "kind": "say",
+      "text": "嗯。线早就补好了。"
+    },
+    {
+      "id": "ch03_s09_yuanye.l17",
+      "who": "self",
+      "kind": "inner",
+      "text": "（她也有一件东西，修好了，仍送不出去。）"
+    },
+    {
+      "id": "ch03_s09_yuanye.l18",
+      "who": "narr",
+      "kind": "aside",
+      "text": "李起身，把外袍重新披在自己肩上。衣领被风卷进去，她伸手理了两次。"
+    },
+    {
+      "id": "ch03_s09_yuanye.l19",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "我还以为你要把它给我。"
+    },
+    {
+      "id": "ch03_s09_yuanye.l20",
+      "who": "liqinghe",
+      "expr": "open",
+      "kind": "say",
+      "text": "我也冷。你冷不冷？"
+    },
+    {
+      "id": "ch03_s09_yuanye.l21",
+      "who": "wuze",
+      "expr": "open",
+      "kind": "say",
+      "text": "冷。"
+    },
+    {
+      "id": "ch03_s09_yuanye.l22",
+      "who": "liqinghe",
+      "expr": "open",
+      "kind": "say",
+      "text": "那就各自穿好。想同你走到有灯的地方，路上不问明日的答卷。"
+    },
+    {
+      "id": "ch03_s09_yuanye.l23",
+      "who": "narr",
+      "kind": "aside",
+      "text": "她将自己的领口扣好，站在两步以外。那条松线留在你刚才坐过的石上。"
+    },
+    {
+      "id": "ch03_s09_yuanye.l24",
+      "who": "liqinghe",
+      "expr": "default",
+      "kind": "say",
+      "text": "旧日的私邀照旧日答复。今夜这句另问，你不走，我也不会拿它去答明日。"
+    },
+    {
+      "id": "ch03_s09_yuanye.l25",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "明日各争各的。赢了不算谁更肯爱，输了也不用谁来赔。"
+    }
+  ],
+  "choices": [
+    {
+      "id": "ch03_s09_yuanye.cA",
+      "text": "一起走。明日照实争",
+      "effects": {
+        "affinity.liqinghe": 3,
+        "flag.li_meng_real_competition": true,
+        "flag.li_ch03_walk": true
+      },
+      "irreversible": false,
+      "goto": "ch03_s10_nvguan"
+    },
+    {
+      "id": "ch03_s09_yuanye.cB",
+      "text": "今夜各回。明日照实争",
+      "effects": {
+        "affinity.liqinghe": 3,
+        "flag.li_meng_real_competition": true,
+        "flag.li_ch03_apart": true
+      },
+      "irreversible": false,
+      "goto": "ch03_s10_nvguan"
+    }
+  ]
+}

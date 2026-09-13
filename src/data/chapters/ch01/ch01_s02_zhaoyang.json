@@ -17,7 +17,7 @@
       "id": "ch01_s02_zhaoyang.l1",
       "who": "narr",
       "kind": "aside",
-      "text": "裴照夜站在阶下，绳垂着，没有绷紧。"
+      "text": "晨光只到昭阳殿最上一级阶，裴照夜站在阴处，绳没有绷紧。"
     },
     {
       "id": "ch01_s02_zhaoyang.l2",
@@ -167,7 +167,7 @@
       "id": "ch01_s02_zhaoyang.l23",
       "who": "narr",
       "kind": "aside",
-      "text": "阶下的马低了低头，仍未走近。"
+      "text": "阶下的马低头喷出白气，仍未走近；你站久了，脚趾冻得发木。"
     },
     {
       "id": "ch01_s02_zhaoyang.l24",
@@ -187,7 +187,7 @@
         "affinity.peizhaoye": 2,
         "flag.trial_recopy": true
       },
-      "irreversible": false,
+      "irreversible": true,
       "goto": "ch01_s03_yeting"
     },
     {
@@ -200,7 +200,7 @@
         "affinity.peizhaoye": 2,
         "flag.trial_append": true
       },
-      "irreversible": false,
+      "irreversible": true,
       "goto": "ch01_s03_yeting"
     }
   ]

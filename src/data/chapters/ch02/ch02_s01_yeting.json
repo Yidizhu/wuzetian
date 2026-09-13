@@ -1,0 +1,199 @@
+{
+  "id": "ch02_s01_yeting",
+  "chapter": 2,
+  "act": 2,
+  "scene": "yeting",
+  "palette": "ink",
+  "cast": [
+    "wuze",
+    "adi",
+    "songhuizhen",
+    "tangjian"
+  ],
+  "weightless": false,
+  "leavesLetter": [],
+  "purpose": "阿荻纠正主角自以为知道的欠付，拿回自己的说话次序",
+  "lines": [
+    {
+      "id": "ch02_s01_yeting.l1",
+      "who": "narr",
+      "kind": "aside",
+      "text": "前夜，补件赶上了署门，传问已经先往掖庭去。"
+    },
+    {
+      "id": "ch02_s01_yeting.l2",
+      "who": "narr",
+      "kind": "aside",
+      "text": "天一亮，来问衣物的人就到了。"
+    },
+    {
+      "id": "ch02_s01_yeting.l3",
+      "who": "narr",
+      "kind": "aside",
+      "text": "唐简在门槛外停下，靴底还带着晨露。"
+    },
+    {
+      "id": "ch02_s01_yeting.l4",
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "初八西库的衣，谁送的？"
+    },
+    {
+      "id": "ch02_s01_yeting.l5",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "是我在呈文里——"
+    },
+    {
+      "id": "ch02_s01_yeting.l6",
+      "who": "adi",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "送衣的是我。"
+    },
+    {
+      "id": "ch02_s01_yeting.l7",
+      "who": "narr",
+      "kind": "aside",
+      "text": "阿荻把针包从席边拿到膝上。"
+    },
+    {
+      "id": "ch02_s01_yeting.l8",
+      "when": {
+        "flag.petition_chase_first": true
+      },
+      "who": "adi",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "你昨晚去追纸。我还没听明白，要问什么？"
+    },
+    {
+      "id": "ch02_s01_yeting.l9",
+      "when": {
+        "flag.petition_chase_first": true
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "拦回一份后抄。原牒没有追回。"
+    },
+    {
+      "id": "ch02_s01_yeting.l10",
+      "when": {
+        "flag.petition_explain_first": true
+      },
+      "who": "adi",
+      "expr": "default",
+      "kind": "say",
+      "text": "昨晚那两句，我今日自己说。"
+    },
+    {
+      "id": "ch02_s01_yeting.l11",
+      "when": {
+        "flag.petition_explain_first": true
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "好。另有一份抄件已经送走了。"
+    },
+    {
+      "id": "ch02_s01_yeting.l12",
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "先问做工与领钱，别的另记。"
+    },
+    {
+      "id": "ch02_s01_yeting.l13",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "十一件的工钱——"
+    },
+    {
+      "id": "ch02_s01_yeting.l14",
+      "who": "adi",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "九件。"
+    },
+    {
+      "id": "ch02_s01_yeting.l15",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "你说过十一件。"
+    },
+    {
+      "id": "ch02_s01_yeting.l16",
+      "who": "adi",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "十一件是我送的。九件是我做的，另两件的人今日不在这里。"
+    },
+    {
+      "id": "ch02_s01_yeting.l17",
+      "who": "narr",
+      "kind": "aside",
+      "text": "唐简在“十一”下面另起了一行。"
+    },
+    {
+      "id": "ch02_s01_yeting.l18",
+      "who": "songhuizhen",
+      "expr": "default",
+      "kind": "say",
+      "text": "做多少记多少。锅里还有粥，别凉透了。"
+    },
+    {
+      "id": "ch02_s01_yeting.l19",
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "另两件是谁？"
+    },
+    {
+      "id": "ch02_s01_yeting.l20",
+      "who": "adi",
+      "expr": "default",
+      "kind": "say",
+      "text": "你去问领料簿。我不替她们答。"
+    },
+    {
+      "id": "ch02_s01_yeting.l21",
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "可以。九件，你认。"
+    },
+    {
+      "id": "ch02_s01_yeting.l22",
+      "who": "adi",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "我认做过这九件。你们改了多少条文，我没见过，不能叫我也认。"
+    },
+    {
+      "id": "ch02_s01_yeting.l23",
+      "who": "self",
+      "kind": "inner",
+      "text": "（九件。昨晚我还在算十一件。）"
+    },
+    {
+      "id": "ch02_s01_yeting.l24",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "方才那句话，划掉。听她的。"
+    },
+    {
+      "id": "ch02_s01_yeting.l25",
+      "who": "narr",
+      "kind": "aside",
+      "text": "唐简横过一笔，旧字仍看得见。"
+    }
+  ],
+  "goto": "ch02_s02_yeting"
+}

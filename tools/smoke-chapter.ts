@@ -51,7 +51,7 @@ if (!scenes.length) {
 }
 const START = which === "converted"
   ? [...scenes].sort((a, b) => a.id.localeCompare(b.id))[0]!.id
-  : "ch01_s01_zhaoyang";
+  : "ch01_s00_zhaoyang";
 
 /** 让出几轮微任务，够 enter() 里那几个 await 走完 */
 async function drain(): Promise<void> {
@@ -123,7 +123,9 @@ async function walk(picks: number[]): Promise<{ path: string[]; stuck: Stuck | n
         break;
       }
       forks.push(usable.length);
-      const choice = usable[(picks[pick++] ?? 0) % usable.length]!;
+      // -1 = 这个岔口选最后一项（见下面的「固定挑法」）
+      const want = picks[pick++] ?? 0;
+      const choice = (want < 0 ? usable[usable.length - 1] : usable[want % usable.length])!;
       const id = (pending as unknown as { items: { choice: { id: string } }[] }).items[choice]!.choice.id;
       pending = null;
       await story.choose(id);
@@ -193,6 +195,24 @@ for (const win of [false, true]) {
   winDuels = win;
   runs = 0;
   await explore([], 0);
+}
+
+/**
+ * 固定挑法：每个岔口都挑第 k 项（-1 = 最后一项）。
+ *
+ * 深度优先只在前面几个岔口换选项，后面的一律挑第一项。三章的岔口有几十个，
+ * 「每一步都挑最后一项」这种一个玩家随手就会走的路，穷举排不上号。
+ * ch02-19、ch03-21 就是这样漏掉的：入口没有门槛，只是在每个分叉都靠后。
+ */
+for (const win of [false, true]) {
+  winDuels = win;
+  for (const k of [-1, 1, 2, 3]) {
+    const { path, stuck } = await walk(new Array(400).fill(k));
+    for (const s of path) seen.add(s);
+    if (path.length > longest.length) longest = path;
+    if (stuck && !stucks.some((x) => x.scene === stuck.scene && x.why === stuck.why)) stucks.push(stuck);
+    runs++;
+  }
 }
 
 // --------------------------------------------------------------- 报告

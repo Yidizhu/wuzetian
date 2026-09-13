@@ -1,0 +1,205 @@
+{
+  "id": "ch02_s02_yeting",
+  "chapter": 2,
+  "act": 2,
+  "scene": "yeting",
+  "palette": "ink",
+  "cast": [
+    "wuze",
+    "adi",
+    "tangjian",
+    "shenheng"
+  ],
+  "weightless": false,
+  "leavesLetter": [],
+  "purpose": "核问改为分项复述、本人确认，欠付与擅引分开",
+  "lines": [
+    {
+      "id": "ch02_s02_yeting.l1",
+      "who": "narr",
+      "kind": "aside",
+      "text": "沈衡进门时，粥碗边已经结了一圈薄皮。"
+    },
+    {
+      "id": "ch02_s02_yeting.l2",
+      "who": "shenheng",
+      "expr": "default",
+      "kind": "say",
+      "text": "谁记的？"
+    },
+    {
+      "id": "ch02_s02_yeting.l3",
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "我。还没让她认。"
+    },
+    {
+      "id": "ch02_s02_yeting.l4",
+      "who": "shenheng",
+      "expr": "default",
+      "kind": "say",
+      "text": "先念。"
+    },
+    {
+      "id": "ch02_s02_yeting.l5",
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "初八送衣十一，其中自做九件。"
+    },
+    {
+      "id": "ch02_s02_yeting.l6",
+      "who": "adi",
+      "expr": "default",
+      "kind": "say",
+      "text": "这句是。"
+    },
+    {
+      "id": "ch02_s02_yeting.l7",
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "所欠工钱，请依呈文并核。"
+    },
+    {
+      "id": "ch02_s02_yeting.l8",
+      "who": "adi",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "呈文里写了什么，我没见。"
+    },
+    {
+      "id": "ch02_s02_yeting.l9",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "是我添的。我没问过她，不该让她在这里认下我写的整张纸。"
+    },
+    {
+      "id": "ch02_s02_yeting.l10",
+      "who": "shenheng",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "另纸记这句。署你自己的名。"
+    },
+    {
+      "id": "ch02_s02_yeting.l11",
+      "who": "narr",
+      "kind": "aside",
+      "text": "你接了窄纸。沈衡没有替你移走旧牒。"
+    },
+    {
+      "id": "ch02_s02_yeting.l12",
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "领钱归领钱。擅引另问你。"
+    },
+    {
+      "id": "ch02_s02_yeting.l13",
+      "who": "adi",
+      "expr": "default",
+      "kind": "say",
+      "text": "每句都念？"
+    },
+    {
+      "id": "ch02_s02_yeting.l14",
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "我念，你改。改完再念。"
+    },
+    {
+      "id": "ch02_s02_yeting.l15",
+      "who": "adi",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "有些我不肯说呢？不能因为末尾有我的名字，就当我全答应了。"
+    },
+    {
+      "id": "ch02_s02_yeting.l16",
+      "who": "shenheng",
+      "expr": "default",
+      "kind": "say",
+      "text": "那一项记不答。别借给别项用。"
+    },
+    {
+      "id": "ch02_s02_yeting.l17",
+      "who": "narr",
+      "kind": "aside",
+      "text": "唐简在纸边留出一道空栏，笔尖点了点。"
+    },
+    {
+      "id": "ch02_s02_yeting.l18",
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "改的在这里。只认这一问。"
+    },
+    {
+      "id": "ch02_s02_yeting.l19",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "门外还站着人。"
+    },
+    {
+      "id": "ch02_s02_yeting.l20",
+      "who": "adi",
+      "expr": "default",
+      "kind": "say",
+      "text": "让他们先走。我不想隔着门答。"
+    },
+    {
+      "id": "ch02_s02_yeting.l21",
+      "who": "shenheng",
+      "expr": "default",
+      "kind": "say",
+      "text": "依她。"
+    },
+    {
+      "id": "ch02_s02_yeting.l22",
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "能留下的，只我和经她答应的见证。"
+    },
+    {
+      "id": "ch02_s02_yeting.l23",
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "现在核，少跑一趟；午后核，我得另挪一班。她两样都肯。"
+    },
+    {
+      "id": "ch02_s02_yeting.l24",
+      "who": "adi",
+      "expr": "default",
+      "kind": "say",
+      "text": "午后也在这里，不去大堂。"
+    }
+  ],
+  "choices": [
+    {
+      "id": "ch02_s02_yeting.cA",
+      "text": "现在逐项核，门外散去",
+      "effects": {
+        "shi": 1,
+        "flag.adi_verify_now": true
+      },
+      "irreversible": false,
+      "goto": "ch02_s03_nvguan"
+    },
+    {
+      "id": "ch02_s02_yeting.cB",
+      "text": "午后再核，给她留半日",
+      "effects": {
+        "xin": 1,
+        "flag.adi_verify_later": true
+      },
+      "irreversible": false,
+      "goto": "ch02_s03_nvguan"
+    }
+  ]
+}

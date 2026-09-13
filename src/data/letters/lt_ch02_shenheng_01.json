@@ -1,0 +1,145 @@
+{
+  "id": "lt_ch02_shenheng_01",
+  "from": "shenheng",
+  "trigger": {
+    "kind": "scene",
+    "sceneId": "ch02_s04_shuge",
+    "afterScenes": 2
+  },
+  "delayMinutes": 15,
+  "paper": "huangma",
+  "body": {
+    "surface": "调卷回执附在外封内。今日的答话，我另记在笺里。旧驳案应由我答的，仍由我答，不因你来或不来便卸给你。封口有两道折，拆开时不要扯到里面的字。",
+    "pages": [
+      {
+        "key": "公务甲",
+        "when": {
+          "flag.shen_joint_reading": true
+        },
+        "text": "旧驳语请依原句读。我若先辩两券之缺，请把那句读完。",
+        "readAloud": true
+      },
+      {
+        "key": "公务乙",
+        "when": {
+          "flag.shen_ch02_help_no": true
+        },
+        "text": "陪读既未约成，旧卷由我自核；调卷回执仍请按公务收认。",
+        "readAloud": true
+      },
+      {
+        "key": "私段甲",
+        "when": {
+          "flag.shen_ch02_private_yes": true
+        },
+        "text": "读完也想见你。今日应下的相见，若有变动，递一句话便好。",
+        "readAloud": true
+      },
+      {
+        "key": "私段乙",
+        "when": {
+          "flag.shen_ch02_private_wait": true
+        },
+        "text": "私下相见照你说的暂缓。哪日想来，再问，不拿旧卷催你。",
+        "readAloud": true
+      },
+      {
+        "key": "私段丙",
+        "when": {
+          "flag.shen_ch02_private_no": true
+        },
+        "text": "你只核此卷、不约私见，我记下了。公事照办，不另候你。",
+        "readAloud": true
+      },
+      {
+        "key": "私段丁",
+        "when": {
+          "flag.shen_ch02_help_no": true
+        },
+        "text": "方才的相邀也不催答，别因这封笺觉得还欠我一次来见。",
+        "readAloud": true
+      },
+      {
+        "key": "尚未宣读的末句",
+        "text": "今日留在心里的话，等你愿意听的时候再说。",
+        "readAloud": false
+      }
+    ],
+    "poem": {
+      "ref": "liye_jiesuyu",
+      "line": "尺素如残雪，结为双鲤鱼。"
+    },
+    "poemMeans": "她把公事的回执与只给一人读的话同送，却没有准许合成一份公议材料",
+    "blank": "（折口里还有字。刚才他们念到哪儿？我想从头看，又怕听见那一殿的声音。）"
+  },
+  "sheMayNotReply": {
+    "affinity.shenheng": {
+      "lt": 5
+    }
+  },
+  "interceptable": true,
+  "interceptAt": "ch02_s11_hanyuan",
+  "onIntercept": {
+    "goto": "ch02_s11_hanyuan"
+  },
+  "replies": {
+    "plain": [
+      {
+        "effects": {
+          "affinity.shenheng": 2,
+          "flag.shen_after_intercept_meet": true
+        },
+        "reaction": "她另取一张无案号的纸：“先问时辰。你答了，我再来。”不把本次回话算成她先前所有邀请都获准。",
+        "id": "lt_ch02_shenheng_01.rA",
+        "text": "只给我读的，我愿另听。时辰重新约。"
+      },
+      {
+        "effects": {
+          "cai": 1,
+          "flag.shen_after_intercept_scope": true
+        },
+        "reaction": "“范围核清。别的话先放着。”她把公务抄件移到另一边。",
+        "id": "lt_ch02_shenheng_01.rB",
+        "text": "先把已读的范围核清，旁的话暂不答。"
+      },
+      {
+        "effects": {
+          "flag.shen_after_intercept_private_stop": true
+        },
+        "reaction": "“知道。公事另纸。”她收起私笺，不追问何时肯再见。",
+        "id": "lt_ch02_shenheng_01.rC",
+        "text": "私下的话先停，公事另纸往来。"
+      }
+    ],
+    "poem": {
+      "resonantTags": [
+        "诗笺",
+        "匣",
+        "手书",
+        "蝉",
+        "叶",
+        "远声"
+      ],
+      "onResonant": {
+        "effects": {
+          "affinity.shenheng": 2,
+          "flag.shen_ch02_letter_poem": true
+        },
+        "reaction": "她重读那句诗，折到字留在里面：“这回，只交你。”"
+      },
+      "onMismatch": {
+        "effects": {
+          "affinity.shenheng": 1,
+          "flag.shen_ch02_letter_poem": true
+        },
+        "reaction": "“这一句我还没读明白。”她没有添上猜来的意思，也没有催一首新的。"
+      }
+    },
+    "silence": {
+      "effects": {
+        "flag.shen_ch02_letter_silent": true
+      },
+      "reaction": "她不另递催答的笺。实际再见时只问已经约定的公务。"
+    }
+  }
+}

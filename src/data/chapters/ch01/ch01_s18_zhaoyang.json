@@ -138,13 +138,13 @@
       "id": "ch01_s18_zhaoyang.l13",
       "who": "narr",
       "kind": "aside",
-      "text": "阶下，那匹缺了一点耳尖的马正在等回厩，鼻息吹动了颈边的湿鬃。"
+      "text": "昭阳殿檐口还在滴雨，缺耳尖的马等着回厩，鼻息吹动湿鬃。"
     },
     {
       "id": "ch01_s18_zhaoyang.l14",
       "who": "narr",
       "kind": "aside",
-      "text": "它听见空桶挪动，又偏了一下头；没有因为昨日停过试就不再怕响。"
+      "text": "它听见空桶挪动，又偏了一下头；没有因为那日停过试就不再怕响。"
     },
     {
       "id": "ch01_s18_zhaoyang.l15",
@@ -204,7 +204,7 @@
       "id": "ch01_s18_zhaoyang.l23",
       "who": "narr",
       "kind": "aside",
-      "text": "你按住湿透的袖口，那里还留着阿荻替你改的针脚。"
+      "text": "你按住冰冷的湿袖口，那里还留着阿荻替你改的针脚。"
     },
     {
       "id": "ch01_s18_zhaoyang.l24",
@@ -240,5 +240,6 @@
       "text": "马蹄在阶下挪了一步，你却望向来时那道门。"
     }
   ],
-  "chapterEnd": true
+  "chapterEnd": true,
+  "goto": "ch02_s01_yeting"
 }

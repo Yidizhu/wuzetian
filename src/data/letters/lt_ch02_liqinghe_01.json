@@ -1,0 +1,87 @@
+{
+  "id": "lt_ch02_liqinghe_01",
+  "from": "liqinghe",
+  "trigger": {
+    "kind": "scene",
+    "sceneId": "ch02_s24_shuge",
+    "afterScenes": 2
+  },
+  "delayMinutes": 26,
+  "paper": "nijin",
+  "body": {
+    "surface": "全稿已经交你，明日仍按全稿问。撤署那页留在末尾，不必替我换一张干净的。今夜问你的，是另一件事；你怎样答，便照怎样办。余话不附在议策的帖子后面。",
+    "poem": {
+      "ref": "liye_bazhi",
+      "line": "至近至远东西，至深至浅清溪。"
+    },
+    "poemMeans": "她承认亲近与距离可以同在，不把私邀变成政治归附",
+    "blank": "（两张纸分开了。厚的那份明日要带去，她没有问我把薄的放在哪里。）"
+  },
+  "sheMayNotReply": {
+    "affinity.liqinghe": {
+      "lt": 5
+    }
+  },
+  "interceptable": false,
+  "replies": {
+    "plain": [
+      {
+        "effects": {
+          "affinity.liqinghe": 2,
+          "flag.li_ch02_letter_meet": true
+        },
+        "reaction": "“时辰另约。明日那一笔，你还须给我一个答复。”她指的是财政稿，随后才另问哪日方便。",
+        "id": "lt_ch02_liqinghe_01.rA",
+        "text": "私下我仍想见你，时辰另约。"
+      },
+      {
+        "effects": {
+          "cai": 1,
+          "flag.li_ch02_letter_after_debate": true
+        },
+        "reaction": "“好。比较完，再问。”她没有将胜负写进下次相见的条件。",
+        "id": "lt_ch02_liqinghe_01.rB",
+        "text": "原稿我留着。私话等比较之后再问。"
+      },
+      {
+        "effects": {
+          "flag.li_ch02_letter_public_only": true
+        },
+        "reaction": "“知道了。公议照旧。”私人帖子收回，不撤已交的全文。",
+        "id": "lt_ch02_liqinghe_01.rC",
+        "text": "只谈公事，私邀到这里为止。"
+      }
+    ],
+    "poem": {
+      "resonantTags": [
+        "远近",
+        "溪",
+        "日月",
+        "月",
+        "云",
+        "水",
+        "城"
+      ],
+      "onResonant": {
+        "effects": {
+          "affinity.liqinghe": 2,
+          "flag.li_ch02_letter_poem": true
+        },
+        "reaction": "她把回诗压在自己的私纸下：“这一句不带上殿。”未替玩家把原先的拒绝改为答应。"
+      },
+      "onMismatch": {
+        "effects": {
+          "affinity.liqinghe": 1,
+          "flag.li_ch02_letter_poem": true
+        },
+        "reaction": "“这一句，我读到的未必是你想说的。”她留着，没有另派人催问。"
+      }
+    },
+    "silence": {
+      "effects": {
+        "flag.li_ch02_letter_silent": true
+      },
+      "reaction": "她把未获回应的私邀收住，仍准时赴议。不会把沉默当成默认相爱。"
+    }
+  }
+}

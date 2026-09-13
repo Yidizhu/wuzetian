@@ -1,0 +1,255 @@
+{
+  "id": "ch02_s14_zhaoyang",
+  "chapter": 2,
+  "act": 2,
+  "scene": "zhaoyang",
+  "palette": "gold",
+  "cast": [
+    "wuze",
+    "hetaihou",
+    "songhuizhen",
+    "peizhaoye"
+  ],
+  "weightless": false,
+  "leavesLetter": [],
+  "purpose": "宋不拿照料换无限留任，裴接受已经耽误的去路不能补许",
+  "lines": [
+    {
+      "id": "ch02_s14_zhaoyang.l1",
+      "who": "narr",
+      "kind": "aside",
+      "text": "数日后，宋蕙贞来辞一项夜值。殿门风吹得披帛垂到椅脚。"
+    },
+    {
+      "id": "ch02_s14_zhaoyang.l2",
+      "who": "hetaihou",
+      "expr": "default",
+      "kind": "say",
+      "text": "披着。夜里风硬。"
+    },
+    {
+      "id": "ch02_s14_zhaoyang.l3",
+      "who": "songhuizhen",
+      "expr": "default",
+      "kind": "say",
+      "text": "谢太后。夜值仍请换人。"
+    },
+    {
+      "id": "ch02_s14_zhaoyang.l4",
+      "who": "hetaihou",
+      "expr": "default",
+      "kind": "say",
+      "text": "这些人你最熟。"
+    },
+    {
+      "id": "ch02_s14_zhaoyang.l5",
+      "who": "songhuizhen",
+      "expr": "default",
+      "kind": "say",
+      "text": "我带新来的人做两回。往后她熟，我就不用每一夜都在了。"
+    },
+    {
+      "id": "ch02_s14_zhaoyang.l6",
+      "who": "narr",
+      "kind": "aside",
+      "text": "太后压住将被风卷走的一角，没替她重新披紧。"
+    },
+    {
+      "id": "ch02_s14_zhaoyang.l7",
+      "who": "hetaihou",
+      "expr": "default",
+      "kind": "say",
+      "text": "当年我留你，是怕她们一换人就减了饭药。"
+    },
+    {
+      "id": "ch02_s14_zhaoyang.l8",
+      "who": "songhuizhen",
+      "expr": "default",
+      "kind": "say",
+      "text": "饭药的数可以留下，我的人不能也留成一个数，少一夜便说要坏事。"
+    },
+    {
+      "id": "ch02_s14_zhaoyang.l9",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "换班与支给分开记。她肯带两回，不是应下往后的每一夜。"
+    },
+    {
+      "id": "ch02_s14_zhaoyang.l10",
+      "who": "hetaihou",
+      "expr": "default",
+      "kind": "say",
+      "text": "把新值名与交接日给我。披帛拿走。"
+    },
+    {
+      "id": "ch02_s14_zhaoyang.l11",
+      "who": "songhuizhen",
+      "expr": "open",
+      "kind": "say",
+      "text": "这个我拿。"
+    },
+    {
+      "id": "ch02_s14_zhaoyang.l12",
+      "who": "narr",
+      "kind": "aside",
+      "text": "宋告退后，裴照夜奉召交回军需核单，停在殿门内。"
+    },
+    {
+      "id": "ch02_s14_zhaoyang.l13",
+      "who": "peizhaoye",
+      "expr": "default",
+      "kind": "say",
+      "text": "她不去了。"
+    },
+    {
+      "id": "ch02_s14_zhaoyang.l14",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "转粮那一队？"
+    },
+    {
+      "id": "ch02_s14_zhaoyang.l15",
+      "who": "peizhaoye",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "这回已定了别人。她另接修具的差，不等我再问。"
+    },
+    {
+      "id": "ch02_s14_zhaoyang.l16",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "你怎么答？"
+    },
+    {
+      "id": "ch02_s14_zhaoyang.l17",
+      "who": "peizhaoye",
+      "expr": "default",
+      "kind": "say",
+      "text": "应得的俸补齐。那两个暂缓，仍署我的名。"
+    },
+    {
+      "id": "ch02_s14_zhaoyang.l18",
+      "who": "narr",
+      "kind": "aside",
+      "text": "裴展开手中的核单，边角磨出了毛，里面没有那个人的新申请。"
+    },
+    {
+      "id": "ch02_s14_zhaoyang.l19",
+      "who": "peizhaoye",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "她来问的时候，我说天暖了再去。如今真暖了，我倒找不到一句该对她说的话。"
+    },
+    {
+      "id": "ch02_s14_zhaoyang.l20",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "不必叫她再申请一次。"
+    },
+    {
+      "id": "ch02_s14_zhaoyang.l21",
+      "who": "peizhaoye",
+      "expr": "default",
+      "kind": "say",
+      "text": "不叫。"
+    },
+    {
+      "id": "ch02_s14_zhaoyang.l22",
+      "who": "narr",
+      "kind": "aside",
+      "text": "裴交出核单。门外牵马的人先行，她没有跟上。"
+    },
+    {
+      "id": "ch02_s14_zhaoyang.l23",
+      "who": "peizhaoye",
+      "expr": "open",
+      "kind": "say",
+      "text": "我今日早一刻交完，想把这一刻给你。你有事，我就在这儿等风小些。"
+    },
+    {
+      "id": "ch02_s14_zhaoyang.l24",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "不要去点卯？"
+    },
+    {
+      "id": "ch02_s14_zhaoyang.l25",
+      "who": "peizhaoye",
+      "expr": "open",
+      "kind": "say",
+      "text": "已点过。这一刻是我的。"
+    },
+    {
+      "id": "ch02_s14_zhaoyang.l26",
+      "who": "narr",
+      "kind": "aside",
+      "text": "她站到风来的那一侧，却没替你决定往哪儿走。"
+    }
+  ],
+  "choices": [
+    {
+      "id": "ch02_s14_zhaoyang.cA",
+      "text": "去沈衡那里看墨渍",
+      "require": {
+        "affinity.shenheng": {
+          "gte": 10
+        },
+        "flag.shen_joint_reading": true
+      },
+      "effects": {},
+      "irreversible": false,
+      "goto": "ch02_s15_shuge"
+    },
+    {
+      "id": "ch02_s14_zhaoyang.cB",
+      "text": "和裴照夜分一块饼",
+      "require": {
+        "affinity.peizhaoye": {
+          "gte": 10
+        },
+        "flag.pei_shared_check": true
+      },
+      "effects": {},
+      "irreversible": false,
+      "goto": "ch02_s16_yuanye"
+    },
+    {
+      "id": "ch02_s14_zhaoyang.cC",
+      "text": "去温荞那里看窗影",
+      "require": {
+        "affinity.wenqiao": {
+          "gte": 10
+        },
+        "flag.wen_reader_help": true
+      },
+      "effects": {},
+      "irreversible": false,
+      "goto": "ch02_s17_shishe"
+    },
+    {
+      "id": "ch02_s14_zhaoyang.cD",
+      "text": "与李令仪看那根歪枝",
+      "require": {
+        "affinity.liqinghe": {
+          "gte": 10
+        },
+        "flag.liqinghe_cost_check": true
+      },
+      "effects": {},
+      "irreversible": false,
+      "goto": "ch02_s18_yuanye"
+    },
+    {
+      "id": "ch02_s14_zhaoyang.cE",
+      "text": "到观里歇一会儿",
+      "effects": {},
+      "irreversible": false,
+      "goto": "ch02_s19_nvguan"
+    }
+  ]
+}

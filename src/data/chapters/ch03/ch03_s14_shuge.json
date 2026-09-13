@@ -1,0 +1,236 @@
+{
+  "id": "ch03_s14_shuge",
+  "chapter": 3,
+  "act": 3,
+  "scene": "shuge",
+  "palette": "gold",
+  "cast": [
+    "wuze",
+    "tangjian",
+    "songhuizhen",
+    "shenheng",
+    "peizhaoye"
+  ],
+  "weightless": false,
+  "leavesLetter": [],
+  "purpose": "兑现沈裴的合作边界，结工与交班各有接手，不以换身份两清",
+  "lines": [
+    {
+      "id": "ch03_s14_shuge.l1",
+      "who": "narr",
+      "kind": "aside",
+      "text": "裴从近营回署缴凭，靴边的泥已干。宋把空匣搁到案上，抖出一小片折断的竹签。"
+    },
+    {
+      "id": "ch03_s14_shuge.l2",
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "一件件交。收卷的人接了，欠的钱付了，才在这一栏署讫；不能只交空匣。"
+    },
+    {
+      "id": "ch03_s14_shuge.l3",
+      "when": {
+        "flag.enthroned": true
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "旧日我亲接的，交回原署。别拿新印把所有旧签盖住。"
+    },
+    {
+      "id": "ch03_s14_shuge.l4",
+      "when": {
+        "flag.declined_crown": true
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "辞受的交接已完，这几笔余项今日交。重推的卷不经我手。"
+    },
+    {
+      "id": "ch03_s14_shuge.l5",
+      "when": {
+        "flag.liqinghe_won": true
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "提案我留着续补，别人托核的卷交回。这两样分开收。"
+    },
+    {
+      "id": "ch03_s14_shuge.l6",
+      "who": "shenheng",
+      "expr": "default",
+      "kind": "say",
+      "text": "撤差牒呢？"
+    },
+    {
+      "id": "ch03_s14_shuge.l7",
+      "who": "narr",
+      "kind": "aside",
+      "text": "你将问过撤差理由的回牒交给沈。背面没有为她改写的异议。"
+    },
+    {
+      "id": "ch03_s14_shuge.l8",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "原署收了复议，请另署的人核。旧差没有当场还你，我没有说你已经改了口。"
+    },
+    {
+      "id": "ch03_s14_shuge.l9",
+      "who": "shenheng",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "经手人留了。先这样。"
+    },
+    {
+      "id": "ch03_s14_shuge.l10",
+      "when": {
+        "flag.shen_ch03_sit": true
+      },
+      "who": "shenheng",
+      "expr": "default",
+      "kind": "say",
+      "text": "那日你坐下，我以为又要辩。后来光移过去，你真就只坐着。"
+    },
+    {
+      "id": "ch03_s14_shuge.l11",
+      "when": {
+        "flag.shen_ch03_sit": true
+      },
+      "who": "wuze",
+      "expr": "open",
+      "kind": "say",
+      "text": "你的凳子有一角硌人。我换了两回脚。"
+    },
+    {
+      "id": "ch03_s14_shuge.l12",
+      "when": {
+        "flag.shen_ch03_leave": true
+      },
+      "who": "shenheng",
+      "expr": "default",
+      "kind": "say",
+      "text": "那日你先走，牒还是带去问了。回来这一份，不用拿多坐一会儿换。"
+    },
+    {
+      "id": "ch03_s14_shuge.l13",
+      "when": {
+        "flag.shen_ch03_leave": true
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "我答应去问，就得去问。"
+    },
+    {
+      "id": "ch03_s14_shuge.l14",
+      "who": "peizhaoye",
+      "expr": "default",
+      "kind": "say",
+      "text": "随行的名册我也带来了，军职没有添。营里照点卯，没人因你换位置改作私随。"
+    },
+    {
+      "id": "ch03_s14_shuge.l15",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "这份送回值守人。以后请你来，不能把他整班的人也算上。"
+    },
+    {
+      "id": "ch03_s14_shuge.l16",
+      "who": "peizhaoye",
+      "expr": "open",
+      "kind": "say",
+      "text": "好。今日缴完凭，有半日是我的。"
+    },
+    {
+      "id": "ch03_s14_shuge.l17",
+      "who": "narr",
+      "kind": "aside",
+      "text": "宋把已带过两回班的凭据翻开。两名接班人各按了一枚印，第三栏仍空着。"
+    },
+    {
+      "id": "ch03_s14_shuge.l18",
+      "who": "songhuizhen",
+      "expr": "default",
+      "kind": "say",
+      "text": "两回就是两回。第三格不用替我想个人填，先问谁肯接，饭钱也先说。"
+    },
+    {
+      "id": "ch03_s14_shuge.l19",
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "原署已另雇，工价写在背面。你只签自己做过的。"
+    },
+    {
+      "id": "ch03_s14_shuge.l20",
+      "when": {
+        "flag.chenghuan_accept_2": true
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "柳承欢那三夜另核。我领回补休凭据和结工回执，亲手交她。"
+    },
+    {
+      "id": "ch03_s14_shuge.l21",
+      "when": {
+        "flag.chenghuan_refuse_2": true
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "两名代班的工费已清，我半日交卷也记了。柳承欢没有欠我三夜。"
+    },
+    {
+      "id": "ch03_s14_shuge.l22",
+      "when": {
+        "flag.chenghuan_accept_3": true
+      },
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "摘要更正牒备好了。送出时连你准合记的答复一起存，别把旧本拿走。"
+    },
+    {
+      "id": "ch03_s14_shuge.l23",
+      "when": {
+        "flag.chenghuan_refuse_3": true
+      },
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "柳承欢的经手签原就并列，不用再给她补一次名。报功凭据照本发。"
+    },
+    {
+      "id": "ch03_s14_shuge.l24",
+      "who": "narr",
+      "kind": "aside",
+      "text": "裴将自己的收凭折好。沈抽走撤差回牒，案上少了两份压在你名下的纸。"
+    },
+    {
+      "id": "ch03_s14_shuge.l25",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "核完的，今日交讫。她自己的那几件，送到她手里再说。"
+    }
+  ],
+  "choices": [
+    {
+      "id": "ch03_s14_shuge.cA",
+      "text": "署下交讫，带走柳的凭据",
+      "effects": {
+        "affinity.shenheng": 3,
+        "affinity.peizhaoye": 3,
+        "flag.ch03_handover_done": true
+      },
+      "irreversible": true,
+      "goto": "ch03_s15_yeting"
+    }
+  ]
+}
