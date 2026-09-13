@@ -14,6 +14,7 @@ import { DATA, ROOT, loadDir, loadFile } from "./load.ts";
 import { Scene, PoemDuel, Poem, Letter, Ending, CHARACTER_KEYS, NAME_FLAGS, FLAG_CONFLICTS, FLAG_REQUIRES } from "../src/engine/schema.ts";
 import type { SceneT, PoemT, PoemDuelT, LetterT, EndingT } from "../src/engine/schema.ts";
 import { ENTRANCES } from "../src/engine/entrances.ts";
+import { AFFINITY_BANDS } from "../src/engine/types.ts";
 
 /**
  * 开场。M1 那四场骨架（ch00_*）是我写的占位文字，不是剧本，已退到
@@ -206,7 +207,9 @@ for (const [act, list] of [...byAct].sort((a, b) => a[0] - b[0])) {
 
 // 好感门槛只许是档位下限（D-065）。门槛写在剧本 markdown 里，改了数据不改原文，
 // 下一次转换就悄悄变回 10 和 16——这一条让它变回去的那一刻就响
-const BAND_FLOORS = new Set([0, 4, 8, 14]);
+// 从引擎的档位表取，不再抄一份：D-078 改识档时，这里写死的 5 就是这样慢了一拍的
+const BAND_FLOORS = new Set<number>(AFFINITY_BANDS.map((b) => b.min));
+const KNOWN_FLOOR = AFFINITY_BANDS.find((b) => b.label === "识")!.min;
 
 // 终局判定（B14）。结局表里有结局、全库却没有一场 judgeEnding，玩家走到底只看得到「下章待续」，
 // 八张结局卡一张都出不来——而每一场单看都合法。原文里 ch04-18 写的是「章末」，
@@ -369,6 +372,13 @@ if (mainRun) {
     }
   }
   for (const l of letters) {
+    // 「她可能不回」的意思是「还没到识档」（D-083）。识档的数一变，这个条件就得跟着变，
+    // 否则已经算结识的人收不到回信，画面上没有任何东西解释为什么
+    for (const [k, v] of Object.entries((l as { sheMayNotReply?: Record<string, { lt?: number }> }).sheMayNotReply ?? {})) {
+      if (k.startsWith("affinity.") && v.lt !== undefined && v.lt !== KNOWN_FLOOR) {
+        warn(`letters/${l.id}`, "sheMayNotReply", `「她可能不回」写的是好感 < ${v.lt}，识档下限是 ${KNOWN_FLOOR}。这个条件的意思是「还没到识档」，要跟着档位表写 < ${KNOWN_FLOOR}`);
+      }
+    }
     if (l.body.blank.length < 15) {
       warn(`letters/${l.id}`, "body.blank", "「她没写的」那一层少于 15 字。三层结构里这一层最容易被敷衍成一句话，而它才是这套机制的核心");
     }

@@ -26,6 +26,11 @@ export interface StoryHooks {
    * 可选：无头工具不画纸，引擎直接跳过这几句往下走。
    */
   epigraph?(lines: string[]): Promise<void>;
+  /**
+   * 结局的第一拍（D-084）：只有画面，玩家看够了点一下才 resolve，然后才出正文。
+   * 可选：无头工具不看画面，直接出正文。
+   */
+  endingPicture?(ending: Ending): Promise<void>;
 }
 
 export interface ChoiceView {
@@ -205,6 +210,8 @@ export class Story {
 
     this.cur = scene;
     this.idx = lineIndex;
+    this.finished = false;                 // 读档读回结局之前，这一局还没落幕
+    this.picturing = false;                // 看结局画面时读了档：那一拍的钩子不会再 resolve，别让它锁住点击
 
     // 色板跟着场景走。整个 UI 只认 CSS 变量，不知道自己在哪套色板里。
     document.documentElement.dataset.palette = scene.palette;
@@ -300,7 +307,7 @@ export class Story {
     const e = scene.judgeEnding ? this.judgeEnding()
             : scene.ending ? this.endings.get(scene.ending) ?? null
             : null;
-    if (e) { this.finish(e); return; }
+    if (e) { void this.finish(scene, e); return; }
     if (scene.ending) console.error(`[story] 场景 ${scene.id} 指向不存在的结局 ${scene.ending}`);
     this.emit({ kind: "end" });
   }
@@ -437,7 +444,21 @@ export class Story {
     return e;
   }
 
-  private finish(e: Ending): void {
+  /**
+   * 结局已经出过了。之后的点击一律不算：原来句尾再点一下就是再 present 一次，
+   * 结局判定再跑一遍、题名再叠一层，点几下叠几层
+   */
+  private finished = false;
+  /** 结局第一拍的画面还在（D-084）。这时候的推进不算，否则第二拍会被连点跳过去 */
+  private picturing = false;
+
+  /**
+   * 落幕，分两拍（D-084）：第一拍只有画面——色板、布置（无字碑的印）都在这一拍到位；
+   * 玩家点一下，第二拍才出题名和正文。
+   * 两拍之间的停顿是尾韵，不是加载：走完四章，先给一屏安静的画面，再给字。
+   */
+  private async finish(scene: Scene, e: Ending): Promise<void> {
+    this.finished = true;
     this.store.state.endingsUnlocked.add(e.key);
     // 结局有自己的色板。势高心低那条线回到金碧，画面本身就是判词。
     document.documentElement.dataset.palette = e.palette;
@@ -446,6 +467,13 @@ export class Story {
     const dressing = ENDING_DRESSINGS[e.key];
     if (dressing) this.renderer.setDressing?.(dressing);
     this.autosave();
+    this.picturing = true;
+    try {
+      await this.hooks.endingPicture?.(e);
+    } finally {
+      this.picturing = false;
+    }
+    if (this.cur !== scene) return;        // 看画面的时候读了档
     this.emit({ kind: "ending", ending: e, body: subst(resolveBody(e, this.store.state), this.store.state) });
   }
 
@@ -463,7 +491,7 @@ export class Story {
 
   /** 点一下：推进一句，或者到了句尾就交给选项 */
   advance(): void {
-    if (this.epigraphing) return;
+    if (this.epigraphing || this.picturing || this.finished) return;
     if (this.resume) { const r = this.resume; this.resume = null; r(); return; }
     if (!this.cur) return;
     if (this.idx < this.cur.lines.length) this.idx += 1;

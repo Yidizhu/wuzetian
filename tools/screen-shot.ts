@@ -43,8 +43,11 @@ const fIdx = argv.indexOf("--flags");
 const flags = Object.fromEntries((fIdx >= 0 ? argv[fIdx + 1]! : "").split(",").filter(Boolean).map((f) => [f, true]));
 const tIdx = argv.indexOf("--taps");
 const taps = tIdx >= 0 ? Number(argv[tIdx + 1]) : 0;
+// --tap-gap 毫秒：两下之间隔多久。结局第一拍要停 1.5 秒才认点击（D-084），截第二拍时给 1600
+const gIdx = argv.indexOf("--tap-gap");
+const tapGap = gIdx >= 0 ? Number(argv[gIdx + 1]) : 300;
 const prologue = argv.includes("--prologue");
-const scenes = argv.filter((a, i) => !a.startsWith("--") && ![rIdx, lIdx, fIdx, tIdx].some((j) => j >= 0 && i === j + 1));
+const scenes = argv.filter((a, i) => !a.startsWith("--") && ![rIdx, lIdx, fIdx, tIdx, gIdx].some((j) => j >= 0 && i === j + 1));
 if (!scenes.length && !prologue) scenes.push("ch01_s01_zhaoyang");
 
 function findChrome(): string {
@@ -146,7 +149,7 @@ try {
       if (renderer) q.set("renderer", renderer);
       await send("Page.navigate", { url: `http://localhost:${PORT}/?${q}` });
       await sleep(4200);        // 推镜 2.6 秒 + 立绘挂上
-      for (let i = 0; i < taps; i++) { await tap(view); await sleep(300); }
+      for (let i = 0; i < taps; i++) { await tap(view); await sleep(tapGap); }
       if (taps) await sleep(2500);
       const info = await evaluate<string>(`JSON.stringify({
         renderer: document.querySelector('.stage')?.className,

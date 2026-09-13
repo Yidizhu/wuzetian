@@ -604,6 +604,49 @@ test("D-067 无字碑的印只在「无字之碑」结局卡那一刻由引擎�
   }
 });
 
+test("D-084 结局两拍：先画面，点一下才出正文；落幕之后再点不会再出一遍", async () => {
+  mem.clear();
+  const store = new Store();
+  const log: string[] = [];
+  let release: (() => void) | null = null;
+  const renderer = { ...noopRenderer, setDressing(d: string) { if (d) log.push(`布置:${d}`); } };
+  const s = scene("ch04_s18_wuzibei", 4, { scene: "wuzibei" as Scene["scene"], judgeEnding: true });
+  const endings = [{ key: "wuzibei", title: "无字之碑", require: {}, palette: "ink", theme: "t", body: "正文" }];
+  const story = new Story([s], endings as never, [], [], store, renderer,
+    {
+      async duel() { return true; }, async chapterEnd() {},
+      endingPicture: () => new Promise<void>((r) => { log.push("画面"); release = r; }),
+    }, "ch04_s18_wuzibei");
+  story.on((e) => { if (e.kind === "ending") log.push(`正文:${e.body}`); });
+  await story.start();
+  story.advance();                       // 读完最后一句
+  await drain();
+  assert.deepEqual(log, ["布置:yin", "画面"], "第一拍：印已经盖上，正文还没出");
+  story.advance(); story.advance();      // 看画面时连点，不算
+  await drain();
+  assert.deepEqual(log, ["布置:yin", "画面"]);
+  release!();
+  await drain();
+  assert.deepEqual(log, ["布置:yin", "画面", "正文:正文"]);
+  story.advance(); story.advance();      // 原来每点一下结局就再出一遍
+  await drain();
+  assert.equal(log.filter((x) => x.startsWith("正文")).length, 1, "落幕之后再点，结局不该再出");
+});
+
+test("D-084 无头工具没有第一拍：直接出正文，也只出一次", async () => {
+  mem.clear();
+  const store = new Store();
+  let n = 0;
+  const s = scene("end", 4, { judgeEnding: true });
+  const endings = [{ key: "k", title: "t", require: {}, palette: "ink", theme: "t", body: "b" }];
+  const story = new Story([s], endings as never, [], [], store, noopRenderer,
+    { async duel() { return true; }, async chapterEnd() {} }, "end");
+  story.on((e) => { if (e.kind === "ending") n++; });
+  await story.start();
+  for (let i = 0; i < 4; i++) { story.advance(); await drain(); }
+  assert.equal(n, 1);
+});
+
 test("题记是合法的说话人，地点多了驿路（D-062、D-063）", () => {
   const s = scene("x", 4, { goto: "x", scene: "yilu" as Scene["scene"] });
   s.lines = [{ id: "t", who: "tiji", kind: "aside", text: "一行。" }] as Scene["lines"];

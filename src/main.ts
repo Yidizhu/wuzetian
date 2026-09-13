@@ -74,6 +74,10 @@ const poems = new Map<string, PoemT>(
 );
 // 开场是序幕 ch01-00（C10、D-048）：题记三句、她的身体与位置三句，然后才是「纸上已经写好」
 const START = "ch01_s00_zhaoyang";
+/** 结局第一拍（只有画面）至少停多久才认点击，毫秒（D-084） */
+const ENDING_PICTURE_HOLD_MS = 1500;
+/** 结局第一拍还在时，点一下要调的函数；不在第一拍时是 null */
+let releaseEndingPicture: (() => void) | null = null;
 if (useConverted) console.info(`[data] 预览 CC2 转换产物：${baseScenes.length} 场，起点 ${START}`);
 
 /**
@@ -102,6 +106,7 @@ if (useConverted) console.info(`[data] 预览 CC2 转换产物：${baseScenes.le
  * 3D 包加载失败时 three 也退 CSS——那不是「卡」，是根本起不来，不退就是白屏。
  * 单文件版里没有 3D 那个分包，auto 和 three 走的都是「加载失败」那一行。
  */
+// D-086：自动回退还没在真机上证过。YIDI 用 ?renderer=auto 在手机上报结果之前，这一行不许改成 auto
 const DEFAULT_RENDERER: "css" | "auto" = "css";
 const RENDERER_MODE = new URLSearchParams(location.search).get("renderer") ?? DEFAULT_RENDERER;
 const FALLBACK_KEY = "wuzetian.renderer.fallback";
@@ -168,6 +173,20 @@ const story = new Story(
       choices.hide();
       mountEpigraph(document.body, { lines, onDone: () => { dlg.setVisible(true); resolve(); } });
     }),
+    // 结局第一拍（D-084）：只有画面。对话框、选项收起，点一下才出正文。
+    // 排版归 CC3：这一拍 #app 上是 data-ending="picture"，第二拍是 "text"，按这两个值写样式
+    endingPicture: () => new Promise<void>((resolve) => {
+      choices.hide();
+      dlg.setVisible(false);
+      app.dataset.ending = "picture";
+      const at = performance.now();
+      releaseEndingPicture = () => {
+        // 画面至少停这么久才认点击：读最后一句的人手还在连点，第一拍会被直接点掉
+        if (performance.now() - at < ENDING_PICTURE_HOLD_MS) return;
+        releaseEndingPicture = null;
+        resolve();
+      };
+    }),
   },
   START,
 );
@@ -198,6 +217,10 @@ const play = (cues: Cue[]): void => {
 story.on((e) => {
   switch (e.kind) {
     case "scene":
+      // 从结局那一屏读档回来：两拍留下的东西收干净
+      releaseEndingPicture = null;
+      delete app.dataset.ending;
+      app.querySelectorAll(".ending-title").forEach((n) => n.remove());
       play(cuesForScene(e.scene, cueState, performance.now()));
       // 阵容必须同步定下来：紧跟着的 line 事件会马上问「说话的人在不在台上」。
       // B11 写成了先 await refresh() 再 setCast，结果每一场第一个开口的人如果不在前两位，
@@ -237,9 +260,11 @@ story.on((e) => {
       choices.show(e.items);
       break;
     case "ending": {
+      app.dataset.ending = "text";
       choices.hide();
       dlg.setVisible(true);
       dlg.show("narr", e.body, "aside", store.state, true);
+      app.querySelectorAll(".ending-title").forEach((n) => n.remove());
       const title = document.createElement("div");
       title.className = "ending-title";
       title.textContent = e.ending.title;
@@ -278,12 +303,14 @@ const openPanel = (sel: string): boolean => {
 onTap(() => {
   if (slots.visible || inbox?.visible) return;
   if (openPanel(".duel") || openPanel(".summary")) return;
+  if (releaseEndingPicture) { releaseEndingPicture(); return; }
   if (dlg.complete()) return;
   story.advance();
 });
 window.addEventListener("keydown", (e) => {
   if (e.key !== " " && e.key !== "Enter" && e.key !== "ArrowRight") return;
   e.preventDefault();
+  if (releaseEndingPicture) { releaseEndingPicture(); return; }
   if (dlg.complete()) return;
   story.advance();
 });
