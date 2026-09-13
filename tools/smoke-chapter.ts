@@ -71,6 +71,9 @@ interface Stuck { scene: string; line: number; why: string }
  *    朝堂上却在念它——剧情和信箱各说各的。
  * 3. 换图规则的 flag 真的会被写真，而且换过去的那几张图真的存在（D-046，ch03-15）。
  *    表里写了、图也画了，可剧本出口忘了写 flag，柳承欢腕上那点红就永远不会褪。
+ * 4. 全书有终局判定的时候，每一条走完的路都落在一张结局卡上（B14，第四章接入）。
+ *    停在「下章待续」在第一到三章是这一版的边界，到了最后一章就是结局一个都出不来——
+ *    CC2 D10 的定向走法就是这样停住的，「走得通」照样全绿。
  */
 interface Broken { scene: string; why: string }
 const broken: Broken[] = [];
@@ -78,8 +81,14 @@ const flagsEverTrue = new Set<string>();
 
 /** 沿着一条选择序列走到底。返回走过的场次，或者卡住的地方 */
 let winDuels = false;
+const hasFinale = scenes.some((s) => s.judgeEnding);
+/** 走到过的结局 key -> 第一次是哪条路走到的（报告里给人复现用） */
+const endingsHit = new Map<string, number>();
 
-async function walk(picks: number[]): Promise<{ path: string[]; stuck: Stuck | null; forks: number[] }> {
+/** 随机走法用的挑选器：给定能点的几项，挑一项。不给就按 picks 固定挑 */
+type Chooser = (usable: number[]) => number;
+
+async function walk(picks: number[], chooser?: Chooser): Promise<{ path: string[]; stuck: Stuck | null; forks: number[] }> {
   // 每条路径都要从头开始。Story.start() 会读自动存档，
   // 不清掉的话第二条路径会从第一条的终点接着走——这个坑我踩过一次。
   mem.clear();
@@ -91,6 +100,8 @@ async function walk(picks: number[]): Promise<{ path: string[]; stuck: Stuck | n
   let stuck: Stuck | null = null;
   let pending: { items: { enabled: boolean }[] } | null = null;
   let ended = false;
+  let endKind = "";
+  let endingKey = "";
   const forks: number[] = [];
   const summarized = new Set<string>();
 
@@ -108,7 +119,11 @@ async function walk(picks: number[]): Promise<{ path: string[]; stuck: Stuck | n
     if (e.kind === "scene") { if (path.at(-1) !== e.scene.id) path.push(e.scene.id); }
     else if (e.kind === "choices") pending = e as unknown as { items: { enabled: boolean }[] };
     // 章末停在「下章待续」也是走完了，不是卡住（D-034）
-    else if (e.kind === "ending" || e.kind === "end" || e.kind === "toBeContinued") ended = true;
+    else if (e.kind === "ending" || e.kind === "end" || e.kind === "toBeContinued") {
+      ended = true;
+      endKind = e.kind;
+      if (e.kind === "ending") endingKey = e.ending.key;
+    }
   });
 
   await story.start();
@@ -125,7 +140,7 @@ async function walk(picks: number[]): Promise<{ path: string[]; stuck: Stuck | n
       forks.push(usable.length);
       // -1 = 这个岔口选最后一项（见下面的「固定挑法」）
       const want = picks[pick++] ?? 0;
-      const choice = (want < 0 ? usable[usable.length - 1] : usable[want % usable.length])!;
+      const choice = chooser ? chooser(usable) : (want < 0 ? usable[usable.length - 1] : usable[want % usable.length])!;
       const id = (pending as unknown as { items: { choice: { id: string } }[] }).items[choice]!.choice.id;
       pending = null;
       await story.choose(id);
@@ -162,6 +177,13 @@ async function walk(picks: number[]): Promise<{ path: string[]; stuck: Stuck | n
       }
     }
     for (const [f, v] of Object.entries(store.state.flags)) if (v) flagsEverTrue.add(f);
+    // 不变式 4
+    if (endingKey && !endingsHit.has(endingKey)) endingsHit.set(endingKey, runs);
+    if (hasFinale && endKind !== "ending") {
+      note(path.at(-1) ?? "?", endKind === "toBeContinued"
+        ? "全书有终局判定，这条路却停在「下章待续」，结局卡没有出"
+        : "全书有终局判定，这条路却落到了「没有结局数据」的兜底话");
+    }
   }
   return { path, stuck, forks };
 }
@@ -195,6 +217,23 @@ for (const win of [false, true]) {
   winDuels = win;
   runs = 0;
   await explore([], 0);
+}
+
+/**
+ * 随机走法（B14）：第四章的结局要好几个前后呼应的 flag 一起成立（留异议、毁原件、提名闭合……），
+ * 深度优先只在前几个岔口换选项，固定挑法每个岔口一个样，两种都凑不齐这种组合。
+ * 种子固定，每次跑的是同一批路，结果可以复现。条数用 SMOKE_RANDOM 调。
+ */
+const RANDOM_RUNS = Number(process.env.SMOKE_RANDOM ?? 600);
+let seed = 20260914;
+const rand = (): number => { seed = (seed * 1664525 + 1013904223) >>> 0; return seed / 2 ** 32; };
+for (let i = 0; i < RANDOM_RUNS; i++) {
+  winDuels = rand() < 0.5;
+  const { path, stuck } = await walk([], (usable) => usable[Math.floor(rand() * usable.length)]!);
+  for (const s of path) seen.add(s);
+  if (path.length > longest.length) longest = path;
+  if (stuck && !stucks.some((x) => x.scene === stuck.scene && x.why === stuck.why)) stucks.push(stuck);
+  runs++;
 }
 
 /**
@@ -255,12 +294,17 @@ for (const r of SPRITE_RULES) {
     if (!existsSync(f)) broken.push({ scene: `(${r.who})`, why: `flag.${r.flag} 会写真，但图 ${r.who}_${expr}_${r.suffix}.svg 不存在` });
   }
 }
+if (endings.length && hasFinale) {
+  const missing = endings.filter((e) => !endingsHit.has(e.key));
+  console.log(`  结局 ${endings.length - missing.length}/${endings.length} 张走得到：${endings.filter((e) => endingsHit.has(e.key)).map((e) => e.title).join("、")}`);
+  for (const e of missing) console.log(`  走不到结局「${e.title}」（${e.key}）：要 ${JSON.stringify(e.require ?? {})}`);
+}
 if (broken.length) {
   console.log(`
   不变式没守住的地方：`);
   for (const b of broken) console.log(`    ${b.scene} —— ${b.why}`);
 } else {
-  console.log(`  三条不变式都守住了：章末都出了结算页、截获点都截了、换图的 flag 都会写真。`);
+  console.log(`  ${hasFinale ? "四" : "三"}条不变式都守住了：章末都出了结算页、截获点都截了、换图的 flag 都会写真${hasFinale ? "、每条走完的路都落在结局卡上" : ""}。`);
 }
 if (stucks.length) {
   console.log(`\n  卡住的地方：`);

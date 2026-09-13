@@ -10,7 +10,7 @@
   ],
   "require": {
     "affinity.liqinghe": {
-      "gte": 5
+      "gte": 4
     }
   },
   "weightless": true,

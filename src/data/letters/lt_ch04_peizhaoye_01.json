@@ -1,0 +1,78 @@
+{
+  "id": "lt_ch04_peizhaoye_01",
+  "from": "peizhaoye",
+  "trigger": {
+    "kind": "scene",
+    "sceneId": "ch04_s02_hanyuan",
+    "afterScenes": 1
+  },
+  "delayMinutes": 5,
+  "paper": "junzhong",
+  "body": {
+    "surface": "散议回来，靴里倒出一粒砂，换了只脚仍硌着。原是袜边折进去，砂倒冤枉了。路书还没有定下下一处歇在哪里，我先把吃饭的那半刻写出来。你收到时，不用赶着回我这个时辰。",
+    "poem": {
+      "ref": "xuetao_chouyongxiucai",
+      "line": "感君识我枕流意，重示瞿塘峡口图。"
+    },
+    "poemMeans": "让对方看见她的路，不要求赶来同行",
+    "blank": "（她会替一粒砂说冤枉。那只靴敲了几回，想来比信写得响。）"
+  },
+  "sheMayNotReply": {
+    "affinity.peizhaoye": {
+      "lt": 5
+    }
+  },
+  "interceptable": false,
+  "replies": {
+    "plain": [
+      {
+        "effects": {
+          "affinity.peizhaoye": 2
+        },
+        "reaction": "“留了。”她吃完饼才折下一页路书。",
+        "id": "lt_ch04_peizhaoye_01.rA",
+        "text": "这半刻留给自己，不用挪来等我。"
+      },
+      {
+        "effects": {
+          "affinity.peizhaoye": 1
+        },
+        "reaction": "她将袜边翻出来，重新穿好，未替主角也写一条归程。",
+        "id": "lt_ch04_peizhaoye_01.rB",
+        "text": "袜边理平，再走你自己的差程。"
+      },
+      {
+        "effects": {},
+        "reaction": "“好。”她不叫人备第二匹马。",
+        "id": "lt_ch04_peizhaoye_01.rC",
+        "text": "这封路书我收着，今日不另约同行。"
+      }
+    ],
+    "poem": {
+      "resonantTags": [
+        "山水画",
+        "峡",
+        "流水",
+        "舟",
+        "帆",
+        "江水"
+      ],
+      "onResonant": {
+        "effects": {
+          "affinity.peizhaoye": 2
+        },
+        "reaction": "她将回诗收进自己的行囊，路程仍按原定的一份。"
+      },
+      "onMismatch": {
+        "effects": {
+          "affinity.peizhaoye": 1
+        },
+        "reaction": "她读到不熟的景物，问留到以后，没有另寄一首让人重答。"
+      }
+    },
+    "silence": {
+      "effects": {},
+      "reaction": "她独自用完留出的半刻，既没缩掉，也没把沉默算作同行。"
+    }
+  }
+}

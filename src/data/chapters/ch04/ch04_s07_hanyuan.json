@@ -1,0 +1,137 @@
+{
+  "id": "ch04_s07_hanyuan",
+  "chapter": 4,
+  "act": 4,
+  "scene": "hanyuan",
+  "palette": "gold",
+  "cast": [
+    "wuze",
+    "tangjian",
+    "liqinghe"
+  ],
+  "require": {
+    "flag.enthroned": true
+  },
+  "weightless": false,
+  "leavesLetter": [],
+  "purpose": "把下一轮提名交多方或收在一人手里",
+  "lines": [
+    {
+      "id": "ch04_s07_hanyuan.l1",
+      "who": "narr",
+      "kind": "aside",
+      "text": "早朝的风吹过龙尾道，殿门外两份荐牒用同一块石压着。"
+    },
+    {
+      "id": "ch04_s07_hanyuan.l2",
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "今日定下一轮从何处收荐。"
+    },
+    {
+      "id": "ch04_s07_hanyuan.l3",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "门外是哪两份？"
+    },
+    {
+      "id": "ch04_s07_hanyuan.l4",
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "一份有旧署的荐名，一份从外郡递来，所列核验齐了，没向你求过私允。"
+    },
+    {
+      "id": "ch04_s07_hanyuan.l5",
+      "who": "liqinghe",
+      "expr": "default",
+      "kind": "say",
+      "text": "多处能荐，就得留核验、回避与异议的时辰；不能今日写准，明日却无人收件。"
+    },
+    {
+      "id": "ch04_s07_hanyuan.l6",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "这笔人工从扩办款里列。"
+    },
+    {
+      "id": "ch04_s07_hanyuan.l7",
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "列过了。保留多方，就少开一处新署，先付核验人。"
+    },
+    {
+      "id": "ch04_s07_hanyuan.l8",
+      "who": "liqinghe",
+      "expr": "default",
+      "kind": "say",
+      "text": "若全由你荐，眼前能快些，可外郡那人连递进来的由头也没了。"
+    },
+    {
+      "id": "ch04_s07_hanyuan.l9",
+      "who": "narr",
+      "kind": "aside",
+      "text": "她把自己的名字从荐牒旁挪开，只留那份没求过私允的纸。"
+    },
+    {
+      "id": "ch04_s07_hanyuan.l10",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "我也可以亲自荐她。"
+    },
+    {
+      "id": "ch04_s07_hanyuan.l11",
+      "who": "liqinghe",
+      "expr": "default",
+      "kind": "say",
+      "text": "这回可以。下一回谁来，不能都靠你今日记得这一个。"
+    },
+    {
+      "id": "ch04_s07_hanyuan.l12",
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "两法都拟全了。签后颁行，第一批收退要照新条，不只在开头写不问宗姓。"
+    },
+    {
+      "id": "ch04_s07_hanyuan.l13",
+      "who": "self",
+      "kind": "inner",
+      "text": "（把这一份挑进来，很容易。）"
+    },
+    {
+      "id": "ch04_s07_hanyuan.l14",
+      "who": "narr",
+      "kind": "aside",
+      "text": "你扶住案角，石下的两张纸一齐抖动。"
+    }
+  ],
+  "dressing": "gongyi",
+  "choices": [
+    {
+      "id": "ch04_s07_hanyuan.cA",
+      "text": "颁行多方提名与异议办法",
+      "effects": {
+        "flag.ch04_nomination_open_order": true,
+        "flag.ch04_nomination_closed_order": false
+      },
+      "irreversible": false,
+      "goto": "ch04_s17_nvguan"
+    },
+    {
+      "id": "ch04_s07_hanyuan.cB",
+      "text": "颁行仅由在位者提名的办法",
+      "effects": {
+        "flag.ch04_nomination_open_order": false,
+        "flag.ch04_nomination_closed_order": true
+      },
+      "irreversible": false,
+      "goto": "ch04_s17_nvguan"
+    }
+  ]
+}

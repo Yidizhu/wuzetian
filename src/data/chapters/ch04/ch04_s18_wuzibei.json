@@ -1,0 +1,129 @@
+{
+  "id": "ch04_s18_wuzibei",
+  "chapter": 4,
+  "act": 4,
+  "scene": "wuzibei",
+  "palette": "ink",
+  "cast": [
+    "wuze",
+    "xujinghe"
+  ],
+  "weightless": true,
+  "leavesLetter": [],
+  "purpose": "夜里看无印碑样，放下笔后才进入结局",
+  "lines": [
+    {
+      "id": "ch04_s18_wuzibei.l1",
+      "who": "narr",
+      "kind": "aside",
+      "text": "夜里石旁没有印，灯照着一张空的碑样纸，纸角被风吹得贴上石面。"
+    },
+    {
+      "id": "ch04_s18_wuzibei.l2",
+      "who": "xujinghe",
+      "expr": "default",
+      "kind": "say",
+      "text": "压住这边，别让它飞。"
+    },
+    {
+      "id": "ch04_s18_wuzibei.l3",
+      "who": "narr",
+      "kind": "aside",
+      "text": "你用笔杆压住纸角，石的冷透进指腹，手没有立刻收回。"
+    },
+    {
+      "id": "ch04_s18_wuzibei.l4",
+      "when": {
+        "flag.enthroned": true
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "以后不刻颂辞，先留这一句。"
+    },
+    {
+      "id": "ch04_s18_wuzibei.l5",
+      "when": {
+        "flag.enthroned": false
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "这里只是碑样。我也可以看一会儿。"
+    },
+    {
+      "id": "ch04_s18_wuzibei.l6",
+      "who": "xujinghe",
+      "expr": "default",
+      "kind": "say",
+      "text": "可以看。温那册子仍在她手里，这张只给你看留白的尺寸，不替谁搬来私页。"
+    },
+    {
+      "id": "ch04_s18_wuzibei.l7",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "有人已经把自己的取走了。"
+    },
+    {
+      "id": "ch04_s18_wuzibei.l8",
+      "who": "xujinghe",
+      "expr": "default",
+      "kind": "say",
+      "text": "那就由她取走。"
+    },
+    {
+      "id": "ch04_s18_wuzibei.l9",
+      "who": "narr",
+      "kind": "aside",
+      "text": "你提起笔，纸角又翻过来，露出一样空的背面。"
+    },
+    {
+      "id": "ch04_s18_wuzibei.l10",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "我不写满，她们也不会少一处说话。"
+    },
+    {
+      "id": "ch04_s18_wuzibei.l11",
+      "who": "xujinghe",
+      "expr": "default",
+      "kind": "say",
+      "text": "你留空，她们也得留空么？有人愿记，有人不愿；谁还欠你的字，须另问本人。"
+    },
+    {
+      "id": "ch04_s18_wuzibei.l12",
+      "who": "self",
+      "kind": "inner",
+      "text": "（又说她们。连这张白纸，也想一并答了。）"
+    },
+    {
+      "id": "ch04_s18_wuzibei.l13",
+      "who": "narr",
+      "kind": "aside",
+      "text": "你将笔尖抬离纸面，墨还挂在尖上，没有落下来。"
+    },
+    {
+      "id": "ch04_s18_wuzibei.l14",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "那今晚先这样。"
+    },
+    {
+      "id": "ch04_s18_wuzibei.l15",
+      "who": "xujinghe",
+      "expr": "default",
+      "kind": "say",
+      "text": "灯还能放一会儿。"
+    },
+    {
+      "id": "ch04_s18_wuzibei.l16",
+      "who": "narr",
+      "kind": "aside",
+      "text": "你把笔放下。"
+    }
+  ],
+  "judgeEnding": true
+}

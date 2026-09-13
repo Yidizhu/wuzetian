@@ -584,6 +584,26 @@ test("D-076 默认不变：不从题记开始的场一进来就显景，读档�
   assert.deepEqual(log, ["show", "台上有人"]);
 });
 
+test("D-067 无字碑的印只在「无字之碑」结局卡那一刻由引擎盖上，别的结局不盖", async () => {
+  for (const [key, want] of [["wuzibei", ["", "yin"]], ["weijing", [""]]] as const) {
+    mem.clear();
+    const store = new Store();
+    const dress: string[] = [];
+    const renderer = { ...noopRenderer, setDressing(d: string) { dress.push(d); } };
+    const s = scene("ch04_s18_wuzibei", 4, { scene: "wuzibei" as Scene["scene"], judgeEnding: true });
+    const endings = [{ key, title: "t", require: {}, palette: "ink", theme: "t", body: "b" }];
+    const story = new Story([s], endings as never, [], [], store, renderer,
+      { async duel() { return true; }, async chapterEnd() {} }, "ch04_s18_wuzibei");
+    let ended = "";
+    story.on((e) => { if (e.kind === "ending") ended = e.ending.key; });
+    await story.start();
+    story.advance();
+    await drain();
+    assert.equal(ended, key);
+    assert.deepEqual(dress, want, `${key}：进场时不盖，结局卡出来才${want.length > 1 ? "盖" : "也不盖"}`);
+  }
+});
+
 test("题记是合法的说话人，地点多了驿路（D-062、D-063）", () => {
   const s = scene("x", 4, { goto: "x", scene: "yilu" as Scene["scene"] });
   s.lines = [{ id: "t", who: "tiji", kind: "aside", text: "一行。" }] as Scene["lines"];
@@ -596,6 +616,8 @@ test("题记是合法的说话人，地点多了驿路（D-062、D-063）", () =
  */
 test("D-065 档位下限和门槛是同一个数：进了契档专属场，结算页不能还写「识」", async () => {
   const { affinityBand } = await import("../src/engine/types.ts");
+  assert.equal(affinityBand(3), "疏");
+  assert.equal(affinityBand(4), "识");     // D-078
   assert.equal(affinityBand(7), "识");
   assert.equal(affinityBand(8), "契");
   assert.equal(affinityBand(13), "契");

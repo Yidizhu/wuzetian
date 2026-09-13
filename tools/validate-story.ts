@@ -206,7 +206,22 @@ for (const [act, list] of [...byAct].sort((a, b) => a[0] - b[0])) {
 
 // 好感门槛只许是档位下限（D-065）。门槛写在剧本 markdown 里，改了数据不改原文，
 // 下一次转换就悄悄变回 10 和 16——这一条让它变回去的那一刻就响
-const BAND_FLOORS = new Set([0, 5, 8, 14]);
+const BAND_FLOORS = new Set([0, 4, 8, 14]);
+
+// 终局判定（B14）。结局表里有结局、全库却没有一场 judgeEnding，玩家走到底只看得到「下章待续」，
+// 八张结局卡一张都出不来——而每一场单看都合法。原文里 ch04-18 写的是「章末」，
+// 正式数据是 CC1 手改的；原文不改，下一次转换就会变回去，所以这里是错误，拦住发布
+{
+  const endingsFile = join(DATA, "endings.json");
+  const hasEndings = existsSync(endingsFile) && (JSON.parse(readFileSync(endingsFile, "utf8")) as unknown[]).length > 0;
+  const finales = [...scenes.values()].filter(({ s }) => s.judgeEnding);
+  if (hasEndings && [...scenes.values()].some(({ s }) => s.chapter === 4) && !finales.length) {
+    err("src/data/chapters", "judgeEnding", "结局表里有结局，第四章也在，却没有一场做终局判定。全书最后一场（ch04-18）要写「终局判定 | 是」，不是「章末 | 是」");
+  }
+  if (finales.length > 1) {
+    err(finales[1]!.file, "judgeEnding", `终局判定全游戏只能有一处（story-schema 1.2），现在有 ${finales.length} 处：${finales.map((f) => f.s.id).join("、")}`);
+  }
+}
 
 // 人上台的那一句（D-076，engine/entrances.ts）。剧本改了句序、id 对不上，引擎会悄悄退回「一开场人就在」，
 // 序幕那一次变化就没了而画面毫无异样——所以这里是错误不是警告
@@ -221,7 +236,7 @@ const checkGates = (file: string, where: string, req: Record<string, unknown> | 
   for (const [k, v] of Object.entries(req ?? {})) {
     const gte = k.startsWith("affinity.") ? (v as { gte?: number }).gte : undefined;
     if (gte !== undefined && !BAND_FLOORS.has(gte)) {
-      warn(file, where, `好感门槛写的是 ${gte}，不是档位下限（识 5／契 8／盟 14）。D-065 之后契盟的门是 8 和 14——要是转换把 10、16 转回来了，原文里还没改`);
+      warn(file, where, `好感门槛写的是 ${gte}，不是档位下限（识 4／契 8／盟 14）。D-065、D-078 之后三档的门是 4、8、14——要是转换把 5、10、16 转回来了，原文里还没改`);
     }
   }
 };

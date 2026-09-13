@@ -18,11 +18,12 @@
  * 运行时只要从那边取一个整数，整个 zod 就会被打进玩家下载的包里——实测多 62 KB。
  * schema.ts 仍然把它再导出一次，文档上那里还是它的家。
  */
-export const DATA_VERSION = 2;
+export const DATA_VERSION = 3;
 /*
  * 版本记录（每次 +1 都在这里记一行，写清改了什么结构）
  *   1  B8   第一章 18 场
  *   2  B12  第一至三章接入：第一章前面加序幕 ch01-00，第二章 01 场、第三章 01 场前插旁白、行号重排
+ *   3  B14  第四章接入；C13 在四条恋爱线各自的第一场加了初见的几句（D-070），那几场行号重排
  */
 
 export type StatKey = "shi" | "ming" | "cai" | "xin";
@@ -179,14 +180,14 @@ export function conflictsOf(flag: string): string[] {
 /**
  * 好感四档，见 story-schema 1.1。
  *
- * D-065 把契档、盟档的门槛从 10、16 降到 8、14。档位的下限必须和门槛是同一个数：
+ * D-065 把契档、盟档的门槛从 10、16 降到 8、14，D-078 把识档从 5 降到 4。档位的下限必须和门槛是同一个数：
  * 章末结算页写着「识」，她却已经进了契档的专属场，玩家会以为出了错。
  * 降门槛的理由见 docs/engine-cc1-b12.md 第三节：不回信时每道门前的好感恰好等于门槛，余量为零。
  */
 export const AFFINITY_BANDS = [
   { min: 14, label: "盟" },
   { min: 8,  label: "契" },
-  { min: 5,  label: "识" },
+  { min: 4,  label: "识" },
   { min: 0,  label: "疏" },
 ] as const;
 

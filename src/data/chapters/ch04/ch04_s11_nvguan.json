@@ -1,0 +1,232 @@
+{
+  "id": "ch04_s11_nvguan",
+  "chapter": 4,
+  "act": 4,
+  "scene": "nvguan",
+  "palette": "ink",
+  "cast": [
+    "wuze",
+    "xujinghe",
+    "wenqiao"
+  ],
+  "require": {
+    "flag.liqinghe_won": true
+  },
+  "weightless": false,
+  "leavesLetter": [],
+  "purpose": "把借屋与有偿教习定成实际一月合同",
+  "lines": [
+    {
+      "id": "ch04_s11_nvguan.l1",
+      "when": {
+        "flag.ch04_school_cost_question": false
+      },
+      "who": "narr",
+      "kind": "aside",
+      "text": "次日，女观窗下晾着药筛，晒干的草叶气味混进纸里。"
+    },
+    {
+      "id": "ch04_s11_nvguan.l2",
+      "when": {
+        "flag.ch03_consider_school": true,
+        "flag.ch04_school_cost_question": false
+      },
+      "who": "xujinghe",
+      "expr": "default",
+      "kind": "say",
+      "text": "上回说要看看。屋的时辰列好了，今日只借得到这几段。"
+    },
+    {
+      "id": "ch04_s11_nvguan.l3",
+      "when": {
+        "flag.ch03_consider_school": false,
+        "flag.ch04_school_cost_question": false
+      },
+      "who": "xujinghe",
+      "expr": "default",
+      "kind": "say",
+      "text": "今日才来问，也先看屋的时辰，只借得到这几段。"
+    },
+    {
+      "id": "ch04_s11_nvguan.l4",
+      "when": {
+        "flag.ch04_school_cost_question": false
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "那半间，借一个月。"
+    },
+    {
+      "id": "ch04_s11_nvguan.l5",
+      "when": {
+        "flag.ch04_school_cost_question": false
+      },
+      "who": "xujinghe",
+      "expr": "default",
+      "kind": "say",
+      "text": "先前借三日已经过了。病舍不动，原有的课也不停，只剩午后这半间。"
+    },
+    {
+      "id": "ch04_s11_nvguan.l6",
+      "when": {
+        "flag.ch04_school_cost_question": false
+      },
+      "who": "wenqiao",
+      "expr": "default",
+      "kind": "say",
+      "text": "纸由我出，每刀照价。教习另付，不能买了我的纸就连我半日也买去。"
+    },
+    {
+      "id": "ch04_s11_nvguan.l7",
+      "when": {
+        "flag.ch04_school_cost_question": false
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "你来几回？"
+    },
+    {
+      "id": "ch04_s11_nvguan.l8",
+      "when": {
+        "flag.ch04_school_cost_question": false
+      },
+      "who": "wenqiao",
+      "expr": "default",
+      "kind": "say",
+      "text": "四回。其余你自己教。"
+    },
+    {
+      "id": "ch04_s11_nvguan.l9",
+      "when": {
+        "flag.ch04_school_cost_question": false
+      },
+      "who": "narr",
+      "kind": "aside",
+      "text": "你俯身量开席的宽处，掌心碰到晒热的窗沿。"
+    },
+    {
+      "id": "ch04_s11_nvguan.l10",
+      "when": {
+        "flag.ch04_school_cost_question": false
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "场租与纸钱我自己付，明日开课前交清；做不到便不开，不拿谁先垫一回。"
+    },
+    {
+      "id": "ch04_s11_nvguan.l11",
+      "when": {
+        "flag.ch04_school_cost_question": false
+      },
+      "who": "xujinghe",
+      "expr": "default",
+      "kind": "say",
+      "text": "学生只来半日也可，下次仍留位置。要停课先知会，别叫人空出工时来等。"
+    },
+    {
+      "id": "ch04_s11_nvguan.l12",
+      "when": {
+        "flag.ch04_school_cost_question": false
+      },
+      "who": "wenqiao",
+      "expr": "default",
+      "kind": "say",
+      "text": "纸背写了退改的时辰。别翻到那页就当没看见。"
+    },
+    {
+      "id": "ch04_s11_nvguan.l13",
+      "when": {
+        "flag.ch04_school_cost_question": false
+      },
+      "who": "self",
+      "kind": "inner",
+      "text": "（只有四回。剩下的得我来。）"
+    },
+    {
+      "id": "ch04_s11_nvguan.l14",
+      "when": {
+        "flag.ch04_school_cost_question": true
+      },
+      "who": "narr",
+      "kind": "aside",
+      "text": "温将纸钱与教习钱拆成两页，指节上的白痕抵着纸沿。"
+    },
+    {
+      "id": "ch04_s11_nvguan.l15",
+      "when": {
+        "flag.ch04_school_cost_question": true
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "没有人来上课，那一次教习钱怎么算？"
+    },
+    {
+      "id": "ch04_s11_nvguan.l16",
+      "when": {
+        "flag.ch04_school_cost_question": true
+      },
+      "who": "wenqiao",
+      "expr": "default",
+      "kind": "say",
+      "text": "人没来，我也已空出半日，不能叫我拿这一回的工钱赔她们没来的事。"
+    },
+    {
+      "id": "ch04_s11_nvguan.l17",
+      "when": {
+        "flag.ch04_school_cost_question": true
+      },
+      "who": "xujinghe",
+      "expr": "default",
+      "kind": "say",
+      "text": "课前照约通知便能另定时辰，过了时辰就照付，这句早在背面写着。"
+    },
+    {
+      "id": "ch04_s11_nvguan.l18",
+      "when": {
+        "flag.ch04_school_cost_question": true
+      },
+      "who": "narr",
+      "kind": "aside",
+      "text": "你翻过纸，背面那一行没有添改。"
+    }
+  ],
+  "choices": [
+    {
+      "id": "ch04_s11_nvguan.cA",
+      "text": "按这一月的约定办",
+      "effects": {
+        "flag.ch04_school_contract": true
+      },
+      "irreversible": false,
+      "goto": "ch04_s12_nvguan"
+    },
+    {
+      "id": "ch04_s11_nvguan.cB",
+      "text": "这回先不接",
+      "effects": {
+        "flag.ch04_school_contract": false
+      },
+      "irreversible": false,
+      "goto": "ch04_s10_yuanye"
+    },
+    {
+      "id": "ch04_s11_nvguan.cC",
+      "text": "追问无人来时怎样付钱",
+      "require": {
+        "cai": {
+          "gte": 6
+        },
+        "flag.ch04_school_cost_question": false
+      },
+      "effects": {
+        "flag.ch04_school_cost_question": true
+      },
+      "irreversible": false,
+      "goto": "ch04_s11_nvguan"
+    }
+  ]
+}

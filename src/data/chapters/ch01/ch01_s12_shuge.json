@@ -222,7 +222,7 @@
       "text": "和沈衡坐片刻",
       "require": {
         "affinity.shenheng": {
-          "gte": 5
+          "gte": 4
         }
       },
       "lockHint": "与沈衡尚未到识",
@@ -237,7 +237,7 @@
       "text": "到园里找裴照夜",
       "require": {
         "affinity.peizhaoye": {
-          "gte": 5
+          "gte": 4
         }
       },
       "lockHint": "与裴照夜尚未到识",
@@ -252,7 +252,7 @@
       "text": "去听温荞说纸声",
       "require": {
         "affinity.wenqiao": {
-          "gte": 5
+          "gte": 4
         }
       },
       "lockHint": "与温荞尚未到识",
@@ -267,7 +267,7 @@
       "text": "和公主玩一会儿",
       "require": {
         "affinity.liqinghe": {
-          "gte": 5
+          "gte": 4
         }
       },
       "lockHint": "与李令仪尚未到识",

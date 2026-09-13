@@ -1,0 +1,79 @@
+{
+  "id": "lt_ch04_liqinghe_01",
+  "from": "liqinghe",
+  "trigger": {
+    "kind": "scene",
+    "sceneId": "ch04_s02_hanyuan",
+    "afterScenes": 2
+  },
+  "delayMinutes": 16,
+  "paper": "nijin",
+  "body": {
+    "surface": "散议时落了一页，回去找，只找见自己压页的石。字明明少了一张，包却没有轻多少。那页另日来取，白天说的支出也另答，这封不把两件混成一个约。你不必为了回我，把自己的那份再誊得好听。",
+    "poem": {
+      "ref": "liye_bazhi",
+      "line": "至近至远东西，至深至浅清溪。"
+    },
+    "poemMeans": "近远并在，议件与私纸各占位置",
+    "blank": "（她还记得那块石。我把纸压在自己的那一块下面，没替她写何日来。）"
+  },
+  "sheMayNotReply": {
+    "affinity.liqinghe": {
+      "lt": 5
+    }
+  },
+  "interceptable": false,
+  "replies": {
+    "plain": [
+      {
+        "effects": {
+          "affinity.liqinghe": 2
+        },
+        "reaction": "“各收各的。”她没有删掉公开答复中仍不同意的一条。",
+        "id": "lt_ch04_liqinghe_01.rA",
+        "text": "白天那份照旧，这封我另收。"
+      },
+      {
+        "effects": {
+          "affinity.liqinghe": 1
+        },
+        "reaction": "她在自己的取件簿上记了一行，没有把它记成已赴私约。",
+        "id": "lt_ch04_liqinghe_01.rB",
+        "text": "落下的那页先存着，不替你改字。"
+      },
+      {
+        "effects": {},
+        "reaction": "“知道了。”她合上私纸，公议的受理日期仍照原定。",
+        "id": "lt_ch04_liqinghe_01.rC",
+        "text": "议件照交，私纸这回就停在这里。"
+      }
+    ],
+    "poem": {
+      "resonantTags": [
+        "远近",
+        "溪",
+        "日月",
+        "月",
+        "云",
+        "水",
+        "城"
+      ],
+      "onResonant": {
+        "effects": {
+          "affinity.liqinghe": 2
+        },
+        "reaction": "她将回诗压在私纸下面，没有夹进白天的支出册。"
+      },
+      "onMismatch": {
+        "effects": {
+          "affinity.liqinghe": 1
+        },
+        "reaction": "“读到的未必相同。”她没有请人送去一首所谓更对的。"
+      }
+    },
+    "silence": {
+      "effects": {},
+      "reaction": "她收起未获回应的私纸，没有借取原稿再问一遍为什么没回。"
+    }
+  }
+}

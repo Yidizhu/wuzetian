@@ -86,13 +86,15 @@
       ],
       "onResonant": {
         "effects": {
-          "affinity.peizhaoye": 2
+          "affinity.peizhaoye": 2,
+          "flag.pei_ch03_letter_poem": true
         },
         "reaction": "她将诗句读完：“路各走，信我收着。”"
       },
       "onMismatch": {
         "effects": {
-          "affinity.peizhaoye": 1
+          "affinity.peizhaoye": 1,
+          "flag.pei_ch03_letter_poem": true
         },
         "reaction": "她又读了一次：“这幅景我没见过，先留着。”"
       }

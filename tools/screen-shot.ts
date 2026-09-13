@@ -23,6 +23,7 @@ import { existsSync, mkdirSync, mkdtempSync, rmSync, writeFileSync } from "node:
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { createServer } from "vite";
+import { DATA_VERSION } from "../src/engine/types.ts";
 
 const ROOT = join(import.meta.dirname, "..");
 const OUT = join(ROOT, "Claude outputs", "screens");
@@ -37,8 +38,13 @@ const rIdx = argv.indexOf("--renderer");
 const renderer = rIdx >= 0 ? argv[rIdx + 1] : "";
 const lIdx = argv.indexOf("--line");
 const lineIndex = lIdx >= 0 ? Number(argv[lIdx + 1]) : 2;
+// --flags a,b,c：存档里这几个 flag 写真；--taps N：进场后点 N 下再截（截结局卡用）
+const fIdx = argv.indexOf("--flags");
+const flags = Object.fromEntries((fIdx >= 0 ? argv[fIdx + 1]! : "").split(",").filter(Boolean).map((f) => [f, true]));
+const tIdx = argv.indexOf("--taps");
+const taps = tIdx >= 0 ? Number(argv[tIdx + 1]) : 0;
 const prologue = argv.includes("--prologue");
-const scenes = argv.filter((a, i) => !a.startsWith("--") && i !== rIdx + 1 && i !== lIdx + 1);
+const scenes = argv.filter((a, i) => !a.startsWith("--") && ![rIdx, lIdx, fIdx, tIdx].some((j) => j >= 0 && i === j + 1));
 if (!scenes.length && !prologue) scenes.push("ch01_s01_zhaoyang");
 
 function findChrome(): string {
@@ -131,8 +137,8 @@ try {
     await send("Emulation.setDeviceMetricsOverride", { width: view.width, height: view.height, deviceScaleFactor: view.dpr, mobile: view.mobile });
     for (const sceneId of scenes) {
       // 直接写一份自动存档把人放到这一场，比从头点过去快，也不依赖路线
-      const save = { version: 1, dataVersion: 2, savedAt: 0, sceneId, lineIndex, stats: { shi: 5, ming: 5, cai: 5, xin: 5 },
-        affinity: {}, flags: {}, protagonistName: "吾则添", seenLineIds: [], poemsCollected: [], endingsUnlocked: [], letters: [], lastSeenAt: 0, introsSeen: [] };
+      const save = { version: 1, dataVersion: DATA_VERSION, savedAt: 0, sceneId, lineIndex, stats: { shi: 5, ming: 5, cai: 5, xin: 5 },
+        affinity: {}, flags, protagonistName: "吾则添", seenLineIds: [], poemsCollected: [], endingsUnlocked: [], letters: [], lastSeenAt: 0, introsSeen: [] };
       await send("Page.navigate", { url: `http://localhost:${PORT}/?notitle=1` });
       await sleep(400);
       await evaluate(`localStorage.clear(); localStorage.setItem("wuzetian.notice.storage","1"); localStorage.setItem("wuzetian.save.0", ${JSON.stringify(JSON.stringify(save))}); true`);
@@ -140,6 +146,8 @@ try {
       if (renderer) q.set("renderer", renderer);
       await send("Page.navigate", { url: `http://localhost:${PORT}/?${q}` });
       await sleep(4200);        // 推镜 2.6 秒 + 立绘挂上
+      for (let i = 0; i < taps; i++) { await tap(view); await sleep(300); }
+      if (taps) await sleep(2500);
       const info = await evaluate<string>(`JSON.stringify({
         renderer: document.querySelector('.stage')?.className,
         viewport: [innerWidth, innerHeight],
@@ -149,7 +157,7 @@ try {
         dlg: (() => { const r = document.querySelector('.dlg').getBoundingClientRect(); return [r.x|0, r.y|0, r.width|0, r.height|0]; })(),
       })`);
       const png = await send<{ data: string }>("Page.captureScreenshot", { format: "png" });
-      const file = join(OUT, `${sceneId}-${view.name}${renderer ? "-" + renderer : ""}.png`);
+      const file = join(OUT, `${sceneId}-${view.name}${renderer ? "-" + renderer : ""}${taps ? "-taps" + taps : ""}.png`);
       writeFileSync(file, Buffer.from(png.data, "base64"));
       console.log(`${view.name.padEnd(5)} ${sceneId}  ->  ${file}\n  ${info}`);
     }

@@ -1,0 +1,78 @@
+{
+  "id": "lt_ch04_wenqiao_01",
+  "from": "wenqiao",
+  "trigger": {
+    "kind": "scene",
+    "sceneId": "ch04_s02_hanyuan",
+    "afterScenes": 2
+  },
+  "delayMinutes": 10,
+  "paper": "huajian",
+  "body": {
+    "surface": "今天裁下的纸一边长一边短，重裁便只够写半句，我索性照这样寄。公议散了，诗社那只纸架还歪着，我用自己的废稿垫，纸一放上去又倒。后来把底下两根木脚换过来，它倒站稳了。纸钱照旧另记，这封不收你的抄工钱。",
+    "poem": {
+      "ref": "yuxuanji_tiyinwuting",
+      "line": "空卷珠帘不曾下，长移一榻对山眠。"
+    },
+    "poemMeans": "借挪坐处写自己的闲时，不邀对方担她全部生计",
+    "blank": "（那架倒下去时，她一定先怪了稿。我把短的那边朝上，也够写两句。）"
+  },
+  "sheMayNotReply": {
+    "affinity.wenqiao": {
+      "lt": 5
+    }
+  },
+  "interceptable": false,
+  "replies": {
+    "plain": [
+      {
+        "effects": {
+          "affinity.wenqiao": 2
+        },
+        "reaction": "“短也要写满？”她笑过，仍在纸边留了一点空。",
+        "id": "lt_ch04_wenqiao_01.rA",
+        "text": "这张不裁了，短的那边也归你。"
+      },
+      {
+        "effects": {
+          "affinity.wenqiao": 1
+        },
+        "reaction": "她将木脚安牢，把自己的新稿收回卷里。",
+        "id": "lt_ch04_wenqiao_01.rB",
+        "text": "纸架先放着，别再拿新稿垫。"
+      },
+      {
+        "effects": {},
+        "reaction": "“留我这里。”她没有把下一张伪装成公议抄件送来。",
+        "id": "lt_ch04_wenqiao_01.rC",
+        "text": "这封收好，下一张先留在你那里。"
+      }
+    ],
+    "poem": {
+      "resonantTags": [
+        "帘",
+        "榻",
+        "山",
+        "书",
+        "酒",
+        "竹"
+      ],
+      "onResonant": {
+        "effects": {
+          "affinity.wenqiao": 2
+        },
+        "reaction": "她念完回诗，换到席的另一端坐，没有替这两句安排一场诗会。"
+      },
+      "onMismatch": {
+        "effects": {
+          "affinity.wenqiao": 1
+        },
+        "reaction": "“你从这里想到那里。”她将纸放好，没有圈一个错处。"
+      }
+    },
+    "silence": {
+      "effects": {},
+      "reaction": "她把下一次试写留在自己的案上，诗会仍照时开，不托人催问。"
+    }
+  }
+}

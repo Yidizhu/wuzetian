@@ -10,7 +10,7 @@
   ],
   "require": {
     "affinity.wenqiao": {
-      "gte": 5
+      "gte": 4
     }
   },
   "weightless": true,
@@ -76,7 +76,7 @@
       "who": "wuze",
       "expr": "open",
       "kind": "say",
-      "text": "给我抖一回，你闭眼听着，若也猜错了，今日这两张纸就都算厚的。"
+      "text": "温荞，给我抖一回。你闭眼听着，若也猜错了，今日这两张纸就都算厚的。"
     },
     {
       "id": "ch01_s15_shishe.l10",

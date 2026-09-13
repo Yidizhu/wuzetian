@@ -85,13 +85,15 @@
       ],
       "onResonant": {
         "effects": {
-          "affinity.shenheng": 2
+          "affinity.shenheng": 2,
+          "flag.shen_ch03_letter_poem": true
         },
         "reaction": "她念到那句，手指停在纸角：“这一声，我听见了。”"
       },
       "onMismatch": {
         "effects": {
-          "affinity.shenheng": 1
+          "affinity.shenheng": 1,
+          "flag.shen_ch03_letter_poem": true
         },
         "reaction": "“这句还没读通。”她没有替你补上想念两字。"
       }

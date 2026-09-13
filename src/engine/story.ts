@@ -9,6 +9,11 @@ import type { LetterT, PoemDuelT } from "./schema.ts";
 import { Letters, type ReplyKind } from "./letters.ts";
 import { entranceIndex } from "./entrances.ts";
 
+/** 结局卡出来那一刻给背景层的布置。key 是 endings.json 的 key，值是 scene/dressings.ts 里的 key */
+export const ENDING_DRESSINGS: Readonly<Record<string, string>> = {
+  wuzibei: "yin",           // 无字之碑：碑前纸上那一枚朱砂印
+};
+
 /**
  * 需要等玩家操作的界面，由 main 注入。
  * Story 因此仍然不认识 DOM：它只知道「打一局对诗，告诉我赢没赢」。
@@ -436,6 +441,10 @@ export class Story {
     this.store.state.endingsUnlocked.add(e.key);
     // 结局有自己的色板。势高心低那条线回到金碧，画面本身就是判词。
     document.documentElement.dataset.palette = e.palette;
+    // D-067：无字碑默认无印，只在「无字之碑」这张结局卡出来的那一刻盖上。
+    // 引擎给，不靠剧本写：全书最后一场是八个结局共用的，那里写了印就是八个结局都有印
+    const dressing = ENDING_DRESSINGS[e.key];
+    if (dressing) this.renderer.setDressing?.(dressing);
     this.autosave();
     this.emit({ kind: "ending", ending: e, body: subst(resolveBody(e, this.store.state), this.store.state) });
   }

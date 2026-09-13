@@ -1,0 +1,141 @@
+{
+  "id": "ch04_s12_nvguan",
+  "chapter": 4,
+  "act": 4,
+  "scene": "nvguan",
+  "palette": "ink",
+  "cast": [
+    "wuze",
+    "wenqiao",
+    "adi",
+    "xujinghe"
+  ],
+  "require": {
+    "flag.ch04_school_contract": true
+  },
+  "weightless": false,
+  "leavesLetter": [],
+  "purpose": "实际开课，允许报名者带自己的工时离开",
+  "lines": [
+    {
+      "id": "ch04_s12_nvguan.l1",
+      "who": "narr",
+      "kind": "aside",
+      "text": "午后日光越过门槛，屋里坐席没有铺满；新裁的纸边碰着你的腕。"
+    },
+    {
+      "id": "ch04_s12_nvguan.l2",
+      "who": "xujinghe",
+      "expr": "default",
+      "kind": "say",
+      "text": "一月的场租收到了。纸钱与四回教习钱，也都点清了。"
+    },
+    {
+      "id": "ch04_s12_nvguan.l3",
+      "who": "wenqiao",
+      "expr": "default",
+      "kind": "say",
+      "text": "来的人各留自己的称呼，想学哪一段自己说；不上榜的字，也照样教。"
+    },
+    {
+      "id": "ch04_s12_nvguan.l4",
+      "who": "adi",
+      "expr": "default",
+      "kind": "say",
+      "text": "我只学这个领钱的。"
+    },
+    {
+      "id": "ch04_s12_nvguan.l5",
+      "who": "narr",
+      "kind": "aside",
+      "text": "她将亲手写过的单据放下，针包留在自己脚边。"
+    },
+    {
+      "id": "ch04_s12_nvguan.l6",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "先读数。"
+    },
+    {
+      "id": "ch04_s12_nvguan.l7",
+      "who": "adi",
+      "expr": "default",
+      "kind": "say",
+      "text": "这个是九。下边少了一个。"
+    },
+    {
+      "id": "ch04_s12_nvguan.l8",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "哪一个？"
+    },
+    {
+      "id": "ch04_s12_nvguan.l9",
+      "who": "adi",
+      "expr": "default",
+      "kind": "say",
+      "text": "领。钱没到手，不能光写付。"
+    },
+    {
+      "id": "ch04_s12_nvguan.l10",
+      "who": "narr",
+      "kind": "aside",
+      "text": "温把自己的纸翻面，笑了一声，没有替她补那一笔。"
+    },
+    {
+      "id": "ch04_s12_nvguan.l11",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "那就从这两个字教起，付给谁、谁领到，各写一遍；不会的地方留到下次。"
+    },
+    {
+      "id": "ch04_s12_nvguan.l12",
+      "who": "adi",
+      "expr": "default",
+      "kind": "say",
+      "text": "我到这会儿就走。"
+    },
+    {
+      "id": "ch04_s12_nvguan.l13",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "好。下次带这张来，不用把半日的工也空出来，才算认真学过。"
+    },
+    {
+      "id": "ch04_s12_nvguan.l14",
+      "who": "narr",
+      "kind": "aside",
+      "text": "她把“领”字写了两遍，第二遍旁边留着自己划掉的错笔。"
+    },
+    {
+      "id": "ch04_s12_nvguan.l15",
+      "who": "wenqiao",
+      "expr": "default",
+      "kind": "say",
+      "text": "错的那张也带走。是你写的。"
+    },
+    {
+      "id": "ch04_s12_nvguan.l16",
+      "who": "narr",
+      "kind": "aside",
+      "text": "阿荻把纸夹进针包，先出了门；其他人仍照自己的快慢写。"
+    }
+  ],
+  "dressing": "kaike",
+  "choices": [
+    {
+      "id": "ch04_s12_nvguan.cA",
+      "text": "收好今日的课页",
+      "effects": {
+        "flag.founded_school": true,
+        "flag.road_agreement": false
+      },
+      "irreversible": false,
+      "goto": "ch04_s13_nvguan"
+    }
+  ]
+}
