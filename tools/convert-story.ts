@@ -23,7 +23,7 @@ import { readFileSync, writeFileSync, mkdirSync, existsSync, readdirSync, rmSync
 import { join, resolve, dirname, relative } from "node:path";
 import { pathToFileURL } from "node:url";
 import { createHash } from "node:crypto";
-import { Scene, Line, Choice, Poem, PoemDuel, Letter, Ending, CHARACTER_KEYS, SCENE_KEYS } from "../src/engine/schema.ts";
+import { Scene, Line, Choice, Poem, PoemDuel, Letter, Ending, CHARACTER_KEYS, SCENE_KEYS, SpeakerKey } from "../src/engine/schema.ts";
 import type { SceneT, PoemT, PoemDuelT, LetterT, EndingT } from "../src/engine/schema.ts";
 import type { Condition } from "../src/engine/types.ts";
 
@@ -49,6 +49,13 @@ export interface ConvertResult {
   letters: LetterT[];
   endings: EndingT[];
   issues: ConvertIssue[];
+  /** 场景 id -> 原文标题（去掉场次号）。只给分支图用，不写进 JSON */
+  titles?: Record<string, string>;
+  /**
+   * 没转出来的场景和信，原文里提到了哪些 flag 的读和写。只给 flag 体检用：
+   * 一场转不出来，它写的 flag 就会在体检里变成「有人读、没人写」的假警报，得认得出来。
+   */
+  unconverted?: { label: string; file: string; chapter: number; reads: string[]; writes: string[] }[];
 }
 
 // ------------------------------------------------------------------ id 生成
@@ -201,11 +208,25 @@ const SCHEMA_HAS = {
 };
 
 /** 说话人允许的取值：十个冻结角色，加主角内心与旁白 */
-const SPEAKERS = new Set<string>([...CHARACTER_KEYS, "self", "narr"]);
+// 从 schema 的 SpeakerKey 取，不自己抄一份：D-063 要加「题记」这类新取值时，schema 一改这里自动跟上
+export const SPEAKERS = new Set<string>((() => {
+  const walk = (t: any): string[] => typeof t === "string" ? [t] : t?.options ? t.options.flatMap(walk) : t?._def?.values ?? (typeof t?.value === "string" ? [t.value] : []);
+  const got = walk(SpeakerKey);
+  return got.length ? got : [...CHARACTER_KEYS, "self", "narr"];
+})());
 /** 认不出的角色 key：可能是新批准的角色还没进枚举，也可能是笔误。两条路都写出来 */
 function unknownCharacter(key: string, where: string): string {
   return `${where}的角色 key「${key}」不在 D-016 冻结的十个里。若这是指挥日志新批准的角色，要 CC1 先加进 src/engine/schema.ts 的 CHARACTER_KEYS 和角色表；若是笔误，请 ChatGPT 改原文。在那之前这一场不输出`;
 }
+
+/** 比对前去掉标点和空白：原文里断句方式五花八门，片段要按字对 */
+export function normalizeForPoems(text: string): string {
+  return text.replace(/[\s，。、！？；：“”‘’「」《》（）()【】…—·,.!?;:'"\-]/g, "");
+}
+/** 宋以后诗词黑名单，见 tools/convert-song-blacklist.json */
+export const SONG_BLACKLIST: { key: string; line: string; author: string; work: string; dynasty: string }[] =
+  JSON.parse(readFileSync(new URL("./convert-song-blacklist.json", import.meta.url), "utf8").replace(/^﻿/, "")).entries
+    .map((e: any) => ({ key: normalizeForPoems(e.fragment), line: e.line, author: e.author, work: e.work, dynasty: e.dynasty }));
 
 // ------------------------------------------------------------ Markdown reader
 interface Row { cells: string[]; line: number; raw: string }
@@ -259,7 +280,19 @@ function readBlocks(markdown: string, file: string, issues: ConvertIssue[]): Blo
           t.rows.push({ cells, line: i + 1, raw: lines[i] });
         } catch (e) { issues.push({ file, line: i + 1, excerpt: lines[i], message: String(e) }); }
       }
-    } catch (e) { issues.push({ file, line: i + 1, excerpt: raw, message: String(e) }); }
+    } catch (e) {
+      // 表格中间多了一个空行：markdown 在空行处把表断开，后面几行就成了没有表头的「新表」。
+      // 逐行报会刷出一串看不懂的「缺少分隔行」；认出这种情形，整段只报一条，说清怎么改。
+      const prev = lines[i - 1] ?? "", before = lines[i - 2] ?? "";
+      if (!prev.trim() && before.trim().startsWith("|")) {
+        let end = i;
+        while (end + 1 < lines.length && lines[end + 1].trim().startsWith("|")) end++;
+        issues.push({ file, line: i, excerpt: raw, message: `表格中间多了一个空行（第 ${i} 行）：从第 ${i + 1} 行到第 ${end + 1} 行被当成了没有表头的新表，这几行读不进上面那张表。删掉这个空行即可` });
+        i = end;
+        continue;
+      }
+      issues.push({ file, line: i + 1, excerpt: raw, message: String(e) });
+    }
   }
   return blocks;
 }
@@ -357,7 +390,8 @@ const KNOWN_TABLES: Record<string, string[]> = {
 };
 
 /** 问题分类：给人分拣用。规则以关键词为准，写问题文案时要带上这些词。 */
-export type IssueKind = "ChatGPT 格式" | "CC1 接口" | "待交付";
+/** 「警告」不挡流水线：比如宋以后的诗句，查到了要人看一眼，但转换照常 */
+export type IssueKind = "ChatGPT 格式" | "CC1 接口" | "待交付" | "警告";
 export function classify(message: string): IssueKind {
   if (/CC1|架构方|schema/.test(message)) return "CC1 接口";
   if (/待交|未交付|尚未交付|一同转换/.test(message)) return "待交付";
@@ -366,8 +400,19 @@ export function classify(message: string): IssueKind {
 
 /** Batch parsing resolves forward and cross-file references without filesystem-dependent guesses. */
 export function convertBatch(inputs: { markdown: string; file: string }[]): ConvertResult {
-  const result: ConvertResult = { scenes: [], poems: [], duels: [], letters: [], endings: [], issues: [] };
-  const blocks = inputs.flatMap(i => readBlocks(i.markdown, i.file, result.issues));
+  const result: ConvertResult = { scenes: [], poems: [], duels: [], letters: [], endings: [], issues: [], titles: {}, unconverted: [] };
+  /**
+   * 大纲（文件名带「大纲」）只贡献场次索引表，别的一概不读。
+   * 大纲里会夹出口合同、样稿，甚至一整场先交的正文（C-12 的 ch04-09），
+   * 当正文转就会从大纲里拼出半个下一章——原文自己说了「未成稿前不单独接成可玩尾章」。
+   * 那些场的正文到了自己章的文件里再转。
+   */
+  const isOutline = (file: string) => /大纲/.test(file);
+  const isIndexTable = (t: Table) => t.header.includes("场景标题") && t.header.includes("地点 key");
+  const blocks = inputs.flatMap(i => {
+    const read = readBlocks(i.markdown, i.file, isOutline(i.file) ? [] : result.issues);
+    return isOutline(i.file) ? read.map(b => ({ ...b, heading: `大纲：${b.heading}`, tables: b.tables.filter(isIndexTable), prose: [] })) : read;
+  });
   const blockEnd = (b: Block) => blocks.find(x => x.file === b.file && x.line > b.line)?.line ?? Infinity;
   const blockHasErrors = (b: Block) => result.issues.some(i => i.file === b.file && i.line >= b.line && i.line < blockEnd(b));
   const sceneRefs = new Map<string, string>();
@@ -483,6 +528,7 @@ export function convertBatch(inputs: { markdown: string; file: string }[]): Conv
       const head = t.header.join("|");
       if (KNOWN_TABLES[kind].includes(head)) continue;
       if (kind === "场景" && t.header.includes("台词")) continue;   // 台词表由 lineTable() 认
+      if (kind === "场景" && t.header.includes("章末后去向")) continue; // 章末身份核对表，场景里单独核
       addIssue(b, t.rows[0], `${kind}里有一张认不出的表「${t.header.join(" | ")}」：转换器读不了，也不会假装它不存在。这多半是个新机制，需要先定 schema 字段（找 CC1）；若只是格式写岔了请改原文`, "CC1 接口");
     }
   };
@@ -598,21 +644,38 @@ export function convertBatch(inputs: { markdown: string; file: string }[]): Conv
       return { id: cid, text, ...(require ? { require: parseCondition(require) } : {}), effects: parseEffects(effects), goto: ref(dest), irreversible: note.includes("不可逆"),
         ...(note.match(/提示[「“]([^」”]+)[」”]/) ? { lockHint: note.match(/提示[「“]([^」”]+)[」”]/)![1] } : {}) };
     })).filter(Boolean);
-    // 章末结算页。两种写法：D-034 的「去向 | 章末」，和 D-039 的「章末 | 是」——
-    // 后者可以和「去向」并存：先出结算页，翻过去再进下一章第一场。
-    else if (v("去向").trim() === "章末") value.chapterEnd = true;
-    else if (v("去向")) value.goto = attempt(b, f["去向"], () => ref(v("去向")));
-    if (v("章末")) attempt(b, f["章末"], () => { if (yes(v("章末"))) value.chapterEnd = true; });
+    // 章末结算页。两种写法：D-034 的「去向 | 章末」，和 D-039 的「章末 | 是」加一个去向。
+    // 章末与选项可以并存（D-043）：选项结算完 → 结算页 → 场景级去向，所以有选项时场景级去向也要写出来。
+    // 普通场景有选项表时仍不写场景级去向：story-schema 1.2 说去向写在选项里，两处都写会互相打架。
+    if (chapterEndHere) value.chapterEnd = true;
+    const sceneDest = v("去向").trim();
+    if (sceneDest && sceneDest !== "章末" && (!choices || chapterEndHere)) value.goto = attempt(b, f["去向"], () => ref(sceneDest));
     // D-046：场景表「布置 | 公议」-> Scene.dressing。哪几场是公议写在剧本里，不写进引擎白名单，
     // 否则改一句标题就悄悄少一排案，而且没有任何东西会报错。
     // schema 没跟上时照常输出这一场，只把布置记一条：丢的是一排道具，戏文一句不少。
     // 为此不能挡住整章——别的地方（信的附页、角色 key）丢的是玩家读不到的正文，那才要拦。
     let dressingNote: string | undefined;
     if (v("布置")) attempt(b, f["布置"], () => {
+      // 中文到 key 的对照由 CC1／CC3 定（D-046 只定了公议）。认不出的也不扣整场，理由同上
       const key = ({ 公议: "gongyi" } as Record<string, string>)[v("布置").trim()];
-      if (!key) throw new Error(`认不出的布置「${v("布置")}」：现在只有「公议」。要加新的先定 schema 与渲染（D-046）`);
-      if (SCHEMA_HAS.dressing) value.dressing = key;
+      if (!key) dressingNote = `场景表写了「布置 | ${v("布置").trim()}」，转换器还没有它对应的 key（D-046 只定了「公议」→ gongyi）。这一场照常输出、暂不带这个布置；请 CC1／CC3 定下中文名到 key 的对照，转换器加一行即可`;
+      else if (SCHEMA_HAS.dressing) value.dressing = key;
       else dressingNote = "场景表写了「布置 | 公议」，但 schema 还没有 Scene.dressing（D-046）。这一场照常输出，只是暂时不带公议布置；CC1 加上字段后重跑就有了";
+    });
+    // 章末身份核对表（C-11 第 24 场那种）：按身份列出章末之后去哪。它若只是核对——每一行都去
+    // 场景级去向那一场——就不丢任何路由，放行；若真的按身份分去不同的场，schema 只有一个 goto 装不下，报接口。
+    const routing = b.tables.find(t => t.header.includes("章末后去向"));
+    if (routing) attempt(b, routing.rows[0], () => {
+      if (!chapterEndHere) throw new Error("场景里有「章末后去向」表，但这一场没标章末");
+      const destCol = routing.header.indexOf("章末后去向"), condCol = routing.header.indexOf("条件");
+      const targets = new Set<string>();
+      for (const row of routing.rows) {
+        if (condCol >= 0 && row.cells[condCol].trim()) { try { parseCondition(row.cells[condCol]); } catch (e) { throw new LocatedError(row, (e as Error).message); } }
+        try { targets.add(ref(row.cells[destCol])); } catch (e) { throw new LocatedError(row, (e as Error).message); }
+      }
+      if (targets.size > 1 || (value.goto && !targets.has(value.goto))) {
+        throw new Error(`章末之后按身份去不同的场（${[...targets].join("、")}），但场景只有一个去向${value.goto ? ` ${value.goto}` : ""}。schema 装不下按条件分流的章末，需要 CC1 定接口；在那之前这一场不输出`);
+      }
     });
     // 对诗出口：场景表「对诗」一行与本场绑定的对局块必须指同一局；对局要真的存在，不猜。
     const declared = declaredDuels.get(id); const bound = boundDuels.get(id);
@@ -637,6 +700,7 @@ export function convertBatch(inputs: { markdown: string; file: string }[]): Conv
       // Line.when 由 schema 收录（D-026）；万一 schema 回退成剥掉未知键的版本，这里按原位补回，JSON 里必须有它。
       value.lines.forEach((l: any, i: number) => { if (l.when && !parsed.lines[i].when) parsed.lines[i].when = l.when; });
       result.scenes.push(parsed);
+      result.titles![id] = b.heading.slice(3).replace(/^ch\d+-\d+[a-z]*\s*/, "").trim();
       // 记在这一场输出之后：它是一条提醒，不是挡住这一场的错
       if (dressingNote) addIssue(b, f["布置"], dressingNote, "CC1 接口");
     }
@@ -753,6 +817,36 @@ export function convertBatch(inputs: { markdown: string; file: string }[]): Conv
   for (const [label, { id, block, row }] of fromOutline) {
     addIssue(block, row, `${label} 的正文尚未交付；指向它的去向按大纲的地点 key 先接成 ${id}，那一批交了必须重跑确认地点没改`, "待交付");
   }
+  // tone-bible 第六节：只许唐及唐以前的诗。黑名单查不全，但能拦住最常见的那几十句
+  for (const b of blocks) {
+    if (b.heading.startsWith("大纲：")) continue;
+    for (const t of b.tables) for (const row of t.rows) {
+      const flat = normalizeForPoems(row.cells.join(""));
+      for (const e of SONG_BLACKLIST) {
+        if (!flat.includes(e.key)) continue;
+        addIssue(b, row, `疑似唐以后的诗句「${e.line}」（${e.dynasty}·${e.author}《${e.work}》）。tone-bible 第六节只许唐及唐以前；若是有意化用或同形巧合，人看一眼确认即可`, "警告");
+      }
+    }
+  }
+  // 没转出来的场景与信：从原文表格里粗扫它们读写了哪些 flag（只作体检标注，不进数据）
+  const flagsIn = (text: string) => [...new Set([...text.matchAll(/flag\.([a-z][a-z0-9_]*)/g)].map(m => m[1]))];
+  const convertedScenes = new Set(result.scenes.map(x => x.id)), convertedLetters = new Set(result.letters.map(x => x.id));
+  for (const b of blocks) {
+    const sceneHead = b.heading.startsWith("场景 ") ? /^场景\s+(ch(\d+)-\d+[a-z]*)/.exec(b.heading) : null;
+    const letterHead = /^信\s+(lt-ch(\d+)-[a-z0-9-]+)/.exec(b.heading);
+    const head = sceneHead ?? letterHead;
+    if (!head) continue;
+    const done = sceneHead ? [...convertedScenes].some(id => id.startsWith(sceneLabel(head[1]).replace("-", "_s") + "_")) : convertedLetters.has(head[1].replace(/-/g, "_"));
+    if (done) continue;
+    const reads: string[] = [], writes: string[] = [];
+    for (const t of b.tables) for (const row of t.rows) t.header.forEach((h, i) => {
+      const cell = row.cells[i] ?? "";
+      if (h === "效果") writes.push(...flagsIn(cell));
+      else if (["需要", "条件", "判定"].includes(h)) reads.push(...flagsIn(cell));
+      else if (h === "值" && ["进入条件", "她可能不回"].includes(row.cells[0])) reads.push(...flagsIn(cell));
+    });
+    result.unconverted!.push({ label: head[1], file: b.file, chapter: Number(head[2]), reads: [...new Set(reads)], writes: [...new Set(writes)] });
+  }
   const uniqueIssues = new Set<string>();
   result.issues = result.issues.filter(i => {
     const key = JSON.stringify(i);
@@ -779,10 +873,10 @@ export function manualTail(old: string): string {
 
 export function issueReport(r: ConvertResult): string {
   const esc = (s: string) => s.replace(/\|/g, "\\|").replace(/\r?\n/g, " ");
-  const kinds: IssueKind[] = ["ChatGPT 格式", "CC1 接口", "待交付"];
+  const kinds: IssueKind[] = ["ChatGPT 格式", "CC1 接口", "待交付", "警告"];
   const kindOf = (i: ConvertIssue) => i.kind ?? classify(i.message);
   const count = (k: IssueKind) => r.issues.filter(i => kindOf(i) === k).length;
-  const who: Record<IssueKind, string> = { "ChatGPT 格式": "ChatGPT 改 markdown 原文", "CC1 接口": "CC1 改 schema／引擎／校验器", "待交付": "等下一批交付，再跑一次转换" };
+  const who: Record<IssueKind, string> = { "ChatGPT 格式": "ChatGPT 改 markdown 原文", "CC1 接口": "CC1 改 schema／引擎／校验器", "待交付": "等下一批交付，再跑一次转换", "警告": "人看一眼；不挡转换" };
   const summary = kinds.map(k => `| ${k} | ${count(k)} | ${who[k]} |`).join("\n");
   const table = (k: IssueKind) => {
     const rows = r.issues.filter(i => kindOf(i) === k);
@@ -853,11 +947,217 @@ export const CASES = {
   ],
 } as const;
 
+// ------------------------------------------------------------ 分支图与 flag 体检
+
+type Edge = { from: string; to: string | undefined; label: string; kind: "choice" | "goto" | "duel" | "chapterEnd" | "intercept"; locked: boolean };
+
+/** 全部出边。章末选项没有 goto，走的是场景级去向（D-043），画成那一场的章末边 */
+export function sceneEdges(r: ConvertResult): Edge[] {
+  const duels = new Map(r.duels.map(d => [d.id, d]));
+  const edges: Edge[] = [];
+  for (const s of r.scenes as any[]) {
+    for (const c of s.choices ?? []) if (c.goto) edges.push({ from: s.id, to: c.goto, label: `${c.id.split(".c")[1]} ${c.text}`, kind: "choice", locked: !!c.require });
+    if (s.goto) edges.push({ from: s.id, to: s.goto, label: s.chapterEnd ? "章末" : "", kind: s.chapterEnd ? "chapterEnd" : "goto", locked: false });
+    const d = s.duel ? duels.get(s.duel) : undefined;
+    if (d?.onWin?.goto) edges.push({ from: s.id, to: d.onWin.goto, label: "对诗·赢", kind: "duel", locked: false });
+    if (d?.onLose?.goto) edges.push({ from: s.id, to: d.onLose.goto, label: "对诗·输", kind: "duel", locked: false });
+  }
+  for (const l of r.letters as any[]) {
+    const at = l.interceptAt ?? (l.trigger?.kind === "scene" ? l.trigger.sceneId : undefined);
+    if (at && l.onIntercept?.goto && l.onIntercept.goto !== at) edges.push({ from: at, to: l.onIntercept.goto, label: `截信 ${l.id}`, kind: "intercept", locked: false });
+  }
+  return edges;
+}
+
+/**
+ * docs/story-graph.md：每章一张 mermaid 图，外加摘要。从转换产物画，覆盖交了的所有章。
+ * 起点是编号最小的那一场（有序幕就是 ch01-00）；朱砂描边的是从起点走不到的孤儿。
+ * 不模拟条件：带锁的边照画，门槛能不能达到是 smoke 的事。
+ */
+export function storyGraph(r: ConvertResult): string {
+  const ids = r.scenes.map(s => s.id).sort();
+  const byId = new Map(r.scenes.map(s => [s.id, s as any]));
+  const edges = sceneEdges(r);
+  const start = ids[0];
+  const seen = new Set(start ? [start] : []); const queue = start ? [start] : [];
+  while (queue.length) { const at = queue.pop()!; for (const e of edges) if (e.from === at && e.to && byId.has(e.to) && !seen.has(e.to)) { seen.add(e.to); queue.push(e.to); } }
+  const chapters = [...new Set(r.scenes.map(s => s.chapter))].sort((a, b) => a - b);
+  const esc = (t: string) => t.replace(/["|<>#]/g, "").slice(0, 14);
+  const node = (id: string) => id.replace(/[^A-Za-z0-9_]/g, "_");
+  const out: string[] = [
+    "# 剧情分支图", "",
+    "> 由 `tools/convert-story.ts` 在每次转换后生成，读的是 `src/data/converted/`（CC2 转换产物），覆盖已交付的所有章。不要手改。",
+    "> CC1 的 `npm run graph` 读正式数据，正式数据接入之前它只画得出第一章；两者不一致时以这一份为准。", "",
+    `起点 \`${start ?? "（无）"}\`。纸色是水墨、绢色是金碧；**朱砂描边是从起点走不到的孤儿**；虚线框是还没交付、只被指向的场；🔒 是有条件的选项；虚线箭头是章末结算后的去向。`, "",
+    "## 摘要", "", "| 章 | 场数 | 从起点可达 | 孤儿 | 章末 | 无用场景 | 公议布置 | 指向未交付 |", "|---|---|---|---|---|---|---|---|",
+  ];
+  for (const ch of chapters) {
+    const mine = r.scenes.filter(s => s.chapter === ch) as any[];
+    const orphans = mine.filter(s => !seen.has(s.id));
+    const dangling = [...new Set(edges.filter(e => byId.get(e.from)?.chapter === ch && e.to && !byId.has(e.to)).map(e => e.to!))];
+    out.push(`| ${ch} | ${mine.length} | ${mine.length - orphans.length} | ${orphans.length ? orphans.map(s => `\`${s.id}\``).join(" ") : "0"} | ${mine.filter(s => s.chapterEnd).length} | ${mine.filter(s => s.weightless).length} | ${mine.filter(s => s.dressing).length} | ${dangling.length ? dangling.map(x => `\`${x}\``).join(" ") : "无"} |`);
+  }
+  for (const ch of chapters) {
+    const mine = (r.scenes.filter(s => s.chapter === ch) as any[]).sort((a, b) => a.id.localeCompare(b.id));
+    out.push("", `## 第 ${ch} 章`, "", "```mermaid", "flowchart TD",
+      "  classDef ink fill:#f4efe6,stroke:#3a3a3a,color:#1a1a1a", "  classDef gold fill:#efe2bf,stroke:#8a6a2a,color:#1a1a1a",
+      "  classDef orphan stroke:#b23a2a,stroke-width:3px", "  classDef pending fill:#ffffff,stroke:#999,stroke-dasharray:4 3,color:#666");
+    const external = new Set<string>();
+    for (const s of mine) {
+      const marks = [s.weightless ? "无用" : "", s.chapterEnd ? "章末" : "", s.dressing ? "公议" : "", s.duel ? "对诗" : ""].filter(Boolean).join("·");
+      out.push(`  ${node(s.id)}["${s.id.replace(/^ch\d+_s/, "")} ${esc(r.titles?.[s.id] ?? "")}<br/>${s.scene}${marks ? " · " + marks : ""}"]:::${s.palette === "gold" ? "gold" : "ink"}`);
+      if (!seen.has(s.id)) out.push(`  class ${node(s.id)} orphan`);
+    }
+    for (const e of edges.filter(e => byId.get(e.from)?.chapter === ch && e.to)) {
+      const target = byId.get(e.to!);
+      if (!target || target.chapter !== ch) external.add(e.to!);
+      const label = `${e.locked ? "🔒 " : ""}${esc(e.label)}`;
+      const arrow = e.kind === "chapterEnd" ? "-.->" : "-->";
+      out.push(`  ${node(e.from)} ${arrow}${label.trim() ? `|"${label}"|` : ""} ${node(e.to!)}`);
+    }
+    for (const x of external) {
+      const t = byId.get(x);
+      out.push(`  ${node(x)}["${t ? `→ 第 ${t.chapter} 章 ${x.replace(/^ch\d+_s/, "")}` : `未交付 ${x}`}"]:::pending`);
+    }
+    out.push("```");
+  }
+  return out.join("\n") + "\n";
+}
+
+/** 从一份转换结果里收集 flag 的读取点与写入点（只认 flag.*） */
+export function collectFlags(r: ConvertResult): { reads: Map<string, string[]>; writes: Map<string, string[]> } {
+  const reads = new Map<string, string[]>(); const writes = new Map<string, string[]>();
+  const add = (m: Map<string, string[]>, key: string, site: string) => { if (!key.startsWith("flag.")) return; const n = key.slice(5); (m.get(n) ?? m.set(n, []).get(n)!).push(site); };
+  const readCond = (c: any, site: string) => { for (const k of Object.keys(c ?? {})) add(reads, k, site); };
+  const writeEff = (e: any, site: string) => { for (const k of Object.keys(e ?? {})) add(writes, k, site); };
+  for (const s of r.scenes as any[]) {
+    readCond(s.require, `${s.id} 进入条件`);
+    for (const l of s.lines) readCond(l.when, `${l.id}`);
+    for (const c of s.choices ?? []) { readCond(c.require, `${c.id} 需要`); writeEff(c.effects, c.id); }
+  }
+  for (const d of r.duels as any[]) { writeEff(d.onWin?.effects, `${d.id} 赢`); writeEff(d.onLose?.effects, `${d.id} 输`); }
+  for (const l of r.letters as any[]) {
+    readCond(l.sheMayNotReply, `${l.id} 她可能不回`);
+    for (const p of l.body?.pages ?? []) readCond(p.when, `${l.id} 附页·${p.key}`);
+    for (const x of l.replies.plain) writeEff(x.effects, x.id);
+    writeEff(l.replies.poem.onResonant.effects, `${l.id} 诗答·合`); writeEff(l.replies.poem.onMismatch.effects, `${l.id} 诗答·不合`);
+    writeEff(l.replies.silence.effects, `${l.id} 不回`);
+  }
+  for (const e of r.endings as any[]) readCond(e.require, `结局 ${e.key}`);
+  return { reads, writes };
+}
+
+/**
+ * docs/convert-flags.md：全库 flag 体检（D-063 起分支图与体检都归 CC2）。
+ *
+ * 读取：场景进入条件、台词条件、选项需要、信的「她可能不回」与附页条件、结局判定。
+ * 写入：选项效果、对诗胜负效果、回信效果。
+ *
+ * 每张表分两段：先列真正的空缺／空转，再列「已知预期」——免得每轮都把同一批当新问题看（D8）：
+ *  ① 对面在还没发布的章里：第四章正文未转、或只在未交章节的大纲里提到；
+ *  ② 连带假警报：对面那一场（或那封信）这一轮没转出来，它原文里明明写着这个 flag。
+ * 引擎代码直接用到的（换图、互斥表、登基前置）另标「引擎读取」，也不算空转。
+ */
+export function flagAudit(r: ConvertResult, ctx: {
+  engineText: string; outlineText: string; knownText: string;
+  /** 待发布章节的试转结果（不落盘），用来认出「对面在第四章」 */
+  pending?: ConvertResult;
+}): string {
+  const { reads, writes } = collectFlags(r);
+  const released = new Set(r.scenes.map(s => s.chapter));
+  const pending = ctx.pending ? (() => {
+    const chapters = new Set([...ctx.pending!.scenes.map(s => s.chapter), ...(ctx.pending!.unconverted ?? []).map(u => u.chapter)].filter(c => !released.has(c)));
+    const only: ConvertResult = { ...ctx.pending!, scenes: ctx.pending!.scenes.filter(s => chapters.has(s.chapter)),
+      letters: ctx.pending!.letters.filter(l => chapters.has(Number(/^lt_ch(\d+)/.exec(l.id)?.[1]))), duels: [], endings: [], poems: [] };
+    return { ...collectFlags(only), chapters, unconverted: (ctx.pending!.unconverted ?? []).filter(u => !released.has(u.chapter)) };
+  })() : undefined;
+  const failedHere = (r.unconverted ?? []).filter(u => released.has(u.chapter));
+  const mentions = (text: string, name: string) => new RegExp(`(?<![a-z0-9_])(flag\.)?${name}(?![a-z0-9_])`).test(text);
+  const sites = (xs: string[]) => `${xs.slice(0, 3).map(x => `\`${x}\``).join("、")}${xs.length > 3 ? ` 等 ${xs.length} 处` : ""}`;
+  const chapterOfSite = (site: string) => Number(/ch(\d+)/.exec(site)?.[1] ?? NaN);
+
+  /** 这个 flag 缺的那一头（写或读）为什么缺。返回空串 = 真空缺 */
+  const expected = (name: string, missing: "writes" | "reads"): string => {
+    const failed = failedHere.filter(u => u[missing].includes(name)).map(u => u.label);
+    if (failed.length) return `② 连带：${failed.join("、")} 这一轮没转出来，原文里写着它`;
+    const inPending = pending?.[missing].get(name);
+    if (inPending?.length) {
+      const chs = [...new Set(inPending.map(chapterOfSite).filter(n => !Number.isNaN(n)))].sort();
+      return `① ${missing === "writes" ? "写入点" : "读取者"}在待发布的第 ${chs.join("、")} 章（${sites(inPending)}）`;
+    }
+    const pendingFailed = (pending?.unconverted ?? []).filter(u => u[missing].includes(name)).map(u => u.label);
+    if (pendingFailed.length) return `① ${missing === "writes" ? "写入点" : "读取者"}在待发布章节（${pendingFailed.join("、")}，试转未过）`;
+    const prefix = /^ch(\d+)_/.exec(name);
+    if (prefix && !released.has(Number(prefix[1]))) return `① 第 ${Number(prefix[1])} 章还没发布${mentions(ctx.outlineText, name) ? "，大纲里有" : "；**大纲里也没有，交正文时要复查**"}`;
+    if (mentions(ctx.outlineText, name)) return "① 未发布章节的大纲提到";
+    return "";
+  };
+
+  const row = (n: string, sitesOf: string[], exp: string) =>
+    `| \`${n}\` | ${sites(sitesOf)} | ${mentions(ctx.engineText, n) ? "有" : "—"} | ${mentions(ctx.knownText, n) ? "已点名" : "新"} | ${exp || "—"} |`;
+  const head = "| flag | 在哪里 | 引擎代码提到 | 缺口清单 | 已知预期 |\n|---|---|---|---|---|";
+  const split = (names: string[], missing: "writes" | "reads", own: Map<string, string[]>) => {
+    const tagged = names.map(n => {
+      // 写了没人读、但引擎在读：不是空转，而且读它的就是引擎，不必再往大纲里找
+      let exp = missing === "reads" && mentions(ctx.engineText, n) ? "引擎读取" : expected(n, missing);
+      return { n, exp };
+    });
+    const real = tagged.filter(t => !t.exp), known = tagged.filter(t => t.exp);
+    return [
+      `### 真正的${missing === "writes" ? "空缺" : "空转"}（${real.length}）`, "",
+      real.length ? head + "\n" + real.map(t => row(t.n, own.get(t.n)!, "")).join("\n") : "无。", "",
+      `### 已知预期（${known.length}）`, "",
+      known.length ? head + "\n" + known.map(t => row(t.n, own.get(t.n)!, t.exp)).join("\n") : "无。", "",
+    ];
+  };
+  const noWriter = [...reads.keys()].filter(n => !writes.has(n)).sort();
+  const noReader = [...writes.keys()].filter(n => !reads.has(n)).sort();
+  // D-061：玩家怎么回信，之后要有人提起。逐封信、逐种回法看它写的 flag 有没有读取者
+  const echo = (outcome: any): string => {
+    const names = Object.keys(outcome?.effects ?? {}).filter(k => k.startsWith("flag.")).map(k => k.slice(5));
+    if (!names.length) return "（不写 flag）";
+    const here = names.flatMap(n => reads.get(n) ?? []);
+    if (here.length) return `✓ ${sites(here)}`;
+    const later = names.flatMap(n => pending?.reads.get(n) ?? []);
+    if (later.length) return `待发布 ${sites(later)}`;
+    const laterRaw = (pending?.unconverted ?? []).filter(u => names.some(n => u.reads.includes(n))).map(u => u.label);
+    if (laterRaw.length) return `待发布 ${laterRaw.join("、")}（试转未过）`;
+    return "**无**";
+  };
+  const letterRows = (r.letters as any[]).slice().sort((a, b) => a.id.localeCompare(b.id)).map(l => {
+    const cells = [...l.replies.plain.map(echo), echo(l.replies.poem.onResonant), echo(l.replies.silence)];
+    return "| `" + l.id + "` | " + cells.join(" | ") + " |";
+  });
+  const echoSection = [
+    "## 三、回信的回声（D-061）", "",
+    "每封信、每种回法写下的 flag，之后有没有人读。✓ 是已发布的章里读了；「待发布」是还没发布的章里读了（那一章转进来之后会变成 ✓）；**无** 是玩家这样回了、之后谁也没提。以诗代答只看「合意象」那一栏。", "",
+    "| 信 | 直言 A | 直言 B | 直言 C | 以诗代答 | 不回 |", "|---|---|---|---|---|---|",
+    ...letterRows, "",
+  ];
+  const pendingNote = pending?.chapters.size ? `待发布章节：第 ${[...pending.chapters].sort().join("、")} 章（试转，不落盘）。` : "没有提供待发布章节。";
+  return [
+    "# flag 体检", "",
+    "> 由 `tools/convert-story.ts` 在每次转换后生成，读的是 `src/data/converted/` 加结局表。不要手改。", "",
+    `已发布的章：第 ${[...released].sort().join("、")} 章。${pendingNote}全库读取 ${reads.size} 个 flag、写入 ${writes.size} 个。`, "",
+    "「已知预期」两类：**①** 对面在还没发布的章里；**②** 对面那一场这一轮没转出来，属于连带假警报。「引擎读取」是引擎代码直接用的，也不算空转。只有「真正的空缺／空转」需要有人去补。", "",
+    `## 一、被读取，但已发布的章里没有写入点（${noWriter.length}）`, "",
+    ...split(noWriter, "writes", reads),
+    `## 二、被写入，但已发布的章里没有读取者（${noReader.length}）`, "",
+    ...split(noReader, "reads", writes),
+    ...echoSection,
+  ].join("\n");
+}
+
+
 export function runCli(args: string[]): number {
   const root = resolve(import.meta.dirname, "..");
-  const all = args.includes("--all");
-  const files = all ? readdirSync(join(root, "docs")).filter(f => /^C.*\.md$/.test(f)).sort().map(f => `docs/${f}`) : args;
-  if (!files.length || files.some(f => f.startsWith("--"))) {
+  // --pending 之后的文件：还没发布的章（比如刚交、未审的第四章）。只试转、只喂给 flag 体检，不写任何产物
+  const pi = args.indexOf("--pending");
+  const pendingFiles = pi >= 0 ? args.slice(pi + 1) : [];
+  const mainArgs = pi >= 0 ? args.slice(0, pi) : args;
+  const all = mainArgs.includes("--all");
+  const files = all ? readdirSync(join(root, "docs")).filter(f => /^C.*\.md$/.test(f)).sort().map(f => `docs/${f}`) : mainArgs;
+  if (!files.length || files.some(f => f.startsWith("--")) || pendingFiles.some(f => f.startsWith("--"))) {
     console.error("用法：node --experimental-strip-types tools/convert-story.ts docs/C-2-第一章前六场.md docs/C0-2-诗词库与对诗.md（或 --all）");
     return 2;
   }
@@ -916,10 +1216,27 @@ export function runCli(args: string[]): number {
   const issuePath = join(root, "docs", "convert-issues.md");
   const tail = existsSync(issuePath) ? manualTail(readFileSync(issuePath, "utf8")) : "";
   writeFileSync(issuePath, issueReport(result) + `\n---\n\n${MANUAL_MARK}\n${tail}`, "utf8");
+  // 分支图与 flag 体检：每次转换都重画，免得又出现「图还停在第一章」这种事（缺口清单第 5 条）
+  const walkTs = (dir: string): string[] => readdirSync(dir, { withFileTypes: true }).flatMap(d =>
+    d.isDirectory() ? (d.name === "data" ? [] : walkTs(join(dir, d.name))) : d.name.endsWith(".ts") ? [join(dir, d.name)] : []);
+  const engineText = walkTs(join(root, "src")).map(f => readFileSync(f, "utf8")).join("\n");
+  const outlineText = inputs.filter(i => /大纲/.test(i.file)).map(i => i.markdown).join("\n");
+  const knownPath = join(root, "docs", "00b-缺口清单.md");
+  const knownText = existsSync(knownPath) ? readFileSync(knownPath, "utf8") : "";
+  writeFileSync(join(root, "docs", "story-graph.md"), storyGraph(result), "utf8");
+  const pendingInputs = pendingFiles.map(file => ({ file: relative(root, resolve(root, file)).split("\\").join("/"), markdown: readFileSync(resolve(root, file), "utf8") }));
+  const pending = pendingInputs.length ? convertBatch([...inputs, ...pendingInputs]) : undefined;
+  writeFileSync(join(root, "docs", "convert-flags.md"), flagAudit(result, { engineText, outlineText, knownText, pending }), "utf8");
+  if (pending) {
+    const own = pending.issues.filter(i => pendingInputs.some(p => p.file === i.file));
+    const released = new Set(result.scenes.map(x => x.chapter));
+    const extra = pending.scenes.filter(x => !released.has(x.chapter));
+    console.log(`待发布（不落盘）：${pendingInputs.map(p => p.file).join("、")} 试转出 ${extra.length} 场；${own.length} 个问题`);
+  }
   console.log(`转换至 ${relative(root, out)}：${result.scenes.length} 场，${result.poems.length} 首诗，${result.duels.length} 局，${result.letters.length} 封信；${result.issues.length} 个问题。`);
   // 「待交付」是排期，不是错：原文没毛病，等下一批交了重跑就好，不该让它挡住别人的流水线
-  const blocking = result.issues.filter(i => (i.kind ?? classify(i.message)) !== "待交付");
-  if (!blocking.length && result.issues.length) console.log(`其中 ${result.issues.length} 条都是待交付，等下一批原文，不算错。`);
+  const blocking = result.issues.filter(i => !["待交付", "警告"].includes(i.kind ?? classify(i.message)));
+  if (!blocking.length && result.issues.length) console.log(`其中 ${result.issues.length} 条都是待交付或警告，不算错。`);
   return blocking.length ? 1 : 0;
 }
 if (process.argv[1] && pathToFileURL(resolve(process.argv[1])).href === import.meta.url) {

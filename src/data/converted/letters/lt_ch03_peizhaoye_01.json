@@ -1,0 +1,107 @@
+{
+  "id": "lt_ch03_peizhaoye_01",
+  "from": "peizhaoye",
+  "trigger": {
+    "kind": "scene",
+    "sceneId": "ch03_s04_yuanye",
+    "afterScenes": 1
+  },
+  "delayMinutes": 8,
+  "paper": "junzhong",
+  "body": {
+    "surface": "靴底那根刺拔净了，走起来还有点偏，换只垫子便能穿。你替我扶过行囊，背带上那处泥，我回去才看见。队列仍按撤下的走，旧日一起守关的人还没有答我。我没有另托人劝，也没有添一个他会回头的日子。",
+    "pages": [
+      {
+        "key": "拥抱",
+        "when": {
+          "flag.pei_ch03_hug": true
+        },
+        "text": "抱住时想多留一会儿，还是等你先松手。下次要不要，仍会问。",
+        "readAloud": false
+      },
+      {
+        "key": "并立",
+        "when": {
+          "flag.pei_ch03_stand": true
+        },
+        "text": "那一会儿站得好。你没答应抱，我也没少得这一段相伴。",
+        "readAloud": false
+      },
+      {
+        "key": "行囊边",
+        "text": "下回有自己的半日，想同你吃一顿热的。时辰还未定，先不报。",
+        "readAloud": false
+      }
+    ],
+    "poem": {
+      "ref": "xuetao_songyouren",
+      "line": "谁言千里自今夕，离梦杳如关塞长。"
+    },
+    "poemMeans": "分开的一段路可以被惦念，不要求靠留下证明情分",
+    "blank": "（她的靴子还偏着。我当时只顾扶住包，没问她那根刺扎了多久。信里也没写疼。）"
+  },
+  "sheMayNotReply": {
+    "affinity.peizhaoye": {
+      "lt": 5
+    }
+  },
+  "interceptable": false,
+  "replies": {
+    "plain": [
+      {
+        "effects": {
+          "affinity.peizhaoye": 2,
+          "flag.pei_ch03_letter_meal": true
+        },
+        "reaction": "“先把时辰拿准。”她记在自己的薄册里，没有列进换防名册。",
+        "id": "lt_ch03_peizhaoye_01.rA",
+        "text": "有了半日再问我，想一起吃顿热的。"
+      },
+      {
+        "effects": {
+          "flag.pei_ch03_letter_no_date": true
+        },
+        "reaction": "“是。不代他答。”她把那格留空。",
+        "id": "lt_ch03_peizhaoye_01.rB",
+        "text": "那人的回话等他来，别替他定日。"
+      },
+      {
+        "effects": {
+          "flag.pei_ch03_letter_stop": true
+        },
+        "reaction": "“知道。”她收起私约，公务凭据仍按经手处送。",
+        "id": "lt_ch03_peizhaoye_01.rC",
+        "text": "私约先停，军中来往另记。"
+      }
+    ],
+    "poem": {
+      "resonantTags": [
+        "蒹葭",
+        "霜",
+        "月",
+        "关塞",
+        "舟",
+        "帆",
+        "江水"
+      ],
+      "onResonant": {
+        "effects": {
+          "affinity.peizhaoye": 2
+        },
+        "reaction": "她将诗句读完：“路各走，信我收着。”"
+      },
+      "onMismatch": {
+        "effects": {
+          "affinity.peizhaoye": 1
+        },
+        "reaction": "她又读了一次：“这幅景我没见过，先留着。”"
+      }
+    },
+    "silence": {
+      "effects": {
+        "flag.pei_ch03_letter_silent": true
+      },
+      "reaction": "她束好行囊，按值守时辰出门，不拿未回的笺催人。"
+    }
+  }
+}

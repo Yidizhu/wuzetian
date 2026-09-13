@@ -2,6 +2,7 @@ import * as THREE from "three";
 import { mergeVertices } from "three/examples/jsm/utils/BufferGeometryUtils.js";
 import type { SceneDescriptor, SceneRenderer } from "./SceneRenderer.ts";
 import type { Palette, SceneKey } from "../engine/types.ts";
+import { STAGE_TUNE, tuneKey } from "./stage-tune.ts";
 
 /**
  * 3D 舞台。D-003 的主实现：low-poly 场景，MeshToonMaterial 分级平涂，
@@ -119,8 +120,12 @@ interface Built {
   night?: boolean;
   /** 墨层默认覆盖面积，0–1。只有金碧场景看得见，见 setInk */
   ink?: number;
-  /** 「公议」的加设：多几张案、一面收封簿。默认藏着，setDressing("gongyi") 才现 */
+  /** 布置的加设（公议的案、开课的席）。默认藏着，布置名在 dressOn 里才现 */
   dress?: THREE.Group;
+  /** 哪几种布置让 dress 现身。不写就是公议那两种 */
+  dressOn?: readonly string[];
+  /** 只在没有布置时出现的东西（昭阳殿那匹马）。布置切换不重搭，所以要能单独藏 */
+  bare?: THREE.Object3D;
 }
 
 interface Placement {
@@ -204,7 +209,7 @@ export class ThreeStageRenderer implements SceneRenderer {
     this.fitCamera();
     this.camera.position.copy(b.camFrom);
     this.camera.lookAt(b.lookAt);
-    if (b.dress) b.dress.visible = this.dressing === "gongyi" || this.dressing === "shouwei";
+    this.applyDress(b);
     this.tuneOutlines(b);
     this.markFloor(b);
     this.setInk(d.palette === "gold" ? (b.ink ?? actInk(d.act)) : 0);
@@ -278,8 +283,37 @@ export class ThreeStageRenderer implements SceneRenderer {
     // 那时候整场重搭一次——**不走 show，所以没有墨晕、也不打断正在跑的推镜**。
     // 这样引擎在 show 之前还是之后调用都一样，不用给别人加一条调用顺序的规矩
     if (this.built && this.last && (rebuilds(before) || rebuilds(name))) this.rebuild();
-    else if (this.built?.dress) this.built.dress.visible = name === "gongyi" || name === "shouwei";
+    else if (this.built) {
+      this.applyDress(this.built);
+      // 取景的微调按「场景 | 色板 | 布置」记（stage-tune.ts），布置换了取景可能跟着换
+      this.fitCamera();
+      this.markFloor(this.built);
+    }
     this.render();
+  }
+
+  private applyDress(b: Built): void {
+    if (b.dress) b.dress.visible = (b.dressOn ?? DRESS_GONGYI).includes(this.dressing);
+    if (b.bare) b.bare.visible = !this.dressing;
+  }
+
+  /**
+   * 取景倍数。1 是场景里写的 fitWidth / fitHeight；大于 1 往后退，画面里的东西变小、留白变多。
+   * 平时读 stage-tune.ts（自动审查循环写的，见 tools/art-loop.ts）；
+   * 循环试探的那几轮用 setFitScale 直接压一个值，不落盘。
+   */
+  private fitOverride: number | null = null;
+  setFitScale(k: number | null): void {
+    this.fitOverride = k;
+    if (!this.built) return;
+    this.fitCamera();
+    this.markFloor(this.built);
+    this.render();
+  }
+  private fitScale(): number {
+    if (this.fitOverride) return this.fitOverride;
+    const d = this.last;
+    return d ? STAGE_TUNE[tuneKey(d.key, d.palette, this.dressing)]?.fit ?? 1 : 1;
   }
 
   /** 原地重搭：几何和光换掉，相机和正在跑的推镜一概不动 */
@@ -292,7 +326,7 @@ export class ThreeStageRenderer implements SceneRenderer {
     this.night = !!b.night;
     this.root.dataset.night = b.night ? "1" : "";
     if (b.night) this.repaintFlat(b.group);
-    if (b.dress) b.dress.visible = this.dressing === "gongyi" || this.dressing === "shouwei";
+    this.applyDress(b);
     this.scene.add(b.group, ...b.lights);
     this.fitCamera();
     this.tuneOutlines(b);
@@ -350,9 +384,15 @@ export class ThreeStageRenderer implements SceneRenderer {
    */
   benchmark(n = 60): number {
     if (!this.built) return 0;
-    const t0 = performance.now();
+    // 最后读回一个像素，逼 GPU 把排着的帧画完再停表：不读的话量到的只是 CPU 把命令交出去的时间。
+    // 只读一次不逐帧读——逐帧读回本身要两三毫秒（E6 试过，280 面的碑也量出 3.3 ms），量的就成了读回
+    const gl = this.renderer.getContext();
+    this.render();
+    gl.readPixels(0, 0, 1, 1, gl.RGBA, gl.UNSIGNED_BYTE, new Uint8Array(4));
+    const t1 = performance.now();
     for (let i = 0; i < n; i++) this.render();
-    const ms = (performance.now() - t0) / n;
+    gl.readPixels(0, 0, 1, 1, gl.RGBA, gl.UNSIGNED_BYTE, new Uint8Array(4));
+    const ms = (performance.now() - t1) / n;
     this.root.dataset.ms = ms.toFixed(2);
     return ms;
   }
@@ -386,8 +426,9 @@ export class ThreeStageRenderer implements SceneRenderer {
   private fitCamera(): void {
     if (!this.built) { this.camera.updateProjectionMatrix(); return; }
     const d = this.built.camTo.distanceTo(this.built.lookAt);
-    const byW = 2 * Math.atan(this.built.fitWidth / 2 / (d * this.camera.aspect));
-    const byH = 2 * Math.atan(this.built.fitHeight / 2 / d);
+    const k = this.fitScale();
+    const byW = 2 * Math.atan((this.built.fitWidth * k) / 2 / (d * this.camera.aspect));
+    const byH = 2 * Math.atan((this.built.fitHeight * k) / 2 / d);
     this.camera.fov = Math.min(72, (Math.max(byW, byH) * 180) / Math.PI);
     this.camera.updateProjectionMatrix();
   }
@@ -524,7 +565,8 @@ export class ThreeStageRenderer implements SceneRenderer {
    */
 
   private build(d: SceneDescriptor): Built {
-    switch (d.key) {
+    // as string：yilu 是第九个地点（D-062），CC1 在 SceneKey 里加上之前这里也要能编译
+    switch (d.key as string) {
       case "zhaoyang": return this.buildZhaoyang(d);
       case "shuge":    return this.buildShuge(d);
       case "yeting":   return this.buildYeting(d);
@@ -533,6 +575,7 @@ export class ThreeStageRenderer implements SceneRenderer {
       case "yuanye":   return this.buildYuanye(d);
       case "hanyuan":  return this.buildHanyuan(d);
       case "wuzibei":  return this.buildWuzibei(d);
+      case "yilu":     return this.buildYilu(d);
       default:         return this.buildFallback(d.key);
     }
   }
@@ -695,15 +738,26 @@ export class ThreeStageRenderer implements SceneRenderer {
    * 石绿只有檐下一条帷幔，泥金**只有那块匾**。第一版四色各占四分之一，是最典型的失分。
    */
   private buildZhaoyang(d: SceneDescriptor): Built {
-    this.useRamp([0.54, 0.81, 1.0]);      // 正午硬光：档与档之间跳得狠，影子短而硬
+    // 水墨版（第四章 01、04、06）：她登基之后回到这座殿，殿第一次是墨的。
+    // 几何照旧——还是那座殿，变的是谁在画它。所以改的只有三样：
+    // 台基不铺（水墨里地是几笔，不是一块板，E1 的老规矩），柱列按远近退墨，马换成一张案。
+    // 夜里一盏灯（yedeng，夜谈四）：几何再不动，只改光、挂灯——灯油添到一半就停，所以灯小
+    const ink = d.palette === "ink";
+    const night = ink && this.dressing === "yedeng";
+    this.useRamp(night ? [0.26, 0.64, 1.0] : ink ? [0.62, 0.85, 1.0] : [0.54, 0.81, 1.0]);
+    this.night = night;
     const g = new THREE.Group();
     const act2 = d.palette === "gold" && d.act >= 2;
-    // 地与阶：赭石。金碧场景的「满」是意思的一部分，所以这里照旧铺台基
-    this.put(g, new THREE.BoxGeometry(15, 0.3, 12), "mid", [0, 0.05, -4.0], { lineW: LINE_W * 0.45 });
-    // 地砖缝：四道焦墨细线。没有它，画面下沿就是一整片平砖，眯眼看是一块脏色。
-    // 仰视机位看不见台阶的立面（踏道试过，全被地面前沿挡住），能看见的只有地上的线
+    if (!ink) {
+      // 地与阶：赭石。金碧场景的「满」是意思的一部分，所以这里照旧铺台基
+      this.put(g, new THREE.BoxGeometry(15, 0.3, 12), "mid", [0, 0.05, -4.0], { lineW: LINE_W * 0.45 });
+    }
+    // 地砖缝：四道细线。没有它，画面下沿就是一整片平砖，眯眼看是一块脏色。
+    // 仰视机位看不见台阶的立面（踏道试过，全被地面前沿挡住），能看见的只有地上的线。
+    // 水墨版没有台基，缝就是纸上的四笔，退到淡墨，只剩「这里有地」的意思
     for (const z of [1.6, 0.1, -1.6, -3.4]) {
-      this.put(g, new THREE.BoxGeometry(15, 0.02, 0.045), "line", [0, 0.21, z], { lineW: 0 });
+      this.put(g, new THREE.BoxGeometry(15, 0.02, 0.045), ink ? "light" : "line",
+        [0, ink ? 0.02 : 0.21, z], { lineW: 0, unlit: ink });
     }
     // 柱列：石青，画面最重的块面。近的一对顶天立地，仰视的压迫来自它们
     // 三对柱子。原来四对，最远那一对基本被前面挡住，省下来的面数给公议的案
@@ -712,16 +766,21 @@ export class ThreeStageRenderer implements SceneRenderer {
         // 近的一对往外让：立绘站在画面三成和七成处，那一对柱子原来正好戳在两个人身上，
         // 而金碧板里主角的主调也是石青，人和柱同色同位，剪影就糊了（E2 的叠合检查）
         const cx = side * (1.66 + (i === 0 ? 0.52 : 0) + i * 0.14), cz = -0.7 - i * 2.3;
-        this.put(g, new THREE.CylinderGeometry(0.15 - i * 0.01, 0.185 - i * 0.01, 5.4, 8), "dark",
+        // 水墨版柱子按远近退墨：近浓、中重、远淡。金碧版三对都是石青——那是「规定好的」，不分远近
+        const colTone: Tone = ink ? (["dark", "mid", "light"] as const)[i]! : "dark";
+        this.put(g, new THREE.CylinderGeometry(0.15 - i * 0.01, 0.185 - i * 0.01, 5.4, 8), colTone,
           [cx, 2.7, cz], { lineW: LINE_W * (1.1 - i * 0.1) });
         // 柱础：一块方石。唐代的柱子不是直接插进地里的，有没有这一块，像不像唐差很多
-        this.put(g, new THREE.BoxGeometry(0.46, 0.16, 0.46), "light", [cx, 0.24, cz], { lineW: LINE_W * 0.6 });
+        this.put(g, new THREE.BoxGeometry(0.46, 0.16, 0.46), ink ? "pale" : "light",
+          [cx, ink ? 0.08 : 0.24, cz], { lineW: LINE_W * 0.6 });
+        if (ink && i === 0) this.pool(g, cx, cz, 0.5);
       }
     }
     // 横梁：赭石，压在画面顶上，是「天」与「人」的分界
-    this.put(g, new THREE.BoxGeometry(6.4, 0.4, 0.5), "mid", [0, 5.3, -0.5], { lineW: LINE_W * 0.6 });
+    // 水墨版退到淡墨：仰视下它压在画面最顶上，重墨的一根横梁成了一道黑框（E6 截图上看出来的）
+    this.put(g, new THREE.BoxGeometry(6.4, 0.4, 0.5), ink ? "light" : "mid", [0, 5.3, -0.5], { lineW: LINE_W * 0.6 });
     // 檐下帷幔：石绿，只有这一条。石绿在这套画面里只占这么多
-    this.put(g, new THREE.BoxGeometry(4.0, 0.4, 0.07), "light", [0, 4.78, -0.72], { lineW: LINE_W * 0.6 });
+    this.put(g, new THREE.BoxGeometry(4.0, 0.4, 0.07), ink ? "pale" : "light", [0, 4.78, -0.72], { lineW: LINE_W * 0.6 });
     // 匾：泥金，全画面唯一的泥金，小、远、高。它是点，不是面
     this.put(g, new THREE.BoxGeometry(1.15, 0.42, 0.1), "pale", [0.1, 3.95, -7.6]);
     // 素屏风：绢底不参加光照，是这一幕的留白与无字碑母题。
@@ -733,23 +792,60 @@ export class ThreeStageRenderer implements SceneRenderer {
       this.put(g, new THREE.BoxGeometry(0.52, 0.06, 0.02), "line", [-1.42, 1.3, -4.23], { ry: 0.2, lineW: LINE_W * 0.5 });
     }
     // 那匹马：试才的马，第一章的象征，也是焦点。站在素屏风前面，最重的一块贴着最亮的一块
-    g.add(this.horse(0.62, 0, -2.5, 0.6));   // 马的线在 horse() 里加粗过：粗线归主体
+    // 只属于第一章：幕 1、金碧、没有布置（布置那一条走 bare，切布置时不重搭）。
+    // 原来无条件画，于是第二章 14 场太后与宋蕙贞谈披帛、
+    // 第三章公议、第四章她登基后回到这座殿，殿里都还站着那匹试骑的马（E5 对 C-12 时发现）
+    const horse = d.palette === "gold" && d.act === 1 ? this.horse(0.62, 0, -2.5, 0.6) : undefined;
+    if (horse) g.add(horse);                  // 马的线在 horse() 里加粗过：粗线归主体
+    const lights: THREE.Light[] = [];
+    if (ink) {
+      // 马的位置换成一张低案：第四章 01「自己落这一笔」。案上一张纸、一支笔横在纸边——
+      // 纸是全画面最亮的一小块，线最重，视线落它。笔没有落下去，那一笔归玩家
+      this.put(g, new THREE.BoxGeometry(1.7, 0.08, 0.72), "mid", [0.55, 0.5, -2.2], { ry: -0.12, lineW: LINE_W * 0.9 });
+      this.put(g, new THREE.BoxGeometry(1.56, 0.4, 0.06), "mid", [0.55, 0.27, -1.86], { ry: -0.12, lineW: LINE_W * 0.5 });
+      this.put(g, new THREE.BoxGeometry(0.62, 0.02, 0.44), "flat", [0.36, 0.555, -2.18], { ry: -0.2, lineW: LINE_W * 1.4 });
+      this.put(g, new THREE.CylinderGeometry(0.018, 0.018, 0.5, 5), "line", [0.86, 0.57, -2.02],
+        { rz: Math.PI / 2, ry: -0.5, lineW: LINE_W * 0.4 });
+      this.pool(g, 0.55, -2.2, 1.1);
+      this.pool(g, -1.15, -4.3, 1.2, "pale");
+      if (night) {
+        // 灯：案角一盏小油灯，比书阁那盏矮一截、盏小一圈。火是一枚纸色的亮片，歪着
+        this.put(g, new THREE.CylinderGeometry(0.02, 0.035, 0.34, 6), "line", [1.18, 0.71, -2.3], { lineW: LINE_W * 0.45 });
+        this.put(g, new THREE.CylinderGeometry(0.09, 0.05, 0.05, 8), "line", [1.18, 0.9, -2.3], { lineW: LINE_W * 0.55 });
+        this.put(g, new THREE.ConeGeometry(0.028, 0.1, 6), "paper", [1.19, 0.97, -2.3], { rz: -0.2, lineW: 0, unlit: true });
+        // 夜里补一面清墨的后墙：不补的话柱子后面就是夜纸，远近没了
+        this.put(g, new THREE.BoxGeometry(12, 7, 0.15), "pale", [0, 3.5, -8.4], { lineW: 0, unlit: true });
+        // 光近乎白、够不着柱子：暖光打到近处那根浓墨柱上，染出一道赭色，那是色板外的颜色
+        const lamp = new THREE.PointLight(0xfff2e2, 3.0, 1.9, 1.8);
+        lamp.position.set(1.18, 1.05, -2.1);
+        lights.push(new THREE.HemisphereLight(0xffffff, 0x555555, 0.3), lamp);
+      } else {
+        const sun = new THREE.DirectionalLight(0xffffff, 0.62);
+        sun.position.set(3.2, 8, 4);
+        lights.push(new THREE.HemisphereLight(0xffffff, 0xaaaaaa, 0.92), sun);
+      }
+    }
     // 公议那一天：柱列之间摆开两排案，右侧抬出收封簿
     const dress = this.gongyi(0.95, [[1.5, 1.0], [-1.9, 1.7]], [-1.45, 0.3]);
     dress.position.set(0.1, 0, 0);
     dress.visible = false;
     g.add(dress);
-    const sun = new THREE.DirectionalLight(0xffffff, 1.05);
-    sun.position.set(3.2, 8, 4);          // position 是只读属性，只能 set，不能整个换
+    if (!ink) {
+      const sun = new THREE.DirectionalLight(0xffffff, 1.05);
+      sun.position.set(3.2, 8, 4);          // position 是只读属性，只能 set，不能整个换
+      lights.push(new THREE.HemisphereLight(0xffffff, 0x777777, 0.42), sun);
+    }
     return {
       group: g,
       dress,
+      bare: horse,
+      night,
       camFrom: new THREE.Vector3(0.92, 1.18, 7.4),
       camTo: new THREE.Vector3(0.8, 1.1, 5.6),
       lookAt: new THREE.Vector3(-0.35, 3.2, -2.2),     // 仰视且偏轴：机位在右、看点在左，柱列就不对称了
       fitWidth: 5.0,
       fitHeight: 6.4,
-      lights: [new THREE.HemisphereLight(0xffffff, 0x777777, 0.42), sun],
+      lights,
     };
   }
 
@@ -937,6 +1033,25 @@ export class ThreeStageRenderer implements SceneRenderer {
     }
     this.pool(g, -1.05, 1.6, 0.7);
     this.pool(g, 0, -4.4, 2.6);
+    // 开课（第四章 11—13）：观前空地铺三领席、门前一张讲案，松与一根竹竿之间拉一道绳晾纸。
+    // 照公议的办法常驻、只切 visible——同一座观，是有人付了一个月场租的那几天。
+    // 席横、矮，和这座观「横线多、块面矮」的松弛是一路，不把这里画成学堂的规矩样
+    const dress = new THREE.Group();
+    for (const [x, z] of [[-0.95, -1.9], [0.45, -1.9], [-0.25, -0.7]] as const) {
+      this.put(dress, new THREE.BoxGeometry(1.15, 0.04, 0.62), "light", [x, 0.02, z], { lineW: LINE_W * 0.4 });
+    }
+    // 讲案：门前正中，案上一叠摊开的经折册，纸色
+    this.put(dress, new THREE.BoxGeometry(1.25, 0.08, 0.5), "mid", [0.1, 0.44, -3.0], { lineW: LINE_W * 0.7 });
+    this.put(dress, new THREE.BoxGeometry(1.1, 0.4, 0.05), "mid", [0.1, 0.22, -2.78], { lineW: LINE_W * 0.4 });
+    this.put(dress, new THREE.BoxGeometry(0.46, 0.03, 0.32), "flat", [-0.05, 0.5, -3.0], { ry: 0.1, lineW: LINE_W * 1.1 });
+    // 晾纸：竿、绳、三张纸。纸是纸色的空页——温荞自己槽里出的纸，还没有字
+    this.put(dress, new THREE.CylinderGeometry(0.03, 0.04, 2.3, 5), "line", [-0.55, 1.15, -1.25], { lineW: LINE_W * 0.4 });
+    this.put(dress, new THREE.BoxGeometry(1.5, 0.018, 0.018), "line", [-1.3, 2.18, -1.22], { lineW: 0 });
+    for (const [x, h, rz] of [[-1.78, 0.46, 0.03], [-1.3, 0.38, -0.05], [-0.86, 0.44, 0.02]] as const) {
+      this.put(dress, new THREE.BoxGeometry(0.32, h, 0.012), "flat", [x, 2.17 - h / 2, -1.2], { rz, lineW: LINE_W * 0.7 });
+    }
+    dress.visible = false;
+    g.add(dress);
     const lights: THREE.Light[] = rain
       ? [new THREE.HemisphereLight(0xffffff, 0x555555, 0.34)]
       : [new THREE.HemisphereLight(0xffffff, 0xbbbbbb, 1.12)];
@@ -950,6 +1065,8 @@ export class ThreeStageRenderer implements SceneRenderer {
     }
     return {
       group: g,
+      dress,
+      dressOn: ["kaike"],
       night: rain,
       lights,
       camFrom: new THREE.Vector3(0.35, 2.05, 7.0),
@@ -1166,7 +1283,13 @@ export class ThreeStageRenderer implements SceneRenderer {
    * 朱砂印在碑面右下，占全屏不到百分之一，视线先到它，再顺着它走进右边的空白。
    */
   private buildWuzibei(d: SceneDescriptor): Built {
-    this.useRamp([0.78, 0.9, 1.0]);       // 正面平光：三档几乎并成一档，没有方向
+    // 碑样（第四章 18，夜谈五）：夜，**碑上没有印**，碑前一块低石上摊一张碑样纸。
+    // 那枚印是「无字之碑」结局的记号，而这一场在判定之前、所有路线都经过——
+    // 带印的那一版等于把一个玩家未必走得到的结局提前亮给每个人（E5 对 C-12 时发现）。
+    // 非登基线也来这里，所以不能是谁的帝陵：石是空的石，纸是一张还没刻的样
+    const beiyang = this.dressing === "beiyang";
+    this.useRamp(beiyang ? [0.42, 0.72, 1.0] : [0.78, 0.9, 1.0]);   // 平光；夜里拉开一点，石头才立得住
+    this.night = beiyang;
     const g = new THREE.Group();
     const x = -1.15;                       // 碑偏左，中心点不落在中央三分之一的框里
     this.pool(g, x, 0.1, 1.5, "pale");
@@ -1181,17 +1304,139 @@ export class ThreeStageRenderer implements SceneRenderer {
     cap.scale.set(2.02 / 1.414, 1, 0.62 / 1.414);
     // 碑面：纸色，空的。本该有字的地方
     this.put(g, new THREE.BoxGeometry(1.44, 3.95, 0.04), "flat", [x, 2.72, 0.23], { lineW: LINE_W * 0.8 });
-    // 朱砂印：碑面右下角一枚方印。全游戏最小的一个元素，也是最后一个
-    this.put(g, new THREE.BoxGeometry(0.26, 0.26, 0.03), d.palette === "gold" ? "pale" : "accent",
-      [x + 0.48, 1.32, 0.26], { lineW: 0 });
+    const lights: THREE.Light[] = [];
+    if (!beiyang) {
+      // 朱砂印：碑面右下角一枚方印。全游戏最小的一个元素，也是最后一个——只属于结局卡那一刻
+      this.put(g, new THREE.BoxGeometry(0.26, 0.26, 0.03), d.palette === "gold" ? "pale" : "accent",
+        [x + 0.48, 1.32, 0.26], { lineW: 0 });
+      lights.push(new THREE.HemisphereLight(0xffffff, 0xcccccc, 1.2));
+    } else {
+      // 碑前一块低石，石上一张碑样纸，一角翻起（「纸角翻到背面，今夜不命人写满它」）。
+      // 纸是全画面最亮的一块：碑面在夜里退到夜纸色，亮的只剩这张没刻的样
+      this.put(g, new THREE.BoxGeometry(1.25, 0.32, 0.78), "light", [0.45, 0.16, 1.7], { ry: -0.18, lineW: LINE_W * 0.9 });
+      this.put(g, new THREE.BoxGeometry(0.72, 0.02, 0.5), "paper", [0.38, 0.335, 1.72], { ry: -0.08, lineW: LINE_W * 1.3, unlit: true });
+      this.put(g, new THREE.BoxGeometry(0.2, 0.02, 0.16), "light", [0.68, 0.37, 1.52], { ry: -0.08, rz: 0.5, lineW: LINE_W * 0.6 });
+      // 封着的私册：一小块浓墨，靠在纸边。它和碑是一对，谁都不打开
+      this.put(g, new THREE.BoxGeometry(0.3, 0.07, 0.4), "dark", [-0.05, 0.36, 1.78], { ry: 0.3, lineW: LINE_W * 0.6 });
+      this.pool(g, 0.45, 1.7, 0.9);
+      const moon = new THREE.DirectionalLight(0xffffff, 0.7);
+      moon.position.set(-5, 7, 6);         // 光从左前来，碑的右侧面暗下去，石头有了厚
+      lights.push(new THREE.HemisphereLight(0xffffff, 0x666666, 0.62), moon);
+    }
     return {
       group: g,
+      night: beiyang,
       camFrom: new THREE.Vector3(0.1, 3.42, 10.4),
       camTo: new THREE.Vector3(0.08, 3.4, 9.2),
       lookAt: new THREE.Vector3(0.1, 3.4, 0),          // 正视：机位与看点等高
       fitWidth: 6.8,
       fitHeight: 7.0,        // 碑只占画面左边一小块，天与右边全空
-      lights: [new THREE.HemisphereLight(0xffffff, 0xcccccc, 1.2)],
+      lights,
+    };
+  }
+
+  /**
+   * 驿路（D-062，第九个地点）。水墨，平视顺着路看出去。情绪：走、分开走、各有归期。
+   * 给第四章 15「各自领一份」（启程，默认）与 16「驿旁不是归处」（yipang）。
+   *
+   * 「关山有信」这个结局的意象就是路，所以路要真的在画面上：
+   * 从画面下沿宽宽地进来，斜着往右上收窄，收进远山之间那块空里——**路的尽头是留白**，
+   * 她要去的地方画面不替她画。
+   * 路不是一块地板（E1 的老规矩）：一条清墨的带子、两道车辙、几座里堠，其余是纸。
+   *
+   * 无字碑母题：里堠。驿路上隔几里一座土堠，本该记里数，这几座的牌子是空的。
+   */
+  private buildYilu(_d: SceneDescriptor): Built {
+    const yipang = this.dressing === "yipang";
+    // 启程是清晨，雾没散，档与档挨得近；驿旁是一个月以后的午后，尘土大，光横着来
+    this.useRamp(yipang ? [0.4, 0.74, 1.0] : [0.62, 0.85, 1.0]);
+    const g = new THREE.Group();
+    // 路的走向：z 从 6 到 -14，x 跟着从 -0.8 走到 3.2
+    const ry = -Math.atan2(4, 20);
+    const along = (z: number): number => -0.4 + 0.2 * (4 - z);
+    const nx = Math.cos(ry), nz = -Math.sin(ry);      // 横过路面的方向
+    // 远山：左右两片，中间让开路的尽头
+    this.put(g, new THREE.BoxGeometry(6, 1.3, 0.3), "pale", [-4.2, 0.55, -24], { rz: 0.06, lineW: LINE_W * 0.3, unlit: true });
+    this.put(g, new THREE.BoxGeometry(4.4, 0.8, 0.3), "pale", [8.6, 0.3, -24], { rz: -0.05, lineW: LINE_W * 0.26, unlit: true });
+    // 路面：一条清墨的带子，不参加光照——路是纸上的一笔，不是地上的板。
+    // 带子只画远的那一段（车后面起）：第一版从机位脚下铺起，竖屏下半张整片是一块灰楔子，
+    // 数字全过（留白 64%），眼睛一看就是 E1 那个毛病；第二版从 z 2 起，还是楔子。
+    // 近处只留两道车辙——路在脚下是「走出来的」，到远处才成一条路
+    this.put(g, new THREE.BoxGeometry(1.4, 0.02, 11), "pale", [along(-8.5), 0.01, -8.5], { ry, lineW: 0, unlit: true });
+    // 车辙：两道淡墨细线，从画面下沿进来，比路面先到、也先消失
+    for (const s of [-1, 1]) {
+      this.put(g, new THREE.BoxGeometry(0.05, 0.02, 16), "light",
+        [along(-3) + s * 0.5 * nx, 0.025, -3 + s * 0.5 * nz], { ry, lineW: 0, unlit: true });
+    }
+    // 里堠：路右侧三座土堠，近大远小。牌子是空的
+    for (const z of [1.2, -5.4, -12]) {
+      this.put(g, new THREE.CylinderGeometry(0.1, 0.24, 0.5, 6), "light", [along(z) + 1.35, 0.25, z], { lineW: LINE_W * 0.6 });
+      this.put(g, new THREE.BoxGeometry(0.16, 0.26, 0.04), "flat", [along(z) + 1.35, 0.46, z + 0.2], { lineW: LINE_W * 0.5 });
+    }
+    // 柳：左侧近处一株，四条垂枝。折柳送别是唐人的规矩，这里不折，只是长着
+    this.put(g, new THREE.CylinderGeometry(0.1, 0.15, 3.0, 6), "mid", [-2.25, 1.5, 0.2], { rz: 0.1, lineW: LINE_W * 0.7 });
+    this.canopy(g, 1.6, 0.9, 0.3, [-2.0, 3.05, 0.1], "pale", -0.08);
+    for (const [i, rz] of [[0, 0.07], [1, 0.02], [2, -0.04], [3, -0.1]] as const) {
+      this.put(g, new THREE.BoxGeometry(0.04, 1.9 - i * 0.2, 0.04), "line",
+        [-2.1 + i * 0.28, 2.0 + i * 0.1, 0.3 + i * 0.05], { rz, lineW: LINE_W * 0.35 });
+    }
+    this.pool(g, -2.2, 0.2, 0.7);
+    const lights: THREE.Light[] = [];
+    if (!yipang) {
+      // 运粮车：停在路上，车头朝路的尽头。车身重墨，麻包淡墨，两只轮子浓墨。
+      // 「裴队先走，主角随运粮车」——车就是她这一程，所以它是焦点
+      const cart = new THREE.Group();
+      this.put(cart, new THREE.BoxGeometry(0.95, 0.12, 1.6), "mid", [0, 0.78, 0], { lineW: LINE_W * 0.9 });
+      for (const s of [-1, 1]) {
+        this.put(cart, new THREE.BoxGeometry(0.06, 0.3, 1.6), "mid", [s * 0.46, 0.96, 0], { lineW: LINE_W * 0.5 });
+      }
+      for (const [x, z, h] of [[-0.2, -0.45, 0.36], [0.2, 0.05, 0.4], [-0.15, 0.5, 0.32]] as const) {
+        this.put(cart, new THREE.BoxGeometry(0.42, h, 0.44), "light", [x, 0.84 + h / 2, z], { ry: x * 0.8, lineW: LINE_W * 0.7 });
+      }
+      for (const s of [-1, 1]) {
+        this.put(cart, new THREE.CylinderGeometry(0.4, 0.4, 0.07, 10), "dark", [s * 0.56, 0.4, 0.1], { rz: Math.PI / 2, lineW: LINE_W * 0.9 });
+        // 辕：两根往前伸，搭在地上——牲口还没套上，人还没走
+        this.put(cart, new THREE.BoxGeometry(0.05, 0.05, 1.5), "line", [s * 0.3, 0.42, -1.45], { rx: -0.32, lineW: LINE_W * 0.4 });
+      }
+      cart.position.set(along(-1.6) - 0.15, 0, -1.6);
+      cart.rotation.y = ry;
+      g.add(cart);
+      this.pool(g, along(-1.6), -1.4, 0.9, "mid");     // 车泥：比别处重一档的一摊
+      const sun = new THREE.DirectionalLight(0xffffff, 0.68);
+      sun.position.set(3, 4, -12);        // 晨光从路的尽头来：东西朝着她的那一面暗
+      lights.push(new THREE.HemisphereLight(0xffffff, 0xaaaaaa, 0.95), sun);
+    } else {
+      // 驿：左边一段矮墙加一面坡顶，只露一角——驿是歇脚的地方，不是去处，画面上不给它全身
+      // 第一版墙贴着画面左边，屋顶被切成一块悬空的黑三角——往后、往里挪，整个屋角进画
+      // 第二版还贴边——墙挪到路左边、人的身后，屋角整个进画，退后的人正好站在驿前
+      this.put(g, new THREE.BoxGeometry(2.6, 1.5, 0.2), "light", [-0.55, 0.75, -8.4], { lineW: LINE_W * 0.6 });
+      this.roof(g, 3.2, 1.6, 0.6, [-0.55, 1.8, -8.2], "mid");
+      // 系马桩与一块坐人的石：「脱靴倒砂」在这块石头上
+      this.put(g, new THREE.CylinderGeometry(0.05, 0.06, 1.1, 5), "line", [-0.55, 0.55, -4.6], { lineW: LINE_W * 0.5 });
+      this.put(g, new THREE.BoxGeometry(0.72, 0.34, 0.5), "light", [-0.8, 0.17, -1.6], { ry: 0.3, lineW: LINE_W * 0.9 });
+      // 一只脱下来的靴，倒着放在石边。浓墨的一小块，不是一大坨：它是「倒砂」那个动作留下的，不是主体
+      this.put(g, new THREE.BoxGeometry(0.1, 0.28, 0.2), "dark", [-0.35, 0.1, -1.4], { rz: 1.2, ry: 0.4, lineW: LINE_W * 0.5 });
+      // 远处路上一辆很小的车：先走的那一队，已经在路上了
+      const far = new THREE.Group();
+      this.put(far, new THREE.BoxGeometry(0.95, 0.4, 1.6), "mid", [0, 0.9, 0], { lineW: LINE_W * 0.5 });
+      this.put(far, new THREE.CylinderGeometry(0.4, 0.4, 1.2, 8), "dark", [0, 0.4, 0.1], { rz: Math.PI / 2, lineW: LINE_W * 0.4 });
+      far.position.set(along(-11), 0, -11);
+      far.rotation.y = ry;
+      far.scale.setScalar(0.7);
+      g.add(far);
+      this.pool(g, -0.8, -1.6, 0.8);
+      const sun = new THREE.DirectionalLight(0xffffff, 1.1);
+      sun.position.set(-7, 2.6, 2);       // 午后的光横着来，石头和靴一侧亮一侧暗
+      lights.push(new THREE.HemisphereLight(0xffffff, 0x888888, 0.52), sun);
+    }
+    return {
+      group: g,
+      camFrom: new THREE.Vector3(-0.35, 1.78, 7.2),
+      camTo: new THREE.Vector3(-0.3, 1.72, 5.8),
+      lookAt: new THREE.Vector3(0.9, 1.45, -6),
+      fitWidth: 4.8,
+      fitHeight: 5.0,
+      lights,
     };
   }
 
@@ -1269,8 +1514,10 @@ export class ThreeStageRenderer implements SceneRenderer {
 
 /** 这几种布置改的是几何或光，不是 visible，切到／切走都要重搭 */
 function rebuilds(name: string): boolean {
-  return name === "yeyu" || name === "shouwei";
+  return ["yeyu", "shouwei", "yedeng", "beiyang", "yipang"].includes(name);
 }
+
+const DRESS_GONGYI = ["gongyi", "shouwei"] as const;
 
 /** CC1 接上 setInk 之前的默认值：幕数就是她的权力进度（D-010 第 3 条） */
 function actInk(act: number): number {

@@ -63,13 +63,15 @@
       ],
       "onResonant": {
         "effects": {
-          "affinity.wenqiao": 2
+          "affinity.wenqiao": 2,
+          "flag.wen_ch02_letter_poem": true
         },
         "reaction": "她把折口掀开一角又合上：“这两条鱼，这回往你那边去。”"
       },
       "onMismatch": {
         "effects": {
-          "affinity.wenqiao": 1
+          "affinity.wenqiao": 1,
+          "flag.wen_ch02_letter_poem": true
         },
         "reaction": "“你挑的是这一句。”她念完停下，没有替它补成自己的答案。"
       }

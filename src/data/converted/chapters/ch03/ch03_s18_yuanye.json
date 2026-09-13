@@ -1,0 +1,96 @@
+{
+  "id": "ch03_s18_yuanye",
+  "chapter": 3,
+  "act": 3,
+  "scene": "yuanye",
+  "palette": "ink",
+  "cast": [
+    "wuze",
+    "peizhaoye"
+  ],
+  "require": {
+    "affinity.peizhaoye": {
+      "gte": 16
+    },
+    "flag.pei_meng_no_troops": true
+  },
+  "weightless": true,
+  "leavesLetter": [],
+  "purpose": "两人各自打盹，争一声鸟叫与一次翻身的先后",
+  "lines": [
+    {
+      "id": "ch03_s18_yuanye.l1",
+      "who": "narr",
+      "kind": "aside",
+      "text": "苑中树影盖住半条长凳。裴坐一头，你坐一头，中间落了两枚干果壳。"
+    },
+    {
+      "id": "ch03_s18_yuanye.l2",
+      "who": "peizhaoye",
+      "expr": "default",
+      "kind": "say",
+      "text": "你先动的。"
+    },
+    {
+      "id": "ch03_s18_yuanye.l3",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "鸟先叫的。"
+    },
+    {
+      "id": "ch03_s18_yuanye.l4",
+      "who": "narr",
+      "kind": "aside",
+      "text": "裴抬头找了一会儿，鸟在她头顶换了根枝。她把头靠回树干上。"
+    },
+    {
+      "id": "ch03_s18_yuanye.l5",
+      "who": "peizhaoye",
+      "expr": "open",
+      "kind": "say",
+      "text": "我听见凳子响，才听见鸟叫。你若没翻身，就是这条凳子自己睡得不稳。"
+    },
+    {
+      "id": "ch03_s18_yuanye.l6",
+      "who": "wuze",
+      "expr": "open",
+      "kind": "say",
+      "text": "那就算它。我方才梦见一根枝，伸手够不到，倒不记得自己还坐在这里。"
+    },
+    {
+      "id": "ch03_s18_yuanye.l7",
+      "who": "peizhaoye",
+      "expr": "default",
+      "kind": "say",
+      "text": "还够不够？"
+    },
+    {
+      "id": "ch03_s18_yuanye.l8",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "不够了。脖子酸。"
+    },
+    {
+      "id": "ch03_s18_yuanye.l9",
+      "who": "narr",
+      "kind": "aside",
+      "text": "你换了个朝向。裴伸腿避开凳脚，又将靴跟落回草里。"
+    },
+    {
+      "id": "ch03_s18_yuanye.l10",
+      "who": "peizhaoye",
+      "expr": "open",
+      "kind": "say",
+      "text": "这回是你。"
+    },
+    {
+      "id": "ch03_s18_yuanye.l11",
+      "who": "narr",
+      "kind": "aside",
+      "text": "树上的鸟叫了一声。你们都没有抬头。"
+    }
+  ],
+  "goto": "ch03_s22_nvguan"
+}

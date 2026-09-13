@@ -1,0 +1,96 @@
+{
+  "id": "ch03_s19_shishe",
+  "chapter": 3,
+  "act": 3,
+  "scene": "shishe",
+  "palette": "ink",
+  "cast": [
+    "wuze",
+    "wenqiao"
+  ],
+  "require": {
+    "affinity.wenqiao": {
+      "gte": 16
+    },
+    "flag.wen_meng_no_praise": true
+  },
+  "weightless": true,
+  "leavesLetter": [],
+  "purpose": "换几次坐垫找风，不用坐出一句诗",
+  "lines": [
+    {
+      "id": "ch03_s19_shishe.l1",
+      "who": "narr",
+      "kind": "aside",
+      "text": "诗社后窗半开着。温坐到窗边，你搬过另一只坐垫，垫角卷进裙底。"
+    },
+    {
+      "id": "ch03_s19_shishe.l2",
+      "who": "wenqiao",
+      "expr": "default",
+      "kind": "say",
+      "text": "你那边有风么？"
+    },
+    {
+      "id": "ch03_s19_shishe.l3",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "刚才有。"
+    },
+    {
+      "id": "ch03_s19_shishe.l4",
+      "who": "wenqiao",
+      "expr": "open",
+      "kind": "say",
+      "text": "我过来就没了。"
+    },
+    {
+      "id": "ch03_s19_shishe.l5",
+      "who": "narr",
+      "kind": "aside",
+      "text": "温挪到另一边，把半扇窗又推开一些。窗外的晾布鼓起，风没进来。"
+    },
+    {
+      "id": "ch03_s19_shishe.l6",
+      "who": "wuze",
+      "expr": "open",
+      "kind": "say",
+      "text": "你先别动。我这边又有一点，等它吹过来，看看是不是还往你那边走。"
+    },
+    {
+      "id": "ch03_s19_shishe.l7",
+      "who": "wenqiao",
+      "expr": "open",
+      "kind": "say",
+      "text": "还得候它的次序？我这张垫子已经挪热了，再搬回去，也是坐在自己热过的地方。"
+    },
+    {
+      "id": "ch03_s19_shishe.l8",
+      "who": "narr",
+      "kind": "aside",
+      "text": "她伸手翻过坐垫，坐回去。你也翻了一面，卷角仍硌着腿。"
+    },
+    {
+      "id": "ch03_s19_shishe.l9",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "还是这里。"
+    },
+    {
+      "id": "ch03_s19_shishe.l10",
+      "who": "wenqiao",
+      "expr": "default",
+      "kind": "say",
+      "text": "嗯。至少不用再搬。"
+    },
+    {
+      "id": "ch03_s19_shishe.l11",
+      "who": "narr",
+      "kind": "aside",
+      "text": "窗扇碰了一下木框。温用一只空鞋抵住，脚收回垫子上。"
+    }
+  ],
+  "goto": "ch03_s22_nvguan"
+}

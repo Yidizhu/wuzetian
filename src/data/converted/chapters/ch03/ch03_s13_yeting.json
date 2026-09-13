@@ -1,0 +1,166 @@
+{
+  "id": "ch03_s13_yeting",
+  "chapter": 3,
+  "act": 3,
+  "scene": "yeting",
+  "palette": "ink",
+  "cast": [
+    "wuze",
+    "adi",
+    "songhuizhen"
+  ],
+  "weightless": false,
+  "leavesLetter": [],
+  "purpose": "阿荻自己选定去处，主角只归还证据，不索要谅解",
+  "lines": [
+    {
+      "id": "ch03_s13_yeting.l1",
+      "who": "narr",
+      "kind": "aside",
+      "text": "阿荻将针插进卷好的布里，数完又抽出一根。宋坐在窗下，替她拈掉包袱上的线头。"
+    },
+    {
+      "id": "ch03_s13_yeting.l2",
+      "when": {
+        "flag.enthroned": true
+      },
+      "who": "narr",
+      "kind": "aside",
+      "text": "受位礼后，你换过衣才来。门边有人要通报，阿荻正在咬断线，叫人等一等。"
+    },
+    {
+      "id": "ch03_s13_yeting.l3",
+      "when": {
+        "flag.declined_crown": true
+      },
+      "who": "narr",
+      "kind": "aside",
+      "text": "辞受那日，你从署里径直过来。阿荻看见空着的腰带，仍先将那根针收好。"
+    },
+    {
+      "id": "ch03_s13_yeting.l4",
+      "when": {
+        "flag.liqinghe_won": true
+      },
+      "who": "narr",
+      "kind": "aside",
+      "text": "李受位礼后，你把提案留在住处才来。阿荻腾出小凳，上头有一块未缝的布。"
+    },
+    {
+      "id": "ch03_s13_yeting.l5",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "那根不要了？"
+    },
+    {
+      "id": "ch03_s13_yeting.l6",
+      "who": "adi",
+      "expr": "default",
+      "kind": "say",
+      "text": "借宋姐姐的。要还。"
+    },
+    {
+      "id": "ch03_s13_yeting.l7",
+      "who": "songhuizhen",
+      "expr": "default",
+      "kind": "say",
+      "text": "包里还有一根，别漏了。下次找你拿，要走到坊门口，我可懒得绕这一趟。"
+    },
+    {
+      "id": "ch03_s13_yeting.l8",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "你找好了？"
+    },
+    {
+      "id": "ch03_s13_yeting.l9",
+      "who": "adi",
+      "expr": "default",
+      "kind": "say",
+      "text": "坊里的绣作，先做一月。工钱和床位问过了，试缝也是我自己拿去的。"
+    },
+    {
+      "id": "ch03_s13_yeting.l10",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "何时走？"
+    },
+    {
+      "id": "ch03_s13_yeting.l11",
+      "who": "adi",
+      "expr": "default",
+      "kind": "say",
+      "text": "这旬白班交完。外头那张牒没催我，别替我提前收了这里的铺。"
+    },
+    {
+      "id": "ch03_s13_yeting.l12",
+      "who": "narr",
+      "kind": "aside",
+      "text": "你把更正回执放在凳上。阿荻没有伸手，先问了纸是哪一份。"
+    },
+    {
+      "id": "ch03_s13_yeting.l13",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "九件的款早已领足。这是追到各处的更正，里面没有再抄你那晚的话。"
+    },
+    {
+      "id": "ch03_s13_yeting.l14",
+      "who": "adi",
+      "expr": "default",
+      "kind": "say",
+      "text": "给我听听。"
+    },
+    {
+      "id": "ch03_s13_yeting.l15",
+      "who": "narr",
+      "kind": "aside",
+      "text": "你念到擅引由提出人担责。阿荻把桌边翻卷的布压平，让你接着念。"
+    },
+    {
+      "id": "ch03_s13_yeting.l16",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "从这行往下，是收到更正的各处。你可以留一份，也可以找人再核。"
+    },
+    {
+      "id": "ch03_s13_yeting.l17",
+      "who": "adi",
+      "expr": "default",
+      "kind": "say",
+      "text": "我要留。"
+    },
+    {
+      "id": "ch03_s13_yeting.l18",
+      "who": "self",
+      "kind": "inner",
+      "text": "（她收了。下一句……别问。）"
+    },
+    {
+      "id": "ch03_s13_yeting.l19",
+      "who": "songhuizhen",
+      "expr": "default",
+      "kind": "say",
+      "text": "纸放布里面，针另包。戳破了又得抄。"
+    },
+    {
+      "id": "ch03_s13_yeting.l20",
+      "who": "narr",
+      "kind": "aside",
+      "text": "阿荻取出第二根借来的针，递到宋掌心。你扶住要滑下凳面的布，没有替她打结。"
+    },
+    {
+      "id": "ch03_s13_yeting.l21",
+      "who": "adi",
+      "expr": "open",
+      "kind": "say",
+      "text": "对，就扶那里。还没包完。"
+    }
+  ],
+  "goto": "ch03_s14_shuge"
+}

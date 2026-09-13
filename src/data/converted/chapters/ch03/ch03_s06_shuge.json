@@ -1,0 +1,199 @@
+{
+  "id": "ch03_s06_shuge",
+  "chapter": 3,
+  "act": 3,
+  "scene": "shuge",
+  "palette": "gold",
+  "cast": [
+    "wuze",
+    "liuchenghuan",
+    "tangjian"
+  ],
+  "weightless": false,
+  "leavesLetter": [],
+  "purpose": "主角第三次面对柳主动让出的实绩署名，接受者须知道自己得了什么",
+  "lines": [
+    {
+      "id": "ch03_s06_shuge.l1",
+      "when": {
+        "flag.wen_ch03_sing": true
+      },
+      "who": "narr",
+      "kind": "aside",
+      "text": "昨夜你错入了一拍，温跟着错了半句。到第三遍，你们才一同收住尾音。"
+    },
+    {
+      "id": "ch03_s06_shuge.l2",
+      "when": {
+        "flag.wen_ch03_leave": true
+      },
+      "who": "narr",
+      "kind": "aside",
+      "text": "昨夜你走出巷口，合唱才起。温没有追出来，低音从开着的窗里送出。"
+    },
+    {
+      "id": "ch03_s06_shuge.l3",
+      "who": "narr",
+      "kind": "aside",
+      "text": "三夜过后，柳抱来一册清单。晨光照到她袖口，墨干成了硬边。"
+    },
+    {
+      "id": "ch03_s06_shuge.l4",
+      "when": {
+        "flag.chenghuan_accept_2": true
+      },
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "三夜全由她核，原休另留底。你省下的工费仍在备议账里。"
+    },
+    {
+      "id": "ch03_s06_shuge.l5",
+      "when": {
+        "flag.chenghuan_refuse_2": true
+      },
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "两人已经结工钱，你也交了半日卷。她照原凭休了三日。"
+    },
+    {
+      "id": "ch03_s06_shuge.l6",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "这一册是新核的？"
+    },
+    {
+      "id": "ch03_s06_shuge.l7",
+      "who": "liuchenghuan",
+      "expr": "open",
+      "kind": "say",
+      "text": "交夜班单以前核的。有两份履历抄重了，找过本人，已经分开。"
+    },
+    {
+      "id": "ch03_s06_shuge.l8",
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "底簿留了她与本人各自的签。送到议席的摘要，却只列了你的名字。"
+    },
+    {
+      "id": "ch03_s06_shuge.l9",
+      "who": "wuze",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "谁让删的？"
+    },
+    {
+      "id": "ch03_s06_shuge.l10",
+      "who": "liuchenghuan",
+      "expr": "default",
+      "kind": "say",
+      "text": "你要上去答，写你就够了。"
+    },
+    {
+      "id": "ch03_s06_shuge.l11",
+      "who": "narr",
+      "kind": "aside",
+      "text": "柳翻到被订住的内页，指尖压着自己的经手签。公开的摘要上没有这一行。"
+    },
+    {
+      "id": "ch03_s06_shuge.l12",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "留我的名，他们会以为两份重牒也是我找出来的。你往后拿什么报自己的差？"
+    },
+    {
+      "id": "ch03_s06_shuge.l13",
+      "who": "liuchenghuan",
+      "expr": "open",
+      "kind": "say",
+      "text": "到时你记得就好。"
+    },
+    {
+      "id": "ch03_s06_shuge.l14",
+      "who": "tangjian",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "摘要还未送。可以按她的请示合记总办，底簿不能动，也不能谎称无人经手。"
+    },
+    {
+      "id": "ch03_s06_shuge.l15",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "合记以后，她报功呢？"
+    },
+    {
+      "id": "ch03_s06_shuge.l16",
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "须再调底簿作证，多等一轮。此刻并列，她便能持这份摘要直接报验。"
+    },
+    {
+      "id": "ch03_s06_shuge.l17",
+      "who": "self",
+      "kind": "inner",
+      "text": "（一册看下来，全是我的经办。我想把它直接合上。）"
+    },
+    {
+      "id": "ch03_s06_shuge.l18",
+      "who": "liuchenghuan",
+      "expr": "default",
+      "kind": "say",
+      "text": "你若觉得好，就不用另问我了。"
+    },
+    {
+      "id": "ch03_s06_shuge.l19",
+      "who": "wuze",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "我已经知道这一行是你做的。收下，也不能说我不知道。"
+    },
+    {
+      "id": "ch03_s06_shuge.l20",
+      "who": "liuchenghuan",
+      "expr": "open",
+      "kind": "say",
+      "text": "知道就够了。"
+    },
+    {
+      "id": "ch03_s06_shuge.l21",
+      "who": "narr",
+      "kind": "aside",
+      "text": "唐搁下一支笔。柳将笔尖朝向你，自己退到朱绳束着的旧稿旁。"
+    },
+    {
+      "id": "ch03_s06_shuge.l22",
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "总办和逐项经手可并列。留她的名字，你便不能将这两项单记作亲核。"
+    }
+  ],
+  "choices": [
+    {
+      "id": "ch03_s06_shuge.cA",
+      "text": "收下合记摘要，底簿照留",
+      "effects": {
+        "shi": 1,
+        "xin": -1,
+        "flag.chenghuan_accept_3": true
+      },
+      "irreversible": true,
+      "goto": "ch03_s07_yeting"
+    },
+    {
+      "id": "ch03_s06_shuge.cB",
+      "text": "并列她的经手，我只署总办",
+      "effects": {
+        "flag.chenghuan_refuse_3": true
+      },
+      "irreversible": true,
+      "goto": "ch03_s07_yeting"
+    }
+  ]
+}

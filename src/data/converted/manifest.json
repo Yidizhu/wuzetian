@@ -2,11 +2,11 @@
   "inputs": [
     {
       "file": "docs/C-2-第一章前六场.md",
-      "sha256": "9776064c629b9dce0c4a42e146d9df73e4d41fbcc2af30ee42fc600ba7c84603"
+      "sha256": "ce9d858d14248222bc28951e341c5755615bc64ccacb0324a2855844bc495217"
     },
     {
       "file": "docs/C-3-第一章后十二场.md",
-      "sha256": "c19d483f7ffa3d158458786e2d2ff8ef2dc9cf4173f8e79372aa65c3b4dd573f"
+      "sha256": "d1a6b4a8bef5716fea0f831c8d0837428b461bf5374d026651f0548962eda533"
     },
     {
       "file": "docs/C-4-第一章书信.md",
@@ -18,7 +18,7 @@
     },
     {
       "file": "docs/C-B-结局树.md",
-      "sha256": "a2407cb44d74307fe44be87ed0416f98905c983f589b2453f8eddd7c10f7e861"
+      "sha256": "00b49bd41721cfc8c69e75a7adfafa0bed3d0ab911374e2d438a727b00e5ca35"
     },
     {
       "file": "docs/C-6-第二章大纲.md",
@@ -26,11 +26,11 @@
     },
     {
       "file": "docs/C-7-第二章前十二场.md",
-      "sha256": "adf0a81025fc9821a56e1550c572e2d80b6093f6455693b42778053a9fd359be"
+      "sha256": "c5374b28a2b6f2b891d4e9dd8b5d14a1c4b14c68d1600d813f8f9e53b38aba85"
     },
     {
       "file": "docs/C-8-第二章后十二场与书信.md",
-      "sha256": "4460ca96e5bf83700582896de782e538f9ab23228e701c44c8c6abbc0856fe9f"
+      "sha256": "9535b7b02a6cf9c22e8411d21adda8427a751eb3f0f1191986937ddca300b8a5"
     },
     {
       "file": "docs/C-9-第三章大纲.md",
@@ -38,10 +38,19 @@
     },
     {
       "file": "docs/C-10-第三章前十二场.md",
-      "sha256": "ac03801a6a6a26156e7ca7543d3f92e654ddcbd3ed8e0f61f0540ab6d1b5b951"
+      "sha256": "26a04281030313d99fc7d5557268659ef0258d1886acb13444980bf564efbadc"
+    },
+    {
+      "file": "docs/C-11-第三章后十二场与书信.md",
+      "sha256": "0d5f6e07cfbfb14bdd2504791253ebaab33e01d6d1b6a43feb2d155f1bc485cc"
+    },
+    {
+      "file": "docs/C-12-第四章大纲.md",
+      "sha256": "cde4a21ce67888411caf7e527555cbc9dd298040f5d5976cd59a0c134ca38797"
     }
   ],
   "scenes": [
+    "ch01_s00_zhaoyang",
     "ch01_s01_zhaoyang",
     "ch01_s02_zhaoyang",
     "ch01_s03_yeting",
@@ -81,18 +90,35 @@
     "ch02_s19_nvguan",
     "ch02_s20_hanyuan",
     "ch02_s21_nvguan",
+    "ch02_s25_yeting",
     "ch02_s22_shuge",
     "ch02_s23_hanyuan",
+    "ch02_s26_shuge",
+    "ch02_s24_shuge",
     "ch03_s01_shuge",
     "ch03_s02_shuge",
+    "ch03_s03_yeting",
     "ch03_s04_yuanye",
     "ch03_s05_shishe",
+    "ch03_s06_shuge",
     "ch03_s07_yeting",
     "ch03_s08_hanyuan",
     "ch03_s09_yuanye",
     "ch03_s10_nvguan",
     "ch03_s11_hanyuan",
-    "ch03_s12_hanyuan"
+    "ch03_s12_hanyuan",
+    "ch03_s13_yeting",
+    "ch03_s14_shuge",
+    "ch03_s15_yeting",
+    "ch03_s16_shuge",
+    "ch03_s17_shuge",
+    "ch03_s18_yuanye",
+    "ch03_s19_shishe",
+    "ch03_s20_yuanye",
+    "ch03_s21_nvguan",
+    "ch03_s22_nvguan",
+    "ch03_s23_yeting",
+    "ch03_s24_shuge"
   ],
   "poems": [
     "xuetao_chan",
@@ -139,9 +165,14 @@
     "lt_ch01_peizhaoye_01",
     "lt_ch01_liqinghe_01",
     "lt_ch01_wenqiao_01",
+    "lt_ch02_shenheng_01",
     "lt_ch02_peizhaoye_01",
     "lt_ch02_wenqiao_01",
-    "lt_ch02_liqinghe_01"
+    "lt_ch02_liqinghe_01",
+    "lt_ch03_shenheng_01",
+    "lt_ch03_peizhaoye_01",
+    "lt_ch03_wenqiao_01",
+    "lt_ch03_liqinghe_01"
   ],
   "endings": [
     "mandianwusheng",
@@ -153,5 +184,5 @@
     "guanshanyouxin",
     "zhishangyouming"
   ],
-  "issues": 19
+  "issues": 1
 }

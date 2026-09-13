@@ -18,12 +18,18 @@
   "lines": [
     {
       "id": "ch03_s08_hanyuan.l1",
+      "when": {
+        "flag.ch03_cost_question": false
+      },
       "who": "narr",
       "kind": "aside",
       "text": "两张长案拼到一起，案脚高低不齐。唐垫进薄木片，水碗才不往一侧滑。"
     },
     {
       "id": "ch03_s08_hanyuan.l2",
+      "when": {
+        "flag.ch03_cost_question": false
+      },
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
@@ -31,6 +37,9 @@
     },
     {
       "id": "ch03_s08_hanyuan.l3",
+      "when": {
+        "flag.ch03_cost_question": false
+      },
       "who": "hetaihou",
       "expr": "default",
       "kind": "say",
@@ -38,12 +47,18 @@
     },
     {
       "id": "ch03_s08_hanyuan.l4",
+      "when": {
+        "flag.ch03_cost_question": false
+      },
       "who": "narr",
       "kind": "aside",
       "text": "度支核账官、别署录事、外署校案官分别入席。三人都交了无亲故的回避牒。"
     },
     {
       "id": "ch03_s08_hanyuan.l5",
+      "when": {
+        "flag.ch03_cost_question": false
+      },
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
@@ -51,6 +66,9 @@
     },
     {
       "id": "ch03_s08_hanyuan.l6",
+      "when": {
+        "flag.ch03_cost_question": false
+      },
       "who": "shenheng",
       "expr": "default",
       "kind": "say",
@@ -58,6 +76,9 @@
     },
     {
       "id": "ch03_s08_hanyuan.l7",
+      "when": {
+        "flag.ch03_cost_question": false
+      },
       "who": "liqinghe",
       "expr": "default",
       "kind": "say",
@@ -66,7 +87,8 @@
     {
       "id": "ch03_s08_hanyuan.l8",
       "when": {
-        "flag.nomination_joint_review": true
+        "flag.nomination_joint_review": true,
+        "flag.ch03_cost_question": false
       },
       "who": "tangjian",
       "expr": "default",
@@ -76,7 +98,8 @@
     {
       "id": "ch03_s08_hanyuan.l9",
       "when": {
-        "flag.nomination_open_questions": true
+        "flag.nomination_open_questions": true,
+        "flag.ch03_cost_question": false
       },
       "who": "tangjian",
       "expr": "default",
@@ -85,6 +108,9 @@
     },
     {
       "id": "ch03_s08_hanyuan.l10",
+      "when": {
+        "flag.ch03_cost_question": false
+      },
       "who": "wuze",
       "expr": "default",
       "kind": "say",
@@ -92,22 +118,45 @@
     },
     {
       "id": "ch03_s08_hanyuan.l11",
+      "when": {
+        "ming": {
+          "gte": 6
+        },
+        "flag.ch03_cost_question": false
+      },
+      "who": "liqinghe",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "你说过“你的钱呢”。今日换我问，代递的工钱从哪儿出？"
+    },
+    {
+      "id": "ch03_s08_hanyuan.l12",
+      "when": {
+        "ming": {
+          "lt": 6
+        },
+        "flag.ch03_cost_question": false
+      },
       "who": "liqinghe",
       "expr": "guarded",
       "kind": "say",
       "text": "代递的工钱呢？不能叫观里再接。"
     },
     {
-      "id": "ch03_s08_hanyuan.l12",
+      "id": "ch03_s08_hanyuan.l13",
+      "when": {
+        "flag.ch03_cost_question": false
+      },
       "who": "wuze",
       "expr": "default",
       "kind": "say",
       "text": "不从观里抽人。从扩办的钱里出。"
     },
     {
-      "id": "ch03_s08_hanyuan.l13",
+      "id": "ch03_s08_hanyuan.l14",
       "when": {
-        "flag.nvguan_halfday_pay": true
+        "flag.nvguan_halfday_pay": true,
+        "flag.ch03_cost_question": false
       },
       "who": "tangjian",
       "expr": "default",
@@ -115,9 +164,10 @@
       "text": "观中半日校读已照约结钱，不列作此回可随调的人手。"
     },
     {
-      "id": "ch03_s08_hanyuan.l14",
+      "id": "ch03_s08_hanyuan.l15",
       "when": {
-        "flag.nvguan_trip_pay": true
+        "flag.nvguan_trip_pay": true,
+        "flag.ch03_cost_question": false
       },
       "who": "tangjian",
       "expr": "default",
@@ -125,23 +175,30 @@
       "text": "观中按次验封已结钱，不列作此回可随调的人手。"
     },
     {
-      "id": "ch03_s08_hanyuan.l15",
+      "id": "ch03_s08_hanyuan.l16",
+      "when": {
+        "flag.ch03_cost_question": false
+      },
       "who": "wenqiao",
       "expr": "default",
       "kind": "say",
       "text": "我的十页核完了。工钱收了，颂文撤了，不再拿那句已经有衣去招人。"
     },
     {
-      "id": "ch03_s08_hanyuan.l16",
+      "id": "ch03_s08_hanyuan.l17",
+      "when": {
+        "flag.ch03_cost_question": false
+      },
       "who": "wuze",
       "expr": "default",
       "kind": "say",
       "text": "撤文的回执在这。十页的钱另列。"
     },
     {
-      "id": "ch03_s08_hanyuan.l17",
+      "id": "ch03_s08_hanyuan.l18",
       "when": {
-        "flag.chenghuan_accept_2": true
+        "flag.chenghuan_accept_2": true,
+        "flag.ch03_cost_question": false
       },
       "who": "tangjian",
       "expr": "default",
@@ -149,9 +206,10 @@
       "text": "三夜由柳承欢接下，省了工费。她失去的三日休也列在这一页，不能当零。"
     },
     {
-      "id": "ch03_s08_hanyuan.l18",
+      "id": "ch03_s08_hanyuan.l19",
       "when": {
-        "flag.chenghuan_refuse_2": true
+        "flag.chenghuan_refuse_2": true,
+        "flag.ch03_cost_question": false
       },
       "who": "tangjian",
       "expr": "default",
@@ -159,9 +217,10 @@
       "text": "三夜另雇两人，工费已支；半日交班由你亲做，不能再算作备议。"
     },
     {
-      "id": "ch03_s08_hanyuan.l19",
+      "id": "ch03_s08_hanyuan.l20",
       "when": {
-        "flag.chenghuan_accept_3": true
+        "flag.chenghuan_accept_3": true,
+        "flag.ch03_cost_question": false
       },
       "who": "shenheng",
       "expr": "guarded",
@@ -169,9 +228,10 @@
       "text": "底簿的两处错牒由柳承欢核出。公开摘要合记总办，不能据此说都是你亲核。"
     },
     {
-      "id": "ch03_s08_hanyuan.l20",
+      "id": "ch03_s08_hanyuan.l21",
       "when": {
-        "flag.chenghuan_accept_3": true
+        "flag.chenghuan_accept_3": true,
+        "flag.ch03_cost_question": false
       },
       "who": "wuze",
       "expr": "guarded",
@@ -179,9 +239,10 @@
       "text": "我准的合记。请把这句留在本次问答里。"
     },
     {
-      "id": "ch03_s08_hanyuan.l21",
+      "id": "ch03_s08_hanyuan.l22",
       "when": {
-        "flag.chenghuan_refuse_3": true
+        "flag.chenghuan_refuse_3": true,
+        "flag.ch03_cost_question": false
       },
       "who": "shenheng",
       "expr": "default",
@@ -189,43 +250,59 @@
       "text": "底簿与摘要同列柳承欢经手，你署总办，逐项功记没有合到你名下。"
     },
     {
-      "id": "ch03_s08_hanyuan.l22",
+      "id": "ch03_s08_hanyuan.l23",
+      "when": {
+        "flag.ch03_cost_question": false
+      },
       "who": "narr",
       "kind": "aside",
       "text": "核账官用指背碰了碰未盖印的一栏。李将那页从自己面前转过去。"
     },
     {
-      "id": "ch03_s08_hanyuan.l23",
+      "id": "ch03_s08_hanyuan.l24",
+      "when": {
+        "flag.ch03_cost_question": false
+      },
       "who": "liqinghe",
       "expr": "default",
       "kind": "say",
       "text": "我的扩办款要下月合署拨付。眼前只能保两处轮值，不能说今日便全开。"
     },
     {
-      "id": "ch03_s08_hanyuan.l24",
+      "id": "ch03_s08_hanyuan.l25",
+      "when": {
+        "flag.ch03_cost_question": false
+      },
       "who": "wuze",
       "expr": "default",
       "kind": "say",
       "text": "那两处，已经有人递到？"
     },
     {
-      "id": "ch03_s08_hanyuan.l25",
+      "id": "ch03_s08_hanyuan.l26",
+      "when": {
+        "flag.ch03_cost_question": false
+      },
       "who": "liqinghe",
       "expr": "default",
       "kind": "say",
       "text": "有回执。没有代递的地方也圈了。"
     },
     {
-      "id": "ch03_s08_hanyuan.l26",
+      "id": "ch03_s08_hanyuan.l27",
+      "when": {
+        "flag.ch03_cost_question": false
+      },
       "who": "shenheng",
       "expr": "default",
       "kind": "say",
       "text": "李令仪的异议答复已核一轮，原件可查。再核限三日，尚未试过跨署追签。"
     },
     {
-      "id": "ch03_s08_hanyuan.l27",
+      "id": "ch03_s08_hanyuan.l28",
       "when": {
-        "flag.ch03_objection_public": true
+        "flag.ch03_objection_public": true,
+        "flag.ch03_cost_question": false
       },
       "who": "wuze",
       "expr": "default",
@@ -233,9 +310,10 @@
       "text": "我的不利页已经交过本人核签。今夜能再对原件，但要占复核的两个人。"
     },
     {
-      "id": "ch03_s08_hanyuan.l28",
+      "id": "ch03_s08_hanyuan.l29",
       "when": {
-        "flag.ch03_objection_deferred": true
+        "flag.ch03_objection_deferred": true,
+        "flag.ch03_cost_question": false
       },
       "who": "wuze",
       "expr": "default",
@@ -243,44 +321,60 @@
       "text": "我的不利页还只收了件。核证人已出署，终议前补不齐那一轮签。"
     },
     {
-      "id": "ch03_s08_hanyuan.l29",
+      "id": "ch03_s08_hanyuan.l30",
+      "when": {
+        "flag.ch03_cost_question": false
+      },
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
       "text": "你原定扩六处。若先缩为两处，余下的钱够保即期开支，也够把代递办实。"
     },
     {
-      "id": "ch03_s08_hanyuan.l30",
+      "id": "ch03_s08_hanyuan.l31",
+      "when": {
+        "flag.ch03_cost_question": false
+      },
       "who": "wuze",
       "expr": "guarded",
       "kind": "say",
       "text": "六处已经有人等着来。"
     },
     {
-      "id": "ch03_s08_hanyuan.l31",
+      "id": "ch03_s08_hanyuan.l32",
+      "when": {
+        "flag.ch03_cost_question": false
+      },
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
       "text": "要逐处告延期。两名复核人也须出去验代递，今夜不能又留下对原件。"
     },
     {
-      "id": "ch03_s08_hanyuan.l32",
+      "id": "ch03_s08_hanyuan.l33",
+      "when": {
+        "flag.ch03_cost_question": false
+      },
       "who": "liqinghe",
       "expr": "default",
       "kind": "say",
       "text": "你两处能有自递、代递，我只有轮值。这一项，你办实便比我多一步。"
     },
     {
-      "id": "ch03_s08_hanyuan.l33",
+      "id": "ch03_s08_hanyuan.l34",
+      "when": {
+        "flag.ch03_cost_question": false
+      },
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
       "text": "也可只补钱，或只补代递，留两人在案前核卷。没补的那项照原样记。"
     },
     {
-      "id": "ch03_s08_hanyuan.l34",
+      "id": "ch03_s08_hanyuan.l35",
       "when": {
-        "flag.ch03_objection_public": true
+        "flag.ch03_objection_public": true,
+        "flag.ch03_cost_question": false
       },
       "who": "shenheng",
       "expr": "default",
@@ -288,9 +382,10 @@
       "text": "你已交逐人回签。留下的人能核全前后两版，比只查原件多一层经手可追。"
     },
     {
-      "id": "ch03_s08_hanyuan.l35",
+      "id": "ch03_s08_hanyuan.l36",
       "when": {
-        "flag.ch03_objection_deferred": true
+        "flag.ch03_objection_deferred": true,
+        "flag.ch03_cost_question": false
       },
       "who": "shenheng",
       "expr": "default",
@@ -298,39 +393,113 @@
       "text": "只留核卷人也不够，缺的是出署之人的签。不能让留在这里的代他认字。"
     },
     {
-      "id": "ch03_s08_hanyuan.l36",
+      "id": "ch03_s08_hanyuan.l37",
+      "when": {
+        "flag.ch03_cost_question": false
+      },
       "who": "hetaihou",
       "expr": "default",
       "kind": "say",
       "text": "不愿缩六处，也可照原案送，留人核卷。写下六处，不等于眼前已有可付的钱。"
     },
     {
-      "id": "ch03_s08_hanyuan.l37",
+      "id": "ch03_s08_hanyuan.l38",
+      "when": {
+        "flag.ch03_cost_question": false
+      },
       "who": "wuze",
       "expr": "default",
       "kind": "say",
       "text": "已领来的不退给人等。新增的四处，若缓，逐处写明另议的时限。"
     },
     {
-      "id": "ch03_s08_hanyuan.l38",
+      "id": "ch03_s08_hanyuan.l39",
+      "when": {
+        "flag.ch03_cost_question": false
+      },
       "who": "narr",
       "kind": "aside",
       "text": "门外两名受雇复核人等着领差。日影已移到门槛，她们今天只够走一趟。"
     },
     {
-      "id": "ch03_s08_hanyuan.l39",
+      "id": "ch03_s08_hanyuan.l40",
+      "when": {
+        "flag.ch03_cost_question": false
+      },
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
       "text": "三席各把可核的凭据列了。你选哪份支出，今日就办，明早照实核，不补空票。"
     },
     {
-      "id": "ch03_s08_hanyuan.l40",
+      "id": "ch03_s08_hanyuan.l41",
+      "when": {
+        "flag.ch03_cost_question": false
+      },
       "who": "self",
       "kind": "inner",
       "text": "（钱不是多出来的。拿给这一处，另一处就得等。）"
+    },
+    {
+      "id": "ch03_s08_hanyuan.l42",
+      "when": {
+        "flag.ch03_cost_question": true
+      },
+      "who": "narr",
+      "kind": "aside",
+      "text": "唐将本月余款与下月拟拨的两页分开，指尖压住月份。"
+    },
+    {
+      "id": "ch03_s08_hanyuan.l43",
+      "when": {
+        "flag.ch03_cost_question": true
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "合署的款未到，这两处先支的是哪一笔？"
+    },
+    {
+      "id": "ch03_s08_hanyuan.l44",
+      "when": {
+        "flag.ch03_cost_question": true
+      },
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "已核的本月余款；合署拨付是下月的，不能把后到账的那笔充今日。"
+    },
+    {
+      "id": "ch03_s08_hanyuan.l45",
+      "when": {
+        "flag.ch03_cost_question": true
+      },
+      "who": "liqinghe",
+      "expr": "default",
+      "kind": "say",
+      "text": "我也借不到下一月的钱，眼前两处以外的人，今日仍得等下去。"
+    },
+    {
+      "id": "ch03_s08_hanyuan.l46",
+      "when": {
+        "flag.ch03_cost_question": true
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "两笔分开列，别让看的人把今日与下月读成一笔。"
+    },
+    {
+      "id": "ch03_s08_hanyuan.l47",
+      "when": {
+        "flag.ch03_cost_question": true
+      },
+      "who": "narr",
+      "kind": "aside",
+      "text": "唐将两页并排放下，没有往支持栏添字。"
     }
   ],
+  "dressing": "gongyi",
   "choices": [
     {
       "id": "ch03_s08_hanyuan.cA",
@@ -381,6 +550,21 @@
       },
       "irreversible": false,
       "goto": "ch03_s09_yuanye"
+    },
+    {
+      "id": "ch03_s08_hanyuan.cE",
+      "text": "追问这笔支出的来源",
+      "require": {
+        "cai": {
+          "gte": 6
+        },
+        "flag.ch03_cost_question": false
+      },
+      "effects": {
+        "flag.ch03_cost_question": true
+      },
+      "irreversible": false,
+      "goto": "ch03_s08_hanyuan"
     }
   ]
 }

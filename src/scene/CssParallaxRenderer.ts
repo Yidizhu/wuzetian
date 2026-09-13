@@ -21,7 +21,8 @@ interface SceneLook {
   night?: boolean;
 }
 
-const LOOKS: Record<SceneKey, SceneLook> = {
+// 写成 SceneKey | "yilu"：第九个地点（D-062）CC1 加进 SceneKey 之前，这张表先备好，加上之后也不报错
+const LOOKS: Record<SceneKey | "yilu", SceneLook> = {
   // 清晨薄雾，侧逆光。墨都压在左下，右上大片留白
   yeting:   { sky: "at 74% 8%, var(--c-ink-4) 0%, transparent 26%",
               mid: "at 18% 70%, var(--c-ink-3) 0%, transparent 24%",
@@ -54,6 +55,10 @@ const LOOKS: Record<SceneKey, SceneLook> = {
   wuzibei:  { sky: "at 50% 24%, var(--c-ink-4) 0%, transparent 20%",
               mid: "at 46% 84%, var(--c-line) 0%, transparent 9%",
               ground: "at 46% 99%, var(--c-ink-3) 0%, transparent 20%" },
+  // 驿路：路从左下进来往右上收，尽头是空的
+  yilu:     { sky: "at 70% 30%, var(--c-ink-4) 0%, transparent 26%",
+              mid: "at 24% 58%, var(--c-ink-3) 0%, transparent 18%",
+              ground: "at 36% 99%, var(--c-ink-3) 0%, transparent 30%" },
 };
 
 export class CssParallaxRenderer implements SceneRenderer {

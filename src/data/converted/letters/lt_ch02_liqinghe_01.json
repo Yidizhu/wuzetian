@@ -64,13 +64,15 @@
       ],
       "onResonant": {
         "effects": {
-          "affinity.liqinghe": 2
+          "affinity.liqinghe": 2,
+          "flag.li_ch02_letter_poem": true
         },
         "reaction": "她把回诗压在自己的私纸下：“这一句不带上殿。”未替玩家把原先的拒绝改为答应。"
       },
       "onMismatch": {
         "effects": {
-          "affinity.liqinghe": 1
+          "affinity.liqinghe": 1,
+          "flag.li_ch02_letter_poem": true
         },
         "reaction": "“这一句，我读到的未必是你想说的。”她留着，没有另派人催问。"
       }

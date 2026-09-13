@@ -13,35 +13,7 @@ import "../styles/palette.css";
 import "../styles/app.css";
 import { ThreeStageRenderer } from "./ThreeStageRenderer.ts";
 import type { Palette, SceneKey } from "../engine/types.ts";
-
-interface Shot {
-  key: SceneKey;
-  palette: Palette;
-  act: number;
-  label: string;
-  /** 覆盖 setInk 的默认值 */
-  ink?: number;
-  /** 布置：`gongyi` 或空 */
-  dress?: string;
-}
-
-const SHOTS: Shot[] = [
-  { key: "yeting",   palette: "ink",  act: 1, label: "掖庭偏院 · 清晨薄雾" },
-  { key: "zhaoyang", palette: "gold", act: 1, label: "昭阳殿 · 正午 · 一幕" },
-  { key: "shuge",    palette: "gold", act: 1, label: "书阁 · 午后斜光 · 一幕" },
-  { key: "shuge",    palette: "ink",  act: 1, label: "书阁 · 夜 · 一盏灯" },
-  { key: "nvguan",   palette: "ink",  act: 1, label: "女冠观 · 阴天漫射" },
-  { key: "shishe",   palette: "ink",  act: 1, label: "诗社水榭 · 黄昏" },
-  { key: "yuanye",   palette: "ink",  act: 1, label: "御花园 · 夜 · 月光" },
-  { key: "hanyuan",  palette: "gold", act: 1, label: "含元殿 · 逆光 · 一幕" },
-  { key: "wuzibei",  palette: "ink",  act: 1, label: "无字碑 · 正面平光" },
-  { key: "zhaoyang", palette: "gold", act: 2, label: "昭阳殿 · 二幕 · 墨屏进殿" },
-  { key: "hanyuan",  palette: "gold", act: 3, label: "含元殿 · 三幕 · 墨盖过来" },
-  { key: "zhaoyang", palette: "gold", act: 2, label: "昭阳殿 · 公议", dress: "gongyi" },
-  { key: "hanyuan",  palette: "gold", act: 3, label: "含元殿 · 公议", dress: "gongyi" },
-  { key: "nvguan",   palette: "ink",  act: 3, label: "女冠观 · 夜雨（三章 10 夜谈三）", dress: "yeyu" },
-  { key: "hanyuan",  palette: "gold", act: 3, label: "含元殿 · 受位议决（三章 12）", dress: "shouwei" },
-];
+import { GATES, SHOTS, type Shot, type ShotResult, type StageKey } from "./shots.ts";
 
 /** 两块色板的全部色值，按 palette.css。分类用，不参与绘制 */
 const COLORS: Record<Palette, Record<string, string>> = {
@@ -65,6 +37,10 @@ interface Metrics {
   /** 10×10 格里算留白的格子数，就是 composition.md 说的数格子 */
   blankCells: number;
   accent: number;
+  /** 一点紫（#6A4470）的占比。场景里本不该有，有就是错 */
+  purple: number;
+  /** 拟合不进当前色板任何一色的像素占比 */
+  offPalette: number;
   areas: [string, number][];
 }
 
@@ -87,7 +63,7 @@ function measure(canvas: HTMLCanvasElement, palette: Palette, grounds: string[])
   const cands = names.map((n) => rgb(COLORS[palette][n]!));
   const gs = grounds.map(rgb);
   const count = new Map<string, number>();
-  let blank = 0, accent = 0, total = 0;
+  let blank = 0, accent = 0, purple = 0, total = 0;
   const cells = new Array(100).fill(0);
   const cellBlank = new Array(100).fill(0);
   for (let y = 0; y < h; y++) {
@@ -104,6 +80,8 @@ function measure(canvas: HTMLCanvasElement, palette: Palette, grounds: string[])
       // 朱砂：不靠拟合，靠红得压过另两路。门槛按 #A8232A 的比例（R 是 G 的 4.8 倍、B 的 4.0 倍）
       // 留一半余量定在 2.8 与 2.4——再松就把赭石 #8B4A2F 也算成朱砂了，第一版就是这么误报到 27% 的
       if (r > 60 && r > g * 2.8 && r > b * 2.4) accent++;
+      // 紫：红蓝两路相近、都明显压过绿。#6A4470 是 106/68/112。石青 #2F5C8F 红路太低，赭石蓝路太低，都进不来
+      else if (r > 50 && b > 50 && r > g * 1.3 && b > g * 1.3 && Math.abs(r - b) < 36) purple++;
       let best = "其他", bestErr = 1e9;
       for (let k = 0; k < cands.length; k++) {
         const c = cands[k]!;
@@ -123,11 +101,19 @@ function measure(canvas: HTMLCanvasElement, palette: Palette, grounds: string[])
     .filter(([, v]) => v >= 0.08);
   let blankCells = 0;
   for (let i = 0; i < 100; i++) if (cellBlank[i] / Math.max(1, cells[i]) >= 0.8) blankCells++;
-  return { blank: (blank / total) * 100, blankCells, accent: (accent / total) * 100, areas };
+  const off = count.get("其他") ?? 0;
+  return {
+    blank: (blank / total) * 100, blankCells, accent: (accent / total) * 100,
+    purple: (purple / total) * 100, offPalette: (off / total) * 100, areas,
+  };
 }
 
 const qs = new URLSearchParams(location.search);
-const single = qs.get("key") as SceneKey | null;
+const single = qs.get("key") as StageKey | null;
+/** 取景倍数，给自动审查循环试探用。不给就按 stage-tune.ts */
+const fitParam = qs.get("fit") ? Number(qs.get("fit")) : null;
+/** 只跑某一批（?since=E6） */
+const sinceParam = qs.get("since");
 const W = Number(qs.get("w") ?? (single ? 390 : 232));
 const H = Number(qs.get("h") ?? (single ? 844 : 502));
 
@@ -166,12 +152,14 @@ async function run(): Promise<void> {
         ink: qs.get("ink") ? Number(qs.get("ink")) : undefined,
         dress: qs.get("dress") ?? undefined,
       }]
-    : SHOTS;
+    : SHOTS.filter((s) => !sinceParam || s.since === sinceParam);
   const rows: string[] = [];
+  const results: ShotResult[] = [];
   for (const s of shots) {
     document.documentElement.dataset.palette = s.palette;
     renderer.setDressing(s.dress ?? "");
-    await renderer.show({ key: s.key, palette: s.palette, act: s.act });
+    await renderer.show({ key: s.key as SceneKey, palette: s.palette, act: s.act });
+    renderer.setFitScale(fitParam);
     if (s.ink !== undefined) renderer.setInk(s.ink);
     renderer.settle();
     const ms = renderer.benchmark(40);
@@ -180,6 +168,11 @@ async function run(): Promise<void> {
     const m = measure(canvas, s.palette, groundsOf());
     const url = single ? "" : canvas.toDataURL("image/png");
     const tris = renderer.triangles();
+    results.push({
+      key: s.key, palette: s.palette, act: s.act, dress: s.dress ?? "", label: s.label, fit: fitParam ?? 1,
+      tris, ms, blank: m.blank, blankCells: m.blankCells, accent: m.accent, purple: m.purple,
+      offPalette: m.offPalette, areas: m.areas,
+    });
     const inkNow = stage.dataset.ink || "0";
 
     const fig = document.createElement("figure");
@@ -212,7 +205,7 @@ async function run(): Promise<void> {
       fig.appendChild(shot);
     }
     const cap = document.createElement("figcaption");
-    const minBlank = s.palette === "gold" ? 30 : 40;
+    const minBlank = s.palette === "gold" ? GATES.blankGold : GATES.blankInk;
     const ok = (v: boolean) => (v ? "✓" : "✗");
     cap.innerHTML = `<b>${s.label}</b>`
       + `<span>${s.key} · ${s.palette} · 第${s.act}幕 · 墨层 ${inkNow}${s.dress ? " · " + s.dress : ""}</span>`
@@ -229,6 +222,7 @@ async function run(): Promise<void> {
   pre.className = "sp__tsv";
   pre.textContent = "key\tpalette\tact\t墨层\t面\tms\t留白%\t留白格\t朱砂%\t各色面积%\n" + rows.join("\n");
   app.appendChild(pre);
+  (window as unknown as { __result: ShotResult[] }).__result = results;
   document.title = "舞台抽查 · 完成";
 }
 

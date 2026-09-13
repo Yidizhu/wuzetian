@@ -1,0 +1,106 @@
+{
+  "id": "lt_ch03_shenheng_01",
+  "from": "shenheng",
+  "trigger": {
+    "kind": "scene",
+    "sceneId": "ch03_s02_shuge",
+    "afterScenes": 2
+  },
+  "delayMinutes": 18,
+  "paper": "huangma",
+  "body": {
+    "surface": "差牌交出去，系绳留了一截毛头，刮在腰侧。我走到署门还摸了一次，以为落下了什么。反对你的那页已经留本，这张不用夹回去。我今日先吃饭，吃完再抄余下的卷，不等撤差牒回来。",
+    "pages": [
+      {
+        "key": "相坐",
+        "when": {
+          "flag.shen_ch03_sit": true
+        },
+        "text": "凳子那一角硌不硌？你换过两回脚，我看见了，却没有先问。",
+        "readAloud": false
+      },
+      {
+        "key": "先走",
+        "when": {
+          "flag.shen_ch03_leave": true
+        },
+        "text": "你走后我收了卷，没有给下一次相见定日。你不欠我补坐那一会儿。",
+        "readAloud": false
+      },
+      {
+        "key": "纸背",
+        "text": "往后想见面，先问你，也等我自己能腾出那一日。",
+        "readAloud": false
+      }
+    ],
+    "poem": {
+      "ref": "xuetao_chan",
+      "line": "声声似相接，各在一枝栖。"
+    },
+    "poemMeans": "她保留自己的反对，声音仍想让对方听到",
+    "blank": "（她把吃饭也写进来了。我读到这里，想起那张新牌。她说很在乎，我当时怎么还问得那样快。）"
+  },
+  "sheMayNotReply": {
+    "affinity.shenheng": {
+      "lt": 5
+    }
+  },
+  "interceptable": false,
+  "replies": {
+    "plain": [
+      {
+        "effects": {
+          "affinity.shenheng": 2,
+          "flag.shen_ch03_letter_meet": true
+        },
+        "reaction": "“先各报时辰。”她另取一纸，不挪动异议的副本。",
+        "id": "lt_ch03_shenheng_01.rA",
+        "text": "想再坐一会儿，各自有空再约。"
+      },
+      {
+        "effects": {
+          "flag.shen_ch03_letter_wait": true
+        },
+        "reaction": "“私下先缓。复议照问。”她没有多列一日。",
+        "id": "lt_ch03_shenheng_01.rB",
+        "text": "撤差继续问，私见先缓。"
+      },
+      {
+        "effects": {
+          "flag.shen_ch03_letter_stop": true
+        },
+        "reaction": "“公事另纸。”她将私笺折回，不追问何时再写。",
+        "id": "lt_ch03_shenheng_01.rC",
+        "text": "私笺先停，公务另纸往来。"
+      }
+    ],
+    "poem": {
+      "resonantTags": [
+        "蝉",
+        "叶",
+        "远声",
+        "月",
+        "松",
+        "泉"
+      ],
+      "onResonant": {
+        "effects": {
+          "affinity.shenheng": 2
+        },
+        "reaction": "她念到那句，手指停在纸角：“这一声，我听见了。”"
+      },
+      "onMismatch": {
+        "effects": {
+          "affinity.shenheng": 1
+        },
+        "reaction": "“这句还没读通。”她没有替你补上想念两字。"
+      }
+    },
+    "silence": {
+      "effects": {
+        "flag.shen_ch03_letter_silent": true
+      },
+      "reaction": "她把留底收进小匣，照常出署吃饭，没有留灯等答。"
+    }
+  }
+}

@@ -1,0 +1,192 @@
+{
+  "id": "ch03_s03_yeting",
+  "chapter": 3,
+  "act": 3,
+  "scene": "yeting",
+  "palette": "ink",
+  "cast": [
+    "wuze",
+    "liuchenghuan",
+    "tangjian"
+  ],
+  "weightless": false,
+  "leavesLetter": [],
+  "purpose": "柳取消自己的休假代答三夜，主角在知情后选择是否使用",
+  "lines": [
+    {
+      "id": "ch03_s03_yeting.l1",
+      "when": {
+        "flag.shen_ch03_sit": true
+      },
+      "who": "narr",
+      "kind": "aside",
+      "text": "方才你和沈坐到斜影越过桌角。她没有翻那卷，你也没有再辩。"
+    },
+    {
+      "id": "ch03_s03_yeting.l2",
+      "when": {
+        "flag.shen_ch03_leave": true
+      },
+      "who": "narr",
+      "kind": "aside",
+      "text": "方才沈将撤差牒交到你手里，只送到门边。你下了阶，她便回屋收卷。"
+    },
+    {
+      "id": "ch03_s03_yeting.l3",
+      "who": "narr",
+      "kind": "aside",
+      "text": "柳从热水里提出布巾，晾在盆沿。朱绳束着一叠排好的夜班单。"
+    },
+    {
+      "id": "ch03_s03_yeting.l4",
+      "who": "liuchenghuan",
+      "expr": "open",
+      "kind": "say",
+      "text": "给你留了干的一头。擦完手就歇，今夜的数目已经对过了。"
+    },
+    {
+      "id": "ch03_s03_yeting.l5",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "你今晚不是休？"
+    },
+    {
+      "id": "ch03_s03_yeting.l6",
+      "who": "liuchenghuan",
+      "expr": "default",
+      "kind": "say",
+      "text": "改到后头也一样。"
+    },
+    {
+      "id": "ch03_s03_yeting.l7",
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "她答了后三夜。每天只值这一班，没超单日上限，原准的三日休另划掉。"
+    },
+    {
+      "id": "ch03_s03_yeting.l8",
+      "who": "narr",
+      "kind": "aside",
+      "text": "唐把休假凭据从班单下面抽出来，三格空白对着你。"
+    },
+    {
+      "id": "ch03_s03_yeting.l9",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "休假要去哪儿？"
+    },
+    {
+      "id": "ch03_s03_yeting.l10",
+      "who": "liuchenghuan",
+      "expr": "open",
+      "kind": "say",
+      "text": "你在这里，还去哪里。"
+    },
+    {
+      "id": "ch03_s03_yeting.l11",
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "休假不必写去处。你若不接她这三班，可另雇两人，工费从备议钱里支。"
+    },
+    {
+      "id": "ch03_s03_yeting.l12",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "能补齐？"
+    },
+    {
+      "id": "ch03_s03_yeting.l13",
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "能。两个人都回了价，还要你交半日旧卷，教她们认改过的符号。"
+    },
+    {
+      "id": "ch03_s03_yeting.l14",
+      "who": "liuchenghuan",
+      "expr": "default",
+      "kind": "say",
+      "text": "那半日留给你。旁人还得问，这几册哪一笔改过，你不用再告诉我。"
+    },
+    {
+      "id": "ch03_s03_yeting.l15",
+      "who": "self",
+      "kind": "inner",
+      "text": "（我确实不想再教一遍。三夜，连那半日也能拿去备议。）"
+    },
+    {
+      "id": "ch03_s03_yeting.l16",
+      "who": "wuze",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "我知道你少了三日休。不能填成你本来就该值。"
+    },
+    {
+      "id": "ch03_s03_yeting.l17",
+      "who": "liuchenghuan",
+      "expr": "open",
+      "kind": "say",
+      "text": "写你觉得妥当的就好。"
+    },
+    {
+      "id": "ch03_s03_yeting.l18",
+      "who": "narr",
+      "kind": "aside",
+      "text": "她把温布巾递来。你掌心还冻着，握住后没有马上松开。"
+    },
+    {
+      "id": "ch03_s03_yeting.l19",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "这三日是你的。接了，我会省钱，也会多出备议的时辰。"
+    },
+    {
+      "id": "ch03_s03_yeting.l20",
+      "who": "liuchenghuan",
+      "expr": "default",
+      "kind": "say",
+      "text": "你要的就是我要的。"
+    },
+    {
+      "id": "ch03_s03_yeting.l21",
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "她的原休凭据我留底。代班写实数，不把三日休涂成从来没有。"
+    },
+    {
+      "id": "ch03_s03_yeting.l22",
+      "who": "narr",
+      "kind": "aside",
+      "text": "布巾上的热气散了。柳仍托着盆，等你擦另一只手。"
+    }
+  ],
+  "choices": [
+    {
+      "id": "ch03_s03_yeting.cA",
+      "text": "接下三夜，记清她原有的休假",
+      "effects": {
+        "shi": 1,
+        "xin": -1,
+        "flag.chenghuan_accept_2": true
+      },
+      "irreversible": false,
+      "goto": "ch03_s04_yuanye"
+    },
+    {
+      "id": "ch03_s03_yeting.cB",
+      "text": "撤回代答，我出工费并交班",
+      "effects": {
+        "flag.chenghuan_refuse_2": true
+      },
+      "irreversible": false,
+      "goto": "ch03_s04_yuanye"
+    }
+  ]
+}

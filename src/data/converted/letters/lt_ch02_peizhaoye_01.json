@@ -64,13 +64,15 @@
       ],
       "onResonant": {
         "effects": {
-          "affinity.peizhaoye": 2
+          "affinity.peizhaoye": 2,
+          "flag.pei_ch02_letter_poem": true
         },
         "reaction": "“走到哪儿，写到哪儿。”她把纸折好，不替诗里的人定下归期。"
       },
       "onMismatch": {
         "effects": {
-          "affinity.peizhaoye": 1
+          "affinity.peizhaoye": 1,
+          "flag.pei_ch02_letter_poem": true
         },
         "reaction": "她把诗读了两遍：“这句我先留着，还想不明白。”没有把空白处填成承诺。"
       }

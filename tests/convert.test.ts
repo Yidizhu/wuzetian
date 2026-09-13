@@ -1,6 +1,6 @@
 import { test, describe } from "node:test";
 import assert from "node:assert/strict";
-import { CASES, sceneId, lineId, choiceId, parseCondition, parseEffects, convert, convertBatch, tableCells, writeOut, issueReport, classify, manualTail, MANUAL_MARK, outputPathFor } from "../tools/convert-story.ts";
+import { CASES, sceneId, lineId, choiceId, parseCondition, parseEffects, convert, convertBatch, tableCells, writeOut, issueReport, classify, manualTail, MANUAL_MARK, outputPathFor, storyGraph, flagAudit, sceneEdges, SONG_BLACKLIST } from "../tools/convert-story.ts";
 import { readFileSync, mkdtempSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
@@ -646,12 +646,15 @@ test('问题单末尾的人工补记不被自动生成冲掉', () => {
   assert.equal(manualTail(`# 转换问题单\n\n## CC1 接口（1）\n\n| a |\n`), '', '自动生成的小节不算补记');
 });
 
-test('整章可达性：18 场都在，从 01 出发全部走得到，没有断链', () => {
+test('整章可达性：交了几场就出几场，从开场出发全部走得到，没有断链', () => {
   // 第 18 场按 D-039 接第二章第一场，所以这一批要带上第二章的正文才解析得了那个去向
   const inputs = ['C-2-第一章前六场.md', 'C-3-第一章后十二场.md', 'C-4-第一章书信.md', 'C0-2-诗词库与对诗.md', 'C-7-第二章前十二场.md'].map(readDoc);
   const all = convertBatch(inputs);
   const r = { ...all, scenes: all.scenes.filter(s => s.chapter === 1) };
-  assert.equal(r.scenes.length, 18, '第一章 18 场一场不缺');
+  // 序幕 ch01-00 交了之后第一章是 19 场；场次数从原文数，别写死
+  const expected = inputs.filter(i => i.file.startsWith('C-2') || i.file.startsWith('C-3'))
+    .flatMap(i => [...i.markdown.matchAll(/^### 场景 ch01-/gm)]).length;
+  assert.equal(r.scenes.length, expected, `第一章 ${expected} 场一场不缺`);
   const last = r.scenes.find(s => (s as any).chapterEnd)!;
   assert.equal(last.id, 'ch01_s18_zhaoyang');
   assert.equal(last.goto, 'ch02_s01_yeting', 'D-039：先出章末结算页，再进第二章第一场');
@@ -663,7 +666,8 @@ test('整章可达性：18 场都在，从 01 出发全部走得到，没有断�
     ...(s.goto ? [s.goto] : []),
     ...(s.duel ? [duels.get(s.duel)?.onWin?.goto, duels.get(s.duel)?.onLose?.goto] : []),
   ].filter(Boolean);
-  const start = 'ch01_s01_zhaoyang';
+  // 开场是章里编号最小的那一场：有序幕就是 00，没有就是 01
+  const start = r.scenes.map(s => s.id).sort()[0];
   assert.ok(scenes.has(start), '开场必须转得出来');
   const seen = new Set([start]); const queue = [start]; const dangling: string[] = [];
   while (queue.length) {
@@ -760,17 +764,21 @@ test('D-046 场景表「布置 | 公议」-> dressing；认不出的布置要报
     assert.ok(r.issues.some(i => i.message.includes('Scene.dressing')), 'schema 没跟上就要留一条提醒');
     assert.equal(classify(r.issues[0].message), 'CC1 接口');
   }
+  // 认不出的布置同样不扣整场：丢的是道具，不是台词（R-011 的原则）
   const unknown = convert(scene('ch01-01', '| 布置 | 夜宴 |'), 's');
-  assert.equal(unknown.scenes.length, 0);
-  assert.ok(unknown.issues.some(i => i.message.includes('认不出的布置')));
+  assert.equal(unknown.scenes.length, 1);
+  assert.equal((unknown.scenes[0] as any).dressing, undefined);
+  const note = unknown.issues.find(i => i.message.includes('夜宴'));
+  assert.ok(note && note.message.includes('对照'));
+  assert.equal(note!.kind, 'CC1 接口');
 });
 
 test('认不出的角色 key：两条路都写出来，不含糊说一句 enum 不过', () => {
-  const cast = convert(scene('ch01-01').replace('| 在场 | wuze, shenheng |', '| 在场 | wuze, liuchenghuan |'), 's');
+  const cast = convert(scene('ch01-01').replace('| 在场 | wuze, shenheng |', '| 在场 | wuze, zhangsanfeng |'), 's');
   assert.equal(cast.scenes.length, 0);
-  assert.ok(cast.issues.some(i => i.message.includes('liuchenghuan') && i.message.includes('CHARACTER_KEYS') && i.message.includes('笔误')));
-  const speaker = convert(scene('ch01-01').replace('| 3 | wuze | open | 说 | 我来。 |', '| 3 | liuchenghuan | open | 说 | 我来。 |'), 's');
-  assert.ok(speaker.issues.some(i => i.message.includes('说话人') && i.message.includes('liuchenghuan')));
+  assert.ok(cast.issues.some(i => i.message.includes('zhangsanfeng') && i.message.includes('CHARACTER_KEYS') && i.message.includes('笔误')));
+  const speaker = convert(scene('ch01-01').replace('| 3 | wuze | open | 说 | 我来。 |', '| 3 | zhangsanfeng | open | 说 | 我来。 |'), 's');
+  assert.ok(speaker.issues.some(i => i.message.includes('说话人') && i.message.includes('zhangsanfeng')));
   assert.equal(speaker.scenes.length, 0);
 });
 
@@ -825,7 +833,7 @@ test('第二章整章：交了几场就该出几场，出不来的每一场都�
   }
   // 断链只允许指向还没转出来的场；不允许指向一个谁也没写过的场次
   const ids = new Set(r.scenes.map(s => s.id));
-  const dangling = new Set(r.scenes.flatMap(s => [...(s.choices ?? []).map(c => c.goto), ...(s.goto ? [s.goto] : [])]).filter(to => !ids.has(to)));
+  const dangling = new Set(r.scenes.flatMap(s => [...(s.choices ?? []).map(c => c.goto), ...(s.goto ? [s.goto] : [])]).filter((to): to is string => !!to && !ids.has(to)));
   for (const to of dangling) assert.ok(labels.some(l => to.startsWith(l)), `断链 ${to} 不对应任何一份场景表`);
   if (!r.issues.length) assert.equal(dangling.size, 0, '没有问题就不该有断链');
   assert.deepEqual(convertBatch(inputs), r, '同一批转两次结果相同');
@@ -841,4 +849,166 @@ test('真实五份文件整批转换：结果确定，条件行只出现在 C-3 
   for (const l of conditional) assert.ok(Object.keys(l.when).length > 0);
   assert.equal(r.poems.length, poemRows(inputs.find(i => i.file.startsWith('C0-2'))!.markdown));
   assert.equal(r.endings.length, 8);
+});
+
+
+// ------------------------------------------------------------ Prompt D7
+
+test('D-043 章末场带选项：选项不写 goto，场景级去向照样写出来（ch02-24 的形状）', () => {
+  const md = scene('ch01-01', '| 章末 | 是 |', '| 去向 | ch01-02 |') + `
+| # | 选项文本 | 需要 | 效果 | 去向 | 备注 |
+|---|---|---|---|---|---|
+| A | 留一会儿 | | flag.stay = 真 | 章末 | |
+| B | 今夜想独处 | | flag.leave = 真 | 章末 | |
+`;
+  const r = convertBatch([{ markdown: md, file: 'a' }, { markdown: scene('ch01-02'), file: 'b' }]);
+  assert.deepEqual(r.issues, []);
+  const s = r.scenes.find(x => x.id === 'ch01_s01_shuge')! as any;
+  assert.equal(s.chapterEnd, true);
+  assert.equal(s.goto, 'ch01_s02_shuge', '选完 → 结算页 → 场景级去向，少了它就进不了下一章');
+  assert.deepEqual(s.choices.map((c: any) => c.goto), [undefined, undefined]);
+  // 普通场景有选项表时，场景级去向仍不写：两处都写会互相打架
+  const plain = convertBatch([{ markdown: scene('ch01-01', '', '| 去向 | ch01-02 |') + '\n| # | 选项文本 | 需要 | 效果 | 去向 | 备注 |\n|---|---|---|---|---|---|\n| A | 走 | | | ch01-02 | |\n', file: 'a' }, { markdown: scene('ch01-02'), file: 'b' }]);
+  assert.equal((plain.scenes.find(x => x.id === 'ch01_s01_shuge') as any).goto, undefined);
+});
+
+test('表格中间多一个空行：整段只报一条，说清是空行，不刷一串「缺少分隔行」', () => {
+  const md = scene().replace('| 3 | wuze | open | 说 | 我来。 |', '\n| 3 | wuze | open | 说 | 我来。 |');
+  const r = convert(md, 't');
+  const blank = r.issues.filter(i => i.message.includes('空行'));
+  assert.equal(blank.length, 1);
+  assert.ok(!r.issues.some(i => i.message.includes('缺少匹配表头')), '不再逐行报看不懂的错');
+  assert.equal(r.scenes.length, 0, '后半截台词读不进来，这一场不能当完整的输出');
+});
+
+test('大纲只贡献场次索引：夹在大纲里的样稿、出口合同不转成数据', () => {
+  const outline = `# 第九章大纲
+
+| 场景标题 | 地点 key | 色板 | 去向 |
+|---|---|---|---|
+| ch01-02 下一场 | hanyuan | gold | ch01-03 |
+
+### 11 出口合同
+
+| # | 选项文本 | 需要 | 效果 | 去向 | 备注 |
+|---|---|---|---|---|---|
+| A | 办 | | flag.x = 真 | ch01-12 | |
+
+` + scene('ch01-05').replace('| 幕 | 1 |', '| 幕 | 4 |');
+  const r = convertBatch([{ markdown: scene('ch01-01', '', '| 去向 | ch01-02 |'), file: 'text' }, { markdown: outline, file: 'C-99-第九章大纲.md' }]);
+  assert.equal(r.scenes.length, 1, '大纲里那一场样稿不转');
+  assert.equal(r.scenes[0].goto, 'ch01_s02_hanyuan', '场次索引照样拿来接前向去向');
+  assert.ok(!r.issues.some(i => i.message.includes('ch01-12')), '出口合同里的去向不报');
+  assert.ok(!r.issues.some(i => i.message.includes('幕')), '样稿的字段错误不报');
+});
+
+test('章末身份核对表：每行都去场景级去向就放行；按身份去不同的场就报接口', () => {
+  const table = (a: string, b: string) => `
+章末后分别核对：
+
+| 已定身份 | 条件 | 章末后去向 | 下章所读段 |
+|---|---|---|---|
+| 已受位 | flag.enthroned | ${a} | 亲自命名 |
+| 已拒位 | flag.declined_crown | ${b} | 领旧物 |
+`;
+  const base = scene('ch01-01', '| 章末 | 是 |', '| 去向 | ch01-02 |');
+  const same = convertBatch([{ markdown: base + table('ch01-02', 'ch01-02'), file: 'a' }, { markdown: scene('ch01-02'), file: 'b' }]);
+  assert.deepEqual(same.issues, []);
+  assert.equal(same.scenes.find(s => s.id === 'ch01_s01_shuge')!.goto, 'ch01_s02_shuge');
+  const split = convertBatch([{ markdown: base + table('ch01-02', 'ch01-03'), file: 'a' }, { markdown: scene('ch01-02'), file: 'b' }, { markdown: scene('ch01-03'), file: 'c' }]);
+  assert.ok(split.issues.some(i => i.message.includes('按身份去不同的场')));
+  assert.equal(classify(split.issues.find(i => i.message.includes('按身份'))!.message), 'CC1 接口');
+  assert.equal(split.scenes.filter(s => s.id === 'ch01_s01_shuge').length, 0);
+});
+
+test('宋以后诗词黑名单：命中报警告，不挡转换、不算错', () => {
+  assert.ok(SONG_BLACKLIST.length >= 30, '至少三五十条最常见的');
+  assert.ok(SONG_BLACKLIST.every(e => e.key.length >= 4), '片段太短会和普通行文撞车');
+  const md = scene().replace('| 4 | shenheng | guarded | 诗 | 明月松间照。 |', '| 4 | shenheng | guarded | 诗 | 疏影横斜水清浅。 |');
+  const r = convert(md, 'p');
+  assert.equal(r.scenes.length, 1, '警告不挡输出');
+  const w = r.issues.filter(i => i.kind === '警告');
+  assert.equal(w.length, 1);
+  assert.ok(w[0].message.includes('林逋') && w[0].message.includes('北宋'));
+  assert.equal(w[0].line, md.split('\n').findIndex(l => l.includes('疏影横斜')) + 1, '报到那一行');
+  // 断句和标点不一样也要认得
+  assert.equal(convert(scene().replace('明月松间照。', '暗香，浮动月黄昏'), 'p').issues.filter(i => i.kind === '警告').length, 1);
+  // 表格外的编剧说明不扫：那里常常正是在讨论这条禁令
+  assert.equal(convert(scene() + '\n说明：不要写林逋「疏影横斜水清浅」。\n', 'p').issues.length, 0);
+  assert.ok(issueReport(r).includes('## 警告（1）'));
+});
+
+test('分支图：每章一张，孤儿描朱砂，章末边画虚线，未交付的场画虚框', () => {
+  const r = convertBatch([
+    { markdown: scene('ch01-01', '| 章末 | 是 |', '| 去向 | ch02-01 |'), file: 'a' },
+    { markdown: scene('ch02-01').replace('| 章 | 1 |', '| 章 | 2 |').replace('| 结局 | done |', '| 去向 | ch02-02 |'), file: 'b' },
+    { markdown: scene('ch02-05').replace('| 章 | 1 |', '| 章 | 2 |'), file: 'c' },
+    { markdown: '# 大纲\n\n| 场景标题 | 地点 key |\n|---|---|\n| ch02-02 未来 | yeting |\n', file: 'x-大纲.md' },
+  ]);
+  const g = storyGraph(r);
+  assert.ok(g.includes('## 第 1 章') && g.includes('## 第 2 章'));
+  assert.ok(g.includes('class ch02_s05_shuge orphan'), '没人指向的场要描朱砂');
+  assert.ok(!g.includes('class ch02_s01_shuge orphan'));
+  assert.ok(/ch01_s01_shuge -\.->\|"章末"\| ch02_s01_shuge/.test(g), '章末结算后的去向画虚线');
+  assert.ok(g.includes('未交付 ch02_s02_yeting'), '指向还没交的场画成虚框');
+  assert.ok(sceneEdges(r).every(e => e.to), '章末选项没有 goto 的不画成指向 undefined 的边');
+});
+
+test('flag 体检：真正的空缺／空转与「已知预期」分开，① 待发布章节、② 连带假警报、引擎读取', () => {
+  // 第一章：读 ghost（谁也不写）、known_gap（缺口清单点过名）、cascade（写它的那一场转不出来）、
+  // future（写它的在待发布的第二章）、ch09_plan（第九章还没发布）；写 lonely（引擎在读）、idle（真空转）
+  const reader = scene('ch01-01', '| 进入条件 | flag.ghost 且 flag.cascade 且 flag.future 且 flag.ch09_plan |', '') + `
+| # | 选项文本 | 需要 | 效果 | 去向 | 备注 |
+|---|---|---|---|---|---|
+| A | 走 | flag.known_gap | flag.lonely = 真, flag.idle = 真 | ch01-02 | |
+`;
+  // 第二场转不出来（说话人是认不出的 key），但它原文里写着 flag.cascade
+  const broken = scene('ch01-02', '', '').replace('| 3 | wuze |', '| 3 | nobody |') + `
+| # | 选项文本 | 需要 | 效果 | 去向 | 备注 |
+|---|---|---|---|---|---|
+| A | 写 | | flag.cascade = 真 | ch01-03 | |
+`;
+  const r = convertBatch([{ markdown: reader, file: 'a' }, { markdown: broken, file: 'b' }, { markdown: scene('ch01-03'), file: 'c' }]);
+  assert.ok(r.unconverted!.some(u => u.label === 'ch01-02' && u.writes.includes('cascade')), '转不出来的场也要记下它写了什么');
+  const future = scene('ch02-01', '', '').replace('| 章 | 1 |', '| 章 | 2 |') + `
+| # | 选项文本 | 需要 | 效果 | 去向 | 备注 |
+|---|---|---|---|---|---|
+| A | 后来 | | flag.future = 真 | ch01-03 | |
+`;
+  const pending = convertBatch([{ markdown: reader, file: 'a' }, { markdown: broken, file: 'b' }, { markdown: scene('ch01-03'), file: 'c' }, { markdown: future, file: 'p' }]);
+  const a = flagAudit(r, { engineText: 'const RULES = ["lonely"];', outlineText: '', knownText: '缺口：flag.known_gap 没人写', pending });
+  const [one, two] = a.split('## 二');
+  const [realOne, knownOne] = one.split('### 已知预期');
+  assert.ok(/`ghost`/.test(realOne) && /`known_gap`.*已点名/.test(realOne), '真空缺留在前面');
+  assert.ok(/`cascade`.*② 连带：ch01-02/.test(knownOne), '写入点那一场没转出来：连带假警报');
+  assert.ok(/`future`.*① 写入点在待发布的第 2 章/.test(knownOne), '写入点在待发布的章里');
+  assert.ok(/`ch09_plan`.*① 第 9 章还没发布.*大纲里也没有/.test(knownOne), '按章号前缀认出未发布的章，并提醒大纲里也没有');
+  assert.ok(!/`cascade`|`future`|`ch09_plan`/.test(realOne), '已知预期的不许混进真空缺');
+  const [realTwo, knownTwo] = two.split('### 已知预期');
+  assert.ok(/`idle`/.test(realTwo), '真空转');
+  assert.ok(/`lonely`.*引擎读取/.test(knownTwo), '引擎在读的不算空转');
+});
+
+test('D-061 回信回声表：逐封逐回法标出已读、待发布、无', () => {
+  // 第一场留信，信的「直言 A」写 flag.echo_a，第二场有一句按它分岔；其余回法没人读
+  const withLetter = scene('ch01-01', '| 留信 | shenheng |', '| 去向 | ch01-02 |') + '\n' +
+    letter.replace('| 直言 A | 来。 | 好感.shenheng +2 | |', '| 直言 A | 来。 | flag.echo_a = 真 | |')
+          .replace('| 直言 B | 等。 | xin +1 | |', '| 直言 B | 等。 | flag.echo_b = 真 | |')
+          .replace('| 被截去向 | ch01-01 |', '| 被截去向 | ch01-02 |');
+  const echoed = scene('ch01-02').replace('| 1 | narr | | 旁白 | 灯亮着。 |', '| 1 | narr | | 旁白 | 灯亮着。 |')
+    .replace('| # | 说话人 | 表情 | 类型 | 台词 |\n|---|---|---|---|---|', '| # | 说话人 | 表情 | 类型 | 台词 | 条件 |\n|---|---|---|---|---|---|')
+    .replace(/^(\| \d \| [^\n]*\|)$/gm, '$1 |')
+    .replace('| 3 | wuze | open | 说 | 我来。 | |', '| 3 | wuze | open | 说 | 我来。 | flag.echo_a |');
+  const r = convertBatch([{ markdown: withLetter, file: 'a' }, { markdown: echoed, file: 'b' }]);
+  assert.deepEqual(r.issues.filter(i => i.kind !== '待交付'), []);
+  const later = scene('ch02-01').replace('| 章 | 1 |', '| 章 | 2 |').replace('| 进入条件 |', '| 进入条件 |') + '';
+  const pending = convertBatch([{ markdown: withLetter, file: 'a' }, { markdown: echoed, file: 'b' },
+    { markdown: later.replace('| 一句话目的 | 共读 |', '| 一句话目的 | 共读 |\n| 进入条件 | flag.echo_b |'), file: 'p' }]);
+  const table = flagAudit(r, { engineText: '', outlineText: '', knownText: '', pending }).split('## 三')[1];
+  const row = table.split('\n').find(l => l.startsWith('| `lt_ch01_shenheng_01`'))!;
+  const cells = row.split(' | ');
+  assert.ok(cells[1].startsWith('✓'), '直言 A 在已发布的章里读了');
+  assert.ok(cells[2].startsWith('待发布'), '直言 B 只有待发布的章在读');
+  assert.ok(cells[3].includes('（不写 flag）') || cells[3].includes('**无**'), '直言 C 没人提');
+  assert.ok(row.includes('**无**'), '不回写了 flag 却没人读，要标无');
 });

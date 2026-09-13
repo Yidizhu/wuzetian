@@ -137,7 +137,7 @@
 | flag.ch04_dissent_retained | 本人反对的原意见确已附入，具受理人与答复期限 | 仅口头允许不置真；随后删除则清除 |
 | flag.ch04_originals_destroyed | 玩家明知原案不可恢复，仍确认销毁；执行前有明确确认 | 与 ch04_originals_retained 互斥；销毁不可用后来的善意清除，也不可伪造恢复 |
 | flag.ch04_originals_retained | 原案实际归存，有查阅范围、经手人与纠错记录 | 留案不等于公开私笺全文；公事证据可查，私事仍须分别获准 |
-| flag.public_review | 章4异议留存、原案留存两事实皆成立，受理及答复程序确已运行 | 第二章22只试办，不提前置此终局旗标；删去异议或毁案则为假 |
+| flag.public_review | 派生旗标：在ch04-05出口，严格取flag.ch04_dissent_retained与flag.ch04_originals_retained的合取；两者皆真才真，其余为假 | 由C-12所列05三条互斥继续选项写入，不靠引擎暗中推导，不由玩家单独选择；05先展示双留存路线已运行的受理答复。后续若改动来源旗标，须在同一出口同步重算；第二章不写 |
 | flag.ch04_nomination_closed | 章4颁行下一轮只有在位者可提名的办法 | 与 ch04_nomination_open 互斥；不能以个人口头许诺替代已生效条文 |
 | flag.ch04_nomination_open | 章4把提名交给法定的多方渠道，列核验、异议与受理期限，已颁行 | 仍承认代表范围有限；若改为君主独占则清除 |
 | flag.name_tian／name_zhao／name_kept | 章4登基线第一场选天／曌／不改 | 三者互斥、必选其一；只控制名字及末卡变体，不进任何结局门槛 |

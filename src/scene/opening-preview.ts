@@ -79,6 +79,8 @@ async function scene(): Promise<void> {
   const renderer = new ThreeStageRenderer();
   renderer.mount(stage);
   await renderer.show({ key: KEY, palette: PALETTE, act: 1 });
+  // 抽查台常在后台标签里跑，requestAnimationFrame 被停，推镜走不完——直接落到终点再量
+  renderer.settle();
 
   const cast = document.createElement("div");
   cast.className = "cast";
