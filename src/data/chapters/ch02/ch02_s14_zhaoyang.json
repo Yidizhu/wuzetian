@@ -197,7 +197,7 @@
       "text": "去沈衡那里看墨渍",
       "require": {
         "affinity.shenheng": {
-          "gte": 10
+          "gte": 8
         },
         "flag.shen_joint_reading": true
       },
@@ -210,7 +210,7 @@
       "text": "和裴照夜分一块饼",
       "require": {
         "affinity.peizhaoye": {
-          "gte": 10
+          "gte": 8
         },
         "flag.pei_shared_check": true
       },
@@ -223,7 +223,7 @@
       "text": "去温荞那里看窗影",
       "require": {
         "affinity.wenqiao": {
-          "gte": 10
+          "gte": 8
         },
         "flag.wen_reader_help": true
       },
@@ -236,7 +236,7 @@
       "text": "与李令仪看那根歪枝",
       "require": {
         "affinity.liqinghe": {
-          "gte": 10
+          "gte": 8
         },
         "flag.liqinghe_cost_check": true
       },

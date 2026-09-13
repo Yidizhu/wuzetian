@@ -190,7 +190,33 @@ for (const [act, list] of [...byAct].sort((a, b) => a[0] - b[0])) {
   }
 }
 
+// 每一章的开头要有题记（D-048、D-063）：序幕三句、第二三章开头的短序都走题记那张纸。
+// 说话人写成了旁白，句子照样出现在对话框里，引擎挑不出毛病——只有这里看得出来
+{
+  const byChapter = new Map<number, SceneT[]>();
+  for (const { s } of scenes.values()) byChapter.set(s.chapter, [...(byChapter.get(s.chapter) ?? []), s]);
+  for (const [ch, list] of [...byChapter].sort((a, b) => a[0] - b[0])) {
+    const head = [...list].sort((a, b) => a.id.localeCompare(b.id))[0]!;
+    if (!head.lines.some((l) => l.who === "tiji")) {
+      warn(scenes.get(head.id)!.file, "lines", `第 ${ch} 章开头这一场没有题记。开头那几句要是写成了「旁白」，会进对话框，不会走题记那张纸`);
+    }
+  }
+}
+
+// 好感门槛只许是档位下限（D-065）。门槛写在剧本 markdown 里，改了数据不改原文，
+// 下一次转换就悄悄变回 10 和 16——这一条让它变回去的那一刻就响
+const BAND_FLOORS = new Set([0, 5, 8, 14]);
+const checkGates = (file: string, where: string, req: Record<string, unknown> | undefined) => {
+  for (const [k, v] of Object.entries(req ?? {})) {
+    const gte = k.startsWith("affinity.") ? (v as { gte?: number }).gte : undefined;
+    if (gte !== undefined && !BAND_FLOORS.has(gte)) {
+      warn(file, where, `好感门槛写的是 ${gte}，不是档位下限（识 5／契 8／盟 14）。D-065 之后契盟的门是 8 和 14——要是转换把 10、16 转回来了，原文里还没改`);
+    }
+  }
+};
 for (const { file, s } of scenes.values()) {
+  checkGates(file, "require", s.require);
+  for (const c of s.choices ?? []) checkGates(file, `${c.id}.require`, c.require);
   // 一处题记三句以内（剧本结构指南七点五节，D-063）。版式也只给三列留了位，多的会挤到左半边
   let run = 0;
   for (const l of [...s.lines, { who: "" }]) {

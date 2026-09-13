@@ -532,3 +532,20 @@ test("题记是合法的说话人，地点多了驿路（D-062、D-063）", () =
   assert.ok(r.success, JSON.stringify(r.success ? "" : r.error.issues));
 });
 
+/**
+ * D-065 契盟门槛降到 8、14；D-066 第四幕。
+ */
+test("D-065 档位下限和门槛是同一个数：进了契档专属场，结算页不能还写「识」", async () => {
+  const { affinityBand } = await import("../src/engine/types.ts");
+  assert.equal(affinityBand(7), "识");
+  assert.equal(affinityBand(8), "契");
+  assert.equal(affinityBand(13), "契");
+  assert.equal(affinityBand(14), "盟");
+});
+
+test("D-066 第四幕合法，墨层整片是墨，势多少都一样", () => {
+  assert.ok(SceneSchema.safeParse(scene("x", 4, { goto: "x", act: 4 })).success);
+  assert.ok(!SceneSchema.safeParse(scene("x", 4, { goto: "x", act: 5 })).success);
+  for (const shi of [0, 10, 20]) assert.equal(inkLevel(withShi(shi), 4), 1);
+});
+

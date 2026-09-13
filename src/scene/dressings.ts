@@ -19,7 +19,9 @@ export const DRESSINGS: Record<string, Dressing> = {
   受位: { key: "shouwei", scene: "hanyuan",  where: "三章 12 受位议决" },
   夜灯: { key: "yedeng",  scene: "zhaoyang", where: "四章 06 夜谈四（水墨）" },
   开课: { key: "kaike",   scene: "nvguan",   where: "四章 11—13" },
-  碑样: { key: "beiyang", scene: "wuzibei",  where: "四章 18 夜谈五。不写这一行，碑上就有结局卡那枚朱砂印" },
+  碑样: { key: "beiyang", scene: "wuzibei",  where: "四章 18 夜谈五。夜里，碑前一张碑样纸" },
+  // D-067：无字碑默认无印。那枚朱砂印是「无字之碑」结局的记号，只有写明「印」才盖上
+  印:   { key: "yin",     scene: "wuzibei",  where: "只给「无字之碑」结局那一刻。别的场次一律不写" },
   启程: { key: "qicheng", scene: "yilu",     where: "四章 15。驿路不写布置也是启程" },
   驿旁: { key: "yipang",  scene: "yilu",     where: "四章 16" },
 };

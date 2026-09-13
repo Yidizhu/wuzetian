@@ -10,7 +10,7 @@
   ],
   "require": {
     "affinity.shenheng": {
-      "gte": 10
+      "gte": 8
     },
     "flag.shen_joint_reading": true
   },

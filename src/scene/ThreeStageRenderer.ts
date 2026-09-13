@@ -1306,9 +1306,13 @@ export class ThreeStageRenderer implements SceneRenderer {
     this.put(g, new THREE.BoxGeometry(1.44, 3.95, 0.04), "flat", [x, 2.72, 0.23], { lineW: LINE_W * 0.8 });
     const lights: THREE.Light[] = [];
     if (!beiyang) {
-      // 朱砂印：碑面右下角一枚方印。全游戏最小的一个元素，也是最后一个——只属于结局卡那一刻
-      this.put(g, new THREE.BoxGeometry(0.26, 0.26, 0.03), d.palette === "gold" ? "pale" : "accent",
-        [x + 0.48, 1.32, 0.26], { lineW: 0 });
+      // 朱砂印：碑面右下角一枚方印。全游戏最小的一个元素，也是最后一个——只属于结局卡那一刻。
+      // D-067（CC1 改）：原来是「不写碑样就有印」，默认带着结局的记号。任何一场忘了写布置，
+      // 就等于把一个玩家未必走得到的结局提前亮出来。现在反过来：只有布置写明「印」才盖
+      if (this.dressing === "yin") {
+        this.put(g, new THREE.BoxGeometry(0.26, 0.26, 0.03), d.palette === "gold" ? "pale" : "accent",
+          [x + 0.48, 1.32, 0.26], { lineW: 0 });
+      }
       lights.push(new THREE.HemisphereLight(0xffffff, 0xcccccc, 1.2));
     } else {
       // 碑前一块低石，石上一张碑样纸，一角翻起（「纸角翻到背面，今夜不命人写满它」）。
@@ -1514,7 +1518,7 @@ export class ThreeStageRenderer implements SceneRenderer {
 
 /** 这几种布置改的是几何或光，不是 visible，切到／切走都要重搭 */
 function rebuilds(name: string): boolean {
-  return ["yeyu", "shouwei", "yedeng", "beiyang", "yipang"].includes(name);
+  return ["yeyu", "shouwei", "yedeng", "beiyang", "yipang", "yin"].includes(name);
 }
 
 const DRESS_GONGYI = ["gongyi", "shouwei"] as const;

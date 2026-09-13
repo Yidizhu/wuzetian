@@ -144,7 +144,7 @@
       "text": "去沈衡那里听檐雨",
       "require": {
         "affinity.shenheng": {
-          "gte": 16
+          "gte": 14
         },
         "flag.shen_meng_boundary": true
       },
@@ -159,7 +159,7 @@
       "text": "去园里和裴照夜坐坐",
       "require": {
         "affinity.peizhaoye": {
-          "gte": 16
+          "gte": 14
         },
         "flag.pei_meng_no_troops": true
       },
@@ -174,7 +174,7 @@
       "text": "去诗社找温荞乘凉",
       "require": {
         "affinity.wenqiao": {
-          "gte": 16
+          "gte": 14
         },
         "flag.wen_meng_no_praise": true
       },
@@ -189,7 +189,7 @@
       "text": "和李令仪慢慢吃一颗果子",
       "require": {
         "affinity.liqinghe": {
-          "gte": 16
+          "gte": 14
         },
         "flag.li_meng_real_competition": true
       },

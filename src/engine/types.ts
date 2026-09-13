@@ -176,10 +176,16 @@ export function conflictsOf(flag: string): string[] {
   return out;
 }
 
-/** 好感四档，见 story-schema 1.1 */
+/**
+ * 好感四档，见 story-schema 1.1。
+ *
+ * D-065 把契档、盟档的门槛从 10、16 降到 8、14。档位的下限必须和门槛是同一个数：
+ * 章末结算页写着「识」，她却已经进了契档的专属场，玩家会以为出了错。
+ * 降门槛的理由见 docs/engine-cc1-b12.md 第三节：不回信时每道门前的好感恰好等于门槛，余量为零。
+ */
 export const AFFINITY_BANDS = [
-  { min: 16, label: "盟" },
-  { min: 10, label: "契" },
+  { min: 14, label: "盟" },
+  { min: 8,  label: "契" },
   { min: 5,  label: "识" },
   { min: 0,  label: "疏" },
 ] as const;

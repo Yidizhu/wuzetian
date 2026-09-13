@@ -10,7 +10,7 @@
   ],
   "require": {
     "affinity.wenqiao": {
-      "gte": 10
+      "gte": 8
     },
     "flag.wen_reader_help": true
   },

@@ -10,7 +10,7 @@
   ],
   "require": {
     "affinity.liqinghe": {
-      "gte": 16
+      "gte": 14
     },
     "flag.li_meng_real_competition": true
   },

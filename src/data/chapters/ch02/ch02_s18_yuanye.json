@@ -10,7 +10,7 @@
   ],
   "require": {
     "affinity.liqinghe": {
-      "gte": 10
+      "gte": 8
     },
     "flag.liqinghe_cost_check": true
   },

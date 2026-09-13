@@ -10,7 +10,7 @@
   ],
   "require": {
     "affinity.shenheng": {
-      "gte": 16
+      "gte": 14
     },
     "flag.shen_meng_boundary": true
   },

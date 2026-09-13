@@ -10,7 +10,7 @@
   ],
   "require": {
     "affinity.wenqiao": {
-      "gte": 16
+      "gte": 14
     },
     "flag.wen_meng_no_praise": true
   },

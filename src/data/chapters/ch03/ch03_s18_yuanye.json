@@ -10,7 +10,7 @@
   ],
   "require": {
     "affinity.peizhaoye": {
-      "gte": 16
+      "gte": 14
     },
     "flag.pei_meng_no_troops": true
   },

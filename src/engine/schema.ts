@@ -108,7 +108,8 @@ export const Choice = z.object({
 export const Scene = z.object({
   id: z.string().min(1),
   chapter: z.number().int().min(0),
-  act: z.number().int().min(1, "幕只有 1 到 3").max(3, "幕只有 1 到 3"),
+  // D-066：第四章是第四幕。幕数是墨层的地板（engine/ink.ts），第四幕的地板是 1.0
+  act: z.number().int().min(1, "幕只有 1 到 4").max(4, "幕只有 1 到 4"),
   scene: SceneKeyEnum,
   palette: PaletteEnum,
   bgm: z.string().optional(),
