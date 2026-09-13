@@ -1,0 +1,209 @@
+{
+  "id": "ch04_s03_shuge",
+  "chapter": 4,
+  "act": 4,
+  "scene": "shuge",
+  "palette": "gold",
+  "cast": [
+    "wuze",
+    "shenheng",
+    "tangjian"
+  ],
+  "require": {
+    "flag.enthroned": true
+  },
+  "weightless": false,
+  "leavesLetter": [],
+  "purpose": "兑现异议处置，决定原案归存或不可恢复的焚毁",
+  "lines": [
+    {
+      "id": "ch04_s03_shuge.l1",
+      "who": "narr",
+      "kind": "aside",
+      "text": "书阁窗纸透着午后光，麻纸在两人之间卷起毛边。"
+    },
+    {
+      "id": "ch04_s03_shuge.l2",
+      "when": {
+        "flag.ch04_dissent_keep_order": true
+      },
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "原议已附入，受理人署了名。三日答不完，先给本人延期的凭。"
+    },
+    {
+      "id": "ch04_s03_shuge.l3",
+      "when": {
+        "flag.ch04_dissent_remove_order": true
+      },
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "依你所定，议录只剩答复。原牒暂另存，这一处写了由你准移。"
+    },
+    {
+      "id": "ch04_s03_shuge.l4",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "原案呢？"
+    },
+    {
+      "id": "ch04_s03_shuge.l5",
+      "who": "narr",
+      "kind": "aside",
+      "text": "沈将摘要往旁边推，让出底下的一页。"
+    },
+    {
+      "id": "ch04_s03_shuge.l6",
+      "who": "shenheng",
+      "expr": "default",
+      "kind": "say",
+      "text": "这里写她承认经手。原话后面还有七字：不认替我定过的事。"
+    },
+    {
+      "id": "ch04_s03_shuge.l7",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "那七字不在摘要里。"
+    },
+    {
+      "id": "ch04_s03_shuge.l8",
+      "who": "shenheng",
+      "expr": "default",
+      "kind": "say",
+      "text": "不在。"
+    },
+    {
+      "id": "ch04_s03_shuge.l9",
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "旧案全存，须另付看守和核卷的工钱；限权借阅的人，也得逐次留下经手。"
+    },
+    {
+      "id": "ch04_s03_shuge.l10",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "只存这份核过的摘要，会快一些。"
+    },
+    {
+      "id": "ch04_s03_shuge.l11",
+      "who": "shenheng",
+      "expr": "default",
+      "kind": "say",
+      "text": "会。"
+    },
+    {
+      "id": "ch04_s03_shuge.l12",
+      "who": "narr",
+      "kind": "aside",
+      "text": "她将缺了七字的那一处摊平，没有把手交给你。"
+    },
+    {
+      "id": "ch04_s03_shuge.l13",
+      "who": "shenheng",
+      "expr": "default",
+      "kind": "say",
+      "text": "若烧原件，那七字以后只剩我记得；我不能拿自己的记性，替所有人作证。"
+    },
+    {
+      "id": "ch04_s03_shuge.l14",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "已经抄出的呢？"
+    },
+    {
+      "id": "ch04_s03_shuge.l15",
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "尚存的抄件能留，错漏也会一并留下。原件烧了，不能保证哪一笔还能补回。"
+    },
+    {
+      "id": "ch04_s03_shuge.l16",
+      "who": "shenheng",
+      "expr": "default",
+      "kind": "say",
+      "text": "我反对焚原案。真烧了，我交清辞署，不再替这份摘要核作全本。"
+    },
+    {
+      "id": "ch04_s03_shuge.l17",
+      "who": "self",
+      "kind": "inner",
+      "text": "（快。干净。她把那七个字又露出来。）"
+    },
+    {
+      "id": "ch04_s03_shuge.l18",
+      "who": "narr",
+      "kind": "aside",
+      "text": "罩灯没有挪近纸。唐在门边等你亲口说定。"
+    }
+  ],
+  "choices": [
+    {
+      "id": "ch04_s03_shuge.cA",
+      "text": "原件归存，照权限查阅",
+      "require": {
+        "flag.ch04_dissent_keep_order": true
+      },
+      "effects": {
+        "flag.ch04_dissent_retained": true,
+        "flag.ch04_dissent_removed": false,
+        "flag.ch04_originals_keep_order": true,
+        "flag.ch04_originals_burn_order": false
+      },
+      "irreversible": false,
+      "goto": "ch04_s04_zhaoyang"
+    },
+    {
+      "id": "ch04_s03_shuge.cB",
+      "text": "确认焚毁原案，不可恢复",
+      "require": {
+        "flag.ch04_dissent_keep_order": true
+      },
+      "effects": {
+        "flag.ch04_dissent_retained": true,
+        "flag.ch04_dissent_removed": false,
+        "flag.ch04_originals_keep_order": false,
+        "flag.ch04_originals_burn_order": true
+      },
+      "irreversible": false,
+      "goto": "ch04_s04_zhaoyang"
+    },
+    {
+      "id": "ch04_s03_shuge.cC",
+      "text": "原件归存，照权限查阅",
+      "require": {
+        "flag.ch04_dissent_remove_order": true
+      },
+      "effects": {
+        "flag.ch04_dissent_retained": false,
+        "flag.ch04_dissent_removed": true,
+        "flag.ch04_originals_keep_order": true,
+        "flag.ch04_originals_burn_order": false
+      },
+      "irreversible": false,
+      "goto": "ch04_s04_zhaoyang"
+    },
+    {
+      "id": "ch04_s03_shuge.cD",
+      "text": "确认焚毁原案，不可恢复",
+      "require": {
+        "flag.ch04_dissent_remove_order": true
+      },
+      "effects": {
+        "flag.ch04_dissent_retained": false,
+        "flag.ch04_dissent_removed": true,
+        "flag.ch04_originals_keep_order": false,
+        "flag.ch04_originals_burn_order": true
+      },
+      "irreversible": false,
+      "goto": "ch04_s04_zhaoyang"
+    }
+  ]
+}

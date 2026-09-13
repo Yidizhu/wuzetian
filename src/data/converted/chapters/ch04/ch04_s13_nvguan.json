@@ -1,0 +1,115 @@
+{
+  "id": "ch04_s13_nvguan",
+  "chapter": 4,
+  "act": 4,
+  "scene": "nvguan",
+  "palette": "ink",
+  "cast": [
+    "wenqiao",
+    "songhuizhen"
+  ],
+  "require": {
+    "flag.founded_school": true
+  },
+  "weightless": false,
+  "leavesLetter": [],
+  "purpose": "在没有主角的屋里协商半间地方",
+  "lines": [
+    {
+      "id": "ch04_s13_nvguan.l1",
+      "who": "narr",
+      "kind": "aside",
+      "text": "学生走后，屋里只剩晒热的纸味，宋把一张席卷到一半。"
+    },
+    {
+      "id": "ch04_s13_nvguan.l2",
+      "who": "wenqiao",
+      "expr": "default",
+      "kind": "say",
+      "text": "这边留给我晾纸？"
+    },
+    {
+      "id": "ch04_s13_nvguan.l3",
+      "who": "songhuizhen",
+      "expr": "default",
+      "kind": "say",
+      "text": "夜里有人从这边过。"
+    },
+    {
+      "id": "ch04_s13_nvguan.l4",
+      "who": "wenqiao",
+      "expr": "default",
+      "kind": "say",
+      "text": "我挂高些。"
+    },
+    {
+      "id": "ch04_s13_nvguan.l5",
+      "who": "songhuizhen",
+      "expr": "default",
+      "kind": "say",
+      "text": "人起夜不抬头看你的纸，脚下拌一下，明日你来替她走这两步么？"
+    },
+    {
+      "id": "ch04_s13_nvguan.l6",
+      "who": "narr",
+      "kind": "aside",
+      "text": "温蹲下看席外的窄道，伸手比了比，没再举起纸。"
+    },
+    {
+      "id": "ch04_s13_nvguan.l7",
+      "who": "wenqiao",
+      "expr": "default",
+      "kind": "say",
+      "text": "那窗下呢？"
+    },
+    {
+      "id": "ch04_s13_nvguan.l8",
+      "who": "songhuizhen",
+      "expr": "default",
+      "kind": "say",
+      "text": "一半。另一半放水。"
+    },
+    {
+      "id": "ch04_s13_nvguan.l9",
+      "who": "wenqiao",
+      "expr": "default",
+      "kind": "say",
+      "text": "水还能跟纸分个先后？"
+    },
+    {
+      "id": "ch04_s13_nvguan.l10",
+      "who": "songhuizhen",
+      "expr": "default",
+      "kind": "say",
+      "text": "她夜里要喝，不能等你的纸先干；你白日来，便在午后以前收走。"
+    },
+    {
+      "id": "ch04_s13_nvguan.l11",
+      "who": "narr",
+      "kind": "aside",
+      "text": "温把纸架转过来，宋托住另一端，两人都没叫门外的主角。"
+    },
+    {
+      "id": "ch04_s13_nvguan.l12",
+      "who": "wenqiao",
+      "expr": "default",
+      "kind": "say",
+      "text": "靠这边，腿还能伸。"
+    },
+    {
+      "id": "ch04_s13_nvguan.l13",
+      "who": "songhuizhen",
+      "expr": "default",
+      "kind": "say",
+      "text": "你先伸一下试试。"
+    },
+    {
+      "id": "ch04_s13_nvguan.l14",
+      "who": "narr",
+      "kind": "aside",
+      "text": "温伸脚碰倒了一小卷席，两人重新挪了一回。"
+    }
+  ],
+  "dressing": "kaike",
+  "goto": "ch04_s17_nvguan"
+}

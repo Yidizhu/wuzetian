@@ -1,0 +1,235 @@
+{
+  "id": "ch04_s04_zhaoyang",
+  "chapter": 4,
+  "act": 4,
+  "scene": "zhaoyang",
+  "palette": "ink",
+  "cast": [
+    "wuze",
+    "tangjian",
+    "shenheng",
+    "songhuizhen",
+    "xujinghe"
+  ],
+  "require": {
+    "flag.enthroned": true
+  },
+  "weightless": false,
+  "leavesLetter": [],
+  "purpose": "兑现原案存毁，使照料权不依赖一人代签",
+  "lines": [
+    {
+      "id": "ch04_s04_zhaoyang.l1",
+      "who": "narr",
+      "kind": "aside",
+      "text": "次日帷幔已卷起，殿内残留熏香，门口的冷风吹不到案后。"
+    },
+    {
+      "id": "ch04_s04_zhaoyang.l2",
+      "when": {
+        "flag.ch04_originals_keep_order": true
+      },
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "原案已归存，封号、借阅权限、保管人都在此。抄本缺字也另记了。"
+    },
+    {
+      "id": "ch04_s04_zhaoyang.l3",
+      "when": {
+        "flag.ch04_originals_burn_order": true
+      },
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "照你确认的原件清单，昨夜已逐份焚完，执行人与在场人均留名。"
+    },
+    {
+      "id": "ch04_s04_zhaoyang.l4",
+      "when": {
+        "flag.ch04_originals_burn_order": true
+      },
+      "who": "narr",
+      "kind": "aside",
+      "text": "沈将辞牒搁在清点单上，印与差牌放在纸旁。"
+    },
+    {
+      "id": "ch04_s04_zhaoyang.l5",
+      "when": {
+        "flag.ch04_originals_burn_order": true
+      },
+      "who": "shenheng",
+      "expr": "default",
+      "kind": "say",
+      "text": "经手已交。我的辞署，也请照原话存。"
+    },
+    {
+      "id": "ch04_s04_zhaoyang.l6",
+      "when": {
+        "flag.ch04_originals_burn_order": true
+      },
+      "who": "narr",
+      "kind": "aside",
+      "text": "她等唐收清物件，离开了案边。"
+    },
+    {
+      "id": "ch04_s04_zhaoyang.l7",
+      "who": "songhuizhen",
+      "expr": "default",
+      "kind": "say",
+      "text": "昨夜药送到了，人也见着了。"
+    },
+    {
+      "id": "ch04_s04_zhaoyang.l8",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "新法有两份。你与她，想怎么记？"
+    },
+    {
+      "id": "ch04_s04_zhaoyang.l9",
+      "who": "songhuizhen",
+      "expr": "default",
+      "kind": "say",
+      "text": "我可以说我的。她今日不在。"
+    },
+    {
+      "id": "ch04_s04_zhaoyang.l10",
+      "who": "xujinghe",
+      "expr": "default",
+      "kind": "say",
+      "text": "一法是两人自愿入籍，彼此的照料与财产逐项说定；一人未答，不能代她填满。"
+    },
+    {
+      "id": "ch04_s04_zhaoyang.l11",
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "另一法各自授凭。照料、代领与财产分别写，谁许哪一项，便只办哪一项。"
+    },
+    {
+      "id": "ch04_s04_zhaoyang.l12",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "不入籍，也能进病舍？"
+    },
+    {
+      "id": "ch04_s04_zhaoyang.l13",
+      "who": "xujinghe",
+      "expr": "default",
+      "kind": "say",
+      "text": "本人授过照料凭便可核入，不许拿没有结契籍当作再拦一道的由头。"
+    },
+    {
+      "id": "ch04_s04_zhaoyang.l14",
+      "who": "songhuizhen",
+      "expr": "default",
+      "kind": "say",
+      "text": "给谁看呢？"
+    },
+    {
+      "id": "ch04_s04_zhaoyang.l15",
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "本人、获许的照料人和核办者。公示只列办法，不列两人的姓名。"
+    },
+    {
+      "id": "ch04_s04_zhaoyang.l16",
+      "who": "songhuizhen",
+      "expr": "default",
+      "kind": "say",
+      "text": "那我的这一张，给我带回去。"
+    },
+    {
+      "id": "ch04_s04_zhaoyang.l17",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "想撤呢？"
+    },
+    {
+      "id": "ch04_s04_zhaoyang.l18",
+      "who": "xujinghe",
+      "expr": "default",
+      "kind": "say",
+      "text": "各人可以撤自己的授权，已交的钱物另核清；不许扣住凭据叫她先求另一人准。"
+    },
+    {
+      "id": "ch04_s04_zhaoyang.l19",
+      "who": "narr",
+      "kind": "aside",
+      "text": "宋把空着第二个署名的纸折好，没有请你替她催。"
+    },
+    {
+      "id": "ch04_s04_zhaoyang.l20",
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "入籍要双方来核，省往后逐项举凭；分别授凭少问私事，却得分项多走几次。"
+    }
+  ],
+  "choices": [
+    {
+      "id": "ch04_s04_zhaoyang.cA",
+      "text": "颁行双方自愿入籍的办法",
+      "require": {
+        "flag.ch04_originals_keep_order": true
+      },
+      "effects": {
+        "flag.ch04_originals_retained": true,
+        "flag.ch04_originals_destroyed": false,
+        "flag.ch04_contract_registration": true,
+        "flag.ch04_separate_authorization": false
+      },
+      "irreversible": false,
+      "goto": "ch04_s05_yeting"
+    },
+    {
+      "id": "ch04_s04_zhaoyang.cB",
+      "text": "颁行个人分别授权的办法",
+      "require": {
+        "flag.ch04_originals_keep_order": true
+      },
+      "effects": {
+        "flag.ch04_originals_retained": true,
+        "flag.ch04_originals_destroyed": false,
+        "flag.ch04_contract_registration": false,
+        "flag.ch04_separate_authorization": true
+      },
+      "irreversible": false,
+      "goto": "ch04_s05_yeting"
+    },
+    {
+      "id": "ch04_s04_zhaoyang.cC",
+      "text": "颁行双方自愿入籍的办法",
+      "require": {
+        "flag.ch04_originals_burn_order": true
+      },
+      "effects": {
+        "flag.ch04_originals_retained": false,
+        "flag.ch04_originals_destroyed": true,
+        "flag.ch04_contract_registration": true,
+        "flag.ch04_separate_authorization": false
+      },
+      "irreversible": false,
+      "goto": "ch04_s05_yeting"
+    },
+    {
+      "id": "ch04_s04_zhaoyang.cD",
+      "text": "颁行个人分别授权的办法",
+      "require": {
+        "flag.ch04_originals_burn_order": true
+      },
+      "effects": {
+        "flag.ch04_originals_retained": false,
+        "flag.ch04_originals_destroyed": true,
+        "flag.ch04_contract_registration": false,
+        "flag.ch04_separate_authorization": true
+      },
+      "irreversible": false,
+      "goto": "ch04_s05_yeting"
+    }
+  ]
+}

@@ -99,19 +99,21 @@ html, body {
   position: absolute; inset: 0; pointer-events: none;
   mix-blend-mode: multiply;
   background-color: var(--c-ink-wash);
-  opacity: calc(0.26 + var(--ink-cover, 0) * 0.46);
+  /* E8：原来 0.26 + 0.46×覆盖，三幕压到 0.62，整屏截图上是一团脏烟压在人头顶（ch03 金碧各场）。
+     墨是从她那一角渗过去的，不是天上压下来的云：浓度收一半，遮罩从左下角起 */
+  opacity: calc(0.08 + var(--ink-cover, 0) * 0.2);
   transition: opacity 900ms var(--ease), -webkit-mask-size 900ms var(--ease), mask-size 900ms var(--ease);
   /* 噪声让墨边不规整：边缘软、内部不均，和地面墨晕同一条规矩 */
   background-image: url("data:image/svg+xml;utf8,\
 <svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'>\
-<filter id='w'><feTurbulence type='fractalNoise' baseFrequency='0.02 0.035' numOctaves='4'/>\
+<filter id='w'><feTurbulence type='fractalNoise' baseFrequency='0.045 0.07' numOctaves='3'/>\
 <feColorMatrix type='saturate' values='0'/></filter>\
 <rect width='200' height='200' filter='url(%23w)' opacity='0.55'/></svg>");
   background-size: 180% 180%;
-  -webkit-mask-image: radial-gradient(ellipse at 26% 84%,
-    #000 0%, #000 calc(var(--ink-cover, 0) * 82%), transparent calc(var(--ink-cover, 0) * 124% + 6%));
-  mask-image: radial-gradient(ellipse at 26% 84%,
-    #000 0%, #000 calc(var(--ink-cover, 0) * 82%), transparent calc(var(--ink-cover, 0) * 124% + 6%));
+  -webkit-mask-image: radial-gradient(ellipse at 0% 100%,
+    #000 0%, #000 calc(var(--ink-cover, 0) * 44%), transparent calc(var(--ink-cover, 0) * 92% + 8%));
+  mask-image: radial-gradient(ellipse at 0% 100%,
+    #000 0%, #000 calc(var(--ink-cover, 0) * 44%), transparent calc(var(--ink-cover, 0) * 92% + 8%));
 }
 
 /* 雨丝（E4，女冠观的夜雨）。水墨里的雨是斜过画面的一排细线，不是粒子——
@@ -426,7 +428,20 @@ html, body {
      会从她身上透出一道来，剪影当场被切开——和 E4 的石青是同一类毛病，只是轻一档 */
   opacity: 1;
 }
+/* 脚下一片墨影（E8，R-017 第 3 条）。2D 立绘站在 3D 透视里，脚下什么都没有，裙摆和地之间一道浅带——人是浮着的。
+   一片横着的淡墨，压在脚那条线上（人脚在 SVG 的 93% 处），比裙摆宽一点。
+   颜色走 --c-char-*：影子是人的，不是场景的，金碧场景里也是墨（character.md「人不随色板变」） */
+.cast__slot::before {
+  content: ""; position: absolute; z-index: 0;
+  left: 26%; width: 48%; bottom: 4.6%; height: 4.2%;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(51, 48, 43, 0.34), rgba(51, 48, 43, 0.12) 62%, transparent);
+  background: radial-gradient(closest-side, color-mix(in srgb, var(--c-char-1) 34%, transparent),
+    color-mix(in srgb, var(--c-char-1) 12%, transparent) 62%, transparent);
+  pointer-events: none;
+}
 .cast__slot svg {
+  position: relative; z-index: 1;
   width: 100%; height: 100%; display: block;
   /* 呼吸：art-director 第 10 条要静态图里有一处「将动未动」。
      6 秒一次、0.6% 的起伏，看不出在动，但停掉就看得出画面是死的。
@@ -475,8 +490,11 @@ html, body {
    而这一屏本来就窄——上方的留白要收，人要顶上去 */
 @media (max-width: 480px) {
   .cast__slot { height: calc(72% * var(--stage-person, 1)); bottom: calc(var(--stage-floor, 22%) - 5%); }
-  .cast__slot[data-side="left"]  { left: -24%; }
-  .cast__slot[data-side="right"] { right: -26%; }
+  /* E8：人心定在屏宽 28% 和 72% 处。原来左右写死 -24% / -26%，是按人高 72% 凑出来的；
+     3D 舞台按相机把人收小（--stage-person）之后，格子变窄、边还钉在原地，人就半个滑出了屏幕。
+     格子宽 = 高 × 2/3 = 72vh × p × 2/3，所以左边 = 28vw − 24vh × p */
+  .cast__slot[data-side="left"]  { left: calc(28vw - 24vh * var(--stage-person, 1)); left: calc(28vw - 24dvh * var(--stage-person, 1)); }
+  .cast__slot[data-side="right"] { right: calc(28vw - 24vh * var(--stage-person, 1)); right: calc(28vw - 24dvh * var(--stage-person, 1)); }
 }
 /* 3D 舞台的画布 */
 .stage__canvas { position: absolute; inset: 0; width: 100% !important; height: 100% !important; display: block; }

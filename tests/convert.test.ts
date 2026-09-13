@@ -1,6 +1,6 @@
 import { test, describe } from "node:test";
 import assert from "node:assert/strict";
-import { CASES, sceneId, lineId, choiceId, parseCondition, parseEffects, convert, convertBatch, tableCells, writeOut, issueReport, classify, manualTail, MANUAL_MARK, outputPathFor, storyGraph, flagAudit, sceneEdges, SONG_BLACKLIST } from "../tools/convert-story.ts";
+import { CASES, sceneId, lineId, choiceId, parseCondition, parseEffects, convert, convertBatch, tableCells, writeOut, issueReport, classify, manualTail, MANUAL_MARK, outputPathFor, storyGraph, flagAudit, sceneEdges, SONG_BLACKLIST, SPEAKERS, SPEAKER_LABELS } from "../tools/convert-story.ts";
 import { readFileSync, mkdtempSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
@@ -769,7 +769,7 @@ test('D-046 场景表「布置 | 公议」-> dressing；认不出的布置要报
   assert.equal(unknown.scenes.length, 1);
   assert.equal((unknown.scenes[0] as any).dressing, undefined);
   const note = unknown.issues.find(i => i.message.includes('夜宴'));
-  assert.ok(note && note.message.includes('对照'));
+  assert.ok(note && note.message.includes('dressings.ts'), '要指到那张表，不是让人去翻转换器');
   assert.equal(note!.kind, 'CC1 接口');
 });
 
@@ -1011,4 +1011,56 @@ test('D-061 回信回声表：逐封逐回法标出已读、待发布、无', ()
   assert.ok(cells[2].startsWith('待发布'), '直言 B 只有待发布的章在读');
   assert.ok(cells[3].includes('（不写 flag）') || cells[3].includes('**无**'), '直言 C 没人提');
   assert.ok(row.includes('**无**'), '不回写了 flag 却没人读，要标无');
+});
+
+
+// ------------------------------------------------------------ Prompt D10
+
+test('布置的中文名到 key 只从 src/scene/dressings.ts 取：表里每一行都转得出来', async () => {
+  const { DRESSINGS } = await import('../src/scene/dressings.ts');
+  for (const [cn, d] of Object.entries(DRESSINGS) as [string, { key: string }][]) {
+    const r = convert(scene('ch01-01', `| 布置 | ${cn} |`), 's');
+    assert.equal((r.scenes[0] as any).dressing, d.key, `「${cn}」应当转成 ${d.key}`);
+    assert.ok(!r.issues.some(i => i.message.includes('布置')), `「${cn}」不该再报认不出`);
+  }
+});
+
+test('D-063 说话人写「题记」转成 tiji；标签表里的 key 必须是 schema 认的说话人', () => {
+  for (const key of Object.values(SPEAKER_LABELS)) assert.ok(SPEAKERS.has(key), `${key} 不在 schema 的 SpeakerKey 里`);
+  const r = convert(scene().replace('| 1 | narr | | 旁白 | 灯亮着。 |', '| 1 | 题记 | | 旁白 | 灯亮着。 |'), 't');
+  assert.deepEqual(r.issues, []);
+  assert.equal(r.scenes[0].lines[0].who, 'tiji');
+  assert.equal(r.scenes[0].lines[1].who, 'self', '别的说话人不受影响');
+});
+
+test('D-065 好感门槛不是档位下限：报警告指名原文，不挡转换、不替原文改数', () => {
+  const gate = (n: number) => scene('ch01-01', `| 进入条件 | 好感.shenheng >= ${n} |`, '') + `
+| # | 选项文本 | 需要 | 效果 | 去向 | 备注 |
+|---|---|---|---|---|---|
+| A | 去看墨渍 | 好感.shenheng >= ${n} 且 flag.x | | ch01-02 | |
+`;
+  const old = convertBatch([{ markdown: gate(10), file: 'a' }, { markdown: scene('ch01-02'), file: 'b' }]);
+  const warns = old.issues.filter(i => i.kind === '警告');
+  assert.equal(warns.length, 2, '进入条件与选项需要各报一次');
+  assert.ok(warns.every(w => w.message.includes('D-065') && w.message.includes('ChatGPT')));
+  assert.equal(old.scenes.length, 2, '警告不挡转换');
+  assert.deepEqual((old.scenes[0] as any).require, { 'affinity.shenheng': { gte: 10 } }, '转换器照原文转，不偷偷改成 8');
+  const fixed = convertBatch([{ markdown: gate(8), file: 'a' }, { markdown: scene('ch01-02'), file: 'b' }]);
+  assert.ok(!fixed.issues.some(i => i.message.includes('D-065')));
+});
+
+test('结局走不到：有结局表、没有终局判定、最后一场是空章末，要当场报出来', () => {
+  const last = scene('ch01-02', '| 章末 | 是 |', '');
+  const r = convertBatch([{ markdown: scene('ch01-01', '', '| 去向 | ch01-02 |'), file: 'a' }, { markdown: last, file: 'b' }, { markdown: ending(''), file: 'e' }]);
+  const hit = r.issues.find(i => i.message.includes('终局判定'));
+  assert.ok(hit, '一个结局都出不来，必须报');
+  assert.equal(hit!.kind, 'ChatGPT 格式');
+  assert.equal(hit!.file, 'b', '报到最后那一场');
+  // 有一场做了终局判定就不报
+  const judged = convertBatch([{ markdown: scene('ch01-01', '| 终局判定 | 是 |', ''), file: 'a' }, { markdown: ending(''), file: 'e' }]);
+  assert.ok(!judged.issues.some(i => i.message.includes('终局判定')));
+  // 最后的章末还接着下一章（第一到三章转的时候就是这样）：不提前响
+  const chained = convertBatch([{ markdown: scene('ch01-01', '| 章末 | 是 |', '| 去向 | ch01-02 |'), file: 'a' }, { markdown: scene('ch01-02', '', '| 去向 | ch01-01 |'), file: 'b' }, { markdown: ending(''), file: 'e' }]);
+  assert.ok(!chained.scenes.some(s => s.ending || (s as any).judgeEnding), '这一例里确实没有终局判定，测的是章末还接着走的那一支');
+  assert.ok(!chained.issues.some(i => i.message.includes('终局判定')));
 });

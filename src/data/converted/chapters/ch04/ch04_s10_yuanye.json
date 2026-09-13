@@ -1,0 +1,139 @@
+{
+  "id": "ch04_s10_yuanye",
+  "chapter": 4,
+  "act": 4,
+  "scene": "yuanye",
+  "palette": "ink",
+  "cast": [
+    "wuze",
+    "songhuizhen",
+    "liqinghe"
+  ],
+  "require": {
+    "flag.enthroned": false
+  },
+  "weightless": false,
+  "leavesLetter": [],
+  "purpose": "允许今晚只有吃饼，不替明日领新职责",
+  "lines": [
+    {
+      "id": "ch04_s10_yuanye.l1",
+      "who": "narr",
+      "kind": "aside",
+      "text": "暮色落尽，你带着入园前买的胡饼，油纸还暖，芝麻香从折口透出来。"
+    },
+    {
+      "id": "ch04_s10_yuanye.l2",
+      "who": "songhuizhen",
+      "expr": "default",
+      "kind": "say",
+      "text": "我只吃自己的。你别又分一半过来。"
+    },
+    {
+      "id": "ch04_s10_yuanye.l3",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "我买多了？"
+    },
+    {
+      "id": "ch04_s10_yuanye.l4",
+      "who": "songhuizhen",
+      "expr": "default",
+      "kind": "say",
+      "text": "一张。还没吃，你先担心这个。"
+    },
+    {
+      "id": "ch04_s10_yuanye.l5",
+      "who": "narr",
+      "kind": "aside",
+      "text": "你掰开饼，热气散在袖边，最脆的一角掉进掌心。"
+    },
+    {
+      "id": "ch04_s10_yuanye.l6",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "明日若还是没有定呢？"
+    },
+    {
+      "id": "ch04_s10_yuanye.l7",
+      "who": "songhuizhen",
+      "expr": "default",
+      "kind": "say",
+      "text": "明日照样先吃饭，钱用自己的，住处照旧；没有人等你为这一张饼另立一条章程。"
+    },
+    {
+      "id": "ch04_s10_yuanye.l8",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "你今日这么闲？"
+    },
+    {
+      "id": "ch04_s10_yuanye.l9",
+      "who": "songhuizhen",
+      "expr": "default",
+      "kind": "say",
+      "text": "我的交完了，正要回去。别人还没交的，也不能又从我这半夜里扣。"
+    },
+    {
+      "id": "ch04_s10_yuanye.l10",
+      "who": "narr",
+      "kind": "aside",
+      "text": "宋拿起自己的那一份，去找来时的门，没有问你往后打算。"
+    },
+    {
+      "id": "ch04_s10_yuanye.l11",
+      "when": {
+        "flag.liqinghe_together": true
+      },
+      "who": "liqinghe",
+      "expr": "default",
+      "kind": "say",
+      "text": "我那边说完了。这里还坐得下么？"
+    },
+    {
+      "id": "ch04_s10_yuanye.l12",
+      "when": {
+        "flag.liqinghe_together": true
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "来。饼要自己拿。"
+    },
+    {
+      "id": "ch04_s10_yuanye.l13",
+      "when": {
+        "flag.liqinghe_together": true
+      },
+      "who": "narr",
+      "kind": "aside",
+      "text": "她坐在旁边的石阶，先把自己的外衣垫好。"
+    },
+    {
+      "id": "ch04_s10_yuanye.l14",
+      "when": {
+        "flag.liqinghe_together": false
+      },
+      "who": "narr",
+      "kind": "aside",
+      "text": "你把油纸铺在膝上，慢慢吃完，没有留下一个等人来坐的地方。"
+    },
+    {
+      "id": "ch04_s10_yuanye.l15",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "一张便够了。"
+    },
+    {
+      "id": "ch04_s10_yuanye.l16",
+      "who": "narr",
+      "kind": "aside",
+      "text": "夜风吹到指尖，你将碎屑拢进油纸，没有再去买第二张。"
+    }
+  ],
+  "goto": "ch04_s17_nvguan"
+}

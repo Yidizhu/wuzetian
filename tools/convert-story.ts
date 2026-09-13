@@ -26,6 +26,8 @@ import { createHash } from "node:crypto";
 import { Scene, Line, Choice, Poem, PoemDuel, Letter, Ending, CHARACTER_KEYS, SCENE_KEYS, SpeakerKey } from "../src/engine/schema.ts";
 import type { SceneT, PoemT, PoemDuelT, LetterT, EndingT } from "../src/engine/schema.ts";
 import type { Condition } from "../src/engine/types.ts";
+import { AFFINITY_BANDS } from "../src/engine/types.ts";
+import { DRESSINGS } from "../src/scene/dressings.ts";
 
 // ---------------------------------------------------------------- 结果类型
 
@@ -214,6 +216,12 @@ export const SPEAKERS = new Set<string>((() => {
   const got = walk(SpeakerKey);
   return got.length ? got : [...CHARACTER_KEYS, "self", "narr"];
 })());
+/**
+ * 剧本「说话人」一栏里写的中文标签 → schema 的 key。现在只有 D-063 的「题记」→ tiji
+ * （src/engine/schema.ts 的 SpeakerKey 注释写明了这一对）。key 本身必须在 SPEAKERS 里，测试会查。
+ */
+export const SPEAKER_LABELS: Record<string, string> = { 题记: "tiji" };
+
 /** 认不出的角色 key：可能是新批准的角色还没进枚举，也可能是笔误。两条路都写出来 */
 function unknownCharacter(key: string, where: string): string {
   return `${where}的角色 key「${key}」不在 D-016 冻结的十个里。若这是指挥日志新批准的角色，要 CC1 先加进 src/engine/schema.ts 的 CHARACTER_KEYS 和角色表；若是笔误，请 ChatGPT 改原文。在那之前这一场不输出`;
@@ -610,7 +618,8 @@ export function convertBatch(inputs: { markdown: string; file: string }[]): Conv
     const lt = lineTable(b);
     for (const row of lt.table.rows) attempt(b, row, () => {
       const cell = (name: string) => lt.at(row, name);
-      const [n, who, expr, kind, text, cond] = [cell("#"), cell("说话人"), cell("表情"), cell("类型"), cell("台词"), cell("条件")];
+      const [n, rawWho, expr, kind, text, cond] = [cell("#"), cell("说话人"), cell("表情"), cell("类型"), cell("台词"), cell("条件")];
+      const who = SPEAKER_LABELS[rawWho.trim()] ?? rawWho;
       const number = integer(n); const lid = lineId(id, number); unique("line", lid);
       if (number !== value.lines.length + 1) throw new Error("台词序号须从 1 连续递增");
       const mapped = ({ 说: "say", 内心: "inner", 旁白: "aside", 诗: "poem" } as Record<string, string>)[kind];
@@ -656,9 +665,10 @@ export function convertBatch(inputs: { markdown: string; file: string }[]): Conv
     // 为此不能挡住整章——别的地方（信的附页、角色 key）丢的是玩家读不到的正文，那才要拦。
     let dressingNote: string | undefined;
     if (v("布置")) attempt(b, f["布置"], () => {
-      // 中文到 key 的对照由 CC1／CC3 定（D-046 只定了公议）。认不出的也不扣整场，理由同上
-      const key = ({ 公议: "gongyi" } as Record<string, string>)[v("布置").trim()];
-      if (!key) dressingNote = `场景表写了「布置 | ${v("布置").trim()}」，转换器还没有它对应的 key（D-046 只定了「公议」→ gongyi）。这一场照常输出、暂不带这个布置；请 CC1／CC3 定下中文名到 key 的对照，转换器加一行即可`;
+      // 中文名到 key 的对照只有一个出处：src/scene/dressings.ts（CC3 维护，渲染器认的也是那几个 key）。
+      // 转换器不再自己抄一份——和说话人名单从 schema 取是同一个道理。认不出的也不扣整场，理由同上
+      const key = DRESSINGS[v("布置").trim()]?.key;
+      if (!key) dressingNote = `场景表写了「布置 | ${v("布置").trim()}」，src/scene/dressings.ts 里没有这个中文名（现有：${Object.keys(DRESSINGS).join("、")}）。这一场照常输出、暂不带这个布置；要加新布置请 CC3 在那张表里加一行`;
       else if (SCHEMA_HAS.dressing) value.dressing = key;
       else dressingNote = "场景表写了「布置 | 公议」，但 schema 还没有 Scene.dressing（D-046）。这一场照常输出，只是暂时不带公议布置；CC1 加上字段后重跑就有了";
     });
@@ -816,6 +826,32 @@ export function convertBatch(inputs: { markdown: string; file: string }[]): Conv
   }
   for (const [label, { id, block, row }] of fromOutline) {
     addIssue(block, row, `${label} 的正文尚未交付；指向它的去向按大纲的地点 key 先接成 ${id}，那一批交了必须重跑确认地点没改`, "待交付");
+  }
+  // 结局走不走得到：结局表里有结局，却没有任何一场做终局判定（也没有钉死结局），
+  // 而故事最后一场是没有去向的章末——玩家走到底只会看到「下章待续」，一个结局都出不来。
+  // 只在「最后一章的最后出口是空章末」时报：第一到三章转的时候，章末都还接着下一章，不该提前响
+  if (result.endings.length && !result.scenes.some(x => (x as any).judgeEnding || x.ending)) {
+    const lastChapter = Math.max(...result.scenes.map(x => x.chapter));
+    for (const dead of result.scenes.filter(x => x.chapter === lastChapter && (x as any).chapterEnd && !x.goto)) {
+      const b = blocks.find(k => k.heading.startsWith("场景 ") && (() => { try { return sceneId(k.heading.slice(3), fields(k)["地点 key"]?.cells[1] ?? "") === dead.id; } catch { return false; } })());
+      if (!b) continue;
+      const f = fields(b);
+      addIssue(b, f["章末"] ?? f["去向"], `结局表有 ${result.endings.length} 个结局，但全库没有一场标「终局判定 | 是」，而 ${dead.id} 是全书最后一个出口、只标了章末。玩家走到这里只会看到「下章待续」，一个结局都出不来。story-schema 1.2：终局判定全游戏只填一次；这一场要改成终局判定（章末与终局判定不能同时写）`, "ChatGPT 格式");
+    }
+  }
+  // D-065：契盟门槛降到 8、14，但门槛写在剧本原文里。原文不改，转出来就还是 10、16——
+  // CC1 只改了正式数据，下一次转换会悄悄改回去。在转换这一关就报出来，让写原文的人看得见
+  const floors = new Set<number>(AFFINITY_BANDS.map(b => b.min));
+  for (const b of blocks) {
+    if (b.heading.startsWith("大纲：")) continue;
+    for (const t of b.tables) for (const row of t.rows) t.header.forEach((h, i) => {
+      const gateCell = ["需要", "条件"].includes(h) || (h === "值" && row.cells[0] === "进入条件");
+      if (!gateCell) return;
+      for (const m of (row.cells[i] ?? "").matchAll(/好感\.([a-z]+)\s*>=\s*(\d+)/g)) {
+        if (floors.has(Number(m[2]))) continue;
+        addIssue(b, row, `好感门槛写的是 ${m[1]} >= ${m[2]}，不是档位下限（${AFFINITY_BANDS.slice().reverse().map(x => `${x.label} ${x.min}`).join("／")}）。D-065 之后契档门是 8、盟档门是 14；请 ChatGPT 把原文改掉，转换器不替原文改数`, "警告");
+      }
+    });
   }
   // tone-bible 第六节：只许唐及唐以前的诗。黑名单查不全，但能拦住最常见的那几十句
   for (const b of blocks) {
@@ -1220,7 +1256,10 @@ export function runCli(args: string[]): number {
   const walkTs = (dir: string): string[] => readdirSync(dir, { withFileTypes: true }).flatMap(d =>
     d.isDirectory() ? (d.name === "data" ? [] : walkTs(join(dir, d.name))) : d.name.endsWith(".ts") ? [join(dir, d.name)] : []);
   const engineText = walkTs(join(root, "src")).map(f => readFileSync(f, "utf8")).join("\n");
-  const outlineText = inputs.filter(i => /大纲/.test(i.file)).map(i => i.markdown).join("\n");
+  // 只算还没发布的那些章的大纲：一章已经转出来了，它大纲里的提及就不再是「以后会有人读」的凭据
+  const releasedChapters = new Set(result.scenes.map(x => x.chapter));
+  const outlineChapter = (md: string) => Number(/\|\s*ch(\d+)-\d+/.exec(md)?.[1] ?? NaN);
+  const outlineText = inputs.filter(i => /大纲/.test(i.file) && !releasedChapters.has(outlineChapter(i.markdown))).map(i => i.markdown).join("\n");
   const knownPath = join(root, "docs", "00b-缺口清单.md");
   const knownText = existsSync(knownPath) ? readFileSync(knownPath, "utf8") : "";
   writeFileSync(join(root, "docs", "story-graph.md"), storyGraph(result), "utf8");

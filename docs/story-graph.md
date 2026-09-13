@@ -11,7 +11,8 @@
 |---|---|---|---|---|---|---|---|
 | 1 | 19 | 19 | 0 | 1 | 5 | 0 | 无 |
 | 2 | 26 | 26 | 0 | 1 | 7 | 2 | 无 |
-| 3 | 24 | 24 | 0 | 1 | 7 | 3 | `ch04_s01_zhaoyang` |
+| 3 | 24 | 24 | 0 | 1 | 7 | 4 | 无 |
+| 4 | 18 | 18 | 0 | 1 | 2 | 6 | 无 |
 
 ## 第 1 章
 
@@ -173,7 +174,7 @@ flowchart TD
   ch03_s07_yeting["07_yeting 两个人的交班<br/>yeting"]:::ink
   ch03_s08_hanyuan["08_hanyuan 先把账铺开<br/>hanyuan · 公议"]:::gold
   ch03_s09_yuanye["09_yuanye 今夜不作答卷<br/>yuanye"]:::ink
-  ch03_s10_nvguan["10_nvguan 水到这里<br/>nvguan · 无用"]:::ink
+  ch03_s10_nvguan["10_nvguan 水到这里<br/>nvguan · 无用·公议"]:::ink
   ch03_s11_hanyuan["11_hanyuan 两份答复<br/>hanyuan · 公议"]:::gold
   ch03_s12_hanyuan["12_hanyuan 受不受这一席<br/>hanyuan · 公议"]:::gold
   ch03_s13_yeting["13_yeting 她要带走的针包<br/>yeting"]:::ink
@@ -233,5 +234,78 @@ flowchart TD
   ch03_s22_nvguan -->|"A 按价买纸，下回另问她们"| ch03_s23_yeting
   ch03_s23_yeting --> ch03_s24_shuge
   ch03_s24_shuge -.->|"章末"| ch04_s01_zhaoyang
-  ch04_s01_zhaoyang["未交付 ch04_s01_zhaoyang"]:::pending
+  ch04_s01_zhaoyang["→ 第 4 章 01_zhaoyang"]:::pending
+```
+
+## 第 4 章
+
+```mermaid
+flowchart TD
+  classDef ink fill:#f4efe6,stroke:#3a3a3a,color:#1a1a1a
+  classDef gold fill:#efe2bf,stroke:#8a6a2a,color:#1a1a1a
+  classDef orphan stroke:#b23a2a,stroke-width:3px
+  classDef pending fill:#ffffff,stroke:#999,stroke-dasharray:4 3,color:#666
+  ch04_s01_zhaoyang["01_zhaoyang 自己落这一笔<br/>zhaoyang"]:::ink
+  ch04_s02_hanyuan["02_hanyuan 谁的话附在后面<br/>hanyuan · 公议"]:::gold
+  ch04_s03_shuge["03_shuge 原页不能再生<br/>shuge"]:::gold
+  ch04_s04_zhaoyang["04_zhaoyang 谁能签两个人<br/>zhaoyang"]:::ink
+  ch04_s05_yeting["05_yeting 钱到了谁手里<br/>yeting"]:::ink
+  ch04_s06_zhaoyang["06_zhaoyang 灯油添到这里<br/>zhaoyang · 无用"]:::ink
+  ch04_s07_hanyuan["07_hanyuan 下一份荐名<br/>hanyuan · 公议"]:::gold
+  ch04_s08_shuge["08_shuge 这份只署我<br/>shuge"]:::ink
+  ch04_s09_yuanye["09_yuanye 见面不列朝班<br/>yuanye"]:::ink
+  ch04_s10_yuanye["10_yuanye 一张饼够了<br/>yuanye"]:::ink
+  ch04_s11_nvguan["11_nvguan 三日以后谁付<br/>nvguan"]:::ink
+  ch04_s12_nvguan["12_nvguan 半日也算来过<br/>nvguan · 公议"]:::ink
+  ch04_s13_nvguan["13_nvguan 她们收自己的席<br/>nvguan · 公议"]:::ink
+  ch04_s14_shuge["14_shuge 归期写在前面<br/>shuge"]:::ink
+  ch04_s15_yilu["15_yilu 各自领一份<br/>yilu · 公议"]:::ink
+  ch04_s16_yilu["16_yilu 驿旁不是归处<br/>yilu · 公议"]:::ink
+  ch04_s17_nvguan["17_nvguan 只有这边看得到<br/>nvguan"]:::ink
+  ch04_s18_wuzibei["18_wuzibei 留白以后<br/>wuzibei · 无用·章末"]:::ink
+  ch04_s01_zhaoyang -->|"🔒 A 写下天"| ch04_s02_hanyuan
+  ch04_s01_zhaoyang -->|"🔒 B 写下曌"| ch04_s02_hanyuan
+  ch04_s01_zhaoyang -->|"🔒 C 仍用添"| ch04_s02_hanyuan
+  ch04_s01_zhaoyang -->|"🔒 D 领回自己的东西"| ch04_s02_hanyuan
+  ch04_s01_zhaoyang -->|"🔒 E 带上自己的议件"| ch04_s02_hanyuan
+  ch04_s02_hanyuan -->|"🔒 A 原议与答复同收"| ch04_s03_shuge
+  ch04_s02_hanyuan -->|"🔒 B 议录只收答复，原议另存"| ch04_s03_shuge
+  ch04_s02_hanyuan -->|"🔒 C 递交本人意见，领回存件"| ch04_s08_shuge
+  ch04_s03_shuge -->|"🔒 A 原件归存，照权限查阅"| ch04_s04_zhaoyang
+  ch04_s03_shuge -->|"🔒 B 确认焚毁原案，不可恢复"| ch04_s04_zhaoyang
+  ch04_s03_shuge -->|"🔒 C 原件归存，照权限查阅"| ch04_s04_zhaoyang
+  ch04_s03_shuge -->|"🔒 D 确认焚毁原案，不可恢复"| ch04_s04_zhaoyang
+  ch04_s04_zhaoyang -->|"🔒 A 颁行双方自愿入籍的办法"| ch04_s05_yeting
+  ch04_s04_zhaoyang -->|"🔒 B 颁行个人分别授权的办法"| ch04_s05_yeting
+  ch04_s04_zhaoyang -->|"🔒 C 颁行双方自愿入籍的办法"| ch04_s05_yeting
+  ch04_s04_zhaoyang -->|"🔒 D 颁行个人分别授权的办法"| ch04_s05_yeting
+  ch04_s05_yeting -->|"🔒 A 收好今日的交付凭"| ch04_s06_zhaoyang
+  ch04_s05_yeting -->|"🔒 B 收好今日的交付凭"| ch04_s06_zhaoyang
+  ch04_s05_yeting -->|"🔒 C 收好今日的交付凭"| ch04_s06_zhaoyang
+  ch04_s07_hanyuan -->|"A 颁行多方提名与异议办法"| ch04_s17_nvguan
+  ch04_s07_hanyuan -->|"B 颁行仅由在位者提名的办法"| ch04_s17_nvguan
+  ch04_s08_shuge -->|"🔒 A 今日不定去处，出去吃点东"| ch04_s10_yuanye
+  ch04_s08_shuge -->|"🔒 B 去见李令仪，私话另答"| ch04_s09_yuanye
+  ch04_s08_shuge -->|"🔒 C 明日去问借屋教字"| ch04_s11_nvguan
+  ch04_s08_shuge -->|"🔒 D 去问一份独立差程"| ch04_s14_shuge
+  ch04_s10_yuanye --> ch04_s17_nvguan
+  ch04_s06_zhaoyang --> ch04_s07_hanyuan
+  ch04_s09_yuanye -->|"A 我也愿意，先留京再约"| ch04_s10_yuanye
+  ch04_s09_yuanye -->|"B 我也愿意，办学的事仍要去"| ch04_s11_nvguan
+  ch04_s09_yuanye -->|"C 我也愿意，行路的事仍要去"| ch04_s14_shuge
+  ch04_s09_yuanye -->|"D 今后只谈公事，我先留京"| ch04_s10_yuanye
+  ch04_s09_yuanye -->|"E 今后只谈公事，我去问办学"| ch04_s11_nvguan
+  ch04_s09_yuanye -->|"F 今后只谈公事，我去问行路"| ch04_s14_shuge
+  ch04_s11_nvguan -->|"A 按这一月的约定办"| ch04_s12_nvguan
+  ch04_s11_nvguan -->|"B 这回先不接"| ch04_s10_yuanye
+  ch04_s11_nvguan -->|"🔒 C 追问无人来时怎样付钱"| ch04_s11_nvguan
+  ch04_s12_nvguan -->|"A 收好今日的课页"| ch04_s13_nvguan
+  ch04_s13_nvguan --> ch04_s17_nvguan
+  ch04_s14_shuge -->|"A 接这一月的差，明早领款"| ch04_s15_yilu
+  ch04_s14_shuge -->|"B 这回不接，归期的纸我留着"| ch04_s10_yuanye
+  ch04_s15_yilu -->|"A 随车到第一处交接"| ch04_s16_yilu
+  ch04_s16_yilu --> ch04_s17_nvguan
+  ch04_s17_nvguan -->|"🔒 A 收好今次交付的回凭"| ch04_s18_wuzibei
+  ch04_s17_nvguan -->|"🔒 B 收好今次交付的回凭"| ch04_s18_wuzibei
+  ch04_s17_nvguan -->|"🔒 C 到晚间，再去见许"| ch04_s18_wuzibei
 ```

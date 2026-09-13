@@ -86,13 +86,15 @@
       ],
       "onResonant": {
         "effects": {
-          "affinity.liqinghe": 2
+          "affinity.liqinghe": 2,
+          "flag.li_ch03_letter_poem": true
         },
         "reaction": "她读到最后：“这句留给我。”公议原案没有挪过来。"
       },
       "onMismatch": {
         "effects": {
-          "affinity.liqinghe": 1
+          "affinity.liqinghe": 1,
+          "flag.li_ch03_letter_poem": true
         },
         "reaction": "“这边的景，我还不熟。”她折好笺，没有替你换一句。"
       }

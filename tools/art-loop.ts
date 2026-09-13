@@ -23,13 +23,12 @@
  *
  * 零依赖：Chrome 走 DevTools 协议，用 Node 自带的 WebSocket；vite 就是项目里那个。
  */
-import { spawn, type ChildProcess } from "node:child_process";
-import { existsSync, mkdirSync, mkdtempSync, rmSync, writeFileSync } from "node:fs";
-import { tmpdir } from "node:os";
+import { mkdirSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { createServer } from "vite";
 import { GATES, SHOTS, type Shot, type ShotResult } from "../src/scene/shots.ts";
 import { STAGE_TUNE, tuneKey, type Tune } from "../src/scene/stage-tune.ts";
+import { gpuName, launch, sleep, type Cdp } from "./cdp.ts";
 
 const ROOT = join(import.meta.dirname, "..");
 const OUT = join(ROOT, "Claude outputs", "art-loop");
@@ -54,79 +53,8 @@ const blankBump = Number(flag("--blank-bump") ?? 0);
 const shots = SHOTS.filter((s) =>
   (!flag("--since") || s.since === flag("--since")) && (!flag("--only") || s.key === flag("--only")));
 
-// ------------------------------------------------------------ Chrome
-
-function findChrome(): string {
-  const cands = [
-    process.env.CHROME_PATH,
-    "C:/Program Files/Google/Chrome/Application/chrome.exe",
-    "C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe",
-    "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
-    "/usr/bin/google-chrome",
-    "/usr/bin/chromium",
-  ];
-  const hit = cands.find((p) => p && existsSync(p));
-  if (!hit) throw new Error("找不到 Chrome 或 Edge。装一个，或者设 CHROME_PATH");
-  return hit;
-}
-
-interface Cdp {
-  send<T = Record<string, unknown>>(method: string, params?: Record<string, unknown>): Promise<T>;
-  close(): void;
-}
-
-async function launch(): Promise<{ proc: ChildProcess; cdp: Cdp; profile: string }> {
-  const profile = mkdtempSync(join(tmpdir(), "art-loop-"));
-  const proc = spawn(findChrome(), [
-    "--headless=new", "--remote-debugging-port=0", `--user-data-dir=${profile}`,
-    "--no-first-run", "--no-default-browser-check", "--hide-scrollbars",
-    // 要真 GPU：软件渲染量出来的毫秒没有意义，报告里会标出来
-    "--enable-gpu", "--ignore-gpu-blocklist", "--use-angle=default",
-    "about:blank",
-  ], { stdio: ["ignore", "ignore", "pipe"] });
-  const wsUrl = await new Promise<string>((resolve, reject) => {
-    let buf = "";
-    const t = setTimeout(() => reject(new Error("Chrome 十五秒没起来")), 15000);
-    proc.stderr!.on("data", (d: Buffer) => {
-      buf += d.toString();
-      const m = buf.match(/DevTools listening on (ws:\/\/\S+)/);
-      if (m) { clearTimeout(t); resolve(m[1]!); }
-    });
-    proc.on("exit", (c) => reject(new Error(`Chrome 退出了（${c}）`)));
-  });
-  const ws = new WebSocket(wsUrl);
-  await new Promise((r, j) => { ws.onopen = r; ws.onerror = j; });
-  let id = 0;
-  const pending = new Map<number, { resolve: (v: unknown) => void; reject: (e: Error) => void }>();
-  ws.onmessage = (ev) => {
-    const msg = JSON.parse(String(ev.data));
-    if (msg.id && pending.has(msg.id)) {
-      const p = pending.get(msg.id)!;
-      pending.delete(msg.id);
-      if (msg.error) p.reject(new Error(`${msg.error.message}`)); else p.resolve(msg.result);
-    }
-  };
-  let session: string | undefined;
-  const raw = <T>(method: string, params: Record<string, unknown> = {}, sid?: string): Promise<T> =>
-    new Promise((resolve, reject) => {
-      id += 1;
-      pending.set(id, { resolve: resolve as (v: unknown) => void, reject });
-      ws.send(JSON.stringify({ id, method, params, ...(sid ? { sessionId: sid } : {}) }));
-    });
-  const { targetId } = await raw<{ targetId: string }>("Target.createTarget", { url: "about:blank" });
-  ({ sessionId: session } = await raw<{ sessionId: string }>("Target.attachToTarget", { targetId, flatten: true }));
-  const cdp: Cdp = {
-    send: (method, params) => raw(method, params, session),
-    close: () => ws.close(),
-  };
-  return { proc, cdp, profile };
-}
-
-const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
-
 async function evaluate<T>(cdp: Cdp, expression: string): Promise<T> {
-  const r = await cdp.send<{ result: { value: T } }>("Runtime.evaluate", { expression, returnByValue: true, awaitPromise: true });
-  return r.result.value;
+  return cdp.evaluate<T>(expression);
 }
 
 // ------------------------------------------------------------ 一次测量
@@ -185,7 +113,8 @@ async function main(): Promise<void> {
   mkdirSync(OUT, { recursive: true });
   const server = await createServer({ root: ROOT, logLevel: "error", server: { port: PORT, strictPort: true, host: "127.0.0.1" } });
   await server.listen();
-  const { proc, cdp, profile } = await launch();
+  const browser = await launch();
+  const { cdp } = browser;
   const rows: Row[] = [];
   let glName = "?";
   try {
@@ -195,8 +124,7 @@ async function main(): Promise<void> {
     });
     await cdp.send("Page.navigate", { url: `http://localhost:${PORT}/src/scene/stage-preview.html?key=yeting&w=8&h=8` });
     await sleep(1500);
-    glName = await evaluate<string>(cdp, `(() => { const gl = document.createElement('canvas').getContext('webgl');
-      const e = gl && gl.getExtension('WEBGL_debug_renderer_info'); return e ? gl.getParameter(e.UNMASKED_RENDERER_WEBGL) : 'unknown'; })()`);
+    glName = await gpuName(cdp);
     const softwareGl = /swiftshader|llvmpipe|software/i.test(glName);
     console.log(`GPU：${glName}${softwareGl ? "（软件渲染：每帧毫秒不作数）" : ""}\n`);
 
@@ -223,11 +151,8 @@ async function main(): Promise<void> {
       rows.push(row);
     }
   } finally {
-    cdp.close();
-    proc.kill();
+    await browser.dispose();
     await server.close();
-    await sleep(300);
-    try { rmSync(profile, { recursive: true, force: true }); } catch { /* Chrome 还攥着文件锁就留着，系统临时目录 */ }
   }
 
   // 取景改动写回

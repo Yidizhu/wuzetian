@@ -23,8 +23,8 @@ import { ROOT } from "./load.ts";
 
 type Tone = "line" | "ink-1" | "ink-2" | "ink-3" | "ink-4";
 type Expr = "default" | "guarded" | "open";
-type Hair = "shuanghuan" | "gaoji" | "duoma" | "putou" | "shufa" | "huangguan" | "gaoguan" | "shuangya" | "banfan";
-type Robe = "ruqun" | "yuanling" | "kai" | "yuyi" | "dapao" | "duanru";
+type Hair = "shuanghuan" | "gaoji" | "duoma" | "putou" | "putou_ying" | "shufa" | "huangguan" | "gaoguan" | "shuangya" | "banfan";
+type Robe = "ruqun" | "yuanling" | "quekua" | "kai" | "yuyi" | "dapao" | "duanru";
 type Prop = "none" | "bi" | "jian" | "zhi" | "zhangben" | "chi" | "shu" | "zhenbao" | "yan" | "gao";
 type Accent = "cuff" | "seal" | "tassel" | "paperline" | "hairpin" | "ruler" | "crown" | "belt" | "needle" | "cord";
 type Hands = "down" | "front" | "sleeve" | "outR" | "upR" | "belt" | "table" | "backR" | "bend" | "hold" | "offer";
@@ -74,9 +74,11 @@ const CHARS: Char[] = [
       guarded: { shoulder: 1, hip: -4, head: -2, headFwd: -8, hands: "backR", lean: -8 },
       open:    { shoulder: -3, hip: 4, head: -4, headFwd: 4, hands: "outR", lean: 3 },
     } },
-  { key: "peizhaoye", name: "裴照夜", tone: "ink-2", hair: "shufa", robe: "kai", peibo: false,
-    prop: "jian", accent: "tassel", height: 1.07, width: 1.14,
-    note: "不持续握剑，先给旁人留通道。朱砂是剑穗",
+  // D-077：以剧本为准，常年男装——硬脚幞头、缺胯袍、袴、靴。铠甲版让「衣裳合身，不必合谁的意」那句台词在画面上没有依据。
+  // 识别点换成：头上两道硬脚、十一人里最高、剑在胯、两腿分开站（缺胯袍开衩露出靴）
+  { key: "peizhaoye", name: "裴照夜", tone: "ink-2", hair: "putou_ying", robe: "quekua", peibo: false,
+    prop: "jian", accent: "tassel", height: 1.1, width: 1.1,
+    note: "常年男装，不持续握剑，先给旁人留通道。朱砂是剑穗",
     poses: {
       default: { shoulder: 0, hip: 6, head: 0, headFwd: 0, hands: "down", lean: 0 },
       guarded: { shoulder: 0, hip: 0, head: 0, headFwd: 0, hands: "down", lean: -3 },
@@ -270,10 +272,13 @@ function hair(kind: Hair, f: Frame, fill: string): string {
     case "shuanghuan": {
       // 双环望仙髻：两个宽而扁的环贴着头顶向外倾，中间由发根连成一体。
       // 关键是宽 > 高、根部相接、外倾 —— 高而窄且分开的两团在纯剪影下就是兔耳。
+      // E8（R-017 第 4 条）：环心原来掏成纸色，两个白洞在游戏里的尺寸下就是两只眼睛，整个头读成一张猫脸。
+      // 纯剪影按钮下看不出来——那一页头有手掌大，游戏里头只有指甲盖大。
+      // 不掏洞了，环心只留一道淡墨的弧，环还是环，但不再是一对亮点。只改这一处，发髻形状不动（D-072）
       const ring = (cx: number, cy: number, rot: number) =>
         `<g transform="rotate(${rot} ${cx} ${cy})">` +
         `<ellipse cx="${cx}" cy="${cy}" rx="44" ry="34" fill="${fill}"/>` +
-        `<ellipse cx="${cx}" cy="${cy}" rx="19" ry="12" fill="${GROUND}"/></g>`;
+        stroke([cx - 22, cy + 6], [cx, cy - 8], [cx + 22, cy + 6], 4, 3, v("ink-3")) + `</g>`;
       return g(cap +
         // 发根：从头顶托起两环的一整块，两环因此不是浮在空中
         shape([{ p: [x - 52, y - r + 10] }, { p: [x - 40, y - r - 26], c: [x - 58, y - r - 10] },
@@ -292,6 +297,17 @@ function hair(kind: Hair, f: Frame, fill: string): string {
         `<rect x="${x - r - 4}" y="${y - 30}" width="${2 * r + 8}" height="8" fill="${GROUND}" opacity="0.5"/>` +
         stroke([x - r + 4, y - 20], [x - r - 30, y + 30], [x - r - 44, y + 96], 12, 3, fill) +
         stroke([x + r - 4, y - 20], [x + r + 30, y + 30], [x + r + 44, y + 96], 12, 3, fill));
+    case "putou_ying": // 硬脚幞头（D-077，裴照夜）：同一只方顶，两脚不垂，硬挺着向两侧斜上翘出去
+      // 沈衡、唐简也是幞头，但是软脚、贴着后颈垂下——纯剪影里头顶是一只圆包。
+      // 裴的两脚是硬的、往外往上，头上横出两道短翅：十一人里只有她的头比肩线以上多出一个「T」。
+      // 不做成宋代那种一尺多长的展脚，唐的硬脚是短而翘的（C0-3 服饰节）
+      return g(
+        shape([{ p: [x - r - 6, y - 4] }, { p: [x - r + 2, y - 66], c: [x - r - 12, y - 40] }, { p: [x + r - 2, y - 66], c: [x, y - 80] }, { p: [x + r + 6, y - 4], c: [x + r + 12, y - 40] }, { p: [x, y + 12], c: [x, y + 20] }], fill) +
+        `<rect x="${x - r - 4}" y="${y - 30}" width="${2 * r + 8}" height="8" fill="${GROUND}" opacity="0.5"/>` +
+        // 从顶的后上方平伸出去，梢不翘。第一版斜上三十度读成一对牛角，梢一翘就又是牛角；
+        // 第二版贴在帽口那条线上，整个读成一顶宽檐帽。硬脚本来是从巾子后面出来的，所以起笔在顶的上半
+        stroke([x - r + 10, y - 58], [x - r - 36, y - 60], [x - r - 72, y - 63], 9, 6, fill) +
+        stroke([x + r - 10, y - 58], [x + r + 36, y - 60], [x + r + 72, y - 63], 9, 6, fill));
     case "shufa": // 束发：紧束一髻，露出颈线，一根发带垂下
       return g(cap +
         `<ellipse cx="${x}" cy="${y - r - 16}" rx="24" ry="20" fill="${fill}"/>` +
@@ -364,6 +380,36 @@ function body(c: Char, f: Frame, fill: string): string {
         { p: [lx + 4, ly], c: [lx - 6, (ly + hly) / 2] },
       ], fill) +
       stroke([hlx - 4, hly - 60], [cx, hly - 50], [hrx + 4, hry - 60], 14, 14, GROUND, ' opacity="0.5"');
+    }
+    case "quekua": { // 缺胯袍（D-077，裴照夜）：圆领、窄袖，下摆只到小腿肚，两侧开衩，露出袴和靴
+      // 沈衡、唐简的圆领袍直落到地、盖住脚，剪影下半截是一根柱子。
+      // 裴的袍短、开衩，两腿分开站、靴筒露出来——剪影下半截是一个「人」字，这是她「站姿最开」的地方。
+      // 肩也比圆领袍外张一点：铠甲给的「最宽的肩」换成了袍子自己的肩线
+      // 开衩开到膝上（第一版开到小腿，腿几乎全被袍盖住，「站姿最开」看不出来）
+      const kneeY = hem - 280;
+      const footL = cx - w * 0.84, footR = cx + w * 0.84;
+      const legs =
+        stroke([hlx + 26, hly + 20], [cx - w * 0.5, (hly + hem) / 2 + 40], [footL, hem - 40], 44, 36, fill) +
+        stroke([hrx - 26, hry + 20], [cx + w * 0.5, (hry + hem) / 2 + 40], [footR, hem - 40], 44, 36, fill) +
+        // 靴：焦墨，靴筒到小腿，靴头往外
+        stroke([footL + 6, hem - 150], [footL + 2, hem - 80], [footL - 2, hem - 18], 42, 40, v("line")) +
+        stroke([footR - 6, hem - 150], [footR - 2, hem - 80], [footR + 2, hem - 18], 42, 40, v("line")) +
+        shape([{ p: [footL - 24, hem - 30] }, { p: [footL + 20, hem - 30] }, { p: [footL + 16, hem] }, { p: [footL - 52, hem], c: [footL - 50, hem - 18] }], v("line")) +
+        shape([{ p: [footR - 20, hem - 30] }, { p: [footR + 24, hem - 30] }, { p: [footR + 52, hem], c: [footR + 50, hem - 18] }, { p: [footR - 16, hem] }], v("line"));
+      const robe = shape([
+        { p: [lx - 4, ly + 2] }, { p: [rx + 4, ry + 2], c: [cx, ly - 20] },
+        { p: [hrx + 16, hry], c: [rx + 14, (ry + hry) / 2] },
+        // 右侧开衩：袍边到这里分开，前后两片之间露出腿
+        { p: [cx + w * 0.72 + sway * 0.4, kneeY], c: [hrx + 26, (hry + kneeY) / 2] },
+        { p: [cx + w * 0.16, kneeY + 70], c: [cx + w * 0.5, kneeY + 30] },
+        { p: [cx - w * 0.16, kneeY + 70], c: [cx, kneeY + 90] },
+        { p: [cx - w * 0.72 + sway * 0.4, kneeY], c: [cx - w * 0.44, kneeY + 18] },
+        { p: [hlx - 16, hly], c: [hlx - 26, (hly + kneeY) / 2] },
+        { p: [lx - 4, ly + 2], c: [lx - 14, (ly + hly) / 2] },
+      ], fill);
+      return legs + robe +
+        // 革带
+        stroke([hlx - 8, hly - 60], [cx, hly - 50], [hrx + 8, hry - 60], 14, 14, GROUND, ' opacity="0.5"');
     }
     case "kai": { // 明光铠：肩宽，胸前两块圆护，腰束，甲裙分三片
       const out = shape([
@@ -551,7 +597,10 @@ function propAndAccent(c: Char, f: Frame, expr: Expr, bare: boolean): string {
         : h === "sleeve" ? [f.hx - 10, hipY - 150]
         : h === "outR" ? [rx + 160, ry + 214]
         : [rx + 18, hipY - 26];                                  // down 与其余：垂下的右袖口
-      out.push(dot(at[0], at[1], 8));
+      // E8（R-017 第 5 条）：一粒圆点加上 CC1 描的那圈墨，在游戏尺寸下读成一朵小红花。
+      // 角色表写的本来就是「袖口滚边」，所以画成贴着袖口的一小段横笔：是边，不是花
+      out.push(stroke([at[0] - 17, at[1] + 1], [at[0], at[1] + 7], [at[0] + 17, at[1] + 1], 7, 6, ACCENT)
+        .replace("<polygon", '<polygon class="accent"'));
       break;
     }
     case "seal": out.push(`<rect class="accent" x="${x + 30}" y="${hipY - 118}" width="22" height="22" fill="${ACCENT}"/>`); break;

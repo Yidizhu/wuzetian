@@ -85,13 +85,15 @@
       ],
       "onResonant": {
         "effects": {
-          "affinity.wenqiao": 2
+          "affinity.wenqiao": 2,
+          "flag.wen_ch03_letter_poem": true
         },
         "reaction": "“这地方能坐。”她把诗笺放在窗边，没接着写颂文。"
       },
       "onMismatch": {
         "effects": {
-          "affinity.wenqiao": 1
+          "affinity.wenqiao": 1,
+          "flag.wen_ch03_letter_poem": true
         },
         "reaction": "她换个调念：“还没找对。先不改你的字。”"
       }

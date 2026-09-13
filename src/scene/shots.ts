@@ -31,7 +31,7 @@ export const SHOTS: Shot[] = [
   { key: "shishe",   palette: "ink",  act: 1, label: "诗社水榭 · 黄昏" },
   { key: "yuanye",   palette: "ink",  act: 1, label: "御花园 · 夜 · 月光" },
   { key: "hanyuan",  palette: "gold", act: 1, label: "含元殿 · 逆光 · 一幕" },
-  { key: "wuzibei",  palette: "ink",  act: 1, label: "无字碑 · 正面平光（结局卡）" },
+  { key: "wuzibei",  palette: "ink",  act: 1, label: "无字碑 · 正面平光（结局卡）", dress: "yin" },
   { key: "zhaoyang", palette: "gold", act: 2, label: "昭阳殿 · 二幕 · 墨屏进殿" },
   { key: "hanyuan",  palette: "gold", act: 3, label: "含元殿 · 三幕 · 墨盖过来" },
   { key: "zhaoyang", palette: "gold", act: 2, label: "昭阳殿 · 公议", dress: "gongyi" },

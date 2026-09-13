@@ -2,11 +2,11 @@
   "inputs": [
     {
       "file": "docs/C-2-第一章前六场.md",
-      "sha256": "ce9d858d14248222bc28951e341c5755615bc64ccacb0324a2855844bc495217"
+      "sha256": "0ae6f5a9b361c6f15a3fb5da6860e8df92c59b491de3eacd3d4138349c09d361"
     },
     {
       "file": "docs/C-3-第一章后十二场.md",
-      "sha256": "d1a6b4a8bef5716fea0f831c8d0837428b461bf5374d026651f0548962eda533"
+      "sha256": "c0d1f74a64c77177885abe3e0935b31e8bddbdf922546ec580b2fb726614bd00"
     },
     {
       "file": "docs/C-4-第一章书信.md",
@@ -26,7 +26,7 @@
     },
     {
       "file": "docs/C-7-第二章前十二场.md",
-      "sha256": "c5374b28a2b6f2b891d4e9dd8b5d14a1c4b14c68d1600d813f8f9e53b38aba85"
+      "sha256": "8a15fa237c9114ddd71c2fe1d70efbaea7491500803d5ddb6396636cc109441e"
     },
     {
       "file": "docs/C-8-第二章后十二场与书信.md",
@@ -38,15 +38,23 @@
     },
     {
       "file": "docs/C-10-第三章前十二场.md",
-      "sha256": "26a04281030313d99fc7d5557268659ef0258d1886acb13444980bf564efbadc"
+      "sha256": "43f8c87128b2e8ec1380715d8c5dd10235ebbc45bda805542d9898916ea51786"
     },
     {
       "file": "docs/C-11-第三章后十二场与书信.md",
-      "sha256": "0d5f6e07cfbfb14bdd2504791253ebaab33e01d6d1b6a43feb2d155f1bc485cc"
+      "sha256": "df67b3d2de302c00095360d2694cbea2c58efcf6eb0d6191b4635c6f81394187"
     },
     {
       "file": "docs/C-12-第四章大纲.md",
       "sha256": "cde4a21ce67888411caf7e527555cbc9dd298040f5d5976cd59a0c134ca38797"
+    },
+    {
+      "file": "docs/C-13-第四章登基与不受.md",
+      "sha256": "a3769e71b5c3cc2e041aa079a4f28739cc127dd6286c0dd9448e906c4ca348e6"
+    },
+    {
+      "file": "docs/C-14-第四章其余路线与书信.md",
+      "sha256": "3d3506c1203046c6302c6ff6e4f41e0e9062f92659d38239704a34799f1a1e0d"
     }
   ],
   "scenes": [
@@ -118,7 +126,25 @@
     "ch03_s21_nvguan",
     "ch03_s22_nvguan",
     "ch03_s23_yeting",
-    "ch03_s24_shuge"
+    "ch03_s24_shuge",
+    "ch04_s01_zhaoyang",
+    "ch04_s02_hanyuan",
+    "ch04_s03_shuge",
+    "ch04_s04_zhaoyang",
+    "ch04_s05_yeting",
+    "ch04_s07_hanyuan",
+    "ch04_s08_shuge",
+    "ch04_s10_yuanye",
+    "ch04_s06_zhaoyang",
+    "ch04_s09_yuanye",
+    "ch04_s11_nvguan",
+    "ch04_s12_nvguan",
+    "ch04_s13_nvguan",
+    "ch04_s14_shuge",
+    "ch04_s15_yilu",
+    "ch04_s16_yilu",
+    "ch04_s17_nvguan",
+    "ch04_s18_wuzibei"
   ],
   "poems": [
     "xuetao_chan",
@@ -172,7 +198,11 @@
     "lt_ch03_shenheng_01",
     "lt_ch03_peizhaoye_01",
     "lt_ch03_wenqiao_01",
-    "lt_ch03_liqinghe_01"
+    "lt_ch03_liqinghe_01",
+    "lt_ch04_shenheng_01",
+    "lt_ch04_peizhaoye_01",
+    "lt_ch04_wenqiao_01",
+    "lt_ch04_liqinghe_01"
   ],
   "endings": [
     "mandianwusheng",
@@ -184,5 +214,5 @@
     "guanshanyouxin",
     "zhishangyouming"
   ],
-  "issues": 1
+  "issues": 17
 }

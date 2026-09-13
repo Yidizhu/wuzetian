@@ -1,0 +1,134 @@
+{
+  "id": "ch04_s06_zhaoyang",
+  "chapter": 4,
+  "act": 4,
+  "scene": "zhaoyang",
+  "palette": "ink",
+  "cast": [
+    "wuze",
+    "hetaihou"
+  ],
+  "require": {
+    "flag.enthroned": true
+  },
+  "weightless": true,
+  "leavesLetter": [],
+  "purpose": "在旧恐惧旁坐一夜，不让诗替她作决定",
+  "lines": [
+    {
+      "id": "ch04_s06_zhaoyang.l1",
+      "who": "narr",
+      "kind": "aside",
+      "text": "昭阳殿夜里只点一盏灯，灯油的气味留在垂下的帷幔内。"
+    },
+    {
+      "id": "ch04_s06_zhaoyang.l2",
+      "who": "hetaihou",
+      "expr": "default",
+      "kind": "say",
+      "text": "那盏不用添。够我们坐。"
+    },
+    {
+      "id": "ch04_s06_zhaoyang.l3",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "窗那边还黑着。"
+    },
+    {
+      "id": "ch04_s06_zhaoyang.l4",
+      "who": "hetaihou",
+      "expr": "default",
+      "kind": "say",
+      "text": "坐不到那边去。"
+    },
+    {
+      "id": "ch04_s06_zhaoyang.l5",
+      "who": "narr",
+      "kind": "aside",
+      "text": "你将席移近一点，膝下地衣比石阶暖，鞋尖仍没暖过来。"
+    },
+    {
+      "id": "ch04_s06_zhaoyang.l6",
+      "who": "hetaihou",
+      "expr": "default",
+      "kind": "poem",
+      "text": "书中无别意，惟怅久离居。"
+    },
+    {
+      "id": "ch04_s06_zhaoyang.l7",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "你替她等过信？"
+    },
+    {
+      "id": "ch04_s06_zhaoyang.l8",
+      "who": "hetaihou",
+      "expr": "default",
+      "kind": "say",
+      "text": "她小时候不肯写等字，纸上只问我几时来。我到门口，却也不是回回进得去。"
+    },
+    {
+      "id": "ch04_s06_zhaoyang.l9",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "后来门开了。"
+    },
+    {
+      "id": "ch04_s06_zhaoyang.l10",
+      "who": "hetaihou",
+      "expr": "default",
+      "kind": "say",
+      "text": "开过一次，才有后来那些日子；等在外头的时候，我也不知道能不能等到那一次。"
+    },
+    {
+      "id": "ch04_s06_zhaoyang.l11",
+      "who": "narr",
+      "kind": "aside",
+      "text": "何把油瓶提起来，瓶口先靠住灯沿，没有往外倒。"
+    },
+    {
+      "id": "ch04_s06_zhaoyang.l12",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "你那时候怕什么？"
+    },
+    {
+      "id": "ch04_s06_zhaoyang.l13",
+      "who": "hetaihou",
+      "expr": "default",
+      "kind": "say",
+      "text": "她又问，我还得说等。"
+    },
+    {
+      "id": "ch04_s06_zhaoyang.l14",
+      "who": "self",
+      "kind": "inner",
+      "text": "（我也说过。明日。再等一回。）"
+    },
+    {
+      "id": "ch04_s06_zhaoyang.l15",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "今夜还说么？"
+    },
+    {
+      "id": "ch04_s06_zhaoyang.l16",
+      "who": "hetaihou",
+      "expr": "default",
+      "kind": "say",
+      "text": "今夜灯够。"
+    },
+    {
+      "id": "ch04_s06_zhaoyang.l17",
+      "who": "narr",
+      "kind": "aside",
+      "text": "她只添了半口油便停下，你没有把下一份荐牒拿进来。"
+    }
+  ],
+  "goto": "ch04_s07_hanyuan"
+}

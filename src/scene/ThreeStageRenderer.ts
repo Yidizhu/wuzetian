@@ -232,7 +232,6 @@ export class ThreeStageRenderer implements SceneRenderer {
   private markFloor(b: Built): void {
     // 人站的地方不是 lookAt 那么远：立绘在画面上很大，说明她们站在机位与看点之间，
     // 大约四成五的位置。拿 lookAt 处的地平线去对脚，仰视的场景会把人整个顶到画面上半张去
-    const at = b.camTo.clone().lerp(b.lookAt, 0.45);
     const keep = this.camera.position.clone();
     // 按推镜结束的机位算，而且要自己刷一遍矩阵：project 读的是 matrixWorldInverse，
     // 那个矩阵只在 render 里更新，这里不刷就是拿上一场的相机在算，数会离谱
@@ -240,7 +239,17 @@ export class ThreeStageRenderer implements SceneRenderer {
     this.camera.lookAt(b.lookAt);
     this.camera.updateMatrixWorld(true);
     this.camera.matrixWorldInverse.copy(this.camera.matrixWorld).invert();
-    const p = new THREE.Vector3(at.x, 0, at.z).project(this.camera);
+    // 站在哪（E8）：原来写死机位到看点的四成五。整屏闭环量出来，大多数场景那个位置的地
+    // 在对话框下面（地线 3%、-7%），立绘被下限抬到 21%，于是人比真地面高出一截——R-017 说的「浮着」就是这个。
+    // 现在往里走：从四成五开始，一步半成，直到脚下那块地露出对话框（23%）为止。人站远了，下面按同一处算身高，自然就小
+    let at = b.camTo.clone().lerp(b.lookAt, 0.45);
+    let p = new THREE.Vector3(at.x, 0, at.z).project(this.camera);
+    for (let t = 0.5; t <= 0.95 && (p.y + 1) / 2 < 0.23; t += 0.05) {
+      at = b.camTo.clone().lerp(b.lookAt, t);
+      p = new THREE.Vector3(at.x, 0, at.z).project(this.camera);
+    }
+    // 同一个位置、一个 1.62 米的人头顶在哪（E8）：人和景用同一台相机量，才是同一个空间
+    const head = new THREE.Vector3(at.x, PERSON_M, at.z).project(this.camera);
     this.camera.position.copy(keep);
     this.camera.lookAt(b.lookAt);
     // ndc.y 1 是顶、-1 是底；离底边的比例就是 (y + 1) / 2。
@@ -248,6 +257,31 @@ export class ThreeStageRenderer implements SceneRenderer {
     // 宁可让人站得比真地平线高一点点，也不能让她没有脚——E4 手机实机的第一条意见
     const fromBottom = Math.max(0.21, Math.min(0.42, (p.y + 1) / 2));
     document.documentElement.style.setProperty("--stage-floor", `${(fromBottom * 100).toFixed(1)}%`);
+    this.personRaw = (head.y - p.y) / 2;
+    // 给整屏闭环读：真人按这台相机该有多高、地线原本在哪（夹之前）
+    document.documentElement.dataset.stageRaw = `${this.personRaw.toFixed(3)} ${((p.y + 1) / 2).toFixed(3)}`;
+    document.documentElement.style.setProperty("--stage-person", this.personScale().toFixed(3));
+  }
+
+  /** 这个位置上一个真人在画面上占多高（0–1），给整屏闭环报数用 */
+  personRaw = 0;
+
+  /**
+   * 人多大（E8，D-071 整屏闭环看出来的）。CC1 给了 --stage-person 这个旋钮，默认 1；
+   * 1 的时候两个立绘各占竖屏七成高，景全被挡在腿后面，女冠观的殿读成她们腰边一张桌子，
+   * 含元殿读成两个巨人脚下的沙盘——**立绘和场景不是同一个空间**。
+   *
+   * 所以人的大小不再写死，按相机算：站位上一个 1.62 米的人在画面上占多高，立绘就画多高
+   * （立绘里人身占格子高的 86%，格子是视口高的 72% 或 76%）。
+   * 算出来太小的场景（远景、俯视）夹到 PERSON_MIN：再小手机上认不出是谁，那一场该改的是机位，不是人——
+   * 整屏闭环把「夹住了」的场标出来，交人决定改机位还是认。stage-tune.ts 里写了 person 的以写的为准
+   */
+  private personScale(): number {
+    const d = this.last;
+    const fixed = d ? STAGE_TUNE[tuneKey(d.key, d.palette, this.dressing)]?.person : undefined;
+    if (fixed) return fixed;
+    const slot = (window.innerWidth <= 480 ? 0.72 : 0.76) * 0.86;
+    return Math.max(PERSON_MIN, Math.min(PERSON_MAX, this.personRaw / slot));
   }
 
   /**
@@ -697,22 +731,24 @@ export class ThreeStageRenderer implements SceneRenderer {
     // 对面墙：只给一条边，退到右后，淡
     this.put(g, new THREE.BoxGeometry(0.16, 1.9, 3.2), "pale", [1.5, 0.95, -2.4], { lineW: LINE_W * 0.5 });
     // 门：院子尽头一扇关着的板门。偏在画面左三分之一，不居中
-    this.put(g, new THREE.BoxGeometry(1.5, 2.3, 0.14), "light", [-0.2, 1.15, -3.75], { lineW: LINE_W * 0.8 });
-    this.put(g, new THREE.BoxGeometry(0.06, 2.16, 0.04), "line", [-0.2, 1.14, -3.67], { lineW: LINE_W * 0.4 });
+    // E8：门加高到 3 米。整屏里人站上去，原来 2.3 米的门楣正好压在两个人头顶——院门本来就比人高得多
+    this.put(g, new THREE.BoxGeometry(1.5, 3.0, 0.14), "light", [-0.2, 1.5, -3.75], { lineW: LINE_W * 0.8 });
+    this.put(g, new THREE.BoxGeometry(0.06, 2.86, 0.04), "line", [-0.2, 1.48, -3.67], { lineW: LINE_W * 0.4 });
     // 门楣与檐：一条重横线压在门上，与墙头那条呼应
-    this.put(g, new THREE.BoxGeometry(2.35, 0.17, 0.66), "dark", [-0.2, 2.48, -3.62], { lineW: LINE_W * 1.2 });
+    this.put(g, new THREE.BoxGeometry(2.35, 0.17, 0.66), "dark", [-0.2, 3.18, -3.62], { lineW: LINE_W * 1.2 });
     // 未写名的门牌：纸色，空的，挂在门右侧，歪着。
     // 全画面最亮的一小块 + 最重的一圈线，视线只能落在它上面——这一场讲的就是「名字还没写上去」
-    this.put(g, new THREE.BoxGeometry(0.34, 0.5, 0.05), "flat", [0.64, 1.62, -3.66], { rz: -0.055, lineW: LINE_W * 1.5 });
+    this.put(g, new THREE.BoxGeometry(0.34, 0.5, 0.05), "flat", [0.64, 2.85, -3.66], { rz: -0.055, lineW: LINE_W * 1.5 });   // E8：抬到人头以上，原来挨着右边那个人的头，像一块牌子挂在她脑袋上
     // 阶
     this.put(g, new THREE.BoxGeometry(1.85, 0.12, 0.5), "light", [-0.2, 0.06, -3.42], { lineW: LINE_W * 0.6 });
     // 水瓮：近物，压住画面右下角。压到淡墨——E1 那一版它是重墨，比门牌还扎眼，抢了焦点
     this.put(g, new THREE.CylinderGeometry(0.32, 0.25, 0.52, 8), "light", [0.78, 0.26, -1.5], { lineW: LINE_W * 0.9 });
     this.put(g, new THREE.CylinderGeometry(0.22, 0.22, 0.03, 8), "flat", [0.78, 0.53, -1.5], { lineW: LINE_W * 0.6 });
     // 槐：一条干从右边进来，两片淡冠压住右上角，免得留白空得没道理
-    this.put(g, new THREE.CylinderGeometry(0.06, 0.09, 2.6, 6), "line", [1.02, 1.3, -1.2], { rz: -0.06, lineW: LINE_W * 0.45 });
-    this.canopy(g, 1.5, 0.9, 0.34, [1.32, 2.76, -1.25], "pale", -0.09);
-    this.canopy(g, 1.0, 0.7, 0.28, [0.98, 3.12, -1.4], "pale", 0.08);
+    // E8：干原来在 x 1.02，右边那个人正好把它整根挡住，两片冠就成了悬在空中的灰盒子。挪到人外侧、往后退
+    this.put(g, new THREE.CylinderGeometry(0.06, 0.09, 3.1, 6), "line", [1.5, 1.55, -2.2], { rz: -0.06, lineW: LINE_W * 0.45 });
+    this.canopy(g, 1.5, 0.9, 0.34, [1.72, 3.2, -2.25], "pale", -0.09);
+    this.canopy(g, 1.0, 0.7, 0.28, [1.4, 3.56, -2.4], "pale", 0.08);
     this.pool(g, 0.8, -1.55, 0.55);
     this.pool(g, -0.2, -3.35, 0.9);
     // 侧逆光：光从门那一侧的后上方来，墙和瓮只剩朝门的一面亮
@@ -761,26 +797,31 @@ export class ThreeStageRenderer implements SceneRenderer {
     }
     // 柱列：石青，画面最重的块面。近的一对顶天立地，仰视的压迫来自它们
     // 三对柱子。原来四对，最远那一对基本被前面挡住，省下来的面数给公议的案
-    for (let i = 0; i < 3; i++) {
+    // E8（R-017 第 2 条）：最近那一对不要了。它在竖屏里被画面两边切断，右边那根的柱础成了一块读不出的浅方块；
+    // 人站上去以后，它还和人的剪影叠在一起。中、远两对留着，框住殿，不框人
+    for (let i = 1; i < 3; i++) {
       for (const side of [-1, 1]) {
         // 近的一对往外让：立绘站在画面三成和七成处，那一对柱子原来正好戳在两个人身上，
         // 而金碧板里主角的主调也是石青，人和柱同色同位，剪影就糊了（E2 的叠合检查）
         const cx = side * (1.66 + (i === 0 ? 0.52 : 0) + i * 0.14), cz = -0.7 - i * 2.3;
         // 水墨版柱子按远近退墨：近浓、中重、远淡。金碧版三对都是石青——那是「规定好的」，不分远近
-        const colTone: Tone = ink ? (["dark", "mid", "light"] as const)[i]! : "dark";
-        this.put(g, new THREE.CylinderGeometry(0.15 - i * 0.01, 0.185 - i * 0.01, 5.4, 8), colTone,
-          [cx, 2.7, cz], { lineW: LINE_W * (1.1 - i * 0.1) });
+        const colTone: Tone = ink ? (["dark", "dark", "mid"] as const)[i]! : "dark";
+        // 柱子加高到 6.7：横梁抬上去了（见下），柱子要够得着它
+        this.put(g, new THREE.CylinderGeometry(0.15 - i * 0.01, 0.185 - i * 0.01, 6.7, 8), colTone,
+          [cx, 3.35, cz], { lineW: LINE_W * (1.1 - i * 0.1) });
         // 柱础：一块方石。唐代的柱子不是直接插进地里的，有没有这一块，像不像唐差很多
         this.put(g, new THREE.BoxGeometry(0.46, 0.16, 0.46), ink ? "pale" : "light",
           [cx, ink ? 0.08 : 0.24, cz], { lineW: LINE_W * 0.6 });
-        if (ink && i === 0) this.pool(g, cx, cz, 0.5);
+        if (ink && i === 1) this.pool(g, cx, cz, 0.5);
       }
     }
     // 横梁：赭石，压在画面顶上，是「天」与「人」的分界
     // 水墨版退到淡墨：仰视下它压在画面最顶上，重墨的一根横梁成了一道黑框（E6 截图上看出来的）
-    this.put(g, new THREE.BoxGeometry(6.4, 0.4, 0.5), ink ? "light" : "mid", [0, 5.3, -0.5], { lineW: LINE_W * 0.6 });
+    // E8（R-017 第 1、6 条）：横梁原来在 y 5.3，竖屏里正好横在两个人头顶，把上半屏切成两块、把留白切碎。
+    // 抬到 6.6、挪到中间那对柱子上：它退到画面最上沿、状态条后面，是框，不是一刀
+    this.put(g, new THREE.BoxGeometry(4.4, 0.36, 0.45), ink ? "light" : "mid", [0, 6.6, -3.0], { lineW: LINE_W * 0.6 });
     // 檐下帷幔：石绿，只有这一条。石绿在这套画面里只占这么多
-    this.put(g, new THREE.BoxGeometry(4.0, 0.4, 0.07), ink ? "pale" : "light", [0, 4.78, -0.72], { lineW: LINE_W * 0.6 });
+    this.put(g, new THREE.BoxGeometry(3.4, 0.32, 0.07), ink ? "pale" : "light", [0, 6.2, -3.2], { lineW: LINE_W * 0.6 });
     // 匾：泥金，全画面唯一的泥金，小、远、高。它是点，不是面
     this.put(g, new THREE.BoxGeometry(1.15, 0.42, 0.1), "pale", [0.1, 3.95, -7.6]);
     // 素屏风：绢底不参加光照，是这一幕的留白与无字碑母题。
@@ -795,7 +836,8 @@ export class ThreeStageRenderer implements SceneRenderer {
     // 只属于第一章：幕 1、金碧、没有布置（布置那一条走 bare，切布置时不重搭）。
     // 原来无条件画，于是第二章 14 场太后与宋蕙贞谈披帛、
     // 第三章公议、第四章她登基后回到这座殿，殿里都还站着那匹试骑的马（E5 对 C-12 时发现）
-    const horse = d.palette === "gold" && d.act === 1 ? this.horse(0.62, 0, -2.5, 0.6) : undefined;
+    // 马挪到两个人中间（E8）：原来在右边，正好被右边那个人整个挡住，只露出几条腿，像她脚下踩着一只蓝色的东西
+    const horse = d.palette === "gold" && d.act === 1 ? this.horse(-0.45, 0, -3.1, 0.6) : undefined;
     if (horse) g.add(horse);                  // 马的线在 horse() 里加粗过：粗线归主体
     const lights: THREE.Light[] = [];
     if (ink) {
@@ -1012,14 +1054,16 @@ export class ThreeStageRenderer implements SceneRenderer {
     // E1 那一版清墨 6.9 / 淡墨 6.7 / 焦墨 6.5 / 浓墨 4.4 四色平分，是 rubric 第 6 条的「差」档
     this.put(g, new THREE.BoxGeometry(5.8, 0.3, 2.6), "light", [0, 0.15, -4.6], { lineW: LINE_W * 0.6 });
     for (const x of [-2.3, -0.7, 0.9, 2.3]) {
-      this.put(g, new THREE.CylinderGeometry(0.11, 0.13, 2.1, 6), "light", [x, 1.35, -3.6], { lineW: LINE_W * 0.6 });
+      this.put(g, new THREE.CylinderGeometry(0.11, 0.13, 2.9, 6), "light", [x, 1.75, -3.6], { lineW: LINE_W * 0.6 });
     }
-    this.roof(g, 6.6, 3.4, 0.95, [0, 2.95, -3.7]);
+    // E8：柱子加高到 2.9、屋顶抬到 3.75。整屏里人站上去，原来的檐口正好在人头那条线上，人像顶着屋檐站着
+    this.roof(g, 6.6, 3.4, 0.95, [0, 3.75, -3.7]);
     // 门内一片空：纸色。观里没有人，也没有神像
-    this.put(g, new THREE.BoxGeometry(1.5, 1.5, 0.06), "flat", [0.1, 1.05, -4.5], { lineW: LINE_W * 0.7 });
+    this.put(g, new THREE.BoxGeometry(1.5, 2.2, 0.06), "flat", [0.1, 1.4, -4.5], { lineW: LINE_W * 0.7 });
     // 幡杆与空白符纸：符纸垂在屋檐前面，纸色压在最重的那条黑线上，线再加重，一眼就看见它
-    this.put(g, new THREE.CylinderGeometry(0.05, 0.06, 4.4, 6), "line", [2.25, 2.2, -2.2], { lineW: LINE_W * 0.45 });
-    this.put(g, new THREE.BoxGeometry(0.34, 2.0, 0.03), "flat", [2.44, 2.45, -2.2], { rz: -0.04, lineW: LINE_W * 1.4 });
+    // 幡杆挪到右边那个人外侧，原来一根黑线正好竖着穿过她
+    this.put(g, new THREE.CylinderGeometry(0.05, 0.06, 5.2, 6), "line", [2.95, 2.6, -2.2], { lineW: LINE_W * 0.45 });
+    this.put(g, new THREE.BoxGeometry(0.34, 2.0, 0.03), "flat", [3.14, 3.1, -2.2], { rz: -0.04, lineW: LINE_W * 1.4 });
     // 松：两片长而软的冠，与柱同一级淡墨
     this.put(g, new THREE.CylinderGeometry(0.08, 0.12, 2.6, 6), "line", [-2.05, 1.3, -1.2], { lineW: LINE_W * 0.5 });
     this.canopy(g, 2.1, 1.1, 0.32, [-2.3, 2.7, -1.3], "light", 0.05);
@@ -1057,10 +1101,10 @@ export class ThreeStageRenderer implements SceneRenderer {
       : [new THREE.HemisphereLight(0xffffff, 0xbbbbbb, 1.12)];
     if (rain) {
       // 檐下一盏灯：挂在屋檐前沿偏右，正好在符纸那一侧。雨夜里全场只有这一点亮
-      this.put(g, new THREE.CylinderGeometry(0.03, 0.03, 0.5, 6), "line", [1.25, 2.28, -2.6], { lineW: LINE_W * 0.4 });
-      this.put(g, new THREE.BoxGeometry(0.34, 0.42, 0.34), "paper", [1.25, 1.82, -2.6], { lineW: LINE_W * 1.1, unlit: true });
+      this.put(g, new THREE.CylinderGeometry(0.03, 0.03, 0.5, 6), "line", [1.25, 3.08, -2.6], { lineW: LINE_W * 0.4 });
+      this.put(g, new THREE.BoxGeometry(0.34, 0.42, 0.34), "paper", [1.25, 2.62, -2.6], { lineW: LINE_W * 1.1, unlit: true });
       const lamp = new THREE.PointLight(0xffe0b0, 4.2, 6, 1.7);
-      lamp.position.set(1.25, 1.82, -2.4);
+      lamp.position.set(1.25, 2.62, -2.4);
       lights.push(lamp);
     }
     return {
@@ -1109,9 +1153,10 @@ export class ThreeStageRenderer implements SceneRenderer {
     }
     // 柱与一面坡顶：顶是最重的一块，斜着切过右上
     for (const [x, z] of [[-0.6, 0.1], [2.3, 0.1], [-0.6, -1.9], [2.3, -1.9]] as const) {
-      this.put(g, new THREE.CylinderGeometry(0.1, 0.12, 2.0, 6), "mid", [x, 1.62, z], { lineW: LINE_W * 0.7 });
+      this.put(g, new THREE.CylinderGeometry(0.1, 0.12, 2.7, 6), "mid", [x, 1.97, z], { lineW: LINE_W * 0.7 });
     }
-    this.roof(g, 5.0, 3.4, 0.8, [0.85, 2.75, -0.85]);
+    // E8：柱子 2.0 → 2.7、顶 2.75 → 3.45，檐口离开人头（和女冠观同一个毛病）
+    this.roof(g, 5.0, 3.4, 0.8, [0.85, 3.45, -0.85]);
     // 低案与未题字的团扇：团扇是一枚纸色圆片，斜搁着。焦点
     this.put(g, new THREE.BoxGeometry(1.15, 0.07, 0.7), "mid", [0.72, 0.7, -1.05]);
     this.put(g, new THREE.CylinderGeometry(0.3, 0.3, 0.025, 14), "flat", [0.56, 0.76, -1.0], { rz: 0.1, ry: 0.35 });
@@ -1156,23 +1201,26 @@ export class ThreeStageRenderer implements SceneRenderer {
     this.put(g, new THREE.CylinderGeometry(0.34, 0.34, 0.02, 16), "paper", [1.62, 5.15, -7.4],
       { rx: Math.PI / 2, lineW: 0, unlit: true });
     // 近景曲栏：横过画面下方，焦墨。当中缺一根望柱，那个豁口就是留空的那一线
-    this.put(g, new THREE.BoxGeometry(4.6, 0.08, 0.1), "line", [0.15, 1.02, 0.4], { lineW: LINE_W * 1.0 });
-    this.put(g, new THREE.BoxGeometry(4.6, 0.08, 0.1), "line", [0.15, 0.72, 0.4], { lineW: LINE_W * 0.85 });
+    // E8：曲栏原来在 z 0.4，比人站的地方还近——该挡住腿的栏杆画在了腿后面（立绘是叠在画布上的）。挪到人身后
+    this.put(g, new THREE.BoxGeometry(4.6, 0.08, 0.1), "line", [0.15, 1.02, -1.5], { lineW: LINE_W * 1.0 });
+    this.put(g, new THREE.BoxGeometry(4.6, 0.08, 0.1), "line", [0.15, 0.72, -1.5], { lineW: LINE_W * 0.85 });
     for (const x of [-1.95, -1.15, -0.35, 1.25, 2.05]) {    // 0.45 那一根故意不放
-      this.put(g, new THREE.BoxGeometry(0.11, 0.62, 0.11), "line", [x, 0.71, 0.4], { lineW: LINE_W * 0.7 });
+      this.put(g, new THREE.BoxGeometry(0.11, 0.62, 0.11), "line", [x, 0.71, -1.5], { lineW: LINE_W * 0.7 });
     }
     // 太湖石：三块叠着，转着放，右后方的重量
     this.put(g, new THREE.BoxGeometry(1.0, 0.7, 0.8), "mid", [1.9, 0.36, -2.4], { ry: 0.5, rz: 0.3, lineW: LINE_W * 0.8 });
     this.put(g, new THREE.BoxGeometry(0.6, 0.85, 0.6), "mid", [2.2, 0.95, -2.15], { ry: -0.5, rz: -0.42, lineW: LINE_W * 0.8 });
     this.put(g, new THREE.BoxGeometry(0.42, 0.44, 0.42), "dark", [1.62, 0.92, -2.65], { ry: 0.9, rz: 0.55, lineW: LINE_W * 0.8 });
     // 海棠：干要看得见。E1 那一版干被栏挡住又偏出了画面，只剩三根悬空的斜棒，读不出是一株树
-    this.put(g, new THREE.CylinderGeometry(0.08, 0.14, 3.2, 6), "line", [-1.35, 1.6, -0.9], { rz: 0.16, lineW: LINE_W * 0.9 });
-    for (const [i, rz] of [[0, -0.95], [1, -0.5], [2, -1.25]] as const) {
-      this.put(g, new THREE.BoxGeometry(1.1 - i * 0.16, 0.055, 0.055), "line",
-        [-0.85 + i * 0.22, 2.55 + i * 0.4, -0.9 + i * 0.16], { rz, lineW: LINE_W * 0.5 });
-    }
-    for (const [x, y, z] of [[-0.35, 3.05, -0.8], [-0.05, 3.42, -0.72], [-0.62, 3.62, -0.9]] as const) {
-      this.put(g, new THREE.CylinderGeometry(0.075, 0.075, 0.02, 8), "pale", [x, y, z],
+    // E8：枝原来和干不相接——干往左歪、枝从右边半空里长出来，整屏截图上就是三根悬在空中的黑棍和几个灰点。
+    // 现在干往右歪，三根枝都从干上的一点起笔，花点落在枝梢
+    const tx = (y: number) => -1.35 + (y - 1.6) * 0.16;
+    this.put(g, new THREE.CylinderGeometry(0.08, 0.14, 3.2, 6), "line", [-1.35, 1.6, -0.9], { rz: -0.16, lineW: LINE_W * 0.9 });
+    for (const [y0, len, rz] of [[2.3, 1.05, 0.5], [2.75, 0.9, 0.95], [3.05, 0.7, 0.2]] as const) {
+      const cx = tx(y0) + Math.cos(rz) * len / 2, cy = y0 + Math.sin(rz) * len / 2;
+      this.put(g, new THREE.BoxGeometry(len, 0.055, 0.055), "line", [cx, cy, -0.9], { rz, lineW: LINE_W * 0.5 });
+      const ex = tx(y0) + Math.cos(rz) * len, ey = y0 + Math.sin(rz) * len;
+      this.put(g, new THREE.CylinderGeometry(0.075, 0.075, 0.02, 8), "pale", [ex + 0.04, ey + 0.06, -0.86],
         { rx: Math.PI / 2, lineW: 0, unlit: true });
     }
     // 一盏地灯：夜里唯一的人工光，压得很低。盏是全画面最亮的一点，视线落在这儿——
@@ -1265,11 +1313,14 @@ export class ThreeStageRenderer implements SceneRenderer {
     return {
       group: g,
       dress,
-      camFrom: new THREE.Vector3(-1.1, 12.6, 15.8),
-      camTo: new THREE.Vector3(-0.9, 11.4, 13.4),
-      lookAt: new THREE.Vector3(0.4, 1.0, -11.0),      // 大俯视
-      fitWidth: 20,
-      fitHeight: 15,
+      // E8：原来是大俯视（机位 11 米高），场景那一层自评 72，整屏里却是两个巨人站在一张沙盘上——
+      // 按相机算，站位上一个真人只该占画面 6%。俯视的场景放不下站着的人，所以机位落到广场上、人眼高，
+      // 顺着龙尾道往上看殿。「人极小、殿压人」的意思没丢：现在是仰着看，殿比原来更高
+      camFrom: new THREE.Vector3(-0.7, 1.55, 12.6),
+      camTo: new THREE.Vector3(-0.6, 1.4, 11.2),
+      lookAt: new THREE.Vector3(0.2, 5.2, -14.0),
+      fitWidth: 13,
+      fitHeight: 12,
       lights: [new THREE.HemisphereLight(0xffffff, 0x444444, shouwei ? 0.5 : 0.14), back],
     };
   }
@@ -1522,6 +1573,11 @@ function rebuilds(name: string): boolean {
 }
 
 const DRESS_GONGYI = ["gongyi", "shouwei"] as const;
+
+/** 人的身高（米）与立绘缩放的上下限，见 personScale */
+const PERSON_M = 1.62;
+const PERSON_MIN = 0.62;
+const PERSON_MAX = 1;
 
 /** CC1 接上 setInk 之前的默认值：幕数就是她的权力进度（D-010 第 3 条） */
 function actInk(act: number): number {

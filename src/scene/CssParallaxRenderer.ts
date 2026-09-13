@@ -98,6 +98,8 @@ export class CssParallaxRenderer implements SceneRenderer {
     this.root.dataset.night = look.night ? "1" : "";
     // CSS 版没有真的地平线，给立绘层一个固定值。变量的说明见 ThreeStageRenderer.markFloor
     document.documentElement.style.setProperty("--stage-floor", "22%");
+    // 3D 舞台会把人收小（--stage-person），退回 CSS 版时要还原，不然人就一直是小的
+    document.documentElement.style.setProperty("--stage-person", "1");
     this.root.classList.remove("stage--wiping");
     await wait(320);
   }
