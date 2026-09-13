@@ -1,56 +1,74 @@
 {
-  "_about": "登场卡（D-048）。占位文案，从 docs/C-A-角色圣经.md 第一节「身份／职能」列取的，ChatGPT 之后统一给正式的。role 是职务，line 是一句话，空着就只显示职务。",
-  "placeholder": true,
+  "_about": "登场卡（D-048）。定稿文案，来自 docs/C10-开场修订与登场卡.md「十一人登场卡」表。role 是职务，line 是一句话，合计不超过 20 字。只在这个人第一次开口时出现一次。",
+  "placeholder": false,
   "cards": {
+    "wuze": {
+      "name": "{名}",
+      "role": "才人",
+      "line": "刚入宫，先问纸上写了谁。"
+    },
     "shenheng": {
       "name": "沈衡",
-      "role": "尚宫局司记",
-      "line": "奉敕时参与草拟内廷文字"
+      "role": "司记",
+      "line": "每道命令，都要留来处。"
     },
     "peizhaoye": {
       "name": "裴照夜",
-      "role": "奉召入京的女将",
-      "line": "长于行军组织与粮饷核实"
+      "role": "女将",
+      "line": "人能回来，欠饷也得回来。"
     },
     "wenqiao": {
       "name": "温荞",
-      "role": "女诗人兼抄书、制笺谋生者",
-      "line": "主持小型诗会"
+      "role": "诗人",
+      "line": "写自己的句子，挣自己的纸钱。"
     },
     "liqinghe": {
       "name": "李令仪",
-      "role": "有继承资格的宗室公主",
-      "line": "熟悉赋役账目"
+      "role": "清河公主",
+      "line": "她要赢，也要你认真来争。"
     },
     "songhuizhen": {
       "name": "宋蕙贞",
-      "role": "资深才人",
-      "line": "照应新入宫者的日常，熟悉内廷服役与俸给"
+      "role": "才人",
+      "line": "先吃饭，旁的吃完再说。"
     },
     "hetaihou": {
       "name": "何太后",
-      "role": "在位者之母",
-      "line": "掌握内廷资源与宗室协商影响力"
+      "role": "太后",
+      "line": "这道门，她替女儿守过。"
     },
     "xujinghe": {
       "name": "许静和",
-      "role": "女冠、观中主事者",
-      "line": "教字、看护病者"
+      "role": "女冠",
+      "line": "借你半间屋，也会说今日不借。"
     },
     "tangjian": {
       "name": "唐简",
-      "role": "尚宫局典记",
-      "line": "熟悉抄录、勘核与案牍流转"
+      "role": "典记",
+      "line": "谁经手，谁落名。"
     },
     "adi": {
       "name": "阿荻",
       "role": "掖庭宫人",
-      "line": "针线熟练，正学识字"
+      "line": "她的事，先问她。"
     },
     "liuchenghuan": {
       "name": "柳承欢",
       "role": "掖庭宫人",
-      "line": "善排差、核稿，自请为主角女史"
+      "line": "总先问你，还缺什么。"
     }
+  },
+  "firstAppearance": {
+    "wuze": "ch01-00",
+    "shenheng": "ch01-01",
+    "peizhaoye": "ch01-01",
+    "wenqiao": "ch01-11",
+    "liqinghe": "ch01-08",
+    "songhuizhen": "ch01-03",
+    "hetaihou": "ch02-11",
+    "xujinghe": "ch01-03后半，实际来访时",
+    "tangjian": "ch01-06",
+    "adi": "ch01-03",
+    "liuchenghuan": "ch02-25，按实读顺序接21"
   }
 }

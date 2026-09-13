@@ -80,7 +80,7 @@ test("点在按钮上不翻页：那一下是给按钮的", () => {
 });
 
 test("点在满屏面板的空白处也不翻页", () => {
-  for (const cls of ["duel", "summary", "slots", "inbox", "notice", "title", "choices"]) {
+  for (const cls of ["duel", "summary", "slots", "inbox", "notice", "title", "choices", "tiji"]) {
     fired = 0;
     const panel = el("div", cls);
     send("pointerdown", el("div", "inner", panel), 6000 + Math.random() * 1000);

@@ -8,6 +8,7 @@
  * 硬错误退出码 1，只有警告退出码 0。
  */
 import { join } from "node:path";
+import { existsSync, readFileSync } from "node:fs";
 import { z } from "zod";
 import { DATA, ROOT, loadDir, loadFile } from "./load.ts";
 import { Scene, PoemDuel, Poem, Letter, Ending, CHARACTER_KEYS, NAME_FLAGS, FLAG_CONFLICTS, FLAG_REQUIRES } from "../src/engine/schema.ts";
@@ -209,6 +210,22 @@ for (const { file, s } of scenes.values()) {
   for (const who of s.leavesLetter) {
     if (mainRun && !letters.some((l) => l.trigger.kind === "scene" && l.trigger.sceneId === s.id && l.from === who)) {
       err(file, "leavesLetter", `留了 ${who} 的信，但 src/data/letters/ 里没有一封 from=${who} 且触发于本场的信`);
+    }
+  }
+}
+
+// ------------------------------------------------------------- 登场卡（D-048）
+
+if (mainRun) {
+  const introFile = join(DATA, "intros.json");
+  if (existsSync(introFile)) {
+    const intro = JSON.parse(readFileSync(introFile, "utf8")) as { cards?: Record<string, { role: string; line: string }> };
+    for (const [key, c] of Object.entries(intro.cards ?? {})) {
+      if (!(CHARACTER_KEYS as readonly string[]).includes(key)) {
+        err("src/data/intros.json", key, `不是冻结的角色 key。登场卡永远不会出现`);
+      }
+      const n = [...(c.role ?? "")].length + [...(c.line ?? "")].length;
+      if (n > 20) err("src/data/intros.json", key, `职务加一句话共 ${n} 字，超过 20。手机竖屏上会折成三行，压到立绘的脚`);
     }
   }
 }

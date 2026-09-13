@@ -29,6 +29,9 @@
 const BLOCKING = [
   "button", "a", "input", "textarea", "select", "label",
   ".choices", ".duel", ".summary", ".slots", ".inbox", ".notice", ".title", ".letter",
+  // 序幕题记（CC3 E5 待协调第 1 条）：它自己收点击，第一下补完、第二下合上。
+  // 不挡的话，点一下题记，后面的剧情也跟着翻一页
+  ".tiji",
 ].join(",");
 
 /**
