@@ -13,6 +13,7 @@ import { z } from "zod";
 import { DATA, ROOT, loadDir, loadFile } from "./load.ts";
 import { Scene, PoemDuel, Poem, Letter, Ending, CHARACTER_KEYS, NAME_FLAGS, FLAG_CONFLICTS, FLAG_REQUIRES } from "../src/engine/schema.ts";
 import type { SceneT, PoemT, PoemDuelT, LetterT, EndingT } from "../src/engine/schema.ts";
+import { ENTRANCES } from "../src/engine/entrances.ts";
 
 /**
  * 开场。M1 那四场骨架（ch00_*）是我写的占位文字，不是剧本，已退到
@@ -206,6 +207,16 @@ for (const [act, list] of [...byAct].sort((a, b) => a[0] - b[0])) {
 // 好感门槛只许是档位下限（D-065）。门槛写在剧本 markdown 里，改了数据不改原文，
 // 下一次转换就悄悄变回 10 和 16——这一条让它变回去的那一刻就响
 const BAND_FLOORS = new Set([0, 5, 8, 14]);
+
+// 人上台的那一句（D-076，engine/entrances.ts）。剧本改了句序、id 对不上，引擎会悄悄退回「一开场人就在」，
+// 序幕那一次变化就没了而画面毫无异样——所以这里是错误不是警告
+for (const [sid, lid] of Object.entries(ENTRANCES)) {
+  const s = scenes.get(sid)?.s;
+  if (!s) { err("src/engine/entrances.ts", sid, "人上台表里写的这一场不存在"); continue; }
+  const at = s.lines.findIndex((l) => l.id === lid);
+  if (at < 0) { err("src/engine/entrances.ts", sid, `人上台的那一句 ${lid} 在这一场里找不到了。剧本改过句序的话，照 D-076 重新挑一句（有人叫她名字的那一句）`); continue; }
+  if (s.lines[at]!.who === "tiji") err("src/engine/entrances.ts", sid, `人上台的那一句 ${lid} 是题记。题记那张纸上不该有人`);
+}
 const checkGates = (file: string, where: string, req: Record<string, unknown> | undefined) => {
   for (const [k, v] of Object.entries(req ?? {})) {
     const gte = k.startsWith("affinity.") ? (v as { gte?: number }).gte : undefined;

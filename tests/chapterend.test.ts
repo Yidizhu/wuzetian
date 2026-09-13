@@ -525,6 +525,65 @@ test("无头工具不画纸：没有 epigraph 钩子时题记直接跳过", asyn
   assert.deepEqual(lines, ["旁白。"]);
 });
 
+/**
+ * D-076：序幕三段。题记只有纸 → 纸收起、墨晕开、景出来，人还没来 → 有人叫她，她进画面。
+ */
+test("D-076 从题记开始的场：纸收起之前景不显，人等到那一句才上台", async () => {
+  mem.clear();
+  const { ENTRANCES } = await import("../src/engine/entrances.ts");
+  const store = new Store();
+  const log: string[] = [];
+  let release: (() => void) | null = null;
+  const s = scene("ch01_s00_zhaoyang", 1, { goto: "ch01_s00_zhaoyang", cast: ["wuze"] as Scene["cast"] });
+  s.lines = [
+    { id: "ch01_s00_zhaoyang.l1", who: "tiji", kind: "aside", text: "题记。" },
+    { id: "ch01_s00_zhaoyang.l2", who: "narr", kind: "aside", text: "空景。" },
+    { id: "ch01_s00_zhaoyang.l3", who: "narr", kind: "aside", text: "叫名字。" },
+  ] as Scene["lines"];
+  const saved = ENTRANCES.ch01_s00_zhaoyang;
+  (ENTRANCES as Record<string, string>).ch01_s00_zhaoyang = "ch01_s00_zhaoyang.l3";
+  try {
+    const renderer = { ...noopRenderer, async show() { log.push("show"); } };
+    const story = new Story([s], [], [], [], store, renderer,
+      {
+        async duel() { return true; }, async chapterEnd() {},
+        epigraph: () => new Promise<void>((r) => { log.push("纸"); release = r; }),
+      }, "ch01_s00_zhaoyang");
+    story.on((e) => {
+      if (e.kind === "scene") log.push(e.castHeld ? "台空" : "台上有人");
+      if (e.kind === "castEnter") log.push(`上台:${e.cast.join()}`);
+      if (e.kind === "line") log.push(e.text);
+    });
+    await story.start();
+    await drain();
+    assert.deepEqual(log, ["台空", "纸"], "纸在屏幕上的时候景不该先显出来");
+    release!();
+    await drain();
+    assert.deepEqual(log, ["台空", "纸", "show", "空景。"], "纸收起来先墨晕开，景出来，人还没来");
+    story.advance();
+    await drain();
+    assert.deepEqual(log.slice(4), ["上台:wuze", "叫名字。"], "人在那一句之前上台");
+  } finally {
+    (ENTRANCES as Record<string, string>).ch01_s00_zhaoyang = saved;
+  }
+});
+
+test("D-076 默认不变：不从题记开始的场一进来就显景，读档读在上台那句之后人就在", async () => {
+  mem.clear();
+  const store = new Store();
+  const log: string[] = [];
+  const s = scene("ch01_s00_zhaoyang", 1, { goto: "ch01_s00_zhaoyang", cast: ["wuze"] as Scene["cast"] });
+  s.lines = Array.from({ length: 9 }, (_, i) => ({ id: `ch01_s00_zhaoyang.l${i + 1}`, who: "narr", kind: "aside", text: `第${i + 1}句` })) as Scene["lines"];
+  const renderer = { ...noopRenderer, async show() { log.push("show"); } };
+  const story = new Story([s], [], [], [], store, renderer,
+    { async duel() { return true; }, async chapterEnd() {} }, "ch01_s00_zhaoyang");
+  story.on((e) => { if (e.kind === "scene") log.push(e.castHeld ? "台空" : "台上有人"); });
+  // 真的序幕表：l7 上台。从第 8 句（下标 7）接着读，人该已经在
+  await (story as unknown as { enter(id: string, i: number): Promise<void> }).enter("ch01_s00_zhaoyang", 7);
+  await drain();
+  assert.deepEqual(log, ["show", "台上有人"]);
+});
+
 test("题记是合法的说话人，地点多了驿路（D-062、D-063）", () => {
   const s = scene("x", 4, { goto: "x", scene: "yilu" as Scene["scene"] });
   s.lines = [{ id: "t", who: "tiji", kind: "aside", text: "一行。" }] as Scene["lines"];

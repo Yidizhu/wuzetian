@@ -7,6 +7,7 @@ import * as save from "./save.ts";
 import type { SceneRenderer } from "../scene/SceneRenderer.ts";
 import type { LetterT, PoemDuelT } from "./schema.ts";
 import { Letters, type ReplyKind } from "./letters.ts";
+import { entranceIndex } from "./entrances.ts";
 
 /**
  * 需要等玩家操作的界面，由 main 注入。
@@ -31,7 +32,12 @@ export interface ChoiceView {
 export type StoryEvent =
   | { kind: "line"; who: string; expr: string; text: string; lineKind: string; first: boolean }
   | { kind: "choices"; items: ChoiceView[] }
-  | { kind: "scene"; scene: Scene }
+  /**
+   * 进了一场。`castHeld` 为真时台上先空着，人等 castEnter 再上（D-076，见 engine/entrances.ts）
+   */
+  | { kind: "scene"; scene: Scene; castHeld: boolean }
+  /** 这一场的人进画面。紧跟着的就是那一句的 line 事件 */
+  | { kind: "castEnter"; cast: string[] }
   | { kind: "ending"; ending: Ending; body: string }
   | { kind: "flare"; who: string }
   | { kind: "letters"; unread: number; arrived: string[] }
@@ -114,9 +120,11 @@ export class Story {
     if (scene) {
       const d = { key: scene.scene, palette: scene.palette, act: scene.act, dressing: scene.dressing };
       await next.load(d);
-      await next.show(d);
-      next.setInk?.(inkLevel(this.store.state, scene.act));
-      next.setDressing?.(scene.dressing ?? "");
+      if (!this.stagePending) {
+        await next.show(d);
+        next.setInk?.(inkLevel(this.store.state, scene.act));
+        next.setDressing?.(scene.dressing ?? "");
+      }
     }
     old.dispose();
   }
@@ -198,6 +206,24 @@ export class Story {
 
     const d = { key: scene.scene, palette: scene.palette, act: scene.act, dressing: scene.dressing };
     await this.renderer.load(d);
+    // D-076：一场从题记开始，景要等纸收起来才显。show 自带那一次墨晕开，
+    // 放到纸后面，玩家看到的就是「只有纸 → 墨晕开、景出来」，不用加新的转场
+    this.stagePending = this.opensWithEpigraph(scene, lineIndex);
+    if (!this.stagePending) await this.showStage(scene);
+
+    this.castEntersAt = entranceIndex(scene, lineIndex);
+    this.emit({ kind: "scene", scene, castHeld: this.castEntersAt >= 0 });
+    this.present();
+  }
+
+  /** 景还没显出来：这一场从题记开始，纸还在屏幕上 */
+  private stagePending = false;
+  /** 人等到第几句才进画面，-1 是一开场就在（D-076） */
+  private castEntersAt = -1;
+
+  private async showStage(scene: Scene): Promise<void> {
+    this.stagePending = false;
+    const d = { key: scene.scene, palette: scene.palette, act: scene.act, dressing: scene.dressing };
     await this.renderer.show(d);
     // 墨层的覆盖面积就是她的权力进度（D-010 第 3 条）。
     // show() 之后才调：show 会把墨层按幕数重置成默认值，先调会被它盖掉。
@@ -205,9 +231,16 @@ export class Story {
     // 布置（D-046 第 2 条）：和墨层一样在 show 之后调，空串 = 平常的样子。
     // descriptor 里也带着 dressing，这一行是给 CC3 那条「show 之后再改」的路。
     this.renderer.setDressing?.(scene.dressing ?? "");
+  }
 
-    this.emit({ kind: "scene", scene });
-    this.present();
+  /** 从 `from` 起第一句要显示的（条件不满足的跳过）是不是题记 */
+  private opensWithEpigraph(scene: Scene, from: number): boolean {
+    for (let i = from; i < scene.lines.length; i++) {
+      const l = scene.lines[i]!;
+      if (!meets(l.when, this.store.state)) continue;
+      return l.who === "tiji";
+    }
+    return false;
   }
 
   /** 把当前位置的内容推给 UI */
@@ -217,6 +250,11 @@ export class Story {
     // 逐句条件（D-026）：不满足的句子直接跳过
     while (this.idx < scene.lines.length && !meets(scene.lines[this.idx]!.when, this.store.state)) {
       this.idx += 1;
+    }
+    // 人上台（D-076）。按句号比，不按 id 等：那一句要是带条件被跳过了，人照样在它之后进来
+    if (this.castEntersAt >= 0 && this.idx >= this.castEntersAt) {
+      this.castEntersAt = -1;
+      this.emit({ kind: "castEnter", cast: scene.cast });
     }
     if (this.idx < scene.lines.length) {
       const line = scene.lines[this.idx]!;
@@ -293,6 +331,9 @@ export class Story {
     }
     if (this.cur !== scene) return;        // 看题记的时候读了档，别把位置写回去
     this.idx = i;
+    // 纸收起来了，景这时候才墨晕开（D-076）。先显景再读下一句：墨晕开的那一下，对话框还是空的
+    if (this.stagePending) await this.showStage(scene);
+    if (this.cur !== scene) return;
     this.present();
   }
 

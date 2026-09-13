@@ -3,6 +3,10 @@
  *
  *   node --experimental-strip-types tools/screen-shot.ts ch01_s03_yeting ch02_s11_hanyuan
  *   node --experimental-strip-types tools/screen-shot.ts --renderer css ch01_s01_zhaoyang
+ *   node --experimental-strip-types tools/screen-shot.ts --prologue --renderer three
+ *
+ * `--prologue`：从头开一局，按 D-076 的三段各截一张——题记那张纸、纸收起后的空景、人上台那一句。
+ * 这三张要连起来看，单截一场看不出「变化」。
  *
  * 为什么 CC1 也要一个：CC3 的 art:loop 量的是场景那一层；D-072 那几个 bug（宽屏立绘不见、
  * 半透明、浮空红点、比例）全都出在层与层叠起来之后，只有整屏截得出来。
@@ -33,8 +37,9 @@ const rIdx = argv.indexOf("--renderer");
 const renderer = rIdx >= 0 ? argv[rIdx + 1] : "";
 const lIdx = argv.indexOf("--line");
 const lineIndex = lIdx >= 0 ? Number(argv[lIdx + 1]) : 2;
+const prologue = argv.includes("--prologue");
 const scenes = argv.filter((a, i) => !a.startsWith("--") && i !== rIdx + 1 && i !== lIdx + 1);
-if (!scenes.length) scenes.push("ch01_s01_zhaoyang");
+if (!scenes.length && !prologue) scenes.push("ch01_s01_zhaoyang");
 
 function findChrome(): string {
   const c = [process.env.CHROME_PATH, "C:/Program Files/Google/Chrome/Application/chrome.exe",
@@ -80,7 +85,48 @@ const { proc, send, close, profile } = await launch();
 const evaluate = async <T>(expr: string): Promise<T> =>
   (await send<{ result: { value: T } }>("Runtime.evaluate", { expression: expr, returnByValue: true, awaitPromise: true })).result.value;
 
+const tap = async (view: { width: number; height: number }): Promise<void> => {
+  const at = { x: view.width / 2, y: view.height * 0.4, button: "left", clickCount: 1 };
+  await send("Input.dispatchMouseEvent", { type: "mousePressed", ...at });
+  await send("Input.dispatchMouseEvent", { type: "mouseReleased", ...at });
+};
+const shot = async (name: string): Promise<void> => {
+  const info = await evaluate<string>(`JSON.stringify({
+    tiji: !!document.querySelector('.tiji'),
+    stage: document.querySelector('.stage')?.className,
+    cast: [...document.querySelectorAll('.cast__slot')].map(n => n.dataset.char),
+    dlg: document.querySelector('.dlg')?.hidden ? '（收起）' : (document.querySelector(".dlg")?.textContent ?? '').slice(0, 24),
+  })`);
+  const png = await send<{ data: string }>("Page.captureScreenshot", { format: "png" });
+  const file = join(OUT, `${name}.png`);
+  writeFileSync(file, Buffer.from(png.data, "base64"));
+  console.log(`${name}  ->  ${file}\n  ${info}`);
+};
+
 try {
+  if (prologue) {
+    for (const view of VIEWS) {
+      await send("Emulation.setDeviceMetricsOverride", { width: view.width, height: view.height, deviceScaleFactor: view.dpr, mobile: view.mobile });
+      await send("Page.navigate", { url: `http://localhost:${PORT}/?notitle=1` });
+      await sleep(400);
+      await evaluate(`localStorage.clear(); localStorage.setItem("wuzetian.notice.storage","1"); true`);
+      const q = new URLSearchParams({ notitle: "1" });
+      if (renderer) q.set("renderer", renderer);
+      await send("Page.navigate", { url: `http://localhost:${PORT}/?${q}` });
+      const tag = `prologue-${view.name}${renderer ? "-" + renderer : ""}`;
+      await sleep(4200);
+      await shot(`${tag}-1-题记`);
+      await tap(view); await sleep(300); await tap(view);          // 补完，合上
+      await sleep(3600);                                           // 纸 460ms 合上 + 墨晕开 + 推镜
+      await shot(`${tag}-2-空景`);
+      for (let i = 0; i < 24; i++) {
+        if (await evaluate<boolean>(`document.querySelectorAll('.cast__slot svg').length > 0`)) break;
+        await tap(view); await sleep(350);
+      }
+      await sleep(1200);
+      await shot(`${tag}-3-上台`);
+    }
+  }
   for (const view of VIEWS) {
     await send("Emulation.setDeviceMetricsOverride", { width: view.width, height: view.height, deviceScaleFactor: view.dpr, mobile: view.mobile });
     for (const sceneId of scenes) {
