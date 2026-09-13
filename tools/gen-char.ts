@@ -494,9 +494,11 @@ function peibo(f: Frame, fill: string): string {
   const dropY = ly + 300 + f.side * 30;   // U 底，重心侧垂得更低
   return (
     // 胸前那道 U：从左肩过胸前兜到右肩，中段最宽
-    stroke([lx + 26, ly + 26], [CX + f.pose.lean, dropY], [rx - 26, ry + 26], 46, 46, fill, ' opacity="0.72"') +
+    // D-072（CC1 改）：原来两段都是 opacity 0.72。叠在身上看不出，垂到身侧那一截背后是场景，
+    // 3D 舞台的柱子、案会从她身上透出来——玩家看到的就是「半透明的人」。披帛是布，不是纱，改成实心
+    stroke([lx + 26, ly + 26], [CX + f.pose.lean, dropY], [rx - 26, ry + 26], 46, 46, fill) +
     // 一端顺着重心侧的身侧落下，到膝上收住
-    stroke([rx - 30, ry + 34], [rx - 6 + f.side * 26, ly + 420], [CX + f.side * f.halfW * 0.86, f.hemY - 210], 40, 16, fill, ' opacity="0.72"')
+    stroke([rx - 30, ry + 34], [rx - 6 + f.side * 26, ly + 420], [CX + f.side * f.halfW * 0.86, f.hemY - 210], 40, 16, fill)
   );
 }
 
@@ -510,9 +512,11 @@ function propAndAccent(c: Char, f: Frame, expr: Expr, bare: boolean): string {
   if (showProp) switch (c.prop) {
     case "bi": out.push(stroke([rx + 22, hipY - 70], [rx + 44, hipY + 10], [rx + 60, hipY + 96], 8, 2, v("line"))); break;
     case "jian": out.push(stroke([lx - 26, hipY - 130], [lx - 56, hipY + 40], [lx - 72, hipY + 250], 16, 6, v("line"))); break;
-    case "zhi": out.push(shape([{ p: [rx + 128, ry + 156] }, { p: [rx + 188, ry + 138] }, { p: [rx + 198, ry + 206], c: [rx + 200, ry + 170] }, { p: [rx + 138, ry + 224] }], GROUND, ' opacity="0.9"')); break;
+    // D-072（CC1 改）：纸是纸色的，离开身子一放进纸色的场景就没了，纸上那道朱砂线就悬在空中。描一道墨边
+    case "zhi": out.push(shape([{ p: [rx + 128, ry + 156] }, { p: [rx + 188, ry + 138] }, { p: [rx + 198, ry + 206], c: [rx + 200, ry + 170] }, { p: [rx + 138, ry + 224] }], GROUND, ` stroke="${v("line")}" stroke-width="5"`)); break;
     case "zhangben": out.push(`<rect x="${x - 60}" y="${hipY - 236}" width="120" height="54" rx="3" fill="${GROUND}" opacity="0.85"/>`); break;
-    case "chi": out.push(stroke([lx - 22, hipY - 40], [lx - 26, hipY + 40], [lx - 28, hipY + 124], 9, 9, GROUND)); break;
+    // D-072（CC1 改）：尺子原来是纸色的，场景一铺上尺子就不见了，尺尖那一粒朱砂浮在半空。尺子改成墨，和笔、剑一样
+    case "chi": out.push(stroke([lx - 22, hipY - 40], [lx - 26, hipY + 40], [lx - 28, hipY + 124], 9, 9, v("line"))); break;
     case "shu": out.push(`<rect x="${lx - 52}" y="${hipY - 72}" width="70" height="90" rx="2" fill="${GROUND}" opacity="0.85"/>`); break;
     case "zhenbao": out.push(`<ellipse cx="${x + 72}" cy="${hipY - 42}" rx="30" ry="22" fill="${GROUND}" opacity="0.8"/>`); break;
     case "yan": out.push(`<rect x="${rx + 44}" y="${hipY - 36}" width="120" height="22" rx="4" fill="${v("line")}"/>`); break;
@@ -540,7 +544,16 @@ function propAndAccent(c: Char, f: Frame, expr: Expr, bare: boolean): string {
   }
   if (bare) return out.join("");     // 归还之后那一处朱砂不在了，别的都不动
   switch (c.accent) {
-    case "cuff": out.push(dot(rx + 96, hipY - 6, 8)); break;
+    // D-072（CC1 改）：原来写死在「一手压案」那个姿势的袖口上，换成收袖、垂手，手挪走了，点还留在原地
+    case "cuff": {
+      const h = f.pose.hands;
+      const at: P = h === "table" ? [rx + 96, hipY - 6]
+        : h === "sleeve" ? [f.hx - 10, hipY - 150]
+        : h === "outR" ? [rx + 160, ry + 214]
+        : [rx + 18, hipY - 26];                                  // down 与其余：垂下的右袖口
+      out.push(dot(at[0], at[1], 8));
+      break;
+    }
     case "seal": out.push(`<rect class="accent" x="${x + 30}" y="${hipY - 118}" width="22" height="22" fill="${ACCENT}"/>`); break;
     case "tassel": out.push(dot(lx - 28, hipY - 132, 8)); break;
     case "paperline": out.push(`<rect class="accent" x="${rx + 150}" y="${ry + 146}" width="4" height="70" transform="rotate(-18 ${rx + 150} ${ry + 146})" fill="${ACCENT}"/>`); break;
@@ -572,7 +585,9 @@ function render(c: Char, expr: Expr, bare = false): string {
     body(c, f, fill),
     arms(c, f, fill),
     // 颈与头
-    stroke([f.hx, f.hy + f.hr - 10], [f.hx, f.neckY], [f.hx, f.neckY + 16], 26, 46, fill),
+    // D-072（CC1 改）：颈原来收在 neckY+16，肩线在 neckY+30。领口高的袍子盖得住这 14 像素，
+    // 阿荻的短襦领口低，头和身子之间就露出一道纸色——看上去头是飘着的。伸到肩线以下，身子会盖住多出来的那截
+    stroke([f.hx, f.hy + f.hr - 10], [f.hx, f.neckY + 8], [f.hx, f.neckY + 38], 26, 46, fill),
     `<g transform="rotate(${pose.head} ${f.hx} ${f.hy})"><ellipse cx="${f.hx}" cy="${f.hy}" rx="${f.hr}" ry="${f.hr + 8}" fill="${fill}"/></g>`,
     hair(c.hair, f, fill),
     propAndAccent(c, f, expr, bare),

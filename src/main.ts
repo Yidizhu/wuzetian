@@ -189,9 +189,11 @@ story.on((e) => {
   switch (e.kind) {
     case "scene":
       play(cuesForScene(e.scene, cueState, performance.now()));
-      // 先对一遍台上的人再换阵容：上一场出口写的 flag（比如归还戏的 chenghuan_returned）
-      // 要在这一场第一眼就生效，不能等到她下一次开口
-      void cast.refresh().then(() => cast.setCast(e.scene.cast));
+      // 阵容必须同步定下来：紧跟着的 line 事件会马上问「说话的人在不在台上」。
+      // B11 写成了先 await refresh() 再 setCast，结果每一场第一个开口的人如果不在前两位，
+      // 查到的是一张空名单，不换上台——阿荻在第一章 03 场说话，台上站的却是主角和宋蕙贞。
+      // 换图（上一场出口写的 flag，比如归还戏）放到阵容定下之后再对一遍，照样第一眼生效。
+      void cast.setCast(e.scene.cast).then(() => cast.refresh());
       break;
     case "flare":
       cast.flare(e.who);

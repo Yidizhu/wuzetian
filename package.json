@@ -20,7 +20,9 @@
     "smoke:affinity": "node --experimental-strip-types tools/smoke-affinity.ts",
     "build:web": "npm run validate && npm run test:engine && npm run smoke && tsc --noEmit && vite build && npm run check:bundle",
     "check:bundle": "node --experimental-strip-types tools/check-bundle.ts",
-    "art:loop": "node --experimental-strip-types tools/art-loop.ts"
+    "art:loop": "node --experimental-strip-types tools/art-loop.ts",
+    "check:sprites": "node --experimental-strip-types tools/sprite-check.ts",
+    "screens": "node --experimental-strip-types tools/screen-shot.ts"
   },
   "devDependencies": {
     "@types/three": "^0.170.0",

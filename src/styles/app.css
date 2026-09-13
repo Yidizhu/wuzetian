@@ -417,6 +417,9 @@ html, body {
      不能被对话框切在小腿上。E4 手机实机的第一条意见就是这个。 */
   bottom: calc(var(--stage-floor, 22%) - 5.3%);
   height: 76%;                       /* art-style：占视口高 62% 到 78% */
+  /* 人与景的比例（D-072，CC1 加的接口）：舞台可以在根元素上写 --stage-person 把人放大缩小，
+     默认 1。每一场人该多大，要在整屏截图里看（D-071），数由 CC3 按场景定 */
+  height: calc(76% * var(--stage-person, 1));
   aspect-ratio: 2 / 3;
   transition: transform 520ms var(--ease), opacity 520ms var(--ease), filter 520ms var(--ease);
   /* 说话的人不透明（E5）。原来是 0.94：水墨场景里看不出，金碧场景里殿柱的石青
@@ -440,14 +443,29 @@ html, body {
 }
 /* 画布 1024 宽但人只占中间三成，槽位要往两边探出去，人才落在屏幕的 30% 和 70% 处。
    主角偏左下，留白在右上题跋区；第二个人在右，退半步 */
-.cast__slot[data-side="left"]  { left: -18%;  transform: translateX(0) scale(1); }
-.cast__slot[data-side="right"] { right: -18%; transform: translateX(0) scale(0.96); }
+/* 宽屏（D-072，CC1 改）：原来是 left/right: -18%，偏移按屏幕宽算、人的大小按屏幕高算，
+   两样在竖屏上凑巧对得上，一到 1440×900 就错开——人被推到屏幕外，左边那位只露出 176 像素，
+   看上去「立绘整层不显示」。现在两样都按高算：人的中线落在屏幕中线左右各一段距离上，
+   这段距离取「屏宽的两成」和「屏高的 26%」里小的那个，宽屏上两个人不会被拉到天涯两边。
+   槽宽是槽高的三分之二，一半就是 76% × 2/3 ÷ 2 ≈ 25.33% 屏高。先写 vh 兜住不认 dvh 的老机器 */
+.cast__slot[data-side="left"]  {
+  left: calc(50% - min(20%, 26vh) - 25.33vh * var(--stage-person, 1));
+  left: calc(50% - min(20%, 26dvh) - 25.33dvh * var(--stage-person, 1));
+  transform: translateX(0) scale(1);
+}
+.cast__slot[data-side="right"] {
+  right: calc(50% - min(20%, 26vh) - 25.33vh * var(--stage-person, 1));
+  right: calc(50% - min(20%, 26dvh) - 25.33dvh * var(--stage-person, 1));
+  transform: translateX(0) scale(0.96);
+}
 /* 不说话的人退后、转淡。舞台调度，不是特效。
    0.55 太透了：旁白那种没人说话的时刻所有人都不是 active，两个人一起变成半透明的影子，
    贴在 3D 舞台上像没渲染完。退后靠位置和大小就够，透明度只降一点点。
    E4 又提了一档到 0.86：人改走墨色之后本来就压在同样是墨的场景上，再透就没有剪影了。
    E5 再到 0.93：竖屏上看，金碧场景的柱子仍从不说话的人身上透出来。退后靠位置、大小和那 0.3px 的虚。 */
-.cast__slot:not([data-active="1"]) { opacity: 0.93; filter: blur(0.3px); }
+/* D-072（CC1 改）：0.93 也是透明。3D 舞台默认开了之后，柱子和案从不说话的人身上透出来，
+   YIDI 截图里右边那位就是这样。退后只靠位置、大小和那 0.3px 的虚，透明度回到 1 */
+.cast__slot:not([data-active="1"]) { opacity: 1; filter: blur(0.3px); }
 .cast__slot[data-side="left"]:not([data-active="1"])  { transform: translateX(-3%) scale(0.97); }
 .cast__slot[data-side="right"]:not([data-active="1"]) { transform: translateX(3%) scale(0.93); }
 /* 不可逆决定：她的朱砂点亮回朱砂，金碧场景里也是 */
@@ -456,7 +474,7 @@ html, body {
 /* 手机竖屏：人再放大一档。64% 的时候画的人只占到画面一半高，头顶上空着三分之一，
    而这一屏本来就窄——上方的留白要收，人要顶上去 */
 @media (max-width: 480px) {
-  .cast__slot { height: 72%; bottom: calc(var(--stage-floor, 22%) - 5%); }
+  .cast__slot { height: calc(72% * var(--stage-person, 1)); bottom: calc(var(--stage-floor, 22%) - 5%); }
   .cast__slot[data-side="left"]  { left: -24%; }
   .cast__slot[data-side="right"] { right: -26%; }
 }
