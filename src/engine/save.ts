@@ -1,4 +1,5 @@
 import { newState, type GameState } from "./state.ts";
+import { newRelationState, type RelationState } from "./pact.ts";
 import { DATA_VERSION, STAT_KEYS, type LetterSlot, type StatKey } from "./types.ts";
 
 /**
@@ -45,6 +46,8 @@ export interface SaveV1 {
   introsSeen?: string[];
   /** 解锁过的事件图（B23）。老档没有这个字段，按空算：每张图算第一次看，多停一拍，不会出错 */
   cgsSeen?: string[];
+  /** 当前关系状态（B27）。老档没有，按「谁都没有私约」算——第四章那一问之前没有任何剧本写过它，不会丢东西 */
+  relation?: RelationState;
 }
 
 type AnySave = { version?: number } & Record<string, unknown>;
@@ -72,6 +75,7 @@ export function serialize(s: GameState, sceneId: string, lineIndex: number): Sav
     dataVersion: DATA_VERSION,
     introsSeen: [...s.introsSeen],
     cgsSeen: [...s.cgsSeen],
+    relation: { values: { ...s.relation.values }, at: { ...s.relation.at }, clock: s.relation.clock },
   };
 }
 
@@ -87,6 +91,9 @@ export function deserialize(d: SaveV1): { state: GameState; sceneId: string; lin
   state.cgsSeen = new Set(d.cgsSeen ?? []);
   state.endingsUnlocked = new Set(d.endingsUnlocked ?? []);
   state.letters = (d.letters ?? []).map((l) => ({ ...l }));
+  state.relation = d.relation
+    ? { values: { ...d.relation.values }, at: { ...d.relation.at }, clock: d.relation.clock ?? 0 }
+    : newRelationState();
   // 读档时保留存档里那个时刻，M4 靠它算「你不在的这段时间有哪些信到了」
   state.lastSeenAt = d.lastSeenAt ?? Date.now();
   return { state, sceneId: d.sceneId, lineIndex: d.lineIndex ?? 0 };

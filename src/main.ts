@@ -1,7 +1,7 @@
 import "./styles/app.css";
 
 import { Store } from "./engine/state.ts";
-import { Story } from "./engine/story.ts";
+import { Story, ENDING_DRESSINGS } from "./engine/story.ts";
 import type { Ending, Scene } from "./engine/types.ts";
 import { CssParallaxRenderer } from "./scene/CssParallaxRenderer.ts";
 import { NullRenderer } from "./scene/NullRenderer.ts";
@@ -32,6 +32,8 @@ import converted from "virtual:converted-data";
 import rasterList from "virtual:raster-assets";
 import { RasterCatalog, framingFor } from "./scene/raster.ts";
 import { CgLayer } from "./ui/CgLayer.ts";
+import { endingCg } from "./scene/cgs.ts";
+import { sealGlyph } from "./engine/endings.ts";
 import { relationTiers, relationWord, closestThisChapter } from "./engine/relation.ts";
 import poemData from "./data/poems.json";
 import duelData from "./data/duels.json";
@@ -207,16 +209,20 @@ const story = new Story(
     preload: (scene) => cast.preload(scene.cast, scene.dressing ?? ""),
     // 结局第一拍（D-084）：只有画面。对话框、选项收起，点一下才出正文。
     // 排版归 CC3：这一拍 #app 上是 data-ending="picture"，第二拍是 "text"，按这两个值写样式
-    endingPicture: () => new Promise<void>((resolve) => {
+    // 有结局图（D-160）就在这一拍铺上；印（D-067）只给无字之碑，引擎按表决定，印文是她选的那一个字（和正文同一条规则）
+    endingPicture: (ending) => new Promise<string | null>((resolve) => {
       choices.hide();
       dlg.setVisible(false);
       app.dataset.ending = "picture";
+      const key = endingCg(ending.key);
+      const seal = ENDING_DRESSINGS[ending.key] === "yin" ? sealGlyph(store.state) : null;
+      const shown = key ? cgLayer.holdEnding(key, seal) : Promise.resolve(false);
       const at = performance.now();
       releaseEndingPicture = () => {
         // 画面至少停这么久才认点击：读最后一句的人手还在连点，第一拍会被直接点掉
         if (performance.now() - at < ENDING_PICTURE_HOLD_MS) return;
         releaseEndingPicture = null;
-        resolve();
+        void shown.then((ok) => resolve(ok ? key : null));
       };
     }),
   },

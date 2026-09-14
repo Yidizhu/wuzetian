@@ -2,6 +2,7 @@ import {
   STAT_KEYS, STAT_MIN, STAT_MAX, STAT_START, FLAG_REQUIRES, conflictsOf,
   type Effects, type LetterSlot, type StatKey,
 } from "./types.ts";
+import { applyRelation, newRelationState, relationKey, type EffectSource, type RelationState } from "./pact.ts";
 
 /**
  * 全局可变状态。所有会进存档的东西都在这里，不在这里的都不进存档。
@@ -32,6 +33,8 @@ export interface GameState {
   introsSeen: Set<string>;
   /** 解锁过的事件图（D-142，B23）。以后回廊用；现在只决定「第一次看要停一拍」 */
   cgsSeen: Set<string>;
+  /** 当前关系状态（B27，engine/pact.ts）：私约、告知、答复、意向。历史照旧是 flag */
+  relation: RelationState;
 }
 
 export const DEFAULT_NAME = "吾则添";
@@ -51,6 +54,7 @@ export function newState(): GameState {
     lastSeenAt: Date.now(),
     introsSeen: new Set(),
     cgsSeen: new Set(),
+    relation: newRelationState(),
   };
 }
 
@@ -104,10 +108,17 @@ export class Store {
    * 应用一组效果。数值键是增量并夹在 0..20，flag 键是绝对值。
    * 返回实际发生变化的键，UI 拿它做墨晕反馈——只给真的变了的那根线做动效。
    */
-  apply(effects: Effects | undefined): string[] {
+  apply(effects: Effects | undefined, from: EffectSource = {}): string[] {
     if (!effects) return [];
     const changed: string[] = [];
     for (const [key, raw] of Object.entries(effects)) {
+      // 关系键先认（told／asked 也是布尔，不能落到 flag 那一支）
+      if (relationKey(key)) {
+        if (typeof raw === "number") { console.warn(`[state] 关系键 ${key} 不能写数`); continue; }
+        changed.push(...applyRelation(this.state, key, raw, from));
+        continue;
+      }
+      if (typeof raw === "string") { console.warn(`[state] ${key} 不是关系键，不能写成「${raw}」`); continue; }
       if (typeof raw === "boolean") {
         const name = key.startsWith("flag.") ? key.slice(5) : key;
         if (this.state.flags[name] !== raw) {

@@ -45,7 +45,7 @@ export const BACKDROPS: Record<string, Backdrop> = {
   // 序幕走的就是这一条。B21 之前它没有图，序幕是一片白底（YIDI 真机报的第 2 条）
   zhaoyang_ink:         { from: "zhaoyang_gold", tone: "ink", floor: 22, person: 1, push: "center", where: "昭阳殿水墨，序幕与四章。借金碧那张，降饱和去金" },
   zhaoyang_gold:        { floor: 22, person: 1, push: "center", where: "昭阳殿金碧。v1：红毯居中铺到画底，朝毯心推" },
-  zhaoyang_ink_yedeng:  { night: true, where: "四章 06 夜谈四（夜灯）。dressings.ts 里有，剧本眼下没写这一条布置" },
+  zhaoyang_ink_yedeng:  { night: true, paintedNight: true, where: "四章 06 夜谈四（夜灯）。dressings.ts 里有，剧本眼下没写这一条布置" },
   shuge_ink:            { floor: 22, person: 1, push: "right", where: "书阁水墨，十二场。四章 08、14 是夜里，剧本没有时辰一栏，眼下按日景（D-107）。v1：光从左窗进来，右边书架间有纵深，朝右推" },
   shuge_gold:           { from: "shuge_ink", tone: "gold", floor: 22, person: 1, push: "right", where: "书阁金碧。借水墨那张，加金" },
   // B22：以下八行看第二批 v1（E18 验收）在缩略图上量过：地面都铺过 22% 那条线；推向朝画面里空着的那一边
@@ -62,7 +62,7 @@ export const BACKDROPS: Record<string, Backdrop> = {
   wuzibei_ink:          { floor: 22, person: 1, push: "center", where: "无字碑。v1：碑居中、碑面无字；碑面在原件 x 652–878、y 162–581（CC3 E18 量）" },
   // B22：剧本里真正走无字碑的只有这一条（碑样之后没有场次用素版）。自己的图没到之前借素版那张、套夜滤镜，
   // 碑样那张 CC3 会按同一构图出，到了就自动用自己的（resolveBackdrop 先看自己）
-  wuzibei_ink_beiyang:  { night: true, from: "wuzibei_ink", floor: 22, person: 1, push: "center", where: "四章 18 夜谈五（碑样，C15）。自己的图没到，先借素版套夜滤镜" },
+  wuzibei_ink_beiyang:  { night: true, paintedNight: true, floor: 22, person: 1, push: "center", where: "四章 18 夜谈五（碑样，C15）。E22 有了自己的图，是真夜景（CC3 验：碑面位置和白天那张差不到 10 像素）" },
   yilu_ink_qicheng:     { floor: 22, person: 1, push: "center", where: "四章 15 启程。v1：路居中往雾里收，左车右里堠" },
   yilu_ink_yipang:      { where: "四章 16 驿旁" },
 };

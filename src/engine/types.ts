@@ -51,11 +51,20 @@ export interface Cmp {
   gte?: number; lte?: number; gt?: number; lt?: number; eq?: number;
 }
 
-/** 键是 "cai" | "affinity.<key>" | "flag.<name>" */
-export type Condition = Record<string, Cmp | boolean>;
+/** 关系键（engine/pact.ts）的「是其中之一／不是其中之一」 */
+export interface OneOf { in?: string[]; not?: string[] }
 
-/** 数值键是增量（可负），flag 键是绝对值 */
-export type Effects = Record<string, number | boolean>;
+/**
+ * 键是 "cai" | "affinity.<key>" | "flag.<name>"，或关系键（engine/pact.ts）。
+ * 字符串和 OneOf 只给关系键用：`"pact.shenheng": "active"`、`"pact.shenheng": { "not": ["declined"] }`
+ */
+export type Condition = Record<string, Cmp | boolean | string | OneOf>;
+
+/** 数值键是增量（可负），flag 键是绝对值；关系键写字符串或布尔（绝对值） */
+export type Effects = Record<string, number | boolean | string>;
+
+/** 按条件自动走的去向（B27）。从上往下取第一个满足的；都不满足就走场景的 goto */
+export interface Branch { require?: Condition; goto: string }
 
 export type LineKind = "say" | "inner" | "aside" | "poem";
 export type Expr = "default" | "guarded" | "open";
@@ -104,6 +113,8 @@ export interface Scene {
   purpose: string;
   lines: Line[];
   choices?: Choice[];
+  /** 台词读完、没有选项时，按条件自动走（B27）。第四章「谈完回到原来那条路」用 */
+  branches?: Branch[];
   goto?: string;
   ending?: string;
 }
@@ -128,6 +139,8 @@ export interface LetterSlot {
   repliedWith: string | null;
   /** 场次门：还要走几场才开始计时。C-4：按实际经过的主场次计 */
   scenesLeft?: number;
+  /** 这封信触发那一刻的关系时钟（pact.ts 规则 3）：晚拆的旧信不冲掉后来的谈话。老档没有，按 0 */
+  rev?: number;
 }
 
 /** 未读上限。第 4 封到达时最旧的一封被截，这不是惩罚，是剧情。 */

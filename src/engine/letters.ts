@@ -65,7 +65,7 @@ export class Letters {
     // 触发
     for (const l of this.bySceneTrigger.get(sceneId) ?? []) {
       if (this.slot(l.id)) continue;               // 重读不累计
-      s.letters.push({ id: l.id, state: "pending", dueAt: 0, repliedWith: null, scenesLeft: l.trigger.kind === "scene" ? l.trigger.afterScenes : 0 });
+      s.letters.push({ id: l.id, state: "pending", dueAt: 0, repliedWith: null, scenesLeft: l.trigger.kind === "scene" ? l.trigger.afterScenes : 0, rev: s.relation.clock });
     }
     // 场次门
     for (const slot of s.letters) {
@@ -140,7 +140,7 @@ export class Letters {
       let slot = this.slot(l.id);
       if (!slot) {
         // 还没触发就走到了截获点：信照样存在，只是玩家没等到它送来
-        slot = { id: l.id, state: "pending", dueAt: 0, repliedWith: null, scenesLeft: 0 };
+        slot = { id: l.id, state: "pending", dueAt: 0, repliedWith: null, scenesLeft: 0, rev: s.relation.clock };
         s.letters.push(slot);
       }
       if (slot.state === "replied" || slot.repliedWith) continue;
@@ -187,7 +187,7 @@ export class Letters {
 
     const silent = meets(l.sheMayNotReply, this.store.state) && !!l.sheMayNotReply;
 
-    let outcome: { effects?: Record<string, number | boolean>; reaction: string; goto?: string; id?: string };
+    let outcome: { effects?: Record<string, number | boolean | string>; reaction: string; goto?: string; id?: string };
     let repliedWith = kind as string;
     switch (kind) {
       case "plainA": outcome = l.replies.plain[0]!; repliedWith = `plain:${outcome.id ?? "A"}`; break;
@@ -202,7 +202,8 @@ export class Letters {
       }
       case "silence": outcome = l.replies.silence; break;
     }
-    this.store.apply(outcome.effects);
+    // 回信动私约守 pact.ts 规则 3：这封信触发之后她的私约又变过，就不再起作用
+    this.store.apply(outcome.effects, { letterRev: slot.rev ?? 0, letterId: id });
     slot.state = "replied";
     slot.repliedWith = repliedWith;
     return { reaction: silent ? null : outcome.reaction, goto: outcome.goto, silent };

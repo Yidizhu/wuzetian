@@ -33,3 +33,13 @@ export function resolveBody(e: Ending, s: GameState): string {
   console.warn(`[endings] ${e.key} 写了三段变体，但没有任何 name_* 为真。这一条应该只出现在登基线上`);
   return e.body.kept;
 }
+
+/**
+ * 无字之碑那枚印的印文（D-067，B27）：就是她选的那一个字。
+ * 和正文同一条规则取——正文写着「印文是“天”」，图上的印就必须是「天」，两处各算一遍迟早对不上
+ */
+export function sealGlyph(s: GameState): string {
+  if (s.flags.name_tian) return "天";
+  if (s.flags.name_zhao) return "曌";
+  return "添";
+}

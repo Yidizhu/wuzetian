@@ -325,7 +325,7 @@ if (which === "official" || scenes.some((s) => s.id === "ch02_s11_hanyuan")) {
   // 截获场之前的必经场：去掉它，从起点就到不了截获场
   const edges = new Map<string, string[]>();
   for (const s of scenes) {
-    const to = [...(s.choices ?? []).map((c) => c.goto), s.goto].filter(Boolean) as string[];
+    const to = [...(s.choices ?? []).map((c) => c.goto), ...(s.branches ?? []).map((b) => b.goto), s.goto].filter(Boolean) as string[];
     const d = s.duel ? duels.find((x) => x.id === s.duel) : undefined;
     to.push(...([d?.onWin?.goto, d?.onLose?.goto].filter(Boolean) as string[]));
     edges.set(s.id, to);
@@ -369,7 +369,7 @@ if (which === "official" || scenes.some((s) => s.id === "ch02_s11_hanyuan")) {
  */
 const pointedAt = new Map<string, string[]>();
 for (const s of scenes) {
-  for (const to of [...(s.choices ?? []).map((c) => c.goto), s.goto].filter(Boolean) as string[]) {
+  for (const to of [...(s.choices ?? []).map((c) => c.goto), ...(s.branches ?? []).map((b) => b.goto), s.goto].filter(Boolean) as string[]) {
     pointedAt.set(to, [...(pointedAt.get(to) ?? []), s.id]);
   }
   const d = s.duel ? duels.find((x) => x.id === s.duel) : undefined;

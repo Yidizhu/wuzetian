@@ -1,6 +1,7 @@
-import type { Cmp, Condition, StatKey } from "./types.ts";
+import type { Cmp, Condition, OneOf, StatKey } from "./types.ts";
 import { STAT_KEYS, STAT_LABEL } from "./types.ts";
 import type { GameState } from "./state.ts";
+import { looksLikeRelationKey, readRelation, relationKey } from "./pact.ts";
 
 /** 读一个条件键当前的数值。flag 键返回 0/1。 */
 function read(key: string, s: GameState): number {
@@ -20,15 +21,35 @@ function cmpOk(v: number, c: Cmp): boolean {
   return true;
 }
 
+const isOneOf = (w: Condition[string]): w is OneOf => typeof w === "object" && w !== null && ("in" in w || "not" in w);
+
+/** 一个键满不满足。关系键（pact.ts）的值是字符串、布尔或数，分开比 */
+function test(key: string, want: Condition[string], s: GameState): boolean {
+  if (relationKey(key)) {
+    const v = readRelation(key, s);
+    if (typeof want === "boolean") return (v === true) === want;
+    if (typeof want === "string") return v === want;
+    if (isOneOf(want)) return (!want.in || want.in.includes(String(v))) && (!want.not || !want.not.includes(String(v)));
+    return typeof v === "number" && cmpOk(v, want);
+  }
+  if (looksLikeRelationKey(key)) console.warn(`[conditions] 关系键写错了：${key}`);
+  if (typeof want === "string" || isOneOf(want)) {
+    console.warn(`[conditions] ${key} 不是关系键，不能按字符串比`);
+    return false;
+  }
+  const v = read(key, s);
+  return typeof want === "boolean" ? (v > 0) === want : cmpOk(v, want);
+}
+
 export function meets(cond: Condition | undefined, s: GameState): boolean {
   if (!cond) return true;
-  for (const [key, want] of Object.entries(cond)) {
-    const v = read(key, s);
-    if (typeof want === "boolean") {
-      if ((v > 0) !== want) return false;
-    } else if (!cmpOk(v, want)) return false;
-  }
+  for (const [key, want] of Object.entries(cond)) if (!test(key, want, s)) return false;
   return true;
+}
+
+/** 条件里有没有关系键。有关系键而不满足的选项不显示（story.ts viewChoices） */
+export function hasRelationKey(cond: Condition | undefined): boolean {
+  return !!cond && Object.keys(cond).some((k) => relationKey(k));
 }
 
 /**
@@ -39,9 +60,8 @@ export function meets(cond: Condition | undefined, s: GameState): boolean {
 export function missingReason(cond: Condition | undefined, s: GameState): string | null {
   if (!cond) return null;
   for (const [key, want] of Object.entries(cond)) {
-    const v = read(key, s);
-    const ok = typeof want === "boolean" ? (v > 0) === want : cmpOk(v, want);
-    if (ok) continue;
+    if (test(key, want, s)) continue;
+    if (relationKey(key)) return "尚不能够";
     if (key.startsWith("flag.")) return "时机未到";
     if (key.startsWith("affinity.")) return "交情未到";
     if ((STAT_KEYS as string[]).includes(key)) {

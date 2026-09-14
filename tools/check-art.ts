@@ -21,6 +21,7 @@ import { PORTRAITS } from "../src/char/portraits.ts";
 import { BACKDROPS } from "../src/scene/backdrops.ts";
 import { CGS } from "../src/scene/cgs.ts";
 import { DATA, loadDir } from "./load.ts";
+import { ENDING_DRESSINGS } from "../src/engine/story.ts";
 
 const pub = join(ROOT, "public");
 const list = (dir: string): string[] =>
@@ -81,8 +82,29 @@ if (missing.length) console.log(`    还没有图，走渐变：${missing.join("
   const usedMissing = [...used].filter(([k]) => !cgFiles.has(k));
   if (used.size) console.log(`    剧本写到 ${used.size} 张`);
   for (const [k, where] of usedMissing) console.log(`    剧本写到了、图还没有（那一格会跳过）：${k}（${where.join("、")}）`);
-  const notInScript = haveCg.filter((k) => !used.has(k));
+  const notInScript = haveCg.filter((k) => !used.has(k) && !CGS[k]!.ending);
   if (notInScript.length) console.log(`    有图、剧本还没写到：${notInScript.join("、")}`);
+
+  // 结局图（D-160，B27）：表要装得下每一个结局；印只在无字之碑，而且有图就得写位置
+  const endings = (JSON.parse(readFileSync(join(DATA, "endings.json"), "utf8")) as { key: string; title: string }[]);
+  const endingRows = cgKeys.filter((k) => CGS[k]!.ending);
+  const haveEnding = endingRows.filter((k) => cgFiles.has(k));
+  console.log(`    结局图 ${haveEnding.length}/${endings.length} 张有图${haveEnding.length < endings.length ? "（没有图的结局，第一拍照旧只有色板）" : ""}`);
+  for (const e of endings) {
+    const rows = endingRows.filter((k) => CGS[k]!.ending === e.key);
+    if (!rows.length) fail(`结局「${e.title}」（${e.key}）在 src/scene/cgs.ts 里没有结局图那一行。出了图也铺不上（D-160）`);
+    if (rows.length > 1) fail(`结局「${e.title}」在 cgs.ts 里有 ${rows.length} 行：${rows.join("、")}。第一拍只铺一张`);
+  }
+  for (const k of endingRows) {
+    const e = CGS[k]!.ending!;
+    if (!endings.some((x) => x.key === e)) fail(`cgs.ts 的 ${k} 写的结局 ${e} 不在 endings.json 里`);
+    const sealed = ENDING_DRESSINGS[e] === "yin";
+    if (CGS[k]!.seal && !sealed) fail(`${k} 写了 seal，但印只在「无字之碑」（D-067）`);
+    if (sealed && cgFiles.has(k) && !CGS[k]!.seal) fail(`${k} 有图了，cgs.ts 里没写 seal（印的中心，占宽高百分比）。没写就不盖印，无字之碑会少那一枚印（D-067）`);
+  }
+  for (const k of cgKeys) {
+    if (!CGS[k]!.ending && CGS[k]!.seal) fail(`${k} 不是结局图，写了 seal。印只在无字之碑那张结局图上`);
+  }
 
   // 横图必须有焦点（D-150）：横构图在手机上要裁，不写焦点就是居中裁，双人图可能裁掉一个人
   for (const k of haveCg) {

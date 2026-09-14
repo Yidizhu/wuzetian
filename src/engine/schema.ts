@@ -60,6 +60,8 @@ const Cmp = z.object({
   gt: z.number().optional(), lt: z.number().optional(), eq: z.number().optional(),
 }).strict();
 
+import { relationKey, looksLikeRelationKey } from "./pact.ts";
+
 const STAT_RE = /^(shi|ming|cai|xin)$/;
 const REF_RE = /^(affinity|flag)\.[a-z][a-z0-9_]*$/;
 
@@ -67,17 +69,48 @@ const REF_RE = /^(affinity|flag)\.[a-z][a-z0-9_]*$/;
 const keyed = <T extends z.ZodTypeAny>(value: T) =>
   z.record(z.string(), value).superRefine((obj, ctx) => {
     for (const k of Object.keys(obj)) {
+      if (looksLikeRelationKey(k)) {
+        if (!relationKey(k)) ctx.addIssue({
+          code: z.ZodIssueCode.custom, path: [k],
+          message: `关系键「${k}」写错了：人只能是 shenheng／peizhaoye／wenqiao／liqinghe，字段只能是 pact／told／answer／asked／love，或 intent、pacts.active、pacts.love（engine/pact.ts）`,
+        });
+        continue;
+      }
       if (STAT_RE.test(k) || REF_RE.test(k)) continue;
       ctx.addIssue({
         code: z.ZodIssueCode.custom,
         path: [k],
-        message: `认不出的键「${k}」。只能是 shi/ming/cai/xin，或 affinity.<角色key>，或 flag.<小写下划线名>`,
+        message: `认不出的键「${k}」。只能是 shi/ming/cai/xin，或 affinity.<角色key>，或 flag.<小写下划线名>，或关系键（engine/pact.ts）`,
       });
     }
   });
 
-export const Condition = keyed(z.union([Cmp, z.boolean()]));
-export const Effects = keyed(z.union([z.number(), z.boolean()]));
+const OneOf = z.object({ in: z.array(z.string()).min(1).optional(), not: z.array(z.string()).min(1).optional() }).strict();
+
+/** 关系键的值对不对（B27）：枚举键只能写表里的值，布尔键只能写真假，派生键不能写 */
+function relationValues(obj: Record<string, unknown>, ctx: z.RefinementCtx, asEffect: boolean): void {
+  for (const [k, v] of Object.entries(obj)) {
+    const info = relationKey(k);
+    const add = (message: string) => ctx.addIssue({ code: z.ZodIssueCode.custom, path: [k], message });
+    const oneOf = typeof v === "object" && v !== null && ("in" in v || "not" in v);
+    if (!info) {
+      if (typeof v === "string" || oneOf) add(`「${k}」不是关系键，不能写成字符串或「其中之一」`);
+      continue;
+    }
+    if (asEffect && !info.writable) { add(`「${k}」是算出来的，只能写在条件里`); continue; }
+    if (info.kind === "bool") { if (typeof v !== "boolean") add(`「${k}」只能写真或假`); continue; }
+    if (info.kind === "number") { if (typeof v !== "object" || v === null || oneOf) add(`「${k}」是个数，要写比较（>= 2 这种）`); continue; }
+    const allowed = info.kind as readonly string[];
+    const vals = typeof v === "string" ? [v]
+      : oneOf && !asEffect ? [...((v as { in?: string[] }).in ?? []), ...((v as { not?: string[] }).not ?? [])]
+      : null;
+    if (!vals) { add(`「${k}」要写成 ${allowed.join("／")} 之一${asEffect ? "" : "，或「其中之一」"}`); continue; }
+    for (const x of vals) if (!allowed.includes(x)) add(`「${k}」没有「${x}」这个值，只能是 ${allowed.join("／")}`);
+  }
+}
+
+export const Condition = keyed(z.union([Cmp, z.boolean(), z.string(), OneOf])).superRefine((o, ctx) => relationValues(o, ctx, false));
+export const Effects = keyed(z.union([z.number(), z.boolean(), z.string()])).superRefine((o, ctx) => relationValues(o, ctx, true));
 
 export const Line = z.object({
   id: z.string().min(1),
@@ -145,11 +178,23 @@ export const Scene = z.object({
    */
   chapterEnd: z.boolean().optional(),
   choices: z.array(Choice).optional(),
+  /**
+   * 按条件自动走（B27）。台词读完、没有选项时从上往下取第一个满足的去向；都不满足走 goto。
+   * 第四章关系谈话要「谈完回到原来那条路」，原来那条路是玩家更早选的，不能再让她选一次
+   */
+  branches: z.array(z.object({ require: Condition.optional(), goto: z.string().min(1) }).strict()).min(1).optional(),
   goto: z.string().optional(),
   ending: z.string().optional(),
 }).superRefine((s, ctx) => {
+  if (s.branches) {
+    if (s.choices?.length) ctx.addIssue({ code: z.ZodIssueCode.custom, path: ["branches"], message: "有选项的场不能再写自动去向：选项是玩家选，自动去向是不让她选，两个只能有一个" });
+    if (s.chapterEnd || s.ending || s.judgeEnding || s.duel) ctx.addIssue({ code: z.ZodIssueCode.custom, path: ["branches"], message: "自动去向不和章末、结局、对诗写在同一场" });
+    if (!s.goto && s.branches.every((b) => b.require && Object.keys(b.require).length)) {
+      ctx.addIssue({ code: z.ZodIssueCode.custom, path: ["branches"], message: "自动去向每一条都带条件、也没写 goto：都不满足时玩家会卡住。最后一条不写条件，或者写 goto 兜底" });
+    }
+  }
   // duel 也算出口（D-026）：胜负各自的 goto 带玩家离开。两条都得有，校验器另查
-  if (!(s.choices?.length || s.goto || s.ending || s.judgeEnding || s.duel || s.chapterEnd)) {
+  if (!(s.choices?.length || s.branches?.length || s.goto || s.ending || s.judgeEnding || s.duel || s.chapterEnd)) {
     ctx.addIssue({
       code: z.ZodIssueCode.custom,
       message: "场景没有出口：choices、goto、ending、judgeEnding、duel、chapterEnd 六者至少要有一个，否则玩家会卡死在这里",

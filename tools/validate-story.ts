@@ -76,6 +76,9 @@ for (const { file, raw } of sceneFiles) {
   // 章末场的 goto 指向下一章第一场，那一章可能还没写（D-034）。
   // 引擎对这种情况有正经的收尾（结算页 + 下章待续），所以它是警告不是硬错误。
   if (typeof o.goto === "string") rawExits.push({ file, id, to: o.goto, soft: o.chapterEnd === true });
+  if (Array.isArray(o.branches)) {
+    for (const b of o.branches as Record<string, unknown>[]) if (typeof b?.goto === "string") rawExits.push({ file, id, to: b.goto });
+  }
   if (typeof o.duel === "string") rawDuelRefs.push({ file, id, duel: o.duel });
   if (Array.isArray(o.choices)) {
     for (const c of o.choices as Record<string, unknown>[]) {
@@ -126,12 +129,29 @@ if (mainRun) {
       if (l) letters.push(l);
     }
   } catch { /* letters/ 还不存在，M4 才有 */ }
+  // 回信只能动私约本身（pact.ts 规则 3）：告知、答复、意向要当面说，一封信替不了
+  const effectsIn = (o: unknown, at: string, out: [string, Record<string, unknown>][] = []): [string, Record<string, unknown>][] => {
+    if (!o || typeof o !== "object") return out;
+    for (const [k, v] of Object.entries(o as Record<string, unknown>)) {
+      if (k === "effects" && v && typeof v === "object") out.push([`${at}.effects`, v as Record<string, unknown>]);
+      else effectsIn(v, at ? `${at}.${k}` : k, out);
+    }
+    return out;
+  };
+  for (const l of letters) {
+    for (const [at, eff] of effectsIn(l.replies, "replies")) {
+      for (const k of Object.keys(eff)) {
+        if (/^(told|answer|asked|intent)(\.|$)/.test(k)) err(`letters/${l.id}`, at, `回信写了 ${k}。回信只能动 pact（私约有效／暂缓／停），告知、答复、意向要在当面的场景里写`);
+      }
+    }
+  }
 }
 
 // ------------------------------------------------- 硬错误 2、3：死路与孤儿
 
 const exits = (s: SceneT): string[] => [
   ...(s.choices ?? []).map((c) => c.goto),
+  ...(s.branches ?? []).map((b) => b.goto),
   ...(s.goto ? [s.goto] : []),
 ];
 

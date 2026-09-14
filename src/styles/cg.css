@@ -29,6 +29,26 @@
 }
 .cg[data-state="out"]   { opacity: 0; }
 
+/* 结局图（D-160，B27，CC1 加）：结局卡第一拍铺上。**默认只在第一拍**：第二拍（题名正文）收掉。
+   第二拍要不要压暗留着当底，归 CC3：改这一条就行 */
+#app[data-ending="text"] .cg[data-role="ending"] { opacity: 0; }
+
+/* 印（D-067）：只有无字之碑那张结局图上有。图先到，印后盖。位置引擎按 cgs.ts 的 seal 算好写进 left/top，
+   样子照标题页那枚（title.css .title__seal），大小、颜色、晚多久盖归 CC3 */
+.cg__seal {
+  position: absolute; z-index: 1;                   /* 压过 contain 模式的 ::after 整张图 */
+  transform: translate(-50%, -50%);
+  width: clamp(30px, 6vmin, 52px); aspect-ratio: 1;
+  display: grid; place-items: center;
+  background: var(--c-accent, var(--c-ink-4));
+  color: var(--c-ground);
+  font-family: var(--font); font-size: clamp(16px, 3.4vmin, 28px); line-height: 1;
+  clip-path: polygon(2% 0, 100% 3%, 97% 100%, 0 96%);
+  opacity: 0;
+  transition: opacity 700ms var(--ease) 900ms;
+}
+.cg[data-state="shown"] .cg__seal { opacity: 1; }
+
 @media (prefers-reduced-motion: reduce) {
   .cg { transition: none; }
 }

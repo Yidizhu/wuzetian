@@ -16,17 +16,27 @@
  * `check:art` 读 `public/cg/` 里每张图的宽高：横的没写焦点就拦。
  *
  * 校验器守两件：剧本里写的 key 这张表必须有；`public/cg/` 里的文件必须是表里的名字。
+ *
+ * **结局图（D-159、D-160，B27）**：八个结局各一行，写 `ending`。它们不在剧本里写「事件图」那一格，
+ * 由引擎在结局卡第一拍自己铺（D-084 两拍：画面／题名正文）；第二拍默认收掉（cg.css）。
+ * **印（D-067）仍然只在「无字之碑」**：印不画进图里，引擎按表里的 `seal` 叠在图上；
+ * 别的结局写了 `seal`、或者无字之碑有图没写 `seal`，`check:art` 都拦。
+ * `check:art` 还守：endings.json 里每个结局，这张表都得有一行（「装得下八张」）。
  */
 export interface Cg {
   /** 画里的人（角色 key） */
   who: string[];
   /** D-143 三段式：注意到她／本行 → 为你 → 亲密；D-148 主角先想要；非恋爱线写「关系」 */
-  beat: "注意到她" | "本行" | "为你" | "亲密" | "主角先想要" | "关系";
+  beat: "注意到她" | "本行" | "为你" | "亲密" | "主角先想要" | "关系" | "结局";
   /**
    * 焦点：画面里最要紧的那一点，占宽、高的百分比。**横图必须写**（D-150），手机上按它裁；竖图可不写。
    * 数由 CC3 看图后填
    */
   focus?: { x: number; y: number };
+  /** 结局图：endings.json 的 key。填了就由引擎在结局卡第一拍铺，剧本不用写 */
+  ending?: string;
+  /** 印的中心，占图宽、高的百分比（D-067）。**只有无字之碑那张能写**，数由 CC3 看图后填 */
+  seal?: { x: number; y: number };
   /** 给人看：画的是什么、在哪一场 */
   where: string;
 }
@@ -41,4 +51,37 @@ export const CGS: Record<string, Cg> = {
   liqinghe_2_diye:    { who: ["liqinghe", "wuze"],     beat: "为你",       where: "李令仪捡一片断梗的叶子递到主角面前，眼睛看着她的袖口。ch01-16 苑墙" },
   peizhaoye_3_woshou: { who: ["peizhaoye", "wuze"],    beat: "亲密",       where: "「这只手，给我握一会儿」，裴照夜垂眼看两人握着的手。ch01-14 苑里" },
   shenheng_4_bingzuo: { who: ["shenheng", "wuze"],     beat: "主角先想要", where: "主角把月牙凳提到沈衡身侧坐下，沈衡侧过脸看她。ch01-04 书阁，当夜" },
+
+  // D-160：八个结局各一张，结局卡第一拍。名字按 ending_<结局 key>，CC3 定了别的名字改这里一处就行。
+  // 画面含义照 C-B 结局树（D-159「别自己发明结局的含义」），where 只抄 endings.json 的主题句，人由 CC3 按提示词改
+  ending_mandianwusheng:  { who: ["wuze"],             beat: "结局", ending: "mandianwusheng",  where: "满殿无声（gold）。她跨过了血缘的门槛，却把别人的异议关在门外" },
+  ending_wuzibei:         { who: ["wuze"],             beat: "结局", ending: "wuzibei",         where: "无字之碑（ink）。碑上不许有字，印不画进图里，引擎按 seal 叠（D-067）" },
+  ending_weijingzhizhao:  { who: ["wuze"],             beat: "结局", ending: "weijingzhizhao",  where: "未竟之诏（ink）。非宗室皇帝已经出现，改革仍须经办" },
+  ending_liangxizhijian:  { who: ["liqinghe", "wuze"], beat: "结局", ending: "liangxizhijian",  where: "两席之间（ink）。李令仪赢了，主角没有赢；落选者不消失" },
+  ending_kaimenshouzi:    { who: ["wuze"],             beat: "结局", ending: "kaimenshouzi",    where: "开门授字（ink）。不登基，让更多人有可用的本领与去处" },
+  ending_bushou:          { who: ["wuze"],             beat: "结局", ending: "bushou",          where: "不受（ink）。赢得了受位资格，又选择不要" },
+  ending_guanshanyouxin:  { who: ["peizhaoye", "wuze"], beat: "结局", ending: "guanshanyouxin", where: "关山有信（ink）。在地方把事情办下去，与裴照夜各有职分" },
+  ending_zhishangyouming: { who: ["wuze"],             beat: "结局", ending: "zhishangyouming", where: "纸上有名（ink）。没有取得权位，人生仍不只剩失败" },
 };
+
+/** 这个结局的结局图 key，表里没有就是 null */
+export function endingCg(endingKey: string): string | null {
+  for (const [k, c] of Object.entries(CGS)) if (c.ending === endingKey) return k;
+  return null;
+}
+
+/**
+ * 图上一点（占图宽、高的百分比）铺到屏上落在哪个像素（B27，印要跟着图走）。
+ * 两种铺法和 CgLayer／cg.css 一致：cover 按焦点对齐（background-position 百分比的算法），contain 居中整张放进来。
+ * 纯函数，窗口一变就重算
+ */
+export function placeOnImage(
+  img: { w: number; h: number }, box: { w: number; h: number },
+  fit: "cover" | "contain", focus: { x: number; y: number }, p: { x: number; y: number },
+): { x: number; y: number } {
+  const scale = fit === "cover" ? Math.max(box.w / img.w, box.h / img.h) : Math.min(box.w / img.w, box.h / img.h);
+  const w = img.w * scale, h = img.h * scale;
+  const ox = fit === "cover" ? (box.w - w) * focus.x / 100 : (box.w - w) / 2;
+  const oy = fit === "cover" ? (box.h - h) * focus.y / 100 : (box.h - h) / 2;
+  return { x: ox + w * p.x / 100, y: oy + h * p.y / 100 };
+}

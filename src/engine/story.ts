@@ -1,7 +1,7 @@
 import { DATA_VERSION, type Choice, type Ending, type Scene } from "./types.ts";
 import { pickEnding, resolveBody } from "./endings.ts";
 import { Store, subst } from "./state.ts";
-import { meets, missingReason } from "./conditions.ts";
+import { hasRelationKey, meets, missingReason } from "./conditions.ts";
 import { inkLevel } from "./ink.ts";
 import * as save from "./save.ts";
 import type { SceneRenderer } from "../scene/SceneRenderer.ts";
@@ -30,7 +30,7 @@ export interface StoryHooks {
    * 结局的第一拍（D-084）：只有画面，玩家看够了点一下才 resolve，然后才出正文。
    * 可选：无头工具不看画面，直接出正文。
    */
-  endingPicture?(ending: Ending): Promise<void>;
+  endingPicture?(ending: Ending): Promise<void | string | null>;
   /**
    * 进这一场之前，把这一场要用的图先备好（B21：立绘和对白出来有延迟）。
    * 引擎 await 它，所以背景的墨晕开和立绘换上是同一拍。`soon` 为真时是预取下一场，不该阻塞，也不必等完。
@@ -249,7 +249,7 @@ export class Story {
    * 取的是这一场的去向和每个选项的去向——玩家选哪个都已经备好；取不到就算了，进场时还会再取一次。
    */
   private async prefetch(scene: Scene): Promise<void> {
-    const next = [scene.goto, ...(scene.choices ?? []).map((c) => c.goto)]
+    const next = [scene.goto, ...(scene.choices ?? []).map((c) => c.goto), ...(scene.branches ?? []).map((b) => b.goto)]
       .filter((id): id is string => !!id)
       .filter((id, i, all) => all.indexOf(id) === i)
       .slice(0, 4);
@@ -339,6 +339,9 @@ export class Story {
       void this.runChapterEnd(scene);
       return;
     }
+    // 自动去向（B27）：谈完回到原来那条路。从上往下第一个满足的
+    const branch = scene.branches?.find((b) => meets(b.require, this.store.state));
+    if (branch) { void this.enter(branch.goto, 0); return; }
     if (scene.goto) { void this.enter(scene.goto, 0); return; }
 
     const e = scene.judgeEnding ? this.judgeEnding()
@@ -489,7 +492,7 @@ export class Story {
     if (!inChapter.length) return null;
     const pointedAt = new Set<string>();
     for (const x of inChapter) {
-      for (const to of [...(x.choices ?? []).map((c) => c.goto), x.goto]) {
+      for (const to of [...(x.choices ?? []).map((c) => c.goto), ...(x.branches ?? []).map((b) => b.goto), x.goto]) {
         if (to && this.scenes.get(to)?.chapter === chapter) pointedAt.add(to);
       }
       const d = x.duel ? this.duels.get(x.duel) : undefined;
@@ -533,7 +536,12 @@ export class Story {
     this.autosave();
     this.picturing = true;
     try {
-      await this.hooks.endingPicture?.(e);
+      // 第一拍铺了结局图（D-160）：返回那张图的 key，记进解锁过的事件图
+      const cg = await this.hooks.endingPicture?.(e);
+      if (typeof cg === "string" && !this.store.state.cgsSeen.has(cg)) {
+        this.store.state.cgsSeen.add(cg);
+        this.autosave();
+      }
     } finally {
       this.picturing = false;
     }
@@ -542,7 +550,11 @@ export class Story {
   }
 
   private viewChoices(choices: Choice[]): ChoiceView[] {
-    return choices.map((c) => {
+    // 关系条件不满足的选项**不显示**，不给灰（B27）：「去见沈衡，我想只同她相爱——尚不能够」
+    // 等于告诉玩家还有一个人可以去争取，这正是 D-154 要堵的倒推；C35 也写明「只列有明确私约基础的对象」
+    const shown = choices.filter((c) => !hasRelationKey(c.require) || meets(c.require, this.store.state));
+    if (!shown.length) console.error(`[story] 这一组选项因为关系条件全部隐藏了，玩家会卡住：${choices.map((c) => c.id).join("、")}`);
+    return shown.map((c) => {
       const ok = meets(c.require, this.store.state);
       return {
         choice: { ...c, text: subst(c.text, this.store.state) },
