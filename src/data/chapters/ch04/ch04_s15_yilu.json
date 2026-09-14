@@ -153,27 +153,46 @@
     },
     {
       "id": "ch04_s15_yilu.l21",
+      "who": "narr",
+      "kind": "aside",
+      "text": "城的那一边，一座方形砖塔露在屋脊上。"
+    },
+    {
+      "id": "ch04_s15_yilu.l22",
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
       "text": "出了这段，第一处交接在驿旁。"
     },
     {
-      "id": "ch04_s15_yilu.l22",
-      "who": "wuze",
-      "expr": "default",
-      "kind": "say",
-      "text": "驿旁。"
-    },
-    {
       "id": "ch04_s15_yilu.l23",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "知道，纸在自己身上。"
+      "text": "朝塔那边走？"
     },
     {
       "id": "ch04_s15_yilu.l24",
+      "who": "peizhaoye",
+      "expr": "default",
+      "kind": "say",
+      "text": "先看轮印。塔露着顶，路还绕着走。"
+    },
+    {
+      "id": "ch04_s15_yilu.l25",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "远看倒近。"
+    },
+    {
+      "id": "ch04_s15_yilu.l26",
+      "who": "narr",
+      "kind": "aside",
+      "text": "你低头磕掉靴边的一块泥，收好身上的纸。"
+    },
+    {
+      "id": "ch04_s15_yilu.l27",
       "who": "narr",
       "kind": "aside",
       "text": "裴的队列转过前面的坡，你随运粮车走上另一道辙。"

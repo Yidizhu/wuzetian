@@ -1,4 +1,5 @@
 import { RasterCatalog } from "../scene/raster.ts";
+import { CGS } from "../scene/cgs.ts";
 
 /**
  * 事件图层（D-142，B23）。**复用背景整图那一套**：一张整图盖住画面、一拍墨晕过渡、点一下退回。不新建渲染器。
@@ -51,6 +52,20 @@ export class CgLayer {
     el.className = "cg";
     el.dataset.state = "in";
     el.style.backgroundImage = `url("${url}")`;
+    // 怎么铺（D-150）：看图本身的宽高和屏幕的宽高，不看表。
+    //   图比屏幕「瘦」得多（竖图上宽屏）：整张放进来，两侧用同一张图虚化填满——留白可解，裁掉人不可解；
+    //   其余（横图上手机、竖图上手机、横图上宽屏）：铺满，按焦点对齐，横图在手机上裁的是焦点两边
+    const focus = CGS[key]?.focus;
+    el.style.setProperty("--cg-x", `${focus?.x ?? 50}%`);
+    el.style.setProperty("--cg-y", `${focus?.y ?? 50}%`);
+    const fit = (): void => {
+      const box = this.root.getBoundingClientRect();
+      const imgAspect = img.naturalWidth / Math.max(1, img.naturalHeight);
+      const boxAspect = box.width / Math.max(1, box.height);
+      el.dataset.fit = imgAspect < boxAspect * 0.8 ? "contain" : "cover";
+    };
+    fit();
+    window.addEventListener("resize", fit);
     this.root.appendChild(el);
     this.el = el;
     void el.offsetWidth;
@@ -66,6 +81,7 @@ export class CgLayer {
     });
 
     el.dataset.state = "out";
+    window.removeEventListener("resize", fit);
     await new Promise((r) => window.setTimeout(r, FADE_MS));
     el.remove();
     if (this.el === el) this.el = null;

@@ -104,65 +104,72 @@
       "who": "wuze",
       "expr": "open",
       "kind": "say",
-      "text": "又是勺。"
-    },
-    {
-      "id": "ch02_s17_shishe.l14",
-      "who": "wuze",
-      "expr": "open",
-      "kind": "say",
       "text": "不能换一个么？"
     },
     {
-      "id": "ch02_s17_shishe.l15",
+      "id": "ch02_s17_shishe.l14",
       "who": "wenqiao",
       "expr": "open",
       "kind": "say",
-      "text": "想得出别的，你说；我从坐下就想喝汤。"
+      "text": "天女。昨日读的《维摩诘经》，还记着她。"
     },
     {
-      "id": "ch02_s17_shishe.l16",
+      "id": "ch02_s17_shishe.l15",
       "who": "wuze",
       "expr": "open",
       "kind": "say",
-      "text": "我想想……"
+      "text": "哪里像？"
+    },
+    {
+      "id": "ch02_s17_shishe.l16",
+      "who": "wenqiao",
+      "expr": "open",
+      "kind": "say",
+      "text": "舍利弗问她，为什么不转女身。"
     },
     {
       "id": "ch02_s17_shishe.l17",
-      "who": "wuze",
-      "expr": "default",
+      "who": "wenqiao",
+      "expr": "open",
       "kind": "say",
-      "text": "两只走反的鸭。"
+      "text": "她便把两人的模样换过来，轮到她问了。"
     },
     {
       "id": "ch02_s17_shishe.l18",
       "who": "wenqiao",
-      "expr": "default",
+      "expr": "open",
       "kind": "say",
-      "text": "鸭？"
+      "text": "“何以不转女身？”"
     },
     {
       "id": "ch02_s17_shishe.l19",
-      "who": "narr",
-      "kind": "aside",
-      "text": "风把两枝吹到一处。"
+      "who": "wuze",
+      "expr": "open",
+      "kind": "say",
+      "text": "这一句，你是不是等了半天？"
     },
     {
       "id": "ch02_s17_shishe.l20",
       "who": "wenqiao",
       "expr": "open",
       "kind": "say",
-      "text": "撞着了。"
+      "text": "……你还看不看影子？"
     },
     {
       "id": "ch02_s17_shishe.l21",
-      "who": "wuze",
-      "expr": "open",
-      "kind": "say",
-      "text": "……"
+      "who": "narr",
+      "kind": "aside",
+      "text": "风把两枝吹到一处。"
     },
     {
       "id": "ch02_s17_shishe.l22",
+      "who": "wenqiao",
+      "expr": "open",
+      "kind": "say",
+      "text": "撞着了。"
+    },
+    {
+      "id": "ch02_s17_shishe.l23",
       "who": "narr",
       "kind": "aside",
       "text": "温荞放下抬着的手，仍让窗影留在袖上。"

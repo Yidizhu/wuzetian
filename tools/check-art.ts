@@ -20,10 +20,25 @@ import { ROOT } from "./load.ts";
 import { PORTRAITS } from "../src/char/portraits.ts";
 import { BACKDROPS } from "../src/scene/backdrops.ts";
 import { CGS } from "../src/scene/cgs.ts";
+import { DATA, loadDir } from "./load.ts";
 
 const pub = join(ROOT, "public");
 const list = (dir: string): string[] =>
   existsSync(join(pub, dir)) ? readdirSync(join(pub, dir)).filter((f) => f.endsWith(".webp")).map((f) => f.slice(0, -5)).sort() : [];
+
+/** 读 webp 的宽高，只看文件头，不引依赖。认不出就是 null */
+function webpSize(file: string): { w: number; h: number } | null {
+  const b = readFileSync(file);
+  if (b.toString("ascii", 0, 4) !== "RIFF" || b.toString("ascii", 8, 12) !== "WEBP") return null;
+  const chunk = b.toString("ascii", 12, 16);
+  if (chunk === "VP8X") return { w: 1 + b.readUIntLE(24, 3), h: 1 + b.readUIntLE(27, 3) };
+  if (chunk === "VP8 ") return { w: b.readUInt16LE(26) & 0x3fff, h: b.readUInt16LE(28) & 0x3fff };
+  if (chunk === "VP8L") {
+    const bits = b.readUInt32LE(21);
+    return { w: (bits & 0x3fff) + 1, h: ((bits >> 14) & 0x3fff) + 1 };
+  }
+  return null;
+}
 
 const full = new Set(list("char/full"));
 const scenes = new Set(list("scene"));
@@ -48,14 +63,34 @@ console.log(`  背景 ${own.length + borrowed.length}/${keys.length} 条有图�
 if (borrowed.length) console.log(`    借图：${borrowed.map((k) => `${k} ← ${BACKDROPS[k]!.from}`).join("、")}`);
 if (missing.length) console.log(`    还没有图，走渐变：${missing.join("、")}`);
 
-// ---------------------------------------------------------------- 事件图（B23）
+// ---------------------------------------------------------------- 事件图（B23、D-152）
+// 和背景那次同一个理由：剧本里写了图名而图不在，是合法状态（那一格跳过），永远不会自己报错。
+// 而 CG 比背景更容易漏——它不是每场都有，少一张没人会立刻发现。所以每次发布前把「剧本写到了、图还没有」的逐条念出来
 {
   const cgFiles = new Set(list("cg"));
   const cgKeys = Object.keys(CGS);
   const haveCg = cgKeys.filter((k) => cgFiles.has(k));
   console.log(`  事件图 ${haveCg.length}/${cgKeys.length} 张有图${haveCg.length ? "：" + haveCg.join("、") : ""}`);
-  const missCg = cgKeys.filter((k) => !cgFiles.has(k));
-  if (missCg.length) console.log(`    还没有图（剧本写到这一格会跳过）：${missCg.join("、")}`);
+
+  // 剧本里真的写到的事件图
+  const used = new Map<string, string[]>();
+  for (const { raw } of loadDir(join(DATA, "chapters"))) {
+    const s = raw as { id: string; lines: { who: string; text: string }[] };
+    for (const l of s.lines) if (l.who === "cg") used.set(l.text, [...(used.get(l.text) ?? []), s.id]);
+  }
+  const usedMissing = [...used].filter(([k]) => !cgFiles.has(k));
+  if (used.size) console.log(`    剧本写到 ${used.size} 张`);
+  for (const [k, where] of usedMissing) console.log(`    剧本写到了、图还没有（那一格会跳过）：${k}（${where.join("、")}）`);
+  const notInScript = haveCg.filter((k) => !used.has(k));
+  if (notInScript.length) console.log(`    有图、剧本还没写到：${notInScript.join("、")}`);
+
+  // 横图必须有焦点（D-150）：横构图在手机上要裁，不写焦点就是居中裁，双人图可能裁掉一个人
+  for (const k of haveCg) {
+    const size = webpSize(join(pub, "cg", `${k}.webp`));
+    if (size && size.w > size.h && !CGS[k]?.focus) {
+      fail(`事件图 ${k} 是横构图（${size.w}×${size.h}），src/scene/cgs.ts 里没写 focus。手机上会居中裁，要紧的动作可能被裁掉（D-150）`);
+    }
+  }
 }
 
 // 借了一张不存在的图：这一条永远轮不到，而它看起来已经安排好了

@@ -4,12 +4,29 @@
 
 .cg {
   position: absolute; inset: 0; z-index: 3;
-  background: var(--c-ground) center / cover no-repeat;
+  isolation: isolate;
+  background: var(--c-ground) var(--cg-x, 50%) var(--cg-y, 50%) / cover no-repeat;
   opacity: 0;
   transition: opacity 520ms var(--ease);
   pointer-events: none;                 /* 点击由 tap.ts 在 window 上接，这一层不挡 */
 }
 .cg[data-state="shown"] { opacity: 1; }
+
+/* 竖图上宽屏（D-150）：整张放进来，两侧用同一张图放大虚化填满。数由 CC3 看图调。
+   两层都用伪元素叠：本体的背景不画（尺寸 0），只留着给两层 inherit；
+   虚化那层在下、整张那层在上——虚化写在本体上面会把整张盖住（B25 截图里出过） */
+.cg[data-fit="contain"] { background-size: 0 0; }
+.cg[data-fit="contain"]::before,
+.cg[data-fit="contain"]::after {
+  content: ""; position: absolute; background-image: inherit; background-repeat: no-repeat;
+}
+.cg[data-fit="contain"]::before {
+  inset: -6%; background-size: cover; background-position: center;
+  filter: blur(28px) brightness(0.78) saturate(0.85);
+}
+.cg[data-fit="contain"]::after {
+  inset: 0; background-size: contain; background-position: center;
+}
 .cg[data-state="out"]   { opacity: 0; }
 
 @media (prefers-reduced-motion: reduce) {
