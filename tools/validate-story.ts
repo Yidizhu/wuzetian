@@ -15,6 +15,7 @@ import { Scene, PoemDuel, Poem, Letter, Ending, CHARACTER_KEYS, NAME_FLAGS, FLAG
 import type { SceneT, PoemT, PoemDuelT, LetterT, EndingT } from "../src/engine/schema.ts";
 import { ENTRANCES } from "../src/engine/entrances.ts";
 import { AFFINITY_BANDS } from "../src/engine/types.ts";
+import { IDENTITY_RANKS } from "../src/engine/identity.ts";
 
 /**
  * 开场。M1 那四场骨架（ch00_*）是我写的占位文字，不是剧本，已退到
@@ -226,6 +227,22 @@ const KNOWN_FLOOR = AFFINITY_BANDS.find((b) => b.label === "识")!.min;
   }
 }
 
+// 主角身份（D-091）：身份表里的 flag 必须有选项写它为真。拼错一个字，她在那条线上永远升不上去，
+// 而每一场单看都合法、烟测也全绿——所以是错误不是警告（R-019）
+{
+  const writtenTrue = new Set<string>();
+  for (const { s } of scenes.values()) {
+    for (const c of s.choices ?? []) {
+      for (const [k, v] of Object.entries(c.effects ?? {})) if (k.startsWith("flag.") && v === true) writtenTrue.add(k.slice(5));
+    }
+  }
+  for (const r of IDENTITY_RANKS) {
+    for (const f of r.flags) {
+      if (!writtenTrue.has(f)) err("src/engine/identity.ts", r.rank, `身份「${r.rank}」要的 flag.${f} 没有任何选项写它为真。主角永远穿不上这一套`);
+    }
+  }
+}
+
 // 人上台的那一句（D-076，engine/entrances.ts）。剧本改了句序、id 对不上，引擎会悄悄退回「一开场人就在」，
 // 序幕那一次变化就没了而画面毫无异样——所以这里是错误不是警告
 for (const [sid, lid] of Object.entries(ENTRANCES)) {
@@ -281,13 +298,22 @@ for (const { file, s } of scenes.values()) {
 if (mainRun) {
   const introFile = join(DATA, "intros.json");
   if (existsSync(introFile)) {
-    const intro = JSON.parse(readFileSync(introFile, "utf8")) as { cards?: Record<string, { role: string; line: string }> };
-    for (const [key, c] of Object.entries(intro.cards ?? {})) {
+    const intro = JSON.parse(readFileSync(introFile, "utf8")) as { cards?: Record<string, { role?: string; line?: string }> };
+    const cards = intro.cards ?? {};
+    for (const [key, c] of Object.entries(cards)) {
       if (!(CHARACTER_KEYS as readonly string[]).includes(key)) {
         err("src/data/intros.json", key, `不是冻结的角色 key。登场卡永远不会出现`);
       }
-      const n = [...(c.role ?? "")].length + [...(c.line ?? "")].length;
-      if (n > 20) err("src/data/intros.json", key, `职务加一句话共 ${n} 字，超过 20。手机竖屏上会折成三行，压到立绘的脚`);
+      // D-094：信条不许上 UI。转换或手抄把那一列捡回来，这里当场拦
+      if ("line" in c) err("src/data/intros.json", `${key}.line`, "登场卡不许有 line（D-094）。那句话是人物的信条，该由玩家看她做了什么自己得出，只留 name 和 role");
+      if (!c.role) err("src/data/intros.json", `${key}.role`, "登场卡没有职务。卡会出一个只有名字的空壳");
+      else if ([...c.role].length > 12) warn("src/data/intros.json", `${key}.role`, `职务 ${[...c.role].length} 字。竖屏上名字那一行放不下，会折行压到立绘的脚`);
+    }
+    // 卡本身不删（D-094 第 4 条）：剧本里开口的每一个角色都要有卡
+    const speakers = new Set<string>();
+    for (const { s } of scenes.values()) for (const l of s.lines) if ((CHARACTER_KEYS as readonly string[]).includes(l.who)) speakers.add(l.who);
+    for (const who of speakers) {
+      if (!cards[who]) err("src/data/intros.json", who, "这个人在剧本里开口了，却没有登场卡");
     }
   }
 }

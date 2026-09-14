@@ -647,6 +647,19 @@ test("D-084 无头工具没有第一拍：直接出正文，也只出一次", as
   assert.equal(n, 1);
 });
 
+test("D-091 袍色跟身份 flag 走，不跟章节；图没到位就退回原图", async () => {
+  const { protagonistRank, spriteCandidates } = await import("../src/engine/identity.ts");
+  const none = () => false;
+  const enthroned = (f: string) => f === "enthroned";
+  assert.equal(protagonistRank(none), "qing", "什么都没有是青");
+  assert.equal(protagonistRank((f) => f === "liqinghe_won" || f === "declined_crown"), "qing", "落选、辞受都还是青");
+  assert.equal(protagonistRank(enthroned), "fei");
+  assert.deepEqual(spriteCandidates("wuze", "open", enthroned), ["wuze_open_fei", "wuze_open"]);
+  assert.deepEqual(spriteCandidates("shenheng", "open", enthroned), ["shenheng_open"], "别人不跟主角的身份换图");
+  assert.deepEqual(spriteCandidates("liuchenghuan", "default", (f) => f === "chenghuan_returned"),
+    ["liuchenghuan_default_bare", "liuchenghuan_default"]);
+});
+
 test("题记是合法的说话人，地点多了驿路（D-062、D-063）", () => {
   const s = scene("x", 4, { goto: "x", scene: "yilu" as Scene["scene"] });
   s.lines = [{ id: "t", who: "tiji", kind: "aside", text: "一行。" }] as Scene["lines"];

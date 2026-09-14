@@ -249,7 +249,7 @@ story.on((e) => {
       // 皮肤和「只活一句台词」的节奏是 CC3 定的（src/scene/Debut.ts）；
       // 谁出过了、要不要出，归这里。玩家在存档面板里关掉，就再也不出。
       {
-        const card = (introData.cards as Record<string, { role: string; line: string }>)[e.who];
+        const card = (introData.cards as Record<string, { role: string }>)[e.who];
         const fresh = !!card && !store.state.introsSeen.has(e.who);
         if (fresh) store.state.introsSeen.add(e.who);
         attachDebut(dlg.element, fresh && debutsOn() ? card! : null);

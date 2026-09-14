@@ -1,7 +1,8 @@
 /* 首次登场卡（E5 第 2 条）。挂在对话框里、名字右边：一行小字，纸色底，不盖立绘。
-   结构见 src/scene/Debut.ts：.dlg__name 后面紧跟 .dlg__role 与 .dlg__line 两个兄弟。 */
+   结构见 src/scene/Debut.ts：.dlg__name 后面紧跟 .dlg__role 一个兄弟。
+   D-094（CC1 改，待协调）：原来还有 .dlg__line（一句话），删了。竖屏上为它扣回来的内边距一并还原 */
 
-/* 名字、职务、一句话排成一行，对话正文另起一行。
+/* 名字、职务排成一行，对话正文另起一行。
    用 flex 不用 inline-block：inline-block 会让父元素的行高撑出一个看不见的行框，
    竖屏上框因此平白高出 9px，正好是人的脚和框顶之间那点余量 */
 .dlg[data-debut] { display: flex; flex-wrap: wrap; align-items: baseline; }
@@ -9,7 +10,7 @@
 .dlg[data-debut] .dlg__text { flex: 0 0 100%; }
 
 /* 职务：名字后面隔一条淡墨短竖线，像题跋起首那一笔。字比名字小三号、墨淡一档 */
-.dlg__role, .dlg__line {
+.dlg__role {
   font-size: 13px; line-height: 1.5; letter-spacing: 0.06em;
   /* 纸色底就是对话框本身那张纸，不另垫。试过给这两行各垫一块 100% 的纸：
      水墨场景里看不出，金碧场景里框是 92% 透着殿，两块实底就成了两张贴上去的标签 */
@@ -20,32 +21,18 @@
   color: var(--c-text);
   background: linear-gradient(var(--c-ink-3), var(--c-ink-3)) no-repeat 2px 55% / 1px 0.95em;
 }
-.dlg__line { color: var(--c-text-soft); margin-left: 2px; }
 
 /* 进来：跟在名字后面从左往右写开，比台词的逐字慢一点，比墨晕快。
    只进不出——下一句台词它直接没了，不做收的动效，免得和打字机抢 */
-.dlg__role, .dlg__line {
+.dlg__role {
   -webkit-mask-image: linear-gradient(to right, #000 calc(var(--dw) - 18%), transparent var(--dw));
   mask-image: linear-gradient(to right, #000 calc(var(--dw) - 18%), transparent var(--dw));
   animation: debut-in 420ms var(--ease) 80ms both;
 }
-.dlg__line { animation-delay: 240ms; }
 @keyframes debut-in { from { --dw: 0%; } to { --dw: 124%; } }
 @property --dw { syntax: "<percentage>"; inherits: false; initial-value: 124%; }
 
-/* 竖屏：职务留在名字那一行，一句话落到下一行。
-   多出来的那一行（约 17px）从框的上内边距（18→8）和名字下面的空（6→0）里扣回来，
-   框的总高和没有登场卡时一样——E4 刚把人的脚提到框顶之上，登场卡不能把它们吃回去 */
-@media (max-width: 480px) {
-  .dlg[data-debut] { padding-top: 8px; }
-  .dlg[data-debut] .dlg__name { margin-bottom: 0; }
-  .dlg__line {
-    flex: 0 0 auto; margin: 0 100% 2px 0;    /* 右边距撑满，自己占一行，宽度仍按字 */
-    padding-left: 0;
-    font-size: 12.5px; line-height: 1.35; letter-spacing: 0.04em;
-  }
-}
 
 @media (prefers-reduced-motion: reduce) {
-  .dlg__role, .dlg__line { animation: none; }
+  .dlg__role { animation: none; }
 }

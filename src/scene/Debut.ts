@@ -7,15 +7,14 @@
  * 二，名字和职务本来是一句话（「裴照夜，左监门卫中郎将」），拆到两处读的人要来回找；
  * 三，它只在这个人第一句话时出现，下一句就没了——跟着台词走比跟着画面走对。
  *
- * 竖屏上一行放不下「名字 + 职务 + 一句话」，所以职务留在名字那一行，一句话落到下一行；
- * 同时收掉名字下面的空和框的上内边距，对话框总高只多出几个像素，人的脚不会被吃掉。
+ * D-094（CC1 改，待协调）：删掉了名字下面那一句话，只剩名字 + 职务一行。
+ * 那句话是人物的信条，该由玩家看她做了什么自己得出，不该印在她脸下面。
+ * 竖屏上为那一行扣回来的上内边距一并还原（debut.css），否则名字和台词之间会少一截、框变矮。
  */
 
 export interface Debut {
-  /** 职务，六字以内最好。「奉召入京的女将」这种长的也放得下，但会把一句话挤到下一行 */
+  /** 职务，六字以内最好。只回答「她管什么」，不回答「她信什么」（D-094） */
   role: string;
-  /** 一句话，≤ 20 字（D-048） */
-  line: string;
 }
 
 /**
@@ -32,9 +31,6 @@ export function attachDebut(dlg: HTMLElement, debut: Debut | null): void {
   const role = document.createElement("span");
   role.className = "dlg__role";
   role.textContent = debut.role;
-  const line = document.createElement("span");
-  line.className = "dlg__line";
-  line.textContent = debut.line;
-  name.after(role, line);
+  name.after(role);
   dlg.dataset.debut = "1";
 }

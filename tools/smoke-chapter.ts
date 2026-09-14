@@ -20,6 +20,7 @@ import { meets } from "../src/engine/conditions.ts";
 import type { Scene, Ending } from "../src/engine/types.ts";
 import type { LetterT, PoemDuelT } from "../src/engine/schema.ts";
 import { SPRITE_RULES } from "../src/char/sprite-rules.ts";
+import { protagonistRank, RANK_ORDER, type Rank } from "../src/engine/identity.ts";
 
 // ------------------------------------------------------- 浏览器那点东西的替身
 // Story 只碰 document.documentElement.dataset.palette 和 localStorage，各给一个假的
@@ -71,6 +72,8 @@ interface Stuck { scene: string; line: number; why: string }
  *    朝堂上却在念它——剧情和信箱各说各的。
  * 3. 换图规则的 flag 真的会被写真，而且换过去的那几张图真的存在（D-046，ch03-15）。
  *    表里写了、图也画了，可剧本出口忘了写 flag，柳承欢腕上那点红就永远不会褪。
+ * 5. 主角的身份只升不降，落选线一路青到结局（D-091）。袍色跟 flag 走，
+ *    一个 flag 写反、写漏，她就会在某条线上半路换回青、或者没受位先穿绯，而每一场单看都合法。
  * 4. 全书有终局判定的时候，每一条走完的路都落在一张结局卡上（B14，第四章接入）。
  *    停在「下章待续」在第一到三章是这一版的边界，到了最后一章就是结局一个都出不来——
  *    CC2 D10 的定向走法就是这样停住的，「走得通」照样全绿。
@@ -84,6 +87,8 @@ let winDuels = false;
 const hasFinale = scenes.some((s) => s.judgeEnding);
 /** 走到过的结局 key -> 第一次是哪条路走到的（报告里给人复现用） */
 const endingsHit = new Map<string, number>();
+/** 结局 key -> 落幕时主角出现过的身份（报告里给 CC3 看哪个结局用哪套袍色） */
+const ranksAtEnding = new Map<string, Set<Rank>>();
 
 /** 随机走法用的挑选器：给定能点的几项，挑一项。不给就按 picks 固定挑 */
 type Chooser = (usable: number[]) => number;
@@ -104,6 +109,7 @@ async function walk(picks: number[], chooser?: Chooser): Promise<{ path: string[
   let endingKey = "";
   const forks: number[] = [];
   const summarized = new Set<string>();
+  const ranks: Rank[] = [];
 
   const story = new Story(
     scenes, endings, duels, letters, store, noop,
@@ -116,7 +122,10 @@ async function walk(picks: number[], chooser?: Chooser): Promise<{ path: string[
     START,
   );
   story.on((e) => {
-    if (e.kind === "scene") { if (path.at(-1) !== e.scene.id) path.push(e.scene.id); }
+    if (e.kind === "scene") {
+      if (path.at(-1) !== e.scene.id) path.push(e.scene.id);
+      ranks.push(protagonistRank((f) => store.state.flags[f] === true));
+    }
     else if (e.kind === "choices") pending = e as unknown as { items: { enabled: boolean }[] };
     // 章末停在「下章待续」也是走完了，不是卡住（D-034）
     else if (e.kind === "ending" || e.kind === "end" || e.kind === "toBeContinued") {
@@ -177,6 +186,23 @@ async function walk(picks: number[], chooser?: Chooser): Promise<{ path: string[
       }
     }
     for (const [f, v] of Object.entries(store.state.flags)) if (v) flagsEverTrue.add(f);
+    // 不变式 5
+    const finalRank = protagonistRank((f) => store.state.flags[f] === true);
+    ranks.push(finalRank);
+    for (let i = 1; i < ranks.length; i++) {
+      if (RANK_ORDER[ranks[i]!] < RANK_ORDER[ranks[i - 1]!]) {
+        note(path[Math.min(i, path.length - 1)] ?? "?", `主角的身份降了：${ranks[i - 1]} → ${ranks[i]}。袍色只升不降（D-091）`);
+        break;
+      }
+    }
+    if (store.state.flags.liqinghe_won === true && ranks.some((r) => r !== "qing")) {
+      note(path.at(-1) ?? "?", `落选线（liqinghe_won）上主角穿过 ${[...new Set(ranks)].join("、")}，应当一路是青（D-091）`);
+    }
+    if (endingKey) {
+      const set = ranksAtEnding.get(endingKey) ?? new Set<Rank>();
+      set.add(finalRank);
+      ranksAtEnding.set(endingKey, set);
+    }
     // 不变式 4
     if (endingKey && !endingsHit.has(endingKey)) endingsHit.set(endingKey, runs);
     if (hasFinale && endKind !== "ending") {
@@ -298,13 +324,15 @@ if (endings.length && hasFinale) {
   const missing = endings.filter((e) => !endingsHit.has(e.key));
   console.log(`  结局 ${endings.length - missing.length}/${endings.length} 张走得到：${endings.filter((e) => endingsHit.has(e.key)).map((e) => e.title).join("、")}`);
   for (const e of missing) console.log(`  走不到结局「${e.title}」（${e.key}）：要 ${JSON.stringify(e.require ?? {})}`);
+  const NAME: Record<Rank, string> = { qing: "青", lv: "绿", fei: "绯" };
+  console.log(`  落幕时主角的袍色：${endings.filter((e) => ranksAtEnding.has(e.key)).map((e) => `${e.title} ${[...ranksAtEnding.get(e.key)!].map((r) => NAME[r]).join("/")}`).join("、")}`);
 }
 if (broken.length) {
   console.log(`
   不变式没守住的地方：`);
   for (const b of broken) console.log(`    ${b.scene} —— ${b.why}`);
 } else {
-  console.log(`  ${hasFinale ? "四" : "三"}条不变式都守住了：章末都出了结算页、截获点都截了、换图的 flag 都会写真${hasFinale ? "、每条走完的路都落在结局卡上" : ""}。`);
+  console.log(`  ${hasFinale ? "五" : "四"}条不变式都守住了：章末都出了结算页、截获点都截了、换图的 flag 都会写真${hasFinale ? "、每条走完的路都落在结局卡上" : ""}、主角身份只升不降且落选线一路是青。`);
 }
 if (stucks.length) {
   console.log(`\n  卡住的地方：`);

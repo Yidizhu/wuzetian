@@ -24,13 +24,13 @@ const WHO = qs.get("who") ?? "peizhaoye";
 const files = import.meta.glob<string>("../char/*.svg", { query: "?raw", import: "default", eager: true });
 const sprite = (name: string): string => files[`../char/${name}.svg`] ?? "";
 
-/** 占位文案。职务取自角色圣经第一行的意思，一句话是美术写来量版位的，措辞归 ChatGPT */
+/** 占位文案。职务取自角色圣经第一行的意思。D-094（CC1 改）：登场卡不再有「一句话」 */
 const DEBUTS: Record<string, { name: string; d: Debut; text: string }> = {
-  peizhaoye: { name: "裴照夜", d: { role: "奉召入京的女将", line: "士卒要活着回来，军令要有人担责" },
+  peizhaoye: { name: "裴照夜", d: { role: "奉召入京的女将" },
                text: "马是我挑的。鞍子你别碰，我来。" },
-  shenheng: { name: "沈衡", d: { role: "秘书省校书郎", line: "字写错一个，她就一整夜不睡" },
+  shenheng: { name: "沈衡", d: { role: "秘书省校书郎" },
               text: "这份名册，谁誊的？" },
-  liuchenghuan: { name: "柳承欢", d: { role: "掖庭典记", line: "稿子替你核过两遍了" },
+  liuchenghuan: { name: "柳承欢", d: { role: "掖庭典记" },
                   text: "你先喝口水。纸我拿着。" },
 };
 

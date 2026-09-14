@@ -1,5 +1,5 @@
 import type { Expr } from "../engine/types.ts";
-import { spriteKey } from "../char/sprite-rules.ts";
+import { spriteCandidates } from "../engine/identity.ts";
 
 /**
  * 立绘层。叠在背景层之上、对话框之下。
@@ -98,10 +98,10 @@ export class CharacterLayer {
   private async show(who: string, expr: Expr): Promise<void> {
     const node = this.slots.get(who);
     if (!node) return;
-    // 缓存按「最终用哪张图」记，不按表情记：同一个表情在归还戏之后要换成 _bare，
-    // 按表情记的话，flag 变了图也不会变。
-    const want = spriteKey(who, expr, this.hasFlag);
-    const name = this.sprites[want] ? want : `${who}_${expr}`;   // 表里写了但图不在：退回原图，不白屏
+    // 缓存按「最终用哪张图」记，不按表情记：同一个表情在归还戏之后要换成 _bare、
+    // 主角受位之后要换袍色（D-091），按表情记的话，flag 变了图也不会变。
+    // 候选按顺序试，第一张在的就用；都不在就是原图，不白屏
+    const name = spriteCandidates(who, expr, this.hasFlag).find((n) => this.sprites[n]) ?? `${who}_${expr}`;
     if (node.dataset.sprite === name) return;
     const svg = await this.load(name);
     if (!svg) return;
