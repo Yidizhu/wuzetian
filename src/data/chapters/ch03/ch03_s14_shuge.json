@@ -226,8 +226,7 @@
       "text": "署下交讫，带走柳的凭据",
       "effects": {
         "affinity.shenheng": 3,
-        "affinity.peizhaoye": 3,
-        "flag.ch03_handover_done": true
+        "affinity.peizhaoye": 3
       },
       "irreversible": true,
       "goto": "ch03_s15_yeting"

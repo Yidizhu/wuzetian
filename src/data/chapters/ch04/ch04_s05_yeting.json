@@ -649,8 +649,7 @@
         "flag.ch04_originals_retained": true
       },
       "effects": {
-        "flag.public_review": true,
-        "flag.ch04_labor_paid": true
+        "flag.public_review": true
       },
       "irreversible": false,
       "goto": "ch04_s06_zhaoyang"
@@ -662,8 +661,7 @@
         "flag.ch04_dissent_retained": false
       },
       "effects": {
-        "flag.public_review": false,
-        "flag.ch04_labor_paid": true
+        "flag.public_review": false
       },
       "irreversible": false,
       "goto": "ch04_s06_zhaoyang"
@@ -676,8 +674,7 @@
         "flag.ch04_originals_retained": false
       },
       "effects": {
-        "flag.public_review": false,
-        "flag.ch04_labor_paid": true
+        "flag.public_review": false
       },
       "irreversible": false,
       "goto": "ch04_s06_zhaoyang"

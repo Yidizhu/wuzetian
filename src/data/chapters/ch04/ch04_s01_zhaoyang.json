@@ -14,39 +14,45 @@
   "lines": [
     {
       "id": "ch04_s01_zhaoyang.l1",
+      "who": "tiji",
+      "kind": "aside",
+      "text": "册命已经收起，案上另铺了一张纸。"
+    },
+    {
+      "id": "ch04_s01_zhaoyang.l2",
       "who": "narr",
       "kind": "aside",
       "text": "交接后的第五日，殿门只开半边，冷气沿着席边进来。"
     },
     {
-      "id": "ch04_s01_zhaoyang.l2",
+      "id": "ch04_s01_zhaoyang.l3",
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
       "text": "旧笔与私物都点清了；公家收走的是差牌，没有把你那方帕子也算进去。"
     },
     {
-      "id": "ch04_s01_zhaoyang.l3",
+      "id": "ch04_s01_zhaoyang.l4",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
       "text": "笔给我。"
     },
     {
-      "id": "ch04_s01_zhaoyang.l4",
+      "id": "ch04_s01_zhaoyang.l5",
       "who": "narr",
       "kind": "aside",
       "text": "你拢住笔杆，掌上裂口抵着木头，比入宫那日浅了些。"
     },
     {
-      "id": "ch04_s01_zhaoyang.l5",
+      "id": "ch04_s01_zhaoyang.l6",
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
       "text": "名字还要由你亲口说；这一页不替你写想要什么，也不替旁人替你答应。"
     },
     {
-      "id": "ch04_s01_zhaoyang.l6",
+      "id": "ch04_s01_zhaoyang.l7",
       "when": {
         "flag.enthroned": true
       },
@@ -56,7 +62,7 @@
       "text": "册命已成。新名这一处，昨日没有替你补。"
     },
     {
-      "id": "ch04_s01_zhaoyang.l7",
+      "id": "ch04_s01_zhaoyang.l8",
       "when": {
         "flag.enthroned": true
       },
@@ -66,7 +72,7 @@
       "text": "这名字，我再看一眼。"
     },
     {
-      "id": "ch04_s01_zhaoyang.l8",
+      "id": "ch04_s01_zhaoyang.l9",
       "when": {
         "flag.enthroned": true
       },
@@ -75,7 +81,7 @@
       "text": "你蘸过笔，没有立刻落到册上。"
     },
     {
-      "id": "ch04_s01_zhaoyang.l9",
+      "id": "ch04_s01_zhaoyang.l10",
       "when": {
         "flag.enthroned": true
       },
@@ -84,7 +90,7 @@
       "text": "（天。也可以是曌。还可以……就留着。）"
     },
     {
-      "id": "ch04_s01_zhaoyang.l10",
+      "id": "ch04_s01_zhaoyang.l11",
       "when": {
         "flag.enthroned": true
       },
@@ -94,7 +100,7 @@
       "text": "怎么写，都照你落的这一笔。"
     },
     {
-      "id": "ch04_s01_zhaoyang.l11",
+      "id": "ch04_s01_zhaoyang.l12",
       "when": {
         "flag.declined_crown": true
       },
@@ -104,7 +110,7 @@
       "text": "我的名字没有待补。东西领回就好。"
     },
     {
-      "id": "ch04_s01_zhaoyang.l12",
+      "id": "ch04_s01_zhaoyang.l13",
       "when": {
         "flag.declined_crown": true
       },
@@ -114,7 +120,7 @@
       "text": "好。今日仍有公议，去听不等于领差。"
     },
     {
-      "id": "ch04_s01_zhaoyang.l13",
+      "id": "ch04_s01_zhaoyang.l14",
       "when": {
         "flag.liqinghe_won": true
       },
@@ -124,7 +130,7 @@
       "text": "议件也给我。我仍署自己的名字。"
     },
     {
-      "id": "ch04_s01_zhaoyang.l14",
+      "id": "ch04_s01_zhaoyang.l15",
       "when": {
         "flag.liqinghe_won": true
       },
@@ -134,7 +140,7 @@
       "text": "本人的存件在这，不和受位的册子合装。"
     },
     {
-      "id": "ch04_s01_zhaoyang.l15",
+      "id": "ch04_s01_zhaoyang.l16",
       "who": "narr",
       "kind": "aside",
       "text": "你把素帕压回袖底，留笔在手里。"

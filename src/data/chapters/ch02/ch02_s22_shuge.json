@@ -288,18 +288,14 @@
     {
       "id": "ch02_s22_shuge.cA",
       "text": "我在门边等你",
-      "effects": {
-        "flag.wen_ch02_wait_together": true
-      },
+      "effects": {},
       "irreversible": false,
       "goto": "ch02_s23_hanyuan"
     },
     {
       "id": "ch02_s22_shuge.cB",
       "text": "今日先走，你慢慢收",
-      "effects": {
-        "flag.wen_ch02_leave_first": true
-      },
+      "effects": {},
       "irreversible": false,
       "goto": "ch02_s23_hanyuan"
     }

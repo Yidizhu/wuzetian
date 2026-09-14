@@ -169,9 +169,7 @@
     {
       "id": "ch03_s22_nvguan.cA",
       "text": "按价买纸，下回另问她们",
-      "effects": {
-        "flag.ch03_paper_paid": true
-      },
+      "effects": {},
       "irreversible": false,
       "goto": "ch03_s23_yeting"
     }

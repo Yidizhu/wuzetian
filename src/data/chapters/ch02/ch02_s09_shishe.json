@@ -257,9 +257,7 @@
     {
       "id": "ch02_s09_shishe.cC",
       "text": "这次我也没余力陪读",
-      "effects": {
-        "flag.wen_help_declined": true
-      },
+      "effects": {},
       "irreversible": false,
       "goto": "ch02_s10_nvguan"
     }

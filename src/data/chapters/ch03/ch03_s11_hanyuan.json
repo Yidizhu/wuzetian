@@ -391,7 +391,6 @@
         "flag.ch03_evidence_majority": true
       },
       "effects": {
-        "flag.ch03_offer_wuze": true,
         "flag.ch03_offer_li": false,
         "flag.ch03_accept_offer": true
       },
@@ -405,7 +404,6 @@
         "flag.ch03_evidence_majority": true
       },
       "effects": {
-        "flag.ch03_offer_wuze": true,
         "flag.ch03_offer_li": false,
         "flag.ch03_decline_offer": true
       },
@@ -419,8 +417,7 @@
         "flag.ch03_evidence_majority": false
       },
       "effects": {
-        "flag.ch03_offer_li": true,
-        "flag.ch03_offer_wuze": false
+        "flag.ch03_offer_li": true
       },
       "irreversible": false,
       "goto": "ch03_s12_hanyuan"

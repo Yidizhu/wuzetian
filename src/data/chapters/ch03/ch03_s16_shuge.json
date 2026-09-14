@@ -148,9 +148,7 @@
         },
         "flag.shen_meng_boundary": true
       },
-      "effects": {
-        "flag.ch03_scope_closed": true
-      },
+      "effects": {},
       "irreversible": true,
       "goto": "ch03_s17_shuge"
     },
@@ -163,9 +161,7 @@
         },
         "flag.pei_meng_no_troops": true
       },
-      "effects": {
-        "flag.ch03_scope_closed": true
-      },
+      "effects": {},
       "irreversible": true,
       "goto": "ch03_s18_yuanye"
     },
@@ -178,9 +174,7 @@
         },
         "flag.wen_meng_no_praise": true
       },
-      "effects": {
-        "flag.ch03_scope_closed": true
-      },
+      "effects": {},
       "irreversible": true,
       "goto": "ch03_s19_shishe"
     },
@@ -193,9 +187,7 @@
         },
         "flag.li_meng_real_competition": true
       },
-      "effects": {
-        "flag.ch03_scope_closed": true
-      },
+      "effects": {},
       "irreversible": true,
       "goto": "ch03_s20_yuanye"
     },
@@ -206,7 +198,6 @@
         "flag.enthroned": false
       },
       "effects": {
-        "flag.ch03_scope_closed": true,
         "flag.ch03_consider_school": true
       },
       "irreversible": true,
@@ -219,7 +210,6 @@
         "flag.enthroned": false
       },
       "effects": {
-        "flag.ch03_scope_closed": true,
         "flag.ch03_consider_road": true
       },
       "irreversible": true,
@@ -228,9 +218,7 @@
     {
       "id": "ch03_s16_shuge.cG",
       "text": "到观里坐一会儿，别的先不定",
-      "effects": {
-        "flag.ch03_scope_closed": true
-      },
+      "effects": {},
       "irreversible": true,
       "goto": "ch03_s21_nvguan"
     }
