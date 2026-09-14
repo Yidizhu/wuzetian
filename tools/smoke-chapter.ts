@@ -315,16 +315,18 @@ for (const r of SPRITE_RULES) {
     broken.push({ scene: `(${r.who})`, why: `换图规则要的 flag.${r.flag} 在所有路径上都没被写真，${r.who}_*_${r.suffix} 永远换不上` });
     continue;
   }
+  // 光栅图一套只有一个中性表情（D-095）：有了 <who>_default_<后缀>.webp，这个人三种表情都用它，SVG 不必齐
+  if (existsSync(join(ROOT, "public", "char", "full", `${r.who}_default_${r.suffix}.webp`))) continue;
   for (const expr of ["default", "guarded", "open"]) {
     const f = join(ROOT, "src", "char", `${r.who}_${expr}_${r.suffix}.svg`);
-    if (!existsSync(f)) broken.push({ scene: `(${r.who})`, why: `flag.${r.flag} 会写真，但图 ${r.who}_${expr}_${r.suffix}.svg 不存在` });
+    if (!existsSync(f)) broken.push({ scene: `(${r.who})`, why: `flag.${r.flag} 会写真，但图 ${r.who}_${expr}_${r.suffix}.svg 不存在，也没有光栅图 ${r.who}_default_${r.suffix}.webp` });
   }
 }
 if (endings.length && hasFinale) {
   const missing = endings.filter((e) => !endingsHit.has(e.key));
   console.log(`  结局 ${endings.length - missing.length}/${endings.length} 张走得到：${endings.filter((e) => endingsHit.has(e.key)).map((e) => e.title).join("、")}`);
   for (const e of missing) console.log(`  走不到结局「${e.title}」（${e.key}）：要 ${JSON.stringify(e.require ?? {})}`);
-  const NAME: Record<Rank, string> = { qing: "青", lv: "绿", fei: "绯" };
+  const NAME: Record<Rank, string> = { qing: "青", fei: "绯" };
   console.log(`  落幕时主角的袍色：${endings.filter((e) => ranksAtEnding.has(e.key)).map((e) => `${e.title} ${[...ranksAtEnding.get(e.key)!].map((r) => NAME[r]).join("/")}`).join("、")}`);
 }
 if (broken.length) {

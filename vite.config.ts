@@ -90,8 +90,34 @@ function convertedData(enabled: boolean): Plugin {
 }
 const previewConverted = !!process.env.PREVIEW_CONVERTED;
 
+/**
+ * 光栅图清单（D-095，B17）：构建期扫一遍 public/char/{full,knee} 和 public/scene 里有哪些 webp。
+ *
+ * 为什么扫文件而不是在代码里写一张「已验收」的表：图进 public/ 的唯一路径是 CC3 的 `art:post`，
+ * 而 `art:post` 只在那一版过了七道门槛之后才跑（raster-pipeline.md 第一节）——**文件在，就是验收过**。
+ * 再抄一张表就是第二个会漏改的地方（D-098）。
+ *
+ * 现在三个目录都是空的，所以清单是空的，游戏里一张 PNG 都不用，和 B16 一模一样。
+ * dev 里新放进来的图要重启 dev server 才认。
+ */
+const RASTER_ID = "virtual:raster-assets";
+function rasterAssets(): Plugin {
+  const resolved = "\0" + RASTER_ID;
+  const pub = join(import.meta.dirname, "public");
+  const list = (dir: string): string[] =>
+    existsSync(join(pub, dir)) ? readdirSync(join(pub, dir)).filter((f) => f.endsWith(".webp")).map((f) => f.slice(0, -5)).sort() : [];
+  return {
+    name: "wuzetian-raster-assets",
+    resolveId: (id) => (id === RASTER_ID ? resolved : null),
+    load(id) {
+      if (id !== resolved) return null;
+      return `export default ${JSON.stringify({ full: list("char/full"), knee: list("char/knee"), scenes: list("scene") })};`;
+    },
+  };
+}
+
 export default defineConfig({
-  plugins: [adultScenes(adult), convertedData(previewConverted || process.env.NODE_ENV !== "production")],
+  plugins: [adultScenes(adult), convertedData(previewConverted || process.env.NODE_ENV !== "production"), rasterAssets()],
   base: "./",
   server: { port: 5173, strictPort: true },
   build: {

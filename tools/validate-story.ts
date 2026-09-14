@@ -16,6 +16,9 @@ import type { SceneT, PoemT, PoemDuelT, LetterT, EndingT } from "../src/engine/s
 import { ENTRANCES } from "../src/engine/entrances.ts";
 import { AFFINITY_BANDS } from "../src/engine/types.ts";
 import { IDENTITY_RANKS } from "../src/engine/identity.ts";
+import { PORTRAITS } from "../src/char/portraits.ts";
+import { BACKDROPS, backdropKey } from "../src/scene/backdrops.ts";
+import { readdirSync } from "node:fs";
 
 /**
  * 开场。M1 那四场骨架（ch00_*）是我写的占位文字，不是剧本，已退到
@@ -438,6 +441,55 @@ if (mainRun) {
   }
 }
 
+// ---------------------------------------------------- 光栅图的两道闸（D-095，B17）
+
+/**
+ * 新旧并存（engine-cc1-b16-png.md 第三节）。清单都从唯一的出处读，不抄（D-098）：
+ * 立绘有哪些套 → src/char/portraits.ts；剧本用到哪些背景 → 场景数据；背景表 → src/scene/backdrops.ts；
+ * 有哪些图 → public/ 下的文件本身。
+ */
+const coverage: string[] = [];
+if (mainRun) {
+  const pub = join(ROOT, "public");
+  const webps = (dir: string): Set<string> =>
+    new Set(existsSync(join(pub, dir)) ? readdirSync(join(pub, dir)).filter((f) => f.endsWith(".webp")).map((f) => f.slice(0, -5)) : []);
+  const full = webps("char/full"), knee = webps("char/knee"), sceneImgs = webps("scene");
+  const portraitFiles = new Set(PORTRAITS.map((p) => p.file));
+
+  // 闸一：放进来的图必须叫得上名字、成对。叫不上名字的图引擎永远不会选到，而放图的人以为已经上线了
+  for (const f of full) {
+    if (!portraitFiles.has(f)) err(`public/char/full/${f}.webp`, "file", "这张立绘不在 src/char/portraits.ts 的清单里，引擎永远选不到它");
+    if (!knee.has(f)) warn(`public/char/full/${f}.webp`, "knee", "只有全身、没有膝上。念台词时会用全身摆，人不会放大");
+  }
+  for (const f of knee) if (!full.has(f)) err(`public/char/knee/${f}.webp`, "full", "只有膝上、没有全身。引擎按全身图判断这个人有没有光栅图，这张永远用不上");
+  for (const k of sceneImgs) if (!BACKDROPS[k]) err(`public/scene/${k}.webp`, "file", "这张背景不在 src/scene/backdrops.ts 的表里，引擎永远选不到它");
+
+  // 剧本用到的每种「地点·色板·布置」，背景表都要有。没有的话那一场有图也不会被认出来，而且覆盖表会少算
+  const usedBackdrops = new Set<string>();
+  for (const { file, s } of scenes.values()) {
+    const k = backdropKey({ key: s.scene, palette: s.palette, dressing: s.dressing });
+    usedBackdrops.add(k);
+    if (!BACKDROPS[k]) err(file, "scene", `背景组合 ${k} 不在 src/scene/backdrops.ts 的表里。加一行，CC3 才知道要出这张图`);
+  }
+
+  // 闸二：旧 SVG 不许在光栅图顶上之前被删——「新的没铺完、旧的已删」那道空窗（D-095）
+  const charDir = join(ROOT, "src", "char");
+  for (const who of CHARACTER_KEYS as readonly string[]) {
+    if (full.has(`${who}_default`)) continue;         // 已经有光栅图，SVG 删不删都不影响画面
+    for (const expr of ["default", "guarded", "open"]) {
+      if (!existsSync(join(charDir, `${who}_${expr}.svg`))) {
+        err(`src/char/${who}_${expr}.svg`, "fallback", `这张 SVG 没了，而 ${who} 还没有光栅图 public/char/full/${who}_default.webp。玩家会看到一个空位`);
+      }
+    }
+  }
+
+  // 覆盖表：进度一眼看得出，不靠问
+  const havePortraits = PORTRAITS.filter((p) => full.has(p.file));
+  const haveBackdrops = [...usedBackdrops].filter((k) => sceneImgs.has(k));
+  coverage.push(`光栅立绘 ${havePortraits.length}/${PORTRAITS.length} 套` + (havePortraits.length ? `：${havePortraits.map((p) => p.file).join("、")}` : "（其余走 SVG）"));
+  coverage.push(`整图背景 ${haveBackdrops.length}/${usedBackdrops.size} 种` + (haveBackdrops.length ? `：${haveBackdrops.join("、")}` : "（其余走渐变）"));
+}
+
 // --------------------------------------------------------------- 报告
 
 const errors = found.filter((f) => f.level === "错误");
@@ -451,6 +503,8 @@ for (const f of [...errors, ...warns]) {
   console.log(`  ${tag}  ${f.file}  ${f.where}\n        ${f.msg}`);
 }
 
+for (const c of coverage) console.log(`  ${c}`);
+if (coverage.length) console.log();
 if (!found.length) {
   console.log("  全部通过。");
 } else {

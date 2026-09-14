@@ -29,6 +29,8 @@ import { cuesForScene, cuesForLine, newCueState, type Cue } from "./audio/cues.t
 import endingData from "./data/endings.json";
 import adultScenes from "virtual:adult-scenes";
 import converted from "virtual:converted-data";
+import rasterList from "virtual:raster-assets";
+import { RasterCatalog, framingFor } from "./scene/raster.ts";
 import poemData from "./data/poems.json";
 import duelData from "./data/duels.json";
 import introData from "./data/intros.json";
@@ -74,6 +76,14 @@ const poems = new Map<string, PoemT>(
 );
 // 开场是序幕 ch01-00（C10、D-048）：题记三句、她的身体与位置三句，然后才是「纸上已经写好」
 const START = "ch01_s00_zhaoyang";
+/**
+ * 光栅图（D-095，B17）。**默认是关的——不是开关关着，是一张图都还没有**：`public/char`、`public/scene` 是空的，
+ * 清单为空，立绘和背景全走 SVG／渐变。CC3 的 `art:post` 出了验收过的 webp，下一次构建就用上。
+ * `?art=svg` 强制不用光栅图，拿来和新图对比。
+ */
+const raster = new URLSearchParams(location.search).get("art") === "svg"
+  ? RasterCatalog.empty()
+  : new RasterCatalog(rasterList, import.meta.env.BASE_URL);
 /** 结局第一拍（只有画面）至少停多久才认点击，毫秒（D-084） */
 const ENDING_PICTURE_HOLD_MS = 1500;
 /** 结局第一拍还在时，点一下要调的函数；不在第一拍时是 null */
@@ -117,7 +127,7 @@ function rememberFallback(why: string): void {
 
 async function pickRenderer(root: HTMLElement): Promise<SceneRenderer> {
   const want = RENDERER_MODE;
-  const mountCss = (): SceneRenderer => { const r = new CssParallaxRenderer(); r.mount(root); return r; };
+  const mountCss = (): SceneRenderer => { const r = new CssParallaxRenderer(raster); r.mount(root); return r; };
   if (want === "null") { const r = new NullRenderer(); r.mount(root); return r; }
   // 不认识的值当 CSS：拼错一个参数不该把玩家送进一条没验过的路
   if (want !== "auto" && want !== "three") return mountCss();
@@ -155,7 +165,7 @@ app.appendChild(stageRoot);
 let renderer = await pickRenderer(stageRoot);
 
 const store = new Store();
-const cast = new CharacterLayer(app, sprites, (f) => store.state.flags[f] === true);
+const cast = new CharacterLayer(app, sprites, (f) => store.state.flags[f] === true, raster);
 const status = new StatusBar(app);
 const dlg = new DialogueBox(app);
 
@@ -227,6 +237,7 @@ story.on((e) => {
       // 查到的是一张空名单，不换上台——阿荻在第一章 03 场说话，台上站的却是主角和宋蕙贞。
       // 换图（上一场出口写的 flag，比如归还戏）放到阵容定下之后再对一遍，照样第一眼生效。
       // D-076：序幕这种场，台上先空着，人等那一句再进来（engine/entrances.ts）
+      cast.setDressing(e.scene.dressing ?? "");      // 李令仪的礼衣看布置（D-108 第 3 条），要在摆人之前
       void cast.setCast(e.castHeld ? [] : e.scene.cast).then(() => cast.refresh());
       break;
     case "castEnter":
@@ -242,6 +253,7 @@ story.on((e) => {
       play(cuesForLine(e.who, e.lineKind, e.text, cueState, performance.now()));
       choices.hide();
       dlg.setVisible(true);
+      cast.setFraming(framingFor("line"));             // 念台词：膝上（D-108 第 2 条）
       void cast.speak(e.who, e.expr as "default" | "guarded" | "open");
       // 读过的句子直接显示完整，没读过的逐字来。skip 只跳读过的文本。
       dlg.show(e.who, e.text, e.lineKind, store.state, !e.first);
@@ -256,6 +268,7 @@ story.on((e) => {
       }
       break;
     case "choices":
+      cast.setFraming(framingFor("choices"));          // 要做决定：镜头退开，全身（D-108 第 2 条）
       dlg.setVisible(false);
       choices.show(e.items);
       break;
@@ -335,7 +348,7 @@ if ((renderer as { name?: string }).name === "three-stage" && RENDERER_MODE === 
     console.warn(`[renderer] 3D 退回 CSS 版：${why}`);
     cancelAnimationFrame(raf);
     rememberFallback(why);
-    const next = new CssParallaxRenderer();
+    const next = new CssParallaxRenderer(raster);
     // 新的一层先铺上、再拆旧的：换的那一下画面不空
     const holder = document.createElement("div");
     stageRoot.after(holder);

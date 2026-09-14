@@ -4,6 +4,7 @@
 @import "./title.css";
 @import "./epigraph.css";
 @import "./debut.css";
+@import "./raster.css";
 
 /* 字体：M5 会换成子集化的思源宋体。现在先用系统衬线，保证排版结构对。 */
 :root {

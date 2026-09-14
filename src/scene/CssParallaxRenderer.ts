@@ -1,13 +1,19 @@
 import type { SceneDescriptor, SceneRenderer } from "./SceneRenderer.ts";
 import type { SceneKey } from "../engine/types.ts";
+import { RasterCatalog } from "./raster.ts";
+import { BACKDROPS, backdropKey } from "./backdrops.ts";
 
 /**
  * CSS 多层视差版背景。M1 的默认实现，也是 M5 性能不达标时的退路。
  *
  * 三段式（天 / 人 / 地）见 art-style 的 composition.md：
  * 天是纯留白或极淡墨晕，地是墨晕加噪声，中间留给主体。
- * 现在还没有美术资产，先用 CSS 渐变按每个场景的光线方向生成，
- * 换成真图时只要替换 layer 的 background 即可，结构不用动。
+ * 现在还没有美术资产，先用 CSS 渐变按每个场景的光线方向生成。
+ *
+ * **整图（D-095，B17）**：这一场的「地点·色板·布置」在 `public/scene/` 里有验收过的 webp，
+ * 就在三层之上铺一层整图，停掉指针视差，改整图缓慢推近（CSS 动画，见 raster.css）；
+ * 夜场同一张日景套冷暗滤镜（D-107）。没有图就和原来一模一样。图读不出来也退回渐变。
+ * **默认是关的**：现在一张背景图都没有。
  */
 
 interface SceneLook {
@@ -65,7 +71,15 @@ export class CssParallaxRenderer implements SceneRenderer {
   readonly name = "css-parallax";
   private root!: HTMLElement;
   private layers: HTMLElement[] = [];
-  private onPointer = (e: PointerEvent) => this.parallax(e.clientX, e.clientY);
+  private image: HTMLElement | null = null;
+  private raster: RasterCatalog;
+  /** load() 解码好的那张图，show() 换上 */
+  private ready = new Map<string, string>();
+  private onPointer = (e: PointerEvent) => { if (!this.root.dataset.image) this.parallax(e.clientX, e.clientY); };
+
+  constructor(raster: RasterCatalog = RasterCatalog.empty()) {
+    this.raster = raster;
+  }
 
   mount(root: HTMLElement): void {
     this.root = root;
@@ -76,14 +90,32 @@ export class CssParallaxRenderer implements SceneRenderer {
       root.appendChild(el);
       this.layers.push(el);
     }
+    // 整图那一层，压在三层渐变之上、纸纹之下。没有图的场景它是空的、藏着
+    const image = document.createElement("div");
+    image.className = "stage__layer stage__image";
+    root.appendChild(image);
+    this.image = image;
     const paper = document.createElement("div");
     paper.className = "stage__paper";     // 全屏纸纹，multiply
     root.appendChild(paper);
     window.addEventListener("pointermove", this.onPointer, { passive: true });
   }
 
-  async load(_d: SceneDescriptor): Promise<void> {
-    // CSS 版没有要预载的东西。3D 版在这里加载 .glb 和色阶图。
+  async load(d: SceneDescriptor): Promise<void> {
+    // 引擎先 await load 再 show：图在这里解码完，墨晕开的那一下它已经在内存里，不会先白一下
+    const key = backdropKey(d);
+    if (!this.raster.hasBackdrop(key) || this.ready.has(key)) return;
+    const url = this.raster.backdropUrl(key);
+    const img = new Image();
+    img.decoding = "async";
+    img.src = url;
+    try {
+      await img.decode();
+      this.ready.set(key, url);
+    } catch {
+      console.warn(`[stage] 背景图读不出来，这一场退回渐变：${url}`);
+      this.raster.markBroken(`scene/${key}`);
+    }
   }
 
   async show(d: SceneDescriptor): Promise<void> {
@@ -100,6 +132,27 @@ export class CssParallaxRenderer implements SceneRenderer {
     document.documentElement.style.setProperty("--stage-floor", "22%");
     // 3D 舞台会把人收小（--stage-person），退回 CSS 版时要还原，不然人就一直是小的
     document.documentElement.style.setProperty("--stage-person", "1");
+
+    // 整图：有就铺上，按背景表摆（脚线、人多大、往哪推、夜不夜）
+    const key = backdropKey(d);
+    const url = this.ready.get(key);
+    if (url && this.image) {
+      const b = BACKDROPS[key] ?? { where: "" };
+      this.image.style.backgroundImage = `url("${url}")`;
+      this.root.dataset.image = "1";
+      this.root.dataset.push = b.push ?? "center";
+      this.root.dataset.night = b.night ? "1" : "";
+      if (b.floor !== undefined) document.documentElement.style.setProperty("--stage-floor", `${b.floor}%`);
+      if (b.person !== undefined) document.documentElement.style.setProperty("--stage-person", String(b.person));
+      // 换场从头推起：动画重置一次
+      this.image.classList.remove("stage__image--push");
+      void this.image.offsetWidth;
+      this.image.classList.add("stage__image--push");
+    } else if (this.image) {
+      this.image.style.backgroundImage = "";
+      delete this.root.dataset.image;
+      delete this.root.dataset.push;
+    }
     this.root.classList.remove("stage--wiping");
     await wait(320);
   }
@@ -133,7 +186,11 @@ export class CssParallaxRenderer implements SceneRenderer {
     window.removeEventListener("pointermove", this.onPointer);
     this.root.innerHTML = "";
     this.root.classList.remove("stage", "stage--css");
+    delete this.root.dataset.image;
+    delete this.root.dataset.push;
     this.layers = [];
+    this.image = null;
+    this.ready.clear();
   }
 }
 

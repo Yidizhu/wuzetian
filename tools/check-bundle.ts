@@ -11,6 +11,8 @@
  * 2. **18+ 数据包混进默认产物（D-029）。** 默认构建里那些文字一个字节都不该出现。
  * 3. **CC2 的转换产物混进正式产物。** `src/data/converted/` 是预览用的，
  *    没过 validate；它进了包，玩家玩到的就可能是没审过的版本。
+ * 4. **光栅图被内联进 JS／CSS（B17）。** 一张立绘一两百 KB，`import` 错了写法或阈值调高，
+ *    它就以 base64 进主包，首屏多几 MB，而构建一声不吭。图只该在 public/ 里按地址取。
  *
  * 三条都只报第一条命中的证据，不打印命中的原文——18+ 那条尤其不该往日志里抄。
  */
@@ -55,6 +57,11 @@ const CHECKS: Check[] = [
     why: "converted/ 没过 validate，只给 ?data=converted 预览用。检查 convertedData 开关。",
     needles: ["virtual:converted-data", "data/converted/manifest"],
   },
+  {
+    name: "光栅图被内联进了产物（B17）",
+    why: "webp／png 立绘和背景只该在 public/char、public/scene 里按地址取。检查是不是 import 了图片文件。",
+    needles: ["data:image/webp;base64", "data:image/png;base64"],
+  },
 ];
 
 let bad = 0;
@@ -78,4 +85,4 @@ if (bad) {
   console.error(`\n  ${bad} 项不合格。\n`);
   process.exit(1);
 }
-console.log(`  三项都干净：没有 zod、没有 18+ 数据、没有未审的转换产物。\n`);
+console.log(`  四项都干净：没有 zod、没有 18+ 数据、没有未审的转换产物、没有内联的光栅图。\n`);

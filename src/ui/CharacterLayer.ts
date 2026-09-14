@@ -1,5 +1,6 @@
 import type { Expr } from "../engine/types.ts";
-import { spriteCandidates } from "../engine/identity.ts";
+import { spriteCandidates, rasterCandidates, type SpriteContext } from "../engine/identity.ts";
+import { RasterCatalog } from "../scene/raster.ts";
 
 /**
  * 立绘层。叠在背景层之上、对话框之下。
@@ -13,6 +14,10 @@ import { spriteCandidates } from "../engine/identity.ts";
  *
  * 最多同屏两人。说话的人在前，不说话的退半步转淡——这是舞台调度，不是特效。
  * 主体偏左下、留白留在她要走的方向，见 art-style 的 composition.md。
+ *
+ * **光栅立绘（D-095，B17）**：一个人有了验收过的 webp，就换成 `<img>`，否则照旧内联 SVG。
+ * 选哪张见 `engine/identity.ts` 的 `rasterCandidates`；图读不出来记一笔、退回 SVG，不白屏。
+ * 光栅图才有全身／膝上两种框法（D-108 第 2 条），SVG 永远是全身。
  */
 export class CharacterLayer {
   private el: HTMLElement;
@@ -22,10 +27,42 @@ export class CharacterLayer {
    * sprites：`wuze_default` -> SVG 文本。
    * hasFlag：给换图规则用（D-046 第 1 条）。规则表归 CC3，flag 归引擎，这里只是把两边接上。
    */
-  constructor(root: HTMLElement, private sprites: Record<string, string>, private hasFlag: (flag: string) => boolean = () => false) {
+  private sprites: Record<string, string>;
+  private hasFlag: (flag: string) => boolean;
+  private raster: RasterCatalog;
+  /** 这一场的布置。李令仪的礼衣看它（D-108 第 3 条） */
+  private dressing = "";
+  /** 这一格用全身还是膝上（D-108 第 2 条），只对光栅图有意义 */
+  private framing: "full" | "knee" = "knee";
+
+  constructor(root: HTMLElement, sprites: Record<string, string>, hasFlag: (flag: string) => boolean = () => false,
+    raster: RasterCatalog = RasterCatalog.empty()) {
+    this.sprites = sprites;
+    this.hasFlag = hasFlag;
+    this.raster = raster;
     this.el = document.createElement("div");
     this.el.className = "cast";
     root.appendChild(this.el);
+  }
+
+  private get ctx(): SpriteContext {
+    return { has: this.hasFlag, dressing: this.dressing };
+  }
+
+  /** 换场时给这一场的布置，在 setCast 之前调 */
+  setDressing(dressing: string): void {
+    this.dressing = dressing;
+  }
+
+  /**
+   * 全身还是膝上。有选项的那一格给 full，其余给 knee（`scene/raster.ts` 的 `framingFor`）。
+   * 台上是 SVG 的人不受影响；光栅图就地换成对应那一张。
+   */
+  setFraming(framing: "full" | "knee"): void {
+    if (this.framing === framing) return;
+    this.framing = framing;
+    this.el.dataset.framing = framing;
+    void this.refresh();
   }
 
   private roster: string[] = [];
@@ -87,6 +124,8 @@ export class CharacterLayer {
   flare(who: string): void {
     const node = this.slots.get(who);
     if (!node) return;
+    // SVG 上是朱砂点亮回朱砂；光栅图上没有能单独变色的点，改成整个人一次很淡的暖光、脚下墨影加深（D-108 第 1 条）。
+    // 两种样式都挂在同一个 data-flare 上，见 app.css 与 raster.css
     node.dataset.flare = "1";
   }
 
@@ -100,14 +139,41 @@ export class CharacterLayer {
     if (!node) return;
     // 缓存按「最终用哪张图」记，不按表情记：同一个表情在归还戏之后要换成 _bare、
     // 主角受位之后要换袍色（D-091），按表情记的话，flag 变了图也不会变。
+    node.dataset.expr = expr;
+
+    // 光栅图优先。一个人一旦有了，三种表情都用它，不回到 SVG（identity.ts 的 rasterCandidates）
+    const pic = this.raster.pickPortrait(rasterCandidates(who, this.ctx));
+    if (pic) {
+      const { url, framing } = this.raster.portraitUrl(pic, this.framing);
+      const key = `img:${url}`;
+      if (node.dataset.sprite === key) return;
+      const img = new Image();
+      img.alt = "";
+      img.decoding = "async";
+      img.src = url;
+      try {
+        await img.decode();          // 解码完再换上：换的那一下不闪白
+      } catch {
+        // 读不出来（网络、单文件版里根本没有这个文件）：记一笔，这个人退回 SVG
+        console.warn(`[cast] 光栅立绘读不出来，退回 SVG：${url}`);
+        this.raster.markBroken(`char/${pic}`);
+        return this.show(who, expr);
+      }
+      if (this.slots.get(who) !== node) return;   // 解码的这一会儿人被换下去了
+      node.replaceChildren(img);
+      node.dataset.sprite = key;
+      node.dataset.raster = framing;
+      return;
+    }
+
     // 候选按顺序试，第一张在的就用；都不在就是原图，不白屏
-    const name = spriteCandidates(who, expr, this.hasFlag).find((n) => this.sprites[n]) ?? `${who}_${expr}`;
+    const name = spriteCandidates(who, expr, this.ctx).find((n) => this.sprites[n]) ?? `${who}_${expr}`;
     if (node.dataset.sprite === name) return;
     const svg = await this.load(name);
     if (!svg) return;
     node.innerHTML = svg;
-    node.dataset.expr = expr;
     node.dataset.sprite = name;
+    delete node.dataset.raster;
   }
 
   /** flag 变了之后重新对一遍台上的人（归还戏的出口会用到） */

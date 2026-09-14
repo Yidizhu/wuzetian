@@ -1,0 +1,74 @@
+/* 光栅图（D-095，B17，CC1 加）：整图背景 + 立绘 <img>。
+   **默认一条都不生效**：没有图时既没有 .stage[data-image]，也没有 .cast__slot[data-raster]。
+   数（推多远、多久、滤镜多深、暖光多暖）是 CC3 看图后定的，改这里就行。 */
+
+/* ---------- 整图背景 ---------- */
+
+.stage__image {
+  inset: -4%;                            /* 四周多铺一点，推近平移时边不露出来 */
+  background: center / cover no-repeat;
+  opacity: 0;
+}
+.stage[data-image] .stage__image { opacity: 1; }
+/* 有整图就不画渐变三层。纸纹留着：厚涂上薄薄一层纸纹，和立绘、对话框是同一张纸 */
+.stage[data-image] .stage__sky,
+.stage[data-image] .stage__mid,
+.stage[data-image] .stage__ground { opacity: 0; }
+.stage--wiping[data-image] .stage__image { opacity: 0; }
+
+/* 缓慢推近平移（D-095：放弃逐层视差，改整图轻推）。朝留白那边推（composition.md），方向由背景表的 push 给 */
+.stage__image--push { animation: backdrop-push 26s ease-in-out infinite alternate; }
+.stage[data-push="left"]  { --push-x: 2.5%; }
+.stage[data-push="right"] { --push-x: -2.5%; }
+@keyframes backdrop-push {
+  from { transform: scale(1) translateX(0); }
+  to   { transform: scale(1.06) translateX(var(--push-x, 0%)); }
+}
+/* 关键 beat（不可逆选择）：推一下，快一点 */
+.stage--beat[data-image] .stage__image { animation: backdrop-beat 900ms var(--ease); }
+@keyframes backdrop-beat { 50% { transform: scale(1.04); } }
+
+/* 夜场：同一张日景套冷暗滤镜，不另出图（D-107）。不够再单独生成那两三张 */
+.stage[data-image][data-night="1"] .stage__image {
+  filter: brightness(0.52) saturate(0.7) hue-rotate(-12deg) contrast(1.05);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stage__image--push, .stage--beat[data-image] .stage__image { animation: none; }
+}
+
+/* ---------- 光栅立绘 ---------- */
+
+/* 画布与 SVG 一样是 1024×1536、脚底在第 1500 行（src/char/portraits.ts 的 CANVAS），
+   所以全身图摆法和 SVG 完全一样：槽位比例、脚线、呼吸都不改 */
+.cast__slot > img {
+  position: relative; z-index: 1;
+  display: block; width: 100%; height: 100%;
+  object-fit: contain; object-position: 50% 100%;
+  transform-origin: 50% 100%;
+  animation: breath 6.4s ease-in-out infinite;
+  user-select: none; -webkit-user-drag: none;
+}
+.cast__slot[data-active="1"] > img { animation-duration: 5.2s; }
+.cast__slot[data-side="right"] > img { animation-delay: -2.1s; }
+
+/* 膝上（D-108 第 2 条：念台词时）。膝上图是同一把尺子的第 0 到 1080 行：
+   高撑满槽位、宽按比例放出去、水平居中——人放大约 1.42 倍，头顶还在原处，膝盖落在槽底，被对话框盖住。
+   **所有人裁在同一行**，身高差留着（raster-pipeline.md 第四节）。脚都不在画面里了，脚下墨影收起 */
+.cast__slot[data-raster="knee"] > img {
+  /* 绝对定位：宽出去的那一截不能参与槽位的尺寸。槽位是 aspect-ratio 盒子，最小宽度按内容算，
+     图一宽，槽位跟着撑宽，两个人就挤到屏幕中间叠在一起（B17 手机截图里真出过） */
+  position: absolute; bottom: 0; left: 50%;
+  width: auto; height: 100%; max-width: none;
+  translate: -50% 0;
+}
+.cast__slot[data-raster="knee"]::before { display: none; }
+
+/* 她拿主意的那一下（D-010）。光栅图上没有能单独变色的朱砂点，改成整个人一次很淡的暖光、脚下墨影加深（D-108 第 1 条） */
+.cast__slot[data-raster][data-flare="1"] > img { animation: breath 6.4s ease-in-out infinite, raster-flare 1400ms var(--ease); }
+.cast__slot[data-raster="full"][data-flare="1"]::before { opacity: 1; filter: brightness(0.7); }
+@keyframes raster-flare {
+  0%   { filter: none; }
+  35%  { filter: drop-shadow(0 0 18px rgba(214, 150, 84, 0.55)) brightness(1.06); }
+  100% { filter: drop-shadow(0 0 6px rgba(214, 150, 84, 0.22)); }
+}

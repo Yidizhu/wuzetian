@@ -155,7 +155,7 @@ try {
         renderer: document.querySelector('.stage')?.className,
         viewport: [innerWidth, innerHeight],
         cast: (() => { const e = document.querySelector('.cast'); const r = e.getBoundingClientRect(); return [r.x|0, r.y|0, r.width|0, r.height|0]; })(),
-        slots: [...document.querySelectorAll('.cast__slot')].map(n => { const r = n.getBoundingClientRect(); const s = n.querySelector('svg')?.getBoundingClientRect(); const cs = getComputedStyle(n);
+        slots: [...document.querySelectorAll('.cast__slot')].map(n => { const r = n.getBoundingClientRect(); const s = n.querySelector('svg, img')?.getBoundingClientRect(); const cs = getComputedStyle(n);
           return { who: n.dataset.char, side: n.dataset.side, active: n.dataset.active, box: [r.x|0, r.y|0, r.width|0, r.height|0], svg: s ? [s.x|0, s.y|0, s.width|0, s.height|0] : null, opacity: cs.opacity, filter: cs.filter }; }),
         dlg: (() => { const r = document.querySelector('.dlg').getBoundingClientRect(); return [r.x|0, r.y|0, r.width|0, r.height|0]; })(),
       })`);

@@ -647,17 +647,49 @@ test("D-084 无头工具没有第一拍：直接出正文，也只出一次", as
   assert.equal(n, 1);
 });
 
-test("D-091 袍色跟身份 flag 走，不跟章节；图没到位就退回原图", async () => {
-  const { protagonistRank, spriteCandidates } = await import("../src/engine/identity.ts");
+test("D-091、D-105 袍色跟身份 flag 走，只有青与绯；图没到位就退回原图", async () => {
+  const { protagonistRank, spriteCandidates, IDENTITY_RANKS } = await import("../src/engine/identity.ts");
+  const ctx = (has: (f: string) => boolean, dressing = "") => ({ has, dressing });
   const none = () => false;
   const enthroned = (f: string) => f === "enthroned";
   assert.equal(protagonistRank(none), "qing", "什么都没有是青");
   assert.equal(protagonistRank((f) => f === "liqinghe_won" || f === "declined_crown"), "qing", "落选、辞受都还是青");
   assert.equal(protagonistRank(enthroned), "fei");
-  assert.deepEqual(spriteCandidates("wuze", "open", enthroned), ["wuze_open_fei", "wuze_open"]);
-  assert.deepEqual(spriteCandidates("shenheng", "open", enthroned), ["shenheng_open"], "别人不跟主角的身份换图");
-  assert.deepEqual(spriteCandidates("liuchenghuan", "default", (f) => f === "chenghuan_returned"),
+  assert.deepEqual(IDENTITY_RANKS.map((r) => r.rank), ["fei"], "D-105：没有绿");
+  assert.deepEqual(spriteCandidates("wuze", "open", ctx(enthroned)), ["wuze_open_fei", "wuze_open"]);
+  assert.deepEqual(spriteCandidates("shenheng", "open", ctx(enthroned)), ["shenheng_open"], "别人不跟主角的身份换图");
+  assert.deepEqual(spriteCandidates("liuchenghuan", "default", ctx((f) => f === "chenghuan_returned")),
     ["liuchenghuan_default_bare", "liuchenghuan_default"]);
+});
+
+test("D-095、D-108 光栅立绘：一套一个中性表情；李令仪公议受位穿紫；有选项全身、其余膝上", async () => {
+  const { rasterCandidates } = await import("../src/engine/identity.ts");
+  const { RasterCatalog, framingFor } = await import("../src/scene/raster.ts");
+  const none = () => false;
+  assert.deepEqual(rasterCandidates("liqinghe", { has: none, dressing: "gongyi" }), ["liqinghe_default_zi", "liqinghe_default"]);
+  assert.deepEqual(rasterCandidates("liqinghe", { has: none, dressing: "kaike" }), ["liqinghe_default"], "日常布置是郁金");
+  assert.deepEqual(rasterCandidates("wuze", { has: (f) => f === "enthroned", dressing: "" }), ["wuze_default_fei", "wuze_default"]);
+
+  // 清单为空：谁都不用光栅图——B17 交付时游戏和 B16 一模一样
+  assert.equal(RasterCatalog.empty().pickPortrait(["wuze_default"]), null);
+  // 绯那张还没到：用青那张，不回 SVG
+  const cat = new RasterCatalog({ full: ["wuze_default", "shenheng_default"], knee: ["wuze_default"], scenes: ["yeting_ink"] }, "/");
+  assert.equal(cat.pickPortrait(["wuze_default_fei", "wuze_default"]), "wuze_default");
+  assert.equal(cat.pickPortrait(["peizhaoye_default"]), null, "没图的人继续是 SVG");
+  assert.deepEqual(cat.portraitUrl("wuze_default", "knee"), { url: "/char/knee/wuze_default.webp", framing: "knee" });
+  assert.deepEqual(cat.portraitUrl("shenheng_default", "knee"), { url: "/char/full/shenheng_default.webp", framing: "full" }, "膝上没出就用全身");
+  // 读坏过的图不再选
+  cat.markBroken("char/wuze_default");
+  assert.equal(cat.pickPortrait(["wuze_default"]), null);
+  assert.equal(framingFor("choices"), "full");
+  assert.equal(framingFor("line"), "knee");
+});
+
+test("B17 背景表：键是「地点_色板_布置」，剧本里用到的每种组合表里都有", async () => {
+  const { backdropKey, BACKDROPS } = await import("../src/scene/backdrops.ts");
+  assert.equal(backdropKey({ key: "hanyuan", palette: "gold", dressing: "gongyi" }), "hanyuan_gold_gongyi");
+  assert.equal(backdropKey({ key: "yuanye", palette: "ink" }), "yuanye_ink");
+  assert.ok(BACKDROPS.yuanye_ink?.night, "原野是夜场，套滤镜（D-107）");
 });
 
 test("题记是合法的说话人，地点多了驿路（D-062、D-063）", () => {
