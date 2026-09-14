@@ -33,7 +33,7 @@ export interface Cg {
 
 export const CGS: Record<string, Cg> = {
   // E19／E20：先试的两张（D-146）
-  peizhaoye_1_xunma:  { who: ["peizhaoye"],            beat: "本行",       where: "裴照夜驯马（单人）。ch01-07 苑野。主体本身是宽的，按 D-150 横构图，出图后要填焦点" },
+  peizhaoye_1_xunma:  { who: ["peizhaoye"],            beat: "本行",       focus: { x: 45, y: 30 }, where: "裴照夜驯马（单人）。ch01-07 苑野。主体本身是宽的，按 D-150 横构图。焦点 CC3 E22 按 v2 量：她的脸 x 520–660、马头 760–960，手机那一条 478–951 都装得下（CC3 加，待协调）" },
   adi_1_buxiu:        { who: ["adi", "wuze"],          beat: "关系",       where: "阿荻替主角补袖（双人，有接触）。ch01-03" },
   // E21：四种类型各一张，位置来自 C32 样稿（样稿写回正文之前，剧本里还没有这四句）
   wenqiao_1_cangzhi:  { who: ["wenqiao", "wuze"],      beat: "注意到她",   where: "温荞把两张纸藏到身后，笑得收不住，两人对看。ch01-15 诗社" },

@@ -22,3 +22,11 @@ Thumbs.db
 
 # Vercel CLI 自己生成的。.env.local 里是 OIDC token，绝不能进版本库
 .env*
+
+# 生图原件（D-112；CC3 加，待协调——.gitignore 不在 CC3 的目录里）。
+# 一张 1.4 MB，每套试几版就上百 MB，git 删不掉历史。进版本库的只有验收过那一版转出的 public/char、public/scene 下的 webp。
+assets/portraits/*_v*.png
+assets/scenes/*_v*.png
+# 事件图原件（E19，CC3 加，待协调——同 D-112）
+assets/cg/*_v*.png
+assets/portraits/imagegen-write-test.png
