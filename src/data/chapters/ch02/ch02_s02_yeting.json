@@ -18,166 +18,262 @@
       "id": "ch02_s02_yeting.l1",
       "who": "narr",
       "kind": "aside",
-      "text": "沈衡进门时，粥碗边已经结了一圈薄皮。"
+      "text": "粥碗还在席边，沈衡跨进门来。"
     },
     {
       "id": "ch02_s02_yeting.l2",
+      "who": "narr",
+      "kind": "aside",
+      "text": "沈衡进门时，粥碗边已经结了一圈薄皮。"
+    },
+    {
+      "id": "ch02_s02_yeting.l3",
       "who": "shenheng",
       "expr": "default",
       "kind": "say",
       "text": "谁记的？"
     },
     {
-      "id": "ch02_s02_yeting.l3",
+      "id": "ch02_s02_yeting.l4",
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "我。还没让她认。"
+      "text": "我。"
     },
     {
-      "id": "ch02_s02_yeting.l4",
+      "id": "ch02_s02_yeting.l5",
+      "who": "shenheng",
+      "expr": "default",
+      "kind": "say",
+      "text": "我看看。"
+    },
+    {
+      "id": "ch02_s02_yeting.l6",
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "还没让她认。"
+    },
+    {
+      "id": "ch02_s02_yeting.l7",
       "who": "shenheng",
       "expr": "default",
       "kind": "say",
       "text": "先念。"
     },
     {
-      "id": "ch02_s02_yeting.l5",
+      "id": "ch02_s02_yeting.l8",
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
       "text": "初八送衣十一，其中自做九件。"
     },
     {
-      "id": "ch02_s02_yeting.l6",
+      "id": "ch02_s02_yeting.l9",
       "who": "adi",
       "expr": "default",
       "kind": "say",
       "text": "这句是。"
     },
     {
-      "id": "ch02_s02_yeting.l7",
+      "id": "ch02_s02_yeting.l10",
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
       "text": "所欠工钱，请依呈文并核。"
     },
     {
-      "id": "ch02_s02_yeting.l8",
+      "id": "ch02_s02_yeting.l11",
       "who": "adi",
       "expr": "guarded",
       "kind": "say",
-      "text": "呈文里写了什么，我没见。"
-    },
-    {
-      "id": "ch02_s02_yeting.l9",
-      "who": "wuze",
-      "expr": "default",
-      "kind": "say",
-      "text": "是我添的。我没问过她，不该让她在这里认下我写的整张纸。"
-    },
-    {
-      "id": "ch02_s02_yeting.l10",
-      "who": "shenheng",
-      "expr": "guarded",
-      "kind": "say",
-      "text": "另纸记这句。署你自己的名。"
-    },
-    {
-      "id": "ch02_s02_yeting.l11",
-      "who": "narr",
-      "kind": "aside",
-      "text": "你接了窄纸。沈衡没有替你移走旧牒。"
+      "text": "呈文写了什么，我没见。"
     },
     {
       "id": "ch02_s02_yeting.l12",
-      "who": "tangjian",
+      "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "领钱归领钱。擅引另问你。"
+      "text": "是我添的，没问过她。"
     },
     {
       "id": "ch02_s02_yeting.l13",
-      "who": "adi",
-      "expr": "default",
-      "kind": "say",
-      "text": "每句都念？"
-    },
-    {
-      "id": "ch02_s02_yeting.l14",
-      "who": "tangjian",
-      "expr": "default",
-      "kind": "say",
-      "text": "我念，你改。改完再念。"
-    },
-    {
-      "id": "ch02_s02_yeting.l15",
-      "who": "adi",
-      "expr": "guarded",
-      "kind": "say",
-      "text": "有些我不肯说呢？不能因为末尾有我的名字，就当我全答应了。"
-    },
-    {
-      "id": "ch02_s02_yeting.l16",
       "who": "shenheng",
       "expr": "default",
       "kind": "say",
-      "text": "那一项记不答。别借给别项用。"
+      "text": "……"
+    },
+    {
+      "id": "ch02_s02_yeting.l14",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "不能让她认下我写的整张纸。"
+    },
+    {
+      "id": "ch02_s02_yeting.l15",
+      "who": "shenheng",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "另纸记下，署你自己的名。"
+    },
+    {
+      "id": "ch02_s02_yeting.l16",
+      "who": "wuze",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "好。"
     },
     {
       "id": "ch02_s02_yeting.l17",
       "who": "narr",
       "kind": "aside",
-      "text": "唐简在纸边留出一道空栏，笔尖点了点。"
+      "text": "你接了窄纸。沈衡没有替你移走旧牒。"
     },
     {
       "id": "ch02_s02_yeting.l18",
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "改的在这里。只认这一问。"
+      "text": "领钱归领钱，擅引另问你。"
     },
     {
       "id": "ch02_s02_yeting.l19",
-      "who": "wuze",
-      "expr": "default",
-      "kind": "say",
-      "text": "门外还站着人。"
-    },
-    {
-      "id": "ch02_s02_yeting.l20",
       "who": "adi",
       "expr": "default",
       "kind": "say",
-      "text": "让他们先走。我不想隔着门答。"
+      "text": "每句都念？"
+    },
+    {
+      "id": "ch02_s02_yeting.l20",
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "每句。"
     },
     {
       "id": "ch02_s02_yeting.l21",
-      "who": "shenheng",
+      "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "依她。"
+      "text": "我念，你改，改完再念。"
     },
     {
       "id": "ch02_s02_yeting.l22",
-      "who": "tangjian",
-      "expr": "default",
+      "who": "adi",
+      "expr": "guarded",
       "kind": "say",
-      "text": "能留下的，只我和经她答应的见证。"
+      "text": "有些我不肯——"
     },
     {
       "id": "ch02_s02_yeting.l23",
-      "who": "tangjian",
+      "who": "shenheng",
       "expr": "default",
       "kind": "say",
-      "text": "现在核，少跑一趟；午后核，我得另挪一班。她两样都肯。"
+      "text": "就记不答。"
     },
     {
       "id": "ch02_s02_yeting.l24",
       "who": "adi",
       "expr": "default",
       "kind": "say",
+      "text": "不答。"
+    },
+    {
+      "id": "ch02_s02_yeting.l25",
+      "who": "adi",
+      "expr": "default",
+      "kind": "say",
+      "text": "末尾的名字，不能算全答应。"
+    },
+    {
+      "id": "ch02_s02_yeting.l26",
+      "who": "narr",
+      "kind": "aside",
+      "text": "唐简在纸边留出一道空栏，笔尖点了点。"
+    },
+    {
+      "id": "ch02_s02_yeting.l27",
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "改字在这里，只认这一问。"
+    },
+    {
+      "id": "ch02_s02_yeting.l28",
+      "who": "adi",
+      "expr": "default",
+      "kind": "say",
+      "text": "这里……"
+    },
+    {
+      "id": "ch02_s02_yeting.l29",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "门外还站着人。"
+    },
+    {
+      "id": "ch02_s02_yeting.l30",
+      "who": "adi",
+      "expr": "default",
+      "kind": "say",
+      "text": "让他们走，我不隔着门答。"
+    },
+    {
+      "id": "ch02_s02_yeting.l31",
+      "who": "shenheng",
+      "expr": "default",
+      "kind": "say",
+      "text": "依她。"
+    },
+    {
+      "id": "ch02_s02_yeting.l32",
+      "who": "shenheng",
+      "expr": "default",
+      "kind": "say",
+      "text": "……"
+    },
+    {
+      "id": "ch02_s02_yeting.l33",
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "只我和她答应的见证留下。"
+    },
+    {
+      "id": "ch02_s02_yeting.l34",
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "现在核少跑一趟，午后核得另挪一班。"
+    },
+    {
+      "id": "ch02_s02_yeting.l35",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "午后。"
+    },
+    {
+      "id": "ch02_s02_yeting.l36",
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "她两样都肯。"
+    },
+    {
+      "id": "ch02_s02_yeting.l37",
+      "who": "adi",
+      "expr": "default",
+      "kind": "say",
       "text": "午后也在这里，不去大堂。"
+    },
+    {
+      "id": "ch02_s02_yeting.l38",
+      "who": "narr",
+      "kind": "aside",
+      "text": "你留在粥碗旁，等她定下核问的时辰。"
     }
   ],
   "choices": [

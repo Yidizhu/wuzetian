@@ -43,136 +43,269 @@
       "who": "wenqiao",
       "expr": "default",
       "kind": "say",
-      "text": "来得好。替我压一下，你那篇颂文，我正好拿去垫了这个摇晃的桌脚。"
+      "text": "来，替我压一下。"
     },
     {
       "id": "ch03_s05_shishe.l5",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "我何时有了颂文？"
+      "text": "嗯。"
     },
     {
       "id": "ch03_s05_shishe.l6",
       "who": "wenqiao",
-      "expr": "guarded",
+      "expr": "default",
       "kind": "say",
-      "text": "送来请我署名的。开头便写，寒者有衣。"
+      "text": "你的颂文拿去垫桌脚了，正合适。"
     },
     {
       "id": "ch03_s05_shishe.l7",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "那还没做到。"
+      "text": "我何时有了颂文？"
     },
     {
       "id": "ch03_s05_shishe.l8",
       "who": "wenqiao",
-      "expr": "default",
+      "expr": "guarded",
       "kind": "say",
-      "text": "是啊。拿我的名字替冬天多添一件衣？"
+      "text": "请我署名的。开头写，寒者有衣。"
     },
     {
       "id": "ch03_s05_shishe.l9",
-      "who": "narr",
-      "kind": "aside",
-      "text": "她把钱袋系好，放在出门要带的筐里。墙边两只纸槽都干着。"
-    },
-    {
-      "id": "ch03_s05_shishe.l10",
-      "who": "wenqiao",
-      "expr": "default",
-      "kind": "say",
-      "text": "不署，这笔印钱便收回。师傅已经算好了新槽的尺寸，我得去说先别做。"
-    },
-    {
-      "id": "ch03_s05_shishe.l11",
       "who": "wuze",
       "expr": "guarded",
       "kind": "say",
-      "text": "我把钱补给你。"
+      "text": "寒者有衣？"
+    },
+    {
+      "id": "ch03_s05_shishe.l10",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "那还没做到。"
+    },
+    {
+      "id": "ch03_s05_shishe.l11",
+      "who": "wenqiao",
+      "expr": "default",
+      "kind": "say",
+      "text": "没做到。"
     },
     {
       "id": "ch03_s05_shishe.l12",
       "who": "wenqiao",
       "expr": "default",
       "kind": "say",
-      "text": "你的备议钱也有数。要请我核稿，照页给工钱；新槽我另想。"
+      "text": "是啊。拿我的名字添一件？"
     },
     {
       "id": "ch03_s05_shishe.l13",
-      "who": "wuze",
-      "expr": "default",
-      "kind": "say",
-      "text": "先核十页，照原价。未做的那句，撤下来。"
+      "who": "narr",
+      "kind": "aside",
+      "text": "她把钱袋系好，放在出门要带的筐里。墙边两只纸槽都干着。"
     },
     {
       "id": "ch03_s05_shishe.l14",
       "who": "wenqiao",
-      "expr": "open",
+      "expr": "default",
       "kind": "say",
-      "text": "好。十页只管字，不管替你招人喜欢。"
+      "text": "不署名，印钱就收回。"
     },
     {
       "id": "ch03_s05_shishe.l15",
-      "who": "narr",
-      "kind": "aside",
-      "text": "你们合力挪稳桌子。温松手时，掌根被压出一道白痕。"
-    },
-    {
-      "id": "ch03_s05_shishe.l16",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "疼不疼？"
+      "text": "这钱——"
     },
     {
-      "id": "ch03_s05_shishe.l17",
+      "id": "ch03_s05_shishe.l16",
       "who": "wenqiao",
       "expr": "default",
       "kind": "say",
-      "text": "桌子倒不疼。"
+      "text": "先别掏。"
+    },
+    {
+      "id": "ch03_s05_shishe.l17",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "……"
     },
     {
       "id": "ch03_s05_shishe.l18",
-      "who": "narr",
-      "kind": "aside",
-      "text": "她甩两下手。你用脚把靠窗的坐垫拨过来，挪到她那只旁边。"
+      "who": "wenqiao",
+      "expr": "default",
+      "kind": "say",
+      "text": "新槽尺寸都算好了，我得去说先别做。"
     },
     {
       "id": "ch03_s05_shishe.l19",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "我也想唱一回。能不能坐你旁边？错了你听见就好，不必叫整屋人来听。"
+      "text": "……"
     },
     {
       "id": "ch03_s05_shishe.l20",
-      "who": "wenqiao",
-      "expr": "open",
+      "who": "wuze",
+      "expr": "guarded",
       "kind": "say",
-      "text": "要我教你唱，还是陪你唱错？"
+      "text": "我把钱补给你。"
     },
     {
       "id": "ch03_s05_shishe.l21",
-      "who": "wuze",
-      "expr": "open",
+      "who": "wenqiao",
+      "expr": "default",
       "kind": "say",
-      "text": "先陪我唱错。教的那份，另算钱。"
+      "text": "你的备议钱也有数。"
     },
     {
       "id": "ch03_s05_shishe.l22",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "是。"
+    },
+    {
+      "id": "ch03_s05_shishe.l23",
+      "who": "wenqiao",
+      "expr": "default",
+      "kind": "say",
+      "text": "要请我核稿，就照页给工钱；新槽的钱我自己另想。"
+    },
+    {
+      "id": "ch03_s05_shishe.l24",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "照页。"
+    },
+    {
+      "id": "ch03_s05_shishe.l25",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "先核十页，照原价。未做的那句，撤下来。"
+    },
+    {
+      "id": "ch03_s05_shishe.l26",
+      "who": "wenqiao",
+      "expr": "open",
+      "kind": "say",
+      "text": "好。"
+    },
+    {
+      "id": "ch03_s05_shishe.l27",
+      "who": "wenqiao",
+      "expr": "open",
+      "kind": "say",
+      "text": "十页只管字，不替你招人喜欢。"
+    },
+    {
+      "id": "ch03_s05_shishe.l28",
+      "who": "narr",
+      "kind": "aside",
+      "text": "你们合力挪稳桌子。温松手时，掌根被压出一道白痕。"
+    },
+    {
+      "id": "ch03_s05_shishe.l29",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "疼不疼？"
+    },
+    {
+      "id": "ch03_s05_shishe.l30",
+      "who": "wenqiao",
+      "expr": "default",
+      "kind": "say",
+      "text": "桌子倒不疼。"
+    },
+    {
+      "id": "ch03_s05_shishe.l31",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "也是。"
+    },
+    {
+      "id": "ch03_s05_shishe.l32",
+      "who": "narr",
+      "kind": "aside",
+      "text": "她甩两下手。你用脚把靠窗的坐垫拨过来，挪到她那只旁边。"
+    },
+    {
+      "id": "ch03_s05_shishe.l33",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "我也想……唱一回。"
+    },
+    {
+      "id": "ch03_s05_shishe.l34",
+      "who": "wenqiao",
+      "expr": "default",
+      "kind": "say",
+      "text": "嗯？"
+    },
+    {
+      "id": "ch03_s05_shishe.l35",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "能坐你旁边么？唱错只给你听。"
+    },
+    {
+      "id": "ch03_s05_shishe.l36",
+      "who": "wenqiao",
+      "expr": "open",
+      "kind": "say",
+      "text": "教你唱，还是陪你唱错？"
+    },
+    {
+      "id": "ch03_s05_shishe.l37",
+      "who": "wuze",
+      "expr": "open",
+      "kind": "say",
+      "text": "陪我。"
+    },
+    {
+      "id": "ch03_s05_shishe.l38",
+      "who": "wuze",
+      "expr": "open",
+      "kind": "say",
+      "text": "先陪我唱错。教的另算钱。"
+    },
+    {
+      "id": "ch03_s05_shishe.l39",
       "who": "self",
       "kind": "inner",
       "text": "（说出口了。她还没答。坐垫被我挪得太近。）"
     },
     {
-      "id": "ch03_s05_shishe.l23",
+      "id": "ch03_s05_shishe.l40",
       "who": "wenqiao",
       "expr": "open",
       "kind": "say",
-      "text": "坐这边。我想听你唱；唱一半要走，也给你把尾音接完，不算你欠我。"
+      "text": "坐这边，我想听。"
+    },
+    {
+      "id": "ch03_s05_shishe.l41",
+      "who": "wuze",
+      "expr": "open",
+      "kind": "say",
+      "text": "好。"
+    },
+    {
+      "id": "ch03_s05_shishe.l42",
+      "who": "wenqiao",
+      "expr": "open",
+      "kind": "say",
+      "text": "唱一半要走，尾音我接，不算你欠我。"
     }
   ],
   "choices": [

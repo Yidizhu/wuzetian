@@ -18,299 +18,536 @@
       "id": "ch01_s03_yeting.l1",
       "who": "narr",
       "kind": "aside",
-      "text": "阿荻的发髻左右分束，短袖挽高，身子偏向拿针的那一侧。"
+      "text": "从昭阳殿回到掖庭，已到掌灯时候。"
     },
     {
       "id": "ch01_s03_yeting.l2",
-      "who": "adi",
-      "expr": "default",
-      "kind": "say",
-      "text": "袖子抬一下。"
+      "who": "narr",
+      "kind": "aside",
+      "text": "阿荻的发髻左右分束，短袖挽高，身子偏向拿针的那一侧。"
     },
     {
       "id": "ch01_s03_yeting.l3",
-      "who": "wuze",
-      "expr": "default",
-      "kind": "say",
-      "text": "我自己会挽。"
-    },
-    {
-      "id": "ch01_s03_yeting.l4",
       "who": "adi",
       "expr": "default",
       "kind": "say",
-      "text": "挽了还掉。你刚才捞了三回。"
+      "text": "袖子。"
+    },
+    {
+      "id": "ch01_s03_yeting.l4",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "怎么？"
     },
     {
       "id": "ch01_s03_yeting.l5",
+      "who": "adi",
+      "expr": "default",
+      "kind": "say",
+      "text": "抬一下。"
+    },
+    {
+      "id": "ch01_s03_yeting.l6",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "我自己会——"
+    },
+    {
+      "id": "ch01_s03_yeting.l7",
+      "who": "adi",
+      "expr": "default",
+      "kind": "say",
+      "text": "又掉了。"
+    },
+    {
+      "id": "ch01_s03_yeting.l8",
+      "who": "adi",
+      "expr": "default",
+      "kind": "say",
+      "text": "你刚才捞了三回。"
+    },
+    {
+      "id": "ch01_s03_yeting.l9",
       "who": "narr",
       "kind": "aside",
       "text": "掖庭廊下还有湿衣的气味，宋蕙贞往灯照得到的地方挪了半张席。"
     },
     {
-      "id": "ch01_s03_yeting.l6",
+      "id": "ch01_s03_yeting.l10",
       "who": "narr",
       "kind": "aside",
       "text": "宋蕙贞扶正脑后低挽的发髻，袖里小尺露出半截。"
     },
     {
-      "id": "ch01_s03_yeting.l7",
+      "id": "ch01_s03_yeting.l11",
       "who": "songhuizhen",
       "expr": "default",
       "kind": "say",
-      "text": "坐。她不是问你会不会。"
+      "text": "坐，她又没问你会不会。"
     },
     {
-      "id": "ch01_s03_yeting.l8",
+      "id": "ch01_s03_yeting.l12",
+      "who": "wuze",
+      "expr": "open",
+      "kind": "say",
+      "text": "也是。"
+    },
+    {
+      "id": "ch01_s03_yeting.l13",
       "who": "wuze",
       "expr": "open",
       "kind": "say",
       "text": "那我不逞这个能。"
     },
     {
-      "id": "ch01_s03_yeting.l9",
-      "who": "narr",
-      "kind": "aside",
-      "text": "阿荻把袖口折窄，冷针背贴了一下你的腕子，针尖藏在她指腹后。"
-    },
-    {
-      "id": "ch01_s03_yeting.l10",
-      "who": "wuze",
-      "expr": "default",
-      "kind": "say",
-      "text": "你给多少人改过？"
-    },
-    {
-      "id": "ch01_s03_yeting.l11",
-      "who": "adi",
-      "expr": "default",
-      "kind": "say",
-      "text": "记不清。记得谁喜欢宽些。"
-    },
-    {
-      "id": "ch01_s03_yeting.l12",
-      "who": "songhuizhen",
-      "expr": "default",
-      "kind": "say",
-      "text": "我的又开了。"
-    },
-    {
-      "id": "ch01_s03_yeting.l13",
-      "who": "adi",
-      "expr": "default",
-      "kind": "say",
-      "text": "你拿袖口垫热碗，再好的线也受不住。"
-    },
-    {
       "id": "ch01_s03_yeting.l14",
       "who": "songhuizhen",
       "expr": "open",
       "kind": "say",
-      "text": "被你看见了。"
+      "text": "这就对了。"
     },
     {
       "id": "ch01_s03_yeting.l15",
       "who": "narr",
       "kind": "aside",
-      "text": "宋蕙贞递过自己的袖子，没有催。"
+      "text": "阿荻把袖口折窄，冷针背贴了一下你的腕子，针尖藏在她指腹后。"
     },
     {
       "id": "ch01_s03_yeting.l16",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "这样熟的手，工钱该不少。"
+      "text": "你给多少人改过？"
     },
     {
       "id": "ch01_s03_yeting.l17",
       "who": "adi",
       "expr": "default",
       "kind": "say",
-      "text": "手熟，账不熟。"
+      "text": "记不清。"
     },
     {
       "id": "ch01_s03_yeting.l18",
-      "who": "songhuizhen",
-      "expr": "guarded",
+      "who": "wuze",
+      "expr": "default",
       "kind": "say",
-      "text": "西库那批还没给？"
+      "text": "记不清了？"
     },
     {
       "id": "ch01_s03_yeting.l19",
       "who": "adi",
-      "expr": "guarded",
+      "expr": "default",
       "kind": "say",
-      "text": "初八送的。十一件衣，说缺一道记认。"
+      "text": "谁喜欢宽些，倒记得。"
     },
     {
       "id": "ch01_s03_yeting.l20",
-      "who": "adi",
-      "expr": "guarded",
+      "who": "songhuizhen",
+      "expr": "default",
       "kind": "say",
-      "text": "衣都穿走了，再找谁认？"
+      "text": "阿荻。"
     },
     {
       "id": "ch01_s03_yeting.l21",
-      "who": "narr",
-      "kind": "aside",
-      "text": "她咬断线，把断头收在掌中。"
+      "who": "adi",
+      "expr": "default",
+      "kind": "say",
+      "text": "嗯？"
     },
     {
       "id": "ch01_s03_yeting.l22",
-      "who": "wuze",
+      "who": "songhuizhen",
       "expr": "default",
       "kind": "say",
-      "text": "一件也没算？"
+      "text": "我的又开了。"
     },
     {
       "id": "ch01_s03_yeting.l23",
       "who": "adi",
       "expr": "default",
       "kind": "say",
-      "text": "一件也没有。算了，手别动。"
+      "text": "你又拿袖口垫热碗。"
     },
     {
       "id": "ch01_s03_yeting.l24",
-      "who": "songhuizhen",
+      "who": "adi",
       "expr": "default",
       "kind": "say",
-      "text": "剩下的线先用我的。"
+      "text": "这线……"
     },
     {
       "id": "ch01_s03_yeting.l25",
-      "who": "adi",
-      "expr": "guarded",
+      "who": "songhuizhen",
+      "expr": "default",
       "kind": "say",
-      "text": "我不是来借线的。"
+      "text": "……"
     },
     {
       "id": "ch01_s03_yeting.l26",
-      "who": "songhuizhen",
+      "who": "adi",
       "expr": "default",
       "kind": "say",
-      "text": "我知道。这一截，本来就是替我留的。"
+      "text": "再好的线也受不住。"
     },
     {
       "id": "ch01_s03_yeting.l27",
-      "who": "narr",
-      "kind": "aside",
-      "text": "她把线放在两个人中间，不往阿荻手里塞。"
+      "who": "songhuizhen",
+      "expr": "open",
+      "kind": "say",
+      "text": "被你看见了。"
     },
     {
       "id": "ch01_s03_yeting.l28",
-      "who": "adi",
-      "expr": "default",
-      "kind": "say",
-      "text": "你的袖子我明日再补，今晚想早些睡，眼睛已经看不清这根线了。"
+      "who": "narr",
+      "kind": "aside",
+      "text": "宋蕙贞递过自己的袖子，没有催。"
     },
     {
       "id": "ch01_s03_yeting.l29",
-      "who": "songhuizhen",
+      "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "明日便明日，你替我补了这么多年，哪里就差今晚这一寸。"
+      "text": "这样熟的手，工钱该不少。"
     },
     {
       "id": "ch01_s03_yeting.l30",
-      "who": "wuze",
+      "who": "adi",
       "expr": "default",
       "kind": "say",
-      "text": "我这一寸，欠你什么？"
+      "text": "手熟，账不熟。"
     },
     {
       "id": "ch01_s03_yeting.l31",
-      "who": "adi",
-      "expr": "open",
+      "who": "wuze",
+      "expr": "default",
       "kind": "say",
-      "text": "下回别挽成那样，糟蹋我的针脚。"
+      "text": "账？"
     },
     {
       "id": "ch01_s03_yeting.l32",
-      "who": "narr",
-      "kind": "aside",
-      "text": "你放下手。袖口恰好停在腕上。"
+      "who": "songhuizhen",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "西库那批还没给？"
     },
     {
       "id": "ch01_s03_yeting.l33",
-      "who": "self",
-      "kind": "inner",
-      "text": "（十一件。她记得这么清楚。）"
+      "who": "adi",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "初八送的，十一件衣。"
     },
     {
       "id": "ch01_s03_yeting.l34",
-      "who": "narr",
-      "kind": "aside",
-      "text": "当夜后半，许静和依访客簿记过名，来探宋。"
+      "who": "adi",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "说缺一道记认。"
     },
     {
       "id": "ch01_s03_yeting.l35",
-      "who": "narr",
-      "kind": "aside",
-      "text": "许戴着黄冠，衣摆铺得宽，进门先将它拢到脚边。"
+      "who": "wuze",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "记认？"
     },
     {
       "id": "ch01_s03_yeting.l36",
-      "who": "songhuizhen",
-      "expr": "default",
+      "who": "adi",
+      "expr": "guarded",
       "kind": "say",
-      "text": "这一包寄给我爱人。我先睡了，你们坐。"
+      "text": "衣都穿走了，找谁认？"
     },
     {
       "id": "ch01_s03_yeting.l37",
-      "who": "narr",
-      "kind": "aside",
-      "text": "宋与阿荻歇下，煎茶的盐味留在舌上，许把两只茶碗挪近灯。"
+      "who": "wuze",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "……"
     },
     {
       "id": "ch01_s03_yeting.l38",
-      "who": "wuze",
-      "expr": "default",
-      "kind": "poem",
-      "text": "自恨罗衣掩诗句，举头空羡榜中名。"
+      "who": "narr",
+      "kind": "aside",
+      "text": "她咬断线，把断头收在掌中。"
     },
     {
       "id": "ch01_s03_yeting.l39",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "若连名字都不许写上去，旁人怎么知道她也来过，也把诗写好了？"
+      "text": "一件也没算？"
     },
     {
       "id": "ch01_s03_yeting.l40",
-      "who": "xujinghe",
+      "who": "adi",
       "expr": "default",
       "kind": "say",
-      "text": "写上去好。我也盼过。"
+      "text": "一件也没有。"
     },
     {
       "id": "ch01_s03_yeting.l41",
-      "who": "xujinghe",
+      "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "可她倘若不在那榜上，你还愿不愿听她的诗？我这盏可已经凉了。"
+      "text": "一件也没有……"
     },
     {
       "id": "ch01_s03_yeting.l42",
-      "who": "wuze",
-      "expr": "guarded",
+      "who": "adi",
+      "expr": "default",
       "kind": "say",
-      "text": "我愿听。她也愿上榜。"
+      "text": "算了，手别动。"
     },
     {
       "id": "ch01_s03_yeting.l43",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "好。"
+    },
+    {
+      "id": "ch01_s03_yeting.l44",
+      "who": "songhuizhen",
+      "expr": "default",
+      "kind": "say",
+      "text": "剩下的线先用我的。"
+    },
+    {
+      "id": "ch01_s03_yeting.l45",
+      "who": "adi",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "我不是来借线的。"
+    },
+    {
+      "id": "ch01_s03_yeting.l46",
+      "who": "songhuizhen",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "我知道。"
+    },
+    {
+      "id": "ch01_s03_yeting.l47",
+      "who": "songhuizhen",
+      "expr": "default",
+      "kind": "say",
+      "text": "这一截，本来就是替我留的。"
+    },
+    {
+      "id": "ch01_s03_yeting.l48",
+      "who": "narr",
+      "kind": "aside",
+      "text": "她把线放在两个人中间，不往阿荻手里塞。"
+    },
+    {
+      "id": "ch01_s03_yeting.l49",
+      "who": "adi",
+      "expr": "default",
+      "kind": "say",
+      "text": "你的袖子明日再补。"
+    },
+    {
+      "id": "ch01_s03_yeting.l50",
+      "who": "songhuizhen",
+      "expr": "default",
+      "kind": "say",
+      "text": "明日……"
+    },
+    {
+      "id": "ch01_s03_yeting.l51",
+      "who": "adi",
+      "expr": "default",
+      "kind": "say",
+      "text": "今晚想早睡，线都看不清了。"
+    },
+    {
+      "id": "ch01_s03_yeting.l52",
+      "who": "songhuizhen",
+      "expr": "default",
+      "kind": "say",
+      "text": "你补了这么多年，哪里就差今晚。"
+    },
+    {
+      "id": "ch01_s03_yeting.l53",
+      "who": "adi",
+      "expr": "default",
+      "kind": "say",
+      "text": "好。"
+    },
+    {
+      "id": "ch01_s03_yeting.l54",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "那我这一寸，欠你什么？"
+    },
+    {
+      "id": "ch01_s03_yeting.l55",
+      "who": "adi",
+      "expr": "open",
+      "kind": "say",
+      "text": "别再挽成那样，糟蹋针脚。"
+    },
+    {
+      "id": "ch01_s03_yeting.l56",
+      "who": "narr",
+      "kind": "aside",
+      "text": "你放下手。袖口恰好停在腕上。"
+    },
+    {
+      "id": "ch01_s03_yeting.l57",
+      "who": "self",
+      "kind": "inner",
+      "text": "（十一件。她记得这么清楚。）"
+    },
+    {
+      "id": "ch01_s03_yeting.l58",
+      "who": "narr",
+      "kind": "aside",
+      "text": "当夜后半，许静和依访客簿记过名，来探宋。"
+    },
+    {
+      "id": "ch01_s03_yeting.l59",
+      "who": "narr",
+      "kind": "aside",
+      "text": "许戴着黄冠，衣摆铺得宽，进门先将它拢到脚边。"
+    },
+    {
+      "id": "ch01_s03_yeting.l60",
+      "who": "songhuizhen",
+      "expr": "default",
+      "kind": "say",
+      "text": "这包寄给我爱人。"
+    },
+    {
+      "id": "ch01_s03_yeting.l61",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "这一包？"
+    },
+    {
+      "id": "ch01_s03_yeting.l62",
+      "who": "songhuizhen",
+      "expr": "default",
+      "kind": "say",
+      "text": "我先睡了，你们坐。"
+    },
+    {
+      "id": "ch01_s03_yeting.l63",
+      "who": "narr",
+      "kind": "aside",
+      "text": "宋与阿荻歇下，煎茶的盐味留在舌上，许把两只茶碗挪近灯。"
+    },
+    {
+      "id": "ch01_s03_yeting.l64",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "poem",
+      "text": "自恨罗衣掩诗句，举头空羡榜中名。"
+    },
+    {
+      "id": "ch01_s03_yeting.l65",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "名字都不许写，谁知道她也来过？"
+    },
+    {
+      "id": "ch01_s03_yeting.l66",
+      "who": "xujinghe",
+      "expr": "default",
+      "kind": "say",
+      "text": "来过。"
+    },
+    {
+      "id": "ch01_s03_yeting.l67",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "诗也写好了，却不让她上榜。"
+    },
+    {
+      "id": "ch01_s03_yeting.l68",
+      "who": "xujinghe",
+      "expr": "default",
+      "kind": "say",
+      "text": "上榜好，我也盼过。"
+    },
+    {
+      "id": "ch01_s03_yeting.l69",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "你也……"
+    },
+    {
+      "id": "ch01_s03_yeting.l70",
+      "who": "xujinghe",
+      "expr": "default",
+      "kind": "say",
+      "text": "可她倘若没在那张榜上，你还愿不愿意听她的诗？"
+    },
+    {
+      "id": "ch01_s03_yeting.l71",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "……"
+    },
+    {
+      "id": "ch01_s03_yeting.l72",
+      "who": "xujinghe",
+      "expr": "default",
+      "kind": "say",
+      "text": "我这盏可已经凉了。"
+    },
+    {
+      "id": "ch01_s03_yeting.l73",
+      "who": "wuze",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "我愿听。"
+    },
+    {
+      "id": "ch01_s03_yeting.l74",
+      "who": "wuze",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "她也愿上榜。"
+    },
+    {
+      "id": "ch01_s03_yeting.l75",
       "who": "narr",
       "kind": "aside",
       "text": "许放下茶碗，碗底在席外的木地板上磕了一声。"
     },
     {
-      "id": "ch01_s03_yeting.l44",
+      "id": "ch01_s03_yeting.l76",
       "who": "xujinghe",
       "expr": "default",
       "kind": "say",
-      "text": "她恨的是罗衣，不是名。你恨的是什么？"
+      "text": "她恨的是罗衣。"
     },
     {
-      "id": "ch01_s03_yeting.l45",
+      "id": "ch01_s03_yeting.l77",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "罗衣。"
+    },
+    {
+      "id": "ch01_s03_yeting.l78",
+      "who": "xujinghe",
+      "expr": "default",
+      "kind": "say",
+      "text": "你呢，恨的是什么？"
+    },
+    {
+      "id": "ch01_s03_yeting.l79",
       "who": "narr",
       "kind": "aside",
       "text": "你端起茶，喝了一口，没有答。"

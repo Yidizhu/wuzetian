@@ -102,10 +102,12 @@ export class CssParallaxRenderer implements SceneRenderer {
   }
 
   async load(d: SceneDescriptor): Promise<void> {
-    // 引擎先 await load 再 show：图在这里解码完，墨晕开的那一下它已经在内存里，不会先白一下
+    // 引擎先 await load 再 show：图在这里解码完，墨晕开的那一下它已经在内存里，不会先白一下。
+    // 引擎还会拿下一场的描述符提前调一次（story.ts 的 prefetch），那一次的结果就存在 ready 里
     const key = backdropKey(d);
-    if (!this.raster.hasBackdrop(key) || this.ready.has(key)) return;
-    const url = this.raster.backdropUrl(key);
+    const src = this.raster.resolveBackdrop(key, BACKDROPS[key]?.from);
+    if (!src || this.ready.has(key)) return;
+    const url = this.raster.backdropUrl(src);
     const img = new Image();
     img.decoding = "async";
     img.src = url;
@@ -114,7 +116,7 @@ export class CssParallaxRenderer implements SceneRenderer {
       this.ready.set(key, url);
     } catch {
       console.warn(`[stage] 背景图读不出来，这一场退回渐变：${url}`);
-      this.raster.markBroken(`scene/${key}`);
+      this.raster.markBroken(`scene/${src}`);
     }
   }
 
@@ -142,6 +144,9 @@ export class CssParallaxRenderer implements SceneRenderer {
       this.root.dataset.image = "1";
       this.root.dataset.push = b.push ?? "center";
       this.root.dataset.night = b.night ? "1" : "";
+      // 借来的图套一层色调滤镜（B21）；图本身就是夜景的，背景不再压夜（D-121 的例外）
+      if (b.tone) this.root.dataset.tone = b.tone; else delete this.root.dataset.tone;
+      if (b.paintedNight) this.root.dataset.painted = "night"; else delete this.root.dataset.painted;
       if (b.floor !== undefined) document.documentElement.style.setProperty("--stage-floor", `${b.floor}%`);
       if (b.person !== undefined) document.documentElement.style.setProperty("--stage-person", String(b.person));
       // 换场从头推起：动画重置一次
@@ -152,6 +157,8 @@ export class CssParallaxRenderer implements SceneRenderer {
       this.image.style.backgroundImage = "";
       delete this.root.dataset.image;
       delete this.root.dataset.push;
+      delete this.root.dataset.tone;
+      delete this.root.dataset.painted;
     }
     this.root.classList.remove("stage--wiping");
     await wait(320);
@@ -188,6 +195,8 @@ export class CssParallaxRenderer implements SceneRenderer {
     this.root.classList.remove("stage", "stage--css");
     delete this.root.dataset.image;
     delete this.root.dataset.push;
+    delete this.root.dataset.tone;
+    delete this.root.dataset.painted;
     this.layers = [];
     this.image = null;
     this.ready.clear();

@@ -18,188 +18,355 @@
       "id": "ch01_s06_yeting.l1",
       "who": "narr",
       "kind": "aside",
-      "text": "掖庭库门只进一线斜光，陈布味闷在门内，阿荻托了两次才抽出底包。"
+      "text": "离开苑墙，你与阿荻一道回掖庭领物。"
     },
     {
       "id": "ch01_s06_yeting.l2",
-      "who": "songhuizhen",
-      "expr": "guarded",
-      "kind": "say",
-      "text": "她病着，不能为签个字走这一趟。"
+      "who": "narr",
+      "kind": "aside",
+      "text": "掖庭库门只进一线斜光，陈布味闷在门内，阿荻托了两次才抽出底包。"
     },
     {
       "id": "ch01_s06_yeting.l3",
+      "who": "songhuizhen",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "她病着，不能为签字走这一趟。"
+    },
+    {
+      "id": "ch01_s06_yeting.l4",
       "who": "narr",
       "kind": "aside",
       "text": "唐简戴幞头，圆领袍的前襟抵住案沿，身子倾过来压纸。"
     },
     {
-      "id": "ch01_s06_yeting.l4",
+      "id": "ch01_s06_yeting.l5",
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "这一组缺一个，合领那栏就结不了。"
-    },
-    {
-      "id": "ch01_s06_yeting.l5",
-      "who": "wuze",
-      "expr": "default",
-      "kind": "say",
-      "text": "已经来的，为什么不能各领各的？"
+      "text": "少了一个人，合领那栏就结不了。"
     },
     {
       "id": "ch01_s06_yeting.l6",
-      "who": "tangjian",
-      "expr": "guarded",
+      "who": "wuze",
+      "expr": "default",
       "kind": "say",
-      "text": "旧簿合记一笔。拆开，要另抄另核。"
+      "text": "合领？"
     },
     {
       "id": "ch01_s06_yeting.l7",
-      "who": "tangjian",
-      "expr": "guarded",
+      "who": "wuze",
+      "expr": "default",
       "kind": "say",
-      "text": "这案上只有我，搬出来的东西还要逐样核，不能画了线就算有人做完。"
+      "text": "来的不能各领各的么？"
     },
     {
       "id": "ch01_s06_yeting.l8",
-      "who": "adi",
-      "expr": "default",
+      "who": "tangjian",
+      "expr": "guarded",
       "kind": "say",
-      "text": "我能点实物。今日这一批，我点过。"
+      "text": "旧簿合记一笔，拆开得另抄另核。"
     },
     {
       "id": "ch01_s06_yeting.l9",
-      "who": "wuze",
-      "expr": "default",
+      "who": "tangjian",
+      "expr": "guarded",
       "kind": "say",
-      "text": "我抄分领簿。旧笔不抹，逐人相对。"
+      "text": "你看看这案上。"
     },
     {
       "id": "ch01_s06_yeting.l10",
-      "who": "tangjian",
-      "expr": "default",
+      "who": "wuze",
+      "expr": "guarded",
       "kind": "say",
-      "text": "你抄，我核。布别堆在门口，病着的人明日来，也得有处落脚。"
+      "text": "我看着。"
     },
     {
       "id": "ch01_s06_yeting.l11",
-      "who": "songhuizhen",
-      "expr": "default",
+      "who": "tangjian",
+      "expr": "guarded",
       "kind": "say",
-      "text": "病着那个，不能就此算没她的。"
+      "text": "案前只有我一个，搬出来的东西还得逐样核清。"
     },
     {
       "id": "ch01_s06_yeting.l12",
-      "who": "tangjian",
-      "expr": "default",
-      "kind": "say",
-      "text": "单列未领。明日去病舍核，不许代签。"
-    },
-    {
-      "id": "ch01_s06_yeting.l13",
-      "who": "narr",
-      "kind": "aside",
-      "text": "唐简将合领簿摊开，另纸分出人名。"
-    },
-    {
-      "id": "ch01_s06_yeting.l14",
-      "who": "narr",
-      "kind": "aside",
-      "text": "粗麻包布磨着腕骨，你手臂一沉，和宋蕙贞一同把布包挪上空架。"
-    },
-    {
-      "id": "ch01_s06_yeting.l15",
-      "who": "wuze",
-      "expr": "default",
-      "kind": "say",
-      "text": "架上空出来了。分领簿这样抄，可以？"
-    },
-    {
-      "id": "ch01_s06_yeting.l16",
-      "who": "tangjian",
-      "expr": "default",
-      "kind": "say",
-      "text": "可以。再留一栏，记差数。"
-    },
-    {
-      "id": "ch01_s06_yeting.l17",
       "who": "adi",
       "expr": "default",
       "kind": "say",
-      "text": "布数对了。线还差一束，要开内箱。"
+      "text": "实物我来点，这批我点过。"
     },
     {
-      "id": "ch01_s06_yeting.l18",
+      "id": "ch01_s06_yeting.l13",
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "内箱到掌灯才复核。"
+      "text": "我听见了。"
+    },
+    {
+      "id": "ch01_s06_yeting.l14",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "我抄分领簿。"
+    },
+    {
+      "id": "ch01_s06_yeting.l15",
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "分领簿……"
+    },
+    {
+      "id": "ch01_s06_yeting.l16",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "旧笔留着，逐人对。"
+    },
+    {
+      "id": "ch01_s06_yeting.l17",
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "你抄，我核。"
+    },
+    {
+      "id": "ch01_s06_yeting.l18",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "嗯。"
     },
     {
       "id": "ch01_s06_yeting.l19",
       "who": "songhuizhen",
-      "expr": "guarded",
+      "expr": "default",
       "kind": "say",
-      "text": "有人等着回去开裁。"
+      "text": "布堆在——"
     },
     {
       "id": "ch01_s06_yeting.l20",
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "可以先发已核的，余数挂着，得再来。"
+      "text": "别堆门口。"
     },
     {
       "id": "ch01_s06_yeting.l21",
-      "who": "adi",
-      "expr": "guarded",
-      "kind": "say",
-      "text": "再跑一趟，也要工夫。"
-    },
-    {
-      "id": "ch01_s06_yeting.l22",
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "或等掌灯，核齐了各领一份。"
+      "text": "病着的人明日来，也得有处落脚。"
+    },
+    {
+      "id": "ch01_s06_yeting.l22",
+      "who": "songhuizhen",
+      "expr": "default",
+      "kind": "say",
+      "text": "那她那份呢？"
     },
     {
       "id": "ch01_s06_yeting.l23",
-      "who": "songhuizhen",
-      "expr": "guarded",
+      "who": "tangjian",
+      "expr": "default",
       "kind": "say",
-      "text": "那今日剩的亮光就过去了。"
+      "text": "她那份单列未领，明日到病舍当面核，不能代签。"
     },
     {
       "id": "ch01_s06_yeting.l24",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "先把这两个办法写明，让领的人知道。"
+      "text": "好。"
     },
     {
       "id": "ch01_s06_yeting.l25",
-      "who": "tangjian",
-      "expr": "default",
-      "kind": "say",
-      "text": "经办只能先做一种。你接哪一头？"
+      "who": "narr",
+      "kind": "aside",
+      "text": "唐简将合领簿摊开，另纸分出人名。"
     },
     {
       "id": "ch01_s06_yeting.l26",
-      "who": "wuze",
-      "expr": "default",
-      "kind": "say",
-      "text": "缺的我来追，夜里的抄工我也分一段，你不能替所有改规矩的人熬夜。"
+      "who": "narr",
+      "kind": "aside",
+      "text": "粗麻包布磨着腕骨，你手臂一沉，和宋蕙贞一同把布包挪上空架。"
     },
     {
       "id": "ch01_s06_yeting.l27",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "架上空了。"
+    },
+    {
+      "id": "ch01_s06_yeting.l28",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "这簿子……"
+    },
+    {
+      "id": "ch01_s06_yeting.l29",
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "给我看。"
+    },
+    {
+      "id": "ch01_s06_yeting.l30",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "这样抄，可以么？"
+    },
+    {
+      "id": "ch01_s06_yeting.l31",
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "可以，再留一栏记差数。"
+    },
+    {
+      "id": "ch01_s06_yeting.l32",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "这一栏？"
+    },
+    {
+      "id": "ch01_s06_yeting.l33",
+      "who": "adi",
+      "expr": "default",
+      "kind": "say",
+      "text": "布对了，线还差一束。"
+    },
+    {
+      "id": "ch01_s06_yeting.l34",
+      "who": "adi",
+      "expr": "default",
+      "kind": "say",
+      "text": "得开内箱。"
+    },
+    {
+      "id": "ch01_s06_yeting.l35",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "内箱？"
+    },
+    {
+      "id": "ch01_s06_yeting.l36",
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "内箱到掌灯才复核。"
+    },
+    {
+      "id": "ch01_s06_yeting.l37",
+      "who": "songhuizhen",
+      "expr": "default",
+      "kind": "say",
+      "text": "掌灯？"
+    },
+    {
+      "id": "ch01_s06_yeting.l38",
+      "who": "songhuizhen",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "有人等着回去开裁。"
+    },
+    {
+      "id": "ch01_s06_yeting.l39",
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "先发已核的也行，余数挂着，得再来。"
+    },
+    {
+      "id": "ch01_s06_yeting.l40",
+      "who": "adi",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "再来一趟……"
+    },
+    {
+      "id": "ch01_s06_yeting.l41",
+      "who": "adi",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "也要工夫。"
+    },
+    {
+      "id": "ch01_s06_yeting.l42",
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "或等掌灯，核齐了各领一份。"
+    },
+    {
+      "id": "ch01_s06_yeting.l43",
+      "who": "songhuizhen",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "今日的亮光也就等没了。"
+    },
+    {
+      "id": "ch01_s06_yeting.l44",
+      "who": "wuze",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "……"
+    },
+    {
+      "id": "ch01_s06_yeting.l45",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "两个办法都写明，让领的人知道。"
+    },
+    {
+      "id": "ch01_s06_yeting.l46",
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "经办只能先做一种，你接哪一头？"
+    },
+    {
+      "id": "ch01_s06_yeting.l47",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "我想想。"
+    },
+    {
+      "id": "ch01_s06_yeting.l48",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "缺的我追，夜里的抄工也分我一段。"
+    },
+    {
+      "id": "ch01_s06_yeting.l49",
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "嗯。"
+    },
+    {
+      "id": "ch01_s06_yeting.l50",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "不能谁改规矩，都让你熬夜。"
+    },
+    {
+      "id": "ch01_s06_yeting.l51",
       "who": "narr",
       "kind": "aside",
       "text": "唐简把空白簿页推到你手边。"
     },
     {
-      "id": "ch01_s06_yeting.l28",
+      "id": "ch01_s06_yeting.l52",
       "who": "tangjian",
       "expr": "default",
       "kind": "say",

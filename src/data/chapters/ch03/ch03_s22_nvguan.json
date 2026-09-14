@@ -17,152 +17,262 @@
       "id": "ch03_s22_nvguan.l1",
       "who": "narr",
       "kind": "aside",
-      "text": "观中侧屋还没收桌。温端起半盆洗笔水，许把挡路的矮凳拖到墙边。"
+      "text": "回到观中侧屋，你把手边的矮凳让开。"
     },
     {
       "id": "ch03_s22_nvguan.l2",
-      "who": "wenqiao",
-      "expr": "default",
-      "kind": "say",
-      "text": "来得正好。门替我开着，这盆水若泼在门槛上，明日又有人问怎么全是黑脚印。"
+      "who": "narr",
+      "kind": "aside",
+      "text": "观中侧屋还没收桌。温端起半盆洗笔水，许把挡路的矮凳拖到墙边。"
     },
     {
       "id": "ch03_s22_nvguan.l3",
-      "who": "narr",
-      "kind": "aside",
-      "text": "你抵住门，看她把水端出去。桌上三张练字纸叠着，各有一行名字。"
+      "who": "wenqiao",
+      "expr": "default",
+      "kind": "say",
+      "text": "替我开着门。"
     },
     {
       "id": "ch03_s22_nvguan.l4",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "三回都上过了？"
+      "text": "嗯。"
     },
     {
       "id": "ch03_s22_nvguan.l5",
-      "who": "xujinghe",
-      "expr": "default",
-      "kind": "say",
-      "text": "上过。两个人，三回。旁边药屋照旧，没拿来添桌。"
-    },
-    {
-      "id": "ch03_s22_nvguan.l6",
       "who": "wenqiao",
       "expr": "default",
       "kind": "say",
-      "text": "第一回只够认自己的名。最后那回肯自己写了，歪的那张也各自带走，没让我挑。"
+      "text": "泼上门槛，明日又问哪来黑脚印。"
+    },
+    {
+      "id": "ch03_s22_nvguan.l6",
+      "who": "narr",
+      "kind": "aside",
+      "text": "你抵住门，看她把水端出去。桌上三张练字纸叠着，各有一行名字。"
     },
     {
       "id": "ch03_s22_nvguan.l7",
-      "when": {
-        "flag.ch03_consider_school": true
-      },
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "我想看看课怎么开。先看，今日不领着人就来占你这间。"
+      "text": "三回都上过了？"
     },
     {
       "id": "ch03_s22_nvguan.l8",
-      "when": {
-        "flag.ch03_consider_road": true
-      },
-      "who": "wuze",
+      "who": "xujinghe",
       "expr": "default",
       "kind": "say",
-      "text": "问路的事晚些另问。今日这几张练字纸，倒先把我留住了。"
+      "text": "两人，三回。药屋照旧，没添桌。"
     },
     {
       "id": "ch03_s22_nvguan.l9",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "还缺什么？"
+      "text": "三回。"
     },
     {
       "id": "ch03_s22_nvguan.l10",
-      "who": "xujinghe",
+      "who": "wenqiao",
       "expr": "default",
       "kind": "say",
-      "text": "下回的纸。老师也要另约，不能见她来过三次，就在她名下再填三次。"
+      "text": "初回认名字，末回肯写了，歪的也自己拿走。"
     },
     {
       "id": "ch03_s22_nvguan.l11",
-      "who": "wenqiao",
-      "expr": "open",
+      "who": "wuze",
+      "expr": "default",
       "kind": "say",
-      "text": "我那个新槽还没钱做，往后两日先回纸坊。你若要开课，不能照抄我的空日子。"
+      "text": "自己拿走。"
     },
     {
       "id": "ch03_s22_nvguan.l12",
+      "when": {
+        "flag.ch03_consider_school": true
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "先看课怎么开，今日不领人来占屋。"
+    },
+    {
+      "id": "ch03_s22_nvguan.l13",
+      "when": {
+        "flag.ch03_consider_road": true
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "路晚些另问，这几张纸先留住我了。"
+    },
+    {
+      "id": "ch03_s22_nvguan.l14",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "还缺什么？"
+    },
+    {
+      "id": "ch03_s22_nvguan.l15",
+      "who": "xujinghe",
+      "expr": "default",
+      "kind": "say",
+      "text": "嗯……"
+    },
+    {
+      "id": "ch03_s22_nvguan.l16",
+      "who": "xujinghe",
+      "expr": "default",
+      "kind": "say",
+      "text": "下回的纸。老师另约，不能再替她填三回。"
+    },
+    {
+      "id": "ch03_s22_nvguan.l17",
+      "who": "wenqiao",
+      "expr": "open",
+      "kind": "say",
+      "text": "新槽还没钱做，这两日回纸坊。"
+    },
+    {
+      "id": "ch03_s22_nvguan.l18",
+      "who": "wuze",
+      "expr": "open",
+      "kind": "say",
+      "text": "纸坊。"
+    },
+    {
+      "id": "ch03_s22_nvguan.l19",
+      "who": "wenqiao",
+      "expr": "open",
+      "kind": "say",
+      "text": "你要开课，别照抄我的空日子。"
+    },
+    {
+      "id": "ch03_s22_nvguan.l20",
+      "who": "wuze",
+      "expr": "open",
+      "kind": "say",
+      "text": "好。"
+    },
+    {
+      "id": "ch03_s22_nvguan.l21",
       "when": {
         "flag.enthroned": true
       },
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "宫里的新课还得另议。今日不拿我的名，叫这里添一排凳子。"
+      "text": "宫里新课另议，今日不拿我的名添凳子。"
     },
     {
-      "id": "ch03_s22_nvguan.l13",
+      "id": "ch03_s22_nvguan.l22",
       "when": {
         "flag.declined_crown": true
       },
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "我今日来过，不用给我留一间屋，等我领一件该做的大事。"
+      "text": "不用留间屋，等我领一件大事。"
     },
     {
-      "id": "ch03_s22_nvguan.l14",
+      "id": "ch03_s22_nvguan.l23",
       "when": {
         "flag.liqinghe_won": true
       },
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "我若真办一处，要另找肯做的人。不能从这儿连老师和学生一起搬走。"
+      "text": "真办就另找人，不能连师生一起搬。"
     },
     {
-      "id": "ch03_s22_nvguan.l15",
+      "id": "ch03_s22_nvguan.l24",
       "who": "narr",
       "kind": "aside",
       "text": "温回屋时，盆底还沾着黑水。她把盆倒扣在石上，甩甩发凉的手。"
     },
     {
-      "id": "ch03_s22_nvguan.l16",
+      "id": "ch03_s22_nvguan.l25",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "我自己买一刀纸，可够这两个人下一回写？"
+      "text": "我自己买……一刀纸。"
     },
     {
-      "id": "ch03_s22_nvguan.l17",
+      "id": "ch03_s22_nvguan.l26",
       "who": "xujinghe",
       "expr": "default",
       "kind": "say",
-      "text": "够纸。不够替她们答下回都来。"
+      "text": "一刀？"
     },
     {
-      "id": "ch03_s22_nvguan.l18",
+      "id": "ch03_s22_nvguan.l27",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "够这两人下回——"
+    },
+    {
+      "id": "ch03_s22_nvguan.l28",
+      "who": "xujinghe",
+      "expr": "default",
+      "kind": "say",
+      "text": "够纸。"
+    },
+    {
+      "id": "ch03_s22_nvguan.l29",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "够纸。"
+    },
+    {
+      "id": "ch03_s22_nvguan.l30",
+      "who": "xujinghe",
+      "expr": "default",
+      "kind": "say",
+      "text": "不能替她们答下回都来。"
+    },
+    {
+      "id": "ch03_s22_nvguan.l31",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "是。"
+    },
+    {
+      "id": "ch03_s22_nvguan.l32",
       "who": "wenqiao",
       "expr": "default",
       "kind": "say",
       "text": "要题你的名字么？"
     },
     {
-      "id": "ch03_s22_nvguan.l19",
+      "id": "ch03_s22_nvguan.l33",
       "who": "wuze",
       "expr": "open",
       "kind": "say",
-      "text": "记付纸钱的人就行。别题在他们要写的那一面。"
+      "text": "记付纸钱的人，别题在他们写的那面。"
     },
     {
-      "id": "ch03_s22_nvguan.l20",
+      "id": "ch03_s22_nvguan.l34",
+      "who": "wenqiao",
+      "expr": "open",
+      "kind": "say",
+      "text": "好。"
+    },
+    {
+      "id": "ch03_s22_nvguan.l35",
       "who": "narr",
       "kind": "aside",
       "text": "许将纸价写在小账边，旁边留着学字人下回来不来的空格。"
+    },
+    {
+      "id": "ch03_s22_nvguan.l36",
+      "who": "narr",
+      "kind": "aside",
+      "text": "你付下自己买纸的钱，把收据收进袖里。"
     }
   ],
   "choices": [

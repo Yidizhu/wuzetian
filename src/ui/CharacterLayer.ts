@@ -48,6 +48,40 @@ export class CharacterLayer {
     root.appendChild(this.el);
   }
 
+  /** 已经解码好的光栅图，按地址记。换场前先备好，换上那一下就不用等（B21） */
+  private decoded = new Map<string, Promise<void>>();
+
+  /**
+   * 把这一场要用的立绘先解码好（B21：立绘和对白出来有延迟）。
+   * 引擎在进场前 await 这一场的，进场后不 await 地预取下一场的（story.ts 的 prefetch）。
+   * 全身和膝上两张都备：同一场里有选项的那一格用全身，其余用膝上，换框法时不该再等一次。
+   */
+  async preload(cast: string[], dressing: string): Promise<void> {
+    const ctx: SpriteContext = { has: this.hasFlag, dressing };
+    const jobs: Promise<void>[] = [];
+    for (const who of cast.slice(0, 2)) {
+      const pic = this.raster.pickPortrait(rasterCandidates(who, ctx));
+      if (!pic) continue;                            // 还是 SVG 的人：构建期就打进包里了，没什么可备的
+      for (const framing of ["full", "knee"] as const) {
+        jobs.push(this.decode(this.raster.portraitUrl(pic, framing).url));
+      }
+    }
+    await Promise.all(jobs);
+  }
+
+  /** 解码一张图，同一个地址只解一次。失败不抛：真正要用它的时候再退回 SVG */
+  private decode(url: string): Promise<void> {
+    let job = this.decoded.get(url);
+    if (!job) {
+      const img = new Image();
+      img.decoding = "async";
+      img.src = url;
+      job = img.decode().catch(() => { /* 到 show() 那一步再按读不出来处理 */ });
+      this.decoded.set(url, job);
+    }
+    return job;
+  }
+
   private get ctx(): SpriteContext {
     return { has: this.hasFlag, dressing: this.dressing };
   }
@@ -159,6 +193,7 @@ export class CharacterLayer {
       const { url, framing } = this.raster.portraitUrl(pic, this.framing);
       const key = `img:${url}`;
       if (node.dataset.sprite === key) return;
+      await this.decode(url);      // 多半已经在换场前备好了，这里是零等待
       const img = new Image();
       img.alt = "";
       img.decoding = "async";

@@ -22,75 +22,143 @@
       "id": "ch02_s18_yuanye.l1",
       "who": "narr",
       "kind": "aside",
-      "text": "墙边一枝弯得很低，枝尖悬在李令仪袖口上方。"
+      "text": "与裴照夜道别后，你到苑墙下找李令仪。"
     },
     {
       "id": "ch02_s18_yuanye.l2",
+      "who": "narr",
+      "kind": "aside",
+      "text": "墙边一枝弯得很低，枝尖悬在李令仪袖口上方。"
+    },
+    {
+      "id": "ch02_s18_yuanye.l3",
       "who": "liqinghe",
       "expr": "default",
       "kind": "say",
       "text": "明日往这边。"
     },
     {
-      "id": "ch02_s18_yuanye.l3",
+      "id": "ch02_s18_yuanye.l4",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "今日已经往这边了。"
-    },
-    {
-      "id": "ch02_s18_yuanye.l4",
-      "who": "liqinghe",
-      "expr": "open",
-      "kind": "say",
-      "text": "再往一点。"
+      "text": "这边？"
     },
     {
       "id": "ch02_s18_yuanye.l5",
       "who": "wuze",
-      "expr": "open",
+      "expr": "default",
       "kind": "say",
-      "text": "你拿袖口挨着它，风一来就把它推回去；这样猜，明日还是你说的方向。"
+      "text": "今日就往这边。"
     },
     {
       "id": "ch02_s18_yuanye.l6",
-      "who": "narr",
-      "kind": "aside",
-      "text": "李令仪收回袖子，枝尖弹开。"
-    },
-    {
-      "id": "ch02_s18_yuanye.l7",
       "who": "liqinghe",
       "expr": "open",
       "kind": "say",
-      "text": "好，你猜。"
+      "text": "再一点。"
+    },
+    {
+      "id": "ch02_s18_yuanye.l7",
+      "who": "wuze",
+      "expr": "open",
+      "kind": "say",
+      "text": "再一点……"
     },
     {
       "id": "ch02_s18_yuanye.l8",
       "who": "wuze",
-      "expr": "default",
+      "expr": "open",
       "kind": "say",
-      "text": "往上。"
+      "text": "你的袖口——"
     },
     {
       "id": "ch02_s18_yuanye.l9",
       "who": "liqinghe",
       "expr": "open",
       "kind": "say",
-      "text": "那你得替它等一夜，我可不等；明日若忘了今日怎么说，也别来问我。"
+      "text": "收回来。"
     },
     {
       "id": "ch02_s18_yuanye.l10",
       "who": "wuze",
       "expr": "open",
       "kind": "say",
-      "text": "不问。"
+      "text": "风一来就推它，这样明日还朝你那边。"
     },
     {
       "id": "ch02_s18_yuanye.l11",
       "who": "narr",
       "kind": "aside",
+      "text": "李令仪收回袖子，枝尖弹开。"
+    },
+    {
+      "id": "ch02_s18_yuanye.l12",
+      "who": "liqinghe",
+      "expr": "open",
+      "kind": "say",
+      "text": "好。"
+    },
+    {
+      "id": "ch02_s18_yuanye.l13",
+      "who": "liqinghe",
+      "expr": "open",
+      "kind": "say",
+      "text": "你猜。"
+    },
+    {
+      "id": "ch02_s18_yuanye.l14",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "往上。"
+    },
+    {
+      "id": "ch02_s18_yuanye.l15",
+      "who": "liqinghe",
+      "expr": "default",
+      "kind": "say",
+      "text": "往上……"
+    },
+    {
+      "id": "ch02_s18_yuanye.l16",
+      "who": "liqinghe",
+      "expr": "open",
+      "kind": "say",
+      "text": "那你替它等一夜，我可不等。"
+    },
+    {
+      "id": "ch02_s18_yuanye.l17",
+      "who": "wuze",
+      "expr": "open",
+      "kind": "say",
+      "text": "……"
+    },
+    {
+      "id": "ch02_s18_yuanye.l18",
+      "who": "liqinghe",
+      "expr": "open",
+      "kind": "say",
+      "text": "明日若忘了今日说什么，也别问我。"
+    },
+    {
+      "id": "ch02_s18_yuanye.l19",
+      "who": "wuze",
+      "expr": "open",
+      "kind": "say",
+      "text": "不问。"
+    },
+    {
+      "id": "ch02_s18_yuanye.l20",
+      "who": "narr",
+      "kind": "aside",
       "text": "你们绕过低枝，在另一边的阴影里坐下。"
+    },
+    {
+      "id": "ch02_s18_yuanye.l21",
+      "who": "narr",
+      "kind": "aside",
+      "text": "你收回扶枝的手，坐到公主身旁。"
     }
   ],
   "goto": "ch02_s20_hanyuan"

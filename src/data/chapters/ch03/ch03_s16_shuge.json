@@ -17,125 +17,223 @@
       "id": "ch03_s16_shuge.l1",
       "who": "narr",
       "kind": "aside",
-      "text": "唐把最后一张差务单展开，许送还借阅的薄册。册角翘着，压在砚旁才伏下去。"
+      "text": "收好朱绳，你回书阁交最后一张差务单。"
     },
     {
       "id": "ch03_s16_shuge.l2",
-      "who": "tangjian",
-      "expr": "default",
-      "kind": "say",
-      "text": "先前私请来帮忙的人，各有自己的差。这张只解旧约，不准你顺手替她们领新差。"
+      "who": "narr",
+      "kind": "aside",
+      "text": "唐把最后一张差务单展开，许送还借阅的薄册。册角翘着，压在砚旁才伏下去。"
     },
     {
       "id": "ch03_s16_shuge.l3",
-      "when": {
-        "flag.enthroned": true
-      },
-      "who": "wuze",
-      "expr": "default",
-      "kind": "say",
-      "text": "自愿离开的，已做的照给。要入新署，另问本人，另受差。"
-    },
-    {
-      "id": "ch03_s16_shuge.l4",
-      "when": {
-        "flag.enthroned": true
-      },
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "只列你这一班旧人，不冒充往后人人都已有新条。余下的，还须另议。"
+      "text": "各人各有差，这张只解旧约。"
     },
     {
-      "id": "ch03_s16_shuge.l5",
-      "when": {
-        "flag.declined_crown": true
-      },
+      "id": "ch03_s16_shuge.l4",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "重推已经开了。我没有留在候选案上等人再来劝，这几张也别替我续。"
+      "text": "旧约。"
+    },
+    {
+      "id": "ch03_s16_shuge.l5",
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "别顺手替她们领新差。"
     },
     {
       "id": "ch03_s16_shuge.l6",
       "when": {
+        "flag.enthroned": true
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "离开的照给钱。入新署另问，另受差。"
+    },
+    {
+      "id": "ch03_s16_shuge.l7",
+      "when": {
+        "flag.enthroned": true
+      },
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "只列这班旧人，余下还须议，不能算人人有份。"
+    },
+    {
+      "id": "ch03_s16_shuge.l8",
+      "when": {
+        "flag.enthroned": true
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "是。"
+    },
+    {
+      "id": "ch03_s16_shuge.l9",
+      "when": {
+        "flag.declined_crown": true
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "重推开了，我不等再劝，这几张也别续。"
+    },
+    {
+      "id": "ch03_s16_shuge.l10",
+      "when": {
         "flag.declined_crown": true
       },
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "辞受照录。往后居处先不定，也不能写成失去供给，旧俸结到应结的日子。"
+      "text": "辞受照录，旧俸结足，居处未定也不断供给。"
     },
     {
-      "id": "ch03_s16_shuge.l7",
+      "id": "ch03_s16_shuge.l11",
+      "when": {
+        "flag.declined_crown": true
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "旧俸。"
+    },
+    {
+      "id": "ch03_s16_shuge.l12",
       "when": {
         "flag.liqinghe_won": true
       },
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "我会续补自己的案。有人愿借抄，有人不愿，不能仍拿候选旧牌叫人来。"
-    },
-    {
-      "id": "ch03_s16_shuge.l8",
-      "who": "xujinghe",
-      "expr": "default",
-      "kind": "say",
-      "text": "来看看教字可以。真想开课，先看纸钱和谁肯教，别只看见空的一张桌。"
-    },
-    {
-      "id": "ch03_s16_shuge.l9",
-      "who": "wuze",
-      "expr": "default",
-      "kind": "say",
-      "text": "你已经把桌子摆了？"
-    },
-    {
-      "id": "ch03_s16_shuge.l10",
-      "who": "xujinghe",
-      "expr": "default",
-      "kind": "say",
-      "text": "三回了。温荞只借三个午后，教完便走，没搬来。"
-    },
-    {
-      "id": "ch03_s16_shuge.l11",
-      "who": "narr",
-      "kind": "aside",
-      "text": "唐念完工价与各自回署的日子，把笔递过来。你在旧约终止处署名。"
-    },
-    {
-      "id": "ch03_s16_shuge.l12",
-      "who": "tangjian",
-      "expr": "default",
-      "kind": "say",
-      "text": "收到的人已各留一份。余款不因离班扣下，签了以后，便不能再按旧约传她们。"
+      "text": "我续补案，借抄另问，不能用旧牌传人。"
     },
     {
       "id": "ch03_s16_shuge.l13",
-      "who": "wuze",
+      "when": {
+        "flag.liqinghe_won": true
+      },
+      "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "记明白。"
+      "text": "另问。"
     },
     {
       "id": "ch03_s16_shuge.l14",
       "who": "xujinghe",
-      "expr": "open",
+      "expr": "default",
       "kind": "say",
-      "text": "今日想往哪儿？问的是今日。"
+      "text": "来看教字可以，开课先问纸钱和谁肯教。"
     },
     {
       "id": "ch03_s16_shuge.l15",
-      "who": "narr",
-      "kind": "aside",
-      "text": "门外木轮碾过石缝。许把还来的薄册推入架中，没有替你空出一栏名字。"
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "纸钱。"
     },
     {
       "id": "ch03_s16_shuge.l16",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "先找个地方坐。去看课也好，问路也好，今日都不替明年落笔。"
+      "text": "桌子已经——"
+    },
+    {
+      "id": "ch03_s16_shuge.l17",
+      "who": "xujinghe",
+      "expr": "default",
+      "kind": "say",
+      "text": "摆过三回了。"
+    },
+    {
+      "id": "ch03_s16_shuge.l18",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "三回。"
+    },
+    {
+      "id": "ch03_s16_shuge.l19",
+      "who": "xujinghe",
+      "expr": "default",
+      "kind": "say",
+      "text": "温只借三个午后，没搬来。"
+    },
+    {
+      "id": "ch03_s16_shuge.l20",
+      "who": "narr",
+      "kind": "aside",
+      "text": "唐念完工价与各自回署的日子，把笔递过来。你在旧约终止处署名。"
+    },
+    {
+      "id": "ch03_s16_shuge.l21",
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "各人留了份，余款不扣，签后不能按旧约传。"
+    },
+    {
+      "id": "ch03_s16_shuge.l22",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "嗯。"
+    },
+    {
+      "id": "ch03_s16_shuge.l23",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "记明白。"
+    },
+    {
+      "id": "ch03_s16_shuge.l24",
+      "who": "xujinghe",
+      "expr": "open",
+      "kind": "say",
+      "text": "今日想去哪儿？只问今日。"
+    },
+    {
+      "id": "ch03_s16_shuge.l25",
+      "who": "wuze",
+      "expr": "open",
+      "kind": "say",
+      "text": "今日……"
+    },
+    {
+      "id": "ch03_s16_shuge.l26",
+      "who": "narr",
+      "kind": "aside",
+      "text": "门外木轮碾过石缝。许把还来的薄册推入架中，没有替你空出一栏名字。"
+    },
+    {
+      "id": "ch03_s16_shuge.l27",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "先找地方坐。看课、问路，都不替明年落笔。"
+    },
+    {
+      "id": "ch03_s16_shuge.l28",
+      "who": "xujinghe",
+      "expr": "default",
+      "kind": "say",
+      "text": "好。"
+    },
+    {
+      "id": "ch03_s16_shuge.l29",
+      "who": "narr",
+      "kind": "aside",
+      "text": "唐将差务单合起，你在门边停了一停。"
     }
   ],
   "choices": [

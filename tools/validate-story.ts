@@ -485,7 +485,8 @@ if (mainRun) {
 
   // 覆盖表：进度一眼看得出，不靠问
   const havePortraits = PORTRAITS.filter((p) => full.has(p.file));
-  const haveBackdrops = [...usedBackdrops].filter((k) => sceneImgs.has(k));
+  // 借图的那几条也算有图（backdrops.ts 的 from，B21）。逐条的缺口清单在 npm run check:art
+  const haveBackdrops = [...usedBackdrops].filter((k) => sceneImgs.has(k) || (BACKDROPS[k]?.from && sceneImgs.has(BACKDROPS[k]!.from!)));
   coverage.push(`光栅立绘 ${havePortraits.length}/${PORTRAITS.length} 套` + (havePortraits.length ? `：${havePortraits.map((p) => p.file).join("、")}` : "（其余走 SVG）"));
   coverage.push(`整图背景 ${haveBackdrops.length}/${usedBackdrops.size} 种` + (haveBackdrops.length ? `：${haveBackdrops.join("、")}` : "（其余走渐变）"));
 }

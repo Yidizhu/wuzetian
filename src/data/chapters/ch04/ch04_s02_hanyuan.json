@@ -19,50 +19,70 @@
       "id": "ch04_s02_hanyuan.l1",
       "who": "narr",
       "kind": "aside",
-      "text": "龙尾道的风吹到殿门，远处入席的脚步一声比一声散。"
+      "text": "笔收好后，你沿龙尾道走到含元殿。"
     },
     {
       "id": "ch04_s02_hanyuan.l2",
-      "who": "tangjian",
-      "expr": "default",
-      "kind": "say",
-      "text": "病者指定了照料的人，病舍却不认她的凭，取药的时辰已经耽搁一回。"
+      "who": "narr",
+      "kind": "aside",
+      "text": "龙尾道的风吹到殿门，远处入席的脚步一声比一声散。"
     },
     {
       "id": "ch04_s02_hanyuan.l3",
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "病者指定了照料人，病舍不认凭，取药晚了一回。"
+    },
+    {
+      "id": "ch04_s02_hanyuan.l4",
+      "who": "songhuizhen",
+      "expr": "default",
+      "kind": "say",
+      "text": "一回。"
+    },
+    {
+      "id": "ch04_s02_hanyuan.l5",
       "who": "songhuizhen",
       "expr": "default",
       "kind": "say",
       "text": "人现在还在门外？"
     },
     {
-      "id": "ch04_s02_hanyuan.l4",
+      "id": "ch04_s02_hanyuan.l6",
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "在。两边都有人守着，没叫她独等。"
+      "text": "在，两边有人守着，没叫她独等。"
     },
     {
-      "id": "ch04_s02_hanyuan.l5",
+      "id": "ch04_s02_hanyuan.l7",
+      "who": "songhuizhen",
+      "expr": "default",
+      "kind": "say",
+      "text": "嗯。"
+    },
+    {
+      "id": "ch04_s02_hanyuan.l8",
       "who": "narr",
       "kind": "aside",
       "text": "观议席有人说：“结契的妇人招来虹气。”"
     },
     {
-      "id": "ch04_s02_hanyuan.l6",
+      "id": "ch04_s02_hanyuan.l9",
       "who": "songhuizhen",
       "expr": "default",
       "kind": "say",
       "text": "今晚那服药，谁递给她？"
     },
     {
-      "id": "ch04_s02_hanyuan.l7",
+      "id": "ch04_s02_hanyuan.l10",
       "who": "narr",
       "kind": "aside",
       "text": "唐简用手压住来件，纸角在风里拍了两下。"
     },
     {
-      "id": "ch04_s02_hanyuan.l8",
+      "id": "ch04_s02_hanyuan.l11",
       "when": {
         "ming": {
           "gte": 6
@@ -71,10 +91,22 @@
       "who": "liqinghe",
       "expr": "default",
       "kind": "say",
-      "text": "你说过“先让她们看清要等多久”。这一回登记等几日，也请照实写。"
+      "text": "你说过先看清等多久，登记等几日也照实写。"
     },
     {
-      "id": "ch04_s02_hanyuan.l9",
+      "id": "ch04_s02_hanyuan.l12",
+      "when": {
+        "ming": {
+          "gte": 6
+        }
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "几日。"
+    },
+    {
+      "id": "ch04_s02_hanyuan.l13",
       "when": {
         "ming": {
           "lt": 6
@@ -83,104 +115,257 @@
       "who": "liqinghe",
       "expr": "default",
       "kind": "say",
-      "text": "这一回登记要等几日？经手人也列上，别只在开头写准了。"
-    },
-    {
-      "id": "ch04_s02_hanyuan.l10",
-      "who": "wuze",
-      "expr": "default",
-      "kind": "say",
-      "text": "先依病者已经签的照料凭送药。新法慢慢议，不能拿今晚的人等它写完。"
-    },
-    {
-      "id": "ch04_s02_hanyuan.l11",
-      "who": "tangjian",
-      "expr": "default",
-      "kind": "say",
-      "text": "原有代领凭可以核。这件先去办，另案来报。"
-    },
-    {
-      "id": "ch04_s02_hanyuan.l12",
-      "when": {
-        "flag.enthroned": true
-      },
-      "who": "shenheng",
-      "expr": "default",
-      "kind": "say",
-      "text": "还有反对你新署用人的原议。"
-    },
-    {
-      "id": "ch04_s02_hanyuan.l13",
-      "when": {
-        "flag.enthroned": true
-      },
-      "who": "wuze",
-      "expr": "default",
-      "kind": "say",
-      "text": "拿来。"
+      "text": "登记等几日？经手人列上，别只写准了。"
     },
     {
       "id": "ch04_s02_hanyuan.l14",
       "when": {
+        "ming": {
+          "lt": 6
+        }
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "经手人。"
+    },
+    {
+      "id": "ch04_s02_hanyuan.l15",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "先照病者签的凭送药。"
+    },
+    {
+      "id": "ch04_s02_hanyuan.l16",
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "照料凭。"
+    },
+    {
+      "id": "ch04_s02_hanyuan.l17",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "新法……另议，不能让今晚的人等。"
+    },
+    {
+      "id": "ch04_s02_hanyuan.l18",
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "原有代领凭可以核，先办，另案报。"
+    },
+    {
+      "id": "ch04_s02_hanyuan.l19",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "先办。"
+    },
+    {
+      "id": "ch04_s02_hanyuan.l20",
+      "when": {
         "flag.enthroned": true
       },
       "who": "shenheng",
       "expr": "default",
       "kind": "say",
-      "text": "她问近人换个职名，是否仍只有近人能问。主张只登你的答复，反对另存。"
+      "text": "还有反对新署用人的原议。"
     },
     {
-      "id": "ch04_s02_hanyuan.l15",
+      "id": "ch04_s02_hanyuan.l21",
       "when": {
         "flag.enthroned": true
       },
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "只看答复，看不出她问过哪一句。"
+      "text": "拿来，我——"
     },
     {
-      "id": "ch04_s02_hanyuan.l16",
-      "when": {
-        "flag.enthroned": true
-      },
-      "who": "tangjian",
-      "expr": "default",
-      "kind": "say",
-      "text": "两份同存要逐项答，三日内办不完便须记延期，不能只收而不回。"
-    },
-    {
-      "id": "ch04_s02_hanyuan.l17",
+      "id": "ch04_s02_hanyuan.l22",
       "when": {
         "flag.enthroned": true
       },
       "who": "shenheng",
       "expr": "default",
       "kind": "say",
-      "text": "若移出议录，原牒暂存。后来查议录的人，便找不到她为什么来。"
+      "text": "先看她问的。"
     },
     {
-      "id": "ch04_s02_hanyuan.l18",
+      "id": "ch04_s02_hanyuan.l23",
+      "when": {
+        "flag.enthroned": true
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "原议。"
+    },
+    {
+      "id": "ch04_s02_hanyuan.l24",
+      "when": {
+        "flag.enthroned": true
+      },
+      "who": "shenheng",
+      "expr": "default",
+      "kind": "say",
+      "text": "换个职名，是不是仍只有近人能问。"
+    },
+    {
+      "id": "ch04_s02_hanyuan.l25",
+      "when": {
+        "flag.enthroned": true
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "……"
+    },
+    {
+      "id": "ch04_s02_hanyuan.l26",
+      "when": {
+        "flag.enthroned": true
+      },
+      "who": "shenheng",
+      "expr": "default",
+      "kind": "say",
+      "text": "主张只登你的答复，反对另存。"
+    },
+    {
+      "id": "ch04_s02_hanyuan.l27",
+      "when": {
+        "flag.enthroned": true
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "只看答复，不知她问过什么。"
+    },
+    {
+      "id": "ch04_s02_hanyuan.l28",
+      "when": {
+        "flag.enthroned": true
+      },
+      "who": "shenheng",
+      "expr": "default",
+      "kind": "say",
+      "text": "是。"
+    },
+    {
+      "id": "ch04_s02_hanyuan.l29",
+      "when": {
+        "flag.enthroned": true
+      },
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "同存要逐项答，三日办不完就记延期。"
+    },
+    {
+      "id": "ch04_s02_hanyuan.l30",
+      "when": {
+        "flag.enthroned": true
+      },
+      "who": "shenheng",
+      "expr": "default",
+      "kind": "say",
+      "text": "移出议录，原牒暂存，后来人就找不到来由。"
+    },
+    {
+      "id": "ch04_s02_hanyuan.l31",
+      "when": {
+        "flag.enthroned": true
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "来由。"
+    },
+    {
+      "id": "ch04_s02_hanyuan.l32",
       "when": {
         "flag.declined_crown": true
       },
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "你交的只算本人意见，不替仍在位的人批。"
+      "text": "只算本人意见，不替在位的人批。"
     },
     {
-      "id": "ch04_s02_hanyuan.l19",
+      "id": "ch04_s02_hanyuan.l33",
+      "when": {
+        "flag.declined_crown": true
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "我再——"
+    },
+    {
+      "id": "ch04_s02_hanyuan.l34",
+      "when": {
+        "flag.declined_crown": true
+      },
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "本人意见。"
+    },
+    {
+      "id": "ch04_s02_hanyuan.l35",
+      "when": {
+        "flag.declined_crown": true
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "好。"
+    },
+    {
+      "id": "ch04_s02_hanyuan.l36",
       "when": {
         "flag.liqinghe_won": true
       },
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "你的反对照收，署谁就记谁；李令仪的答复另列。"
+      "text": "反对照收，署谁记谁，李的答复另列。"
     },
     {
-      "id": "ch04_s02_hanyuan.l20",
+      "id": "ch04_s02_hanyuan.l37",
+      "when": {
+        "flag.liqinghe_won": true
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "我的——"
+    },
+    {
+      "id": "ch04_s02_hanyuan.l38",
+      "when": {
+        "flag.liqinghe_won": true
+      },
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "照收。"
+    },
+    {
+      "id": "ch04_s02_hanyuan.l39",
+      "when": {
+        "flag.liqinghe_won": true
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "好。"
+    },
+    {
+      "id": "ch04_s02_hanyuan.l40",
       "who": "narr",
       "kind": "aside",
       "text": "宋把取药的凭收好，没有留下来等一场掌声。"

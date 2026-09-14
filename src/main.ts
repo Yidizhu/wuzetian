@@ -183,6 +183,8 @@ const story = new Story(
       choices.hide();
       mountEpigraph(document.body, { lines, onDone: () => { dlg.setVisible(true); resolve(); } });
     }),
+    // 换场前把这一场的立绘先解码好（B21）；引擎预取下一场时也调这里，那一次不阻塞
+    preload: (scene) => cast.preload(scene.cast, scene.dressing ?? ""),
     // 结局第一拍（D-084）：只有画面。对话框、选项收起，点一下才出正文。
     // 排版归 CC3：这一拍 #app 上是 data-ending="picture"，第二拍是 "text"，按这两个值写样式
     endingPicture: () => new Promise<void>((resolve) => {

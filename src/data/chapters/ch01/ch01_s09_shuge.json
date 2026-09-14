@@ -18,162 +18,300 @@
       "id": "ch01_s09_shuge.l1",
       "who": "narr",
       "kind": "aside",
-      "text": "移到侧室，帘影把泥金书签遮成一条暗线。"
+      "text": "书阁收卷的案还没撤，你随公主移到侧室。"
     },
     {
       "id": "ch01_s09_shuge.l2",
-      "who": "liqinghe",
-      "expr": "default",
-      "kind": "say",
-      "text": "方才你还留了一句话。"
+      "who": "narr",
+      "kind": "aside",
+      "text": "移到侧室，帘影把泥金书签遮成一条暗线。"
     },
     {
       "id": "ch01_s09_shuge.l3",
-      "who": "wuze",
+      "who": "liqinghe",
       "expr": "default",
       "kind": "say",
-      "text": "你肯收无荐卷，为什么不肯听无宗籍的人谈承统？"
+      "text": "方才那句话……"
     },
     {
       "id": "ch01_s09_shuge.l4",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "哪句？"
+    },
+    {
+      "id": "ch01_s09_shuge.l5",
+      "who": "liqinghe",
+      "expr": "default",
+      "kind": "say",
+      "text": "你没说完。"
+    },
+    {
+      "id": "ch01_s09_shuge.l6",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "你肯收无荐卷。"
+    },
+    {
+      "id": "ch01_s09_shuge.l7",
+      "who": "liqinghe",
+      "expr": "default",
+      "kind": "say",
+      "text": "是。"
+    },
+    {
+      "id": "ch01_s09_shuge.l8",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "无宗籍的人谈承统，就不许？"
+    },
+    {
+      "id": "ch01_s09_shuge.l9",
       "who": "liqinghe",
       "expr": "guarded",
       "kind": "say",
       "text": "两件事。"
     },
     {
-      "id": "ch01_s09_shuge.l5",
+      "id": "ch01_s09_shuge.l10",
       "who": "wuze",
       "expr": "guarded",
       "kind": "say",
-      "text": "门外的人听起来，可未必是两件。"
+      "text": "两件？"
     },
     {
-      "id": "ch01_s09_shuge.l6",
+      "id": "ch01_s09_shuge.l11",
+      "who": "wuze",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "门外的人听着——"
+    },
+    {
+      "id": "ch01_s09_shuge.l12",
       "who": "liqinghe",
       "expr": "guarded",
       "kind": "say",
-      "text": "宗籍至少让争位的人有个数目，若谁都可自称贤能，你拿什么拦住兵强的人？"
+      "text": "先听我说完。"
     },
     {
-      "id": "ch01_s09_shuge.l7",
+      "id": "ch01_s09_shuge.l13",
       "who": "wuze",
       "expr": "guarded",
       "kind": "say",
-      "text": "可你先划去许多人，再问剩下的人谁有才能，连比较的地方都没留给她们。"
+      "text": "你说。"
     },
     {
-      "id": "ch01_s09_shuge.l8",
+      "id": "ch01_s09_shuge.l14",
+      "who": "liqinghe",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "宗籍至少让争位的人有个数目，不能人人自称贤能。"
+    },
+    {
+      "id": "ch01_s09_shuge.l15",
+      "who": "liqinghe",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "若靠兵强来争，你拿什么拦住？"
+    },
+    {
+      "id": "ch01_s09_shuge.l16",
+      "who": "wuze",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "兵强的……"
+    },
+    {
+      "id": "ch01_s09_shuge.l17",
+      "who": "wuze",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "可你先划掉一批人，再问谁有才。"
+    },
+    {
+      "id": "ch01_s09_shuge.l18",
+      "who": "wuze",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "连比较的地方都不给她们。"
+    },
+    {
+      "id": "ch01_s09_shuge.l19",
       "who": "narr",
       "kind": "aside",
       "text": "公主合了一半的册子又打开，指尖停在自己的改字上。"
     },
     {
-      "id": "ch01_s09_shuge.l9",
+      "id": "ch01_s09_shuge.l20",
       "who": "liqinghe",
       "expr": "default",
       "kind": "say",
-      "text": "那就拿一个不会只剩刀兵的办法来。别只把门拆了。"
+      "text": "给我一个不会只剩刀兵的办法。"
     },
     {
-      "id": "ch01_s09_shuge.l10",
+      "id": "ch01_s09_shuge.l21",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "……"
+    },
+    {
+      "id": "ch01_s09_shuge.l22",
+      "who": "liqinghe",
+      "expr": "default",
+      "kind": "say",
+      "text": "不能只把门拆了。"
+    },
+    {
+      "id": "ch01_s09_shuge.l23",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
       "text": "我还没有。"
     },
     {
-      "id": "ch01_s09_shuge.l11",
+      "id": "ch01_s09_shuge.l24",
       "who": "liqinghe",
       "expr": "open",
       "kind": "say",
-      "text": "好。这句比方才说得实。"
+      "text": "好，这句实在。"
     },
     {
-      "id": "ch01_s09_shuge.l12",
+      "id": "ch01_s09_shuge.l25",
       "who": "narr",
       "kind": "aside",
       "text": "她翻出母亲看过的那一页，粗纸边擦过你的指腹。"
     },
     {
-      "id": "ch01_s09_shuge.l13",
+      "id": "ch01_s09_shuge.l26",
       "who": "narr",
       "kind": "aside",
       "text": "批语只有四字：颇肖朕意。"
     },
     {
-      "id": "ch01_s09_shuge.l14",
+      "id": "ch01_s09_shuge.l27",
       "who": "liqinghe",
       "expr": "default",
       "kind": "say",
-      "text": "这处是我改了三夜的。"
+      "text": "你看这处。"
     },
     {
-      "id": "ch01_s09_shuge.l15",
+      "id": "ch01_s09_shuge.l28",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "这处？"
+    },
+    {
+      "id": "ch01_s09_shuge.l29",
+      "who": "liqinghe",
+      "expr": "default",
+      "kind": "say",
+      "text": "我改了三夜。"
+    },
+    {
+      "id": "ch01_s09_shuge.l30",
       "who": "narr",
       "kind": "aside",
       "text": "她说完，把要递过来的手停在半途。"
     },
     {
-      "id": "ch01_s09_shuge.l16",
+      "id": "ch01_s09_shuge.l31",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "这里跟前文不一样，拿掉一层代领，病着的人须多一个见证，对么？"
+      "text": "跟前文不一样。"
     },
     {
-      "id": "ch01_s09_shuge.l17",
+      "id": "ch01_s09_shuge.l32",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "少一层代领，多一个见证？"
+    },
+    {
+      "id": "ch01_s09_shuge.l33",
       "who": "liqinghe",
       "expr": "default",
       "kind": "say",
       "text": "对。"
     },
     {
-      "id": "ch01_s09_shuge.l18",
+      "id": "ch01_s09_shuge.l34",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "多的那个人，谁去找？"
+      "text": "病着的人，去哪里找这一个？"
     },
     {
-      "id": "ch01_s09_shuge.l19",
+      "id": "ch01_s09_shuge.l35",
       "who": "liqinghe",
       "expr": "open",
       "kind": "say",
       "text": "你真一点也不肯放过。"
     },
     {
-      "id": "ch01_s09_shuge.l20",
+      "id": "ch01_s09_shuge.l36",
+      "who": "wuze",
+      "expr": "open",
+      "kind": "say",
+      "text": "……"
+    },
+    {
+      "id": "ch01_s09_shuge.l37",
       "who": "narr",
       "kind": "aside",
       "text": "她这回把整页推过来，遮住那四字，只露自己的正文。"
     },
     {
-      "id": "ch01_s09_shuge.l21",
+      "id": "ch01_s09_shuge.l38",
       "who": "liqinghe",
       "expr": "open",
       "kind": "say",
-      "text": "明日再来挑一处，我想知道你读见了什么，不必先告诉我像谁。"
+      "text": "明日再来挑一处，我想听你自己读见了哪里不妥。"
     },
     {
-      "id": "ch01_s09_shuge.l22",
+      "id": "ch01_s09_shuge.l39",
       "who": "wuze",
       "expr": "open",
       "kind": "say",
-      "text": "令仪，挑赢了，有什么？"
+      "text": "自己读见的。"
     },
     {
-      "id": "ch01_s09_shuge.l23",
+      "id": "ch01_s09_shuge.l40",
       "who": "liqinghe",
       "expr": "open",
       "kind": "say",
-      "text": "我改。挑错了，你改。"
+      "text": "不用先说像谁。"
     },
     {
-      "id": "ch01_s09_shuge.l24",
+      "id": "ch01_s09_shuge.l41",
+      "who": "wuze",
+      "expr": "open",
+      "kind": "say",
+      "text": "令仪，挑赢了有什么？"
+    },
+    {
+      "id": "ch01_s09_shuge.l42",
+      "who": "liqinghe",
+      "expr": "open",
+      "kind": "say",
+      "text": "我改；若挑错了，你改。"
+    },
+    {
+      "id": "ch01_s09_shuge.l43",
       "who": "narr",
       "kind": "aside",
       "text": "帘外有人走过。她没有把你这边的坐席撤远。"
+    },
+    {
+      "id": "ch01_s09_shuge.l44",
+      "who": "narr",
+      "kind": "aside",
+      "text": "你扶住病舍那页的边角，将正文转向她。"
     }
   ],
   "choices": [

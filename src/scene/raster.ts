@@ -48,6 +48,13 @@ export class RasterCatalog {
     return this.scenes.has(key) && !this.broken.has(`scene/${key}`);
   }
 
+  /** 这一条实际用哪张图：自己有就用自己的，没有就看它借谁的（backdrops.ts 的 from）。都没有是 null */
+  resolveBackdrop(key: string, from?: string): string | null {
+    if (this.hasBackdrop(key)) return key;
+    if (from && this.hasBackdrop(from)) return from;
+    return null;
+  }
+
   backdropUrl(key: string): string {
     return `${this.base}scene/${key}.webp`;
   }

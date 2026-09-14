@@ -64,6 +64,12 @@
       "who": "narr",
       "kind": "aside",
       "text": "门敞着，冷风从里面吹到你裂开的掌心。"
+    },
+    {
+      "id": "ch01_s00_zhaoyang.l10",
+      "who": "narr",
+      "kind": "aside",
+      "text": "你迎着冷风，跨进敞开的门。"
     }
   ],
   "goto": "ch01_s01_zhaoyang"

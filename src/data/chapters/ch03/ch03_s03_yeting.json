@@ -42,126 +42,238 @@
       "who": "liuchenghuan",
       "expr": "open",
       "kind": "say",
-      "text": "给你留了干的一头。擦完手就歇，今夜的数目已经对过了。"
+      "text": "干的一头留给你。"
     },
     {
       "id": "ch03_s03_yeting.l5",
+      "who": "wuze",
+      "expr": "open",
+      "kind": "say",
+      "text": "嗯。"
+    },
+    {
+      "id": "ch03_s03_yeting.l6",
+      "who": "liuchenghuan",
+      "expr": "open",
+      "kind": "say",
+      "text": "擦完就歇。今夜的数对过了。"
+    },
+    {
+      "id": "ch03_s03_yeting.l7",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
       "text": "你今晚不是休？"
     },
     {
-      "id": "ch03_s03_yeting.l6",
+      "id": "ch03_s03_yeting.l8",
       "who": "liuchenghuan",
       "expr": "default",
       "kind": "say",
       "text": "改到后头也一样。"
     },
     {
-      "id": "ch03_s03_yeting.l7",
+      "id": "ch03_s03_yeting.l9",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "后头？"
+    },
+    {
+      "id": "ch03_s03_yeting.l10",
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "她答了后三夜。每天只值这一班，没超单日上限，原准的三日休另划掉。"
+      "text": "她答了后三夜，每日一班，没超上限。"
     },
     {
-      "id": "ch03_s03_yeting.l8",
+      "id": "ch03_s03_yeting.l11",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "三夜——"
+    },
+    {
+      "id": "ch03_s03_yeting.l12",
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "原准的三日休划掉了。"
+    },
+    {
+      "id": "ch03_s03_yeting.l13",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "……"
+    },
+    {
+      "id": "ch03_s03_yeting.l14",
       "who": "narr",
       "kind": "aside",
       "text": "唐把休假凭据从班单下面抽出来，三格空白对着你。"
     },
     {
-      "id": "ch03_s03_yeting.l9",
+      "id": "ch03_s03_yeting.l15",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
       "text": "休假要去哪儿？"
     },
     {
-      "id": "ch03_s03_yeting.l10",
+      "id": "ch03_s03_yeting.l16",
       "who": "liuchenghuan",
       "expr": "open",
       "kind": "say",
       "text": "你在这里，还去哪里。"
     },
     {
-      "id": "ch03_s03_yeting.l11",
+      "id": "ch03_s03_yeting.l17",
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "休假不必写去处。你若不接她这三班，可另雇两人，工费从备议钱里支。"
+      "text": "不必写去处。"
     },
     {
-      "id": "ch03_s03_yeting.l12",
+      "id": "ch03_s03_yeting.l18",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "是。"
+    },
+    {
+      "id": "ch03_s03_yeting.l19",
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "不接这三班，就另雇两人，备议钱支工费。"
+    },
+    {
+      "id": "ch03_s03_yeting.l20",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
       "text": "能补齐？"
     },
     {
-      "id": "ch03_s03_yeting.l13",
+      "id": "ch03_s03_yeting.l21",
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "能。两个人都回了价，还要你交半日旧卷，教她们认改过的符号。"
+      "text": "能。"
     },
     {
-      "id": "ch03_s03_yeting.l14",
+      "id": "ch03_s03_yeting.l22",
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "能，两人都回了价。"
+    },
+    {
+      "id": "ch03_s03_yeting.l23",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "嗯。"
+    },
+    {
+      "id": "ch03_s03_yeting.l24",
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "你还须交半日旧卷，教她们认改过的符号。"
+    },
+    {
+      "id": "ch03_s03_yeting.l25",
       "who": "liuchenghuan",
       "expr": "default",
       "kind": "say",
-      "text": "那半日留给你。旁人还得问，这几册哪一笔改过，你不用再告诉我。"
+      "text": "那半日……留给你。"
     },
     {
-      "id": "ch03_s03_yeting.l15",
+      "id": "ch03_s03_yeting.l26",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "半日。"
+    },
+    {
+      "id": "ch03_s03_yeting.l27",
+      "who": "liuchenghuan",
+      "expr": "default",
+      "kind": "say",
+      "text": "这几册改过哪笔，我都认得。"
+    },
+    {
+      "id": "ch03_s03_yeting.l28",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "你认得。"
+    },
+    {
+      "id": "ch03_s03_yeting.l29",
       "who": "self",
       "kind": "inner",
       "text": "（我确实不想再教一遍。三夜，连那半日也能拿去备议。）"
     },
     {
-      "id": "ch03_s03_yeting.l16",
+      "id": "ch03_s03_yeting.l30",
       "who": "wuze",
       "expr": "guarded",
       "kind": "say",
-      "text": "我知道你少了三日休。不能填成你本来就该值。"
+      "text": "三日休不能填成你本来该值。"
     },
     {
-      "id": "ch03_s03_yeting.l17",
+      "id": "ch03_s03_yeting.l31",
       "who": "liuchenghuan",
       "expr": "open",
       "kind": "say",
       "text": "写你觉得妥当的就好。"
     },
     {
-      "id": "ch03_s03_yeting.l18",
+      "id": "ch03_s03_yeting.l32",
+      "who": "wuze",
+      "expr": "open",
+      "kind": "say",
+      "text": "……"
+    },
+    {
+      "id": "ch03_s03_yeting.l33",
       "who": "narr",
       "kind": "aside",
       "text": "她把温布巾递来。你掌心还冻着，握住后没有马上松开。"
     },
     {
-      "id": "ch03_s03_yeting.l19",
+      "id": "ch03_s03_yeting.l34",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "这三日是你的。接了，我会省钱，也会多出备议的时辰。"
+      "text": "接了你的三日休，我省钱，也多出备议时辰。"
     },
     {
-      "id": "ch03_s03_yeting.l20",
+      "id": "ch03_s03_yeting.l35",
       "who": "liuchenghuan",
       "expr": "default",
       "kind": "say",
       "text": "你要的就是我要的。"
     },
     {
-      "id": "ch03_s03_yeting.l21",
+      "id": "ch03_s03_yeting.l36",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "承欢。"
+    },
+    {
+      "id": "ch03_s03_yeting.l37",
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "她的原休凭据我留底。代班写实数，不把三日休涂成从来没有。"
+      "text": "原休凭据留底，代班写实数，三日休不抹。"
     },
     {
-      "id": "ch03_s03_yeting.l22",
+      "id": "ch03_s03_yeting.l38",
       "who": "narr",
       "kind": "aside",
       "text": "布巾上的热气散了。柳仍托着盆，等你擦另一只手。"

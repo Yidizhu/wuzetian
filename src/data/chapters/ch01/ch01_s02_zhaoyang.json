@@ -17,163 +17,294 @@
       "id": "ch01_s02_zhaoyang.l1",
       "who": "narr",
       "kind": "aside",
-      "text": "晨光只到昭阳殿最上一级阶，裴照夜站在阴处，绳没有绷紧。"
+      "text": "名册还摊在原案上，你随裴照夜走到阶边。"
     },
     {
       "id": "ch01_s02_zhaoyang.l2",
-      "who": "peizhaoye",
-      "expr": "default",
-      "kind": "say",
-      "text": "看耳朵。还在找那只桶。"
+      "who": "narr",
+      "kind": "aside",
+      "text": "晨光只到昭阳殿最上一级阶，裴照夜站在阴处，绳没有绷紧。"
     },
     {
       "id": "ch01_s02_zhaoyang.l3",
+      "who": "peizhaoye",
+      "expr": "default",
+      "kind": "say",
+      "text": "看耳朵。"
+    },
+    {
+      "id": "ch01_s02_zhaoyang.l4",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "哪边？"
+    },
+    {
+      "id": "ch01_s02_zhaoyang.l5",
+      "who": "peizhaoye",
+      "expr": "default",
+      "kind": "say",
+      "text": "还在找那只桶。"
+    },
+    {
+      "id": "ch01_s02_zhaoyang.l6",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
       "text": "等它不找了再走？"
     },
     {
-      "id": "ch01_s02_zhaoyang.l4",
-      "who": "peizhaoye",
-      "expr": "default",
-      "kind": "say",
-      "text": "先等。等也是本事。"
-    },
-    {
-      "id": "ch01_s02_zhaoyang.l5",
-      "who": "narr",
-      "kind": "aside",
-      "text": "沈衡另取一纸，写下“牵行”。"
-    },
-    {
-      "id": "ch01_s02_zhaoyang.l6",
-      "who": "shenheng",
-      "expr": "default",
-      "kind": "say",
-      "text": "起处、止处，都请裴将军写明。"
-    },
-    {
       "id": "ch01_s02_zhaoyang.l7",
       "who": "peizhaoye",
       "expr": "default",
       "kind": "say",
-      "text": "不上鞍。走不动，可以停。"
+      "text": "先等。"
     },
     {
       "id": "ch01_s02_zhaoyang.l8",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "骑试另问，不能拿这个名字顶过去。"
+      "text": "好。"
     },
     {
       "id": "ch01_s02_zhaoyang.l9",
-      "who": "shenheng",
+      "who": "peizhaoye",
       "expr": "default",
       "kind": "say",
-      "text": "写。看过试项，再署名。"
+      "text": "等也是本事。"
     },
     {
       "id": "ch01_s02_zhaoyang.l10",
-      "who": "narr",
-      "kind": "aside",
-      "text": "她将新纸压在旧纸上，却没把旧纸揉掉。"
-    },
-    {
-      "id": "ch01_s02_zhaoyang.l11",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "错的还留着？"
+      "text": "嗯。"
+    },
+    {
+      "id": "ch01_s02_zhaoyang.l11",
+      "who": "narr",
+      "kind": "aside",
+      "text": "沈衡另取一纸，写下“牵行”。"
     },
     {
       "id": "ch01_s02_zhaoyang.l12",
       "who": "shenheng",
-      "expr": "guarded",
+      "expr": "default",
       "kind": "say",
-      "text": "旧纸要留下，否则明日有人再问，就只剩我们几个人的说法。"
+      "text": "裴将军，起处和止处都请写明。"
     },
     {
       "id": "ch01_s02_zhaoyang.l13",
       "who": "peizhaoye",
       "expr": "default",
       "kind": "say",
-      "text": "马能等到午后。我不能留到夜里。"
+      "text": "我看看。"
     },
     {
       "id": "ch01_s02_zhaoyang.l14",
-      "who": "shenheng",
+      "who": "peizhaoye",
       "expr": "default",
       "kind": "say",
-      "text": "两种办法。全批重抄，试次另排。"
+      "text": "不上鞍，走不动便停。"
     },
     {
       "id": "ch01_s02_zhaoyang.l15",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "骑试若还要——"
+    },
+    {
+      "id": "ch01_s02_zhaoyang.l16",
+      "who": "shenheng",
+      "expr": "default",
+      "kind": "say",
+      "text": "得另问。"
+    },
+    {
+      "id": "ch01_s02_zhaoyang.l17",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "就是这句。"
+    },
+    {
+      "id": "ch01_s02_zhaoyang.l18",
+      "who": "shenheng",
+      "expr": "default",
+      "kind": "say",
+      "text": "看过试项，再署名。"
+    },
+    {
+      "id": "ch01_s02_zhaoyang.l19",
+      "who": "narr",
+      "kind": "aside",
+      "text": "她将新纸压在旧纸上，却没把旧纸揉掉。"
+    },
+    {
+      "id": "ch01_s02_zhaoyang.l20",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "错的还留着？"
+    },
+    {
+      "id": "ch01_s02_zhaoyang.l21",
+      "who": "shenheng",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "旧纸得留着，明日再有人问，才拿得出原纸来核。"
+    },
+    {
+      "id": "ch01_s02_zhaoyang.l22",
+      "who": "wuze",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "原纸。"
+    },
+    {
+      "id": "ch01_s02_zhaoyang.l23",
+      "who": "shenheng",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "不然就只剩我们三个人的话。"
+    },
+    {
+      "id": "ch01_s02_zhaoyang.l24",
+      "who": "peizhaoye",
+      "expr": "default",
+      "kind": "say",
+      "text": "马能等到午后，我可不能留到夜里。"
+    },
+    {
+      "id": "ch01_s02_zhaoyang.l25",
+      "who": "shenheng",
+      "expr": "default",
+      "kind": "say",
+      "text": "先说重抄。"
+    },
+    {
+      "id": "ch01_s02_zhaoyang.l26",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "你说。"
+    },
+    {
+      "id": "ch01_s02_zhaoyang.l27",
+      "who": "shenheng",
+      "expr": "default",
+      "kind": "say",
+      "text": "整批重抄，试次得另排。"
+    },
+    {
+      "id": "ch01_s02_zhaoyang.l28",
       "who": "shenheng",
       "expr": "default",
       "kind": "say",
       "text": "原定抄录的人，今日领物也要迟。"
     },
     {
-      "id": "ch01_s02_zhaoyang.l16",
+      "id": "ch01_s02_zhaoyang.l29",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
       "text": "误掉的抄工，我去补。"
     },
     {
-      "id": "ch01_s02_zhaoyang.l17",
+      "id": "ch01_s02_zhaoyang.l30",
       "who": "shenheng",
       "expr": "default",
       "kind": "say",
-      "text": "或逐张附改，旧字仍在，更正处共署。"
+      "text": "嗯。"
     },
     {
-      "id": "ch01_s02_zhaoyang.l18",
+      "id": "ch01_s02_zhaoyang.l31",
+      "who": "shenheng",
+      "expr": "default",
+      "kind": "say",
+      "text": "也可逐张附改，更正处一同署名。"
+    },
+    {
+      "id": "ch01_s02_zhaoyang.l32",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "附改的话……"
+    },
+    {
+      "id": "ch01_s02_zhaoyang.l33",
       "who": "shenheng",
       "expr": "guarded",
       "kind": "say",
-      "text": "今日能续试。以后查问，你得来说明。"
+      "text": "今日能续试，日后查问你得来说明。"
     },
     {
-      "id": "ch01_s02_zhaoyang.l19",
+      "id": "ch01_s02_zhaoyang.l34",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
       "text": "只问我？"
     },
     {
-      "id": "ch01_s02_zhaoyang.l20",
+      "id": "ch01_s02_zhaoyang.l35",
+      "who": "shenheng",
+      "expr": "default",
+      "kind": "say",
+      "text": "你看这里。"
+    },
+    {
+      "id": "ch01_s02_zhaoyang.l36",
       "who": "shenheng",
       "expr": "default",
       "kind": "say",
       "text": "经我手的，也问我。"
     },
     {
-      "id": "ch01_s02_zhaoyang.l21",
+      "id": "ch01_s02_zhaoyang.l37",
       "who": "narr",
       "kind": "aside",
       "text": "她在更正栏写下自己的名字。"
     },
     {
-      "id": "ch01_s02_zhaoyang.l22",
+      "id": "ch01_s02_zhaoyang.l38",
       "who": "peizhaoye",
       "expr": "default",
       "kind": "say",
-      "text": "马能走几步，由我看着；你们把纸改清楚，也别替它答应走到底。"
+      "text": "马能走几步，我来看着。"
     },
     {
-      "id": "ch01_s02_zhaoyang.l23",
+      "id": "ch01_s02_zhaoyang.l39",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "好，我听着。"
+    },
+    {
+      "id": "ch01_s02_zhaoyang.l40",
+      "who": "peizhaoye",
+      "expr": "default",
+      "kind": "say",
+      "text": "你们把纸改清楚，也别替这匹马答应一定走到底。"
+    },
+    {
+      "id": "ch01_s02_zhaoyang.l41",
       "who": "narr",
       "kind": "aside",
       "text": "阶下的马低头喷出白气，仍未走近；你站久了，脚趾冻得发木。"
     },
     {
-      "id": "ch01_s02_zhaoyang.l24",
+      "id": "ch01_s02_zhaoyang.l42",
       "who": "self",
       "kind": "inner",
       "text": "（它还不肯。至少纸不能替它肯。）"
+    },
+    {
+      "id": "ch01_s02_zhaoyang.l43",
+      "who": "narr",
+      "kind": "aside",
+      "text": "你把更正纸留在昭阳殿案上，等着署名。"
     }
   ],
   "choices": [

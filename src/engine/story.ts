@@ -31,6 +31,12 @@ export interface StoryHooks {
    * 可选：无头工具不看画面，直接出正文。
    */
   endingPicture?(ending: Ending): Promise<void>;
+  /**
+   * 进这一场之前，把这一场要用的图先备好（B21：立绘和对白出来有延迟）。
+   * 引擎 await 它，所以背景的墨晕开和立绘换上是同一拍。`soon` 为真时是预取下一场，不该阻塞，也不必等完。
+   * 可选：无头工具没有图。
+   */
+  preload?(scene: Scene, soon?: boolean): Promise<void>;
 }
 
 export interface ChoiceView {
@@ -217,7 +223,8 @@ export class Story {
     document.documentElement.dataset.palette = scene.palette;
 
     const d = { key: scene.scene, palette: scene.palette, act: scene.act, dressing: scene.dressing };
-    await this.renderer.load(d);
+    // 背景和立绘一起备：两边都解码完再换场，进场那一下不会先白一片、人再慢慢出来
+    await Promise.all([this.renderer.load(d), this.hooks.preload?.(scene)]);
     // D-076：一场从题记开始，景要等纸收起来才显。show 自带那一次墨晕开，
     // 放到纸后面，玩家看到的就是「只有纸 → 墨晕开、景出来」，不用加新的转场
     this.stagePending = this.opensWithEpigraph(scene, lineIndex);
@@ -226,6 +233,26 @@ export class Story {
     this.castEntersAt = entranceIndex(scene, lineIndex);
     this.emit({ kind: "scene", scene, castHeld: this.castEntersAt >= 0 });
     this.present();
+    void this.prefetch(scene);
+  }
+
+  /**
+   * 把下一场可能去的地方的图先取回来（B21）。不 await：这一场已经在演了，取图是后台的事。
+   * 取的是这一场的去向和每个选项的去向——玩家选哪个都已经备好；取不到就算了，进场时还会再取一次。
+   */
+  private async prefetch(scene: Scene): Promise<void> {
+    const next = [scene.goto, ...(scene.choices ?? []).map((c) => c.goto)]
+      .filter((id): id is string => !!id)
+      .filter((id, i, all) => all.indexOf(id) === i)
+      .slice(0, 4);
+    for (const id of next) {
+      const s = this.scenes.get(id);
+      if (!s) continue;
+      try {
+        await this.renderer.load({ key: s.scene, palette: s.palette, act: s.act, dressing: s.dressing });
+        await this.hooks.preload?.(s, true);
+      } catch { /* 预取失败不影响正在演的这一场 */ }
+    }
   }
 
   /** 景还没显出来：这一场从题记开始，纸还在屏幕上 */

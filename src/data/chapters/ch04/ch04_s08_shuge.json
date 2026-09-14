@@ -23,527 +23,1046 @@
       "id": "ch04_s08_shuge.l1",
       "who": "narr",
       "kind": "aside",
-      "text": "当晚书阁只点罩灯，冷风沿卷架底下走，唐把你的存件放在灯外。"
+      "text": "宋的取药凭已收好，当晚你在书阁领存件。"
     },
     {
       "id": "ch04_s08_shuge.l2",
-      "who": "tangjian",
-      "expr": "default",
-      "kind": "say",
-      "text": "这是本人回凭，原话已经收存；不带上任免，也不算替在位的人点过头。"
+      "who": "narr",
+      "kind": "aside",
+      "text": "当晚书阁只点罩灯，冷风沿卷架底下走，唐把你的存件放在灯外。"
     },
     {
       "id": "ch04_s08_shuge.l3",
-      "who": "wuze",
+      "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "名字这一行给我看看。"
+      "text": "本人回凭，原话存了，不带任免，不替在位者点头。"
     },
     {
       "id": "ch04_s08_shuge.l4",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "本人。"
+    },
+    {
+      "id": "ch04_s08_shuge.l5",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "名字这行给我看看。"
+    },
+    {
+      "id": "ch04_s08_shuge.l6",
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "这行。"
+    },
+    {
+      "id": "ch04_s08_shuge.l7",
       "who": "narr",
       "kind": "aside",
       "text": "你用指腹压平纸，粗边擦到掌上旧裂口。"
     },
     {
-      "id": "ch04_s08_shuge.l5",
+      "id": "ch04_s08_shuge.l8",
       "when": {
         "flag.declined_crown": true
       },
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "公差前回已交清。今晚只领私物，不用为那张空去处再填一份新职。"
+      "text": "公差交清了，今晚领私物，不用再填新职。"
     },
     {
-      "id": "ch04_s08_shuge.l6",
+      "id": "ch04_s08_shuge.l9",
+      "when": {
+        "flag.declined_crown": true
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "私物。"
+    },
+    {
+      "id": "ch04_s08_shuge.l10",
       "when": {
         "flag.liqinghe_won": true
       },
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "你的反对留着。她要逐条答，不能拿下回还想见你换你收回原话。"
+      "text": "反对留着，她逐条答，不能拿见面换收回。"
     },
     {
-      "id": "ch04_s08_shuge.l7",
+      "id": "ch04_s08_shuge.l11",
+      "when": {
+        "flag.liqinghe_won": true
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "逐条。"
+    },
+    {
+      "id": "ch04_s08_shuge.l12",
       "who": "shenheng",
       "expr": "default",
       "kind": "say",
-      "text": "卷外的半张纸也在这里。别人未许记的那一句，我仍没有添。"
+      "text": "半张纸在这，别人没准记的仍没添。"
     },
     {
-      "id": "ch04_s08_shuge.l8",
+      "id": "ch04_s08_shuge.l13",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "半张。"
+    },
+    {
+      "id": "ch04_s08_shuge.l14",
       "when": {
         "flag.shen_after_intercept_meet": true
       },
       "who": "shenheng",
       "expr": "default",
       "kind": "say",
-      "text": "你那回愿另听，回话没有夹进公卷。"
+      "text": "那回另听的回话，没夹公卷。"
     },
     {
-      "id": "ch04_s08_shuge.l9",
+      "id": "ch04_s08_shuge.l15",
+      "when": {
+        "flag.shen_after_intercept_meet": true
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "另听。"
+    },
+    {
+      "id": "ch04_s08_shuge.l16",
       "when": {
         "flag.shen_ch02_letter_poem": true
       },
       "who": "shenheng",
       "expr": "default",
       "kind": "say",
-      "text": "你回的那首诗，我留在无案号的纸里。"
+      "text": "回诗留在无案号的纸里。"
     },
     {
-      "id": "ch04_s08_shuge.l10",
+      "id": "ch04_s08_shuge.l17",
+      "when": {
+        "flag.shen_ch02_letter_poem": true
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "回诗。"
+    },
+    {
+      "id": "ch04_s08_shuge.l18",
       "when": {
         "flag.shen_ch02_letter_silent": true
       },
       "who": "shenheng",
       "expr": "default",
       "kind": "say",
-      "text": "那封你没有回。我没有再添一张催你的。"
+      "text": "那封没回，我没再催。"
     },
     {
-      "id": "ch04_s08_shuge.l11",
+      "id": "ch04_s08_shuge.l19",
+      "when": {
+        "flag.shen_ch02_letter_silent": true
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "……"
+    },
+    {
+      "id": "ch04_s08_shuge.l20",
       "when": {
         "flag.shen_after_intercept_scope": true
       },
       "who": "shenheng",
       "expr": "default",
       "kind": "say",
-      "text": "截信后，你要先核已读的范围。我没添私话。"
+      "text": "截信后只核已读范围，没添私话。"
     },
     {
-      "id": "ch04_s08_shuge.l12",
+      "id": "ch04_s08_shuge.l21",
+      "when": {
+        "flag.shen_after_intercept_scope": true
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "范围。"
+    },
+    {
+      "id": "ch04_s08_shuge.l22",
       "when": {
         "flag.shen_after_intercept_private_stop": true
       },
       "who": "shenheng",
       "expr": "default",
       "kind": "say",
-      "text": "那回你要公事另纸，我便收起了私笺。"
+      "text": "你要公事另纸，私笺我收了。"
     },
     {
-      "id": "ch04_s08_shuge.l13",
+      "id": "ch04_s08_shuge.l23",
+      "when": {
+        "flag.shen_after_intercept_private_stop": true
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "另纸。"
+    },
+    {
+      "id": "ch04_s08_shuge.l24",
       "when": {
         "flag.shen_ch03_letter_meet": true
       },
       "who": "shenheng",
       "expr": "default",
       "kind": "say",
-      "text": "撤差那封，你回了各自有空再约。我没替你填日子。"
+      "text": "撤差那封说有空再约，日子没替你填。"
     },
     {
-      "id": "ch04_s08_shuge.l14",
+      "id": "ch04_s08_shuge.l25",
+      "when": {
+        "flag.shen_ch03_letter_meet": true
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "有空。"
+    },
+    {
+      "id": "ch04_s08_shuge.l26",
       "when": {
         "flag.shen_ch03_letter_wait": true
       },
       "who": "shenheng",
       "expr": "default",
       "kind": "say",
-      "text": "撤差那封，你说私见先缓。复议的纸照旧往来。"
+      "text": "撤差那封私见先缓，复议照来往。"
     },
     {
-      "id": "ch04_s08_shuge.l15",
+      "id": "ch04_s08_shuge.l27",
+      "when": {
+        "flag.shen_ch03_letter_wait": true
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "先缓。"
+    },
+    {
+      "id": "ch04_s08_shuge.l28",
       "when": {
         "flag.shen_ch03_letter_stop": true
       },
       "who": "shenheng",
       "expr": "default",
       "kind": "say",
-      "text": "你回撤差那封，要停私笺。这回只带交付凭。"
+      "text": "你叫停私笺，这回只带交付凭。"
     },
     {
-      "id": "ch04_s08_shuge.l16",
+      "id": "ch04_s08_shuge.l29",
+      "when": {
+        "flag.shen_ch03_letter_stop": true
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "交付凭。"
+    },
+    {
+      "id": "ch04_s08_shuge.l30",
       "when": {
         "flag.shen_ch03_letter_poem": true
       },
       "who": "shenheng",
       "expr": "default",
       "kind": "say",
-      "text": "撤差那封的回诗，我夹在旧笺里，没夹回驳语。"
+      "text": "撤差的回诗夹旧笺，没夹驳语。"
     },
     {
-      "id": "ch04_s08_shuge.l17",
+      "id": "ch04_s08_shuge.l31",
+      "when": {
+        "flag.shen_ch03_letter_poem": true
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "旧笺。"
+    },
+    {
+      "id": "ch04_s08_shuge.l32",
       "when": {
         "flag.shen_ch03_letter_silent": true
       },
       "who": "shenheng",
       "expr": "default",
       "kind": "say",
-      "text": "撤差后那封没等到回话，我便把余纸收了。"
+      "text": "撤差那封没回，余纸收了。"
     },
     {
-      "id": "ch04_s08_shuge.l18",
+      "id": "ch04_s08_shuge.l33",
+      "when": {
+        "flag.shen_ch03_letter_silent": true
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "……"
+    },
+    {
+      "id": "ch04_s08_shuge.l34",
       "who": "narr",
       "kind": "aside",
       "text": "裴从门边进来，先搓热握缰的手，才接自己的路书。"
     },
     {
-      "id": "ch04_s08_shuge.l19",
+      "id": "ch04_s08_shuge.l35",
       "when": {
         "flag.pei_ch02_spare_time": true
       },
       "who": "peizhaoye",
       "expr": "default",
       "kind": "say",
-      "text": "你叫我有自己的空闲再来。这半刻，我留出来了。"
+      "text": "这半刻是我自己留的空。"
     },
     {
-      "id": "ch04_s08_shuge.l20",
+      "id": "ch04_s08_shuge.l36",
+      "when": {
+        "flag.pei_ch02_spare_time": true
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "半刻。"
+    },
+    {
+      "id": "ch04_s08_shuge.l37",
       "when": {
         "flag.pei_ch02_letter_poem": true
       },
       "who": "peizhaoye",
       "expr": "default",
       "kind": "say",
-      "text": "你的回诗，我放在路书后面，没有拿去报程。"
+      "text": "回诗在路书后，没拿去报程。"
     },
     {
-      "id": "ch04_s08_shuge.l21",
+      "id": "ch04_s08_shuge.l38",
+      "when": {
+        "flag.pei_ch02_letter_poem": true
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "路书后。"
+    },
+    {
+      "id": "ch04_s08_shuge.l39",
       "when": {
         "flag.pei_ch02_letter_silent": true
       },
       "who": "peizhaoye",
       "expr": "default",
       "kind": "say",
-      "text": "那封你没回，我便没叫人替你备马。"
+      "text": "你没回，就没叫人备马。"
     },
     {
-      "id": "ch04_s08_shuge.l22",
+      "id": "ch04_s08_shuge.l40",
+      "when": {
+        "flag.pei_ch02_letter_silent": true
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "……"
+    },
+    {
+      "id": "ch04_s08_shuge.l41",
       "when": {
         "flag.pei_ch02_check_again": true
       },
       "who": "peizhaoye",
       "expr": "default",
       "kind": "say",
-      "text": "补俸那封，你肯再核一次。我只列了那一次的账。"
+      "text": "补俸你肯再核，只列那一次账。"
     },
     {
-      "id": "ch04_s08_shuge.l23",
+      "id": "ch04_s08_shuge.l42",
+      "when": {
+        "flag.pei_ch02_check_again": true
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "那一次。"
+    },
+    {
+      "id": "ch04_s08_shuge.l43",
       "when": {
         "flag.pei_ch02_pause_help": true
       },
       "who": "peizhaoye",
       "expr": "default",
       "kind": "say",
-      "text": "你那回不接核账，也不约同行。我另请了人。"
+      "text": "不核账、不同行，我另请人了。"
     },
     {
-      "id": "ch04_s08_shuge.l24",
+      "id": "ch04_s08_shuge.l44",
+      "when": {
+        "flag.pei_ch02_pause_help": true
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "另请的。"
+    },
+    {
+      "id": "ch04_s08_shuge.l45",
       "when": {
         "flag.pei_ch03_letter_meal": true
       },
       "who": "peizhaoye",
       "expr": "default",
       "kind": "say",
-      "text": "拔刺后那封，你说想吃顿热的。我还没报时辰。"
+      "text": "拔刺那封说吃热的，还没报时辰。"
     },
     {
-      "id": "ch04_s08_shuge.l25",
+      "id": "ch04_s08_shuge.l46",
+      "when": {
+        "flag.pei_ch03_letter_meal": true
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "时辰。"
+    },
+    {
+      "id": "ch04_s08_shuge.l47",
       "when": {
         "flag.pei_ch03_letter_no_date": true
       },
       "who": "peizhaoye",
       "expr": "default",
       "kind": "say",
-      "text": "你叫我别替旧友定日。到今日，那格仍空着。"
+      "text": "不替旧友定日，那格还空着。"
     },
     {
-      "id": "ch04_s08_shuge.l26",
+      "id": "ch04_s08_shuge.l48",
+      "when": {
+        "flag.pei_ch03_letter_no_date": true
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "空着。"
+    },
+    {
+      "id": "ch04_s08_shuge.l49",
       "when": {
         "flag.pei_ch03_letter_stop": true
       },
       "who": "peizhaoye",
       "expr": "default",
       "kind": "say",
-      "text": "你回拔刺那封，要停私约。我没多备一副行囊。"
+      "text": "私约停了，没多备行囊。"
     },
     {
-      "id": "ch04_s08_shuge.l27",
+      "id": "ch04_s08_shuge.l50",
+      "when": {
+        "flag.pei_ch03_letter_stop": true
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "行囊。"
+    },
+    {
+      "id": "ch04_s08_shuge.l51",
       "when": {
         "flag.pei_ch03_letter_poem": true
       },
       "who": "peizhaoye",
       "expr": "default",
       "kind": "say",
-      "text": "拔刺那封的回诗，夹在路书末页，没交署里。"
+      "text": "拔刺的回诗在路书末，没交署里。"
     },
     {
-      "id": "ch04_s08_shuge.l28",
+      "id": "ch04_s08_shuge.l52",
+      "when": {
+        "flag.pei_ch03_letter_poem": true
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "末页。"
+    },
+    {
+      "id": "ch04_s08_shuge.l53",
       "when": {
         "flag.pei_ch03_letter_silent": true
       },
       "who": "peizhaoye",
       "expr": "default",
       "kind": "say",
-      "text": "拔刺后那封没有回话。我照值次走，没托人问。"
-    },
-    {
-      "id": "ch04_s08_shuge.l29",
-      "who": "peizhaoye",
-      "expr": "default",
-      "kind": "say",
-      "text": "晚班交完才有这半刻。你若要别的差程，得另核，不能从我队里领个名字。"
-    },
-    {
-      "id": "ch04_s08_shuge.l30",
-      "who": "narr",
-      "kind": "aside",
-      "text": "温把样纸递过来，坐在灯照不到的席角。"
-    },
-    {
-      "id": "ch04_s08_shuge.l31",
-      "when": {
-        "flag.wen_ch02_read_again": true
-      },
-      "who": "wenqiao",
-      "expr": "default",
-      "kind": "say",
-      "text": "你回信要照自己的快慢读。我没替你圈停处。"
-    },
-    {
-      "id": "ch04_s08_shuge.l32",
-      "when": {
-        "flag.wen_ch02_letter_poem": true
-      },
-      "who": "wenqiao",
-      "expr": "default",
-      "kind": "say",
-      "text": "你回的诗，我整张留着，没有替它改字。"
-    },
-    {
-      "id": "ch04_s08_shuge.l33",
-      "when": {
-        "flag.wen_ch02_letter_silent": true
-      },
-      "who": "wenqiao",
-      "expr": "default",
-      "kind": "say",
-      "text": "那封你没回，后来的改稿我便留在自己案上。"
-    },
-    {
-      "id": "ch04_s08_shuge.l34",
-      "when": {
-        "flag.wen_ch02_keep_without_pardon": true
-      },
-      "who": "wenqiao",
-      "expr": "default",
-      "kind": "say",
-      "text": "折鱼那封你收了，也叫我别替她猜。我没再猜。"
-    },
-    {
-      "id": "ch04_s08_shuge.l35",
-      "when": {
-        "flag.wen_ch02_private_pause": true
-      },
-      "who": "wenqiao",
-      "expr": "default",
-      "kind": "say",
-      "text": "那回你只肯谈公事，我没有拿私笺充核稿。"
-    },
-    {
-      "id": "ch04_s08_shuge.l36",
-      "when": {
-        "flag.wen_ch03_letter_sing": true
-      },
-      "who": "wenqiao",
-      "expr": "default",
-      "kind": "say",
-      "text": "退钱那封，你还想听我唱错。曲子倒没催我唱准。"
-    },
-    {
-      "id": "ch04_s08_shuge.l37",
-      "when": {
-        "flag.wen_ch03_letter_fair_pay": true
-      },
-      "who": "wenqiao",
-      "expr": "default",
-      "kind": "say",
-      "text": "你说新槽的钱另算。稿工那一笔，我没挪。"
-    },
-    {
-      "id": "ch04_s08_shuge.l38",
-      "when": {
-        "flag.wen_ch03_letter_stop": true
-      },
-      "who": "wenqiao",
-      "expr": "default",
-      "kind": "say",
-      "text": "你回退钱那封，说暂不合唱。我没在曲旁写你的名。"
-    },
-    {
-      "id": "ch04_s08_shuge.l39",
-      "when": {
-        "flag.wen_ch03_letter_poem": true
-      },
-      "who": "wenqiao",
-      "expr": "default",
-      "kind": "say",
-      "text": "退钱那封收了回诗，我用你写的字试过调。"
-    },
-    {
-      "id": "ch04_s08_shuge.l40",
-      "when": {
-        "flag.wen_ch03_letter_silent": true
-      },
-      "who": "wenqiao",
-      "expr": "default",
-      "kind": "say",
-      "text": "退钱那封你没回，我收了余笺，照旧去刷纸槽。"
-    },
-    {
-      "id": "ch04_s08_shuge.l41",
-      "who": "wenqiao",
-      "expr": "default",
-      "kind": "say",
-      "text": "我这屋只够晾今日的纸，你若想教字，明日得先去问许能借哪半间。"
-    },
-    {
-      "id": "ch04_s08_shuge.l42",
-      "who": "liqinghe",
-      "expr": "default",
-      "kind": "say",
-      "text": "我的原稿领回去了，今晚只来取落下的一页。"
-    },
-    {
-      "id": "ch04_s08_shuge.l43",
-      "when": {
-        "flag.li_ch02_letter_meet": true
-      },
-      "who": "liqinghe",
-      "expr": "default",
-      "kind": "say",
-      "text": "你信里说时辰另约。我没把那句夹进朝班。"
-    },
-    {
-      "id": "ch04_s08_shuge.l44",
-      "when": {
-        "flag.li_ch02_letter_poem": true
-      },
-      "who": "liqinghe",
-      "expr": "default",
-      "kind": "say",
-      "text": "你回的诗，放在我那张私纸下面，不带上殿。"
-    },
-    {
-      "id": "ch04_s08_shuge.l45",
-      "when": {
-        "flag.li_ch02_letter_silent": true
-      },
-      "who": "liqinghe",
-      "expr": "default",
-      "kind": "say",
-      "text": "那封你没有回，原稿照样给你看。"
-    },
-    {
-      "id": "ch04_s08_shuge.l46",
-      "when": {
-        "flag.li_ch02_letter_after_debate": true
-      },
-      "who": "liqinghe",
-      "expr": "default",
-      "kind": "say",
-      "text": "交全稿那封，你要私话等比较后再问。没有算作应约。"
-    },
-    {
-      "id": "ch04_s08_shuge.l47",
-      "when": {
-        "flag.li_ch02_letter_public_only": true
-      },
-      "who": "liqinghe",
-      "expr": "default",
-      "kind": "say",
-      "text": "你回全稿那封，说私邀到此。我把帖子收回了。"
-    },
-    {
-      "id": "ch04_s08_shuge.l48",
-      "when": {
-        "flag.li_ch03_letter_walk": true
-      },
-      "who": "liqinghe",
-      "expr": "default",
-      "kind": "say",
-      "text": "风筝那封，你想再走一段。我只记了一段。"
-    },
-    {
-      "id": "ch04_s08_shuge.l49",
-      "when": {
-        "flag.li_ch03_letter_separate": true
-      },
-      "who": "liqinghe",
-      "expr": "default",
-      "kind": "say",
-      "text": "你回风筝那封，说账各自算。我没挪你的那一笔。"
-    },
-    {
-      "id": "ch04_s08_shuge.l50",
-      "when": {
-        "flag.li_ch03_letter_stop": true
-      },
-      "who": "liqinghe",
-      "expr": "default",
-      "kind": "say",
-      "text": "风筝那封，你说私约停一停。我没把取稿写成相邀。"
-    },
-    {
-      "id": "ch04_s08_shuge.l51",
-      "when": {
-        "flag.li_ch03_letter_poem": true
-      },
-      "who": "liqinghe",
-      "expr": "default",
-      "kind": "say",
-      "text": "风筝那封的回诗，我放在私纸里，公议仍答原问。"
-    },
-    {
-      "id": "ch04_s08_shuge.l52",
-      "when": {
-        "flag.li_ch03_letter_silent": true
-      },
-      "who": "liqinghe",
-      "expr": "default",
-      "kind": "say",
-      "text": "风筝那封没有回话。线收好了，没有另托人送去。"
-    },
-    {
-      "id": "ch04_s08_shuge.l53",
-      "when": {
-        "flag.li_ch02_private_yes": true
-      },
-      "who": "liqinghe",
-      "expr": "default",
-      "kind": "say",
-      "text": "那夜你留我坐过，次日也真来驳了。今日仍可各答各的。"
+      "text": "那封没回，我照值次走，没托人问。"
     },
     {
       "id": "ch04_s08_shuge.l54",
       "when": {
-        "flag.li_ch02_private_wait": true
+        "flag.pei_ch03_letter_silent": true
       },
-      "who": "liqinghe",
+      "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "那夜你说改日再问。今日若仍想独处，也照旧说。"
+      "text": "……"
     },
     {
       "id": "ch04_s08_shuge.l55",
-      "when": {
-        "flag.li_ch02_private_no": true
-      },
-      "who": "liqinghe",
+      "who": "peizhaoye",
       "expr": "default",
       "kind": "say",
-      "text": "那夜只约论议，我记着。今日这份也是公稿。"
+      "text": "晚班交完才有半刻，别的差程另核。"
     },
     {
       "id": "ch04_s08_shuge.l56",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "物件都拿齐。往后的事，别替我在今晚一同写定。"
+      "text": "队里——"
     },
     {
       "id": "ch04_s08_shuge.l57",
+      "who": "peizhaoye",
+      "expr": "default",
+      "kind": "say",
+      "text": "不能领个名字走。"
+    },
+    {
+      "id": "ch04_s08_shuge.l58",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "是。"
+    },
+    {
+      "id": "ch04_s08_shuge.l59",
+      "who": "narr",
+      "kind": "aside",
+      "text": "温把样纸递过来，坐在灯照不到的席角。"
+    },
+    {
+      "id": "ch04_s08_shuge.l60",
+      "when": {
+        "flag.wen_ch02_read_again": true
+      },
+      "who": "wenqiao",
+      "expr": "default",
+      "kind": "say",
+      "text": "按你快慢读，没替你圈停处。"
+    },
+    {
+      "id": "ch04_s08_shuge.l61",
+      "when": {
+        "flag.wen_ch02_read_again": true
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "停处。"
+    },
+    {
+      "id": "ch04_s08_shuge.l62",
+      "when": {
+        "flag.wen_ch02_letter_poem": true
+      },
+      "who": "wenqiao",
+      "expr": "default",
+      "kind": "say",
+      "text": "回诗整张留着，没改字。"
+    },
+    {
+      "id": "ch04_s08_shuge.l63",
+      "when": {
+        "flag.wen_ch02_letter_poem": true
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "整张。"
+    },
+    {
+      "id": "ch04_s08_shuge.l64",
+      "when": {
+        "flag.wen_ch02_letter_silent": true
+      },
+      "who": "wenqiao",
+      "expr": "default",
+      "kind": "say",
+      "text": "没回，后来的改稿留我案上了。"
+    },
+    {
+      "id": "ch04_s08_shuge.l65",
+      "when": {
+        "flag.wen_ch02_letter_silent": true
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "……"
+    },
+    {
+      "id": "ch04_s08_shuge.l66",
+      "when": {
+        "flag.wen_ch02_keep_without_pardon": true
+      },
+      "who": "wenqiao",
+      "expr": "default",
+      "kind": "say",
+      "text": "折鱼那封收了，也照你说的不猜她。"
+    },
+    {
+      "id": "ch04_s08_shuge.l67",
+      "when": {
+        "flag.wen_ch02_keep_without_pardon": true
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "不猜。"
+    },
+    {
+      "id": "ch04_s08_shuge.l68",
+      "when": {
+        "flag.wen_ch02_private_pause": true
+      },
+      "who": "wenqiao",
+      "expr": "default",
+      "kind": "say",
+      "text": "只谈公事，私笺没充核稿。"
+    },
+    {
+      "id": "ch04_s08_shuge.l69",
+      "when": {
+        "flag.wen_ch02_private_pause": true
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "公事。"
+    },
+    {
+      "id": "ch04_s08_shuge.l70",
+      "when": {
+        "flag.wen_ch03_letter_sing": true
+      },
+      "who": "wenqiao",
+      "expr": "default",
+      "kind": "say",
+      "text": "退钱那封还想听唱错，曲子没催准。"
+    },
+    {
+      "id": "ch04_s08_shuge.l71",
+      "when": {
+        "flag.wen_ch03_letter_sing": true
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "唱错。"
+    },
+    {
+      "id": "ch04_s08_shuge.l72",
+      "when": {
+        "flag.wen_ch03_letter_fair_pay": true
+      },
+      "who": "wenqiao",
+      "expr": "default",
+      "kind": "say",
+      "text": "新槽钱另算，稿工的钱没挪。"
+    },
+    {
+      "id": "ch04_s08_shuge.l73",
+      "when": {
+        "flag.wen_ch03_letter_fair_pay": true
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "稿工。"
+    },
+    {
+      "id": "ch04_s08_shuge.l74",
+      "when": {
+        "flag.wen_ch03_letter_stop": true
+      },
+      "who": "wenqiao",
+      "expr": "default",
+      "kind": "say",
+      "text": "暂不合唱，曲旁没写你名。"
+    },
+    {
+      "id": "ch04_s08_shuge.l75",
+      "when": {
+        "flag.wen_ch03_letter_stop": true
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "暂不。"
+    },
+    {
+      "id": "ch04_s08_shuge.l76",
+      "when": {
+        "flag.wen_ch03_letter_poem": true
+      },
+      "who": "wenqiao",
+      "expr": "default",
+      "kind": "say",
+      "text": "退钱的回诗，用你的字试过调。"
+    },
+    {
+      "id": "ch04_s08_shuge.l77",
+      "when": {
+        "flag.wen_ch03_letter_poem": true
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "试调。"
+    },
+    {
+      "id": "ch04_s08_shuge.l78",
+      "when": {
+        "flag.wen_ch03_letter_silent": true
+      },
+      "who": "wenqiao",
+      "expr": "default",
+      "kind": "say",
+      "text": "退钱那封没回，收了笺，照旧刷槽。"
+    },
+    {
+      "id": "ch04_s08_shuge.l79",
+      "when": {
+        "flag.wen_ch03_letter_silent": true
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "……"
+    },
+    {
+      "id": "ch04_s08_shuge.l80",
+      "who": "wenqiao",
+      "expr": "default",
+      "kind": "say",
+      "text": "我这里只够晾纸，教字先问许能借哪半间。"
+    },
+    {
+      "id": "ch04_s08_shuge.l81",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "哪半间。"
+    },
+    {
+      "id": "ch04_s08_shuge.l82",
+      "who": "liqinghe",
+      "expr": "default",
+      "kind": "say",
+      "text": "原稿领了，只来取落下一页。"
+    },
+    {
+      "id": "ch04_s08_shuge.l83",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "一页。"
+    },
+    {
+      "id": "ch04_s08_shuge.l84",
+      "when": {
+        "flag.li_ch02_letter_meet": true
+      },
+      "who": "liqinghe",
+      "expr": "default",
+      "kind": "say",
+      "text": "另约时辰那句，没夹朝班。"
+    },
+    {
+      "id": "ch04_s08_shuge.l85",
+      "when": {
+        "flag.li_ch02_letter_meet": true
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "另约。"
+    },
+    {
+      "id": "ch04_s08_shuge.l86",
+      "when": {
+        "flag.li_ch02_letter_poem": true
+      },
+      "who": "liqinghe",
+      "expr": "default",
+      "kind": "say",
+      "text": "回诗放私纸下，不带上殿。"
+    },
+    {
+      "id": "ch04_s08_shuge.l87",
+      "when": {
+        "flag.li_ch02_letter_poem": true
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "私纸。"
+    },
+    {
+      "id": "ch04_s08_shuge.l88",
+      "when": {
+        "flag.li_ch02_letter_silent": true
+      },
+      "who": "liqinghe",
+      "expr": "default",
+      "kind": "say",
+      "text": "那封没回，原稿照给你看。"
+    },
+    {
+      "id": "ch04_s08_shuge.l89",
+      "when": {
+        "flag.li_ch02_letter_silent": true
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "原稿。"
+    },
+    {
+      "id": "ch04_s08_shuge.l90",
+      "when": {
+        "flag.li_ch02_letter_after_debate": true
+      },
+      "who": "liqinghe",
+      "expr": "default",
+      "kind": "say",
+      "text": "全稿那封说比完再问，不算应约。"
+    },
+    {
+      "id": "ch04_s08_shuge.l91",
+      "when": {
+        "flag.li_ch02_letter_after_debate": true
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "再问。"
+    },
+    {
+      "id": "ch04_s08_shuge.l92",
+      "when": {
+        "flag.li_ch02_letter_public_only": true
+      },
+      "who": "liqinghe",
+      "expr": "default",
+      "kind": "say",
+      "text": "全稿那封停私邀，帖子收回了。"
+    },
+    {
+      "id": "ch04_s08_shuge.l93",
+      "when": {
+        "flag.li_ch02_letter_public_only": true
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "帖子。"
+    },
+    {
+      "id": "ch04_s08_shuge.l94",
+      "when": {
+        "flag.li_ch03_letter_walk": true
+      },
+      "who": "liqinghe",
+      "expr": "default",
+      "kind": "say",
+      "text": "风筝那封要再走一段，只记一段。"
+    },
+    {
+      "id": "ch04_s08_shuge.l95",
+      "when": {
+        "flag.li_ch03_letter_walk": true
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "一段。"
+    },
+    {
+      "id": "ch04_s08_shuge.l96",
+      "when": {
+        "flag.li_ch03_letter_separate": true
+      },
+      "who": "liqinghe",
+      "expr": "default",
+      "kind": "say",
+      "text": "风筝那封各算账，没挪你的钱。"
+    },
+    {
+      "id": "ch04_s08_shuge.l97",
+      "when": {
+        "flag.li_ch03_letter_separate": true
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "各算。"
+    },
+    {
+      "id": "ch04_s08_shuge.l98",
+      "when": {
+        "flag.li_ch03_letter_stop": true
+      },
+      "who": "liqinghe",
+      "expr": "default",
+      "kind": "say",
+      "text": "风筝那封停私约，取稿没作相邀。"
+    },
+    {
+      "id": "ch04_s08_shuge.l99",
+      "when": {
+        "flag.li_ch03_letter_stop": true
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "取稿。"
+    },
+    {
+      "id": "ch04_s08_shuge.l100",
+      "when": {
+        "flag.li_ch03_letter_poem": true
+      },
+      "who": "liqinghe",
+      "expr": "default",
+      "kind": "say",
+      "text": "回诗放私纸，公议仍答原问。"
+    },
+    {
+      "id": "ch04_s08_shuge.l101",
+      "when": {
+        "flag.li_ch03_letter_poem": true
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "原问。"
+    },
+    {
+      "id": "ch04_s08_shuge.l102",
+      "when": {
+        "flag.li_ch03_letter_silent": true
+      },
+      "who": "liqinghe",
+      "expr": "default",
+      "kind": "say",
+      "text": "风筝那封没回，线收好了，没另送。"
+    },
+    {
+      "id": "ch04_s08_shuge.l103",
+      "when": {
+        "flag.li_ch03_letter_silent": true
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "……"
+    },
+    {
+      "id": "ch04_s08_shuge.l104",
+      "when": {
+        "flag.li_ch02_private_yes": true
+      },
+      "who": "liqinghe",
+      "expr": "default",
+      "kind": "say",
+      "text": "那夜留我坐，次日来驳，今日也各自答。"
+    },
+    {
+      "id": "ch04_s08_shuge.l105",
+      "when": {
+        "flag.li_ch02_private_yes": true
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "各答。"
+    },
+    {
+      "id": "ch04_s08_shuge.l106",
+      "when": {
+        "flag.li_ch02_private_wait": true
+      },
+      "who": "liqinghe",
+      "expr": "default",
+      "kind": "say",
+      "text": "那夜说改日问，今日独处也照说。"
+    },
+    {
+      "id": "ch04_s08_shuge.l107",
+      "when": {
+        "flag.li_ch02_private_wait": true
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "改日。"
+    },
+    {
+      "id": "ch04_s08_shuge.l108",
+      "when": {
+        "flag.li_ch02_private_no": true
+      },
+      "who": "liqinghe",
+      "expr": "default",
+      "kind": "say",
+      "text": "那夜只约论议，这份也是公稿。"
+    },
+    {
+      "id": "ch04_s08_shuge.l109",
+      "when": {
+        "flag.li_ch02_private_no": true
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "公稿。"
+    },
+    {
+      "id": "ch04_s08_shuge.l110",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "东西拿齐，往后……别在今夜一同写定。"
+    },
+    {
+      "id": "ch04_s08_shuge.l111",
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "好。"
+    },
+    {
+      "id": "ch04_s08_shuge.l112",
       "who": "narr",
       "kind": "aside",
       "text": "四人先后离开，灯边只剩唐与你各自收着的纸。"

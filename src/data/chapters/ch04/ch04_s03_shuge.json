@@ -20,125 +20,193 @@
       "id": "ch04_s03_shuge.l1",
       "who": "narr",
       "kind": "aside",
-      "text": "书阁窗纸透着午后光，麻纸在两人之间卷起毛边。"
+      "text": "宋收走取药凭之后，你回书阁看原案。"
     },
     {
       "id": "ch04_s03_shuge.l2",
+      "who": "narr",
+      "kind": "aside",
+      "text": "书阁窗纸透着午后光，麻纸在两人之间卷起毛边。"
+    },
+    {
+      "id": "ch04_s03_shuge.l3",
       "when": {
         "flag.ch04_dissent_keep_order": true
       },
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "原议已附入，受理人署了名。三日答不完，先给本人延期的凭。"
+      "text": "原议附入，受理人已署名，三日不完给延期凭。"
     },
     {
-      "id": "ch04_s03_shuge.l3",
+      "id": "ch04_s03_shuge.l4",
+      "when": {
+        "flag.ch04_dissent_keep_order": true
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "延期凭。"
+    },
+    {
+      "id": "ch04_s03_shuge.l5",
       "when": {
         "flag.ch04_dissent_remove_order": true
       },
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "依你所定，议录只剩答复。原牒暂另存，这一处写了由你准移。"
-    },
-    {
-      "id": "ch04_s03_shuge.l4",
-      "who": "wuze",
-      "expr": "default",
-      "kind": "say",
-      "text": "原案呢？"
-    },
-    {
-      "id": "ch04_s03_shuge.l5",
-      "who": "narr",
-      "kind": "aside",
-      "text": "沈将摘要往旁边推，让出底下的一页。"
+      "text": "照你定的，议录只剩答复，原牒另存，记你准移。"
     },
     {
       "id": "ch04_s03_shuge.l6",
-      "who": "shenheng",
+      "when": {
+        "flag.ch04_dissent_remove_order": true
+      },
+      "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "这里写她承认经手。原话后面还有七字：不认替我定过的事。"
+      "text": "我准的。"
     },
     {
       "id": "ch04_s03_shuge.l7",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "那七字不在摘要里。"
+      "text": "原案呢？"
     },
     {
       "id": "ch04_s03_shuge.l8",
-      "who": "shenheng",
-      "expr": "default",
-      "kind": "say",
-      "text": "不在。"
+      "who": "narr",
+      "kind": "aside",
+      "text": "沈将摘要往旁边推，让出底下的一页。"
     },
     {
       "id": "ch04_s03_shuge.l9",
-      "who": "tangjian",
+      "who": "shenheng",
       "expr": "default",
       "kind": "say",
-      "text": "旧案全存，须另付看守和核卷的工钱；限权借阅的人，也得逐次留下经手。"
+      "text": "写她承认经手，后头七字：不认替我定过的事。"
     },
     {
       "id": "ch04_s03_shuge.l10",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "只存这份核过的摘要，会快一些。"
+      "text": "七字。"
     },
     {
       "id": "ch04_s03_shuge.l11",
-      "who": "shenheng",
+      "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "会。"
+      "text": "那七字不在摘要里。"
     },
     {
       "id": "ch04_s03_shuge.l12",
-      "who": "narr",
-      "kind": "aside",
-      "text": "她将缺了七字的那一处摊平，没有把手交给你。"
-    },
-    {
-      "id": "ch04_s03_shuge.l13",
       "who": "shenheng",
       "expr": "default",
       "kind": "say",
-      "text": "若烧原件，那七字以后只剩我记得；我不能拿自己的记性，替所有人作证。"
+      "text": "不在。"
+    },
+    {
+      "id": "ch04_s03_shuge.l13",
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "全存要付看守和核卷工钱，限权借阅逐次记经手。"
     },
     {
       "id": "ch04_s03_shuge.l14",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "已经抄出的呢？"
+      "text": "嗯。"
     },
     {
       "id": "ch04_s03_shuge.l15",
-      "who": "tangjian",
+      "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "尚存的抄件能留，错漏也会一并留下。原件烧了，不能保证哪一笔还能补回。"
+      "text": "只存摘要，会快……"
     },
     {
       "id": "ch04_s03_shuge.l16",
       "who": "shenheng",
       "expr": "default",
       "kind": "say",
-      "text": "我反对焚原案。真烧了，我交清辞署，不再替这份摘要核作全本。"
+      "text": "会。"
     },
     {
       "id": "ch04_s03_shuge.l17",
+      "who": "narr",
+      "kind": "aside",
+      "text": "她将缺了七字的那一处摊平，没有把手交给你。"
+    },
+    {
+      "id": "ch04_s03_shuge.l18",
+      "who": "shenheng",
+      "expr": "default",
+      "kind": "say",
+      "text": "烧了就只剩我记得，记性不能替所有人作证。"
+    },
+    {
+      "id": "ch04_s03_shuge.l19",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "记得。"
+    },
+    {
+      "id": "ch04_s03_shuge.l20",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "已经抄出的呢？"
+    },
+    {
+      "id": "ch04_s03_shuge.l21",
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "抄件能留，错漏也留，烧了不保哪笔能补回。"
+    },
+    {
+      "id": "ch04_s03_shuge.l22",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "我能——"
+    },
+    {
+      "id": "ch04_s03_shuge.l23",
+      "who": "shenheng",
+      "expr": "default",
+      "kind": "say",
+      "text": "我反对。"
+    },
+    {
+      "id": "ch04_s03_shuge.l24",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "……"
+    },
+    {
+      "id": "ch04_s03_shuge.l25",
+      "who": "shenheng",
+      "expr": "default",
+      "kind": "say",
+      "text": "真烧了，我交清辞署，不核它作全本。"
+    },
+    {
+      "id": "ch04_s03_shuge.l26",
       "who": "self",
       "kind": "inner",
       "text": "（快。干净。她把那七个字又露出来。）"
     },
     {
-      "id": "ch04_s03_shuge.l18",
+      "id": "ch04_s03_shuge.l27",
       "who": "narr",
       "kind": "aside",
       "text": "罩灯没有挪近纸。唐在门边等你亲口说定。"

@@ -22,82 +22,150 @@
       "id": "ch02_s17_shishe.l1",
       "who": "narr",
       "kind": "aside",
-      "text": "竹影越过窗棂，在温荞袖上弯成一钩。"
+      "text": "与裴照夜道别后，你去温荞的窗下坐坐。"
     },
     {
       "id": "ch02_s17_shishe.l2",
+      "who": "narr",
+      "kind": "aside",
+      "text": "竹影越过窗棂，在温荞袖上弯成一钩。"
+    },
+    {
+      "id": "ch02_s17_shishe.l3",
       "who": "wenqiao",
       "expr": "open",
       "kind": "say",
       "text": "长脖子勺。"
     },
     {
-      "id": "ch02_s17_shishe.l3",
+      "id": "ch02_s17_shishe.l4",
       "who": "wuze",
       "expr": "open",
       "kind": "say",
-      "text": "没有勺肚。"
+      "text": "勺？"
     },
     {
-      "id": "ch02_s17_shishe.l4",
+      "id": "ch02_s17_shishe.l5",
+      "who": "wuze",
+      "expr": "open",
+      "kind": "say",
+      "text": "没勺肚。"
+    },
+    {
+      "id": "ch02_s17_shishe.l6",
       "who": "wenqiao",
       "expr": "default",
       "kind": "say",
       "text": "瘦了。"
     },
     {
-      "id": "ch02_s17_shishe.l5",
+      "id": "ch02_s17_shishe.l7",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "现在又分叉了，你那把勺得先把自己捆好，才能伸进谁家的汤锅里去。"
-    },
-    {
-      "id": "ch02_s17_shishe.l6",
-      "who": "narr",
-      "kind": "aside",
-      "text": "温把袖子抬起，影子从臂上滑到窗下。"
-    },
-    {
-      "id": "ch02_s17_shishe.l7",
-      "who": "wenqiao",
-      "expr": "open",
-      "kind": "say",
-      "text": "走路勺。"
+      "text": "瘦了……"
     },
     {
       "id": "ch02_s17_shishe.l8",
       "who": "wuze",
-      "expr": "open",
+      "expr": "default",
       "kind": "say",
-      "text": "怎么总是勺？"
+      "text": "又分叉——"
     },
     {
       "id": "ch02_s17_shishe.l9",
       "who": "wenqiao",
-      "expr": "open",
+      "expr": "default",
       "kind": "say",
-      "text": "你若想出别的，倒说来听听；我从坐下就想喝汤，眼下还换不了。"
+      "text": "捆起来。"
     },
     {
       "id": "ch02_s17_shishe.l10",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "两只走反的鸭。"
+      "text": "捆好才能进汤锅。"
     },
     {
       "id": "ch02_s17_shishe.l11",
       "who": "narr",
       "kind": "aside",
-      "text": "风把两枝吹到一处。"
+      "text": "温把袖子抬起，影子从臂上滑到窗下。"
     },
     {
       "id": "ch02_s17_shishe.l12",
       "who": "wenqiao",
       "expr": "open",
       "kind": "say",
+      "text": "走路勺。"
+    },
+    {
+      "id": "ch02_s17_shishe.l13",
+      "who": "wuze",
+      "expr": "open",
+      "kind": "say",
+      "text": "又是勺。"
+    },
+    {
+      "id": "ch02_s17_shishe.l14",
+      "who": "wuze",
+      "expr": "open",
+      "kind": "say",
+      "text": "不能换一个么？"
+    },
+    {
+      "id": "ch02_s17_shishe.l15",
+      "who": "wenqiao",
+      "expr": "open",
+      "kind": "say",
+      "text": "想得出别的，你说；我从坐下就想喝汤。"
+    },
+    {
+      "id": "ch02_s17_shishe.l16",
+      "who": "wuze",
+      "expr": "open",
+      "kind": "say",
+      "text": "我想想……"
+    },
+    {
+      "id": "ch02_s17_shishe.l17",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "两只走反的鸭。"
+    },
+    {
+      "id": "ch02_s17_shishe.l18",
+      "who": "wenqiao",
+      "expr": "default",
+      "kind": "say",
+      "text": "鸭？"
+    },
+    {
+      "id": "ch02_s17_shishe.l19",
+      "who": "narr",
+      "kind": "aside",
+      "text": "风把两枝吹到一处。"
+    },
+    {
+      "id": "ch02_s17_shishe.l20",
+      "who": "wenqiao",
+      "expr": "open",
+      "kind": "say",
       "text": "撞着了。"
+    },
+    {
+      "id": "ch02_s17_shishe.l21",
+      "who": "wuze",
+      "expr": "open",
+      "kind": "say",
+      "text": "……"
+    },
+    {
+      "id": "ch02_s17_shishe.l22",
+      "who": "narr",
+      "kind": "aside",
+      "text": "温荞放下抬着的手，仍让窗影留在袖上。"
     }
   ],
   "goto": "ch02_s20_hanyuan"

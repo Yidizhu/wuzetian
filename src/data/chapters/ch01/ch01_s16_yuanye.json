@@ -21,94 +21,169 @@
       "id": "ch01_s16_yuanye.l1",
       "who": "narr",
       "kind": "aside",
-      "text": "苑墙上还留着半截日光，公主捡起一片卷边叶，站到影子外。"
+      "text": "出了书阁，你随公主走到苑墙下。"
     },
     {
       "id": "ch01_s16_yuanye.l2",
+      "who": "narr",
+      "kind": "aside",
+      "text": "苑墙上还留着半截日光，公主捡起一片卷边叶，站到影子外。"
+    },
+    {
+      "id": "ch01_s16_yuanye.l3",
       "who": "liqinghe",
       "expr": "default",
       "kind": "say",
       "text": "你近了半步。"
     },
     {
-      "id": "ch01_s16_yuanye.l3",
+      "id": "ch01_s16_yuanye.l4",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "半步？"
+    },
+    {
+      "id": "ch01_s16_yuanye.l5",
+      "who": "liqinghe",
+      "expr": "default",
+      "kind": "say",
+      "text": "看脚下。"
+    },
+    {
+      "id": "ch01_s16_yuanye.l6",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
       "text": "我这片轻。"
     },
     {
-      "id": "ch01_s16_yuanye.l4",
-      "who": "liqinghe",
-      "expr": "open",
-      "kind": "say",
-      "text": "换。"
-    },
-    {
-      "id": "ch01_s16_yuanye.l5",
-      "who": "narr",
-      "kind": "aside",
-      "text": "湿叶贴着指尖发凉，换过以后，两个人都没投进。"
-    },
-    {
-      "id": "ch01_s16_yuanye.l6",
-      "who": "wuze",
-      "expr": "open",
-      "kind": "say",
-      "text": "这回可以怪风了？"
-    },
-    {
       "id": "ch01_s16_yuanye.l7",
       "who": "liqinghe",
       "expr": "open",
       "kind": "say",
-      "text": "你方才怪叶子，如今又怪风，留一点给自己的手吧，它也连着投了几回。"
+      "text": "那就换。"
     },
     {
       "id": "ch01_s16_yuanye.l8",
       "who": "narr",
       "kind": "aside",
-      "text": "你后退半步，公主也跟着退了半步。"
+      "text": "湿叶贴着指尖发凉，换过以后，两个人都没投进。"
     },
     {
       "id": "ch01_s16_yuanye.l9",
       "who": "wuze",
       "expr": "open",
       "kind": "say",
-      "text": "这不是白退了。"
+      "text": "这回总能怪——"
     },
     {
       "id": "ch01_s16_yuanye.l10",
       "who": "liqinghe",
       "expr": "open",
       "kind": "say",
-      "text": "你还没投。"
+      "text": "又怪风？"
     },
     {
       "id": "ch01_s16_yuanye.l11",
       "who": "wuze",
       "expr": "open",
       "kind": "say",
-      "text": "最后一片若飞远了，就让它走吧，我可不想沿着这条水沟追到园门外头。"
+      "text": "……"
     },
     {
       "id": "ch01_s16_yuanye.l12",
-      "who": "narr",
-      "kind": "aside",
-      "text": "叶子一离手就翻了个身，越过石缝，贴到另一片叶上。"
-    },
-    {
-      "id": "ch01_s16_yuanye.l13",
       "who": "liqinghe",
       "expr": "open",
       "kind": "say",
-      "text": "那便不追。"
+      "text": "方才怪叶子，如今怪风，你的手倒没错。"
+    },
+    {
+      "id": "ch01_s16_yuanye.l13",
+      "who": "wuze",
+      "expr": "open",
+      "kind": "say",
+      "text": "我的手。"
     },
     {
       "id": "ch01_s16_yuanye.l14",
       "who": "narr",
       "kind": "aside",
+      "text": "你后退半步，公主也跟着退了半步。"
+    },
+    {
+      "id": "ch01_s16_yuanye.l15",
+      "who": "wuze",
+      "expr": "open",
+      "kind": "say",
+      "text": "这不白退了。"
+    },
+    {
+      "id": "ch01_s16_yuanye.l16",
+      "who": "liqinghe",
+      "expr": "open",
+      "kind": "say",
+      "text": "你还没投。"
+    },
+    {
+      "id": "ch01_s16_yuanye.l17",
+      "who": "wuze",
+      "expr": "open",
+      "kind": "say",
+      "text": "也是。"
+    },
+    {
+      "id": "ch01_s16_yuanye.l18",
+      "who": "wuze",
+      "expr": "open",
+      "kind": "say",
+      "text": "最后这片……"
+    },
+    {
+      "id": "ch01_s16_yuanye.l19",
+      "who": "liqinghe",
+      "expr": "open",
+      "kind": "say",
+      "text": "你投。"
+    },
+    {
+      "id": "ch01_s16_yuanye.l20",
+      "who": "wuze",
+      "expr": "open",
+      "kind": "say",
+      "text": "飞远就让它走，我可不追到园门外。"
+    },
+    {
+      "id": "ch01_s16_yuanye.l21",
+      "who": "narr",
+      "kind": "aside",
+      "text": "叶子一离手就翻了个身，越过石缝，贴到另一片叶上。"
+    },
+    {
+      "id": "ch01_s16_yuanye.l22",
+      "who": "liqinghe",
+      "expr": "open",
+      "kind": "say",
+      "text": "不追便不追。"
+    },
+    {
+      "id": "ch01_s16_yuanye.l23",
+      "who": "wuze",
+      "expr": "open",
+      "kind": "say",
+      "text": "好。"
+    },
+    {
+      "id": "ch01_s16_yuanye.l24",
+      "who": "narr",
+      "kind": "aside",
       "text": "她把手里的也放下，没有问这一片算谁的。"
+    },
+    {
+      "id": "ch01_s16_yuanye.l25",
+      "who": "narr",
+      "kind": "aside",
+      "text": "你抖掉袖口粘的叶屑，和她一道放下手。"
     }
   ],
   "goto": "ch01_s17_yeting"

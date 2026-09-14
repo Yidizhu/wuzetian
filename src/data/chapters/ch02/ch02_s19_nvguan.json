@@ -16,75 +16,136 @@
       "id": "ch02_s19_nvguan.l1",
       "who": "narr",
       "kind": "aside",
-      "text": "碟里三颗果子滚向低处，许用杯底抵住碟沿。"
+      "text": "与裴照夜道别后，你在许静和的果碟旁坐下。"
     },
     {
       "id": "ch02_s19_nvguan.l2",
+      "who": "narr",
+      "kind": "aside",
+      "text": "碟里三颗果子滚向低处，许用杯底抵住碟沿。"
+    },
+    {
+      "id": "ch02_s19_nvguan.l3",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
       "text": "哪颗甜？"
     },
     {
-      "id": "ch02_s19_nvguan.l3",
+      "id": "ch02_s19_nvguan.l4",
       "who": "xujinghe",
       "expr": "default",
       "kind": "say",
-      "text": "不知道。我只尝了一颗。"
-    },
-    {
-      "id": "ch02_s19_nvguan.l4",
-      "who": "wuze",
-      "expr": "default",
-      "kind": "say",
-      "text": "怎么样？"
+      "text": "甜的？"
     },
     {
       "id": "ch02_s19_nvguan.l5",
+      "who": "xujinghe",
+      "expr": "default",
+      "kind": "say",
+      "text": "不知道，只尝了一颗。"
+    },
+    {
+      "id": "ch02_s19_nvguan.l6",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "那一颗……"
+    },
+    {
+      "id": "ch02_s19_nvguan.l7",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "如何？"
+    },
+    {
+      "id": "ch02_s19_nvguan.l8",
       "who": "xujinghe",
       "expr": "open",
       "kind": "say",
       "text": "你看我还在喝水。"
     },
     {
-      "id": "ch02_s19_nvguan.l6",
+      "id": "ch02_s19_nvguan.l9",
       "who": "narr",
       "kind": "aside",
       "text": "你咬了一点，停住。"
     },
     {
-      "id": "ch02_s19_nvguan.l7",
+      "id": "ch02_s19_nvguan.l10",
       "who": "wuze",
       "expr": "open",
       "kind": "say",
-      "text": "我拿的是你旁边那颗，还以为总该有些不同；现在连水也想拿你的。"
+      "text": "旁边这颗，总该——"
     },
     {
-      "id": "ch02_s19_nvguan.l8",
+      "id": "ch02_s19_nvguan.l11",
+      "who": "xujinghe",
+      "expr": "open",
+      "kind": "say",
+      "text": "也酸。"
+    },
+    {
+      "id": "ch02_s19_nvguan.l12",
+      "who": "wuze",
+      "expr": "open",
+      "kind": "say",
+      "text": "……"
+    },
+    {
+      "id": "ch02_s19_nvguan.l13",
+      "who": "wuze",
+      "expr": "open",
+      "kind": "say",
+      "text": "连水都想拿你的。"
+    },
+    {
+      "id": "ch02_s19_nvguan.l14",
       "who": "xujinghe",
       "expr": "default",
       "kind": "say",
       "text": "壶在你那边。"
     },
     {
-      "id": "ch02_s19_nvguan.l9",
+      "id": "ch02_s19_nvguan.l15",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
       "text": "嗯。"
     },
     {
-      "id": "ch02_s19_nvguan.l10",
+      "id": "ch02_s19_nvguan.l16",
       "who": "xujinghe",
       "expr": "open",
       "kind": "say",
-      "text": "剩下那颗不必替我尝，我放到明日再看；你若还想吃，就自己拿去。"
+      "text": "剩下的不必替我尝，留到明日再看。"
     },
     {
-      "id": "ch02_s19_nvguan.l11",
+      "id": "ch02_s19_nvguan.l17",
+      "who": "wuze",
+      "expr": "open",
+      "kind": "say",
+      "text": "明日。"
+    },
+    {
+      "id": "ch02_s19_nvguan.l18",
+      "who": "xujinghe",
+      "expr": "open",
+      "kind": "say",
+      "text": "你想吃，就自己拿。"
+    },
+    {
+      "id": "ch02_s19_nvguan.l19",
       "who": "narr",
       "kind": "aside",
       "text": "你倒了水，果子仍在碟里。"
+    },
+    {
+      "id": "ch02_s19_nvguan.l20",
+      "who": "narr",
+      "kind": "aside",
+      "text": "你擦掉手上的水，把水壶放回去。"
     }
   ],
   "goto": "ch02_s20_hanyuan"

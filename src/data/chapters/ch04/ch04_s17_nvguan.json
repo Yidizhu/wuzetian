@@ -17,12 +17,50 @@
   "lines": [
     {
       "id": "ch04_s17_nvguan.l1",
+      "when": {
+        "flag.enthroned": true
+      },
+      "who": "narr",
+      "kind": "aside",
+      "text": "荐牒收退已办妥，你来到女观。"
+    },
+    {
+      "id": "ch04_s17_nvguan.l2",
+      "when": {
+        "flag.founded_school": true
+      },
+      "who": "narr",
+      "kind": "aside",
+      "text": "收席后，你又来到女观。"
+    },
+    {
+      "id": "ch04_s17_nvguan.l3",
+      "when": {
+        "flag.road_agreement": true
+      },
+      "who": "narr",
+      "kind": "aside",
+      "text": "归凭交回以后，你在休整日来到女观。"
+    },
+    {
+      "id": "ch04_s17_nvguan.l4",
+      "when": {
+        "flag.enthroned": false,
+        "flag.founded_school": false,
+        "flag.road_agreement": false
+      },
+      "who": "narr",
+      "kind": "aside",
+      "text": "那张胡饼早吃完了，你来到女观。"
+    },
+    {
+      "id": "ch04_s17_nvguan.l5",
       "who": "narr",
       "kind": "aside",
       "text": "一个多月后，女观窗下晒着新洗的布，冷风带进院中煎药的气味。"
     },
     {
-      "id": "ch04_s17_nvguan.l2",
+      "id": "ch04_s17_nvguan.l6",
       "when": {
         "flag.enthroned": true,
         "flag.ch04_nomination_open_order": true
@@ -30,10 +68,21 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "多方提名的新条已颁，外郡那份照期收了。核验人领过工钱，异议也有来处。"
+      "text": "多方提名已颁，外郡照收，核验付了钱，异议可递。"
     },
     {
-      "id": "ch04_s17_nvguan.l3",
+      "id": "ch04_s17_nvguan.l7",
+      "when": {
+        "flag.enthroned": true,
+        "flag.ch04_nomination_open_order": true
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "外郡。"
+    },
+    {
+      "id": "ch04_s17_nvguan.l8",
       "when": {
         "flag.enthroned": true,
         "flag.ch04_nomination_closed_order": true
@@ -41,20 +90,41 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "仅由在位者提名的新条已颁。外郡那份退回了，只缺你的提名，没有另缺哪一项。"
+      "text": "仅由在位者提名已颁，外郡退了，只缺你的提名。"
     },
     {
-      "id": "ch04_s17_nvguan.l4",
+      "id": "ch04_s17_nvguan.l9",
+      "when": {
+        "flag.enthroned": true,
+        "flag.ch04_nomination_closed_order": true
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "提名。"
+    },
+    {
+      "id": "ch04_s17_nvguan.l10",
       "when": {
         "flag.enthroned": true
       },
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "收与退的原由都照实留，不写成她没来过。"
+      "text": "收退缘由留实，不写没来过。"
     },
     {
-      "id": "ch04_s17_nvguan.l5",
+      "id": "ch04_s17_nvguan.l11",
+      "when": {
+        "flag.enthroned": true
+      },
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "是。"
+    },
+    {
+      "id": "ch04_s17_nvguan.l12",
       "when": {
         "flag.enthroned": true
       },
@@ -63,7 +133,7 @@
       "text": "唐交清这一件便走，没有留下来听私话。"
     },
     {
-      "id": "ch04_s17_nvguan.l6",
+      "id": "ch04_s17_nvguan.l13",
       "when": {
         "flag.road_agreement": true
       },
@@ -72,13 +142,13 @@
       "text": "你按约回京休整，未核完的凭已交经手，今日没有人来催你再上车。"
     },
     {
-      "id": "ch04_s17_nvguan.l7",
+      "id": "ch04_s17_nvguan.l14",
       "who": "narr",
       "kind": "aside",
       "text": "柳承欢在窗边，先看了一下你的手，才挪自己的东西。"
     },
     {
-      "id": "ch04_s17_nvguan.l8",
+      "id": "ch04_s17_nvguan.l15",
       "when": {
         "flag.enthroned": true
       },
@@ -87,7 +157,7 @@
       "text": "她的休凭在自己袖里，原署核稿照常付酬；她将自己的杯挪到窗边。"
     },
     {
-      "id": "ch04_s17_nvguan.l9",
+      "id": "ch04_s17_nvguan.l16",
       "when": {
         "flag.enthroned": true
       },
@@ -97,7 +167,17 @@
       "text": "这边暖一点。"
     },
     {
-      "id": "ch04_s17_nvguan.l10",
+      "id": "ch04_s17_nvguan.l17",
+      "when": {
+        "flag.enthroned": true
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "这边。"
+    },
+    {
+      "id": "ch04_s17_nvguan.l18",
       "when": {
         "flag.declined_crown": true
       },
@@ -106,17 +186,27 @@
       "text": "她把尚未定日的试牒折好，放到自己带来的小包里。"
     },
     {
-      "id": "ch04_s17_nvguan.l11",
+      "id": "ch04_s17_nvguan.l19",
       "when": {
         "flag.declined_crown": true
       },
       "who": "liuchenghuan",
       "expr": "default",
       "kind": "say",
-      "text": "这张纸先留着。"
+      "text": "纸先留着。"
     },
     {
-      "id": "ch04_s17_nvguan.l12",
+      "id": "ch04_s17_nvguan.l20",
+      "when": {
+        "flag.declined_crown": true
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "先留着。"
+    },
+    {
+      "id": "ch04_s17_nvguan.l21",
       "when": {
         "flag.founded_school": true
       },
@@ -125,17 +215,27 @@
       "text": "她听过半段课，留下自己的练字页，没有去接旁人的待核稿。"
     },
     {
-      "id": "ch04_s17_nvguan.l13",
+      "id": "ch04_s17_nvguan.l22",
       "when": {
         "flag.founded_school": true
       },
       "who": "liuchenghuan",
       "expr": "default",
       "kind": "say",
-      "text": "这一行，想再写一遍。"
+      "text": "这行再写一遍。"
     },
     {
-      "id": "ch04_s17_nvguan.l14",
+      "id": "ch04_s17_nvguan.l23",
+      "when": {
+        "flag.founded_school": true
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "这一行。"
+    },
+    {
+      "id": "ch04_s17_nvguan.l24",
       "when": {
         "flag.road_agreement": true
       },
@@ -144,17 +244,27 @@
       "text": "她仍留京做自己的差，今日试穿修好的旧鞋，脚跟落下又提起。"
     },
     {
-      "id": "ch04_s17_nvguan.l15",
+      "id": "ch04_s17_nvguan.l25",
       "when": {
         "flag.road_agreement": true
       },
       "who": "liuchenghuan",
       "expr": "default",
       "kind": "say",
-      "text": "这双鞋今日先不换。"
+      "text": "这双今日不换。"
     },
     {
-      "id": "ch04_s17_nvguan.l16",
+      "id": "ch04_s17_nvguan.l26",
+      "when": {
+        "flag.road_agreement": true
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "这双。"
+    },
+    {
+      "id": "ch04_s17_nvguan.l27",
       "when": {
         "flag.liqinghe_won": true,
         "flag.founded_school": false,
@@ -165,7 +275,7 @@
       "text": "她今日歇半日，把温水留在自己的手边，没有替谁摆第二杯。"
     },
     {
-      "id": "ch04_s17_nvguan.l17",
+      "id": "ch04_s17_nvguan.l28",
       "when": {
         "flag.liqinghe_won": true,
         "flag.founded_school": false,
@@ -177,66 +287,120 @@
       "text": "水留温一点。"
     },
     {
-      "id": "ch04_s17_nvguan.l18",
+      "id": "ch04_s17_nvguan.l29",
+      "when": {
+        "flag.liqinghe_won": true,
+        "flag.founded_school": false,
+        "flag.road_agreement": false
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "温一点。"
+    },
+    {
+      "id": "ch04_s17_nvguan.l30",
       "who": "narr",
       "kind": "aside",
       "text": "你把想替她接下去的那句话停住，拿好自己的东西，先出了门。"
     },
     {
-      "id": "ch04_s17_nvguan.l19",
+      "id": "ch04_s17_nvguan.l31",
       "who": "narr",
       "kind": "aside",
       "text": "柳也去办自己的事。屋里剩宋与温，宋掩上门，取下自己的簪。"
     },
     {
-      "id": "ch04_s17_nvguan.l20",
+      "id": "ch04_s17_nvguan.l32",
       "who": "songhuizhen",
       "expr": "default",
       "kind": "say",
-      "text": "这背面，借我一笔。"
+      "text": "背面，借一笔。"
     },
     {
-      "id": "ch04_s17_nvguan.l21",
+      "id": "ch04_s17_nvguan.l33",
+      "who": "wenqiao",
+      "expr": "default",
+      "kind": "say",
+      "text": "背面？"
+    },
+    {
+      "id": "ch04_s17_nvguan.l34",
       "who": "narr",
       "kind": "aside",
       "text": "宋在自己的簪背写下“虹”，等墨干了，才插回去。"
     },
     {
-      "id": "ch04_s17_nvguan.l22",
+      "id": "ch04_s17_nvguan.l35",
       "who": "wenqiao",
       "expr": "default",
       "kind": "say",
-      "text": "你那页，要取回么？别人的没有翻开，你要收自己的，也不用等整册重新抄完。"
+      "text": "你那页……要取回么？"
     },
     {
-      "id": "ch04_s17_nvguan.l23",
+      "id": "ch04_s17_nvguan.l36",
       "who": "songhuizhen",
       "expr": "default",
       "kind": "say",
-      "text": "我的先给我。她那页，不替她取。"
+      "text": "我的。"
     },
     {
-      "id": "ch04_s17_nvguan.l24",
+      "id": "ch04_s17_nvguan.l37",
+      "who": "wenqiao",
+      "expr": "default",
+      "kind": "say",
+      "text": "别人的没翻，要收不用等整册抄完。"
+    },
+    {
+      "id": "ch04_s17_nvguan.l38",
+      "who": "songhuizhen",
+      "expr": "default",
+      "kind": "say",
+      "text": "我的先给我。她那页——"
+    },
+    {
+      "id": "ch04_s17_nvguan.l39",
+      "who": "wenqiao",
+      "expr": "default",
+      "kind": "say",
+      "text": "不替她取。"
+    },
+    {
+      "id": "ch04_s17_nvguan.l40",
+      "who": "songhuizhen",
+      "expr": "default",
+      "kind": "say",
+      "text": "嗯。"
+    },
+    {
+      "id": "ch04_s17_nvguan.l41",
       "who": "narr",
       "kind": "aside",
       "text": "温只抽出宋自己的那张，留下的页合在册中，没有递到门外。"
     },
     {
-      "id": "ch04_s17_nvguan.l25",
+      "id": "ch04_s17_nvguan.l42",
       "who": "wenqiao",
       "expr": "default",
       "kind": "say",
-      "text": "给你。不算数的册子，也不能叫你为了它留一份本来不愿留下的话。"
+      "text": "给你，册子不算数，也不能逼你留话。"
     },
     {
-      "id": "ch04_s17_nvguan.l26",
+      "id": "ch04_s17_nvguan.l43",
       "who": "songhuizhen",
       "expr": "default",
       "kind": "say",
-      "text": "纸边卷了。我回去压一夜。"
+      "text": "给我。"
     },
     {
-      "id": "ch04_s17_nvguan.l27",
+      "id": "ch04_s17_nvguan.l44",
+      "who": "songhuizhen",
+      "expr": "default",
+      "kind": "say",
+      "text": "边卷了，回去压一夜。"
+    },
+    {
+      "id": "ch04_s17_nvguan.l45",
       "who": "narr",
       "kind": "aside",
       "text": "她将自己的页放进袖里，合上的册子仍在温手边。"

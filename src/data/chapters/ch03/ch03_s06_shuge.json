@@ -45,133 +45,278 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "三夜全由她核，原休另留底。你省下的工费仍在备议账里。"
+      "text": "三夜她全核了，原休留底，工费仍在备议账。"
     },
     {
       "id": "ch03_s06_shuge.l5",
+      "when": {
+        "flag.chenghuan_accept_2": true
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "原休留底。"
+    },
+    {
+      "id": "ch03_s06_shuge.l6",
       "when": {
         "flag.chenghuan_refuse_2": true
       },
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "两人已经结工钱，你也交了半日卷。她照原凭休了三日。"
+      "text": "两人已结钱，你交了半日卷，她休了三日。"
     },
     {
-      "id": "ch03_s06_shuge.l6",
+      "id": "ch03_s06_shuge.l7",
+      "when": {
+        "flag.chenghuan_refuse_2": true
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "三日。"
+    },
+    {
+      "id": "ch03_s06_shuge.l8",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
       "text": "这一册是新核的？"
     },
     {
-      "id": "ch03_s06_shuge.l7",
+      "id": "ch03_s06_shuge.l9",
       "who": "liuchenghuan",
       "expr": "open",
       "kind": "say",
-      "text": "交夜班单以前核的。有两份履历抄重了，找过本人，已经分开。"
+      "text": "交班单前核的。"
     },
     {
-      "id": "ch03_s06_shuge.l8",
+      "id": "ch03_s06_shuge.l10",
+      "who": "wuze",
+      "expr": "open",
+      "kind": "say",
+      "text": "嗯。"
+    },
+    {
+      "id": "ch03_s06_shuge.l11",
+      "who": "liuchenghuan",
+      "expr": "open",
+      "kind": "say",
+      "text": "两份履历抄重了，找过本人，分开了。"
+    },
+    {
+      "id": "ch03_s06_shuge.l12",
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "底簿留了她与本人各自的签。送到议席的摘要，却只列了你的名字。"
+      "text": "底簿有她与本人的签，摘要只列你的名。"
     },
     {
-      "id": "ch03_s06_shuge.l9",
+      "id": "ch03_s06_shuge.l13",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "只有我？"
+    },
+    {
+      "id": "ch03_s06_shuge.l14",
       "who": "wuze",
       "expr": "guarded",
       "kind": "say",
       "text": "谁让删的？"
     },
     {
-      "id": "ch03_s06_shuge.l10",
+      "id": "ch03_s06_shuge.l15",
       "who": "liuchenghuan",
       "expr": "default",
       "kind": "say",
-      "text": "你要上去答，写你就够了。"
+      "text": "你上去答，写你就够了。"
     },
     {
-      "id": "ch03_s06_shuge.l11",
+      "id": "ch03_s06_shuge.l16",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "……"
+    },
+    {
+      "id": "ch03_s06_shuge.l17",
       "who": "narr",
       "kind": "aside",
       "text": "柳翻到被订住的内页，指尖压着自己的经手签。公开的摘要上没有这一行。"
     },
     {
-      "id": "ch03_s06_shuge.l12",
+      "id": "ch03_s06_shuge.l18",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "留我的名，他们会以为两份重牒也是我找出来的。你往后拿什么报自己的差？"
+      "text": "只留我，他们会以为重牒是我找的。"
     },
     {
-      "id": "ch03_s06_shuge.l13",
+      "id": "ch03_s06_shuge.l19",
+      "who": "liuchenghuan",
+      "expr": "default",
+      "kind": "say",
+      "text": "……"
+    },
+    {
+      "id": "ch03_s06_shuge.l20",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "往后你拿什么报差？"
+    },
+    {
+      "id": "ch03_s06_shuge.l21",
       "who": "liuchenghuan",
       "expr": "open",
       "kind": "say",
       "text": "到时你记得就好。"
     },
     {
-      "id": "ch03_s06_shuge.l14",
+      "id": "ch03_s06_shuge.l22",
+      "who": "wuze",
+      "expr": "open",
+      "kind": "say",
+      "text": "记得。"
+    },
+    {
+      "id": "ch03_s06_shuge.l23",
       "who": "tangjian",
       "expr": "guarded",
       "kind": "say",
-      "text": "摘要还未送。可以按她的请示合记总办，底簿不能动，也不能谎称无人经手。"
+      "text": "摘要未送，可以依她请示合记总办。"
     },
     {
-      "id": "ch03_s06_shuge.l15",
+      "id": "ch03_s06_shuge.l24",
+      "who": "wuze",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "那就——"
+    },
+    {
+      "id": "ch03_s06_shuge.l25",
+      "who": "tangjian",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "底簿不能动。"
+    },
+    {
+      "id": "ch03_s06_shuge.l26",
+      "who": "wuze",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "底簿。"
+    },
+    {
+      "id": "ch03_s06_shuge.l27",
+      "who": "tangjian",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "也不能说无人经手。"
+    },
+    {
+      "id": "ch03_s06_shuge.l28",
+      "who": "wuze",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "是。"
+    },
+    {
+      "id": "ch03_s06_shuge.l29",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
       "text": "合记以后，她报功呢？"
     },
     {
-      "id": "ch03_s06_shuge.l16",
+      "id": "ch03_s06_shuge.l30",
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "须再调底簿作证，多等一轮。此刻并列，她便能持这份摘要直接报验。"
+      "text": "合记须调底簿，多等一轮。"
     },
     {
-      "id": "ch03_s06_shuge.l17",
+      "id": "ch03_s06_shuge.l31",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "一轮。"
+    },
+    {
+      "id": "ch03_s06_shuge.l32",
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "此刻把经手并列，她拿着这份摘要就能直接报验。"
+    },
+    {
+      "id": "ch03_s06_shuge.l33",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "好。"
+    },
+    {
+      "id": "ch03_s06_shuge.l34",
       "who": "self",
       "kind": "inner",
       "text": "（一册看下来，全是我的经办。我想把它直接合上。）"
     },
     {
-      "id": "ch03_s06_shuge.l18",
+      "id": "ch03_s06_shuge.l35",
       "who": "liuchenghuan",
       "expr": "default",
       "kind": "say",
-      "text": "你若觉得好，就不用另问我了。"
+      "text": "你若觉得……就不用另问了。"
     },
     {
-      "id": "ch03_s06_shuge.l19",
+      "id": "ch03_s06_shuge.l36",
       "who": "wuze",
       "expr": "guarded",
       "kind": "say",
-      "text": "我已经知道这一行是你做的。收下，也不能说我不知道。"
+      "text": "我知道是你做的。收下也不能说不知道。"
     },
     {
-      "id": "ch03_s06_shuge.l20",
+      "id": "ch03_s06_shuge.l37",
+      "who": "liuchenghuan",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "嗯。"
+    },
+    {
+      "id": "ch03_s06_shuge.l38",
       "who": "liuchenghuan",
       "expr": "open",
       "kind": "say",
       "text": "知道就够了。"
     },
     {
-      "id": "ch03_s06_shuge.l21",
+      "id": "ch03_s06_shuge.l39",
       "who": "narr",
       "kind": "aside",
       "text": "唐搁下一支笔。柳将笔尖朝向你，自己退到朱绳束着的旧稿旁。"
     },
     {
-      "id": "ch03_s06_shuge.l22",
+      "id": "ch03_s06_shuge.l40",
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "总办和逐项经手可并列。留她的名字，你便不能将这两项单记作亲核。"
+      "text": "总办、经手可并列，这两项就不能单记亲核。"
+    },
+    {
+      "id": "ch03_s06_shuge.l41",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "两项。"
+    },
+    {
+      "id": "ch03_s06_shuge.l42",
+      "who": "narr",
+      "kind": "aside",
+      "text": "你将柳的经手凭摆在总办一栏旁，等着署名。"
     }
   ],
   "choices": [

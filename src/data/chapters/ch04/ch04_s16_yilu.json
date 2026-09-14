@@ -19,105 +19,174 @@
       "id": "ch04_s16_yilu.l1",
       "who": "narr",
       "kind": "aside",
-      "text": "旬日后驿旁起了风，树下的尘打在靴上，裴蹲着倒出鞋里的细砂。"
+      "text": "沿运粮车的辙到交接处，你在驿旁歇脚。"
     },
     {
       "id": "ch04_s16_yilu.l2",
+      "who": "narr",
+      "kind": "aside",
+      "text": "旬日后驿旁起了风，树下的尘打在靴上，裴蹲着倒出鞋里的细砂。"
+    },
+    {
+      "id": "ch04_s16_yilu.l3",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
       "text": "还没倒完？"
     },
     {
-      "id": "ch04_s16_yilu.l3",
+      "id": "ch04_s16_yilu.l4",
       "who": "peizhaoye",
       "expr": "default",
       "kind": "say",
-      "text": "有一粒不肯走。"
-    },
-    {
-      "id": "ch04_s16_yilu.l4",
-      "who": "narr",
-      "kind": "aside",
-      "text": "她敲敲靴跟，你坐在自己的行囊上，翻出粮户那张凭。"
+      "text": "有粒不肯走。"
     },
     {
       "id": "ch04_s16_yilu.l5",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "这笔垫的钱，军里认么？"
+      "text": "一粒。"
     },
     {
       "id": "ch04_s16_yilu.l6",
-      "who": "peizhaoye",
-      "expr": "default",
-      "kind": "say",
-      "text": "认借过。谁叫她先垫的，另问。"
+      "who": "narr",
+      "kind": "aside",
+      "text": "她敲敲靴跟，你坐在自己的行囊上，翻出粮户那张凭。"
     },
     {
       "id": "ch04_s16_yilu.l7",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "已领栏空着，她说至今没拿到。不能见你这里写了支出，就叫她回去等。"
+      "text": "这笔垫的钱，军里认么？"
     },
     {
       "id": "ch04_s16_yilu.l8",
       "who": "peizhaoye",
       "expr": "default",
       "kind": "say",
-      "text": "把支出经手抄给她。我也追，不能把我追过了当她已经领过。"
+      "text": "认借过。谁叫她垫的另问。"
     },
     {
       "id": "ch04_s16_yilu.l9",
-      "who": "narr",
-      "kind": "aside",
-      "text": "你将原凭收好，裴把空靴口递过来，让你看那粒砂。"
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "借过。"
     },
     {
       "id": "ch04_s16_yilu.l10",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "出来了。"
+      "text": "已领栏空着，她说没拿到。"
     },
     {
       "id": "ch04_s16_yilu.l11",
       "who": "peizhaoye",
       "expr": "default",
       "kind": "say",
-      "text": "那就穿。"
+      "text": "没拿到。"
     },
     {
       "id": "ch04_s16_yilu.l12",
-      "who": "narr",
-      "kind": "aside",
-      "text": "你笑着将靴推回她膝边，没有替她把整段路穿好。"
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "不能见你写支出就叫她等。"
     },
     {
       "id": "ch04_s16_yilu.l13",
       "who": "peizhaoye",
       "expr": "default",
       "kind": "say",
-      "text": "归期呢？"
+      "text": "抄支出经手给她，我也追，追过不算领过。"
     },
     {
       "id": "ch04_s16_yilu.l14",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "一月满便回京，休整的日子也照约领。我不等你那边打完这一段再问。"
+      "text": "追过。"
     },
     {
       "id": "ch04_s16_yilu.l15",
-      "who": "peizhaoye",
-      "expr": "default",
-      "kind": "say",
-      "text": "我还在路上。信照驿程寄，晚了也别赶着补回那一夜。"
+      "who": "narr",
+      "kind": "aside",
+      "text": "你将原凭收好，裴把空靴口递过来，让你看那粒砂。"
     },
     {
       "id": "ch04_s16_yilu.l16",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "出来了。"
+    },
+    {
+      "id": "ch04_s16_yilu.l17",
+      "who": "peizhaoye",
+      "expr": "default",
+      "kind": "say",
+      "text": "那就穿。"
+    },
+    {
+      "id": "ch04_s16_yilu.l18",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "嗯。"
+    },
+    {
+      "id": "ch04_s16_yilu.l19",
+      "who": "narr",
+      "kind": "aside",
+      "text": "你笑着将靴推回她膝边，没有替她把整段路穿好。"
+    },
+    {
+      "id": "ch04_s16_yilu.l20",
+      "who": "peizhaoye",
+      "expr": "default",
+      "kind": "say",
+      "text": "归期呢？"
+    },
+    {
+      "id": "ch04_s16_yilu.l21",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "归期……"
+    },
+    {
+      "id": "ch04_s16_yilu.l22",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "满月回京，休整照约领。不等你那边——"
+    },
+    {
+      "id": "ch04_s16_yilu.l23",
+      "who": "peizhaoye",
+      "expr": "default",
+      "kind": "say",
+      "text": "我还在路上。"
+    },
+    {
+      "id": "ch04_s16_yilu.l24",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "是。"
+    },
+    {
+      "id": "ch04_s16_yilu.l25",
+      "who": "peizhaoye",
+      "expr": "default",
+      "kind": "say",
+      "text": "信照驿程寄，晚了别赶着补那一夜。"
+    },
+    {
+      "id": "ch04_s16_yilu.l26",
       "who": "narr",
       "kind": "aside",
       "text": "到了约定归日，你带着核过与仍待核的两摞凭，沿自己的差程回京。"

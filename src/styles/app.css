@@ -261,6 +261,26 @@ html, body {
 }
 .hud button:hover { color: var(--c-text); border-color: var(--c-ink-2); }
 
+/* ---------- 角上的字要有底（D-123，E14） ----------
+   背景从纸换成彩画之后，「存档」「声」和右上四根数值线压在殿柱、帷幔、窗棂上读不出来（B18 截图）。
+   **不改字的颜色**：彩画上什么颜色的字都会碰上和它同色的一块，改色是治不好的。
+   改成字下面垫一小块纸——和对话框同一种纸（--c-ground），半透明，像贴在画上的一张签条。
+   不用毛玻璃、不用投影、圆角不过 2px（negative.md）。纸块外再加一圈极淡的纸色描边，
+   压在花纹最碎的地方（窗棂、斗栱）也能把字边和线边从底子上剥出来。
+   没有整图的场景（渐变背景）底下本来就是纸，垫一块纸也看不出来，所以不分场景，一律加 */
+.hud button {
+  background: color-mix(in srgb, var(--c-ground) 78%, transparent);
+  text-shadow: 0 0 2px var(--c-ground), 0 0 1px var(--c-ground);
+}
+.status {
+  padding: 8px 10px 6px;
+  margin-right: -10px; margin-top: -8px;   /* 纸块往外长，线和字的位置不动 */
+  background: color-mix(in srgb, var(--c-ground) 62%, transparent);
+  border-radius: 2px;
+}
+.status__label { text-shadow: 0 0 2px var(--c-ground), 0 0 1px var(--c-ground); }
+.status__line  { filter: drop-shadow(0 0 1px color-mix(in srgb, var(--c-ground) 90%, transparent)); }
+
 @media (prefers-reduced-motion: reduce) {
   * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
 }

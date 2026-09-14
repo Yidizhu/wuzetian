@@ -18,139 +18,264 @@
       "id": "ch03_s04_yuanye.l1",
       "who": "narr",
       "kind": "aside",
-      "text": "苑门外没有列队的马。裴背着一个行囊，靴底沾了半寸湿泥。"
+      "text": "擦过手，你走到苑门外，裴照夜背着行囊等你。"
     },
     {
       "id": "ch03_s04_yuanye.l2",
+      "who": "narr",
+      "kind": "aside",
+      "text": "苑门外没有列队的马。裴背着一个行囊，靴底沾了半寸湿泥。"
+    },
+    {
+      "id": "ch03_s04_yuanye.l3",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
       "text": "你走来的？"
     },
     {
-      "id": "ch03_s04_yuanye.l3",
+      "id": "ch03_s04_yuanye.l4",
       "who": "peizhaoye",
       "expr": "default",
       "kind": "say",
-      "text": "马留给明日换防。有人想把送我入门，写成护你赴议，我把队列撤了。"
-    },
-    {
-      "id": "ch03_s04_yuanye.l4",
-      "who": "wuze",
-      "expr": "default",
-      "kind": "say",
-      "text": "兵符呢？"
+      "text": "嗯。"
     },
     {
       "id": "ch03_s04_yuanye.l5",
       "who": "peizhaoye",
       "expr": "default",
       "kind": "say",
-      "text": "留在匣里。值守的人看着。"
+      "text": "马留着换防。"
     },
     {
       "id": "ch03_s04_yuanye.l6",
-      "who": "narr",
-      "kind": "aside",
-      "text": "她蹲下去拔靴底的刺。刺断了，她用指甲抵住断口再拔。"
+      "who": "peizhaoye",
+      "expr": "default",
+      "kind": "say",
+      "text": "有人要把送我入门写成护你赴议，我把队列撤了。"
     },
     {
       "id": "ch03_s04_yuanye.l7",
-      "who": "peizhaoye",
-      "expr": "guarded",
+      "who": "wuze",
+      "expr": "default",
       "kind": "say",
-      "text": "一起守过关的，说我这回不尽情分。旧年他病倒，还是我替他牵的马。"
+      "text": "撤了。"
     },
     {
       "id": "ch03_s04_yuanye.l8",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "你答他了？"
+      "text": "兵符呢？"
     },
     {
       "id": "ch03_s04_yuanye.l9",
       "who": "peizhaoye",
       "expr": "default",
       "kind": "say",
-      "text": "答了。他没接。"
+      "text": "匣里。值守的人看着。"
     },
     {
       "id": "ch03_s04_yuanye.l10",
-      "who": "narr",
-      "kind": "aside",
-      "text": "你扶住行囊，让她空出两只手。那根刺落进泥里，比米粒长一点。"
-    },
-    {
-      "id": "ch03_s04_yuanye.l11",
-      "who": "peizhaoye",
-      "expr": "default",
-      "kind": "say",
-      "text": "明日你有随行的公务人手。我再添一队，旁人要先数兵，才听你说话。"
-    },
-    {
-      "id": "ch03_s04_yuanye.l12",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "随行名册不添军职。我要说的，让他们听完。"
+      "text": "匣里。"
+    },
+    {
+      "id": "ch03_s04_yuanye.l11",
+      "who": "narr",
+      "kind": "aside",
+      "text": "她蹲下去拔靴底的刺。刺断了，她用指甲抵住断口再拔。"
+    },
+    {
+      "id": "ch03_s04_yuanye.l12",
+      "who": "peizhaoye",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "一起守过关的，说我不尽情分。"
     },
     {
       "id": "ch03_s04_yuanye.l13",
-      "who": "peizhaoye",
-      "expr": "open",
+      "who": "wuze",
+      "expr": "guarded",
       "kind": "say",
-      "text": "好。军中的事，今日不讲了。"
+      "text": "旧年那位？"
     },
     {
       "id": "ch03_s04_yuanye.l14",
-      "who": "narr",
-      "kind": "aside",
-      "text": "她解下行囊放在石上，又把沾泥的手擦净。你以为她要走。"
+      "who": "peizhaoye",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "他病倒，还是我替他牵的马。"
     },
     {
       "id": "ch03_s04_yuanye.l15",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "现在回？"
+      "text": "你答他了？"
     },
     {
       "id": "ch03_s04_yuanye.l16",
       "who": "peizhaoye",
       "expr": "default",
       "kind": "say",
-      "text": "还早。刚才放包，是想腾出手。"
+      "text": "答了。他没接。"
     },
     {
       "id": "ch03_s04_yuanye.l17",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "……"
+    },
+    {
+      "id": "ch03_s04_yuanye.l18",
+      "who": "narr",
+      "kind": "aside",
+      "text": "你扶住行囊，让她空出两只手。那根刺落进泥里，比米粒长一点。"
+    },
+    {
+      "id": "ch03_s04_yuanye.l19",
+      "who": "peizhaoye",
+      "expr": "default",
+      "kind": "say",
+      "text": "明日已有公务人手。"
+    },
+    {
+      "id": "ch03_s04_yuanye.l20",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "嗯。"
+    },
+    {
+      "id": "ch03_s04_yuanye.l21",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "再添——"
+    },
+    {
+      "id": "ch03_s04_yuanye.l22",
+      "who": "peizhaoye",
+      "expr": "default",
+      "kind": "say",
+      "text": "旁人先数兵了。"
+    },
+    {
+      "id": "ch03_s04_yuanye.l23",
+      "who": "peizhaoye",
+      "expr": "default",
+      "kind": "say",
+      "text": "谁还听你说话。"
+    },
+    {
+      "id": "ch03_s04_yuanye.l24",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "……"
+    },
+    {
+      "id": "ch03_s04_yuanye.l25",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "名册不添军职。我的话，让他们听完。"
+    },
+    {
+      "id": "ch03_s04_yuanye.l26",
+      "who": "peizhaoye",
+      "expr": "open",
+      "kind": "say",
+      "text": "好。"
+    },
+    {
+      "id": "ch03_s04_yuanye.l27",
+      "who": "peizhaoye",
+      "expr": "open",
+      "kind": "say",
+      "text": "军中的事，今日不讲了。"
+    },
+    {
+      "id": "ch03_s04_yuanye.l28",
+      "who": "narr",
+      "kind": "aside",
+      "text": "她解下行囊放在石上，又把沾泥的手擦净。你以为她要走。"
+    },
+    {
+      "id": "ch03_s04_yuanye.l29",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "现在回？"
+    },
+    {
+      "id": "ch03_s04_yuanye.l30",
+      "who": "peizhaoye",
+      "expr": "default",
+      "kind": "say",
+      "text": "还早。放包是想……腾出手。"
+    },
+    {
+      "id": "ch03_s04_yuanye.l31",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "手？"
+    },
+    {
+      "id": "ch03_s04_yuanye.l32",
       "who": "self",
       "kind": "inner",
       "text": "（她两只手都空了。我还抓着那条背带。）"
     },
     {
-      "id": "ch03_s04_yuanye.l18",
+      "id": "ch03_s04_yuanye.l33",
       "who": "peizhaoye",
       "expr": "open",
       "kind": "say",
       "text": "能抱一下么？"
     },
     {
-      "id": "ch03_s04_yuanye.l19",
+      "id": "ch03_s04_yuanye.l34",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "你今日才走完这一段泥路，明日就又走。"
+      "text": "今日才走完泥路，明日又走。"
     },
     {
-      "id": "ch03_s04_yuanye.l20",
+      "id": "ch03_s04_yuanye.l35",
       "who": "peizhaoye",
       "expr": "default",
       "kind": "say",
-      "text": "是。不能多留一日，这一会儿倒是我的。你不愿意，我就陪你站着。"
+      "text": "是。"
     },
     {
-      "id": "ch03_s04_yuanye.l21",
+      "id": "ch03_s04_yuanye.l36",
+      "who": "peizhaoye",
+      "expr": "default",
+      "kind": "say",
+      "text": "多留不了一日，这一会儿是我的。"
+    },
+    {
+      "id": "ch03_s04_yuanye.l37",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "嗯。"
+    },
+    {
+      "id": "ch03_s04_yuanye.l38",
+      "who": "peizhaoye",
+      "expr": "default",
+      "kind": "say",
+      "text": "你不愿意，就站着陪你。"
+    },
+    {
+      "id": "ch03_s04_yuanye.l39",
       "who": "narr",
       "kind": "aside",
       "text": "风把她的袍角吹到你鞋边。她没有借着风上前。"

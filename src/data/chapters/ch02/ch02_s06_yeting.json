@@ -18,10 +18,16 @@
       "id": "ch02_s06_yeting.l1",
       "who": "narr",
       "kind": "aside",
-      "text": "唐简将两张窄纸摊开，铜钱隔着布囊碰了一声。"
+      "text": "帕子留在宋的手边，你去唐简案前核钱。"
     },
     {
       "id": "ch02_s06_yeting.l2",
+      "who": "narr",
+      "kind": "aside",
+      "text": "唐简将两张窄纸摊开，铜钱隔着布囊碰了一声。"
+    },
+    {
+      "id": "ch02_s06_yeting.l3",
       "when": {
         "flag.adi_verify_now": true
       },
@@ -31,17 +37,37 @@
       "text": "早上逐项认过，九件无误。"
     },
     {
-      "id": "ch02_s06_yeting.l3",
+      "id": "ch02_s06_yeting.l4",
+      "when": {
+        "flag.adi_verify_now": true
+      },
+      "who": "adi",
+      "expr": "default",
+      "kind": "say",
+      "text": "九件。"
+    },
+    {
+      "id": "ch02_s06_yeting.l5",
       "when": {
         "flag.adi_verify_later": true
       },
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "午后这一班我挪来了。先听我念。"
+      "text": "午后这班挪来了，先听我念。"
     },
     {
-      "id": "ch02_s06_yeting.l4",
+      "id": "ch02_s06_yeting.l6",
+      "when": {
+        "flag.adi_verify_later": true
+      },
+      "who": "adi",
+      "expr": "default",
+      "kind": "say",
+      "text": "念。"
+    },
+    {
+      "id": "ch02_s06_yeting.l7",
       "when": {
         "flag.adi_verify_later": true
       },
@@ -50,149 +76,295 @@
       "text": "她逐项念，阿荻改了一处日期，再听一遍才认。"
     },
     {
-      "id": "ch02_s06_yeting.l5",
-      "who": "tangjian",
-      "expr": "default",
-      "kind": "say",
-      "text": "九件，核准。另两件找各自的做工人。"
-    },
-    {
-      "id": "ch02_s06_yeting.l6",
-      "who": "adi",
-      "expr": "default",
-      "kind": "say",
-      "text": "这张是领钱的，那张呢？"
-    },
-    {
-      "id": "ch02_s06_yeting.l7",
-      "who": "tangjian",
-      "expr": "default",
-      "kind": "say",
-      "text": "辞出持凭。欠款还归你，不必住在这里等。"
-    },
-    {
       "id": "ch02_s06_yeting.l8",
-      "who": "adi",
-      "expr": "guarded",
+      "who": "tangjian",
+      "expr": "default",
       "kind": "say",
-      "text": "我今日还没说要走。"
+      "text": "九件核准，另两件找各自的做工人。"
     },
     {
       "id": "ch02_s06_yeting.l9",
-      "who": "tangjian",
+      "who": "adi",
       "expr": "default",
       "kind": "say",
-      "text": "先给你。何日用，你自己定。"
+      "text": "这张领钱，那张呢？"
     },
     {
       "id": "ch02_s06_yeting.l10",
-      "who": "songhuizhen",
+      "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "走了以后，上哪儿领？"
+      "text": "这张。"
     },
     {
       "id": "ch02_s06_yeting.l11",
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "西库留一联，我这里留一联，照纸上日期来领，不再叫她找原班人。"
+      "text": "辞出持凭，欠款仍归你，不必住这里等。"
     },
     {
       "id": "ch02_s06_yeting.l12",
-      "who": "wuze",
-      "expr": "default",
-      "kind": "say",
-      "text": "我还须补什么？"
-    },
-    {
-      "id": "ch02_s06_yeting.l13",
       "who": "adi",
       "expr": "guarded",
       "kind": "say",
-      "text": "补你那张，不要往我的上面补。"
+      "text": "可我今日——"
+    },
+    {
+      "id": "ch02_s06_yeting.l13",
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "先给你。"
     },
     {
       "id": "ch02_s06_yeting.l14",
-      "who": "narr",
-      "kind": "aside",
-      "text": "你把自己的认责纸往身前挪了挪。"
+      "who": "adi",
+      "expr": "default",
+      "kind": "say",
+      "text": "……"
     },
     {
       "id": "ch02_s06_yeting.l15",
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "旧项的款今日只到了六件，余三件要再催。"
+      "text": "哪日用，你自己定。"
     },
     {
       "id": "ch02_s06_yeting.l16",
       "who": "songhuizhen",
       "expr": "default",
       "kind": "say",
-      "text": "别说又等一道手续。哪一日？"
+      "text": "走了，上哪里领？"
     },
     {
       "id": "ch02_s06_yeting.l17",
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "今夜回报；不到，明晨由我持凭去问。"
+      "text": "西库与我这里各留一联，照纸上日期来领。"
     },
     {
       "id": "ch02_s06_yeting.l18",
-      "who": "wuze",
+      "who": "songhuizhen",
       "expr": "default",
       "kind": "say",
-      "text": "还有可暂垫的么？"
+      "text": "这日期。"
     },
     {
       "id": "ch02_s06_yeting.l19",
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "东廊补栏的款已准暂支。栏未坏，只是旧，垫了钱便下旬再刷。"
+      "text": "不必再找原班人。"
     },
     {
       "id": "ch02_s06_yeting.l20",
       "who": "songhuizhen",
       "expr": "default",
       "kind": "say",
-      "text": "病舍饭药不动？"
+      "text": "听明白了。"
     },
     {
       "id": "ch02_s06_yeting.l21",
-      "who": "tangjian",
+      "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "不动。两样都已准，等选哪一项。"
+      "text": "我还须补什么？"
     },
     {
       "id": "ch02_s06_yeting.l22",
       "who": "adi",
-      "expr": "default",
+      "expr": "guarded",
       "kind": "say",
-      "text": "今夜领三件也可。六件先给我，我数过再认，不在空纸上先署名。"
+      "text": "补你那张。"
     },
     {
       "id": "ch02_s06_yeting.l23",
+      "who": "wuze",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "我那张。"
+    },
+    {
+      "id": "ch02_s06_yeting.l24",
+      "who": "adi",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "别往我的上面补。"
+    },
+    {
+      "id": "ch02_s06_yeting.l25",
+      "who": "narr",
+      "kind": "aside",
+      "text": "你把自己的认责纸往身前挪了挪。"
+    },
+    {
+      "id": "ch02_s06_yeting.l26",
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "今日旧款只到六件，另三件得再催。"
+    },
+    {
+      "id": "ch02_s06_yeting.l27",
+      "who": "songhuizhen",
+      "expr": "default",
+      "kind": "say",
+      "text": "又等手续……"
+    },
+    {
+      "id": "ch02_s06_yeting.l28",
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "……"
+    },
+    {
+      "id": "ch02_s06_yeting.l29",
+      "who": "songhuizhen",
+      "expr": "default",
+      "kind": "say",
+      "text": "哪一日？"
+    },
+    {
+      "id": "ch02_s06_yeting.l30",
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "今夜回报，不到就明晨持凭去问。"
+    },
+    {
+      "id": "ch02_s06_yeting.l31",
+      "who": "songhuizhen",
+      "expr": "default",
+      "kind": "say",
+      "text": "明晨。"
+    },
+    {
+      "id": "ch02_s06_yeting.l32",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "还有钱能暂垫么？"
+    },
+    {
+      "id": "ch02_s06_yeting.l33",
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "暂垫。"
+    },
+    {
+      "id": "ch02_s06_yeting.l34",
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "东廊补栏款准了暂支，垫了就下旬再刷。"
+    },
+    {
+      "id": "ch02_s06_yeting.l35",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "栏呢？"
+    },
+    {
+      "id": "ch02_s06_yeting.l36",
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "没坏，只是旧。"
+    },
+    {
+      "id": "ch02_s06_yeting.l37",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "只是旧。"
+    },
+    {
+      "id": "ch02_s06_yeting.l38",
+      "who": "songhuizhen",
+      "expr": "default",
+      "kind": "say",
+      "text": "饭药的钱？"
+    },
+    {
+      "id": "ch02_s06_yeting.l39",
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "不动，垫付与催原项都已准了。"
+    },
+    {
+      "id": "ch02_s06_yeting.l40",
+      "who": "adi",
+      "expr": "default",
+      "kind": "say",
+      "text": "六件先给我。"
+    },
+    {
+      "id": "ch02_s06_yeting.l41",
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "六件。"
+    },
+    {
+      "id": "ch02_s06_yeting.l42",
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "你数。"
+    },
+    {
+      "id": "ch02_s06_yeting.l43",
+      "who": "adi",
+      "expr": "default",
+      "kind": "say",
+      "text": "数过再认，不在空纸上署名。"
+    },
+    {
+      "id": "ch02_s06_yeting.l44",
+      "who": "adi",
+      "expr": "default",
+      "kind": "say",
+      "text": "三件今夜领也可。"
+    },
+    {
+      "id": "ch02_s06_yeting.l45",
       "who": "narr",
       "kind": "aside",
       "text": "她解开布囊。宋移近碗托，让铜钱不滚到席缝里。"
     },
     {
-      "id": "ch02_s06_yeting.l24",
+      "id": "ch02_s06_yeting.l46",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "补栏的人也须早些知道，别让她们白来。"
+      "text": "补栏的人也得知道，别叫她们白来。"
     },
     {
-      "id": "ch02_s06_yeting.l25",
+      "id": "ch02_s06_yeting.l47",
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "垫付就今日告知；催原项，就另记催款工时。"
+      "text": "知道了。"
+    },
+    {
+      "id": "ch02_s06_yeting.l48",
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "垫付就今日告知；催原项就另记工时。"
+    },
+    {
+      "id": "ch02_s06_yeting.l49",
+      "who": "narr",
+      "kind": "aside",
+      "text": "你将领钱与辞出的两张窄纸分开。"
     }
   ],
   "choices": [

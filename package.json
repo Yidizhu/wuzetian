@@ -18,7 +18,7 @@
     "smoke": "node --experimental-strip-types tools/smoke-chapter.ts",
     "smoke:converted": "node --experimental-strip-types tools/smoke-chapter.ts converted",
     "smoke:affinity": "node --experimental-strip-types tools/smoke-affinity.ts",
-    "build:web": "npm run validate && npm run test:engine && npm run smoke && tsc --noEmit && vite build && npm run check:bundle",
+    "build:web": "npm run validate && npm run test:engine && npm run smoke && tsc --noEmit && npm run check:art && vite build && npm run check:bundle",
     "check:bundle": "node --experimental-strip-types tools/check-bundle.ts",
     "art:loop": "node --experimental-strip-types tools/art-loop.ts",
     "check:sprites": "node --experimental-strip-types tools/sprite-check.ts",
@@ -26,7 +26,8 @@
     "art:screens": "node --experimental-strip-types tools/art-screens.ts",
     "tripo": "node --experimental-strip-types tools/tripo.ts",
     "art:post": "node --experimental-strip-types tools/art-post.ts",
-    "routes": "node --experimental-strip-types tools/convert-routes.ts"
+    "routes": "node --experimental-strip-types tools/convert-routes.ts",
+    "check:art": "node --experimental-strip-types tools/check-art.ts"
   },
   "devDependencies": {
     "@types/three": "^0.170.0",
