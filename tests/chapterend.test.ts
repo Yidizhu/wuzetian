@@ -692,6 +692,27 @@ test("B17 背景表：键是「地点_色板_布置」，剧本里用到的每�
   assert.ok(BACKDROPS.yuanye_ink?.night, "原野是夜场，套滤镜（D-107）");
 });
 
+test("D-124 未读攒满截走了有固定截获点的信：不跳场，走到截获场才当众展开", async () => {
+  const { Letters } = await import("../src/engine/letters.ts");
+  const store = new Store();
+  const { readFileSync } = await import("node:fs");
+  // 拿一封真信当底子，只换 id、触发与截获的几项：别在测试里抄一份信的格式（D-098）
+  const base = JSON.parse(readFileSync(new URL("../src/data/letters/lt_ch02_shenheng_01.json", import.meta.url), "utf8"));
+  const mk = (id: string, extra: Record<string, unknown> = {}) => LetterSchema.parse({
+    ...base, id, trigger: { kind: "scene", sceneId: "a", afterScenes: 1 }, delayMinutes: 5,
+    interceptable: false, interceptAt: undefined, onIntercept: undefined, ...extra,
+  });
+  const fixed = mk("fixed", { interceptable: true, interceptAt: "s11", onIntercept: { goto: "s11" } });
+  const inbox = new Letters([mk("l1"), mk("l2"), mk("l3"), fixed], store);
+  inbox.onSceneEnd("a");                                  // 四封一起触发，时间门开始走
+  const realNow = Date.now;
+  Date.now = () => realNow() + 3600_000;                  // 一小时后回来：四封一起到，超过上限 3
+  try { inbox.deliver(); } finally { Date.now = realNow; }
+  assert.equal(store.state.letters.find((x) => x.id === "fixed")?.state, "intercepted", "被截的是剧本允许截的那封");
+  assert.equal(inbox.pendingIntercept(), null, "有固定截获点的信，不当场跳过去");
+  assert.equal(inbox.forceInterceptAt("s11")?.id, "fixed", "走到截获场才接住它");
+});
+
 test("题记是合法的说话人，地点多了驿路（D-062、D-063）", () => {
   const s = scene("x", 4, { goto: "x", scene: "yilu" as Scene["scene"] });
   s.lines = [{ id: "t", who: "tiji", kind: "aside", text: "一行。" }] as Scene["lines"];

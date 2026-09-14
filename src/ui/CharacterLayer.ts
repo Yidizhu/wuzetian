@@ -19,6 +19,9 @@ import { RasterCatalog } from "../scene/raster.ts";
  * 选哪张见 `engine/identity.ts` 的 `rasterCandidates`；图读不出来记一笔、退回 SVG，不白屏。
  * 光栅图才有全身／膝上两种框法（D-108 第 2 条），SVG 永远是全身。
  */
+/** 换人时旧的淡出多久才拆，和 `.cast__slot` 的 opacity 过渡（app.css，520ms）对上 */
+const SWAP_MS = 520;
+
 export class CharacterLayer {
   private el: HTMLElement;
   private slots = new Map<string, HTMLElement>();   // 角色 key -> 容器
@@ -105,19 +108,28 @@ export class CharacterLayer {
     if (this.slots.has(who)) await this.show(who, expr);
   }
 
+  /**
+   * 换人（D-122）：一屏最多两人不改，但换的那一下要有一拍过渡，不能硬切——硬切玩家会觉得人「闪」了一下。
+   * 新的人先透明着把图备好（光栅图要解码），换上之后淡入；旧的人同时淡出，淡完才拆。两个人叠着交替那一拍就是过渡。
+   */
   private async swapIn(who: string): Promise<void> {
     const out = [...this.slots.keys()].find((k) => k !== "wuze") ?? [...this.slots.keys()][0];
     if (!out) return;
-    const side = this.slots.get(out)!.dataset.side ?? "right";
-    this.slots.get(out)!.remove();
+    const old = this.slots.get(out)!;
+    const side = old.dataset.side ?? "right";
     this.slots.delete(out);
     const node = document.createElement("div");
     node.className = "cast__slot";
     node.dataset.char = who;
     node.dataset.side = side;
+    node.dataset.entering = "1";
     this.el.appendChild(node);
     this.slots.set(who, node);
     await this.show(who, "default");
+    void node.offsetWidth;                       // 让「透明」先落一帧，淡入才走得出来
+    delete node.dataset.entering;
+    old.dataset.leaving = "1";
+    window.setTimeout(() => old.remove(), SWAP_MS);
   }
 
   /** 主角做出不可逆决定的那一刻，她的朱砂点亮回朱砂，哪怕在金碧场景里 */

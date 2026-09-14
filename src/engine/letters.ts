@@ -144,7 +144,11 @@ export class Letters {
         s.letters.push(slot);
       }
       if (slot.state === "replied" || slot.repliedWith) continue;
-      if (slot.state === "intercepted") continue;
+      // 早先因为未读攒满已经被截了（D-124）：那时没有跳场，就等玩家自己走到这里，这一场就是它被当众展开的地方
+      if (slot.state === "intercepted") {
+        console.info(`[letters] ${l.id} 早先因未读攒满被截，到 ${sceneId} 才当众展开`);
+        return l;
+      }
       slot.state = "intercepted";
       console.info(`[letters] ${l.id} 在 ${sceneId} 被强制截下（D-039）`);
       return l;
@@ -152,9 +156,17 @@ export class Letters {
     return null;
   }
 
-  /** 被截了、还没进那个朝廷场景的信 */
+  /**
+   * 被截了、还没进那个朝廷场景、而且**要当场跳过去**的信。
+   *
+   * 有固定截获点（`interceptAt`）的信不在这里：它的截获场本来就在主线上，玩家自己会走到。
+   * 未读攒满时当场跳过去，等于把玩家从这里一把拉到截获场，中间几场整段跳过——
+   * D-124：第一章四封信只拆 0 或 1 封的玩家，第二章 06—10 就是这样没了，而每一场单看都合法。
+   * 这种信被截之后留在 intercepted，走进截获场时由 forceInterceptAt 接住。
+   */
   pendingIntercept(): LetterT | null {
-    const slot = this.store.state.letters.find((x) => x.state === "intercepted" && !x.repliedWith);
+    const slot = this.store.state.letters.find((x) =>
+      x.state === "intercepted" && !x.repliedWith && !this.byId.get(x.id)?.interceptAt);
     return slot ? this.byId.get(slot.id) ?? null : null;
   }
 

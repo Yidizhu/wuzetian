@@ -24,7 +24,9 @@
     "check:sprites": "node --experimental-strip-types tools/sprite-check.ts",
     "screens": "node --experimental-strip-types tools/screen-shot.ts",
     "art:screens": "node --experimental-strip-types tools/art-screens.ts",
-    "tripo": "node --experimental-strip-types tools/tripo.ts"
+    "tripo": "node --experimental-strip-types tools/tripo.ts",
+    "art:post": "node --experimental-strip-types tools/art-post.ts",
+    "routes": "node --experimental-strip-types tools/convert-routes.ts"
   },
   "devDependencies": {
     "@types/three": "^0.170.0",

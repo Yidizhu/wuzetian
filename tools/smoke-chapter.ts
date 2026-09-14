@@ -74,6 +74,9 @@ interface Stuck { scene: string; line: number; why: string }
  *    表里写了、图也画了，可剧本出口忘了写 flag，柳承欢腕上那点红就永远不会褪。
  * 5. 主角的身份只升不降，落选线一路青到结局（D-091）。袍色跟 flag 走，
  *    一个 flag 写反、写漏，她就会在某条线上半路换回青、或者没受位先穿绯，而每一场单看都合法。
+ * 6. 信拆不拆，都不许跳场（D-124，B19）。上面的走法都不快进时钟，信永远到不了案上，
+ *    所以「未读攒满、信被截走、引擎跳去截获场」这条路从来没被走过——第一章四封信只拆 0 或 1 封的玩家，
+ *    第二章 06—10 五场会整段跳过，而游戏照样走得到结局。这里另跑几条推时钟的走法专门走它。
  * 4. 全书有终局判定的时候，每一条走完的路都落在一张结局卡上（B14，第四章接入）。
  *    停在「下章待续」在第一到三章是这一版的边界，到了最后一章就是结局一个都出不来——
  *    CC2 D10 的定向走法就是这样停住的，「走得通」照样全绿。
@@ -93,7 +96,13 @@ const ranksAtEnding = new Map<string, Set<Rank>>();
 /** 随机走法用的挑选器：给定能点的几项，挑一项。不给就按 picks 固定挑 */
 type Chooser = (usable: number[]) => number;
 
-async function walk(picks: number[], chooser?: Chooser): Promise<{ path: string[]; stuck: Stuck | null; forks: number[] }> {
+/**
+ * 推时钟的走法（D-124）。`openQuota`：来信最多拆几封（markRead），其余一直不拆、在案上攒着。
+ * 每推进一步，假时钟走两个小时，信的时间门就都会过。
+ */
+interface LetterWalk { openQuota: number }
+
+async function walk(picks: number[], chooser?: Chooser, letterWalk?: LetterWalk): Promise<{ path: string[]; stuck: Stuck | null; forks: number[] }> {
   // 每条路径都要从头开始。Story.start() 会读自动存档，
   // 不清掉的话第二条路径会从第一条的终点接着走——这个坑我踩过一次。
   mem.clear();
@@ -135,6 +144,21 @@ async function walk(picks: number[], chooser?: Chooser): Promise<{ path: string[
     }
   });
 
+  const realNow = Date.now;
+  let fakeNow = realNow();
+  let opened = 0;
+  if (letterWalk) {
+    Date.now = () => fakeNow;
+    story.on((e) => {
+      if (e.kind !== "letters") return;
+      for (const id of e.arrived) {
+        if (opened >= letterWalk.openQuota) break;
+        story.letters.markRead(id);
+        opened += 1;
+      }
+    });
+  }
+
   await story.start();
 
   let pick = 0;
@@ -156,6 +180,7 @@ async function walk(picks: number[], chooser?: Chooser): Promise<{ path: string[
       continue;
     }
     const before = `${story.sceneId}#${story.lineIndex}`;
+    if (letterWalk) fakeNow += 2 * 3600_000;
     story.advance();
     // advance() 是同步的，但走到句尾换场时它内部 await enter()。
     // 不让出控制权就比较，换场还没发生，会把正常的过场误判成卡住。
@@ -211,6 +236,7 @@ async function walk(picks: number[], chooser?: Chooser): Promise<{ path: string[
         : "全书有终局判定，这条路却落到了「没有结局数据」的兜底话");
     }
   }
+  if (letterWalk) Date.now = realNow;
   return { path, stuck, forks };
 }
 
@@ -280,6 +306,59 @@ for (const win of [false, true]) {
   }
 }
 
+/**
+ * 不变式 6（D-124）：推时钟、只拆 0／1 封信，走到了截获场，那么它前面图上绕不开的场一场都不许少。
+ * 「绕不开」按场景图算：从起点出发、不经过这一场就到不了截获场的，都是必经。
+ */
+const letterWalks: { quota: number; path: string[] }[] = [];
+if (which === "official" || scenes.some((s) => s.id === "ch02_s11_hanyuan")) {
+  for (const quota of [0, 1, Infinity]) {
+    for (const k of [0, -1]) {
+      winDuels = true;
+      const { path, stuck } = await walk(new Array(400).fill(k), undefined, { openQuota: quota });
+      for (const s of path) seen.add(s);
+      if (stuck && !stucks.some((x) => x.scene === stuck.scene && x.why === stuck.why)) stucks.push(stuck);
+      letterWalks.push({ quota, path });
+      runs++;
+    }
+  }
+  // 截获场之前的必经场：去掉它，从起点就到不了截获场
+  const edges = new Map<string, string[]>();
+  for (const s of scenes) {
+    const to = [...(s.choices ?? []).map((c) => c.goto), s.goto].filter(Boolean) as string[];
+    const d = s.duel ? duels.find((x) => x.id === s.duel) : undefined;
+    to.push(...([d?.onWin?.goto, d?.onLose?.goto].filter(Boolean) as string[]));
+    edges.set(s.id, to);
+  }
+  const reachable = (target: string, banned: string): boolean => {
+    const seenIds = new Set([START]);
+    const queue = [START];
+    while (queue.length) {
+      const cur = queue.shift()!;
+      if (cur === target) return true;
+      for (const nx of edges.get(cur) ?? []) {
+        if (nx === banned || seenIds.has(nx)) continue;
+        seenIds.add(nx);
+        queue.push(nx);
+      }
+    }
+    return false;
+  };
+  for (const l of letters) {
+    if (!l.interceptAt) continue;
+    const must = scenes.filter((s) => s.id !== l.interceptAt && s.chapter === scenes.find((x) => x.id === l.interceptAt)?.chapter
+      && !reachable(l.interceptAt!, s.id)).map((s) => s.id);
+    for (const w of letterWalks) {
+      if (!w.path.includes(l.interceptAt)) continue;
+      const skipped = must.filter((id) => !w.path.includes(id));
+      if (skipped.length) {
+        const why = `信${w.quota === Infinity ? "全拆" : `只拆 ${w.quota} 封`}时，走到截获场 ${l.interceptAt} 之前跳过了 ${skipped.join("、")}（D-124）`;
+        if (!broken.some((b) => b.why === why)) broken.push({ scene: l.interceptAt, why });
+      }
+    }
+  }
+}
+
 // --------------------------------------------------------------- 报告
 
 /**
@@ -329,12 +408,16 @@ if (endings.length && hasFinale) {
   const NAME: Record<Rank, string> = { qing: "青", fei: "绯" };
   console.log(`  落幕时主角的袍色：${endings.filter((e) => ranksAtEnding.has(e.key)).map((e) => `${e.title} ${[...ranksAtEnding.get(e.key)!].map((r) => NAME[r]).join("/")}`).join("、")}`);
 }
+if (letterWalks.length) {
+  const hit = letterWalks.filter((w) => w.path.includes("ch02_s11_hanyuan")).length;
+  console.log(`  推时钟的走法 ${letterWalks.length} 条（信拆 0／1／全拆），${hit} 条走到了第二章的截获场`);
+}
 if (broken.length) {
   console.log(`
   不变式没守住的地方：`);
   for (const b of broken) console.log(`    ${b.scene} —— ${b.why}`);
 } else {
-  console.log(`  ${hasFinale ? "五" : "四"}条不变式都守住了：章末都出了结算页、截获点都截了、换图的 flag 都会写真${hasFinale ? "、每条走完的路都落在结局卡上" : ""}、主角身份只升不降且落选线一路是青。`);
+  console.log(`  ${hasFinale ? "六" : "五"}条不变式都守住了：章末都出了结算页、截获点都截了、换图的 flag 都会写真${hasFinale ? "、每条走完的路都落在结局卡上" : ""}、主角身份只升不降且落选线一路是青、信拆不拆都不跳场。`);
 }
 if (stucks.length) {
   console.log(`\n  卡住的地方：`);

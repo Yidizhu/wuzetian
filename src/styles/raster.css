@@ -28,14 +28,31 @@
 .stage--beat[data-image] .stage__image { animation: backdrop-beat 900ms var(--ease); }
 @keyframes backdrop-beat { 50% { transform: scale(1.04); } }
 
-/* 夜场：同一张日景套冷暗滤镜，不另出图（D-107）。不够再单独生成那两三张 */
-.stage[data-image][data-night="1"] .stage__image {
-  filter: brightness(0.52) saturate(0.7) hue-rotate(-12deg) contrast(1.05);
+/* 夜场（D-107、D-121）：同一张日景套冷暗滤镜，不另出图。
+   **滤镜要同时罩住背景和人**：只压背景不压人，人就浮在夜色上（B18 原野那张）。两层用同一组数。
+   不是整体压暗——压暗、偏冷，亮部留一点暖（夜里有灯）：sepia 先给一点暖，hue-rotate 再把中间调推冷，
+   亮部在 sepia 里剩下的那点暖留着。背景上再叠一层很淡的暖光晕，落在画面中上，是灯 */
+:root {
+  --night-filter: brightness(0.6) sepia(0.18) saturate(0.78) hue-rotate(-18deg) contrast(1.04);
 }
+.stage[data-image][data-night="1"] .stage__image { filter: var(--night-filter); }
+.stage[data-image][data-night="1"]::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none; z-index: 1;
+  background: radial-gradient(ellipse 46% 38% at 52% 42%, rgba(255, 196, 128, 0.16), transparent 70%);
+  mix-blend-mode: soft-light;
+}
+/* 人：夜场里光栅立绘套同一组滤镜。渐变版的夜场也套——下一次发布原野就是渐变背景配沈衡、裴照夜的厚涂。
+   SVG 剪影本来就是墨色，不套 */
+.stage[data-night="1"] ~ .cast .cast__slot[data-raster] > img { filter: var(--night-filter); }
 
 @media (prefers-reduced-motion: reduce) {
   .stage__image--push, .stage--beat[data-image] .stage__image { animation: none; }
 }
+
+/* ---------- 换人一拍过渡（D-122）：对 SVG 和光栅图都生效 ---------- */
+
+.cast__slot[data-entering] { opacity: 0; transition: none; }
+.cast__slot[data-leaving]  { opacity: 0; }
 
 /* ---------- 光栅立绘 ---------- */
 
@@ -63,6 +80,26 @@
   translate: -50% 0;
 }
 .cast__slot[data-raster="knee"]::before { display: none; }
+
+/* 手机竖屏的膝上（E13，CC3 调）。撑满槽位就是放大 1.42 倍：一个人的图比整个屏幕还宽（390 宽的屏上 558），
+   两个人叠在中间、手臂和帔帛出了屏幕边（B17 手机截图）。竖屏上两个人并排，每人最多半屏宽，
+   人身（不算帔帛）约占图宽四成五，所以图宽不能超过屏宽一倍出头——放大只剩 1.12 倍左右。
+   图高 = 槽高 × 1080/1536 × 1.12 ≈ 78.75%。膝盖仍落在槽底、藏在对话框后面；头比全身时低一截，让出了顶上 HUD 那一带。
+   脸比全身时大一成出头，不多：竖屏放不下更大的两个人，要看脸大靠的是宽屏 */
+@media (max-width: 480px) {
+  .cast__slot[data-raster="knee"] > img { height: 78.75%; }
+}
+
+/* 左右两格不一样（R-025，B19）。所有立绘都是「正面站姿中性表情」，任何两个人并排都像两张证件照。
+   不重画，给两格一点点差别：各朝画面中间转几度（绕竖轴），右边那位再低一点点。
+   **绝对不许水平镜像（scaleX(-1) 或 rotateY(180deg)）**：交领右衽一翻就成了左衽——唐代左衽是给死人穿的，
+   一次镜像等于把全场活人换上殓服。转的角度留在十度以内，衣襟的朝向读不反。
+   用独立的 rotate 属性，不碰 transform：transform 归呼吸动画和不说话时的退半步 */
+.cast__slot[data-raster] { perspective: 1400px; }
+.cast__slot[data-raster][data-side="left"]  > img { rotate: y 10deg; }
+.cast__slot[data-raster][data-side="right"] > img { rotate: y -9deg; }
+.cast__slot[data-raster="full"][data-side="right"] > img { translate: 0 1.5%; }
+.cast__slot[data-raster="knee"][data-side="right"] > img { translate: -50% 1.5%; }
 
 /* 她拿主意的那一下（D-010）。光栅图上没有能单独变色的朱砂点，改成整个人一次很淡的暖光、脚下墨影加深（D-108 第 1 条） */
 .cast__slot[data-raster][data-flare="1"] > img { animation: breath 6.4s ease-in-out infinite, raster-flare 1400ms var(--ease); }
