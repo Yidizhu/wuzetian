@@ -30,17 +30,18 @@ export function backdropKey(d: Pick<SceneDescriptor, "key" | "palette" | "dressi
 }
 
 export const BACKDROPS: Record<string, Backdrop> = {
-  yeting_ink:           { where: "掖庭，十六场" },
+  // B18：这四行的数是看 Codex 第一批 v1 原件、四张都在整屏里截过图之后填的（D-118）。图还没验收，验收换版后要再看一次
+  yeting_ink:           { floor: 22, person: 1, push: "center", where: "掖庭，十六场。v1：院子土地铺到画底，人站 22% 踩在土上" },
   zhaoyang_ink:         { where: "昭阳殿水墨，序幕与四章" },
-  zhaoyang_gold:        { where: "昭阳殿金碧" },
+  zhaoyang_gold:        { floor: 22, person: 1, push: "center", where: "昭阳殿金碧。v1：红毯居中铺到画底，朝毯心推" },
   zhaoyang_ink_yedeng:  { night: true, where: "四章 06 夜谈四（夜灯）。dressings.ts 里有，剧本眼下没写这一条布置" },
-  shuge_ink:            { where: "书阁水墨，十二场。四章 08、14 是夜里，剧本没有时辰一栏，眼下按日景（D-107）" },
+  shuge_ink:            { floor: 22, person: 1, push: "right", where: "书阁水墨，十二场。四章 08、14 是夜里，剧本没有时辰一栏，眼下按日景（D-107）。v1：光从左窗进来，右边书架间有纵深，朝右推" },
   shuge_gold:           { where: "书阁金碧" },
   nvguan_ink:           { where: "女冠观" },
   nvguan_ink_kaike:     { where: "四章 12、13 开课" },
   nvguan_ink_yeyu:      { night: true, where: "三章 10 夜谈三（夜雨）" },
   shishe_ink:           { where: "诗社" },
-  yuanye_ink:           { night: true, where: "原野，十三场。渐变版一直按夜场画" },
+  yuanye_ink:           { night: true, floor: 22, person: 1, push: "center", where: "原野，十三场。渐变版一直按夜场画。v1 是阴天日景，套夜滤镜后读得出是傍晚；路朝城门居中收，朝中推" },
   hanyuan_gold:         { where: "含元殿" },
   hanyuan_gold_gongyi:  { where: "含元殿公议，六场" },
   hanyuan_gold_shouwei: { where: "三章 12 受位议决" },
