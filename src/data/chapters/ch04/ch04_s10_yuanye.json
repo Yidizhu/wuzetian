@@ -173,6 +173,73 @@
     {
       "id": "ch04_s10_yuanye.l22",
       "when": {
+        "flag.liqinghe_together": true
+      },
+      "who": "narr",
+      "kind": "aside",
+      "text": "你看她掰饼，袖口总往下滑，她索性挽起一折。"
+    },
+    {
+      "id": "ch04_s10_yuanye.l23",
+      "when": {
+        "flag.liqinghe_together": true
+      },
+      "who": "wuze",
+      "expr": "open",
+      "kind": "say",
+      "text": "令仪，慢些吃。"
+    },
+    {
+      "id": "ch04_s10_yuanye.l24",
+      "when": {
+        "flag.liqinghe_together": true
+      },
+      "who": "liqinghe",
+      "expr": "open",
+      "kind": "say",
+      "text": "又要同我比谁慢？"
+    },
+    {
+      "id": "ch04_s10_yuanye.l25",
+      "when": {
+        "flag.liqinghe_together": true
+      },
+      "who": "wuze",
+      "expr": "open",
+      "kind": "say",
+      "text": "想你多坐一会儿。"
+    },
+    {
+      "id": "ch04_s10_yuanye.l26",
+      "when": {
+        "flag.liqinghe_together": true
+      },
+      "who": "liqinghe",
+      "expr": "open",
+      "kind": "say",
+      "text": "我吃完也坐着。你慢慢吃你的。"
+    },
+    {
+      "id": "ch04_s10_yuanye.l27",
+      "when": {
+        "flag.liqinghe_together": true
+      },
+      "who": "self",
+      "kind": "inner",
+      "text": "（她连最后一口都不用替我留。）"
+    },
+    {
+      "id": "ch04_s10_yuanye.l28",
+      "when": {
+        "flag.liqinghe_together": true
+      },
+      "who": "narr",
+      "kind": "aside",
+      "text": "你把饼转了半圈，咬住还脆的一边。她把空出的手搁在你们中间。"
+    },
+    {
+      "id": "ch04_s10_yuanye.l29",
+      "when": {
         "flag.liqinghe_together": false
       },
       "who": "narr",
@@ -180,14 +247,14 @@
       "text": "你把油纸铺在膝上，慢慢吃完，没有留下一个等人来坐的地方。"
     },
     {
-      "id": "ch04_s10_yuanye.l23",
+      "id": "ch04_s10_yuanye.l30",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
       "text": "一张够了。"
     },
     {
-      "id": "ch04_s10_yuanye.l24",
+      "id": "ch04_s10_yuanye.l31",
       "who": "narr",
       "kind": "aside",
       "text": "夜风吹到指尖，你将碎屑拢进油纸，没有再去买第二张。"

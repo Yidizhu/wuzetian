@@ -108,71 +108,102 @@
     },
     {
       "id": "ch02_s16_yuanye.l14",
-      "who": "wuze",
-      "expr": "default",
-      "kind": "say",
-      "text": "风要吃。"
+      "who": "narr",
+      "kind": "aside",
+      "text": "你挑出一块焦黄的饼边，放到裴照夜那一侧。"
     },
     {
       "id": "ch02_s16_yuanye.l15",
       "who": "peizhaoye",
       "expr": "open",
       "kind": "say",
-      "text": "它若来……"
+      "text": "这块脆。你不吃？"
     },
     {
       "id": "ch02_s16_yuanye.l16",
       "who": "wuze",
       "expr": "open",
       "kind": "say",
-      "text": "如何？"
+      "text": "想给你。"
     },
     {
       "id": "ch02_s16_yuanye.l17",
       "who": "peizhaoye",
       "expr": "open",
       "kind": "say",
-      "text": "趁它没来，先吃手上这口，剩下随你拿。"
+      "text": "你盯它半天了。"
     },
     {
       "id": "ch02_s16_yuanye.l18",
       "who": "wuze",
       "expr": "open",
       "kind": "say",
-      "text": "好。"
+      "text": "所以才给你。"
     },
     {
       "id": "ch02_s16_yuanye.l19",
       "who": "narr",
       "kind": "aside",
-      "text": "你们各拿一块。裴把纸折高半寸，挡住细渣。"
+      "text": "她拿起饼边，看了你一会儿，才咬下去。"
     },
     {
       "id": "ch02_s16_yuanye.l20",
-      "who": "wuze",
-      "expr": "open",
-      "kind": "say",
-      "text": "这块脆。"
+      "who": "self",
+      "kind": "inner",
+      "text": "（就这一点。她还看出来了。）"
     },
     {
       "id": "ch02_s16_yuanye.l21",
       "who": "peizhaoye",
       "expr": "open",
       "kind": "say",
-      "text": "我的也脆。"
+      "text": "那我这块，归你。"
     },
     {
       "id": "ch02_s16_yuanye.l22",
-      "who": "wuze",
-      "expr": "open",
-      "kind": "say",
-      "text": "……"
+      "who": "narr",
+      "kind": "aside",
+      "text": "她挑出自己手里那块的脆角，放到你掌心。"
     },
     {
       "id": "ch02_s16_yuanye.l23",
+      "who": "wuze",
+      "expr": "open",
+      "kind": "say",
+      "text": "再掰就又碎了。"
+    },
+    {
+      "id": "ch02_s16_yuanye.l24",
+      "who": "peizhaoye",
+      "expr": "open",
+      "kind": "say",
+      "text": "碎了也给你。"
+    },
+    {
+      "id": "ch02_s16_yuanye.l25",
       "who": "narr",
       "kind": "aside",
-      "text": "你把手里的饼送到嘴边，接着吃。"
+      "text": "纸上果然又落了渣。你吃着她那一角，看她把嘴边的碎屑抹掉。"
+    },
+    {
+      "id": "ch02_s16_yuanye.l26",
+      "who": "wuze",
+      "expr": "open",
+      "kind": "say",
+      "text": "还有，左边。"
+    },
+    {
+      "id": "ch02_s16_yuanye.l27",
+      "who": "peizhaoye",
+      "expr": "open",
+      "kind": "say",
+      "text": "你也有。"
+    },
+    {
+      "id": "ch02_s16_yuanye.l28",
+      "who": "narr",
+      "kind": "aside",
+      "text": "两人各擦各的，谁也没擦对。"
     }
   ],
   "goto": "ch02_s20_hanyuan"

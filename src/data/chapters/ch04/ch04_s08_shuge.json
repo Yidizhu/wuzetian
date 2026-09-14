@@ -321,12 +321,149 @@
     },
     {
       "id": "ch04_s08_shuge.l34",
+      "when": {
+        "flag.shen_ch03_sit": true,
+        "flag.shen_ch03_letter_stop": false,
+        "flag.shen_ch03_letter_wait": false,
+        "flag.shen_after_intercept_private_stop": false,
+        "flag.ch04_originals_destroyed": false
+      },
+      "who": "wuze",
+      "expr": "open",
+      "kind": "say",
+      "text": "沈衡，今夜想听你念点别的。"
+    },
+    {
+      "id": "ch04_s08_shuge.l35",
+      "when": {
+        "flag.shen_ch03_sit": true,
+        "flag.shen_ch03_letter_stop": false,
+        "flag.shen_ch03_letter_wait": false,
+        "flag.shen_after_intercept_private_stop": false,
+        "flag.ch04_originals_destroyed": false
+      },
+      "who": "shenheng",
+      "expr": "open",
+      "kind": "say",
+      "text": "我的猫，新拟了官名。"
+    },
+    {
+      "id": "ch04_s08_shuge.l36",
+      "when": {
+        "flag.shen_ch03_sit": true,
+        "flag.shen_ch03_letter_stop": false,
+        "flag.shen_ch03_letter_wait": false,
+        "flag.shen_after_intercept_private_stop": false,
+        "flag.ch04_originals_destroyed": false
+      },
+      "who": "wuze",
+      "expr": "open",
+      "kind": "say",
+      "text": "念。"
+    },
+    {
+      "id": "ch04_s08_shuge.l37",
+      "when": {
+        "flag.shen_ch03_sit": true,
+        "flag.shen_ch03_letter_stop": false,
+        "flag.shen_ch03_letter_wait": false,
+        "flag.shen_after_intercept_private_stop": false,
+        "flag.ch04_originals_destroyed": false
+      },
+      "who": "narr",
+      "kind": "aside",
+      "text": "沈衡把卷放在膝上，嘴角刚动，又抿住。你等着听。"
+    },
+    {
+      "id": "ch04_s08_shuge.l38",
+      "when": {
+        "flag.shen_ch03_sit": true,
+        "flag.shen_ch03_letter_stop": false,
+        "flag.shen_ch03_letter_wait": false,
+        "flag.shen_after_intercept_private_stop": false,
+        "flag.ch04_originals_destroyed": false
+      },
+      "who": "shenheng",
+      "expr": "open",
+      "kind": "say",
+      "text": "守砚将军。昨日又踩了一脚墨。"
+    },
+    {
+      "id": "ch04_s08_shuge.l39",
+      "when": {
+        "flag.shen_ch03_sit": true,
+        "flag.shen_ch03_letter_stop": false,
+        "flag.shen_ch03_letter_wait": false,
+        "flag.shen_after_intercept_private_stop": false,
+        "flag.ch04_originals_destroyed": false
+      },
+      "who": "wuze",
+      "expr": "open",
+      "kind": "say",
+      "text": "好大的官。脾气呢？"
+    },
+    {
+      "id": "ch04_s08_shuge.l40",
+      "when": {
+        "flag.shen_ch03_sit": true,
+        "flag.shen_ch03_letter_stop": false,
+        "flag.shen_ch03_letter_wait": false,
+        "flag.shen_after_intercept_private_stop": false,
+        "flag.ch04_originals_destroyed": false
+      },
+      "who": "shenheng",
+      "expr": "open",
+      "kind": "say",
+      "text": "比我坏。"
+    },
+    {
+      "id": "ch04_s08_shuge.l41",
+      "when": {
+        "flag.shen_ch03_sit": true,
+        "flag.shen_ch03_letter_stop": false,
+        "flag.shen_ch03_letter_wait": false,
+        "flag.shen_after_intercept_private_stop": false,
+        "flag.ch04_originals_destroyed": false
+      },
+      "who": "self",
+      "kind": "inner",
+      "text": "（她在等我笑。我偏要再听一句。）"
+    },
+    {
+      "id": "ch04_s08_shuge.l42",
+      "when": {
+        "flag.shen_ch03_sit": true,
+        "flag.shen_ch03_letter_stop": false,
+        "flag.shen_ch03_letter_wait": false,
+        "flag.shen_after_intercept_private_stop": false,
+        "flag.ch04_originals_destroyed": false
+      },
+      "who": "wuze",
+      "expr": "open",
+      "kind": "say",
+      "text": "这个也念。"
+    },
+    {
+      "id": "ch04_s08_shuge.l43",
+      "when": {
+        "flag.shen_ch03_sit": true,
+        "flag.shen_ch03_letter_stop": false,
+        "flag.shen_ch03_letter_wait": false,
+        "flag.shen_after_intercept_private_stop": false,
+        "flag.ch04_originals_destroyed": false
+      },
+      "who": "narr",
+      "kind": "aside",
+      "text": "她偏过脸，没绷住。你陪她笑了一会儿，才把卷拿稳。"
+    },
+    {
+      "id": "ch04_s08_shuge.l44",
       "who": "narr",
       "kind": "aside",
       "text": "裴从门边进来，先搓热握缰的手，才接自己的路书。"
     },
     {
-      "id": "ch04_s08_shuge.l35",
+      "id": "ch04_s08_shuge.l45",
       "when": {
         "flag.pei_ch02_spare_time": true
       },
@@ -336,7 +473,7 @@
       "text": "这半刻是我自己留的空。"
     },
     {
-      "id": "ch04_s08_shuge.l36",
+      "id": "ch04_s08_shuge.l46",
       "when": {
         "flag.pei_ch02_spare_time": true
       },
@@ -346,7 +483,7 @@
       "text": "半刻。"
     },
     {
-      "id": "ch04_s08_shuge.l37",
+      "id": "ch04_s08_shuge.l47",
       "when": {
         "flag.pei_ch02_letter_poem": true
       },
@@ -356,7 +493,7 @@
       "text": "回诗在路书后，没拿去报程。"
     },
     {
-      "id": "ch04_s08_shuge.l38",
+      "id": "ch04_s08_shuge.l48",
       "when": {
         "flag.pei_ch02_letter_poem": true
       },
@@ -366,7 +503,7 @@
       "text": "路书后。"
     },
     {
-      "id": "ch04_s08_shuge.l39",
+      "id": "ch04_s08_shuge.l49",
       "when": {
         "flag.pei_ch02_letter_silent": true
       },
@@ -376,7 +513,7 @@
       "text": "你没回，就没叫人备马。"
     },
     {
-      "id": "ch04_s08_shuge.l40",
+      "id": "ch04_s08_shuge.l50",
       "when": {
         "flag.pei_ch02_letter_silent": true
       },
@@ -386,7 +523,7 @@
       "text": "……"
     },
     {
-      "id": "ch04_s08_shuge.l41",
+      "id": "ch04_s08_shuge.l51",
       "when": {
         "flag.pei_ch02_check_again": true
       },
@@ -396,7 +533,7 @@
       "text": "补俸你肯再核，只列那一次账。"
     },
     {
-      "id": "ch04_s08_shuge.l42",
+      "id": "ch04_s08_shuge.l52",
       "when": {
         "flag.pei_ch02_check_again": true
       },
@@ -406,7 +543,7 @@
       "text": "那一次。"
     },
     {
-      "id": "ch04_s08_shuge.l43",
+      "id": "ch04_s08_shuge.l53",
       "when": {
         "flag.pei_ch02_pause_help": true
       },
@@ -416,7 +553,7 @@
       "text": "不核账、不同行，我另请人了。"
     },
     {
-      "id": "ch04_s08_shuge.l44",
+      "id": "ch04_s08_shuge.l54",
       "when": {
         "flag.pei_ch02_pause_help": true
       },
@@ -426,7 +563,7 @@
       "text": "另请的。"
     },
     {
-      "id": "ch04_s08_shuge.l45",
+      "id": "ch04_s08_shuge.l55",
       "when": {
         "flag.pei_ch03_letter_meal": true
       },
@@ -436,7 +573,7 @@
       "text": "拔刺那封说吃热的，还没报时辰。"
     },
     {
-      "id": "ch04_s08_shuge.l46",
+      "id": "ch04_s08_shuge.l56",
       "when": {
         "flag.pei_ch03_letter_meal": true
       },
@@ -446,7 +583,7 @@
       "text": "时辰。"
     },
     {
-      "id": "ch04_s08_shuge.l47",
+      "id": "ch04_s08_shuge.l57",
       "when": {
         "flag.pei_ch03_letter_no_date": true
       },
@@ -456,7 +593,7 @@
       "text": "不替旧友定日，那格还空着。"
     },
     {
-      "id": "ch04_s08_shuge.l48",
+      "id": "ch04_s08_shuge.l58",
       "when": {
         "flag.pei_ch03_letter_no_date": true
       },
@@ -466,7 +603,7 @@
       "text": "空着。"
     },
     {
-      "id": "ch04_s08_shuge.l49",
+      "id": "ch04_s08_shuge.l59",
       "when": {
         "flag.pei_ch03_letter_stop": true
       },
@@ -476,7 +613,7 @@
       "text": "私约停了，没多备行囊。"
     },
     {
-      "id": "ch04_s08_shuge.l50",
+      "id": "ch04_s08_shuge.l60",
       "when": {
         "flag.pei_ch03_letter_stop": true
       },
@@ -486,7 +623,7 @@
       "text": "行囊。"
     },
     {
-      "id": "ch04_s08_shuge.l51",
+      "id": "ch04_s08_shuge.l61",
       "when": {
         "flag.pei_ch03_letter_poem": true
       },
@@ -496,7 +633,7 @@
       "text": "拔刺的回诗在路书末，没交署里。"
     },
     {
-      "id": "ch04_s08_shuge.l52",
+      "id": "ch04_s08_shuge.l62",
       "when": {
         "flag.pei_ch03_letter_poem": true
       },
@@ -506,7 +643,7 @@
       "text": "末页。"
     },
     {
-      "id": "ch04_s08_shuge.l53",
+      "id": "ch04_s08_shuge.l63",
       "when": {
         "flag.pei_ch03_letter_silent": true
       },
@@ -516,7 +653,7 @@
       "text": "那封没回，我照值次走，没托人问。"
     },
     {
-      "id": "ch04_s08_shuge.l54",
+      "id": "ch04_s08_shuge.l64",
       "when": {
         "flag.pei_ch03_letter_silent": true
       },
@@ -526,41 +663,146 @@
       "text": "……"
     },
     {
-      "id": "ch04_s08_shuge.l55",
+      "id": "ch04_s08_shuge.l65",
       "who": "peizhaoye",
       "expr": "default",
       "kind": "say",
       "text": "晚班交完才有半刻，别的差程另核。"
     },
     {
-      "id": "ch04_s08_shuge.l56",
+      "id": "ch04_s08_shuge.l66",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
       "text": "队里——"
     },
     {
-      "id": "ch04_s08_shuge.l57",
+      "id": "ch04_s08_shuge.l67",
       "who": "peizhaoye",
       "expr": "default",
       "kind": "say",
       "text": "不能领个名字走。"
     },
     {
-      "id": "ch04_s08_shuge.l58",
+      "id": "ch04_s08_shuge.l68",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
       "text": "是。"
     },
     {
-      "id": "ch04_s08_shuge.l59",
+      "id": "ch04_s08_shuge.l69",
+      "when": {
+        "flag.pei_ch03_hug": true,
+        "flag.pei_ch03_letter_stop": false,
+        "flag.pei_ch02_pause_help": false
+      },
+      "who": "wuze",
+      "expr": "open",
+      "kind": "say",
+      "text": "照夜，我想了一句话，想逗你笑。"
+    },
+    {
+      "id": "ch04_s08_shuge.l70",
+      "when": {
+        "flag.pei_ch03_hug": true,
+        "flag.pei_ch03_letter_stop": false,
+        "flag.pei_ch02_pause_help": false
+      },
+      "who": "peizhaoye",
+      "expr": "open",
+      "kind": "say",
+      "text": "说来听。"
+    },
+    {
+      "id": "ch04_s08_shuge.l71",
+      "when": {
+        "flag.pei_ch03_hug": true,
+        "flag.pei_ch03_letter_stop": false,
+        "flag.pei_ch02_pause_help": false
+      },
+      "who": "wuze",
+      "expr": "open",
+      "kind": "say",
+      "text": "……忘了。"
+    },
+    {
+      "id": "ch04_s08_shuge.l72",
+      "when": {
+        "flag.pei_ch03_hug": true,
+        "flag.pei_ch03_letter_stop": false,
+        "flag.pei_ch02_pause_help": false
+      },
+      "who": "peizhaoye",
+      "expr": "open",
+      "kind": "say",
+      "text": "想了多久？"
+    },
+    {
+      "id": "ch04_s08_shuge.l73",
+      "when": {
+        "flag.pei_ch03_hug": true,
+        "flag.pei_ch03_letter_stop": false,
+        "flag.pei_ch02_pause_help": false
+      },
+      "who": "wuze",
+      "expr": "open",
+      "kind": "say",
+      "text": "一路。"
+    },
+    {
+      "id": "ch04_s08_shuge.l74",
+      "when": {
+        "flag.pei_ch03_hug": true,
+        "flag.pei_ch03_letter_stop": false,
+        "flag.pei_ch02_pause_help": false
+      },
+      "who": "narr",
+      "kind": "aside",
+      "text": "你看她低下头，肩动了一下。再抬头时，她已经笑了。"
+    },
+    {
+      "id": "ch04_s08_shuge.l75",
+      "when": {
+        "flag.pei_ch03_hug": true,
+        "flag.pei_ch03_letter_stop": false,
+        "flag.pei_ch02_pause_help": false
+      },
+      "who": "self",
+      "kind": "inner",
+      "text": "（这也成。还没说，她就笑了。）"
+    },
+    {
+      "id": "ch04_s08_shuge.l76",
+      "when": {
+        "flag.pei_ch03_hug": true,
+        "flag.pei_ch03_letter_stop": false,
+        "flag.pei_ch02_pause_help": false
+      },
+      "who": "peizhaoye",
+      "expr": "open",
+      "kind": "say",
+      "text": "那我再坐一会儿。你慢慢想。"
+    },
+    {
+      "id": "ch04_s08_shuge.l77",
+      "when": {
+        "flag.pei_ch03_hug": true,
+        "flag.pei_ch03_letter_stop": false,
+        "flag.pei_ch02_pause_help": false
+      },
+      "who": "narr",
+      "kind": "aside",
+      "text": "你越想越笑，没说成。裴陪你坐了一会儿，才起身。"
+    },
+    {
+      "id": "ch04_s08_shuge.l78",
       "who": "narr",
       "kind": "aside",
       "text": "温把样纸递过来，坐在灯照不到的席角。"
     },
     {
-      "id": "ch04_s08_shuge.l60",
+      "id": "ch04_s08_shuge.l79",
       "when": {
         "flag.wen_ch02_read_again": true
       },
@@ -570,7 +812,7 @@
       "text": "按你快慢读，没替你圈停处。"
     },
     {
-      "id": "ch04_s08_shuge.l61",
+      "id": "ch04_s08_shuge.l80",
       "when": {
         "flag.wen_ch02_read_again": true
       },
@@ -580,7 +822,7 @@
       "text": "停处。"
     },
     {
-      "id": "ch04_s08_shuge.l62",
+      "id": "ch04_s08_shuge.l81",
       "when": {
         "flag.wen_ch02_letter_poem": true
       },
@@ -590,7 +832,7 @@
       "text": "回诗整张留着，没改字。"
     },
     {
-      "id": "ch04_s08_shuge.l63",
+      "id": "ch04_s08_shuge.l82",
       "when": {
         "flag.wen_ch02_letter_poem": true
       },
@@ -600,7 +842,7 @@
       "text": "整张。"
     },
     {
-      "id": "ch04_s08_shuge.l64",
+      "id": "ch04_s08_shuge.l83",
       "when": {
         "flag.wen_ch02_letter_silent": true
       },
@@ -610,7 +852,7 @@
       "text": "没回，后来的改稿留我案上了。"
     },
     {
-      "id": "ch04_s08_shuge.l65",
+      "id": "ch04_s08_shuge.l84",
       "when": {
         "flag.wen_ch02_letter_silent": true
       },
@@ -620,7 +862,7 @@
       "text": "……"
     },
     {
-      "id": "ch04_s08_shuge.l66",
+      "id": "ch04_s08_shuge.l85",
       "when": {
         "flag.wen_ch02_keep_without_pardon": true
       },
@@ -630,7 +872,7 @@
       "text": "折鱼那封收了，也照你说的不猜她。"
     },
     {
-      "id": "ch04_s08_shuge.l67",
+      "id": "ch04_s08_shuge.l86",
       "when": {
         "flag.wen_ch02_keep_without_pardon": true
       },
@@ -640,7 +882,7 @@
       "text": "不猜。"
     },
     {
-      "id": "ch04_s08_shuge.l68",
+      "id": "ch04_s08_shuge.l87",
       "when": {
         "flag.wen_ch02_private_pause": true
       },
@@ -650,7 +892,7 @@
       "text": "只谈公事，私笺没充核稿。"
     },
     {
-      "id": "ch04_s08_shuge.l69",
+      "id": "ch04_s08_shuge.l88",
       "when": {
         "flag.wen_ch02_private_pause": true
       },
@@ -660,7 +902,7 @@
       "text": "公事。"
     },
     {
-      "id": "ch04_s08_shuge.l70",
+      "id": "ch04_s08_shuge.l89",
       "when": {
         "flag.wen_ch03_letter_sing": true
       },
@@ -670,7 +912,7 @@
       "text": "退钱那封还想听唱错，曲子没催准。"
     },
     {
-      "id": "ch04_s08_shuge.l71",
+      "id": "ch04_s08_shuge.l90",
       "when": {
         "flag.wen_ch03_letter_sing": true
       },
@@ -680,7 +922,7 @@
       "text": "唱错。"
     },
     {
-      "id": "ch04_s08_shuge.l72",
+      "id": "ch04_s08_shuge.l91",
       "when": {
         "flag.wen_ch03_letter_fair_pay": true
       },
@@ -690,7 +932,7 @@
       "text": "新槽钱另算，稿工的钱没挪。"
     },
     {
-      "id": "ch04_s08_shuge.l73",
+      "id": "ch04_s08_shuge.l92",
       "when": {
         "flag.wen_ch03_letter_fair_pay": true
       },
@@ -700,7 +942,7 @@
       "text": "稿工。"
     },
     {
-      "id": "ch04_s08_shuge.l74",
+      "id": "ch04_s08_shuge.l93",
       "when": {
         "flag.wen_ch03_letter_stop": true
       },
@@ -710,7 +952,7 @@
       "text": "暂不合唱，曲旁没写你名。"
     },
     {
-      "id": "ch04_s08_shuge.l75",
+      "id": "ch04_s08_shuge.l94",
       "when": {
         "flag.wen_ch03_letter_stop": true
       },
@@ -720,7 +962,7 @@
       "text": "暂不。"
     },
     {
-      "id": "ch04_s08_shuge.l76",
+      "id": "ch04_s08_shuge.l95",
       "when": {
         "flag.wen_ch03_letter_poem": true
       },
@@ -730,7 +972,7 @@
       "text": "退钱的回诗，用你的字试过调。"
     },
     {
-      "id": "ch04_s08_shuge.l77",
+      "id": "ch04_s08_shuge.l96",
       "when": {
         "flag.wen_ch03_letter_poem": true
       },
@@ -740,7 +982,7 @@
       "text": "试调。"
     },
     {
-      "id": "ch04_s08_shuge.l78",
+      "id": "ch04_s08_shuge.l97",
       "when": {
         "flag.wen_ch03_letter_silent": true
       },
@@ -750,7 +992,7 @@
       "text": "退钱那封没回，收了笺，照旧刷槽。"
     },
     {
-      "id": "ch04_s08_shuge.l79",
+      "id": "ch04_s08_shuge.l98",
       "when": {
         "flag.wen_ch03_letter_silent": true
       },
@@ -760,35 +1002,150 @@
       "text": "……"
     },
     {
-      "id": "ch04_s08_shuge.l80",
+      "id": "ch04_s08_shuge.l99",
       "who": "wenqiao",
       "expr": "default",
       "kind": "say",
       "text": "我这里只够晾纸，教字先问许能借哪半间。"
     },
     {
-      "id": "ch04_s08_shuge.l81",
+      "id": "ch04_s08_shuge.l100",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
       "text": "哪半间。"
     },
     {
-      "id": "ch04_s08_shuge.l82",
+      "id": "ch04_s08_shuge.l101",
+      "when": {
+        "flag.wen_ch03_sing": true,
+        "flag.wen_ch03_letter_stop": false,
+        "flag.wen_ch02_private_pause": false
+      },
+      "who": "narr",
+      "kind": "aside",
+      "text": "温荞收纸时哼了半句，你走近一步，听她把尾音收住。"
+    },
+    {
+      "id": "ch04_s08_shuge.l102",
+      "when": {
+        "flag.wen_ch03_sing": true,
+        "flag.wen_ch03_letter_stop": false,
+        "flag.wen_ch02_private_pause": false
+      },
+      "who": "wuze",
+      "expr": "open",
+      "kind": "say",
+      "text": "别停。"
+    },
+    {
+      "id": "ch04_s08_shuge.l103",
+      "when": {
+        "flag.wen_ch03_sing": true,
+        "flag.wen_ch03_letter_stop": false,
+        "flag.wen_ch02_private_pause": false
+      },
+      "who": "wenqiao",
+      "expr": "open",
+      "kind": "say",
+      "text": "想听这支？"
+    },
+    {
+      "id": "ch04_s08_shuge.l104",
+      "when": {
+        "flag.wen_ch03_sing": true,
+        "flag.wen_ch03_letter_stop": false,
+        "flag.wen_ch02_private_pause": false
+      },
+      "who": "wuze",
+      "expr": "open",
+      "kind": "say",
+      "text": "想听你。"
+    },
+    {
+      "id": "ch04_s08_shuge.l105",
+      "when": {
+        "flag.wen_ch03_sing": true,
+        "flag.wen_ch03_letter_stop": false,
+        "flag.wen_ch02_private_pause": false
+      },
+      "who": "narr",
+      "kind": "aside",
+      "text": "她抬眼看你，纸搁回膝上。你在她旁边坐下，等她开口。"
+    },
+    {
+      "id": "ch04_s08_shuge.l106",
+      "when": {
+        "flag.wen_ch03_sing": true,
+        "flag.wen_ch03_letter_stop": false,
+        "flag.wen_ch02_private_pause": false
+      },
+      "who": "self",
+      "kind": "inner",
+      "text": "（她还没唱，我就想跟着了。）"
+    },
+    {
+      "id": "ch04_s08_shuge.l107",
+      "when": {
+        "flag.wen_ch03_sing": true,
+        "flag.wen_ch03_letter_stop": false,
+        "flag.wen_ch02_private_pause": false
+      },
+      "who": "narr",
+      "kind": "aside",
+      "text": "温荞从头哼起。你跟进去，又差半拍，她拖住尾音等你。"
+    },
+    {
+      "id": "ch04_s08_shuge.l108",
+      "when": {
+        "flag.wen_ch03_sing": true,
+        "flag.wen_ch03_letter_stop": false,
+        "flag.wen_ch02_private_pause": false
+      },
+      "who": "wenqiao",
+      "expr": "open",
+      "kind": "say",
+      "text": "这回赶上了。"
+    },
+    {
+      "id": "ch04_s08_shuge.l109",
+      "when": {
+        "flag.wen_ch03_sing": true,
+        "flag.wen_ch03_letter_stop": false,
+        "flag.wen_ch02_private_pause": false
+      },
+      "who": "wuze",
+      "expr": "open",
+      "kind": "say",
+      "text": "再一遍。"
+    },
+    {
+      "id": "ch04_s08_shuge.l110",
+      "when": {
+        "flag.wen_ch03_sing": true,
+        "flag.wen_ch03_letter_stop": false,
+        "flag.wen_ch02_private_pause": false
+      },
+      "who": "narr",
+      "kind": "aside",
+      "text": "她拍了拍自己的膝头，你们又哼了一遍，才各自收纸。"
+    },
+    {
+      "id": "ch04_s08_shuge.l111",
       "who": "liqinghe",
       "expr": "default",
       "kind": "say",
       "text": "原稿领了，只来取落下一页。"
     },
     {
-      "id": "ch04_s08_shuge.l83",
+      "id": "ch04_s08_shuge.l112",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
       "text": "一页。"
     },
     {
-      "id": "ch04_s08_shuge.l84",
+      "id": "ch04_s08_shuge.l113",
       "when": {
         "flag.li_ch02_letter_meet": true
       },
@@ -798,7 +1155,7 @@
       "text": "另约时辰那句，没夹朝班。"
     },
     {
-      "id": "ch04_s08_shuge.l85",
+      "id": "ch04_s08_shuge.l114",
       "when": {
         "flag.li_ch02_letter_meet": true
       },
@@ -808,7 +1165,7 @@
       "text": "另约。"
     },
     {
-      "id": "ch04_s08_shuge.l86",
+      "id": "ch04_s08_shuge.l115",
       "when": {
         "flag.li_ch02_letter_poem": true
       },
@@ -818,7 +1175,7 @@
       "text": "回诗放私纸下，不带上殿。"
     },
     {
-      "id": "ch04_s08_shuge.l87",
+      "id": "ch04_s08_shuge.l116",
       "when": {
         "flag.li_ch02_letter_poem": true
       },
@@ -828,7 +1185,7 @@
       "text": "私纸。"
     },
     {
-      "id": "ch04_s08_shuge.l88",
+      "id": "ch04_s08_shuge.l117",
       "when": {
         "flag.li_ch02_letter_silent": true
       },
@@ -838,7 +1195,7 @@
       "text": "那封没回，原稿照给你看。"
     },
     {
-      "id": "ch04_s08_shuge.l89",
+      "id": "ch04_s08_shuge.l118",
       "when": {
         "flag.li_ch02_letter_silent": true
       },
@@ -848,7 +1205,7 @@
       "text": "原稿。"
     },
     {
-      "id": "ch04_s08_shuge.l90",
+      "id": "ch04_s08_shuge.l119",
       "when": {
         "flag.li_ch02_letter_after_debate": true
       },
@@ -858,7 +1215,7 @@
       "text": "全稿那封说比完再问，不算应约。"
     },
     {
-      "id": "ch04_s08_shuge.l91",
+      "id": "ch04_s08_shuge.l120",
       "when": {
         "flag.li_ch02_letter_after_debate": true
       },
@@ -868,7 +1225,7 @@
       "text": "再问。"
     },
     {
-      "id": "ch04_s08_shuge.l92",
+      "id": "ch04_s08_shuge.l121",
       "when": {
         "flag.li_ch02_letter_public_only": true
       },
@@ -878,7 +1235,7 @@
       "text": "全稿那封停私邀，帖子收回了。"
     },
     {
-      "id": "ch04_s08_shuge.l93",
+      "id": "ch04_s08_shuge.l122",
       "when": {
         "flag.li_ch02_letter_public_only": true
       },
@@ -888,7 +1245,7 @@
       "text": "帖子。"
     },
     {
-      "id": "ch04_s08_shuge.l94",
+      "id": "ch04_s08_shuge.l123",
       "when": {
         "flag.li_ch03_letter_walk": true
       },
@@ -898,7 +1255,7 @@
       "text": "风筝那封要再走一段，只记一段。"
     },
     {
-      "id": "ch04_s08_shuge.l95",
+      "id": "ch04_s08_shuge.l124",
       "when": {
         "flag.li_ch03_letter_walk": true
       },
@@ -908,7 +1265,7 @@
       "text": "一段。"
     },
     {
-      "id": "ch04_s08_shuge.l96",
+      "id": "ch04_s08_shuge.l125",
       "when": {
         "flag.li_ch03_letter_separate": true
       },
@@ -918,7 +1275,7 @@
       "text": "风筝那封各算账，没挪你的钱。"
     },
     {
-      "id": "ch04_s08_shuge.l97",
+      "id": "ch04_s08_shuge.l126",
       "when": {
         "flag.li_ch03_letter_separate": true
       },
@@ -928,7 +1285,7 @@
       "text": "各算。"
     },
     {
-      "id": "ch04_s08_shuge.l98",
+      "id": "ch04_s08_shuge.l127",
       "when": {
         "flag.li_ch03_letter_stop": true
       },
@@ -938,7 +1295,7 @@
       "text": "风筝那封停私约，取稿没作相邀。"
     },
     {
-      "id": "ch04_s08_shuge.l99",
+      "id": "ch04_s08_shuge.l128",
       "when": {
         "flag.li_ch03_letter_stop": true
       },
@@ -948,7 +1305,7 @@
       "text": "取稿。"
     },
     {
-      "id": "ch04_s08_shuge.l100",
+      "id": "ch04_s08_shuge.l129",
       "when": {
         "flag.li_ch03_letter_poem": true
       },
@@ -958,7 +1315,7 @@
       "text": "回诗放私纸，公议仍答原问。"
     },
     {
-      "id": "ch04_s08_shuge.l101",
+      "id": "ch04_s08_shuge.l130",
       "when": {
         "flag.li_ch03_letter_poem": true
       },
@@ -968,7 +1325,7 @@
       "text": "原问。"
     },
     {
-      "id": "ch04_s08_shuge.l102",
+      "id": "ch04_s08_shuge.l131",
       "when": {
         "flag.li_ch03_letter_silent": true
       },
@@ -978,7 +1335,7 @@
       "text": "风筝那封没回，线收好了，没另送。"
     },
     {
-      "id": "ch04_s08_shuge.l103",
+      "id": "ch04_s08_shuge.l132",
       "when": {
         "flag.li_ch03_letter_silent": true
       },
@@ -988,7 +1345,7 @@
       "text": "……"
     },
     {
-      "id": "ch04_s08_shuge.l104",
+      "id": "ch04_s08_shuge.l133",
       "when": {
         "flag.li_ch02_private_yes": true
       },
@@ -998,7 +1355,7 @@
       "text": "那夜留我坐，次日来驳，今日也各自答。"
     },
     {
-      "id": "ch04_s08_shuge.l105",
+      "id": "ch04_s08_shuge.l134",
       "when": {
         "flag.li_ch02_private_yes": true
       },
@@ -1008,7 +1365,7 @@
       "text": "各答。"
     },
     {
-      "id": "ch04_s08_shuge.l106",
+      "id": "ch04_s08_shuge.l135",
       "when": {
         "flag.li_ch02_private_wait": true
       },
@@ -1018,7 +1375,7 @@
       "text": "那夜说改日问，今日独处也照说。"
     },
     {
-      "id": "ch04_s08_shuge.l107",
+      "id": "ch04_s08_shuge.l136",
       "when": {
         "flag.li_ch02_private_wait": true
       },
@@ -1028,7 +1385,7 @@
       "text": "改日。"
     },
     {
-      "id": "ch04_s08_shuge.l108",
+      "id": "ch04_s08_shuge.l137",
       "when": {
         "flag.li_ch02_private_no": true
       },
@@ -1038,7 +1395,7 @@
       "text": "那夜只约论议，这份也是公稿。"
     },
     {
-      "id": "ch04_s08_shuge.l109",
+      "id": "ch04_s08_shuge.l138",
       "when": {
         "flag.li_ch02_private_no": true
       },
@@ -1048,21 +1405,21 @@
       "text": "公稿。"
     },
     {
-      "id": "ch04_s08_shuge.l110",
+      "id": "ch04_s08_shuge.l139",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
       "text": "东西拿齐，往后……别在今夜一同写定。"
     },
     {
-      "id": "ch04_s08_shuge.l111",
+      "id": "ch04_s08_shuge.l140",
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
       "text": "好。"
     },
     {
-      "id": "ch04_s08_shuge.l112",
+      "id": "ch04_s08_shuge.l141",
       "who": "narr",
       "kind": "aside",
       "text": "四人先后离开，灯边只剩唐与你各自收着的纸。"

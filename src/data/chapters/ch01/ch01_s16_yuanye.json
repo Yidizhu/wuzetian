@@ -148,42 +148,101 @@
     },
     {
       "id": "ch01_s16_yuanye.l20",
-      "who": "wuze",
-      "expr": "open",
-      "kind": "say",
-      "text": "飞远就让它走，我可不追到园门外。"
+      "who": "narr",
+      "kind": "aside",
+      "text": "你没投，盯着她夹叶子的手。她把卷边捋平，指尖停在叶脉上。"
     },
     {
       "id": "ch01_s16_yuanye.l21",
-      "who": "narr",
-      "kind": "aside",
-      "text": "叶子一离手就翻了个身，越过石缝，贴到另一片叶上。"
+      "who": "wuze",
+      "expr": "open",
+      "kind": "say",
+      "text": "换这一片给我。"
     },
     {
       "id": "ch01_s16_yuanye.l22",
       "who": "liqinghe",
       "expr": "open",
       "kind": "say",
-      "text": "不追便不追。"
+      "text": "刚换过一回，还要换？"
     },
     {
       "id": "ch01_s16_yuanye.l23",
       "who": "wuze",
       "expr": "open",
       "kind": "say",
-      "text": "好。"
+      "text": "要。"
     },
     {
       "id": "ch01_s16_yuanye.l24",
       "who": "narr",
       "kind": "aside",
-      "text": "她把手里的也放下，没有问这一片算谁的。"
+      "text": "她把那片递向你，自己又挑了一片。"
     },
     {
       "id": "ch01_s16_yuanye.l25",
       "who": "narr",
       "kind": "aside",
-      "text": "你抖掉袖口粘的叶屑，和她一道放下手。"
+      "text": "你走过去接住，将叶子夹进袖里的素帕。"
+    },
+    {
+      "id": "ch01_s16_yuanye.l26",
+      "who": "liqinghe",
+      "expr": "open",
+      "kind": "say",
+      "text": "不投？"
+    },
+    {
+      "id": "ch01_s16_yuanye.l27",
+      "who": "wuze",
+      "expr": "open",
+      "kind": "say",
+      "text": "这片留着。"
+    },
+    {
+      "id": "ch01_s16_yuanye.l28",
+      "who": "narr",
+      "kind": "aside",
+      "text": "她捡起一片断梗的，递到你面前。眼睛却还看着你的袖口。"
+    },
+    {
+      "id": "ch01_s16_yuanye.l29",
+      "who": "self",
+      "kind": "inner",
+      "text": "（她看见我收了。还好，没叫我还。）"
+    },
+    {
+      "id": "ch01_s16_yuanye.l30",
+      "who": "liqinghe",
+      "expr": "open",
+      "kind": "say",
+      "text": "还想赢，就站回线后。"
+    },
+    {
+      "id": "ch01_s16_yuanye.l31",
+      "who": "narr",
+      "kind": "aside",
+      "text": "你接过断梗叶，退回原处。她手里的叶子投偏了，落在你鞋边。"
+    },
+    {
+      "id": "ch01_s16_yuanye.l32",
+      "who": "wuze",
+      "expr": "open",
+      "kind": "say",
+      "text": "这也不算？"
+    },
+    {
+      "id": "ch01_s16_yuanye.l33",
+      "who": "liqinghe",
+      "expr": "open",
+      "kind": "say",
+      "text": "不算。再来。"
+    },
+    {
+      "id": "ch01_s16_yuanye.l34",
+      "who": "narr",
+      "kind": "aside",
+      "text": "你把断梗叶投出去，袖中那一片没再拿出来。"
     }
   ],
   "goto": "ch01_s17_yeting"

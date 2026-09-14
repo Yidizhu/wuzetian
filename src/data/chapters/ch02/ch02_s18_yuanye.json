@@ -152,13 +152,51 @@
       "id": "ch02_s18_yuanye.l20",
       "who": "narr",
       "kind": "aside",
-      "text": "你们绕过低枝，在另一边的阴影里坐下。"
+      "text": "你们绕过低枝。她在阴影里坐下，你收回扶枝的手。"
     },
     {
       "id": "ch02_s18_yuanye.l21",
       "who": "narr",
       "kind": "aside",
-      "text": "你收回扶枝的手，坐到公主身旁。"
+      "text": "你没坐到另一头，把裙摆拢在膝下，坐到她身旁。"
+    },
+    {
+      "id": "ch02_s18_yuanye.l22",
+      "who": "narr",
+      "kind": "aside",
+      "text": "李令仪望了望两人之间，向你挪了一点。你也挪过去。"
+    },
+    {
+      "id": "ch02_s18_yuanye.l23",
+      "who": "self",
+      "kind": "inner",
+      "text": "（就差这一点。方才还想拿枝子指给她看。）"
+    },
+    {
+      "id": "ch02_s18_yuanye.l24",
+      "who": "narr",
+      "kind": "aside",
+      "text": "她低头用鞋尖拨开一片叶，你看见她嘴角翘起来。"
+    },
+    {
+      "id": "ch02_s18_yuanye.l25",
+      "who": "liqinghe",
+      "expr": "open",
+      "kind": "say",
+      "text": "不猜了？"
+    },
+    {
+      "id": "ch02_s18_yuanye.l26",
+      "who": "wuze",
+      "expr": "open",
+      "kind": "say",
+      "text": "歇会儿。"
+    },
+    {
+      "id": "ch02_s18_yuanye.l27",
+      "who": "narr",
+      "kind": "aside",
+      "text": "她把鞋尖收回裙下，你们没再换地方。"
     }
   ],
   "goto": "ch02_s20_hanyuan"

@@ -111,60 +111,66 @@
       "who": "wuze",
       "expr": "open",
       "kind": "say",
-      "text": "四条腿……"
+      "text": "四条腿……你一笑，我就数不清。"
     },
     {
       "id": "ch02_s15_shuge.l15",
       "who": "shenheng",
       "expr": "open",
       "kind": "say",
-      "text": "你找。"
+      "text": "怪我？"
     },
     {
       "id": "ch02_s15_shuge.l16",
       "who": "wuze",
       "expr": "open",
       "kind": "say",
-      "text": "只找到三条，还有一条压在你袖底？"
+      "text": "嗯。再笑一回，我就不数了。"
     },
     {
       "id": "ch02_s15_shuge.l17",
-      "who": "shenheng",
-      "expr": "open",
-      "kind": "say",
-      "text": "袖底。"
+      "who": "narr",
+      "kind": "aside",
+      "text": "沈衡抿住嘴，低头抬袖，底下仍是一块空白。"
     },
     {
       "id": "ch02_s15_shuge.l18",
-      "who": "narr",
-      "kind": "aside",
-      "text": "沈抬起袖子，底下仍是一块空白。"
-    },
-    {
-      "id": "ch02_s15_shuge.l19",
       "who": "shenheng",
       "expr": "open",
       "kind": "say",
       "text": "跑了。"
     },
     {
-      "id": "ch02_s15_shuge.l20",
+      "id": "ch02_s15_shuge.l19",
       "who": "wuze",
       "expr": "open",
       "kind": "say",
-      "text": "……"
+      "text": "腿？"
+    },
+    {
+      "id": "ch02_s15_shuge.l20",
+      "who": "shenheng",
+      "expr": "open",
+      "kind": "say",
+      "text": "鱼少一条腿，你少一句话。"
     },
     {
       "id": "ch02_s15_shuge.l21",
       "who": "narr",
       "kind": "aside",
-      "text": "她把袖子放回去，你们谁也没拿笔补那一条。"
+      "text": "你张了张嘴，又闭上。她先笑出了声，手指还捏着袖角。"
     },
     {
       "id": "ch02_s15_shuge.l22",
+      "who": "self",
+      "kind": "inner",
+      "text": "（这回听见了。她平日都只抿着嘴。）"
+    },
+    {
+      "id": "ch02_s15_shuge.l23",
       "who": "narr",
       "kind": "aside",
-      "text": "你把手从纸边收回，仍看那团墨。"
+      "text": "你也笑，胳膊碰歪了废纸。两个人谁都没扶正。"
     }
   ],
   "goto": "ch02_s20_hanyuan"

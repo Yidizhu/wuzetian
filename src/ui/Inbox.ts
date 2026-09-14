@@ -28,7 +28,8 @@ export class Inbox {
   private el: HTMLElement;
   private badge: HTMLButtonElement;
 
-  constructor(root: HTMLElement, hud: HTMLElement, private deps: InboxDeps, private listDesk: () => LetterT[], private state: () => GameState) {
+  constructor(root: HTMLElement, hud: HTMLElement, private deps: InboxDeps, private listDesk: () => LetterT[], private state: () => GameState,
+    private relation: (who: string) => string | null = () => null) {
     this.el = document.createElement("div");
     this.el.className = "inbox";
     this.el.hidden = true;
@@ -72,6 +73,14 @@ export class Inbox {
       row.dataset.state = slot?.state ?? "";
       row.innerHTML = `<span class="inbox__from"></span><span class="inbox__paper">${PAPER_NAME[l.paper] ?? l.paper}</span><span class="inbox__mark"></span>`;
       row.querySelector(".inbox__from")!.textContent = NAMES[l.from] ?? l.from;
+      // 名字旁边一个关系词（D-154）：不给数字，给「关系到哪儿了」。没来往过的人不写
+      const rel = this.relation(l.from);
+      if (rel) {
+        const tag = document.createElement("span");
+        tag.className = "inbox__rel";
+        tag.textContent = rel;
+        row.querySelector(".inbox__from")!.appendChild(tag);
+      }
       row.querySelector(".inbox__mark")!.textContent = slot?.state === "arrived" ? "未拆" : slot?.state === "replied" ? "已回" : "";
       row.addEventListener("click", (e) => { e.stopPropagation(); this.open(l); });
       panel.appendChild(row);

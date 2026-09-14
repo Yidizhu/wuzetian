@@ -90,86 +90,132 @@
       "id": "ch02_s17_shishe.l11",
       "who": "narr",
       "kind": "aside",
-      "text": "温把袖子抬起，影子从臂上滑到窗下。"
+      "text": "你看温荞把袖子抻平，肩也跟着向你这边倾了一点。"
     },
     {
       "id": "ch02_s17_shishe.l12",
-      "who": "wenqiao",
+      "who": "wuze",
       "expr": "open",
       "kind": "say",
-      "text": "走路勺。"
+      "text": "让我靠一会儿？"
     },
     {
       "id": "ch02_s17_shishe.l13",
-      "who": "wuze",
-      "expr": "open",
-      "kind": "say",
-      "text": "不能换一个么？"
-    },
-    {
-      "id": "ch02_s17_shishe.l14",
       "who": "wenqiao",
       "expr": "open",
       "kind": "say",
-      "text": "天女。昨日读的《维摩诘经》，还记着她。"
+      "text": "靠这里。别压着头发。"
+    },
+    {
+      "id": "ch02_s17_shishe.l14",
+      "who": "narr",
+      "kind": "aside",
+      "text": "她拨开发尾，把肩侧让给你。你挪过去，额角贴上她的肩。"
     },
     {
       "id": "ch02_s17_shishe.l15",
-      "who": "wuze",
-      "expr": "open",
-      "kind": "say",
-      "text": "哪里像？"
+      "who": "self",
+      "kind": "inner",
+      "text": "（她说话时，这里也跟着动。）"
     },
     {
       "id": "ch02_s17_shishe.l16",
       "who": "wenqiao",
       "expr": "open",
       "kind": "say",
-      "text": "舍利弗问她，为什么不转女身。"
+      "text": "看得到么？"
     },
     {
       "id": "ch02_s17_shishe.l17",
+      "who": "wuze",
+      "expr": "open",
+      "kind": "say",
+      "text": "看得到。"
+    },
+    {
+      "id": "ch02_s17_shishe.l18",
+      "who": "narr",
+      "kind": "aside",
+      "text": "温把另一只袖子抬起，影子从臂上滑到窗下。"
+    },
+    {
+      "id": "ch02_s17_shishe.l19",
+      "who": "wenqiao",
+      "expr": "open",
+      "kind": "say",
+      "text": "走路勺。"
+    },
+    {
+      "id": "ch02_s17_shishe.l20",
+      "who": "wuze",
+      "expr": "open",
+      "kind": "say",
+      "text": "不能换一个么？"
+    },
+    {
+      "id": "ch02_s17_shishe.l21",
+      "who": "wenqiao",
+      "expr": "open",
+      "kind": "say",
+      "text": "天女。昨日读的《维摩诘经》，还记着她。"
+    },
+    {
+      "id": "ch02_s17_shishe.l22",
+      "who": "wuze",
+      "expr": "open",
+      "kind": "say",
+      "text": "哪里像？"
+    },
+    {
+      "id": "ch02_s17_shishe.l23",
+      "who": "wenqiao",
+      "expr": "open",
+      "kind": "say",
+      "text": "舍利弗问她，为什么不转女身。"
+    },
+    {
+      "id": "ch02_s17_shishe.l24",
       "who": "wenqiao",
       "expr": "open",
       "kind": "say",
       "text": "她便把两人的模样换过来，轮到她问了。"
     },
     {
-      "id": "ch02_s17_shishe.l18",
+      "id": "ch02_s17_shishe.l25",
       "who": "wenqiao",
       "expr": "open",
       "kind": "say",
       "text": "“何以不转女身？”"
     },
     {
-      "id": "ch02_s17_shishe.l19",
+      "id": "ch02_s17_shishe.l26",
       "who": "wuze",
       "expr": "open",
       "kind": "say",
       "text": "这一句，你是不是等了半天？"
     },
     {
-      "id": "ch02_s17_shishe.l20",
+      "id": "ch02_s17_shishe.l27",
       "who": "wenqiao",
       "expr": "open",
       "kind": "say",
       "text": "……你还看不看影子？"
     },
     {
-      "id": "ch02_s17_shishe.l21",
+      "id": "ch02_s17_shishe.l28",
       "who": "narr",
       "kind": "aside",
       "text": "风把两枝吹到一处。"
     },
     {
-      "id": "ch02_s17_shishe.l22",
+      "id": "ch02_s17_shishe.l29",
       "who": "wenqiao",
       "expr": "open",
       "kind": "say",
       "text": "撞着了。"
     },
     {
-      "id": "ch02_s17_shishe.l23",
+      "id": "ch02_s17_shishe.l30",
       "who": "narr",
       "kind": "aside",
       "text": "温荞放下抬着的手，仍让窗影留在袖上。"

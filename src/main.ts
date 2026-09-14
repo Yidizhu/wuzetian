@@ -32,6 +32,7 @@ import converted from "virtual:converted-data";
 import rasterList from "virtual:raster-assets";
 import { RasterCatalog, framingFor } from "./scene/raster.ts";
 import { CgLayer } from "./ui/CgLayer.ts";
+import { relationTiers, relationWord, closestThisChapter } from "./engine/relation.ts";
 import poemData from "./data/poems.json";
 import duelData from "./data/duels.json";
 import introData from "./data/intros.json";
@@ -172,13 +173,22 @@ const status = new StatusBar(app);
 const dlg = new DialogueBox(app);
 
 const duelUi = new PoemDuel(app);
-const summary = new ChapterSummary(app, NAMES, poems);
+// 关系到哪儿了（D-154）：按专属闲场走进去过哪一档给词，不给数字（engine/relation.ts）
+const tiers = relationTiers(scenes);
+const summary = new ChapterSummary(app, NAMES, poems, tiers);
+/** 这一章开头时的好感，章末拿来算「这一章和谁走得最近」。读档读在章中，就从读档那一刻算起 */
+let chapterAffinity: Record<string, number> = {};
+let chapterNo = -1;
 
 const story = new Story(
   scenes, endings, duels, letters, store, renderer,
   {
     duel: (d) => { dlg.setVisible(false); return duelUi.play(d).finally(() => dlg.setVisible(true)); },
-    chapterEnd: (ch, ps) => { dlg.setVisible(false); return summary.show(store.state, { chapter: ch, poemsThisChapter: ps }).finally(() => dlg.setVisible(true)); },
+    chapterEnd: (ch, ps) => {
+      dlg.setVisible(false);
+      const closest = closestThisChapter(chapterAffinity, store.state.affinity);
+      return summary.show(store.state, { chapter: ch, poemsThisChapter: ps, closest }).finally(() => dlg.setVisible(true));
+    },
     // 题记（D-063）：CC3 的那张纸，和标题同一套版式。看它的时候对话框和选项都收起来
     epigraph: (lines) => new Promise<void>((resolve) => {
       dlg.setVisible(false);
@@ -239,6 +249,7 @@ const play = (cues: Cue[]): void => {
 story.on((e) => {
   switch (e.kind) {
     case "scene":
+      if (e.scene.chapter !== chapterNo) { chapterNo = e.scene.chapter; chapterAffinity = { ...store.state.affinity }; }
       // 从结局那一屏读档回来：两拍留下的东西收干净；看事件图时读了档，图也收掉
       releaseEndingPicture = null;
       cgLayer.clear();
@@ -435,7 +446,7 @@ inbox = new Inbox(app, hud, {
   poems,
   onRead: (id) => story.markLetterRead(id),
   onReply: (id, kind, tags) => story.replyLetter(id, kind, tags),
-}, () => story.letters.onDesk(), () => store.state);
+}, () => story.letters.onDesk(), () => store.state, (who) => relationWord(who, store.state, tiers));
 inbox.setUnread(story.letters.unreadCount(), story.letters.onDesk().length);
 if (dev && (renderer as { name?: string }).name === "three-stage") {
   const three = renderer as ThreeStageRenderer;

@@ -40,6 +40,8 @@
   background: none; border: 0; border-bottom: 1px solid var(--c-ink-4); cursor: pointer;
 }
 .inbox__paper { font-size: 12px; color: var(--c-text-soft); }
+/* 名字旁的关系词（D-154，CC1 加）：比名字小两号、淡一档，只说关系到哪儿了 */
+.inbox__rel { margin-left: 10px; font-size: 12px; letter-spacing: 0.06em; color: var(--c-text-soft); }
 .inbox__mark { font-size: 12px; color: var(--c-text-soft); min-width: 2em; text-align: right; }
 .inbox__row[data-state="arrived"] .inbox__mark { color: var(--c-accent, var(--c-ink-4)); }
 .inbox__close {

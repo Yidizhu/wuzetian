@@ -1,10 +1,13 @@
-import { STAT_KEYS, STAT_LABEL, STAT_MAX, affinityBand } from "../engine/types.ts";
+import { STAT_KEYS, STAT_LABEL, STAT_MAX } from "../engine/types.ts";
+import { relationWord, type RelationTiers } from "../engine/relation.ts";
 import type { GameState } from "../engine/state.ts";
 import type { PoemT } from "../engine/schema.ts";
 
 export interface SummaryData {
   chapter: number;
   poemsThisChapter: string[];
+  /** 这一章和谁走得最近（relation.ts 的 closestThisChapter）。没有就不写那一句 */
+  closest?: string | null;
 }
 
 /**
@@ -17,7 +20,8 @@ export interface SummaryData {
 export class ChapterSummary {
   private el: HTMLElement;
 
-  constructor(root: HTMLElement, private names: Record<string, string>, private poems: Map<string, PoemT>) {
+  constructor(root: HTMLElement, private names: Record<string, string>, private poems: Map<string, PoemT>,
+    private tiers: RelationTiers) {
     this.el = document.createElement("div");
     this.el.className = "summary";
     this.el.hidden = true;
@@ -50,20 +54,34 @@ export class ChapterSummary {
       }
       this.el.appendChild(stats);
 
-      // 已结识的人
-      const met = Object.entries(s.affinity).filter(([, v]) => v > 0).sort((a, b) => b[1] - a[1]);
+      // 已结识的人（D-154，CC1 改）。原来旁边写的是按好感数算的识／契／盟，而那三档的下限正好是专属闲场的门槛——
+      // 玩家看得出自己刚跨过一道门。改成按「这个人的专属闲场你走进去过哪一档」给关系词（engine/relation.ts），
+      // 排序也不按好感数排：按词从深到浅，同一档里照名字表的顺序，不让名次泄露差了几分
+      const met = Object.keys(s.affinity)
+        .map((key) => [key, relationWord(key, s, this.tiers)] as const)
+        .filter((x): x is readonly [string, string] => !!x[1]);
       const people = document.createElement("div");
       people.className = "summary__block";
       people.innerHTML = `<div class="summary__head">已识之人</div>`;
+      if (d.closest && this.names[d.closest]) {
+        const near = document.createElement("div");
+        near.className = "summary__closest";
+        near.textContent = `这一章，你和${this.names[d.closest]}走得最近。`;
+        people.appendChild(near);
+      }
       if (!met.length) {
         people.innerHTML += `<div class="summary__empty">还没有人。这一章她只在看。</div>`;
       } else {
         const ul = document.createElement("div");
         ul.className = "summary__people";
-        for (const [key, v] of met) {
+        const order = Object.keys(this.names);
+        const depth = (w: string) => ["有来往", "常来常往", "相知", "心照"].indexOf(w);
+        met.sort((a, b) => depth(b[1]) - depth(a[1]) || order.indexOf(a[0]) - order.indexOf(b[0]));
+        for (const [key, word] of met) {
           const row = document.createElement("div");
           row.className = "summary__person";
-          row.innerHTML = `<span class="summary__name"></span><span class="summary__band">${affinityBand(v)}</span>`;
+          row.innerHTML = `<span class="summary__name"></span><span class="summary__band"></span>`;
+          row.querySelector(".summary__band")!.textContent = word;
           row.querySelector(".summary__name")!.textContent = this.names[key] ?? key;
           ul.appendChild(row);
         }

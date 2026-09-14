@@ -52,6 +52,11 @@ const evalJs = eIdx >= 0 ? argv[eIdx + 1]! : "";
 // --letters id,id：存档里这几封信已经送到案上、没拆
 const lsIdx = argv.indexOf("--letters");
 const onDesk = lsIdx >= 0 ? argv[lsIdx + 1]!.split(",").filter(Boolean) : [];
+// --affinity 人=数,人=数：存档里的好感；--seen 场次,场次：这几场算看过（B26 截关系词）
+const aIdx = argv.indexOf("--affinity");
+const affinity = Object.fromEntries((aIdx >= 0 ? argv[aIdx + 1]! : "").split(",").filter(Boolean).map((kv) => { const [k, v] = kv.split("="); return [k!, Number(v)]; }));
+const sIdx = argv.indexOf("--seen");
+const seenScenes = sIdx >= 0 ? argv[sIdx + 1]!.split(",").filter(Boolean) : [];
 // --size 宽x高：只截这一个视口（B24：矮屏复现信纸顶部被切）
 const szIdx = argv.indexOf("--size");
 if (szIdx >= 0) {
@@ -59,7 +64,7 @@ if (szIdx >= 0) {
   VIEWS.splice(0, VIEWS.length, { name: `${w}x${h}`, width: w!, height: h!, dpr: 2, mobile: true });
 }
 const prologue = argv.includes("--prologue");
-const scenes = argv.filter((a, i) => !a.startsWith("--") && ![rIdx, lIdx, fIdx, tIdx, gIdx, eIdx, lsIdx, szIdx].some((j) => j >= 0 && i === j + 1));
+const scenes = argv.filter((a, i) => !a.startsWith("--") && ![rIdx, lIdx, fIdx, tIdx, gIdx, eIdx, lsIdx, szIdx, aIdx, sIdx].some((j) => j >= 0 && i === j + 1));
 if (!scenes.length && !prologue) scenes.push("ch01_s01_zhaoyang");
 
 function findChrome(): string {
@@ -153,7 +158,7 @@ try {
     for (const sceneId of scenes) {
       // 直接写一份自动存档把人放到这一场，比从头点过去快，也不依赖路线
       const save = { version: 1, dataVersion: DATA_VERSION, savedAt: 0, sceneId, lineIndex, stats: { shi: 5, ming: 5, cai: 5, xin: 5 },
-        affinity: {}, flags, protagonistName: "吾则添", seenLineIds: [], poemsCollected: [], endingsUnlocked: [], letters: onDesk.map((id) => ({ id, state: "arrived", dueAt: 1, repliedWith: null })), lastSeenAt: 0, introsSeen: [] };
+        affinity, flags, protagonistName: "吾则添", seenLineIds: seenScenes.map((id) => `${id}.l1`), poemsCollected: [], endingsUnlocked: [], letters: onDesk.map((id) => ({ id, state: "arrived", dueAt: 1, repliedWith: null })), lastSeenAt: 0, introsSeen: [] };
       await send("Page.navigate", { url: `http://localhost:${PORT}/?notitle=1` });
       await sleep(400);
       await evaluate(`localStorage.clear(); localStorage.setItem("wuzetian.notice.storage","1"); localStorage.setItem("wuzetian.save.0", ${JSON.stringify(JSON.stringify(save))}); true`);

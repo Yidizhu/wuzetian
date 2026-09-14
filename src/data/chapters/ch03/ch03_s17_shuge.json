@@ -135,36 +135,81 @@
     },
     {
       "id": "ch03_s17_shuge.l18",
-      "who": "wuze",
-      "expr": "default",
-      "kind": "say",
-      "text": "这回是直的。"
+      "who": "narr",
+      "kind": "aside",
+      "text": "你看她抹凳角的手，水珠沿着指节往下淌。"
     },
     {
       "id": "ch03_s17_shuge.l19",
-      "who": "shenheng",
-      "expr": "default",
+      "who": "wuze",
+      "expr": "open",
       "kind": "say",
-      "text": "嗯。"
+      "text": "手给我暖暖。"
     },
     {
       "id": "ch03_s17_shuge.l20",
       "who": "shenheng",
-      "expr": "default",
+      "expr": "open",
       "kind": "say",
-      "text": "这一回。"
+      "text": "你的也凉。"
     },
     {
       "id": "ch03_s17_shuge.l21",
-      "who": "narr",
-      "kind": "aside",
-      "text": "檐水又接成了线。两张凳子都没再挪。"
+      "who": "wuze",
+      "expr": "open",
+      "kind": "say",
+      "text": "那就一起。"
     },
     {
       "id": "ch03_s17_shuge.l22",
       "who": "narr",
       "kind": "aside",
-      "text": "你把擦过手的布放稳，准备回观里。"
+      "text": "沈衡伸过手来。你用两只手拢住，低头贴了贴她的指背。"
+    },
+    {
+      "id": "ch03_s17_shuge.l23",
+      "who": "self",
+      "kind": "inner",
+      "text": "（她肯让我这样拿着。还有一只手呢。）"
+    },
+    {
+      "id": "ch03_s17_shuge.l24",
+      "who": "shenheng",
+      "expr": "open",
+      "kind": "say",
+      "text": "握太紧了。"
+    },
+    {
+      "id": "ch03_s17_shuge.l25",
+      "who": "narr",
+      "kind": "aside",
+      "text": "你松开一点。她另一只手覆到你手背上，把你的袖口压住。"
+    },
+    {
+      "id": "ch03_s17_shuge.l26",
+      "who": "wuze",
+      "expr": "open",
+      "kind": "say",
+      "text": "这样？"
+    },
+    {
+      "id": "ch03_s17_shuge.l27",
+      "who": "shenheng",
+      "expr": "open",
+      "kind": "say",
+      "text": "嗯。"
+    },
+    {
+      "id": "ch03_s17_shuge.l28",
+      "who": "narr",
+      "kind": "aside",
+      "text": "檐水接成了线。你们的手搁在膝间，等雨小下来才分开。"
+    },
+    {
+      "id": "ch03_s17_shuge.l29",
+      "who": "narr",
+      "kind": "aside",
+      "text": "你将擦手布叠好放在她凳边，起身回观里。"
     }
   ],
   "goto": "ch03_s22_nvguan"

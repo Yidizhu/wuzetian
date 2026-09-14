@@ -387,6 +387,8 @@ html, body {
 .summary__people { display: flex; flex-direction: column; gap: 8px; }
 .summary__person { display: flex; align-items: baseline; gap: 14px; font-size: 17px; }
 .summary__band { font-size: 14px; color: var(--c-text-soft); }
+/* 这一章和谁走得最近（D-154，CC1 加）：一句话，不排名、不给数 */
+.summary__closest { font-size: 15px; color: var(--c-text); margin: 0 0 12px; }
 .summary__poem { margin-bottom: 12px; }
 .summary__poemLine { font-size: 17px; line-height: 2.1; letter-spacing: 0.06em; }
 .summary__poemFrom { font-size: 13px; color: var(--c-text-soft); }

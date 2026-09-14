@@ -135,56 +135,61 @@
     },
     {
       "id": "ch01_s13_shuge.l18",
-      "who": "wuze",
-      "expr": "open",
-      "kind": "say",
-      "text": "……"
+      "who": "narr",
+      "kind": "aside",
+      "text": "你看她把杯沿转了半圈，唇刚离开，杯子又搁回案上。"
     },
     {
       "id": "ch01_s13_shuge.l19",
-      "who": "shenheng",
+      "who": "wuze",
       "expr": "open",
       "kind": "say",
-      "text": "总有一杯……"
+      "text": "这杯给我。"
     },
     {
       "id": "ch01_s13_shuge.l20",
-      "who": "narr",
-      "kind": "aside",
-      "text": "你把左杯推过去，她把右杯推回来。"
+      "who": "shenheng",
+      "expr": "open",
+      "kind": "say",
+      "text": "还没分出哪杯淡。"
     },
     {
       "id": "ch01_s13_shuge.l21",
       "who": "wuze",
-      "expr": "default",
+      "expr": "open",
       "kind": "say",
-      "text": "这回算换过了。"
+      "text": "不分了。就要你这杯。"
     },
     {
       "id": "ch01_s13_shuge.l22",
-      "who": "shenheng",
-      "expr": "default",
-      "kind": "say",
-      "text": "这回。"
+      "who": "narr",
+      "kind": "aside",
+      "text": "沈衡手停在杯边，看了你一眼，才把杯子推过来。"
     },
     {
       "id": "ch01_s13_shuge.l23",
       "who": "shenheng",
       "expr": "open",
       "kind": "say",
-      "text": "算。"
+      "text": "拿着。别又换回去。"
     },
     {
       "id": "ch01_s13_shuge.l24",
-      "who": "narr",
-      "kind": "aside",
-      "text": "两人又喝了一口，没有再报浓淡。"
+      "who": "self",
+      "kind": "inner",
+      "text": "（她明白了。我没说浓淡。）"
     },
     {
       "id": "ch01_s13_shuge.l25",
       "who": "narr",
       "kind": "aside",
-      "text": "你挽好袖口，把茶杯放回两人中间。"
+      "text": "你接来喝了一口。她拿起另一杯，没再报浓淡。"
+    },
+    {
+      "id": "ch01_s13_shuge.l26",
+      "who": "narr",
+      "kind": "aside",
+      "text": "两只杯子各留在手里，你陪她喝到见底。"
     }
   ],
   "goto": "ch01_s17_yeting"
