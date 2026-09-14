@@ -1,0 +1,17 @@
+/* 事件图层（D-142，B23，CC1 加）：一张整图盖住背景与立绘，对话框之下。
+   **默认一条都不生效**：public/cg/ 是空的，剧本里也还没有一句「事件图」。
+   过渡用墨晕一样的淡入淡出，数（多久、推不推近）归 CC3 调 */
+
+.cg {
+  position: absolute; inset: 0; z-index: 3;
+  background: var(--c-ground) center / cover no-repeat;
+  opacity: 0;
+  transition: opacity 520ms var(--ease);
+  pointer-events: none;                 /* 点击由 tap.ts 在 window 上接，这一层不挡 */
+}
+.cg[data-state="shown"] { opacity: 1; }
+.cg[data-state="out"]   { opacity: 0; }
+
+@media (prefers-reduced-motion: reduce) {
+  .cg { transition: none; }
+}

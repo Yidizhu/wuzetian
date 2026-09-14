@@ -37,6 +37,13 @@ export interface StoryHooks {
    * 可选：无头工具没有图。
    */
   preload?(scene: Scene, soon?: boolean): Promise<void>;
+  /**
+   * 事件图（D-142，B23）：铺一张整图，玩家点一下退回才 resolve。
+   * `first` 为真是第一次解锁——那一次要停一拍才认点击（照结局卡第一拍，读上一句的人手还在连点）。
+   * 返回 false 表示这张图还没有（没出图、读不出来）：引擎当这一格不存在，也不记解锁。
+   * 可选：无头工具不看图，直接跳过。
+   */
+  cg?(key: string, first: boolean): Promise<boolean>;
 }
 
 export interface ChoiceView {
@@ -218,6 +225,7 @@ export class Story {
     this.idx = lineIndex;
     this.finished = false;                 // 读档读回结局之前，这一局还没落幕
     this.picturing = false;                // 看结局画面时读了档：那一拍的钩子不会再 resolve，别让它锁住点击
+    this.cging = false;                    // 看事件图时读了档，同理
 
     // 色板跟着场景走。整个 UI 只认 CSS 变量，不知道自己在哪套色板里。
     document.documentElement.dataset.palette = scene.palette;
@@ -299,6 +307,8 @@ export class Story {
       const line = scene.lines[this.idx]!;
       // 题记不进对话框：连着的几句收成一张纸，交给题记层
       if (line.who === "tiji") { void this.runEpigraph(scene); return; }
+      // 事件图不进对话框：铺整图，点一下退回，再读下一句
+      if (line.who === "cg") { void this.runCg(scene, line); return; }
       const first = this.store.markSeen(line.id);
       this.emit({
         kind: "line",
@@ -341,6 +351,33 @@ export class Story {
 
   /** 题记那张纸还在屏幕上。这时候的推进（键盘回车之类）一律不算，否则会叠出第二张 */
   private epigraphing = false;
+  /** 事件图还在屏幕上（B23）。这时候的推进不算，否则会跳过图直接读下一句 */
+  private cging = false;
+
+  /**
+   * 事件图那一格（D-142，B23）。**每次经过都播**：它是这一刻的画面，不是一次性的奖励；
+   * 但只有第一次解锁时停一拍才认点击（UI 那头管停多久）。解锁记进存档，以后回廊用。
+   * 自动存档停在这一格：看图时关掉，回来再看一次这张图，而不是从图后面接着读。
+   */
+  private async runCg(scene: Scene, line: Scene["lines"][number]): Promise<void> {
+    const key = line.text;
+    const i = this.idx;
+    this.store.markSeen(line.id);
+    this.autosave();
+    let shown = false;
+    if (this.hooks.cg) {
+      this.cging = true;
+      try {
+        shown = await this.hooks.cg(key, !this.store.state.cgsSeen.has(key));
+      } finally {
+        this.cging = false;
+      }
+    }
+    if (shown) this.store.state.cgsSeen.add(key);
+    if (this.cur !== scene || this.idx !== i) return;   // 看图的时候读了档
+    this.idx = i + 1;
+    this.present();
+  }
 
   /**
    * 把从当前位置起连续的题记句收成一次（D-063）。
@@ -518,7 +555,7 @@ export class Story {
 
   /** 点一下：推进一句，或者到了句尾就交给选项 */
   advance(): void {
-    if (this.epigraphing || this.picturing || this.finished) return;
+    if (this.epigraphing || this.picturing || this.finished || this.cging) return;
     if (this.resume) { const r = this.resume; this.resume = null; r(); return; }
     if (!this.cur) return;
     if (this.idx < this.cur.lines.length) this.idx += 1;

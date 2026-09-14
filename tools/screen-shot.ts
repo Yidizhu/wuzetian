@@ -46,8 +46,20 @@ const taps = tIdx >= 0 ? Number(argv[tIdx + 1]) : 0;
 // --tap-gap 毫秒：两下之间隔多久。结局第一拍要停 1.5 秒才认点击（D-084），截第二拍时给 1600
 const gIdx = argv.indexOf("--tap-gap");
 const tapGap = gIdx >= 0 ? Number(argv[gIdx + 1]) : 300;
+// --eval "<js>"：进场、点完之后，截图之前在页面里跑一段（B24：打开信箱、点开一封信）
+const eIdx = argv.indexOf("--eval");
+const evalJs = eIdx >= 0 ? argv[eIdx + 1]! : "";
+// --letters id,id：存档里这几封信已经送到案上、没拆
+const lsIdx = argv.indexOf("--letters");
+const onDesk = lsIdx >= 0 ? argv[lsIdx + 1]!.split(",").filter(Boolean) : [];
+// --size 宽x高：只截这一个视口（B24：矮屏复现信纸顶部被切）
+const szIdx = argv.indexOf("--size");
+if (szIdx >= 0) {
+  const [w, h] = argv[szIdx + 1]!.split("x").map(Number);
+  VIEWS.splice(0, VIEWS.length, { name: `${w}x${h}`, width: w!, height: h!, dpr: 2, mobile: true });
+}
 const prologue = argv.includes("--prologue");
-const scenes = argv.filter((a, i) => !a.startsWith("--") && ![rIdx, lIdx, fIdx, tIdx, gIdx].some((j) => j >= 0 && i === j + 1));
+const scenes = argv.filter((a, i) => !a.startsWith("--") && ![rIdx, lIdx, fIdx, tIdx, gIdx, eIdx, lsIdx, szIdx].some((j) => j >= 0 && i === j + 1));
 if (!scenes.length && !prologue) scenes.push("ch01_s01_zhaoyang");
 
 function findChrome(): string {
@@ -141,7 +153,7 @@ try {
     for (const sceneId of scenes) {
       // 直接写一份自动存档把人放到这一场，比从头点过去快，也不依赖路线
       const save = { version: 1, dataVersion: DATA_VERSION, savedAt: 0, sceneId, lineIndex, stats: { shi: 5, ming: 5, cai: 5, xin: 5 },
-        affinity: {}, flags, protagonistName: "吾则添", seenLineIds: [], poemsCollected: [], endingsUnlocked: [], letters: [], lastSeenAt: 0, introsSeen: [] };
+        affinity: {}, flags, protagonistName: "吾则添", seenLineIds: [], poemsCollected: [], endingsUnlocked: [], letters: onDesk.map((id) => ({ id, state: "arrived", dueAt: 1, repliedWith: null })), lastSeenAt: 0, introsSeen: [] };
       await send("Page.navigate", { url: `http://localhost:${PORT}/?notitle=1` });
       await sleep(400);
       await evaluate(`localStorage.clear(); localStorage.setItem("wuzetian.notice.storage","1"); localStorage.setItem("wuzetian.save.0", ${JSON.stringify(JSON.stringify(save))}); true`);
@@ -151,6 +163,7 @@ try {
       await sleep(4200);        // 推镜 2.6 秒 + 立绘挂上
       for (let i = 0; i < taps; i++) { await tap(view); await sleep(tapGap); }
       if (taps) await sleep(2500);
+      if (evalJs) { await evaluate(`(async () => { ${evalJs} })()`); await sleep(900); }
       const info = await evaluate<string>(`JSON.stringify({
         renderer: document.querySelector('.stage')?.className,
         viewport: [innerWidth, innerHeight],
@@ -158,6 +171,7 @@ try {
         slots: [...document.querySelectorAll('.cast__slot')].map(n => { const r = n.getBoundingClientRect(); const s = n.querySelector('svg, img')?.getBoundingClientRect(); const cs = getComputedStyle(n);
           return { who: n.dataset.char, side: n.dataset.side, active: n.dataset.active, box: [r.x|0, r.y|0, r.width|0, r.height|0], svg: s ? [s.x|0, s.y|0, s.width|0, s.height|0] : null, opacity: cs.opacity, filter: cs.filter }; }),
         dlg: (() => { const r = document.querySelector('.dlg').getBoundingClientRect(); return [r.x|0, r.y|0, r.width|0, r.height|0]; })(),
+        probe: document.documentElement.dataset.probe,
       })`);
       const png = await send<{ data: string }>("Page.captureScreenshot", { format: "png" });
       const file = join(OUT, `${sceneId}-${view.name}${renderer ? "-" + renderer : ""}${taps ? "-taps" + taps : ""}.png`);

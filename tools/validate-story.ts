@@ -18,6 +18,7 @@ import { AFFINITY_BANDS } from "../src/engine/types.ts";
 import { IDENTITY_RANKS } from "../src/engine/identity.ts";
 import { PORTRAITS } from "../src/char/portraits.ts";
 import { BACKDROPS, backdropKey } from "../src/scene/backdrops.ts";
+import { CGS } from "../src/scene/cgs.ts";
 import { readdirSync } from "node:fs";
 
 /**
@@ -463,6 +464,15 @@ if (mainRun) {
   }
   for (const f of knee) if (!full.has(f)) err(`public/char/knee/${f}.webp`, "full", "只有膝上、没有全身。引擎按全身图判断这个人有没有光栅图，这张永远用不上");
   for (const k of sceneImgs) if (!BACKDROPS[k]) err(`public/scene/${k}.webp`, "file", "这张背景不在 src/scene/backdrops.ts 的表里，引擎永远选不到它");
+
+  // 事件图（B23）：剧本里写的 key 表里要有；public/cg 里的文件要叫得上名字
+  for (const k of webps("cg")) if (!CGS[k]) err(`public/cg/${k}.webp`, "file", "这张事件图不在 src/scene/cgs.ts 的表里，剧本里写不到它");
+  for (const { file, s } of scenes.values()) {
+    for (const l of s.lines) {
+      if (l.who !== "cg") continue;
+      if (!CGS[l.text]) err(file, l.id, `事件图「${l.text}」不在 src/scene/cgs.ts 的表里。文本一栏写的是图的 key，不是描述`);
+    }
+  }
 
   // 剧本用到的每种「地点·色板·布置」，背景表都要有。没有的话那一场有图也不会被认出来，而且覆盖表会少算
   const usedBackdrops = new Set<string>();

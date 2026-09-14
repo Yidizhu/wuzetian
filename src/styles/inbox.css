@@ -13,10 +13,17 @@
 
 .inbox {
   position: absolute; inset: 0; z-index: 7;
-  display: flex; align-items: center; justify-content: center;
+  /* B24（CC1 改，YIDI 真机报：信刚收到看不到开头、拉不上去，回过之后就好了）。
+     原来是 align-items:center + overflow-y:auto。**flex 居中的内容一旦比容器高，多出来的一半溢出到容器上边，
+     滚动只能往下滚，顶上那一截永远够不着。** 回过信之后回法收成一行「已回过」，信变短、装得下，所以又好了——
+     那正是证据。改成子元素 margin:auto：装得下时照样居中，装不下时从顶开始排、整封都能滚到。
+     另外整个 #app 改成了 fixed 贴可见区（app.css），100vh 比屏幕高那一截也一起没了 */
+  display: flex; align-items: flex-start; justify-content: center;
   background: color-mix(in srgb, var(--c-line) 22%, transparent);
-  overflow-y: auto; padding: 16px;
+  overflow-y: auto; overscroll-behavior: contain; -webkit-overflow-scrolling: touch;
+  padding: max(16px, env(safe-area-inset-top)) 16px max(16px, env(safe-area-inset-bottom));
 }
+.inbox > .inbox__panel, .inbox > .letter { margin: auto; }
 .inbox__panel {
   width: min(440px, 90vw); padding: 22px 20px;
   background: var(--c-ground);
@@ -70,6 +77,11 @@
 .letter__poemLine { display: block; font-size: 17px; line-height: 2.0; letter-spacing: 0.08em; }
 .letter__poemFrom { display: block; font-size: 12px; color: var(--c-text-soft); }
 .letter__poemMeans { display: block; font-size: 13px; line-height: 1.8; color: var(--c-text-soft); margin-top: 6px; }
+/* B24（CC1 改）：引诗「点一下看她借这句说了什么」是同一个毛病——上下两道线看得出是一栏，看不出能点。
+   出处后面跟一个很淡的省略号，只说「还有」；点开过一次就撤掉 */
+.letter__poem:not([data-opened="1"]) .letter__poemFrom::after {
+  content: "　⋯"; color: color-mix(in srgb, var(--c-text-soft) 60%, transparent);
+}
 
 /* 她没写的：一片空白，点了才有字 */
 .letter__blank {
@@ -77,6 +89,13 @@
   background: none; border: 0; text-align: left; font-family: inherit; cursor: pointer;
 }
 .letter__blank:not([data-opened="1"]):hover { background: color-mix(in srgb, var(--c-ink-4) 18%, transparent); }
+/* B24（CC1 改）：第三层唯一的提示是上面那条 :hover——**手机上没有 hover**，那一层在手机上就是一块什么都没有的空白，
+   没有任何东西告诉玩家它能碰。YIDI 两张截图里都没碰它，而它是这封信里最要紧的那一层（D-147：被界面藏住等于没做）。
+   入口只挑一种：**一道很淡的虚线框**。只说「这里空着一块」，不说里面有什么；碰过之后框就撤掉，痕迹不留 */
+.letter__blank:not([data-opened="1"]) {
+  outline: 1px dashed color-mix(in srgb, var(--c-ink-4) 55%, transparent);
+  outline-offset: -4px;
+}
 .letter__inner { font-size: 15px; line-height: 1.9; color: var(--c-text-soft); animation: fade-in 600ms var(--ease) both; }
 
 .letter__replies { border-top: 1px solid var(--c-ink-4); padding-top: 14px; }

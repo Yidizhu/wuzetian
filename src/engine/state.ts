@@ -30,6 +30,8 @@ export interface GameState {
    * 十一个人每次出场都报一遍职务，第三次就成了噪音。
    */
   introsSeen: Set<string>;
+  /** 解锁过的事件图（D-142，B23）。以后回廊用；现在只决定「第一次看要停一拍」 */
+  cgsSeen: Set<string>;
 }
 
 export const DEFAULT_NAME = "吾则添";
@@ -48,6 +50,7 @@ export function newState(): GameState {
     letters: [],
     lastSeenAt: Date.now(),
     introsSeen: new Set(),
+    cgsSeen: new Set(),
   };
 }
 

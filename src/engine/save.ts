@@ -43,6 +43,8 @@ export interface SaveV1 {
   dataVersion?: number;
   /** 见过登场卡的角色（D-048）。老档没有这个字段，按空算：卡会再出一次，不会出错 */
   introsSeen?: string[];
+  /** 解锁过的事件图（B23）。老档没有这个字段，按空算：每张图算第一次看，多停一拍，不会出错 */
+  cgsSeen?: string[];
 }
 
 type AnySave = { version?: number } & Record<string, unknown>;
@@ -69,6 +71,7 @@ export function serialize(s: GameState, sceneId: string, lineIndex: number): Sav
     lastSeenAt: Date.now(),
     dataVersion: DATA_VERSION,
     introsSeen: [...s.introsSeen],
+    cgsSeen: [...s.cgsSeen],
   };
 }
 
@@ -81,6 +84,7 @@ export function deserialize(d: SaveV1): { state: GameState; sceneId: string; lin
   state.seenLineIds = new Set(d.seenLineIds ?? []);
   state.poemsCollected = new Set(d.poemsCollected ?? []);
   state.introsSeen = new Set(d.introsSeen ?? []);
+  state.cgsSeen = new Set(d.cgsSeen ?? []);
   state.endingsUnlocked = new Set(d.endingsUnlocked ?? []);
   state.letters = (d.letters ?? []).map((l) => ({ ...l }));
   // 读档时保留存档里那个时刻，M4 靠它算「你不在的这段时间有哪些信到了」

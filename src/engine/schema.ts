@@ -30,9 +30,12 @@ export const CharacterKey = z.enum(CHARACTER_KEYS, {
  * 题记不是一个人在说话，是纸上先写好的几行。剧本「说话人」一栏写「题记」，转换器出 `tiji`；
  * 引擎把连续的题记句收成一次，交给 CC3 的题记层（竖排、墨晕进出），不进对话框。
  * 不加新字段：它就是台词的一种说话人，序幕和第二、三章开头的短序都走这一条。
+ *
+ * 事件图（D-142，B23）也走同一条：剧本「说话人」写「事件图」，转换器出 `cg`，**文本写图的 key**（src/scene/cgs.ts）。
+ * 引擎走到这一句就铺一张整图，点一下退回，这一句本身不进对话框。
  */
-export const SpeakerKey = z.union([CharacterKey, z.enum(["self", "narr", "tiji"])], {
-  errorMap: () => ({ message: `说话人只能是角色 key，或 self（主角内心）、narr（旁白）、tiji（题记）` }),
+export const SpeakerKey = z.union([CharacterKey, z.enum(["self", "narr", "tiji", "cg"])], {
+  errorMap: () => ({ message: `说话人只能是角色 key，或 self（主角内心）、narr（旁白）、tiji（题记）、cg（事件图）` }),
 });
 
 /**

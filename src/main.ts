@@ -31,6 +31,7 @@ import adultScenes from "virtual:adult-scenes";
 import converted from "virtual:converted-data";
 import rasterList from "virtual:raster-assets";
 import { RasterCatalog, framingFor } from "./scene/raster.ts";
+import { CgLayer } from "./ui/CgLayer.ts";
 import poemData from "./data/poems.json";
 import duelData from "./data/duels.json";
 import introData from "./data/intros.json";
@@ -166,6 +167,7 @@ let renderer = await pickRenderer(stageRoot);
 
 const store = new Store();
 const cast = new CharacterLayer(app, sprites, (f) => store.state.flags[f] === true, raster);
+const cgLayer = new CgLayer(app, raster);
 const status = new StatusBar(app);
 const dlg = new DialogueBox(app);
 
@@ -183,6 +185,14 @@ const story = new Story(
       choices.hide();
       mountEpigraph(document.body, { lines, onDone: () => { dlg.setVisible(true); resolve(); } });
     }),
+    // 事件图（D-142，B23）：铺整图、点一下退回。看图时对话框和选项收起
+    cg: async (key, first) => {
+      choices.hide();
+      dlg.setVisible(false);
+      const shown = await cgLayer.show(key, first);
+      dlg.setVisible(true);
+      return shown;
+    },
     // 换场前把这一场的立绘先解码好（B21）；引擎预取下一场时也调这里，那一次不阻塞
     preload: (scene) => cast.preload(scene.cast, scene.dressing ?? ""),
     // 结局第一拍（D-084）：只有画面。对话框、选项收起，点一下才出正文。
@@ -229,8 +239,9 @@ const play = (cues: Cue[]): void => {
 story.on((e) => {
   switch (e.kind) {
     case "scene":
-      // 从结局那一屏读档回来：两拍留下的东西收干净
+      // 从结局那一屏读档回来：两拍留下的东西收干净；看事件图时读了档，图也收掉
       releaseEndingPicture = null;
+      cgLayer.clear();
       delete app.dataset.ending;
       app.querySelectorAll(".ending-title").forEach((n) => n.remove());
       play(cuesForScene(e.scene, cueState, performance.now()));
@@ -319,6 +330,7 @@ onTap(() => {
   if (slots.visible || inbox?.visible) return;
   if (openPanel(".duel") || openPanel(".summary")) return;
   if (releaseEndingPicture) { releaseEndingPicture(); return; }
+  if (cgLayer.release()) return;
   if (dlg.complete()) return;
   story.advance();
 });
@@ -326,6 +338,7 @@ window.addEventListener("keydown", (e) => {
   if (e.key !== " " && e.key !== "Enter" && e.key !== "ArrowRight") return;
   e.preventDefault();
   if (releaseEndingPicture) { releaseEndingPicture(); return; }
+  if (cgLayer.release()) return;
   if (dlg.complete()) return;
   story.advance();
 });

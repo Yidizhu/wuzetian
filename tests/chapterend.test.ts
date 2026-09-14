@@ -713,6 +713,51 @@ test("D-124 未读攒满截走了有固定截获点的信：不跳场，走到�
   assert.equal(inbox.forceInterceptAt("s11")?.id, "fixed", "走到截获场才接住它");
 });
 
+test("B23 事件图：铺图时推进不算；第一次才算解锁；没有图就当这一格不存在", async () => {
+  const mk = () => {
+    const s = scene("x", 1, { goto: "x" });
+    s.lines = [
+      { id: "a", who: "narr", kind: "aside", text: "她看见马。" },
+      { id: "c", who: "cg", kind: "aside", text: "peizhaoye_xunma" },
+      { id: "b", who: "narr", kind: "aside", text: "没说出口的那一句。" },
+    ] as Scene["lines"];
+    return s;
+  };
+  // 有图
+  mem.clear();
+  let store = new Store();
+  const calls: [string, boolean][] = [];
+  let release: ((v: boolean) => void) | null = null;
+  const lines: string[] = [];
+  let story = new Story([mk()], [], [], [], store, noopRenderer, {
+    async duel() { return true; }, async chapterEnd() {},
+    cg: (key, first) => new Promise<boolean>((r) => { calls.push([key, first]); release = r; }),
+  }, "x");
+  story.on((e) => { if (e.kind === "line") lines.push(e.text); });
+  await story.start(); await drain();
+  story.advance(); await drain();                  // 读完第一句 → 事件图那一格
+  assert.deepEqual(calls, [["peizhaoye_xunma", true]], "第一次看，first 为真");
+  assert.deepEqual(lines, ["她看见马。"], "事件图那一句不进对话框");
+  story.advance(); story.advance(); await drain(); // 看图时连点不算
+  assert.deepEqual(lines, ["她看见马。"]);
+  release!(true); await drain();
+  assert.deepEqual(lines, ["她看见马。", "没说出口的那一句。"]);
+  assert.ok(store.state.cgsSeen.has("peizhaoye_xunma"), "解锁记进状态");
+
+  // 没有图：钩子返回 false，直接读下一句，也不记解锁
+  mem.clear();
+  store = new Store();
+  const lines2: string[] = [];
+  story = new Story([mk()], [], [], [], store, noopRenderer, {
+    async duel() { return true; }, async chapterEnd() {}, cg: async () => false,
+  }, "x");
+  story.on((e) => { if (e.kind === "line") lines2.push(e.text); });
+  await story.start(); await drain();
+  story.advance(); await drain();
+  assert.deepEqual(lines2, ["她看见马。", "没说出口的那一句。"]);
+  assert.equal(store.state.cgsSeen.size, 0);
+});
+
 test("题记是合法的说话人，地点多了驿路（D-062、D-063）", () => {
   const s = scene("x", 4, { goto: "x", scene: "yilu" as Scene["scene"] });
   s.lines = [{ id: "t", who: "tiji", kind: "aside", text: "一行。" }] as Scene["lines"];

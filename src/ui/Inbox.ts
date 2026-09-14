@@ -125,7 +125,8 @@ export class Inbox {
       poem.querySelector(".letter__poemFrom")!.textContent = src ? `${src.author}《${src.title}》` : "";
       const means = poem.querySelector<HTMLElement>(".letter__poemMeans")!;
       means.textContent = l.body.poemMeans ?? "";
-      poem.addEventListener("click", (e) => { e.stopPropagation(); means.hidden = !means.hidden; });
+      // 点开过一次就记下来：出处后面那个提示省略号撤掉（inbox.css），合上也不再出现
+      poem.addEventListener("click", (e) => { e.stopPropagation(); means.hidden = !means.hidden; poem.dataset.opened = "1"; });
       sheet.appendChild(poem);
     }
 

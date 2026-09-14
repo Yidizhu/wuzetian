@@ -19,6 +19,7 @@ import { join } from "node:path";
 import { ROOT } from "./load.ts";
 import { PORTRAITS } from "../src/char/portraits.ts";
 import { BACKDROPS } from "../src/scene/backdrops.ts";
+import { CGS } from "../src/scene/cgs.ts";
 
 const pub = join(ROOT, "public");
 const list = (dir: string): string[] =>
@@ -46,6 +47,16 @@ const missing = keys.filter((k) => !scenes.has(k) && !(BACKDROPS[k]!.from && sce
 console.log(`  背景 ${own.length + borrowed.length}/${keys.length} 条有图（自己的 ${own.length} 条，借图的 ${borrowed.length} 条）`);
 if (borrowed.length) console.log(`    借图：${borrowed.map((k) => `${k} ← ${BACKDROPS[k]!.from}`).join("、")}`);
 if (missing.length) console.log(`    还没有图，走渐变：${missing.join("、")}`);
+
+// ---------------------------------------------------------------- 事件图（B23）
+{
+  const cgFiles = new Set(list("cg"));
+  const cgKeys = Object.keys(CGS);
+  const haveCg = cgKeys.filter((k) => cgFiles.has(k));
+  console.log(`  事件图 ${haveCg.length}/${cgKeys.length} 张有图${haveCg.length ? "：" + haveCg.join("、") : ""}`);
+  const missCg = cgKeys.filter((k) => !cgFiles.has(k));
+  if (missCg.length) console.log(`    还没有图（剧本写到这一格会跳过）：${missCg.join("、")}`);
+}
 
 // 借了一张不存在的图：这一条永远轮不到，而它看起来已经安排好了
 for (const k of keys) {
@@ -75,7 +86,7 @@ const tracked = new Set(
     .split("\n").map((s) => s.trim()).filter((s) => s.endsWith(".webp")),
 );
 const onDisk = new Set<string>();
-for (const dir of ["char/full", "char/knee", "scene"]) {
+for (const dir of ["char/full", "char/knee", "scene", "cg"]) {
   for (const f of list(dir)) onDisk.add(`public/${dir}/${f}.webp`);
 }
 for (const f of onDisk) if (!tracked.has(f)) fail(`${f} 已入表但没进版本库（D-130）。验收过的 webp 要提交，否则换台机器、或者误删一次就没了`);

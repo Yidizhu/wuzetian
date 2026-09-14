@@ -13,12 +13,15 @@ export interface RasterList {
   full: string[];
   knee: string[];
   scenes: string[];
+  /** 事件图（B23）。老清单没有这一项，按空算 */
+  cgs?: string[];
 }
 
 export class RasterCatalog {
   private full: Set<string>;
   private knee: Set<string>;
   private scenes: Set<string>;
+  private cgs: Set<string>;
   private broken = new Set<string>();
   private base: string;
 
@@ -26,11 +29,12 @@ export class RasterCatalog {
     this.full = new Set(list.full);
     this.knee = new Set(list.knee);
     this.scenes = new Set(list.scenes);
+    this.cgs = new Set(list.cgs ?? []);
     this.base = base.endsWith("/") ? base : base + "/";
   }
 
   static empty(): RasterCatalog {
-    return new RasterCatalog({ full: [], knee: [], scenes: [] });
+    return new RasterCatalog({ full: [], knee: [], scenes: [], cgs: [] });
   }
 
   /** 候选里第一张有全身图、也没读坏过的立绘名。没有就是 null：这个人继续用 SVG */
@@ -59,7 +63,15 @@ export class RasterCatalog {
     return `${this.base}scene/${key}.webp`;
   }
 
-  /** 读不出来的图记一笔，之后不再选它。`path` 是 `char/<name>` 或 `scene/<key>` */
+  hasCg(key: string): boolean {
+    return this.cgs.has(key) && !this.broken.has(`cg/${key}`);
+  }
+
+  cgUrl(key: string): string {
+    return `${this.base}cg/${key}.webp`;
+  }
+
+  /** 读不出来的图记一笔，之后不再选它。`path` 是 `char/<name>`、`scene/<key>` 或 `cg/<key>` */
   markBroken(path: string): void {
     this.broken.add(path);
   }

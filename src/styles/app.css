@@ -5,6 +5,7 @@
 @import "./epigraph.css";
 @import "./debut.css";
 @import "./raster.css";
+@import "./cg.css";
 
 /* 字体：M5 会换成子集化的思源宋体。现在先用系统衬线，保证排版结构对。 */
 :root {
@@ -29,12 +30,12 @@ html, body {
 }
 
 #app {
-  position: relative;
-  /* 两行都要留。dvh 是 iOS 16.4 才有的，老机器上那一行整条无效，
-     只剩 height:auto——而这一层的孩子全是绝对定位，auto 就是 0 高，
-     于是画面照常显示，但所有东西都长在一个零高的盒子里。先写 vh 兜住。 */
-  height: 100vh;
-  height: 100dvh;
+  /* B24（CC1 改）：原来是 position: relative + height: 100vh／100dvh。
+     微信内置浏览器和一部分 iOS 不认 dvh，退回 100vh，而 100vh 比实际可见区高（地址栏、底栏算在里面）：
+     整个游戏比屏幕高一截，底部的对话框、顶部的面板都会有一截在屏幕外，外层又不滚。
+     改成 fixed + inset:0：盒子就是可见的那一块，不靠任何视口单位，老机器新机器一样。
+     孩子们照旧是绝对定位，贴的就是这一块 */
+  position: fixed; inset: 0;
   overflow: hidden;
   cursor: pointer;
   user-select: none;
@@ -394,10 +395,15 @@ html, body {
 
 .slots {
   position: absolute; inset: 0; z-index: 7;
-  display: flex; align-items: center; justify-content: center;
+  /* B24（CC1 改）：不用 align-items:center。flex 居中的内容比容器高时，顶上那一截溢出到容器上边，
+     滚动条够不着——信箱就是这么缺了开头的（见 inbox.css）。改成子元素 margin:auto：
+     装得下时照样居中，装不下时从顶开始、能滚 */
+  display: flex; align-items: flex-start; justify-content: center;
+  overflow-y: auto; overscroll-behavior: contain; padding: 16px 0;
   background: color-mix(in srgb, var(--c-line) 22%, transparent);
 }
 .slots__panel {
+  margin: auto;
   width: min(420px, 88vw); padding: 22px 20px;
   background: var(--c-ground);
   border-top: 1px solid var(--c-line); border-bottom: 1px solid var(--c-line);

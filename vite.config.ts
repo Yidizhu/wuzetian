@@ -111,7 +111,7 @@ function rasterAssets(): Plugin {
     resolveId: (id) => (id === RASTER_ID ? resolved : null),
     load(id) {
       if (id !== resolved) return null;
-      return `export default ${JSON.stringify({ full: list("char/full"), knee: list("char/knee"), scenes: list("scene") })};`;
+      return `export default ${JSON.stringify({ full: list("char/full"), knee: list("char/knee"), scenes: list("scene"), cgs: list("cg") })};`;
     },
   };
 }
