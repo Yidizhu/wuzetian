@@ -45,8 +45,11 @@
    昭阳殿水墨＝金碧那张降饱和去金（序幕走的就是这一条）；书阁金碧＝水墨那张加金。数归 CC3 调。
    和夜滤镜拼在一起写，谁都不覆盖谁：两个变量默认都是「什么都不做」的 saturate(1) */
 :root {
-  --tone-ink:  saturate(0.42) sepia(0.10) brightness(1.04) contrast(0.97);
-  --tone-gold: saturate(1.22) sepia(0.20) hue-rotate(-8deg) brightness(1.02);
+  /* 数是 CC3 合屏试过四组各挑的一组（E18 填进来；E17 另写过一套 to-ink/to-gold 选择器，和 CC1 的属性值对不上、从没命中，已删）。
+     ink：铅丹柱退成赭木、石青帷幔退成墨青，读起来是褪了色的殿；人不套，站在里面最醒目。
+     gold：只能把光调成金，调不出石青石绿泥金的陈设——是「金光里的书阁」，不是重彩。整屏看过不够就单独出一张 */
+  --tone-ink:  grayscale(0.6) sepia(0.28) contrast(0.88) brightness(1.06);
+  --tone-gold: sepia(0.42) saturate(1.5) hue-rotate(-6deg) contrast(1.07) brightness(0.98);
 }
 .stage__image { filter: var(--stage-tone, saturate(1)) var(--stage-night, saturate(1)); }
 .stage[data-tone="ink"]  { --stage-tone: var(--tone-ink); }
@@ -67,23 +70,6 @@
    字段名 CC1 定，改了这里跟着改选择器 */
 .stage[data-image][data-night="1"][data-painted="night"] { --stage-night: saturate(1); }
 .stage[data-image][data-night="1"][data-painted="night"]::after { display: none; }
-
-/* 色调变体（D-133，E17，CC3 定数）：同一个地方的另一块色板，不另出图，用那一块的图套一层滤镜。
-   色板本来就是「同一个地方的两种画法」。**只作用在背景上，不碰人**——人的颜色是她是谁。
-   要 CC1 在背景表里写「这一条用哪张图、套哪一种」，渲染器写成 data-tone；属性名 CC1 定，改了这里跟着改。
-   - to-ink（zhaoyang_ink ← zhaoyang_gold）：去金、降饱和、加一点纸黄、压一点对比。铅丹柱退成赭木，石青帷幔退成墨青。
-     合屏看过：人不套滤镜，站在褪了色的殿里反而最醒目——序幕和第四章，正是这个意思
-   - to-gold（shuge_gold ← shuge_ink）：暖金、提饱和。**它只能把光调成金，调不出石青石绿泥金的陈设**，
-     读起来是「午后金光里的书阁」，不是重彩。书阁金碧用在九场，看过整屏不够再单独出一张（E17 汇报里说了） */
-:root {
-  --tone-to-ink:  grayscale(0.6) sepia(0.28) contrast(0.88) brightness(1.06);
-  --tone-to-gold: sepia(0.42) saturate(1.5) hue-rotate(-6deg) contrast(1.07) brightness(0.98);
-}
-.stage[data-image][data-tone="to-ink"]  .stage__image { filter: var(--tone-to-ink); }
-.stage[data-image][data-tone="to-gold"] .stage__image { filter: var(--tone-to-gold); }
-/* 夜场又是色调变体的（zhaoyang_ink_yedeng 若用金碧图）：两层叠，先变色调再入夜 */
-.stage[data-image][data-tone="to-ink"][data-night="1"]:not([data-painted="night"])  .stage__image { filter: var(--tone-to-ink) var(--night-filter); }
-.stage[data-image][data-tone="to-gold"][data-night="1"]:not([data-painted="night"]) .stage__image { filter: var(--tone-to-gold) var(--night-filter); }
 
 @media (prefers-reduced-motion: reduce) {
   .stage__image--push, .stage--beat[data-image] .stage__image { animation: none; }

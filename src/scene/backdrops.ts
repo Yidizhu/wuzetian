@@ -48,17 +48,21 @@ export const BACKDROPS: Record<string, Backdrop> = {
   zhaoyang_ink_yedeng:  { night: true, where: "四章 06 夜谈四（夜灯）。dressings.ts 里有，剧本眼下没写这一条布置" },
   shuge_ink:            { floor: 22, person: 1, push: "right", where: "书阁水墨，十二场。四章 08、14 是夜里，剧本没有时辰一栏，眼下按日景（D-107）。v1：光从左窗进来，右边书架间有纵深，朝右推" },
   shuge_gold:           { from: "shuge_ink", tone: "gold", floor: 22, person: 1, push: "right", where: "书阁金碧。借水墨那张，加金" },
-  nvguan_ink:           { where: "女冠观" },
-  nvguan_ink_kaike:     { where: "四章 12、13 开课" },
-  nvguan_ink_yeyu:      { night: true, where: "三章 10 夜谈三（夜雨）" },
-  shishe_ink:           { where: "诗社" },
+  // B22：以下八行看第二批 v1（E18 验收）在缩略图上量过：地面都铺过 22% 那条线；推向朝画面里空着的那一边
+  nvguan_ink:           { floor: 22, person: 1, push: "center", where: "女冠观。v1：左门开着，中间一张案，地面铺到画底" },
+  nvguan_ink_kaike:     { floor: 22, person: 1, push: "center", where: "四章 12、13 开课。与素版同一构图，多晾纸与两张低案" },
+  // 画出来的真夜景（E17、E18，和苑野同一种）：背景不再压夜，人照样压
+  nvguan_ink_yeyu:      { night: true, paintedNight: true, floor: 22, person: 1, push: "center", where: "三章 10 夜谈三（夜雨）。v1 真夜：案上一盏灯，门外冷蓝" },
+  shishe_ink:           { floor: 22, person: 1, push: "left", where: "诗社。v1：左边临水、晾着诗笺，朝左推" },
   // v2 是画出来的真夜景（E15 验收过）：背景不再套滤镜，人照样套
   yuanye_ink:           { night: true, paintedNight: true, floor: 22, person: 1, push: "center", where: "原野，十三场。v2 真夜景：月在左上、风灯在左；路朝城门居中收，朝中推" },
   hanyuan_gold:         { where: "含元殿" },
-  hanyuan_gold_gongyi:  { where: "含元殿公议，六场" },
-  hanyuan_gold_shouwei: { where: "三章 12 受位议决" },
-  wuzibei_ink:          { where: "无字碑" },
-  wuzibei_ink_beiyang:  { night: true, where: "四章 18 夜谈五（碑样，C15）" },
-  yilu_ink_qicheng:     { where: "四章 15 启程" },
+  hanyuan_gold_gongyi:  { floor: 22, person: 1, push: "center", where: "含元殿公议，六场。v1：两排议案，殿门在正中" },
+  hanyuan_gold_shouwei: { floor: 22, person: 1, push: "center", where: "三章 12 受位议决。v1：御床在殿门前正中" },
+  wuzibei_ink:          { floor: 22, person: 1, push: "center", where: "无字碑。v1：碑居中、碑面无字；碑面在原件 x 652–878、y 162–581（CC3 E18 量）" },
+  // B22：剧本里真正走无字碑的只有这一条（碑样之后没有场次用素版）。自己的图没到之前借素版那张、套夜滤镜，
+  // 碑样那张 CC3 会按同一构图出，到了就自动用自己的（resolveBackdrop 先看自己）
+  wuzibei_ink_beiyang:  { night: true, from: "wuzibei_ink", floor: 22, person: 1, push: "center", where: "四章 18 夜谈五（碑样，C15）。自己的图没到，先借素版套夜滤镜" },
+  yilu_ink_qicheng:     { floor: 22, person: 1, push: "center", where: "四章 15 启程。v1：路居中往雾里收，左车右里堠" },
   yilu_ink_yipang:      { where: "四章 16 驿旁" },
 };

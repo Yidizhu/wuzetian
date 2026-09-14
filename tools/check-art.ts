@@ -14,7 +14,7 @@
  *    **「少了一张图」必须是一个能被看见的事件。**
  */
 import { execFileSync } from "node:child_process";
-import { existsSync, readdirSync } from "node:fs";
+import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { ROOT } from "./load.ts";
 import { PORTRAITS } from "../src/char/portraits.ts";
@@ -52,6 +52,21 @@ for (const k of keys) {
   const from = BACKDROPS[k]!.from;
   if (from && !BACKDROPS[from]) fail(`${k} 借的 ${from} 不在背景表里`);
   if (from && k === from) fail(`${k} 借自己`);
+}
+
+// ---------------------------------------------------------------- 表与样式对得上（B22）
+// E17 CC3 写了 `data-tone="to-ink"` 的选择器，B21 我挂的属性值是 `"ink"`：那段样式从没命中过，
+// 没有任何东西报错，玩家看到的一直是占位数（E18 才发现）。**交出去的属性值和对方的选择器，两头必须对得上。**
+// 这里不管滤镜长什么样，只管「表里用到的每个值，样式里有没有接住它的选择器」——接不住就是一条死字段
+{
+  const css = readFileSync(join(ROOT, "src", "styles", "raster.css"), "utf8");
+  const tones = new Set(keys.map((k) => BACKDROPS[k]!.tone).filter(Boolean) as string[]);
+  for (const t of tones) {
+    if (!css.includes(`[data-tone="${t}"]`)) fail(`背景表用了 tone: "${t}"，raster.css 里没有 [data-tone="${t}"] 的选择器，这个滤镜永远不会生效`);
+  }
+  if (keys.some((k) => BACKDROPS[k]!.paintedNight) && !css.includes(`[data-painted="night"]`)) {
+    fail(`背景表用了 paintedNight，raster.css 里没有 [data-painted="night"] 的选择器，真夜景会被再压一层夜`);
+  }
 }
 
 // ---------------------------------------------------------------- 图与版本库
