@@ -48,7 +48,7 @@
 ### 背景
 
 - **新文件 `src/scene/backdrops.ts`**：一行一种「地点_色板_布置」。
-  - 剧本现用 16 种；另有两行剧本眼下没用到：`zhaoyang_ink_yedeng`（夜灯，dressings.ts 里有，剧本没写这条布置）和 `wuzibei_ink_beiyang`（碑样，D13 进来之后已经用上了）。
+  - 共 18 行。剧本现用 16 种（D13 之后 ch04-18 带了碑样，`wuzibei_ink_beiyang` 已在其中）；另两行剧本眼下没用到：`zhaoyang_ink_yedeng`（夜灯，dressings.ts 里有，剧本没写这条布置）和 `wuzibei_ink`（不带布置的无字碑，碑样进来之后没有场次用它）。
   - 每行可以写 `night`、`floor`（脚线）、`person`（人多大）、`push`（往哪边推）。**数由 CC3 看图后填**，不填是默认值，和渐变版一样。
 - **`CssParallaxRenderer` 加了一层整图**，是加法：
   - `load()` 原来是空的，现在先解码好图，墨晕开那一下图已经在内存里；
