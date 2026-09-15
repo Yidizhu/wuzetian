@@ -442,26 +442,44 @@
     },
     {
       "id": "ch01_s08_shuge.l56",
+      "who": "narr",
+      "kind": "aside",
+      "text": "你看她拢住紫色大袖，手掌压着册子，抬眼等你。"
+    },
+    {
+      "id": "ch01_s08_shuge.l57",
+      "who": "cg",
+      "kind": "aside",
+      "text": "liqinghe_1_boyi"
+    },
+    {
+      "id": "ch01_s08_shuge.l58",
+      "who": "self",
+      "kind": "inner",
+      "text": "（她真等我选。别只顾着看她。）"
+    },
+    {
+      "id": "ch01_s08_shuge.l59",
       "who": "liqinghe",
       "expr": "default",
       "kind": "say",
       "text": "这两笔代价，你选哪笔？"
     },
     {
-      "id": "ch01_s08_shuge.l57",
+      "id": "ch01_s08_shuge.l60",
       "who": "narr",
       "kind": "aside",
       "text": "唐简拿起木夹，把“自呈”两字夹在空出的案边。"
     },
     {
-      "id": "ch01_s08_shuge.l58",
+      "id": "ch01_s08_shuge.l61",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
       "text": "收了，不能还压在荐名卷底下。"
     },
     {
-      "id": "ch01_s08_shuge.l59",
+      "id": "ch01_s08_shuge.l62",
       "who": "liqinghe",
       "expr": "default",
       "kind": "say",

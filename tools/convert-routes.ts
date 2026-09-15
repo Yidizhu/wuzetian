@@ -93,7 +93,9 @@ interface Policy { target?: string; eps: number; avoid?: string; seed: number; i
 let seed = 1;
 const rand = () => { seed = (seed * 1664525 + 1013904223) >>> 0; return seed / 2 ** 32; };
 const pickOne = <T>(xs: T[]): T => xs[Math.floor(rand() * xs.length)]!;
-async function drain() { for (let i = 0; i < 8; i++) await Promise.resolve(); }
+// 等引擎真的停下来再点下一下（D23）。原来只等 8 个微任务：题记收起之后引擎还在等墨晕开，
+// 那一拍点下去会跳过题记后的第一格（B33 提醒的那条，骨架只记场次所以没走样，但别留着）
+async function drain() { await new Promise<void>(r => setImmediate(r)); }
 
 function plan(key: string) {
   const idx = endings.findIndex(e => e.key === key); const e = endings[idx]!;

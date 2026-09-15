@@ -35,367 +35,385 @@
       "id": "ch01_s01_zhaoyang.l4",
       "who": "narr",
       "kind": "aside",
-      "text": "沈衡戴幞头，站得直，笔持得很低，尖朝下。"
+      "text": "你看她持笔的手，笔尖低低悬着，袖里露出折过的草稿。"
     },
     {
       "id": "ch01_s01_zhaoyang.l5",
+      "who": "cg",
+      "kind": "aside",
+      "text": "shenheng_1_tengxie"
+    },
+    {
+      "id": "ch01_s01_zhaoyang.l6",
+      "who": "self",
+      "kind": "inner",
+      "text": "（她先前在改哪一句？想凑近看看。）"
+    },
+    {
+      "id": "ch01_s01_zhaoyang.l7",
+      "who": "narr",
+      "kind": "aside",
+      "text": "沈衡戴幞头，站得直，笔持得很低，尖朝下。"
+    },
+    {
+      "id": "ch01_s01_zhaoyang.l8",
       "who": "shenheng",
       "expr": "default",
       "kind": "say",
       "text": "来补抄的？"
     },
     {
-      "id": "ch01_s01_zhaoyang.l6",
+      "id": "ch01_s01_zhaoyang.l9",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
       "text": "司记？"
     },
     {
-      "id": "ch01_s01_zhaoyang.l7",
+      "id": "ch01_s01_zhaoyang.l10",
       "who": "shenheng",
       "expr": "default",
       "kind": "say",
       "text": "怎么？"
     },
     {
-      "id": "ch01_s01_zhaoyang.l8",
+      "id": "ch01_s01_zhaoyang.l11",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
       "text": "我是来候试的。"
     },
     {
-      "id": "ch01_s01_zhaoyang.l9",
+      "id": "ch01_s01_zhaoyang.l12",
       "who": "shenheng",
       "expr": "default",
       "kind": "say",
       "text": "候试的。"
     },
     {
-      "id": "ch01_s01_zhaoyang.l10",
+      "id": "ch01_s01_zhaoyang.l13",
       "who": "narr",
       "kind": "aside",
       "text": "沈衡抽回誊清纸，将改坏的草稿折进袖里。"
     },
     {
-      "id": "ch01_s01_zhaoyang.l11",
+      "id": "ch01_s01_zhaoyang.l14",
       "who": "shenheng",
       "expr": "default",
       "kind": "say",
       "text": "那就署在这里。"
     },
     {
-      "id": "ch01_s01_zhaoyang.l12",
+      "id": "ch01_s01_zhaoyang.l15",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
       "text": "这儿？"
     },
     {
-      "id": "ch01_s01_zhaoyang.l13",
+      "id": "ch01_s01_zhaoyang.l16",
       "who": "shenheng",
       "expr": "default",
       "kind": "say",
       "text": "这儿。"
     },
     {
-      "id": "ch01_s01_zhaoyang.l14",
+      "id": "ch01_s01_zhaoyang.l17",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
       "text": "我先问……"
     },
     {
-      "id": "ch01_s01_zhaoyang.l15",
+      "id": "ch01_s01_zhaoyang.l18",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
       "text": "骑什么？"
     },
     {
-      "id": "ch01_s01_zhaoyang.l16",
+      "id": "ch01_s01_zhaoyang.l19",
       "who": "narr",
       "kind": "aside",
       "text": "殿外一声响。马蹄踢翻了空桶。"
     },
     {
-      "id": "ch01_s01_zhaoyang.l17",
+      "id": "ch01_s01_zhaoyang.l20",
       "who": "narr",
       "kind": "aside",
       "text": "裴照夜戴硬脚幞头，缺胯袍开衩到膝；横刀挂在胯上，手一直握着缰。"
     },
     {
-      "id": "ch01_s01_zhaoyang.l18",
+      "id": "ch01_s01_zhaoyang.l21",
       "who": "peizhaoye",
       "expr": "default",
       "kind": "say",
       "text": "哪一位是候试的？"
     },
     {
-      "id": "ch01_s01_zhaoyang.l19",
+      "id": "ch01_s01_zhaoyang.l22",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
       "text": "我。"
     },
     {
-      "id": "ch01_s01_zhaoyang.l20",
+      "id": "ch01_s01_zhaoyang.l23",
       "who": "peizhaoye",
       "expr": "default",
       "kind": "say",
       "text": "你？"
     },
     {
-      "id": "ch01_s01_zhaoyang.l21",
+      "id": "ch01_s01_zhaoyang.l24",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
       "text": "将军要牵到哪里？"
     },
     {
-      "id": "ch01_s01_zhaoyang.l22",
+      "id": "ch01_s01_zhaoyang.l25",
       "who": "peizhaoye",
       "expr": "default",
       "kind": "say",
       "text": "先到阶下，粮单还等着我回去核。"
     },
     {
-      "id": "ch01_s01_zhaoyang.l23",
+      "id": "ch01_s01_zhaoyang.l26",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
       "text": "这就——"
     },
     {
-      "id": "ch01_s01_zhaoyang.l24",
+      "id": "ch01_s01_zhaoyang.l27",
       "who": "peizhaoye",
       "expr": "guarded",
       "kind": "say",
       "text": "先别签。"
     },
     {
-      "id": "ch01_s01_zhaoyang.l25",
+      "id": "ch01_s01_zhaoyang.l28",
       "who": "wuze",
       "expr": "guarded",
       "kind": "say",
       "text": "……"
-    },
-    {
-      "id": "ch01_s01_zhaoyang.l26",
-      "who": "wuze",
-      "expr": "default",
-      "kind": "say",
-      "text": "这马是谁的？"
-    },
-    {
-      "id": "ch01_s01_zhaoyang.l27",
-      "who": "peizhaoye",
-      "expr": "default",
-      "kind": "say",
-      "text": "内厩的，昨日才送来。"
-    },
-    {
-      "id": "ch01_s01_zhaoyang.l28",
-      "who": "wuze",
-      "expr": "default",
-      "kind": "say",
-      "text": "昨日？"
     },
     {
       "id": "ch01_s01_zhaoyang.l29",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "为什么要驯？"
+      "text": "这马是谁的？"
     },
     {
       "id": "ch01_s01_zhaoyang.l30",
       "who": "peizhaoye",
       "expr": "default",
       "kind": "say",
-      "text": "换了生地方，怕响，得先让它认路。"
+      "text": "内厩的，昨日才送来。"
     },
     {
       "id": "ch01_s01_zhaoyang.l31",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "认路……"
+      "text": "昨日？"
     },
     {
       "id": "ch01_s01_zhaoyang.l32",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "我今日是来替它认路的？"
+      "text": "为什么要驯？"
     },
     {
       "id": "ch01_s01_zhaoyang.l33",
       "who": "peizhaoye",
       "expr": "default",
       "kind": "say",
-      "text": "试你会不会看它，原来只定了从阶下牵这一段。"
+      "text": "换了生地方，怕响，得先让它认路。"
     },
     {
       "id": "ch01_s01_zhaoyang.l34",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "一段。"
+      "text": "认路……"
     },
     {
       "id": "ch01_s01_zhaoyang.l35",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "我今日是来替它认路的？"
+    },
+    {
+      "id": "ch01_s01_zhaoyang.l36",
+      "who": "peizhaoye",
+      "expr": "default",
+      "kind": "say",
+      "text": "试你会不会看它，原来只定了从阶下牵这一段。"
+    },
+    {
+      "id": "ch01_s01_zhaoyang.l37",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "一段。"
+    },
+    {
+      "id": "ch01_s01_zhaoyang.l38",
       "who": "narr",
       "kind": "aside",
       "text": "帷幔外的甲煎气迟迟不散，沈衡把纸转向自己。"
     },
     {
-      "id": "ch01_s01_zhaoyang.l36",
+      "id": "ch01_s01_zhaoyang.l39",
       "who": "shenheng",
       "expr": "guarded",
       "kind": "say",
       "text": "牵行？"
     },
     {
-      "id": "ch01_s01_zhaoyang.l37",
+      "id": "ch01_s01_zhaoyang.l40",
       "who": "shenheng",
       "expr": "guarded",
       "kind": "say",
       "text": "送来的式样写的是骑试。"
     },
     {
-      "id": "ch01_s01_zhaoyang.l38",
+      "id": "ch01_s01_zhaoyang.l41",
       "who": "peizhaoye",
       "expr": "guarded",
       "kind": "say",
       "text": "那就换式样，它不识公文。"
     },
     {
-      "id": "ch01_s01_zhaoyang.l39",
+      "id": "ch01_s01_zhaoyang.l42",
       "who": "wuze",
       "expr": "guarded",
       "kind": "say",
       "text": "司记。"
     },
     {
-      "id": "ch01_s01_zhaoyang.l40",
+      "id": "ch01_s01_zhaoyang.l43",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
       "text": "不愿骑的人，这一试算不算败？"
     },
     {
-      "id": "ch01_s01_zhaoyang.l41",
+      "id": "ch01_s01_zhaoyang.l44",
       "who": "shenheng",
       "expr": "guarded",
       "kind": "say",
       "text": "依这张纸，签了就算你应下了。"
     },
     {
-      "id": "ch01_s01_zhaoyang.l42",
+      "id": "ch01_s01_zhaoyang.l45",
       "who": "wuze",
       "expr": "guarded",
       "kind": "say",
       "text": "……"
     },
     {
-      "id": "ch01_s01_zhaoyang.l43",
+      "id": "ch01_s01_zhaoyang.l46",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
       "text": "那没签呢？"
     },
     {
-      "id": "ch01_s01_zhaoyang.l44",
+      "id": "ch01_s01_zhaoyang.l47",
       "who": "narr",
       "kind": "aside",
       "text": "沈衡的笔停在名册上方。"
     },
     {
-      "id": "ch01_s01_zhaoyang.l45",
+      "id": "ch01_s01_zhaoyang.l48",
       "who": "shenheng",
       "expr": "default",
       "kind": "say",
       "text": "还没应下。"
     },
     {
-      "id": "ch01_s01_zhaoyang.l46",
+      "id": "ch01_s01_zhaoyang.l49",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
       "text": "好。"
     },
     {
-      "id": "ch01_s01_zhaoyang.l47",
+      "id": "ch01_s01_zhaoyang.l50",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
       "text": "请先写明试什么，再让我署名。"
     },
     {
-      "id": "ch01_s01_zhaoyang.l48",
+      "id": "ch01_s01_zhaoyang.l51",
       "who": "shenheng",
       "expr": "guarded",
       "kind": "say",
       "text": "整批更正会误了试次，后面候着的人也都得等。"
     },
     {
-      "id": "ch01_s01_zhaoyang.l49",
+      "id": "ch01_s01_zhaoyang.l52",
       "who": "wuze",
       "expr": "guarded",
       "kind": "say",
       "text": "后面的人……"
     },
     {
-      "id": "ch01_s01_zhaoyang.l50",
+      "id": "ch01_s01_zhaoyang.l53",
       "who": "shenheng",
       "expr": "guarded",
       "kind": "say",
       "text": "得问她们肯不肯，不能只问你。"
     },
     {
-      "id": "ch01_s01_zhaoyang.l51",
+      "id": "ch01_s01_zhaoyang.l54",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
       "text": "嗯。"
     },
     {
-      "id": "ch01_s01_zhaoyang.l52",
+      "id": "ch01_s01_zhaoyang.l55",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
       "text": "要等多久，先说给她们听。"
     },
     {
-      "id": "ch01_s01_zhaoyang.l53",
+      "id": "ch01_s01_zhaoyang.l56",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
       "text": "别又替她们签了自愿。"
     },
     {
-      "id": "ch01_s01_zhaoyang.l54",
+      "id": "ch01_s01_zhaoyang.l57",
       "who": "peizhaoye",
       "expr": "default",
       "kind": "say",
       "text": "我把马牵远些，别再敲桶。"
     },
     {
-      "id": "ch01_s01_zhaoyang.l55",
+      "id": "ch01_s01_zhaoyang.l58",
       "who": "narr",
       "kind": "aside",
       "text": "她没向马扬鞭，先扶起了挡路的桶。"
     },
     {
-      "id": "ch01_s01_zhaoyang.l56",
+      "id": "ch01_s01_zhaoyang.l59",
       "who": "narr",
       "kind": "aside",
       "text": "名册翻过一页。你的名字仍空着。"
     },
     {
-      "id": "ch01_s01_zhaoyang.l57",
+      "id": "ch01_s01_zhaoyang.l60",
       "who": "narr",
       "kind": "aside",
       "text": "你按住名册，等她另取试项纸。"

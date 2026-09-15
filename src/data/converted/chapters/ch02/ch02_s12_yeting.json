@@ -332,17 +332,23 @@
       "id": "ch02_s12_yeting.l45",
       "who": "empty",
       "kind": "aside",
-      "text": "灯芯结出一粒黑花，碗底的水映着半圈光。"
+      "text": "旧景·寒食。灶口封着泥，冷饼旁的粥面已凝住。"
     },
     {
       "id": "ch02_s12_yeting.l46",
-      "who": "adi",
-      "expr": "default",
-      "kind": "say",
-      "text": "灯留下，针眼还没穿好。"
+      "who": "cg",
+      "kind": "aside",
+      "text": "wu_lengzao"
     },
     {
       "id": "ch02_s12_yeting.l47",
+      "who": "adi",
+      "expr": "default",
+      "kind": "say",
+      "text": "眼前，灯留下，针眼还没穿好。"
+    },
+    {
+      "id": "ch02_s12_yeting.l48",
       "who": "narr",
       "kind": "aside",
       "text": "你走出门，屋里的灯没有跟来。"

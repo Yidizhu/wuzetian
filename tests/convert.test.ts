@@ -211,11 +211,15 @@ test('书信三层、三类回复、触发、截信、留信', () => {
   assert.deepEqual(r.scenes[0].leavesLetter, ['shenheng']);
 });
 
+/** B33 之后的四个节令：七夕让位给重阳；中秋键不动，玩家看见的是「八月望夜」，两个名字都要认 */
 test('四节气与五种笺、缺反应和缺留信必须报告', () => {
-  for (const [cn, key] of [['上元', 'shangyuan'], ['寒食', 'hanshi'], ['七夕', 'qixi'], ['中秋', 'zhongqiu']]) {
-    const md = letter.replace('| 触发 | 场景 ch01-01 之后第 3 场 |', `| 节气 | ${cn} |`).replace('| 会被截 | 是 |', '| 会被截 | 否 |').replace('| 被截去向 | ch01-01 |', '| 被截去向 | |');
-    assert.deepEqual(convert(md, 'l').letters[0].trigger, { kind: 'solarTerm', term: key, minAffinity: 5 });
+  const asTerm = (cn: string) => letter.replace('| 触发 | 场景 ch01-01 之后第 3 场 |', `| 节气 | ${cn} |`).replace('| 会被截 | 是 |', '| 会被截 | 否 |').replace('| 被截去向 | ch01-01 |', '| 被截去向 | |');
+  for (const [cn, key] of [['上元', 'shangyuan'], ['寒食', 'hanshi'], ['八月望夜', 'zhongqiu'], ['中秋', 'zhongqiu'], ['重阳', 'chongyang']]) {
+    assert.deepEqual(convert(asTerm(cn), 'l').letters[0].trigger, { kind: 'solarTerm', term: key, minAffinity: 5 }, cn);
   }
+  const qixi = convert(asTerm('七夕'), 'l');
+  assert.equal(qixi.letters.length, 0, '七夕已经不是节令（B33），不能悄悄转出来');
+  assert.ok(qixi.issues.some(i => i.message.includes('未知节气')), '七夕要报「未知节气」');
   for (const [cn, key] of [['黄麻纸','huangma'], ['军中素笺','junzhong'], ['泥金笺','nijin'], ['自制花笺','huajian'], ['常笺','chang']]) {
     assert.equal(convert(scene() + letter.replace('秘书省黄麻纸', cn), 'l').letters[0].paper, key);
   }

@@ -26,7 +26,7 @@ import { createHash } from "node:crypto";
 import { Scene, Line, Choice, Poem, PoemDuel, Letter, Ending, CHARACTER_KEYS, SCENE_KEYS, SpeakerKey } from "../src/engine/schema.ts";
 import type { SceneT, PoemT, PoemDuelT, LetterT, EndingT } from "../src/engine/schema.ts";
 import type { Condition } from "../src/engine/types.ts";
-import { AFFINITY_BANDS } from "../src/engine/types.ts";
+import { AFFINITY_BANDS, SOLAR_TERM_LABEL } from "../src/engine/types.ts";
 import { DRESSINGS } from "../src/scene/dressings.ts";
 import { CGS } from "../src/scene/cgs.ts";
 import { relationKey, looksLikeRelationKey, LOVE_KEYS, type RelationKeyInfo } from "../src/engine/pact.ts";
@@ -272,6 +272,16 @@ export const SPEAKERS = new Set<string>((() => {
  * （src/engine/schema.ts 的 SpeakerKey 注释写明了这两对）。key 本身必须在 SPEAKERS 里，测试会查。
  */
 export const SPEAKER_LABELS: Record<string, string> = { 题记: "tiji", 事件图: "cg", 空镜: "empty" };
+
+/**
+ * 信件表「节气」一栏的中文名 → 节令 key。名字和 key 都由 CC1 在 types.ts 里定（B33：七夕让位给重阳，
+ * 中秋键不动而玩家看见「八月望夜」），这里从 SOLAR_TERM_LABEL 反过来生成，不另抄一份免得两边走样。
+ * 「中秋」是旧名，剧本里还这么写的照旧认，转出来仍是 zhongqiu；表里没有的名字（七夕）照「未知节气」报。
+ */
+const SOLAR_TERMS_BY_NAME: Record<string, string> = {
+  ...Object.fromEntries(Object.entries(SOLAR_TERM_LABEL).map(([key, name]) => [name, key])),
+  中秋: "zhongqiu",
+};
 
 /**
  * 事件图那一行的文本是图的 key，只有一个出处：src/scene/cgs.ts（CC3 定图、CC1 管机制）。
@@ -827,7 +837,7 @@ export function convertBatch(inputs: { markdown: string; file: string }[]): Conv
     unique("letter", id);
     const trigger = /^场景\s+(ch\d+-\d+[a-z]*)\s+之后第\s*(\d+)\s*场$/.exec(v("触发"));
     letterAttempts.push({ id, from: v("发信人"), sceneId: trigger ? attempt(b, f["触发"], () => ref(trigger[1])) : undefined });
-    const term = ({ 上元: "shangyuan", 寒食: "hanshi", 七夕: "qixi", 中秋: "zhongqiu" } as Record<string,string>)[v("节气")];
+    const term = SOLAR_TERMS_BY_NAME[v("节气")];
     if (v("节气") && !term) throw new LocatedError(f["节气"], "未知节气");
     if (!term && !trigger) throw new LocatedError(f["触发"], "触发须写场景 ch01-06 之后第 3 场");
     const paper = ({ 黄麻纸: "huangma", 秘书省黄麻纸: "huangma", 军中素笺: "junzhong", 泥金笺: "nijin", 自制花笺: "huajian", 常笺: "chang" } as Record<string,string>)[v("笺")];

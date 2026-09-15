@@ -168,45 +168,63 @@
     },
     {
       "id": "ch03_s17_shuge.l23",
+      "when": {
+        "flag.enthroned": false
+      },
+      "who": "narr",
+      "kind": "aside",
+      "text": "你抬眼看沈衡，她低着头，指节还贴在你唇边。"
+    },
+    {
+      "id": "ch03_s17_shuge.l24",
+      "when": {
+        "flag.enthroned": false
+      },
+      "who": "cg",
+      "kind": "aside",
+      "text": "shenheng_3_zhibei"
+    },
+    {
+      "id": "ch03_s17_shuge.l25",
       "who": "self",
       "kind": "inner",
       "text": "（她肯让我这样拿着。还有一只手呢。）"
     },
     {
-      "id": "ch03_s17_shuge.l24",
+      "id": "ch03_s17_shuge.l26",
       "who": "shenheng",
       "expr": "open",
       "kind": "say",
       "text": "握太紧了。"
     },
     {
-      "id": "ch03_s17_shuge.l25",
+      "id": "ch03_s17_shuge.l27",
       "who": "narr",
       "kind": "aside",
       "text": "你松开一点。她另一只手覆到你手背上，把你的袖口压住。"
     },
     {
-      "id": "ch03_s17_shuge.l26",
+      "id": "ch03_s17_shuge.l28",
       "who": "wuze",
       "expr": "open",
       "kind": "say",
       "text": "这样？"
     },
     {
-      "id": "ch03_s17_shuge.l27",
+      "id": "ch03_s17_shuge.l29",
       "who": "shenheng",
       "expr": "open",
       "kind": "say",
       "text": "嗯。"
     },
     {
-      "id": "ch03_s17_shuge.l28",
+      "id": "ch03_s17_shuge.l30",
       "who": "narr",
       "kind": "aside",
       "text": "檐水接成了线。你们的手搁在膝间，等雨小下来才分开。"
     },
     {
-      "id": "ch03_s17_shuge.l29",
+      "id": "ch03_s17_shuge.l31",
       "who": "narr",
       "kind": "aside",
       "text": "你将擦手布叠好放在她凳边，起身回观里。"
