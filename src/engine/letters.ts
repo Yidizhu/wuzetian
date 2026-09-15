@@ -59,8 +59,8 @@ export class Letters {
     return this.store.state.letters.find((s) => s.id === id);
   }
 
-  /** 场景结束时调用：触发本场留的信，推进在路上的信的场次门 */
-  onSceneEnd(sceneId: string): void {
+  /** 场景结束时调用：触发本场留的信，推进在路上的信的场次门。返回这一下送到案上的信 */
+  onSceneEnd(sceneId: string): string[] {
     const s = this.store.state;
     // 触发
     for (const l of this.bySceneTrigger.get(sceneId) ?? []) {
@@ -77,7 +77,7 @@ export class Letters {
         slot.dueAt = Date.now() + (l?.delayMinutes ?? 10) * 60_000;   // 时间门开始计时
       }
     }
-    this.deliver();
+    return this.deliver();
   }
 
   /** 把 dueAt 已过的信送到案上。启动时也要调一次：不在的这段时间到的信一次收齐 */

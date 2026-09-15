@@ -713,6 +713,21 @@ test("D-124 未读攒满截走了有固定截获点的信：不跳场，走到�
   assert.equal(inbox.forceInterceptAt("s11")?.id, "fixed", "走到截获场才接住它");
 });
 
+test("B28 换场时送到案上的信，onSceneEnd 要报出来（原来写死空数组，烟测因此一封信都没拆过）", async () => {
+  const { Letters } = await import("../src/engine/letters.ts");
+  const store = new Store();
+  const { readFileSync } = await import("node:fs");
+  const base = JSON.parse(readFileSync(new URL("../src/data/letters/lt_ch02_shenheng_01.json", import.meta.url), "utf8"));
+  const inbox = new Letters([LetterSchema.parse({
+    ...base, id: "l1", trigger: { kind: "scene", sceneId: "a", afterScenes: 1 }, delayMinutes: 5,
+    interceptable: false, interceptAt: undefined, onIntercept: undefined,
+  })], store);
+  assert.deepEqual(inbox.onSceneEnd("a"), [], "刚触发，时间门还没过");
+  const realNow = Date.now;
+  Date.now = () => realNow() + 3600_000;
+  try { assert.deepEqual(inbox.onSceneEnd("b"), ["l1"], "一小时后换场，这一下送到的信要报出来"); } finally { Date.now = realNow; }
+});
+
 test("B23 事件图：铺图时推进不算；第一次才算解锁；没有图就当这一格不存在", async () => {
   const mk = () => {
     const s = scene("x", 1, { goto: "x" });

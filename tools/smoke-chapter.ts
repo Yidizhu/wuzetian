@@ -93,14 +93,22 @@ const endingsHit = new Map<string, number>();
 /** 结局 key -> 落幕时主角出现过的身份（报告里给 CC3 看哪个结局用哪套袍色） */
 const ranksAtEnding = new Map<string, Set<Rank>>();
 
-/** 随机走法用的挑选器：给定能点的几项，挑一项。不给就按 picks 固定挑 */
-type Chooser = (usable: number[]) => number;
+/** 随机走法用的挑选器：给定能点的几项，挑一项。不给就按 picks 固定挑。`gotos` 是每一项的去向，定向走法按去向挑 */
+type Chooser = (usable: number[], gotos: (string | undefined)[]) => number;
 
 /**
  * 推时钟的走法（D-124）。`openQuota`：来信最多拆几封（markRead），其余一直不拆、在案上攒着。
  * 每推进一步，假时钟走两个小时，信的时间门就都会过。
  */
-interface LetterWalk { openQuota: number }
+interface LetterWalk {
+  openQuota: number;
+  /**
+   * 这几个人的来信一到就拆、回第一种回法（B28）。烟测原来从不回信，
+   * 于是「回过李第二章信的再约、温第三章信的合唱」才开的第三章 09 三选（09a／b／c）从来没被走过——
+   * 数据没问题，是烟测走不到（CC2 D19 用真引擎查出来的）
+   */
+  replyAFrom?: string[];
+}
 
 async function walk(picks: number[], chooser?: Chooser, letterWalk?: LetterWalk): Promise<{ path: string[]; stuck: Stuck | null; forks: number[] }> {
   // 每条路径都要从头开始。Story.start() 会读自动存档，
@@ -147,11 +155,15 @@ async function walk(picks: number[], chooser?: Chooser, letterWalk?: LetterWalk)
   const realNow = Date.now;
   let fakeNow = realNow();
   let opened = 0;
+  /** 等着回的信。不在事件回调里当场回：那一刻引擎还在换场中间，回信带去向会再进一次 enter */
+  const toReply: string[] = [];
   if (letterWalk) {
     Date.now = () => fakeNow;
     story.on((e) => {
       if (e.kind !== "letters") return;
       for (const id of e.arrived) {
+        const from = letters.find((l) => l.id === id)?.from;
+        if (from && letterWalk.replyAFrom?.includes(from)) { toReply.push(id); continue; }
         if (opened >= letterWalk.openQuota) break;
         story.letters.markRead(id);
         opened += 1;
@@ -173,12 +185,20 @@ async function walk(picks: number[], chooser?: Chooser, letterWalk?: LetterWalk)
       forks.push(usable.length);
       // -1 = 这个岔口选最后一项（见下面的「固定挑法」）
       const want = picks[pick++] ?? 0;
-      const choice = chooser ? chooser(usable) : (want < 0 ? usable[usable.length - 1] : usable[want % usable.length])!;
-      const id = (pending as unknown as { items: { choice: { id: string } }[] }).items[choice]!.choice.id;
+      const full = (pending as unknown as { items: { choice: { id: string; goto?: string } }[] }).items;
+      const choice = chooser ? chooser(usable, full.map((x) => x.choice.goto)) : (want < 0 ? usable[usable.length - 1] : usable[want % usable.length])!;
+      const id = full[choice]!.choice.id;
       pending = null;
       await story.choose(id);
       continue;
     }
+    while (toReply.length) {
+      const id = toReply.shift()!;
+      story.letters.markRead(id);
+      await story.replyLetter(id, "plainA");
+      await drain();
+    }
+    if (pending || ended) continue;
     const before = `${story.sceneId}#${story.lineIndex}`;
     if (letterWalk) fakeNow += 2 * 3600_000;
     story.advance();
@@ -359,6 +379,26 @@ if (which === "official" || scenes.some((s) => s.id === "ch02_s11_hanyuan")) {
   }
 }
 
+/**
+ * 回信走法（B28）：李令仪、温荞的来信都回 A，时钟照推。第三章 09 那一问的三个答复场（09a／b／c）
+ * 要「回过李第二章信的再约、温第三章信的合唱，且温第二章没暂停」才开，前面几种走法都不回信，一条也到不了。
+ * 这里每个答复场单走一条：走到 09 就挑去那一场的选项，其余岔口挑第一项。
+ * **数据里有 09a／b／c 就必须三场都走到**，走不到算不变式没守住——免得哪天条件又改成够不着，而烟测照样全绿
+ */
+const replyTargets = scenes.map((s) => s.id).filter((id) => /^ch03_s09[a-z]_/.test(id)).sort();
+const replyWalks: { target: string; hit: boolean }[] = [];
+for (const target of replyTargets) {
+  winDuels = true;
+  const { path, stuck } = await walk([], (usable, gotos) => usable.find((i) => gotos[i] === target) ?? usable[0]!,
+    { openQuota: 0, replyAFrom: ["liqinghe", "wenqiao"] });
+  for (const s of path) seen.add(s);
+  if (stuck && !stucks.some((x) => x.scene === stuck.scene && x.why === stuck.why)) stucks.push(stuck);
+  runs++;
+  const hit = path.includes(target);
+  replyWalks.push({ target, hit });
+  if (!hit) broken.push({ scene: target, why: `李、温来信都回 A 的走法走不到 ${target}：回过再约、合唱，09 那一问还是没开出这一项` });
+}
+
 // --------------------------------------------------------------- 报告
 
 /**
@@ -411,6 +451,9 @@ if (endings.length && hasFinale) {
 if (letterWalks.length) {
   const hit = letterWalks.filter((w) => w.path.includes("ch02_s11_hanyuan")).length;
   console.log(`  推时钟的走法 ${letterWalks.length} 条（信拆 0／1／全拆），${hit} 条走到了第二章的截获场`);
+}
+if (replyWalks.length) {
+  console.log(`  回信走法（李、温来信都回 A）${replyWalks.length} 条：${replyWalks.map((w) => `${w.target.replace(/_[a-z]+$/, "")}${w.hit ? "" : " 没走到"}`).join("、")}${replyWalks.every((w) => w.hit) ? " 都走到了" : ""}`);
 }
 if (broken.length) {
   console.log(`
