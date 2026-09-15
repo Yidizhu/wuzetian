@@ -1,0 +1,56 @@
+{
+  "id": "ch04_s05q_shuge",
+  "chapter": 4,
+  "act": 4,
+  "scene": "shuge",
+  "palette": "ink",
+  "cast": [
+    "wuze"
+  ],
+  "weightless": false,
+  "leavesLetter": [],
+  "purpose": "还没有听完的答复",
+  "lines": [
+    {
+      "id": "ch04_s05q_shuge.l1",
+      "who": "narr",
+      "kind": "aside",
+      "text": "你在门前停住，等里面的人应声。"
+    }
+  ],
+  "branches": [
+    {
+      "require": {
+        "asked.shenheng": true,
+        "pact.shenheng": "active",
+        "told.shenheng": false
+      },
+      "goto": "ch04_s05qa_shuge"
+    },
+    {
+      "require": {
+        "asked.peizhaoye": true,
+        "pact.peizhaoye": "active",
+        "told.peizhaoye": false
+      },
+      "goto": "ch04_s05qb_yuanye"
+    },
+    {
+      "require": {
+        "asked.wenqiao": true,
+        "pact.wenqiao": "active",
+        "told.wenqiao": false
+      },
+      "goto": "ch04_s05qc_shishe"
+    },
+    {
+      "require": {
+        "asked.liqinghe": true,
+        "pact.liqinghe": "active",
+        "told.liqinghe": false
+      },
+      "goto": "ch04_s05qd_yuanye"
+    }
+  ],
+  "goto": "ch04_s05r_shuge"
+}

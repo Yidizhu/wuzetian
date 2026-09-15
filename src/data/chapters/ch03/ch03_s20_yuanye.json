@@ -128,12 +128,22 @@
     },
     {
       "id": "ch03_s20_yuanye.l17",
+      "when": {
+        "flag.li_ch03_only_intent": false,
+        "flag.li_ch03_multi_told": false,
+        "flag.li_ch03_private_paused": false
+      },
       "who": "narr",
       "kind": "aside",
       "text": "你看她擦手，嘴唇还沾着果汁，下唇有一点齿痕。"
     },
     {
       "id": "ch03_s20_yuanye.l18",
+      "when": {
+        "flag.li_ch03_only_intent": false,
+        "flag.li_ch03_multi_told": false,
+        "flag.li_ch03_private_paused": false
+      },
       "who": "wuze",
       "expr": "open",
       "kind": "say",
@@ -141,12 +151,22 @@
     },
     {
       "id": "ch03_s20_yuanye.l19",
+      "when": {
+        "flag.li_ch03_only_intent": false,
+        "flag.li_ch03_multi_told": false,
+        "flag.li_ch03_private_paused": false
+      },
       "who": "narr",
       "kind": "aside",
       "text": "李令仪把果子搁回碟里，抬脸看你。"
     },
     {
       "id": "ch03_s20_yuanye.l20",
+      "when": {
+        "flag.li_ch03_only_intent": false,
+        "flag.li_ch03_multi_told": false,
+        "flag.li_ch03_private_paused": false
+      },
       "who": "liqinghe",
       "expr": "open",
       "kind": "say",
@@ -154,24 +174,44 @@
     },
     {
       "id": "ch03_s20_yuanye.l21",
+      "when": {
+        "flag.li_ch03_only_intent": false,
+        "flag.li_ch03_multi_told": false,
+        "flag.li_ch03_private_paused": false
+      },
       "who": "narr",
       "kind": "aside",
       "text": "你放下手里的果，凑过去。她迎上来，唇贴住你的唇。"
     },
     {
       "id": "ch03_s20_yuanye.l22",
+      "when": {
+        "flag.li_ch03_only_intent": false,
+        "flag.li_ch03_multi_told": false,
+        "flag.li_ch03_private_paused": false
+      },
       "who": "self",
       "kind": "inner",
       "text": "（是酸的。还想再碰一下。）"
     },
     {
       "id": "ch03_s20_yuanye.l23",
+      "when": {
+        "flag.li_ch03_only_intent": false,
+        "flag.li_ch03_multi_told": false,
+        "flag.li_ch03_private_paused": false
+      },
       "who": "narr",
       "kind": "aside",
       "text": "你们分开一点。她的手扶在你肘边，没有把你拉回去。"
     },
     {
       "id": "ch03_s20_yuanye.l24",
+      "when": {
+        "flag.li_ch03_only_intent": false,
+        "flag.li_ch03_multi_told": false,
+        "flag.li_ch03_private_paused": false
+      },
       "who": "liqinghe",
       "expr": "open",
       "kind": "say",
@@ -179,6 +219,11 @@
     },
     {
       "id": "ch03_s20_yuanye.l25",
+      "when": {
+        "flag.li_ch03_only_intent": false,
+        "flag.li_ch03_multi_told": false,
+        "flag.li_ch03_private_paused": false
+      },
       "who": "wuze",
       "expr": "open",
       "kind": "say",
@@ -186,6 +231,11 @@
     },
     {
       "id": "ch03_s20_yuanye.l26",
+      "when": {
+        "flag.li_ch03_only_intent": false,
+        "flag.li_ch03_multi_told": false,
+        "flag.li_ch03_private_paused": false
+      },
       "who": "liqinghe",
       "expr": "open",
       "kind": "say",
@@ -193,18 +243,85 @@
     },
     {
       "id": "ch03_s20_yuanye.l27",
+      "when": {
+        "flag.li_ch03_only_intent": false,
+        "flag.li_ch03_multi_told": false,
+        "flag.li_ch03_private_paused": false
+      },
       "who": "narr",
       "kind": "aside",
       "text": "你笑着点头，她也笑了，把果碟推到两人中间。"
     },
     {
       "id": "ch03_s20_yuanye.l28",
+      "when": {
+        "flag.li_ch03_only_intent": false,
+        "flag.li_ch03_multi_told": false,
+        "flag.li_ch03_private_paused": false
+      },
       "who": "narr",
       "kind": "aside",
       "text": "两枚果核并排落在帕角。你们又各拿一只，没再挑颜色。"
     },
     {
       "id": "ch03_s20_yuanye.l29",
+      "when": {
+        "flag.li_ch03_only_intent": true
+      },
+      "who": "narr",
+      "kind": "aside",
+      "text": "你低头咬自己的果子。她把帕子铺平，果核各落一边。"
+    },
+    {
+      "id": "ch03_s20_yuanye.l30",
+      "when": {
+        "flag.li_ch03_only_intent": true
+      },
+      "who": "liqinghe",
+      "expr": "default",
+      "kind": "say",
+      "text": "果子放这儿，要吃再拿。"
+    },
+    {
+      "id": "ch03_s20_yuanye.l31",
+      "when": {
+        "flag.li_ch03_multi_told": true
+      },
+      "who": "narr",
+      "kind": "aside",
+      "text": "你低头咬自己的果子。她把帕子铺平，果核各落一边。"
+    },
+    {
+      "id": "ch03_s20_yuanye.l32",
+      "when": {
+        "flag.li_ch03_multi_told": true
+      },
+      "who": "liqinghe",
+      "expr": "default",
+      "kind": "say",
+      "text": "果子放这儿，要吃再拿。"
+    },
+    {
+      "id": "ch03_s20_yuanye.l33",
+      "when": {
+        "flag.li_ch03_private_paused": true
+      },
+      "who": "narr",
+      "kind": "aside",
+      "text": "你低头咬自己的果子。她把帕子铺平，果核各落一边。"
+    },
+    {
+      "id": "ch03_s20_yuanye.l34",
+      "when": {
+        "flag.li_ch03_private_paused": true
+      },
+      "who": "liqinghe",
+      "expr": "default",
+      "kind": "say",
+      "text": "果子放这儿，要吃再拿。"
+    },
+    {
+      "id": "ch03_s20_yuanye.l35",
       "who": "narr",
       "kind": "aside",
       "text": "你擦干手上的果汁，起身回观里。"

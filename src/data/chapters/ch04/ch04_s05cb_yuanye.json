@@ -1,0 +1,47 @@
+{
+  "id": "ch04_s05cb_yuanye",
+  "chapter": 4,
+  "act": 4,
+  "scene": "yuanye",
+  "palette": "ink",
+  "cast": [
+    "wuze",
+    "peizhaoye"
+  ],
+  "weightless": false,
+  "leavesLetter": [],
+  "purpose": "同裴照夜说停",
+  "lines": [
+    {
+      "id": "ch04_s05cb_yuanye.l1",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "往后的私约，我不再应了。是我自己选的。"
+    },
+    {
+      "id": "ch04_s05cb_yuanye.l2",
+      "who": "peizhaoye",
+      "expr": "default",
+      "kind": "say",
+      "text": "知道了。我把那半刻另用了。"
+    },
+    {
+      "id": "ch04_s05cb_yuanye.l3",
+      "who": "narr",
+      "kind": "aside",
+      "text": "她系好行囊，没再给你空出并排的一边。"
+    }
+  ],
+  "choices": [
+    {
+      "id": "ch04_s05cb_yuanye.cA",
+      "text": "说到这里，收回私约",
+      "effects": {
+        "pact.peizhaoye": "ended"
+      },
+      "irreversible": false,
+      "goto": "ch04_s05c_shuge"
+    }
+  ]
+}

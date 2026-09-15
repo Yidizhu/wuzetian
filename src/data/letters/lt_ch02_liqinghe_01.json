@@ -28,7 +28,8 @@
       {
         "effects": {
           "affinity.liqinghe": 2,
-          "flag.li_ch02_letter_meet": true
+          "flag.li_ch02_letter_meet": true,
+          "pact.liqinghe": "active"
         },
         "reaction": "“时辰另约。明日那一笔，你还须给我一个答复。”她指的是财政稿，随后才另问哪日方便。",
         "id": "lt_ch02_liqinghe_01.rA",
@@ -45,7 +46,8 @@
       },
       {
         "effects": {
-          "flag.li_ch02_letter_public_only": true
+          "flag.li_ch02_letter_public_only": true,
+          "pact.liqinghe": "ended"
         },
         "reaction": "“知道了。公议照旧。”私人帖子收回，不撤已交的全文。",
         "id": "lt_ch02_liqinghe_01.rC",

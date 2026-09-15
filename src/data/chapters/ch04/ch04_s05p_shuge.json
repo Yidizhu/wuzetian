@@ -1,0 +1,202 @@
+{
+  "id": "ch04_s05p_shuge",
+  "chapter": 4,
+  "act": 4,
+  "scene": "shuge",
+  "palette": "ink",
+  "cast": [
+    "wuze"
+  ],
+  "weightless": false,
+  "leavesLetter": [],
+  "purpose": "往后怎样见面",
+  "lines": [
+    {
+      "id": "ch04_s05p_shuge.l1",
+      "who": "narr",
+      "kind": "aside",
+      "text": "该交回的纸已经交回。你把自己的东西收进袖里。"
+    },
+    {
+      "id": "ch04_s05p_shuge.l2",
+      "who": "self",
+      "kind": "inner",
+      "text": "（往后想怎样见她，得由我开口。）"
+    }
+  ],
+  "choices": [
+    {
+      "id": "ch04_s05p_shuge.cA",
+      "text": "去见沈衡，我想只同她相爱",
+      "require": {
+        "pact.shenheng": {
+          "not": [
+            "none",
+            "declined"
+          ]
+        }
+      },
+      "effects": {
+        "told.shenheng": false,
+        "answer.shenheng": "none",
+        "asked.peizhaoye": false,
+        "told.peizhaoye": false,
+        "answer.peizhaoye": "none",
+        "asked.wenqiao": false,
+        "told.wenqiao": false,
+        "answer.wenqiao": "none",
+        "asked.liqinghe": false,
+        "told.liqinghe": false,
+        "answer.liqinghe": "none",
+        "asked.shenheng": true,
+        "pact.shenheng": "active",
+        "intent": "only",
+        "flag.liqinghe_together": false
+      },
+      "irreversible": false,
+      "goto": "ch04_s05c_shuge"
+    },
+    {
+      "id": "ch04_s05p_shuge.cB",
+      "text": "去见裴照夜，我想只同她相爱",
+      "require": {
+        "pact.peizhaoye": {
+          "not": [
+            "none",
+            "declined"
+          ]
+        }
+      },
+      "effects": {
+        "asked.shenheng": false,
+        "told.shenheng": false,
+        "answer.shenheng": "none",
+        "told.peizhaoye": false,
+        "answer.peizhaoye": "none",
+        "asked.wenqiao": false,
+        "told.wenqiao": false,
+        "answer.wenqiao": "none",
+        "asked.liqinghe": false,
+        "told.liqinghe": false,
+        "answer.liqinghe": "none",
+        "asked.peizhaoye": true,
+        "pact.peizhaoye": "active",
+        "intent": "only",
+        "flag.liqinghe_together": false
+      },
+      "irreversible": false,
+      "goto": "ch04_s05c_shuge"
+    },
+    {
+      "id": "ch04_s05p_shuge.cC",
+      "text": "去见温荞，我想只同她相爱",
+      "require": {
+        "pact.wenqiao": {
+          "not": [
+            "none",
+            "declined"
+          ]
+        }
+      },
+      "effects": {
+        "asked.shenheng": false,
+        "told.shenheng": false,
+        "answer.shenheng": "none",
+        "asked.peizhaoye": false,
+        "told.peizhaoye": false,
+        "answer.peizhaoye": "none",
+        "told.wenqiao": false,
+        "answer.wenqiao": "none",
+        "asked.liqinghe": false,
+        "told.liqinghe": false,
+        "answer.liqinghe": "none",
+        "asked.wenqiao": true,
+        "pact.wenqiao": "active",
+        "intent": "only",
+        "flag.liqinghe_together": false
+      },
+      "irreversible": false,
+      "goto": "ch04_s05c_shuge"
+    },
+    {
+      "id": "ch04_s05p_shuge.cD",
+      "text": "去见李令仪，我想只同她相爱",
+      "require": {
+        "pact.liqinghe": {
+          "not": [
+            "none",
+            "declined"
+          ]
+        }
+      },
+      "effects": {
+        "asked.shenheng": false,
+        "told.shenheng": false,
+        "answer.shenheng": "none",
+        "asked.peizhaoye": false,
+        "told.peizhaoye": false,
+        "answer.peizhaoye": "none",
+        "asked.wenqiao": false,
+        "told.wenqiao": false,
+        "answer.wenqiao": "none",
+        "told.liqinghe": false,
+        "answer.liqinghe": "none",
+        "asked.liqinghe": true,
+        "pact.liqinghe": "active",
+        "intent": "only",
+        "flag.liqinghe_together": false
+      },
+      "irreversible": false,
+      "goto": "ch04_s05c_shuge"
+    },
+    {
+      "id": "ch04_s05p_shuge.cE",
+      "text": "还想见不止一人，逐个说清",
+      "require": {
+        "pacts.active": {
+          "gte": 2
+        }
+      },
+      "effects": {
+        "asked.shenheng": false,
+        "told.shenheng": false,
+        "answer.shenheng": "none",
+        "asked.peizhaoye": false,
+        "told.peizhaoye": false,
+        "answer.peizhaoye": "none",
+        "asked.wenqiao": false,
+        "told.wenqiao": false,
+        "answer.wenqiao": "none",
+        "asked.liqinghe": false,
+        "told.liqinghe": false,
+        "answer.liqinghe": "none",
+        "intent": "open",
+        "flag.liqinghe_together": false
+      },
+      "irreversible": false,
+      "goto": "ch04_s05m_shuge"
+    },
+    {
+      "id": "ch04_s05p_shuge.cF",
+      "text": "先停私约，独自过一阵",
+      "effects": {
+        "asked.shenheng": false,
+        "told.shenheng": false,
+        "answer.shenheng": "none",
+        "asked.peizhaoye": false,
+        "told.peizhaoye": false,
+        "answer.peizhaoye": "none",
+        "asked.wenqiao": false,
+        "told.wenqiao": false,
+        "answer.wenqiao": "none",
+        "asked.liqinghe": false,
+        "told.liqinghe": false,
+        "answer.liqinghe": "none",
+        "intent": "solo",
+        "flag.liqinghe_together": false
+      },
+      "irreversible": false,
+      "goto": "ch04_s05c_shuge"
+    }
+  ]
+}

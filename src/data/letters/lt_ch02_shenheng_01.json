@@ -87,7 +87,8 @@
       {
         "effects": {
           "affinity.shenheng": 2,
-          "flag.shen_after_intercept_meet": true
+          "flag.shen_after_intercept_meet": true,
+          "pact.shenheng": "active"
         },
         "reaction": "她另取一张无案号的纸：“先问时辰。你答了，我再来。”不把本次回话算成她先前所有邀请都获准。",
         "id": "lt_ch02_shenheng_01.rA",
@@ -104,7 +105,8 @@
       },
       {
         "effects": {
-          "flag.shen_after_intercept_private_stop": true
+          "flag.shen_after_intercept_private_stop": true,
+          "pact.shenheng": "ended"
         },
         "reaction": "“知道。公事另纸。”她收起私笺，不追问何时肯再见。",
         "id": "lt_ch02_shenheng_01.rC",

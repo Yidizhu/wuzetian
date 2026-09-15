@@ -399,6 +399,44 @@ for (const target of replyTargets) {
   if (!hit) broken.push({ scene: target, why: `李、温来信都回 A 的走法走不到 ${target}：回过再约、合唱，09 那一问还是没开出这一项` });
 }
 
+/**
+ * 四份私约的走法（B29）：沈、裴、温、李四人的来信一到就回 A——第二章那四封信的直言 A 写 `pact.<人> = active`，
+ * 走到第四章关系选择（ch04-05p）时四份私约都有效。关系菜单后面的小场（说停、逐个问、答复、李胜那一场）
+ * 前面几种走法一种都进不去：不回信就没有私约，菜单只剩「独自过一阵」。
+ *
+ * 第四章关系段的走法很多（选谁、问几个、谁先答、登没登基），固定挑法凑不齐，所以用随机走法，
+ * **每一步能去一个还没到过的关系小场，就去那一场**，直到每一场都到过、「两席之间」也落过幕，或者条数用完。
+ * 种子固定，结果可复现。**数据里有 ch04-05 的关系小场，就必须每场走到；有「两席之间」就必须落到**——
+ * 它现在要 `love.liqinghe` 才写得出 `liqinghe_together`，关系段走不全，这个结局就没了
+ */
+const relTargets = scenes.map((s) => s.id).filter((id) => /^ch04_s05[a-z]+_/.test(id)).sort();
+const relSeen = new Set<string>();
+let relRuns = 0;
+if (relTargets.length) {
+  const RELATION_RUNS = Number(process.env.SMOKE_RELATION ?? 400);
+  const wantEnding = endings.some((e) => e.key === "liangxizhijian");
+  let rseed = 20260915;
+  const rr = (): number => { rseed = (rseed * 1664525 + 1013904223) >>> 0; return rseed / 2 ** 32; };
+  for (; relRuns < RELATION_RUNS; relRuns++) {
+    if (relTargets.every((t) => relSeen.has(t)) && (!wantEnding || endingsHit.has("liangxizhijian"))) break;
+    winDuels = rr() < 0.7;
+    const { path, stuck } = await walk([], (usable, gotos) => {
+      const fresh = usable.filter((i) => gotos[i] && relTargets.includes(gotos[i]!) && !relSeen.has(gotos[i]!));
+      const pool = fresh.length ? fresh : usable;
+      return pool[Math.floor(rr() * pool.length)]!;
+    }, { openQuota: 0, replyAFrom: ["shenheng", "peizhaoye", "wenqiao", "liqinghe"] });
+    for (const s of path) { seen.add(s); if (relTargets.includes(s)) relSeen.add(s); }
+    if (stuck && !stucks.some((x) => x.scene === stuck.scene && x.why === stuck.why)) stucks.push(stuck);
+    runs++;
+  }
+  for (const t of relTargets) {
+    if (!relSeen.has(t)) broken.push({ scene: t, why: `四份私约的走法 ${relRuns} 条都没走到 ${t}` });
+  }
+  if (wantEnding && !endingsHit.has("liangxizhijian")) {
+    broken.push({ scene: "liangxizhijian", why: `四份私约的走法 ${relRuns} 条都没落到「两席之间」：李胜之后要双方相爱才写得出 liqinghe_together` });
+  }
+}
+
 // --------------------------------------------------------------- 报告
 
 /**
@@ -454,6 +492,9 @@ if (letterWalks.length) {
 }
 if (replyWalks.length) {
   console.log(`  回信走法（李、温来信都回 A）${replyWalks.length} 条：${replyWalks.map((w) => `${w.target.replace(/_[a-z]+$/, "")}${w.hit ? "" : " 没走到"}`).join("、")}${replyWalks.every((w) => w.hit) ? " 都走到了" : ""}`);
+}
+if (relTargets.length) {
+  console.log(`  四份私约的走法（四人来信都回 A）${relRuns} 条：第四章关系小场 ${relTargets.filter((t) => relSeen.has(t)).length}/${relTargets.length} 场走到${endingsHit.has("liangxizhijian") ? "，「两席之间」落到了" : ""}`);
 }
 if (broken.length) {
   console.log(`

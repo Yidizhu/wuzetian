@@ -1,0 +1,304 @@
+{
+  "id": "ch04_s05qb_yuanye",
+  "chapter": 4,
+  "act": 4,
+  "scene": "yuanye",
+  "palette": "ink",
+  "cast": [
+    "wuze",
+    "peizhaoye"
+  ],
+  "weightless": false,
+  "leavesLetter": [],
+  "purpose": "听裴照夜自己答",
+  "lines": [
+    {
+      "id": "ch04_s05qb_yuanye.l1",
+      "when": {
+        "intent": "only"
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "照夜，我想只同你相爱。"
+    },
+    {
+      "id": "ch04_s05qb_yuanye.l2",
+      "when": {
+        "intent": "only"
+      },
+      "who": "peizhaoye",
+      "expr": "default",
+      "kind": "say",
+      "text": "你说的“只”，旁人也听过了？"
+    },
+    {
+      "id": "ch04_s05qb_yuanye.l3",
+      "when": {
+        "intent": "only"
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "该说的都说清了。"
+    },
+    {
+      "id": "ch04_s05qb_yuanye.l4",
+      "when": {
+        "intent": "only"
+      },
+      "who": "narr",
+      "kind": "aside",
+      "text": "裴将行囊放到脚边，站在你面前。"
+    },
+    {
+      "id": "ch04_s05qb_yuanye.l5",
+      "when": {
+        "intent": "only"
+      },
+      "who": "peizhaoye",
+      "expr": "default",
+      "kind": "say",
+      "text": "我也愿意。"
+    },
+    {
+      "id": "ch04_s05qb_yuanye.l6",
+      "when": {
+        "intent": "open"
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "我想同你相爱，但不只同你一人。"
+    },
+    {
+      "id": "ch04_s05qb_yuanye.l7",
+      "when": {
+        "intent": "open",
+        "pact.shenheng": "active"
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "我还想同沈衡相见。"
+    },
+    {
+      "id": "ch04_s05qb_yuanye.l8",
+      "when": {
+        "intent": "open",
+        "pact.shenheng": "declined"
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "沈衡不愿意，私约已停。"
+    },
+    {
+      "id": "ch04_s05qb_yuanye.l9",
+      "when": {
+        "intent": "open",
+        "pact.shenheng": "ended"
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "我已同沈衡说停了私约。"
+    },
+    {
+      "id": "ch04_s05qb_yuanye.l10",
+      "when": {
+        "intent": "open",
+        "pact.shenheng": "paused"
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "沈衡那边先停着，尚未答应。"
+    },
+    {
+      "id": "ch04_s05qb_yuanye.l11",
+      "when": {
+        "intent": "open",
+        "pact.wenqiao": "active"
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "我还想同温荞相见。"
+    },
+    {
+      "id": "ch04_s05qb_yuanye.l12",
+      "when": {
+        "intent": "open",
+        "pact.wenqiao": "declined"
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "温荞不愿意，私约已停。"
+    },
+    {
+      "id": "ch04_s05qb_yuanye.l13",
+      "when": {
+        "intent": "open",
+        "pact.wenqiao": "ended"
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "我已同温荞说停了私约。"
+    },
+    {
+      "id": "ch04_s05qb_yuanye.l14",
+      "when": {
+        "intent": "open",
+        "pact.wenqiao": "paused"
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "温荞那边先停着，尚未答应。"
+    },
+    {
+      "id": "ch04_s05qb_yuanye.l15",
+      "when": {
+        "intent": "open",
+        "pact.liqinghe": "active"
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "我还想同李令仪相见。"
+    },
+    {
+      "id": "ch04_s05qb_yuanye.l16",
+      "when": {
+        "intent": "open",
+        "pact.liqinghe": "declined"
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "李令仪不愿意，私约已停。"
+    },
+    {
+      "id": "ch04_s05qb_yuanye.l17",
+      "when": {
+        "intent": "open",
+        "pact.liqinghe": "ended"
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "我已同李令仪说停了私约。"
+    },
+    {
+      "id": "ch04_s05qb_yuanye.l18",
+      "when": {
+        "intent": "open",
+        "pact.liqinghe": "paused"
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "李令仪那边先停着，尚未答应。"
+    },
+    {
+      "id": "ch04_s05qb_yuanye.l19",
+      "when": {
+        "intent": "open"
+      },
+      "who": "peizhaoye",
+      "expr": "default",
+      "kind": "say",
+      "text": "你说的这些人，都听见了同样的话？"
+    },
+    {
+      "id": "ch04_s05qb_yuanye.l20",
+      "when": {
+        "intent": "open"
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "我一个个说，不拿谁答应来劝谁。"
+    },
+    {
+      "id": "ch04_s05qb_yuanye.l21",
+      "when": {
+        "intent": "open"
+      },
+      "who": "peizhaoye",
+      "expr": "default",
+      "kind": "say",
+      "text": "那我先答我自己的。"
+    },
+    {
+      "id": "ch04_s05qb_yuanye.l22",
+      "when": {
+        "intent": "open"
+      },
+      "who": "peizhaoye",
+      "expr": "default",
+      "kind": "say",
+      "text": "我愿意继续和你相爱，不只彼此也可以。"
+    },
+    {
+      "id": "ch04_s05qb_yuanye.l23",
+      "when": {
+        "intent": "open"
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "你的空闲，不用一直给我留。"
+    },
+    {
+      "id": "ch04_s05qb_yuanye.l24",
+      "when": {
+        "intent": "open"
+      },
+      "who": "peizhaoye",
+      "expr": "default",
+      "kind": "say",
+      "text": "本来也没全留。"
+    }
+  ],
+  "choices": [
+    {
+      "id": "ch04_s05qb_yuanye.cA",
+      "text": "我也愿意，只与你相爱",
+      "require": {
+        "intent": "only"
+      },
+      "effects": {
+        "told.peizhaoye": true,
+        "answer.peizhaoye": "only"
+      },
+      "irreversible": false,
+      "goto": "ch04_s05q_shuge"
+    },
+    {
+      "id": "ch04_s05qb_yuanye.cB",
+      "text": "按说清的这样继续",
+      "require": {
+        "intent": "open"
+      },
+      "effects": {
+        "told.peizhaoye": true,
+        "answer.peizhaoye": "open"
+      },
+      "irreversible": false,
+      "goto": "ch04_s05q_shuge"
+    },
+    {
+      "id": "ch04_s05qb_yuanye.cC",
+      "text": "我还做不到，先停私约",
+      "effects": {
+        "pact.peizhaoye": "ended"
+      },
+      "irreversible": false,
+      "goto": "ch04_s05q_shuge"
+    }
+  ]
+}

@@ -1,0 +1,61 @@
+{
+  "id": "ch04_s05cc_shishe",
+  "chapter": 4,
+  "act": 4,
+  "scene": "shishe",
+  "palette": "ink",
+  "cast": [
+    "wuze",
+    "wenqiao"
+  ],
+  "weightless": false,
+  "leavesLetter": [],
+  "purpose": "同温荞说停",
+  "lines": [
+    {
+      "id": "ch04_s05cc_shishe.l1",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "往后的私约，我不再应了。是我自己选的。"
+    },
+    {
+      "id": "ch04_s05cc_shishe.l2",
+      "who": "wenqiao",
+      "expr": "default",
+      "kind": "say",
+      "text": "那首唱过的，我还会唱。"
+    },
+    {
+      "id": "ch04_s05cc_shishe.l3",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "当然。"
+    },
+    {
+      "id": "ch04_s05cc_shishe.l4",
+      "who": "wenqiao",
+      "expr": "default",
+      "kind": "say",
+      "text": "我没问可不可以。"
+    },
+    {
+      "id": "ch04_s05cc_shishe.l5",
+      "who": "narr",
+      "kind": "aside",
+      "text": "你停住话。她卷起自己的谱纸，搁回筐里。"
+    }
+  ],
+  "choices": [
+    {
+      "id": "ch04_s05cc_shishe.cA",
+      "text": "说到这里，收回私约",
+      "effects": {
+        "pact.wenqiao": "ended"
+      },
+      "irreversible": false,
+      "goto": "ch04_s05c_shuge"
+    }
+  ]
+}

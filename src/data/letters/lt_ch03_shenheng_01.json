@@ -51,7 +51,8 @@
       {
         "effects": {
           "affinity.shenheng": 2,
-          "flag.shen_ch03_letter_meet": true
+          "flag.shen_ch03_letter_meet": true,
+          "pact.shenheng": "active"
         },
         "reaction": "“先各报时辰。”她另取一纸，不挪动异议的副本。",
         "id": "lt_ch03_shenheng_01.rA",
@@ -59,7 +60,8 @@
       },
       {
         "effects": {
-          "flag.shen_ch03_letter_wait": true
+          "flag.shen_ch03_letter_wait": true,
+          "pact.shenheng": "paused"
         },
         "reaction": "“私下先缓。复议照问。”她没有多列一日。",
         "id": "lt_ch03_shenheng_01.rB",
@@ -67,7 +69,8 @@
       },
       {
         "effects": {
-          "flag.shen_ch03_letter_stop": true
+          "flag.shen_ch03_letter_stop": true,
+          "pact.shenheng": "ended"
         },
         "reaction": "“公事另纸。”她将私笺折回，不追问何时再写。",
         "id": "lt_ch03_shenheng_01.rC",

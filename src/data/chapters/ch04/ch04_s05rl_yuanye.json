@@ -1,0 +1,51 @@
+{
+  "id": "ch04_s05rl_yuanye",
+  "chapter": 4,
+  "act": 4,
+  "scene": "yuanye",
+  "palette": "ink",
+  "cast": [
+    "wuze",
+    "liqinghe"
+  ],
+  "weightless": false,
+  "leavesLetter": [],
+  "purpose": "相见不替她定去处",
+  "lines": [
+    {
+      "id": "ch04_s05rl_yuanye.l1",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "那只手，能牵么？"
+    },
+    {
+      "id": "ch04_s05rl_yuanye.l2",
+      "who": "narr",
+      "kind": "aside",
+      "text": "李令仪将稿换到外侧，伸过手。你接住，没有拉她转身。"
+    },
+    {
+      "id": "ch04_s05rl_yuanye.l3",
+      "who": "liqinghe",
+      "expr": "default",
+      "kind": "say",
+      "text": "稿还要改。去哪里，你自己定。"
+    }
+  ],
+  "choices": [
+    {
+      "id": "ch04_s05rl_yuanye.cA",
+      "text": "约好再见，收好自己的稿",
+      "require": {
+        "love.liqinghe": true,
+        "flag.liqinghe_won": true
+      },
+      "effects": {
+        "flag.liqinghe_together": true
+      },
+      "irreversible": false,
+      "goto": "ch04_s08z_shuge"
+    }
+  ]
+}

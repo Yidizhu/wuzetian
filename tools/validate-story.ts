@@ -14,6 +14,7 @@ import { DATA, ROOT, loadDir, loadFile } from "./load.ts";
 import { Scene, PoemDuel, Poem, Letter, Ending, CHARACTER_KEYS, NAME_FLAGS, FLAG_CONFLICTS, FLAG_REQUIRES } from "../src/engine/schema.ts";
 import type { SceneT, PoemT, PoemDuelT, LetterT, EndingT } from "../src/engine/schema.ts";
 import { ENTRANCES } from "../src/engine/entrances.ts";
+import { hasRelationKey } from "../src/engine/conditions.ts";
 import { AFFINITY_BANDS } from "../src/engine/types.ts";
 import { IDENTITY_RANKS } from "../src/engine/identity.ts";
 import { PORTRAITS } from "../src/char/portraits.ts";
@@ -300,7 +301,8 @@ for (const { file, s } of scenes.values()) {
         warn(file, `${c.id}.effects.${k}`, `一次改动 ${v} 点，超过 4。数值跳太大玩家会去猜阈值，而不是去想她是谁`);
       }
     }
-    if (c.require && !c.lockHint) {
+    // 带关系键的条件不满足时选项不显示（B27），用不上 lockHint，不催
+    if (c.require && Object.keys(c.require).length && !c.lockHint && !hasRelationKey(c.require)) {
       warn(file, c.id, "有条件但没写 lockHint。引擎会自动生成一句原因，但剧本自己写的更准");
     }
   }

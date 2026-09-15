@@ -51,7 +51,8 @@
       {
         "effects": {
           "affinity.wenqiao": 2,
-          "flag.wen_ch03_letter_sing": true
+          "flag.wen_ch03_letter_sing": true,
+          "pact.wenqiao": "active"
         },
         "reaction": "“这回先不分谁错。”她哼了半句，自己停住笑了。",
         "id": "lt_ch03_wenqiao_01.rA",
@@ -67,7 +68,8 @@
       },
       {
         "effects": {
-          "flag.wen_ch03_letter_stop": true
+          "flag.wen_ch03_letter_stop": true,
+          "pact.wenqiao": "ended"
         },
         "reaction": "“好，另请另答。”她没给下一次合唱留你的名字。",
         "id": "lt_ch03_wenqiao_01.rC",

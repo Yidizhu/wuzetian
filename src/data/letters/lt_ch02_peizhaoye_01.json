@@ -28,7 +28,8 @@
       {
         "effects": {
           "affinity.peizhaoye": 2,
-          "flag.pei_ch02_spare_time": true
+          "flag.pei_ch02_spare_time": true,
+          "pact.peizhaoye": "active"
         },
         "reaction": "“有空先问你。没答应，不叫人备马。”她把值次核完才另记自己的时辰。",
         "id": "lt_ch02_peizhaoye_01.rA",
@@ -45,7 +46,8 @@
       },
       {
         "effects": {
-          "flag.pei_ch02_pause_help": true
+          "flag.pei_ch02_pause_help": true,
+          "pact.peizhaoye": "paused"
         },
         "reaction": "“好。核账另请。”她收回那页待核项，路书仍归自己。",
         "id": "lt_ch02_peizhaoye_01.rC",

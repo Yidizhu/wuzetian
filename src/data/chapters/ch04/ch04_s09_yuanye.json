@@ -91,152 +91,127 @@
     },
     {
       "id": "ch04_s09_yuanye.l12",
-      "who": "liqinghe",
-      "expr": "default",
-      "kind": "say",
-      "text": "不用为了见我改口。"
+      "who": "narr",
+      "kind": "aside",
+      "text": "你在石阶下停住，她把卷放到另一侧。"
     },
     {
       "id": "ch04_s09_yuanye.l13",
-      "who": "wuze",
-      "expr": "default",
-      "kind": "say",
-      "text": "见你？"
-    },
-    {
-      "id": "ch04_s09_yuanye.l14",
-      "who": "liqinghe",
-      "expr": "open",
-      "kind": "say",
-      "text": "今夜没议席。"
-    },
-    {
-      "id": "ch04_s09_yuanye.l15",
-      "who": "narr",
-      "kind": "aside",
-      "text": "你坐在她留出的那一级，石头的冷隔着裙料贴上来。"
-    },
-    {
-      "id": "ch04_s09_yuanye.l16",
       "who": "wuze",
       "expr": "guarded",
       "kind": "say",
       "text": "我输了。"
     },
     {
-      "id": "ch04_s09_yuanye.l17",
+      "id": "ch04_s09_yuanye.l14",
       "who": "liqinghe",
       "expr": "default",
       "kind": "say",
       "text": "我知道。"
     },
     {
-      "id": "ch04_s09_yuanye.l18",
+      "id": "ch04_s09_yuanye.l15",
       "who": "wuze",
       "expr": "guarded",
       "kind": "say",
       "text": "不用说只差——"
     },
     {
-      "id": "ch04_s09_yuanye.l19",
+      "id": "ch04_s09_yuanye.l16",
       "who": "liqinghe",
       "expr": "default",
       "kind": "say",
       "text": "没打算说。"
     },
     {
-      "id": "ch04_s09_yuanye.l20",
+      "id": "ch04_s09_yuanye.l17",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
       "text": "……"
     },
     {
-      "id": "ch04_s09_yuanye.l21",
+      "id": "ch04_s09_yuanye.l18",
       "who": "narr",
       "kind": "aside",
       "text": "她将饼掰下一角，碎屑落在自己膝上，没急着拂掉。"
     },
     {
-      "id": "ch04_s09_yuanye.l22",
+      "id": "ch04_s09_yuanye.l19",
+      "when": {
+        "love.liqinghe": true
+      },
       "who": "liqinghe",
-      "expr": "open",
+      "expr": "default",
       "kind": "say",
-      "text": "仍想与你相爱，再见你。"
+      "text": "先前相爱的话，我没有收回。"
     },
     {
-      "id": "ch04_s09_yuanye.l23",
-      "who": "wuze",
-      "expr": "open",
-      "kind": "say",
-      "text": "相爱。"
-    },
-    {
-      "id": "ch04_s09_yuanye.l24",
-      "who": "liqinghe",
-      "expr": "open",
-      "kind": "say",
-      "text": "不愿意，或者教书、行路，都亲口告诉我。"
-    },
-    {
-      "id": "ch04_s09_yuanye.l25",
-      "who": "self",
-      "kind": "inner",
-      "text": "（她说相爱。先别替明日答完。）"
-    },
-    {
-      "id": "ch04_s09_yuanye.l26",
+      "id": "ch04_s09_yuanye.l20",
+      "when": {
+        "love.liqinghe": true
+      },
       "who": "wuze",
       "expr": "default",
       "kind": "say",
       "text": "去远了……未必赶得上时辰。"
     },
     {
-      "id": "ch04_s09_yuanye.l27",
+      "id": "ch04_s09_yuanye.l21",
+      "when": {
+        "love.liqinghe": true
+      },
       "who": "liqinghe",
       "expr": "default",
       "kind": "say",
-      "text": "另约，归期不列朝班，不拿差事换你留下。"
+      "text": "另约。归期不列朝班，不拿差事换你留下。"
     },
     {
-      "id": "ch04_s09_yuanye.l28",
-      "who": "wuze",
-      "expr": "default",
-      "kind": "say",
-      "text": "另约。"
-    },
-    {
-      "id": "ch04_s09_yuanye.l29",
-      "who": "wuze",
-      "expr": "default",
-      "kind": "say",
-      "text": "若今后只谈公事呢？"
-    },
-    {
-      "id": "ch04_s09_yuanye.l30",
-      "who": "liqinghe",
-      "expr": "default",
-      "kind": "say",
-      "text": "你的议件也已经收了。"
-    },
-    {
-      "id": "ch04_s09_yuanye.l31",
-      "who": "wuze",
-      "expr": "default",
-      "kind": "say",
-      "text": "好。"
-    },
-    {
-      "id": "ch04_s09_yuanye.l32",
+      "id": "ch04_s09_yuanye.l22",
+      "when": {
+        "love.liqinghe": true
+      },
       "who": "narr",
       "kind": "aside",
-      "text": "她把掰下的饼角放在自己掌心，等你答，没有递到你嘴边。"
+      "text": "她将饼角放回纸上，给你留出坐处。"
+    },
+    {
+      "id": "ch04_s09_yuanye.l23",
+      "when": {
+        "love.liqinghe": false
+      },
+      "who": "liqinghe",
+      "expr": "default",
+      "kind": "say",
+      "text": "公事照来。今晚不替往后答。"
+    },
+    {
+      "id": "ch04_s09_yuanye.l24",
+      "when": {
+        "love.liqinghe": false
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "议件我还会送来。"
+    },
+    {
+      "id": "ch04_s09_yuanye.l25",
+      "when": {
+        "love.liqinghe": false
+      },
+      "who": "narr",
+      "kind": "aside",
+      "text": "她将饼角留在自己掌心，没有递到你嘴边。"
     }
   ],
   "choices": [
     {
       "id": "ch04_s09_yuanye.cA",
-      "text": "我也愿意，先留京再约",
+      "text": "先留京，再约时辰",
+      "require": {
+        "love.liqinghe": true
+      },
       "effects": {
         "flag.liqinghe_together": true
       },
@@ -245,7 +220,10 @@
     },
     {
       "id": "ch04_s09_yuanye.cB",
-      "text": "我也愿意，办学的事仍要去问",
+      "text": "办学的事仍要去问",
+      "require": {
+        "love.liqinghe": true
+      },
       "effects": {
         "flag.liqinghe_together": true
       },
@@ -254,7 +232,10 @@
     },
     {
       "id": "ch04_s09_yuanye.cC",
-      "text": "我也愿意，行路的事仍要去问",
+      "text": "行路的事仍要去问",
+      "require": {
+        "love.liqinghe": true
+      },
       "effects": {
         "flag.liqinghe_together": true
       },
@@ -264,6 +245,9 @@
     {
       "id": "ch04_s09_yuanye.cD",
       "text": "今后只谈公事，我先留京",
+      "require": {
+        "love.liqinghe": false
+      },
       "effects": {
         "flag.liqinghe_together": false
       },
@@ -273,6 +257,9 @@
     {
       "id": "ch04_s09_yuanye.cE",
       "text": "今后只谈公事，我去问办学",
+      "require": {
+        "love.liqinghe": false
+      },
       "effects": {
         "flag.liqinghe_together": false
       },
@@ -282,6 +269,9 @@
     {
       "id": "ch04_s09_yuanye.cF",
       "text": "今后只谈公事，我去问行路",
+      "require": {
+        "love.liqinghe": false
+      },
       "effects": {
         "flag.liqinghe_together": false
       },

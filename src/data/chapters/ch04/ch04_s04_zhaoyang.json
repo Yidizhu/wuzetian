@@ -330,7 +330,8 @@
         "flag.ch04_originals_retained": false,
         "flag.ch04_originals_destroyed": true,
         "flag.ch04_contract_registration": true,
-        "flag.ch04_separate_authorization": false
+        "flag.ch04_separate_authorization": false,
+        "pact.shenheng": "declined"
       },
       "irreversible": false,
       "goto": "ch04_s05_yeting"
@@ -345,7 +346,8 @@
         "flag.ch04_originals_retained": false,
         "flag.ch04_originals_destroyed": true,
         "flag.ch04_contract_registration": false,
-        "flag.ch04_separate_authorization": true
+        "flag.ch04_separate_authorization": true,
+        "pact.shenheng": "declined"
       },
       "irreversible": false,
       "goto": "ch04_s05_yeting"

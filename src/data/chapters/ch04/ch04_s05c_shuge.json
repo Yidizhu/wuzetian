@@ -1,0 +1,72 @@
+{
+  "id": "ch04_s05c_shuge",
+  "chapter": 4,
+  "act": 4,
+  "scene": "shuge",
+  "palette": "ink",
+  "cast": [
+    "wuze"
+  ],
+  "weightless": false,
+  "leavesLetter": [],
+  "purpose": "先把旧约说完",
+  "lines": [
+    {
+      "id": "ch04_s05c_shuge.l1",
+      "who": "narr",
+      "kind": "aside",
+      "text": "你换手拿好空笺，走过廊下。"
+    }
+  ],
+  "branches": [
+    {
+      "require": {
+        "pact.shenheng": {
+          "in": [
+            "active",
+            "paused"
+          ]
+        },
+        "asked.shenheng": false
+      },
+      "goto": "ch04_s05ca_shuge"
+    },
+    {
+      "require": {
+        "pact.peizhaoye": {
+          "in": [
+            "active",
+            "paused"
+          ]
+        },
+        "asked.peizhaoye": false
+      },
+      "goto": "ch04_s05cb_yuanye"
+    },
+    {
+      "require": {
+        "pact.wenqiao": {
+          "in": [
+            "active",
+            "paused"
+          ]
+        },
+        "asked.wenqiao": false
+      },
+      "goto": "ch04_s05cc_shishe"
+    },
+    {
+      "require": {
+        "pact.liqinghe": {
+          "in": [
+            "active",
+            "paused"
+          ]
+        },
+        "asked.liqinghe": false
+      },
+      "goto": "ch04_s05cd_yuanye"
+    }
+  ],
+  "goto": "ch04_s05q_shuge"
+}

@@ -1,0 +1,88 @@
+{
+  "id": "ch03_s09b_yuanye",
+  "chapter": 3,
+  "act": 3,
+  "scene": "yuanye",
+  "palette": "ink",
+  "cast": [
+    "wuze",
+    "liqinghe"
+  ],
+  "require": {
+    "flag.li_ch03_multi_told": true
+  },
+  "weightless": false,
+  "leavesLetter": [],
+  "purpose": "主角坦白还想见两人，李不替温答也暂不同行",
+  "lines": [
+    {
+      "id": "ch03_s09b_yuanye.l1",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "我想继续见你，也想见她。"
+    },
+    {
+      "id": "ch03_s09b_yuanye.l2",
+      "who": "liqinghe",
+      "expr": "default",
+      "kind": "say",
+      "text": "她知道你还来见我么？"
+    },
+    {
+      "id": "ch03_s09b_yuanye.l3",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "还不知道。"
+    },
+    {
+      "id": "ch03_s09b_yuanye.l4",
+      "who": "liqinghe",
+      "expr": "default",
+      "kind": "say",
+      "text": "那今夜先别约我。"
+    },
+    {
+      "id": "ch03_s09b_yuanye.l5",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "你是不愿意？"
+    },
+    {
+      "id": "ch03_s09b_yuanye.l6",
+      "who": "liqinghe",
+      "expr": "default",
+      "kind": "say",
+      "text": "我不愿意最后一个才知道。"
+    },
+    {
+      "id": "ch03_s09b_yuanye.l7",
+      "who": "narr",
+      "kind": "aside",
+      "text": "她把松线放回袖里，站到石阶下。"
+    },
+    {
+      "id": "ch03_s09b_yuanye.l8",
+      "who": "liqinghe",
+      "expr": "default",
+      "kind": "say",
+      "text": "她怎么答，不用拿来劝我。"
+    },
+    {
+      "id": "ch03_s09b_yuanye.l9",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "你的话，也不拿去劝她。"
+    },
+    {
+      "id": "ch03_s09b_yuanye.l10",
+      "who": "narr",
+      "kind": "aside",
+      "text": "她点了一下头，没有等你同行。"
+    }
+  ],
+  "goto": "ch03_s10_nvguan"
+}

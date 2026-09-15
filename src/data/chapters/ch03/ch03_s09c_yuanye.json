@@ -1,0 +1,54 @@
+{
+  "id": "ch03_s09c_yuanye",
+  "chapter": 3,
+  "act": 3,
+  "scene": "yuanye",
+  "palette": "ink",
+  "cast": [
+    "wuze",
+    "liqinghe"
+  ],
+  "require": {
+    "flag.li_ch03_private_paused": true
+  },
+  "weightless": false,
+  "leavesLetter": [],
+  "purpose": "主角停下私约，李仍要求明日照实答稿",
+  "lines": [
+    {
+      "id": "ch03_s09c_yuanye.l1",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "我现在答不出。先停下我们的私约。"
+    },
+    {
+      "id": "ch03_s09c_yuanye.l2",
+      "who": "liqinghe",
+      "expr": "default",
+      "kind": "say",
+      "text": "好。"
+    },
+    {
+      "id": "ch03_s09c_yuanye.l3",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "明日的稿——"
+    },
+    {
+      "id": "ch03_s09c_yuanye.l4",
+      "who": "liqinghe",
+      "expr": "default",
+      "kind": "say",
+      "text": "照样送来。那句缺钱，你还没答。"
+    },
+    {
+      "id": "ch03_s09c_yuanye.l5",
+      "who": "narr",
+      "kind": "aside",
+      "text": "你把稿拿回自己怀里。她捡起外袍垂下的一角，往另一边走了。"
+    }
+  ],
+  "goto": "ch03_s10_nvguan"
+}

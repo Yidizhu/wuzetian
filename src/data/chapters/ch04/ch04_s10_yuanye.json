@@ -134,7 +134,7 @@
     {
       "id": "ch04_s10_yuanye.l18",
       "when": {
-        "flag.liqinghe_together": true
+        "love.liqinghe": true
       },
       "who": "liqinghe",
       "expr": "default",
@@ -144,7 +144,7 @@
     {
       "id": "ch04_s10_yuanye.l19",
       "when": {
-        "flag.liqinghe_together": true
+        "love.liqinghe": true
       },
       "who": "wuze",
       "expr": "default",
@@ -154,7 +154,7 @@
     {
       "id": "ch04_s10_yuanye.l20",
       "when": {
-        "flag.liqinghe_together": true
+        "love.liqinghe": true
       },
       "who": "wuze",
       "expr": "default",
@@ -164,7 +164,7 @@
     {
       "id": "ch04_s10_yuanye.l21",
       "when": {
-        "flag.liqinghe_together": true
+        "love.liqinghe": true
       },
       "who": "narr",
       "kind": "aside",
@@ -173,7 +173,7 @@
     {
       "id": "ch04_s10_yuanye.l22",
       "when": {
-        "flag.liqinghe_together": true
+        "love.liqinghe": true
       },
       "who": "narr",
       "kind": "aside",
@@ -182,7 +182,7 @@
     {
       "id": "ch04_s10_yuanye.l23",
       "when": {
-        "flag.liqinghe_together": true
+        "love.liqinghe": true
       },
       "who": "wuze",
       "expr": "open",
@@ -192,7 +192,7 @@
     {
       "id": "ch04_s10_yuanye.l24",
       "when": {
-        "flag.liqinghe_together": true
+        "love.liqinghe": true
       },
       "who": "liqinghe",
       "expr": "open",
@@ -202,7 +202,7 @@
     {
       "id": "ch04_s10_yuanye.l25",
       "when": {
-        "flag.liqinghe_together": true
+        "love.liqinghe": true
       },
       "who": "wuze",
       "expr": "open",
@@ -212,7 +212,7 @@
     {
       "id": "ch04_s10_yuanye.l26",
       "when": {
-        "flag.liqinghe_together": true
+        "love.liqinghe": true
       },
       "who": "liqinghe",
       "expr": "open",
@@ -222,7 +222,7 @@
     {
       "id": "ch04_s10_yuanye.l27",
       "when": {
-        "flag.liqinghe_together": true
+        "love.liqinghe": true
       },
       "who": "self",
       "kind": "inner",
@@ -231,7 +231,7 @@
     {
       "id": "ch04_s10_yuanye.l28",
       "when": {
-        "flag.liqinghe_together": true
+        "love.liqinghe": true
       },
       "who": "narr",
       "kind": "aside",
@@ -240,7 +240,7 @@
     {
       "id": "ch04_s10_yuanye.l29",
       "when": {
-        "flag.liqinghe_together": false
+        "love.liqinghe": false
       },
       "who": "narr",
       "kind": "aside",

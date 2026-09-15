@@ -97,27 +97,26 @@
       },
       "who": "narr",
       "kind": "aside",
-      "text": "三日后，同一座殿。你的手臂抬在礼服里，袖口的重量比试衣时沉。"
+      "text": "试衣时，女史捧来赭黄，候你点头。旁边还搁着一匹绯。"
     },
     {
       "id": "ch03_s12_hanyuan.l13",
       "when": {
         "flag.ch03_accept_offer": true
       },
-      "who": "shenheng",
+      "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "制书按原名写妥，异议副本随交接卷送入。"
+      "text": "绯。"
     },
     {
       "id": "ch03_s12_hanyuan.l14",
       "when": {
         "flag.ch03_accept_offer": true
       },
-      "who": "wuze",
-      "expr": "default",
-      "kind": "say",
-      "text": "异议。"
+      "who": "narr",
+      "kind": "aside",
+      "text": "三日后，同一座殿。你的手臂抬在绯衣里，袖口的重量比试衣时沉。"
     },
     {
       "id": "ch03_s12_hanyuan.l15",
@@ -127,7 +126,7 @@
       "who": "shenheng",
       "expr": "default",
       "kind": "say",
-      "text": "不附在贺词里。"
+      "text": "制书按原名写妥，异议副本随交接卷送入。"
     },
     {
       "id": "ch03_s12_hanyuan.l16",
@@ -137,7 +136,7 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "有说我不堪任的，也留着？"
+      "text": "异议。"
     },
     {
       "id": "ch03_s12_hanyuan.l17",
@@ -145,9 +144,9 @@
         "flag.ch03_accept_offer": true
       },
       "who": "shenheng",
-      "expr": "guarded",
+      "expr": "default",
       "kind": "say",
-      "text": "有。"
+      "text": "不附在贺词里。"
     },
     {
       "id": "ch03_s12_hanyuan.l18",
@@ -157,10 +156,30 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "先放在我看得见的地方。"
+      "text": "有说我不堪任的，也留着？"
     },
     {
       "id": "ch03_s12_hanyuan.l19",
+      "when": {
+        "flag.ch03_accept_offer": true
+      },
+      "who": "shenheng",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "有。"
+    },
+    {
+      "id": "ch03_s12_hanyuan.l20",
+      "when": {
+        "flag.ch03_accept_offer": true
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "先放在我看得见的地方。"
+    },
+    {
+      "id": "ch03_s12_hanyuan.l21",
       "when": {
         "flag.ch03_accept_offer": true
       },
@@ -170,7 +189,7 @@
       "text": "好。"
     },
     {
-      "id": "ch03_s12_hanyuan.l20",
+      "id": "ch03_s12_hanyuan.l22",
       "when": {
         "flag.ch03_accept_offer": true
       },
@@ -179,7 +198,7 @@
       "text": "女皇起身，将印绶亲交到你手中。你行礼受下，转向阶下，群臣依次成礼。"
     },
     {
-      "id": "ch03_s12_hanyuan.l21",
+      "id": "ch03_s12_hanyuan.l23",
       "when": {
         "flag.ch03_accept_offer": true
       },
@@ -189,7 +208,7 @@
       "text": "{名}受位，礼成。"
     },
     {
-      "id": "ch03_s12_hanyuan.l22",
+      "id": "ch03_s12_hanyuan.l24",
       "when": {
         "flag.ch03_accept_offer": true
       },
@@ -198,7 +217,7 @@
       "text": "你坐下时，膝上的织纹绷直了。有人依新称谓呈卷，你伸出手，卷尾碰到袖缘。"
     },
     {
-      "id": "ch03_s12_hanyuan.l23",
+      "id": "ch03_s12_hanyuan.l25",
       "when": {
         "flag.ch03_accept_offer": true
       },
@@ -208,7 +227,7 @@
       "text": "两处照常轮值，撤未准扩办前我还来辩。"
     },
     {
-      "id": "ch03_s12_hanyuan.l24",
+      "id": "ch03_s12_hanyuan.l26",
       "when": {
         "flag.ch03_accept_offer": true
       },
@@ -218,7 +237,7 @@
       "text": "来。"
     },
     {
-      "id": "ch03_s12_hanyuan.l25",
+      "id": "ch03_s12_hanyuan.l27",
       "when": {
         "flag.ch03_accept_offer": true
       },
@@ -228,7 +247,7 @@
       "text": "先前的理由也带来。"
     },
     {
-      "id": "ch03_s12_hanyuan.l26",
+      "id": "ch03_s12_hanyuan.l28",
       "when": {
         "flag.ch03_accept_offer": true
       },
@@ -237,7 +256,7 @@
       "text": "（礼已经完了。我还在等下一声鼓。）"
     },
     {
-      "id": "ch03_s12_hanyuan.l27",
+      "id": "ch03_s12_hanyuan.l29",
       "when": {
         "flag.ch03_decline_offer": true
       },
@@ -246,7 +265,7 @@
       "text": "你将辞受牒摊开，末行仍是亲口答过的不受。唐把授位制书另收，没有撕去。"
     },
     {
-      "id": "ch03_s12_hanyuan.l28",
+      "id": "ch03_s12_hanyuan.l30",
       "when": {
         "flag.ch03_decline_offer": true
       },
@@ -256,7 +275,7 @@
       "text": "辞受奉准，两件同存，不能说未曾获授。"
     },
     {
-      "id": "ch03_s12_hanyuan.l29",
+      "id": "ch03_s12_hanyuan.l31",
       "when": {
         "flag.ch03_decline_offer": true
       },
@@ -266,7 +285,7 @@
       "text": "同存。"
     },
     {
-      "id": "ch03_s12_hanyuan.l30",
+      "id": "ch03_s12_hanyuan.l32",
       "when": {
         "flag.ch03_decline_offer": true
       },
@@ -276,7 +295,7 @@
       "text": "重推不用再等。我经手的卷交给谁？"
     },
     {
-      "id": "ch03_s12_hanyuan.l31",
+      "id": "ch03_s12_hanyuan.l33",
       "when": {
         "flag.ch03_decline_offer": true
       },
@@ -286,7 +305,7 @@
       "text": "原署收，三席重开荐期，陛下续理政务。"
     },
     {
-      "id": "ch03_s12_hanyuan.l32",
+      "id": "ch03_s12_hanyuan.l34",
       "when": {
         "flag.ch03_decline_offer": true
       },
@@ -296,7 +315,7 @@
       "text": "原署。"
     },
     {
-      "id": "ch03_s12_hanyuan.l33",
+      "id": "ch03_s12_hanyuan.l35",
       "when": {
         "flag.ch03_decline_offer": true
       },
@@ -306,7 +325,7 @@
       "text": "另定授位前不空位。"
     },
     {
-      "id": "ch03_s12_hanyuan.l34",
+      "id": "ch03_s12_hanyuan.l36",
       "when": {
         "flag.ch03_decline_offer": true
       },
@@ -316,7 +335,7 @@
       "text": "重推令今日发，李仍可参议，不能私拨给她。"
     },
     {
-      "id": "ch03_s12_hanyuan.l35",
+      "id": "ch03_s12_hanyuan.l37",
       "when": {
         "flag.ch03_decline_offer": true
       },
@@ -326,7 +345,7 @@
       "text": "我还递自己的案，不拿你的辞受添支持。"
     },
     {
-      "id": "ch03_s12_hanyuan.l36",
+      "id": "ch03_s12_hanyuan.l38",
       "when": {
         "flag.ch03_decline_offer": true
       },
@@ -336,33 +355,13 @@
       "text": "好。"
     },
     {
-      "id": "ch03_s12_hanyuan.l37",
+      "id": "ch03_s12_hanyuan.l39",
       "when": {
         "flag.ch03_decline_offer": true
       },
       "who": "narr",
       "kind": "aside",
       "text": "唐核完交接目录，署下收讫。你解下候选差牌，放回原署的匣里。"
-    },
-    {
-      "id": "ch03_s12_hanyuan.l38",
-      "when": {
-        "flag.ch03_decline_offer": true
-      },
-      "who": "wuze",
-      "expr": "default",
-      "kind": "say",
-      "text": "钱款还要亲交，收牌不算两清。"
-    },
-    {
-      "id": "ch03_s12_hanyuan.l39",
-      "when": {
-        "flag.ch03_decline_offer": true
-      },
-      "who": "tangjian",
-      "expr": "default",
-      "kind": "say",
-      "text": "余项已另列单，照单续交。"
     },
     {
       "id": "ch03_s12_hanyuan.l40",
@@ -372,10 +371,30 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "另单。"
+      "text": "钱款还要亲交，收牌不算两清。"
     },
     {
       "id": "ch03_s12_hanyuan.l41",
+      "when": {
+        "flag.ch03_decline_offer": true
+      },
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "余项已另列单，照单续交。"
+    },
+    {
+      "id": "ch03_s12_hanyuan.l42",
+      "when": {
+        "flag.ch03_decline_offer": true
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "另单。"
+    },
+    {
+      "id": "ch03_s12_hanyuan.l43",
       "when": {
         "flag.ch03_decline_offer": true
       },
@@ -384,7 +403,7 @@
       "text": "（腰上少了一块。手还往挂牌的地方去。）"
     },
     {
-      "id": "ch03_s12_hanyuan.l42",
+      "id": "ch03_s12_hanyuan.l44",
       "when": {
         "flag.ch03_offer_li": true
       },
@@ -393,7 +412,7 @@
       "text": "三日后的受位礼，你站在阶下。李令仪的衣袖垂到印绶前，她先向女皇行礼。"
     },
     {
-      "id": "ch03_s12_hanyuan.l43",
+      "id": "ch03_s12_hanyuan.l45",
       "when": {
         "flag.ch03_offer_li": true
       },
@@ -402,7 +421,7 @@
       "text": "女皇亲交印绶。李双手接住，依仪登席，阶下朝礼成列。"
     },
     {
-      "id": "ch03_s12_hanyuan.l44",
+      "id": "ch03_s12_hanyuan.l46",
       "when": {
         "flag.ch03_offer_li": true
       },
@@ -412,7 +431,7 @@
       "text": "李令仪受位，礼成。"
     },
     {
-      "id": "ch03_s12_hanyuan.l45",
+      "id": "ch03_s12_hanyuan.l47",
       "when": {
         "flag.ch03_offer_li": true
       },
@@ -421,7 +440,7 @@
       "text": "你跟着行完这一礼。起身时，提案的硬角硌着手掌。你把它换到另一只手。"
     },
     {
-      "id": "ch03_s12_hanyuan.l46",
+      "id": "ch03_s12_hanyuan.l48",
       "when": {
         "flag.ch03_offer_li": true
       },
@@ -431,7 +450,7 @@
       "text": "扩办案留议次，我仍要问{名}钱从哪出。"
     },
     {
-      "id": "ch03_s12_hanyuan.l47",
+      "id": "ch03_s12_hanyuan.l49",
       "when": {
         "flag.ch03_offer_li": true
       },
@@ -441,7 +460,7 @@
       "text": "钱从哪出。"
     },
     {
-      "id": "ch03_s12_hanyuan.l48",
+      "id": "ch03_s12_hanyuan.l50",
       "when": {
         "flag.ch03_offer_li": true
       },
@@ -451,7 +470,7 @@
       "text": "我重算，不撤。"
     },
     {
-      "id": "ch03_s12_hanyuan.l49",
+      "id": "ch03_s12_hanyuan.l51",
       "when": {
         "flag.ch03_offer_li": true
       },
@@ -461,7 +480,7 @@
       "text": "好。"
     },
     {
-      "id": "ch03_s12_hanyuan.l50",
+      "id": "ch03_s12_hanyuan.l52",
       "when": {
         "flag.ch03_offer_li": true
       },
@@ -471,7 +490,7 @@
       "text": "照实记未获授位，原案续补，不写退让。"
     },
     {
-      "id": "ch03_s12_hanyuan.l51",
+      "id": "ch03_s12_hanyuan.l53",
       "when": {
         "flag.ch03_offer_li": true
       },
@@ -481,7 +500,7 @@
       "text": "也别写我劝她留下，后面的差须另问。"
     },
     {
-      "id": "ch03_s12_hanyuan.l52",
+      "id": "ch03_s12_hanyuan.l54",
       "when": {
         "flag.ch03_offer_li": true
       },
@@ -491,7 +510,7 @@
       "text": "另问。"
     },
     {
-      "id": "ch03_s12_hanyuan.l53",
+      "id": "ch03_s12_hanyuan.l55",
       "when": {
         "flag.ch03_offer_li": true
       },
@@ -500,34 +519,34 @@
       "text": "（她坐到那里了。我还得走下这几级阶。）"
     },
     {
-      "id": "ch03_s12_hanyuan.l54",
+      "id": "ch03_s12_hanyuan.l56",
       "who": "narr",
       "kind": "aside",
       "text": "午光穿过殿门，照到那块垫案脚的薄木片。案上的水碗仍旧放得平。"
-    },
-    {
-      "id": "ch03_s12_hanyuan.l55",
-      "who": "liqinghe",
-      "expr": "default",
-      "kind": "say",
-      "text": "胜负落字了，那夜照实争的话没收回。"
-    },
-    {
-      "id": "ch03_s12_hanyuan.l56",
-      "who": "wuze",
-      "expr": "default",
-      "kind": "say",
-      "text": "我也没有。往后的话，往后亲口问。"
     },
     {
       "id": "ch03_s12_hanyuan.l57",
       "who": "liqinghe",
       "expr": "default",
       "kind": "say",
-      "text": "嗯。"
+      "text": "胜负落字了，那夜照实争的话没收回。"
     },
     {
       "id": "ch03_s12_hanyuan.l58",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "我也没有。往后的话，往后亲口问。"
+    },
+    {
+      "id": "ch03_s12_hanyuan.l59",
+      "who": "liqinghe",
+      "expr": "default",
+      "kind": "say",
+      "text": "嗯。"
+    },
+    {
+      "id": "ch03_s12_hanyuan.l60",
       "who": "narr",
       "kind": "aside",
       "text": "你收好受辞存件，准备去交旧差。"

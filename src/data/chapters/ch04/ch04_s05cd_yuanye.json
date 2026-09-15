@@ -1,0 +1,47 @@
+{
+  "id": "ch04_s05cd_yuanye",
+  "chapter": 4,
+  "act": 4,
+  "scene": "yuanye",
+  "palette": "ink",
+  "cast": [
+    "wuze",
+    "liqinghe"
+  ],
+  "weightless": false,
+  "leavesLetter": [],
+  "purpose": "同李令仪说停",
+  "lines": [
+    {
+      "id": "ch04_s05cd_yuanye.l1",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "往后的私约，我不再应了。是我自己选的。"
+    },
+    {
+      "id": "ch04_s05cd_yuanye.l2",
+      "who": "liqinghe",
+      "expr": "default",
+      "kind": "say",
+      "text": "好。下回来看我的稿，别说成来看我。"
+    },
+    {
+      "id": "ch04_s05cd_yuanye.l3",
+      "who": "narr",
+      "kind": "aside",
+      "text": "你点头，她把卷送到你手里，没有扣下一页。"
+    }
+  ],
+  "choices": [
+    {
+      "id": "ch04_s05cd_yuanye.cA",
+      "text": "说到这里，收回私约",
+      "effects": {
+        "pact.liqinghe": "ended"
+      },
+      "irreversible": false,
+      "goto": "ch04_s05c_shuge"
+    }
+  ]
+}

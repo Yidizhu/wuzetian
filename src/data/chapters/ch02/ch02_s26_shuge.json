@@ -33,46 +33,129 @@
     },
     {
       "id": "ch02_s26_shuge.l4",
-      "who": "wuze",
-      "expr": "default",
-      "kind": "say",
-      "text": "这里。"
+      "who": "narr",
+      "kind": "aside",
+      "text": "你接住她留下的半边杯沿，暖意贴着掌心，手指一根根松开。"
     },
     {
       "id": "ch02_s26_shuge.l5",
       "who": "wuze",
-      "expr": "open",
+      "expr": "default",
       "kind": "say",
-      "text": "拿杯的手，你也记得。"
+      "text": "正好。"
     },
     {
       "id": "ch02_s26_shuge.l6",
       "who": "liuchenghuan",
-      "expr": "open",
+      "expr": "default",
       "kind": "say",
-      "text": "见过，就记得。"
+      "text": "你喝慢些。"
     },
     {
       "id": "ch02_s26_shuge.l7",
-      "who": "wuze",
-      "expr": "open",
-      "kind": "say",
-      "text": "……"
+      "who": "narr",
+      "kind": "aside",
+      "text": "她把一小卷干布塞到你的腕下，杯子还端着，手已经不用悬着。"
     },
     {
       "id": "ch02_s26_shuge.l8",
-      "who": "narr",
-      "kind": "aside",
-      "text": "你接住她留下的那半边杯沿，掌心贴上暖处，没有立刻喝。"
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "你怎么连这个都……"
     },
     {
       "id": "ch02_s26_shuge.l9",
-      "who": "self",
-      "kind": "inner",
-      "text": "（再坐一会儿。和她。这样舒服，我不想立刻问别的。）"
+      "who": "liuchenghuan",
+      "expr": "default",
+      "kind": "say",
+      "text": "你总换手。"
     },
     {
       "id": "ch02_s26_shuge.l10",
+      "who": "narr",
+      "kind": "aside",
+      "text": "你低头试了试，手腕搁稳了。方才卡在喉头的一口气吐出来。"
+    },
+    {
+      "id": "ch02_s26_shuge.l11",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "承欢。"
+    },
+    {
+      "id": "ch02_s26_shuge.l12",
+      "who": "liuchenghuan",
+      "expr": "default",
+      "kind": "say",
+      "text": "嗯？"
+    },
+    {
+      "id": "ch02_s26_shuge.l13",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "再坐近些。"
+    },
+    {
+      "id": "ch02_s26_shuge.l14",
+      "who": "narr",
+      "kind": "aside",
+      "text": "你把膝边的书往里挪。她坐过来，裙角铺到那一小块亮处。"
+    },
+    {
+      "id": "ch02_s26_shuge.l15",
+      "who": "narr",
+      "kind": "aside",
+      "text": "她低头看你杯里的水，颊边一缕头发垂下来，你看了好一会儿。"
+    },
+    {
+      "id": "ch02_s26_shuge.l16",
+      "who": "self",
+      "kind": "inner",
+      "text": "（她记得我哪只手疼。连我没说的也记得。）"
+    },
+    {
+      "id": "ch02_s26_shuge.l17",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "不添了，陪我坐着。"
+    },
+    {
+      "id": "ch02_s26_shuge.l18",
+      "who": "liuchenghuan",
+      "expr": "default",
+      "kind": "say",
+      "text": "好。"
+    },
+    {
+      "id": "ch02_s26_shuge.l19",
+      "who": "narr",
+      "kind": "aside",
+      "text": "你喝完这一口，杯子仍搁在布卷上。她没动，你也没去拿书。"
+    },
+    {
+      "id": "ch02_s26_shuge.l20",
+      "who": "self",
+      "kind": "inner",
+      "text": "（今夜都这样就好了。）"
+    },
+    {
+      "id": "ch02_s26_shuge.l21",
+      "who": "narr",
+      "kind": "aside",
+      "text": "杯底歪了一点。你只动了动腕子，她便伸手扶住。"
+    },
+    {
+      "id": "ch02_s26_shuge.l22",
+      "who": "narr",
+      "kind": "aside",
+      "text": "你顺着她的手把杯子放稳，笑了。没有说自己也会。"
+    },
+    {
+      "id": "ch02_s26_shuge.l23",
       "when": {
         "flag.chenghuan_accept_1": true
       },
@@ -82,7 +165,7 @@
       "text": "没去抄试？"
     },
     {
-      "id": "ch02_s26_shuge.l11",
+      "id": "ch02_s26_shuge.l24",
       "when": {
         "flag.chenghuan_accept_1": true
       },
@@ -92,7 +175,7 @@
       "text": "稿送到了，你没误时就好。"
     },
     {
-      "id": "ch02_s26_shuge.l12",
+      "id": "ch02_s26_shuge.l25",
       "when": {
         "flag.chenghuan_accept_1": true
       },
@@ -102,7 +185,7 @@
       "text": "稿到了。"
     },
     {
-      "id": "ch02_s26_shuge.l13",
+      "id": "ch02_s26_shuge.l26",
       "when": {
         "flag.chenghuan_accept_1": true
       },
@@ -111,7 +194,7 @@
       "text": "（我看见那张报名牒了。还是把稿交给了她。）"
     },
     {
-      "id": "ch02_s26_shuge.l14",
+      "id": "ch02_s26_shuge.l27",
       "when": {
         "flag.chenghuan_refuse_1": true
       },
@@ -121,7 +204,7 @@
       "text": "后来去抄试了么？"
     },
     {
-      "id": "ch02_s26_shuge.l15",
+      "id": "ch02_s26_shuge.l28",
       "when": {
         "flag.chenghuan_refuse_1": true
       },
@@ -131,7 +214,7 @@
       "text": "去了，散后还来看看缺不缺人。"
     },
     {
-      "id": "ch02_s26_shuge.l16",
+      "id": "ch02_s26_shuge.l29",
       "when": {
         "flag.chenghuan_refuse_1": true
       },
@@ -141,111 +224,111 @@
       "text": "散后……"
     },
     {
-      "id": "ch02_s26_shuge.l17",
+      "id": "ch02_s26_shuge.l30",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
       "text": "你自己喝什么？"
     },
     {
-      "id": "ch02_s26_shuge.l18",
+      "id": "ch02_s26_shuge.l31",
       "who": "liuchenghuan",
       "expr": "default",
       "kind": "say",
       "text": "剩下的正好。"
     },
     {
-      "id": "ch02_s26_shuge.l19",
+      "id": "ch02_s26_shuge.l32",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
       "text": "不是剩多少，我问——"
     },
     {
-      "id": "ch02_s26_shuge.l20",
+      "id": "ch02_s26_shuge.l33",
       "who": "liuchenghuan",
       "expr": "default",
       "kind": "say",
       "text": "你喜欢哪样，就哪样。"
     },
     {
-      "id": "ch02_s26_shuge.l21",
+      "id": "ch02_s26_shuge.l34",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
       "text": "……"
     },
     {
-      "id": "ch02_s26_shuge.l22",
+      "id": "ch02_s26_shuge.l35",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
       "text": "我问你，喜欢热的还是放温的？"
     },
     {
-      "id": "ch02_s26_shuge.l23",
+      "id": "ch02_s26_shuge.l36",
       "who": "narr",
       "kind": "aside",
       "text": "你把手从杯边拿开。她跟着去拿壶，以为要添水。"
     },
     {
-      "id": "ch02_s26_shuge.l24",
+      "id": "ch02_s26_shuge.l37",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
       "text": "阿荻叫我先问，你倒不用我问。"
     },
     {
-      "id": "ch02_s26_shuge.l25",
+      "id": "ch02_s26_shuge.l38",
       "who": "liuchenghuan",
       "expr": "default",
       "kind": "say",
       "text": "问……"
     },
     {
-      "id": "ch02_s26_shuge.l26",
+      "id": "ch02_s26_shuge.l39",
       "who": "liuchenghuan",
       "expr": "open",
       "kind": "say",
       "text": "要问的那么多，来这里歇歇。"
     },
     {
-      "id": "ch02_s26_shuge.l27",
+      "id": "ch02_s26_shuge.l40",
       "who": "wuze",
       "expr": "open",
       "kind": "say",
       "text": "我……"
     },
     {
-      "id": "ch02_s26_shuge.l28",
+      "id": "ch02_s26_shuge.l41",
       "who": "liuchenghuan",
       "expr": "open",
       "kind": "say",
       "text": "你要的，就是我要的。"
     },
     {
-      "id": "ch02_s26_shuge.l29",
+      "id": "ch02_s26_shuge.l42",
       "who": "wuze",
       "expr": "guarded",
       "kind": "say",
       "text": "可你的半日，不是我的。"
     },
     {
-      "id": "ch02_s26_shuge.l30",
+      "id": "ch02_s26_shuge.l43",
       "who": "liuchenghuan",
       "expr": "guarded",
       "kind": "say",
       "text": "……"
     },
     {
-      "id": "ch02_s26_shuge.l31",
+      "id": "ch02_s26_shuge.l44",
       "who": "liuchenghuan",
       "expr": "default",
       "kind": "say",
       "text": "不选我也没关系，在这里就好。"
     },
     {
-      "id": "ch02_s26_shuge.l32",
+      "id": "ch02_s26_shuge.l45",
       "who": "narr",
       "kind": "aside",
       "text": "门外有人递来公主的全稿。柳先让开，你没有把自己的杯子放进她手里。"

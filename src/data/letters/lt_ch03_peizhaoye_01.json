@@ -51,7 +51,8 @@
       {
         "effects": {
           "affinity.peizhaoye": 2,
-          "flag.pei_ch03_letter_meal": true
+          "flag.pei_ch03_letter_meal": true,
+          "pact.peizhaoye": "active"
         },
         "reaction": "“先把时辰拿准。”她记在自己的薄册里，没有列进换防名册。",
         "id": "lt_ch03_peizhaoye_01.rA",
@@ -67,7 +68,8 @@
       },
       {
         "effects": {
-          "flag.pei_ch03_letter_stop": true
+          "flag.pei_ch03_letter_stop": true,
+          "pact.peizhaoye": "ended"
         },
         "reaction": "“知道。”她收起私约，公务凭据仍按经手处送。",
         "id": "lt_ch03_peizhaoye_01.rC",

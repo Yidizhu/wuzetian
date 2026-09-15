@@ -28,7 +28,8 @@
       {
         "effects": {
           "affinity.wenqiao": 2,
-          "flag.wen_ch02_read_again": true
+          "flag.wen_ch02_read_again": true,
+          "pact.wenqiao": "active"
         },
         "reaction": "“我跟着。读岔了也不替你把句尾吞掉。”她将两份稿分开放，不替对方领读。",
         "id": "lt_ch02_wenqiao_01.rA",
@@ -45,7 +46,8 @@
       },
       {
         "effects": {
-          "flag.wen_ch02_private_pause": true
+          "flag.wen_ch02_private_pause": true,
+          "pact.wenqiao": "paused"
         },
         "reaction": "“好，私笺停在这里。”她没有把下一封伪装成请教文字。",
         "id": "lt_ch02_wenqiao_01.rC",
