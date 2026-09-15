@@ -97,7 +97,12 @@ v2 改了三处（`ai-prompt.md` 第十五节，段首写了理由）：
 - 六张风物都是竖图 1024×1536，原件放 `assets/cg/`。
 - 风物不附参考图：画面里没有人，附定妆图反而会把人带进画面。
 
-## 四、待协调
+## 四、构建
+
+**`build:web` 现在过不了，卡在 `smoke`，不在美术这一段。** 这一轮我只提交了文档、技能和一张 webp（毁案 v2 走 `check:art`，已入表的图都在版本库里），`validate` 和 `check:art` 都没有错误。
+`smoke` 报的是：序幕第 3 句点击没反应；四份私约的走法走不到第四章关系小场；ch03-09a/b/c 走不到。工作区里 `src/audio/ambient.ts` 和 `src/data/converted/` 有未提交的改动，看样子是 CC1 B32（BGM、点击竞态）和 CC2 转换正在进行，我没有碰，也没有替他们判断。
+
+## 五、待协调
 
 1. **CC1**：
    - `cgs.ts` 加四行：`shenheng_1_tengxie`、`shenheng_3_zhibei`、`wenqiao_3_tiejian`、`liqinghe_3_xiangying`。`liqinghe_1_boyi` 这一行也可以先加：表里有、图没有是合法状态，`check:art` 只会念一句「没有图」。
