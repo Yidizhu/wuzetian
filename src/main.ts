@@ -260,6 +260,7 @@ story.on((e) => {
       releaseEndingPicture = null;
       cgLayer.clear();
       delete app.dataset.ending;
+      delete app.dataset.shot;
       app.querySelectorAll(".ending-title").forEach((n) => n.remove());
       play(cuesForScene(e.scene, cueState, performance.now()));
       // 阵容必须同步定下来：紧跟着的 line 事件会马上问「说话的人在不在台上」。
@@ -271,7 +272,13 @@ story.on((e) => {
       void cast.setCast(e.castHeld ? [] : e.scene.cast).then(() => cast.refresh());
       break;
     case "castEnter":
+      delete app.dataset.shot;
       void cast.setCast(e.cast).then(() => cast.refresh());
+      break;
+    // 空镜（D-176）：人全部下台，背景整幅露出来。#app 上挂 data-shot="empty"，这一格对话框怎么收、景要不要推，归 CC3
+    case "castExit":
+      app.dataset.shot = "empty";
+      void cast.setCast([]);
       break;
     case "flare":
       cast.flare(e.who);
@@ -279,14 +286,16 @@ story.on((e) => {
     case "letters":
       inbox?.setUnread(e.unread, story.letters.onDesk().length + e.unread);
       break;
-    case "line":
-      play(cuesForLine(e.who, e.lineKind, e.text, cueState, performance.now()));
+    case "line": {
+      // 空镜那一格照旁白显示：没有名字、没有人开口
+      const who = e.who === "empty" ? "narr" : e.who;
+      play(cuesForLine(who, e.lineKind, e.text, cueState, performance.now()));
       choices.hide();
       dlg.setVisible(true);
       cast.setFraming(framingFor("line"));             // 念台词：膝上（D-108 第 2 条）
-      void cast.speak(e.who, e.expr as "default" | "guarded" | "open");
+      void cast.speak(who, e.expr as "default" | "guarded" | "open");
       // 读过的句子直接显示完整，没读过的逐字来。skip 只跳读过的文本。
-      dlg.show(e.who, e.text, e.lineKind, store.state, !e.first);
+      dlg.show(who, e.text, e.lineKind, store.state, !e.first);
       // 登场卡（D-048）：这个人第一次开口时，名字旁一行职务加一句话，只介绍一次。
       // 皮肤和「只活一句台词」的节奏是 CC3 定的（src/scene/Debut.ts）；
       // 谁出过了、要不要出，归这里。玩家在存档面板里关掉，就再也不出。
@@ -297,6 +306,7 @@ story.on((e) => {
         attachDebut(dlg.element, fresh && debutsOn() ? card! : null);
       }
       break;
+    }
     case "choices":
       cast.setFraming(framingFor("choices"));          // 要做决定：镜头退开，全身（D-108 第 2 条）
       dlg.setVisible(false);

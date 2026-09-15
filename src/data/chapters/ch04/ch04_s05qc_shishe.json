@@ -75,17 +75,6 @@
       "id": "ch04_s05qc_shishe.l7",
       "when": {
         "intent": "open",
-        "pact.shenheng": "active"
-      },
-      "who": "wuze",
-      "expr": "default",
-      "kind": "say",
-      "text": "我还想同沈衡相见。"
-    },
-    {
-      "id": "ch04_s05qc_shishe.l8",
-      "when": {
-        "intent": "open",
         "pact.shenheng": "declined"
       },
       "who": "wuze",
@@ -94,7 +83,7 @@
       "text": "沈衡不愿意，私约已停。"
     },
     {
-      "id": "ch04_s05qc_shishe.l9",
+      "id": "ch04_s05qc_shishe.l8",
       "when": {
         "intent": "open",
         "pact.shenheng": "ended"
@@ -105,18 +94,7 @@
       "text": "我已同沈衡说停了私约。"
     },
     {
-      "id": "ch04_s05qc_shishe.l10",
-      "when": {
-        "intent": "open",
-        "pact.shenheng": "paused"
-      },
-      "who": "wuze",
-      "expr": "default",
-      "kind": "say",
-      "text": "沈衡那边先停着，尚未答应。"
-    },
-    {
-      "id": "ch04_s05qc_shishe.l11",
+      "id": "ch04_s05qc_shishe.l9",
       "when": {
         "intent": "open",
         "pact.peizhaoye": "active"
@@ -127,18 +105,7 @@
       "text": "我还想同裴照夜相见。"
     },
     {
-      "id": "ch04_s05qc_shishe.l12",
-      "when": {
-        "intent": "open",
-        "pact.peizhaoye": "declined"
-      },
-      "who": "wuze",
-      "expr": "default",
-      "kind": "say",
-      "text": "裴照夜不愿意，私约已停。"
-    },
-    {
-      "id": "ch04_s05qc_shishe.l13",
+      "id": "ch04_s05qc_shishe.l10",
       "when": {
         "intent": "open",
         "pact.peizhaoye": "ended"
@@ -149,18 +116,7 @@
       "text": "我已同裴照夜说停了私约。"
     },
     {
-      "id": "ch04_s05qc_shishe.l14",
-      "when": {
-        "intent": "open",
-        "pact.peizhaoye": "paused"
-      },
-      "who": "wuze",
-      "expr": "default",
-      "kind": "say",
-      "text": "裴照夜那边先停着，尚未答应。"
-    },
-    {
-      "id": "ch04_s05qc_shishe.l15",
+      "id": "ch04_s05qc_shishe.l11",
       "when": {
         "intent": "open",
         "pact.liqinghe": "active"
@@ -171,7 +127,7 @@
       "text": "我还想同李令仪相见。"
     },
     {
-      "id": "ch04_s05qc_shishe.l16",
+      "id": "ch04_s05qc_shishe.l12",
       "when": {
         "intent": "open",
         "pact.liqinghe": "declined"
@@ -182,7 +138,7 @@
       "text": "李令仪不愿意，私约已停。"
     },
     {
-      "id": "ch04_s05qc_shishe.l17",
+      "id": "ch04_s05qc_shishe.l13",
       "when": {
         "intent": "open",
         "pact.liqinghe": "ended"
@@ -193,18 +149,7 @@
       "text": "我已同李令仪说停了私约。"
     },
     {
-      "id": "ch04_s05qc_shishe.l18",
-      "when": {
-        "intent": "open",
-        "pact.liqinghe": "paused"
-      },
-      "who": "wuze",
-      "expr": "default",
-      "kind": "say",
-      "text": "李令仪那边先停着，尚未答应。"
-    },
-    {
-      "id": "ch04_s05qc_shishe.l19",
+      "id": "ch04_s05qc_shishe.l14",
       "when": {
         "intent": "open"
       },
@@ -214,7 +159,7 @@
       "text": "我想了一会儿。"
     },
     {
-      "id": "ch04_s05qc_shishe.l20",
+      "id": "ch04_s05qc_shishe.l15",
       "when": {
         "intent": "open"
       },
@@ -224,7 +169,7 @@
       "text": "你说。"
     },
     {
-      "id": "ch04_s05qc_shishe.l21",
+      "id": "ch04_s05qc_shishe.l16",
       "when": {
         "intent": "open"
       },
@@ -234,7 +179,7 @@
       "text": "我愿意试着这样相爱。可别哪天又少说一个名字。"
     },
     {
-      "id": "ch04_s05qc_shishe.l22",
+      "id": "ch04_s05qc_shishe.l17",
       "when": {
         "intent": "open"
       },
@@ -244,7 +189,7 @@
       "text": "不会拿你的答应替别人答。"
     },
     {
-      "id": "ch04_s05qc_shishe.l23",
+      "id": "ch04_s05qc_shishe.l18",
       "when": {
         "intent": "open"
       },
@@ -254,7 +199,7 @@
       "text": "也别拿她们的答应来劝我继续。"
     },
     {
-      "id": "ch04_s05qc_shishe.l24",
+      "id": "ch04_s05qc_shishe.l19",
       "when": {
         "intent": "open"
       },

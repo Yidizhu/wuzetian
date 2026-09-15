@@ -54,7 +54,7 @@
         "flag.liqinghe_together": false
       },
       "irreversible": false,
-      "goto": "ch04_s05c_shuge"
+      "goto": "ch04_s05pe_shuge"
     },
     {
       "id": "ch04_s05p_shuge.cB",
@@ -85,7 +85,7 @@
         "flag.liqinghe_together": false
       },
       "irreversible": false,
-      "goto": "ch04_s05c_shuge"
+      "goto": "ch04_s05pe_shuge"
     },
     {
       "id": "ch04_s05p_shuge.cC",
@@ -116,7 +116,7 @@
         "flag.liqinghe_together": false
       },
       "irreversible": false,
-      "goto": "ch04_s05c_shuge"
+      "goto": "ch04_s05pe_shuge"
     },
     {
       "id": "ch04_s05p_shuge.cD",
@@ -147,7 +147,7 @@
         "flag.liqinghe_together": false
       },
       "irreversible": false,
-      "goto": "ch04_s05c_shuge"
+      "goto": "ch04_s05pe_shuge"
     },
     {
       "id": "ch04_s05p_shuge.cE",
@@ -174,11 +174,16 @@
         "flag.liqinghe_together": false
       },
       "irreversible": false,
-      "goto": "ch04_s05m_shuge"
+      "goto": "ch04_s05pe_shuge"
     },
     {
       "id": "ch04_s05p_shuge.cF",
       "text": "先停私约，独自过一阵",
+      "require": {
+        "pacts.active": {
+          "gt": 0
+        }
+      },
       "effects": {
         "asked.shenheng": false,
         "told.shenheng": false,
@@ -196,7 +201,34 @@
         "flag.liqinghe_together": false
       },
       "irreversible": false,
-      "goto": "ch04_s05c_shuge"
+      "goto": "ch04_s05pe_shuge"
+    },
+    {
+      "id": "ch04_s05p_shuge.cG",
+      "text": "独自过一阵",
+      "require": {
+        "pacts.active": {
+          "eq": 0
+        }
+      },
+      "effects": {
+        "asked.shenheng": false,
+        "told.shenheng": false,
+        "answer.shenheng": "none",
+        "asked.peizhaoye": false,
+        "told.peizhaoye": false,
+        "answer.peizhaoye": "none",
+        "asked.wenqiao": false,
+        "told.wenqiao": false,
+        "answer.wenqiao": "none",
+        "asked.liqinghe": false,
+        "told.liqinghe": false,
+        "answer.liqinghe": "none",
+        "intent": "solo",
+        "flag.liqinghe_together": false
+      },
+      "irreversible": false,
+      "goto": "ch04_s05pe_shuge"
     }
   ]
 }

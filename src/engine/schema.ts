@@ -34,7 +34,8 @@ export const CharacterKey = z.enum(CHARACTER_KEYS, {
  * 事件图（D-142，B23）也走同一条：剧本「说话人」写「事件图」，转换器出 `cg`，**文本写图的 key**（src/scene/cgs.ts）。
  * 引擎走到这一句就铺一张整图，点一下退回，这一句本身不进对话框。
  */
-export const SpeakerKey = z.union([CharacterKey, z.enum(["self", "narr", "tiji", "cg"])], {
+// "empty" 空镜（D-145／D-176，B31）：这一格台上没有人，背景整幅露出来，下一格有人说话再上来
+export const SpeakerKey = z.union([CharacterKey, z.enum(["self", "narr", "tiji", "cg", "empty"])], {
   errorMap: () => ({ message: `说话人只能是角色 key，或 self（主角内心）、narr（旁白）、tiji（题记）、cg（事件图）` }),
 });
 
@@ -191,6 +192,15 @@ export const Scene = z.object({
   goto: z.string().optional(),
   ending: z.string().optional(),
 }).superRefine((s, ctx) => {
+  // 空镜格（D-176）：只是一句环境旁白，不带表情；不许两格连着没人；不许是选项前的最后一格（要做决定时台上不能是空的）
+  s.lines.forEach((l, i) => {
+    if (l.who !== "empty") return;
+    const at = (message: string) => ctx.addIssue({ code: z.ZodIssueCode.custom, path: ["lines", i], message });
+    if (l.kind !== "aside") at(`空镜格 ${l.id} 的类型要写旁白（aside）`);
+    if (l.expr) at(`空镜格 ${l.id} 没有人，不能带表情`);
+    if (s.lines[i + 1]?.who === "empty") at(`空镜格 ${l.id} 后面又是一格空镜：两格连着没人，D-176 不许`);
+    if (i === s.lines.length - 1 && s.choices?.length) at(`空镜格 ${l.id} 是选项前的最后一格：要做决定时台上是空的。挪到前面，或者后面补一格有人的`);
+  });
   if (!s.lines.length && !(s.choices?.length || s.branches?.length || s.goto)) {
     ctx.addIssue({
       code: z.ZodIssueCode.custom, path: ["lines"],

@@ -28,7 +28,8 @@ export interface Cg {
   who: string[];
   /** D-143 三段式：注意到她／本行 → 为你 → 亲密；D-148 主角先想要；非恋爱线写「关系」 */
   /** 「转变」（B29）：主角身份变的那一刻，D-159 第二优先的受位／拒位 */
-  beat: "注意到她" | "本行" | "为你" | "亲密" | "主角先想要" | "关系" | "转变" | "结局";
+  /** 「追问」「答复」（B31，CC3 E26 序号 5、6）：她问出口主角还没答；主角说完意向、她答的那一刻 */
+  beat: "注意到她" | "本行" | "为你" | "亲密" | "主角先想要" | "关系" | "转变" | "追问" | "答复" | "结局";
   /**
    * 焦点：画面里最要紧的那一点，占宽、高的百分比。**横图必须写**（D-150），手机上按它裁；竖图可不写。
    * 数由 CC3 看图后填
@@ -57,12 +58,21 @@ export const CGS: Record<string, Cg> = {
   wuze_shouwei:       { who: ["wuze", "shenheng"],     beat: "转变",       where: "受位。ch03-12 第 12 格，她穿上绯，看自己沉下来的袖口；赭黄叠在旁边漆盘里，没穿（D-165）" },
   wuze_juwei:         { who: ["wuze", "tangjian"],     beat: "转变",       where: "拒位。ch03-12 第 37—41 格，她解下候选差牌放回匣里，帛带上空了一截丝绦，手还往那里去。青，不变" },
 
+  // E26（D-173）：七张双人，落点和画面照 CC3 E26 第二节。都是竖图；答复四张一张图盖「愿意」「不愿意」两支，主角穿青
+  shenheng_6_dafu:        { who: ["shenheng", "wuze"],     beat: "答复", where: "ch04-05qa 第 2／16 格。沈衡在案后，两手按着那张空纸，抬头看主角" },
+  peizhaoye_6_dafu:       { who: ["peizhaoye", "wuze"],    beat: "答复", where: "ch04-05qb 第 4 格。裴照夜把行囊放到脚边，空着手站到主角面前" },
+  wenqiao_6_dafu:         { who: ["wenqiao", "wuze"],      beat: "答复", where: "ch04-05qc 第 4／19 格。温荞手掌压着一张纸，看着主角，没接玩笑" },
+  liqinghe_6_dafu:        { who: ["liqinghe", "wuze"],     beat: "答复", where: "ch04-05qd 第 4／16 格。李令仪站在自己那一级石阶上，稿在一只手里，另一只手空着" },
+  liqinghe_5_suanshenme:  { who: ["liqinghe", "wuze"],     beat: "追问", where: "ch03-09 第 40—41 格。她把松线绕在指上，问「那我算什么」，主角还没答" },
+  wuze_huian:             { who: ["wuze", "shenheng", "tangjian"], beat: "转变", where: "ch04-03 第 17—27 格（毁卷两选在 03 末尾）。沈衡把缺字的那页摊平，手没交出去；罩灯没挪近纸；唐简在门边逆光。绯，不许有火" },
+  liuchenghuan_1_guihuan: { who: ["liuchenghuan", "wuze"], beat: "关系", where: "ch03-15 第 77 格。柳承欢把朱绳放进主角摊开的手里，手指收回来时还弯着；她腕上已空" },
+
   // D-160：八个结局各一张，结局卡第一拍。名字按 ending_<结局 key>，CC3 定了别的名字改这里一处就行。
   // 画面含义照 C-B 结局树（D-159「别自己发明结局的含义」），where 只抄 endings.json 的主题句，人由 CC3 按提示词改
   ending_mandianwusheng:  { who: ["wuze"],             beat: "结局", ending: "mandianwusheng",  where: "满殿无声（gold）。她跨过了血缘的门槛，却把别人的异议关在门外" },
   ending_wuzibei:         { who: ["wuze"],             beat: "结局", ending: "wuzibei", seal: { x: 49, y: 72 }, where: "无字之碑（ink）。碑上不许有字，印不画进图里，引擎按 seal 叠（D-067）" },
   ending_weijingzhizhao:  { who: ["wuze"],             beat: "结局", ending: "weijingzhizhao",  where: "未竟之诏（ink）。非宗室皇帝已经出现，改革仍须经办" },
-  ending_liangxizhijian:  { who: ["liqinghe", "wuze"], beat: "结局", ending: "liangxizhijian",  where: "两席之间（ink）。李令仪赢了，主角没有赢；落选者不消失" },
+  ending_liangxizhijian:  { who: ["liqinghe", "wuze"], beat: "结局", ending: "liangxizhijian", focus: { x: 62, y: 50 }, where: "两席之间（ink）。李令仪赢了，主角没有赢；落选者不消失" },
   ending_kaimenshouzi:    { who: ["wuze"],             beat: "结局", ending: "kaimenshouzi",    where: "开门授字（ink）。不登基，让更多人有可用的本领与去处" },
   ending_bushou:          { who: ["wuze"],             beat: "结局", ending: "bushou",          where: "不受（ink）。赢得了受位资格，又选择不要" },
   ending_guanshanyouxin:  { who: ["peizhaoye", "wuze"], beat: "结局", ending: "guanshanyouxin", where: "关山有信（ink）。在地方把事情办下去，与裴照夜各有职分" },

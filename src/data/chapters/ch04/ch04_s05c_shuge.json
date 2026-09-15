@@ -10,14 +10,7 @@
   "weightless": false,
   "leavesLetter": [],
   "purpose": "先把旧约说完",
-  "lines": [
-    {
-      "id": "ch04_s05c_shuge.l1",
-      "who": "narr",
-      "kind": "aside",
-      "text": "你换手拿好空笺，走过廊下。"
-    }
-  ],
+  "lines": [],
   "branches": [
     {
       "require": {

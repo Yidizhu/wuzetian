@@ -1,0 +1,58 @@
+{
+  "id": "ch04_s05pe_shuge",
+  "chapter": 4,
+  "act": 4,
+  "scene": "shuge",
+  "palette": "ink",
+  "cast": [
+    "wuze"
+  ],
+  "weightless": false,
+  "leavesLetter": [],
+  "purpose": "选定本轮意向后出门，三句只播在进入循环之前",
+  "lines": [
+    {
+      "id": "ch04_s05pe_shuge.l1",
+      "when": {
+        "pacts.active": {
+          "gt": 0
+        }
+      },
+      "who": "narr",
+      "kind": "aside",
+      "text": "你换手拿好空笺，走过廊下。"
+    },
+    {
+      "id": "ch04_s05pe_shuge.l2",
+      "when": {
+        "intent": {
+          "in": [
+            "only",
+            "open"
+          ]
+        }
+      },
+      "who": "narr",
+      "kind": "aside",
+      "text": "你在门前停住，等里面的人应声。"
+    },
+    {
+      "id": "ch04_s05pe_shuge.l3",
+      "when": {
+        "intent": "open"
+      },
+      "who": "self",
+      "kind": "inner",
+      "text": "（不能让她们只听到我想让她们听的半句。）"
+    }
+  ],
+  "branches": [
+    {
+      "require": {
+        "intent": "open"
+      },
+      "goto": "ch04_s05m_shuge"
+    }
+  ],
+  "goto": "ch04_s05c_shuge"
+}

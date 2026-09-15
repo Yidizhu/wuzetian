@@ -10,14 +10,7 @@
   "weightless": false,
   "leavesLetter": [],
   "purpose": "还没有听完的答复",
-  "lines": [
-    {
-      "id": "ch04_s05q_shuge.l1",
-      "who": "narr",
-      "kind": "aside",
-      "text": "你在门前停住，等里面的人应声。"
-    }
-  ],
+  "lines": [],
   "branches": [
     {
       "require": {

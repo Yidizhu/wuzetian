@@ -10,14 +10,7 @@
   "weightless": false,
   "leavesLetter": [],
   "purpose": "把名字想清楚",
-  "lines": [
-    {
-      "id": "ch04_s05m_shuge.l1",
-      "who": "self",
-      "kind": "inner",
-      "text": "（不能让她们只听到我想让她们听的半句。）"
-    }
-  ],
+  "lines": [],
   "choices": [
     {
       "id": "ch04_s05m_shuge.cA",

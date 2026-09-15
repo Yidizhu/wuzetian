@@ -61,6 +61,8 @@ export type StoryEvent =
   | { kind: "scene"; scene: Scene; castHeld: boolean }
   /** 这一场的人进画面。紧跟着的就是那一句的 line 事件 */
   | { kind: "castEnter"; cast: string[] }
+  /** 空镜（D-176）：这一格人全部下台，背景整幅露出来。下一格有人说话时再发 castEnter */
+  | { kind: "castExit" }
   | { kind: "ending"; ending: Ending; body: string }
   | { kind: "flare"; who: string }
   | { kind: "letters"; unread: number; arrived: string[] }
@@ -240,6 +242,7 @@ export class Story {
     if (!this.stagePending) await this.showStage(scene);
 
     this.castEntersAt = entranceIndex(scene, lineIndex);
+    this.castOff = false;
     this.emit({ kind: "scene", scene, castHeld: this.castEntersAt >= 0 });
     this.present();
     void this.prefetch(scene);
@@ -268,6 +271,8 @@ export class Story {
   private stagePending = false;
   /** 人等到第几句才进画面，-1 是一开场就在（D-076） */
   private castEntersAt = -1;
+  /** 空镜让人下台了，还没回来（D-176） */
+  private castOff = false;
 
   private async showStage(scene: Scene): Promise<void> {
     this.stagePending = false;
@@ -306,6 +311,14 @@ export class Story {
     }
     if (this.idx < scene.lines.length) {
       const line = scene.lines[this.idx]!;
+      // 空镜（D-176）：人下台；下一格是人说的话（不是题记、事件图）就上来。
+      // 人还没按 entrances 上过台（序幕那种）不管：台上本来就空，上台的那一格照旧由 castEnter 管
+      if (line.who === "empty") {
+        if (!this.castOff && this.castEntersAt < 0) { this.castOff = true; this.emit({ kind: "castExit" }); }
+      } else if (this.castOff && line.who !== "tiji" && line.who !== "cg") {
+        this.castOff = false;
+        this.emit({ kind: "castEnter", cast: scene.cast });
+      }
       // 题记不进对话框：连着的几句收成一张纸，交给题记层
       if (line.who === "tiji") { void this.runEpigraph(scene); return; }
       // 事件图不进对话框：铺整图，点一下退回，再读下一句
@@ -322,6 +335,8 @@ export class Story {
       this.autosave();
       return;
     }
+    // 台词读完：空镜之后没人再开口，出选项、对诗之前把人请回来（校验器也不许空镜做选项前最后一格）
+    if (this.castOff) { this.castOff = false; this.emit({ kind: "castEnter", cast: scene.cast }); }
     // 台词读完，先打对诗，再进选项
     if (scene.duel && !this.duelDone.has(scene.id)) {
       const d = this.duels.get(scene.duel);
