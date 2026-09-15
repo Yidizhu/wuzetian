@@ -288,12 +288,19 @@ html, body {
 
 /* ---------- 结局题名 ---------- */
 
+/* 题名放在人头顶上面那一截（CC3 E24）：原来的 38% 在手机上正压在两张脸上、宽屏压在两人之间的碑面上。
+   量的是夜谈五那一屏（ch04_s18，两人膝上）：手机竖屏发髻顶在 34%、右上角数值框底在 12.4%；宽屏发髻顶在 18%。
+   竖屏放 20%，横屏放 7%。背景可能是夜里的碑，字加一圈纸色的晕，和 HUD 同一个做法（E14） */
 .ending-title {
-  position: absolute; left: 0; right: 0; top: 38%;
+  position: absolute; left: 0; right: 0; top: 20%;
   z-index: 3; text-align: center; pointer-events: none;
   font-size: 30px; letter-spacing: 0.35em; text-indent: 0.35em;
   color: var(--c-text);
+  text-shadow: 0 0 6px var(--c-ground), 0 0 14px var(--c-ground), 0 0 2px var(--c-ground);
   animation: ending-in 1200ms var(--ease) both;
+}
+@media (min-aspect-ratio: 1/1) {
+  .ending-title { top: 7%; }
 }
 @keyframes ending-in {
   from { opacity: 0; letter-spacing: 0.9em; filter: blur(3px); }
