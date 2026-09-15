@@ -16,57 +16,118 @@
       "id": "ch04_s01_zhaoyang.l1",
       "who": "narr",
       "kind": "aside",
-      "text": "交接后的第五日，殿门只开半边，冷气沿着席边进来。"
+      "text": "唐递来的纸留在案前，你将旧笔拿稳。"
     },
     {
       "id": "ch04_s01_zhaoyang.l2",
-      "who": "tangjian",
-      "expr": "default",
-      "kind": "say",
-      "text": "旧笔与私物都点清了；公家收走的是差牌，没有把你那方帕子也算进去。"
+      "who": "tiji",
+      "kind": "aside",
+      "text": "册命已经收起，案上另铺了一张纸。"
     },
     {
       "id": "ch04_s01_zhaoyang.l3",
+      "who": "narr",
+      "kind": "aside",
+      "text": "交接后的第五日，殿门只开半边，冷气沿着席边进来。"
+    },
+    {
+      "id": "ch04_s01_zhaoyang.l4",
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "旧笔私物点清了，只收差牌，没收帕子。"
+    },
+    {
+      "id": "ch04_s01_zhaoyang.l5",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "帕子。"
+    },
+    {
+      "id": "ch04_s01_zhaoyang.l6",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
       "text": "笔给我。"
     },
     {
-      "id": "ch04_s01_zhaoyang.l4",
+      "id": "ch04_s01_zhaoyang.l7",
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "好。"
+    },
+    {
+      "id": "ch04_s01_zhaoyang.l8",
       "who": "narr",
       "kind": "aside",
       "text": "你拢住笔杆，掌上裂口抵着木头，比入宫那日浅了些。"
     },
     {
-      "id": "ch04_s01_zhaoyang.l5",
+      "id": "ch04_s01_zhaoyang.l9",
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "名字还要由你亲口说；这一页不替你写想要什么，也不替旁人替你答应。"
+      "text": "名字你亲口说，这页不替你写想要什么。"
     },
     {
-      "id": "ch04_s01_zhaoyang.l6",
+      "id": "ch04_s01_zhaoyang.l10",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "我想……"
+    },
+    {
+      "id": "ch04_s01_zhaoyang.l11",
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "嗯。"
+    },
+    {
+      "id": "ch04_s01_zhaoyang.l12",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "这一页——"
+    },
+    {
+      "id": "ch04_s01_zhaoyang.l13",
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "也不替旁人答应。"
+    },
+    {
+      "id": "ch04_s01_zhaoyang.l14",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "是。"
+    },
+    {
+      "id": "ch04_s01_zhaoyang.l15",
       "when": {
         "flag.enthroned": true
       },
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "册命已成。新名这一处，昨日没有替你补。"
+      "text": "册命成了，新名这一处，昨日没补。"
     },
     {
-      "id": "ch04_s01_zhaoyang.l7",
+      "id": "ch04_s01_zhaoyang.l16",
       "when": {
         "flag.enthroned": true
       },
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "这名字，我再看一眼。"
+      "text": "再看一眼。"
     },
     {
-      "id": "ch04_s01_zhaoyang.l8",
+      "id": "ch04_s01_zhaoyang.l17",
       "when": {
         "flag.enthroned": true
       },
@@ -75,7 +136,7 @@
       "text": "你蘸过笔，没有立刻落到册上。"
     },
     {
-      "id": "ch04_s01_zhaoyang.l9",
+      "id": "ch04_s01_zhaoyang.l18",
       "when": {
         "flag.enthroned": true
       },
@@ -84,57 +145,93 @@
       "text": "（天。也可以是曌。还可以……就留着。）"
     },
     {
-      "id": "ch04_s01_zhaoyang.l10",
+      "id": "ch04_s01_zhaoyang.l19",
       "when": {
         "flag.enthroned": true
       },
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "怎么写，都照你落的这一笔。"
+      "text": "怎么写，都照你这一笔。"
     },
     {
-      "id": "ch04_s01_zhaoyang.l11",
+      "id": "ch04_s01_zhaoyang.l20",
+      "when": {
+        "flag.enthroned": true
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "这一笔。"
+    },
+    {
+      "id": "ch04_s01_zhaoyang.l21",
       "when": {
         "flag.declined_crown": true
       },
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "我的名字没有待补。东西领回就好。"
+      "text": "名字没待补，东西领回就好。"
     },
     {
-      "id": "ch04_s01_zhaoyang.l12",
+      "id": "ch04_s01_zhaoyang.l22",
       "when": {
         "flag.declined_crown": true
       },
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "好。今日仍有公议，去听不等于领差。"
+      "text": "好。"
     },
     {
-      "id": "ch04_s01_zhaoyang.l13",
+      "id": "ch04_s01_zhaoyang.l23",
+      "when": {
+        "flag.declined_crown": true
+      },
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "今日有公议，去听不算领差。"
+    },
+    {
+      "id": "ch04_s01_zhaoyang.l24",
       "when": {
         "flag.liqinghe_won": true
       },
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "议件也给我。我仍署自己的名字。"
+      "text": "议件给我，仍署我自己的名。"
     },
     {
-      "id": "ch04_s01_zhaoyang.l14",
+      "id": "ch04_s01_zhaoyang.l25",
       "when": {
         "flag.liqinghe_won": true
       },
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "本人的存件在这，不和受位的册子合装。"
+      "text": "自己的名。"
     },
     {
-      "id": "ch04_s01_zhaoyang.l15",
+      "id": "ch04_s01_zhaoyang.l26",
+      "when": {
+        "flag.liqinghe_won": true
+      },
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "存件在这，不与受位册合装。"
+    },
+    {
+      "id": "ch04_s01_zhaoyang.l27",
+      "who": "empty",
+      "kind": "aside",
+      "text": "殿门铜环的下缘还挂着水，门缝里透进一道白光。"
+    },
+    {
+      "id": "ch04_s01_zhaoyang.l28",
       "who": "narr",
       "kind": "aside",
       "text": "你把素帕压回袖底，留笔在手里。"

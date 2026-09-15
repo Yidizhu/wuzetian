@@ -10,7 +10,7 @@
   ],
   "require": {
     "affinity.peizhaoye": {
-      "gte": 16
+      "gte": 14
     },
     "flag.pei_meng_no_troops": true
   },
@@ -22,74 +22,167 @@
       "id": "ch03_s18_yuanye.l1",
       "who": "narr",
       "kind": "aside",
-      "text": "苑中树影盖住半条长凳。裴坐一头，你坐一头，中间落了两枚干果壳。"
+      "text": "差务单交清，你去苑里与裴照夜各坐一头。"
     },
     {
       "id": "ch03_s18_yuanye.l2",
+      "who": "narr",
+      "kind": "aside",
+      "text": "苑中树影盖住半条长凳。裴坐一头，你坐一头，中间落了两枚干果壳。"
+    },
+    {
+      "id": "ch03_s18_yuanye.l3",
       "who": "peizhaoye",
       "expr": "default",
       "kind": "say",
       "text": "你先动的。"
     },
     {
-      "id": "ch03_s18_yuanye.l3",
+      "id": "ch03_s18_yuanye.l4",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "我？"
+    },
+    {
+      "id": "ch03_s18_yuanye.l5",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
       "text": "鸟先叫的。"
     },
     {
-      "id": "ch03_s18_yuanye.l4",
+      "id": "ch03_s18_yuanye.l6",
       "who": "narr",
       "kind": "aside",
       "text": "裴抬头找了一会儿，鸟在她头顶换了根枝。她把头靠回树干上。"
     },
     {
-      "id": "ch03_s18_yuanye.l5",
+      "id": "ch03_s18_yuanye.l7",
       "who": "peizhaoye",
       "expr": "open",
       "kind": "say",
-      "text": "我听见凳子响，才听见鸟叫。你若没翻身，就是这条凳子自己睡得不稳。"
+      "text": "先响凳子，后叫鸟。"
     },
     {
-      "id": "ch03_s18_yuanye.l6",
+      "id": "ch03_s18_yuanye.l8",
       "who": "wuze",
       "expr": "open",
       "kind": "say",
-      "text": "那就算它。我方才梦见一根枝，伸手够不到，倒不记得自己还坐在这里。"
+      "text": "凳子。"
     },
     {
-      "id": "ch03_s18_yuanye.l7",
+      "id": "ch03_s18_yuanye.l9",
+      "who": "peizhaoye",
+      "expr": "open",
+      "kind": "say",
+      "text": "你没翻身，就是它睡不稳。"
+    },
+    {
+      "id": "ch03_s18_yuanye.l10",
+      "who": "wuze",
+      "expr": "open",
+      "kind": "say",
+      "text": "那算它。我梦见一根枝，够不着。"
+    },
+    {
+      "id": "ch03_s18_yuanye.l11",
+      "who": "peizhaoye",
+      "expr": "open",
+      "kind": "say",
+      "text": "枝？"
+    },
+    {
+      "id": "ch03_s18_yuanye.l12",
+      "who": "wuze",
+      "expr": "open",
+      "kind": "say",
+      "text": "还以为……不在这儿。"
+    },
+    {
+      "id": "ch03_s18_yuanye.l13",
       "who": "peizhaoye",
       "expr": "default",
       "kind": "say",
       "text": "还够不够？"
     },
     {
-      "id": "ch03_s18_yuanye.l8",
+      "id": "ch03_s18_yuanye.l14",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "不够了。脖子酸。"
+      "text": "……"
     },
     {
-      "id": "ch03_s18_yuanye.l9",
+      "id": "ch03_s18_yuanye.l15",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "不够了，脖子酸。我再——"
+    },
+    {
+      "id": "ch03_s18_yuanye.l16",
+      "who": "peizhaoye",
+      "expr": "default",
+      "kind": "say",
+      "text": "换这边。"
+    },
+    {
+      "id": "ch03_s18_yuanye.l17",
+      "who": "wuze",
+      "expr": "open",
+      "kind": "say",
+      "text": "嗯。"
+    },
+    {
+      "id": "ch03_s18_yuanye.l18",
       "who": "narr",
       "kind": "aside",
-      "text": "你换了个朝向。裴伸腿避开凳脚，又将靴跟落回草里。"
+      "text": "你扫开中间的果壳，挪到她旁边，没靠回原来那一头。"
     },
     {
-      "id": "ch03_s18_yuanye.l10",
+      "id": "ch03_s18_yuanye.l19",
+      "who": "narr",
+      "kind": "aside",
+      "text": "裴照夜睁开眼看你，向旁边让了让，把树干空出一截。"
+    },
+    {
+      "id": "ch03_s18_yuanye.l20",
+      "who": "self",
+      "kind": "inner",
+      "text": "（想挨着她睡。醒着也行。）"
+    },
+    {
+      "id": "ch03_s18_yuanye.l21",
+      "who": "narr",
+      "kind": "aside",
+      "text": "你靠上树干，偏头看她。她没闭眼，也没问你看什么。"
+    },
+    {
+      "id": "ch03_s18_yuanye.l22",
       "who": "peizhaoye",
       "expr": "open",
       "kind": "say",
       "text": "这回是你。"
     },
     {
-      "id": "ch03_s18_yuanye.l11",
+      "id": "ch03_s18_yuanye.l23",
+      "who": "wuze",
+      "expr": "open",
+      "kind": "say",
+      "text": "是。"
+    },
+    {
+      "id": "ch03_s18_yuanye.l24",
       "who": "narr",
       "kind": "aside",
-      "text": "树上的鸟叫了一声。你们都没有抬头。"
+      "text": "你不再装睡，陪她看树影移过靴尖。鸟又叫了，两人都没抬头。"
+    },
+    {
+      "id": "ch03_s18_yuanye.l25",
+      "who": "narr",
+      "kind": "aside",
+      "text": "坐到该回观里的时候，你才撑着凳沿起身。"
     }
   ],
   "goto": "ch03_s22_nvguan"

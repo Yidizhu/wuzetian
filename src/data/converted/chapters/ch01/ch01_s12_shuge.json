@@ -15,6 +15,12 @@
   "lines": [
     {
       "id": "ch01_s12_shuge.l1",
+      "who": "narr",
+      "kind": "aside",
+      "text": "纸上余潮未干，你便带回书阁候封递。"
+    },
+    {
+      "id": "ch01_s12_shuge.l2",
       "when": {
         "flag.wen_editor_only": true
       },
@@ -23,27 +29,67 @@
       "text": "温荞圈过的一处空话还在页上，旁边留着你的改笔。"
     },
     {
-      "id": "ch01_s12_shuge.l2",
+      "id": "ch01_s12_shuge.l3",
       "when": {
         "flag.wen_editor_only": true
       },
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "她只看过前面的条目，后添的例证由我负责，不能拿她的名字替我作保。"
+      "text": "她只看过前面。"
     },
     {
-      "id": "ch01_s12_shuge.l3",
+      "id": "ch01_s12_shuge.l4",
       "when": {
         "flag.wen_editor_only": true
       },
       "who": "shenheng",
       "expr": "default",
       "kind": "say",
-      "text": "那就只署你自己；谁看过哪一段也照实说，不要让一句请教变成联署。"
+      "text": "前面？"
     },
     {
-      "id": "ch01_s12_shuge.l4",
+      "id": "ch01_s12_shuge.l5",
+      "when": {
+        "flag.wen_editor_only": true
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "后添的例证，我负责，别记她的名。"
+    },
+    {
+      "id": "ch01_s12_shuge.l6",
+      "when": {
+        "flag.wen_editor_only": true
+      },
+      "who": "shenheng",
+      "expr": "default",
+      "kind": "say",
+      "text": "那就只署你自己，不能把请教过她写成两人联署。"
+    },
+    {
+      "id": "ch01_s12_shuge.l7",
+      "when": {
+        "flag.wen_editor_only": true
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "我知道。"
+    },
+    {
+      "id": "ch01_s12_shuge.l8",
+      "when": {
+        "flag.wen_editor_only": true
+      },
+      "who": "shenheng",
+      "expr": "default",
+      "kind": "say",
+      "text": "谁看过哪一段，照实说。"
+    },
+    {
+      "id": "ch01_s12_shuge.l9",
       "when": {
         "flag.wen_paper_only": true
       },
@@ -52,168 +98,291 @@
       "text": "买来的纸还带着竹架的细纹，字全是你自己写的。"
     },
     {
-      "id": "ch01_s12_shuge.l5",
+      "id": "ch01_s12_shuge.l10",
       "when": {
         "flag.wen_paper_only": true
       },
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "纸钱已经给了，话仍是我的，她没有看过这一份，不能算她也答应过。"
+      "text": "纸钱付了，话还是我的。"
     },
     {
-      "id": "ch01_s12_shuge.l6",
+      "id": "ch01_s12_shuge.l11",
       "when": {
         "flag.wen_paper_only": true
       },
       "who": "shenheng",
       "expr": "default",
       "kind": "say",
-      "text": "那就从头再读一次，缺的地方你自己补上，别因为纸好就以为话也齐了。"
+      "text": "你的。"
     },
     {
-      "id": "ch01_s12_shuge.l7",
+      "id": "ch01_s12_shuge.l12",
+      "when": {
+        "flag.wen_paper_only": true
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "她没看过，不能说她答应了。"
+    },
+    {
+      "id": "ch01_s12_shuge.l13",
+      "when": {
+        "flag.wen_paper_only": true
+      },
+      "who": "shenheng",
+      "expr": "default",
+      "kind": "say",
+      "text": "那就从头读，漏的自己补。"
+    },
+    {
+      "id": "ch01_s12_shuge.l14",
+      "when": {
+        "flag.wen_paper_only": true
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "好。"
+    },
+    {
+      "id": "ch01_s12_shuge.l15",
+      "when": {
+        "flag.wen_paper_only": true
+      },
+      "who": "shenheng",
+      "expr": "default",
+      "kind": "say",
+      "text": "纸好，也不能替你把话说齐。"
+    },
+    {
+      "id": "ch01_s12_shuge.l16",
       "who": "narr",
       "kind": "aside",
       "text": "檐水一滴一滴敲着石阶，封递用的油布已铺在唐简膝上。"
     },
     {
-      "id": "ch01_s12_shuge.l8",
+      "id": "ch01_s12_shuge.l17",
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
       "text": "只剩你这份。"
     },
     {
-      "id": "ch01_s12_shuge.l9",
+      "id": "ch01_s12_shuge.l18",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "往后分人核，往前欠的也该准她们查。"
+      "text": "我看看。"
     },
     {
-      "id": "ch01_s12_shuge.l10",
+      "id": "ch01_s12_shuge.l19",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "往后分人核，旧欠也该准她们查。"
+    },
+    {
+      "id": "ch01_s12_shuge.l20",
       "who": "shenheng",
       "expr": "default",
       "kind": "say",
-      "text": "这句要写明白：没有旧记认，不等于做过的工便可以一笔不算。"
+      "text": "写清楚：少一道旧记认，不能就抹了工钱。"
     },
     {
-      "id": "ch01_s12_shuge.l11",
+      "id": "ch01_s12_shuge.l21",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "写清楚……"
+    },
+    {
+      "id": "ch01_s12_shuge.l22",
       "who": "narr",
       "kind": "aside",
       "text": "你在“准追旧欠”下留了两行。"
     },
     {
-      "id": "ch01_s12_shuge.l12",
-      "who": "tangjian",
-      "expr": "default",
-      "kind": "say",
-      "text": "泛说有旧欠，回来先问哪一批，来回就是一程。"
-    },
-    {
-      "id": "ch01_s12_shuge.l13",
-      "who": "self",
-      "kind": "inner",
-      "text": "（初八。西库。十一件。）"
-    },
-    {
-      "id": "ch01_s12_shuge.l14",
-      "who": "wuze",
-      "expr": "default",
-      "kind": "say",
-      "text": "我知道一批。"
-    },
-    {
-      "id": "ch01_s12_shuge.l15",
-      "who": "shenheng",
-      "expr": "guarded",
-      "kind": "say",
-      "text": "是你经手的？"
-    },
-    {
-      "id": "ch01_s12_shuge.l16",
-      "who": "wuze",
-      "expr": "default",
-      "kind": "say",
-      "text": "不是。来处我知道，我先署名提出，请他们核原账。"
-    },
-    {
-      "id": "ch01_s12_shuge.l17",
-      "who": "shenheng",
-      "expr": "guarded",
-      "kind": "say",
-      "text": "那只能作待核的例，不是已定的欠数，更不能替经手的人画押。"
-    },
-    {
-      "id": "ch01_s12_shuge.l18",
-      "who": "wuze",
-      "expr": "default",
-      "kind": "say",
-      "text": "好，写待核。我不写她的名字，回头若问，就先来找我。"
-    },
-    {
-      "id": "ch01_s12_shuge.l19",
-      "who": "narr",
-      "kind": "aside",
-      "text": "你写下“初八，西库，旧衣十一件，工钱未付，待核”。"
-    },
-    {
-      "id": "ch01_s12_shuge.l20",
-      "who": "narr",
-      "kind": "aside",
-      "text": "人名那一处被你划掉，日期、库名、件数都留下了。"
-    },
-    {
-      "id": "ch01_s12_shuge.l21",
-      "who": "self",
-      "kind": "inner",
-      "text": "（她能领到钱，又不必站到前头。这样最好。）"
-    },
-    {
-      "id": "ch01_s12_shuge.l22",
-      "who": "tangjian",
-      "expr": "default",
-      "kind": "say",
-      "text": "留一份抄件。封了就不是伸手能拿回来的。"
-    },
-    {
       "id": "ch01_s12_shuge.l23",
-      "who": "narr",
-      "kind": "aside",
-      "text": "麻纸硬边擦过手背，你署好名，把它放进摊开的油布。"
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "只说旧欠，回头还得问哪批，又是一程。"
     },
     {
       "id": "ch01_s12_shuge.l24",
-      "who": "narr",
-      "kind": "aside",
-      "text": "封口一合。门外的脚步很快被水声盖住。"
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "哪批……"
     },
     {
       "id": "ch01_s12_shuge.l25",
-      "who": "shenheng",
-      "expr": "default",
-      "kind": "say",
-      "text": "这不是准了追欠，只是递上去请议。回来还有得问。"
+      "who": "self",
+      "kind": "inner",
+      "text": "（初八。西库。十一件。）"
     },
     {
       "id": "ch01_s12_shuge.l26",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "至少这一批不再只在她心里记着，我去把抄件给她看，让她知道已经有人问了。"
+      "text": "我知道一批，可以——"
     },
     {
       "id": "ch01_s12_shuge.l27",
+      "who": "shenheng",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "是你经手的？"
+    },
+    {
+      "id": "ch01_s12_shuge.l28",
+      "who": "wuze",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "……"
+    },
+    {
+      "id": "ch01_s12_shuge.l29",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "不是，来处我知道。"
+    },
+    {
+      "id": "ch01_s12_shuge.l30",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "我署名，请他们核原账。"
+    },
+    {
+      "id": "ch01_s12_shuge.l31",
+      "who": "shenheng",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "这只能作一件待核的例，不能算作已经定下的欠数。"
+    },
+    {
+      "id": "ch01_s12_shuge.l32",
+      "who": "wuze",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "待核。"
+    },
+    {
+      "id": "ch01_s12_shuge.l33",
+      "who": "shenheng",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "也不许替经手的人画押。"
+    },
+    {
+      "id": "ch01_s12_shuge.l34",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "好，写待核。"
+    },
+    {
+      "id": "ch01_s12_shuge.l35",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "不写她的名字，问起来先找我。"
+    },
+    {
+      "id": "ch01_s12_shuge.l36",
+      "who": "narr",
+      "kind": "aside",
+      "text": "你写下“初八，西库，旧衣十一件，工钱未付，待核”。"
+    },
+    {
+      "id": "ch01_s12_shuge.l37",
+      "who": "narr",
+      "kind": "aside",
+      "text": "人名那一处被你划掉，日期、库名、件数都留下了。"
+    },
+    {
+      "id": "ch01_s12_shuge.l38",
+      "who": "self",
+      "kind": "inner",
+      "text": "（她能领到钱，又不必站到前头。这样最好。）"
+    },
+    {
+      "id": "ch01_s12_shuge.l39",
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "抄件留一份，封了可就伸手拿不回了。"
+    },
+    {
+      "id": "ch01_s12_shuge.l40",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "封了以后……"
+    },
+    {
+      "id": "ch01_s12_shuge.l41",
+      "who": "narr",
+      "kind": "aside",
+      "text": "麻纸硬边擦过手背，你署好名，把它放进摊开的油布。"
+    },
+    {
+      "id": "ch01_s12_shuge.l42",
+      "who": "narr",
+      "kind": "aside",
+      "text": "封口一合。门外的脚步很快被水声盖住。"
+    },
+    {
+      "id": "ch01_s12_shuge.l43",
+      "who": "shenheng",
+      "expr": "default",
+      "kind": "say",
+      "text": "只是递上去请议，还没准你追欠。"
+    },
+    {
+      "id": "ch01_s12_shuge.l44",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "我听见了。"
+    },
+    {
+      "id": "ch01_s12_shuge.l45",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "至少这笔钱，不只她心里记着了。"
+    },
+    {
+      "id": "ch01_s12_shuge.l46",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "我把抄件给她看，说已经有人问了。"
+    },
+    {
+      "id": "ch01_s12_shuge.l47",
       "who": "narr",
       "kind": "aside",
       "text": "唐简收起油布的余角，把封递时刻添到簿边。"
     },
     {
-      "id": "ch01_s12_shuge.l28",
+      "id": "ch01_s12_shuge.l48",
       "who": "narr",
       "kind": "aside",
       "text": "你把抄件贴身收好，想起还有片刻可以坐一坐。"
+    },
+    {
+      "id": "ch01_s12_shuge.l49",
+      "who": "narr",
+      "kind": "aside",
+      "text": "你在书阁门边拢好袖口，将抄件收稳。"
     }
   ],
   "choices": [
@@ -222,7 +391,7 @@
       "text": "和沈衡坐片刻",
       "require": {
         "affinity.shenheng": {
-          "gte": 5
+          "gte": 4
         }
       },
       "lockHint": "与沈衡尚未到识",
@@ -237,7 +406,7 @@
       "text": "到园里找裴照夜",
       "require": {
         "affinity.peizhaoye": {
-          "gte": 5
+          "gte": 4
         }
       },
       "lockHint": "与裴照夜尚未到识",
@@ -252,7 +421,7 @@
       "text": "去听温荞说纸声",
       "require": {
         "affinity.wenqiao": {
-          "gte": 5
+          "gte": 4
         }
       },
       "lockHint": "与温荞尚未到识",
@@ -267,7 +436,7 @@
       "text": "和公主玩一会儿",
       "require": {
         "affinity.liqinghe": {
-          "gte": 5
+          "gte": 4
         }
       },
       "lockHint": "与李令仪尚未到识",

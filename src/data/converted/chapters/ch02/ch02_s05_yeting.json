@@ -16,85 +16,154 @@
       "id": "ch02_s05_yeting.l1",
       "who": "narr",
       "kind": "aside",
-      "text": "帘下漏进一小块日光，正照着帕子翘起的角。"
+      "text": "沈衡的窄笺收进袖里，你回掖庭坐到宋身旁。"
     },
     {
       "id": "ch02_s05_yeting.l2",
+      "who": "narr",
+      "kind": "aside",
+      "text": "帘下漏进一小块日光，正照着帕子翘起的角。"
+    },
+    {
+      "id": "ch02_s05_yeting.l3",
       "who": "songhuizhen",
       "expr": "default",
       "kind": "say",
       "text": "换这边。"
     },
     {
-      "id": "ch02_s05_yeting.l3",
+      "id": "ch02_s05_yeting.l4",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "这边？"
+    },
+    {
+      "id": "ch02_s05_yeting.l5",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
       "text": "换过了。"
     },
     {
-      "id": "ch02_s05_yeting.l4",
+      "id": "ch02_s05_yeting.l6",
       "who": "songhuizhen",
       "expr": "open",
       "kind": "say",
       "text": "我没看见，再换一回。"
     },
     {
-      "id": "ch02_s05_yeting.l5",
-      "who": "narr",
-      "kind": "aside",
-      "text": "你转了半圈，宋按住另一角。"
-    },
-    {
-      "id": "ch02_s05_yeting.l6",
-      "who": "wuze",
-      "expr": "default",
-      "kind": "say",
-      "text": "这回是你那边长。"
-    },
-    {
       "id": "ch02_s05_yeting.l7",
-      "who": "songhuizhen",
+      "who": "wuze",
       "expr": "open",
       "kind": "say",
-      "text": "我的手还没动呢，你先别赖我；松开一点，我瞧瞧底下压了什么。"
+      "text": "再一回。"
     },
     {
       "id": "ch02_s05_yeting.l8",
       "who": "narr",
       "kind": "aside",
-      "text": "两人一起松手，帕子摊开，折痕全朝不同方向。"
+      "text": "你转了半圈，宋按住另一角。"
     },
     {
       "id": "ch02_s05_yeting.l9",
       "who": "wuze",
-      "expr": "open",
+      "expr": "default",
       "kind": "say",
-      "text": "更皱了。"
+      "text": "这回你那边——"
     },
     {
       "id": "ch02_s05_yeting.l10",
       "who": "songhuizhen",
-      "expr": "default",
+      "expr": "open",
       "kind": "say",
-      "text": "那就卷。"
+      "text": "手还没动呢。"
     },
     {
       "id": "ch02_s05_yeting.l11",
       "who": "wuze",
       "expr": "open",
       "kind": "say",
-      "text": "你压着的那个角一直在外头，卷起来也看得见；不如让它在外头待着。"
+      "text": "……"
     },
     {
       "id": "ch02_s05_yeting.l12",
       "who": "songhuizhen",
       "expr": "open",
       "kind": "say",
-      "text": "好，叫它晒着。"
+      "text": "松一点，我看看底下压着什么。"
     },
     {
       "id": "ch02_s05_yeting.l13",
+      "who": "narr",
+      "kind": "aside",
+      "text": "两人一起松手，帕子摊开，折痕全朝不同方向。"
+    },
+    {
+      "id": "ch02_s05_yeting.l14",
+      "who": "wuze",
+      "expr": "open",
+      "kind": "say",
+      "text": "更皱了。"
+    },
+    {
+      "id": "ch02_s05_yeting.l15",
+      "who": "songhuizhen",
+      "expr": "open",
+      "kind": "say",
+      "text": "皱了……"
+    },
+    {
+      "id": "ch02_s05_yeting.l16",
+      "who": "songhuizhen",
+      "expr": "default",
+      "kind": "say",
+      "text": "那就卷。"
+    },
+    {
+      "id": "ch02_s05_yeting.l17",
+      "who": "wuze",
+      "expr": "open",
+      "kind": "say",
+      "text": "那只角……"
+    },
+    {
+      "id": "ch02_s05_yeting.l18",
+      "who": "songhuizhen",
+      "expr": "open",
+      "kind": "say",
+      "text": "哪只？"
+    },
+    {
+      "id": "ch02_s05_yeting.l19",
+      "who": "wuze",
+      "expr": "open",
+      "kind": "say",
+      "text": "一直露在外面，卷了也看得见。"
+    },
+    {
+      "id": "ch02_s05_yeting.l20",
+      "who": "songhuizhen",
+      "expr": "open",
+      "kind": "say",
+      "text": "也是。"
+    },
+    {
+      "id": "ch02_s05_yeting.l21",
+      "who": "wuze",
+      "expr": "open",
+      "kind": "say",
+      "text": "就让它待着。"
+    },
+    {
+      "id": "ch02_s05_yeting.l22",
+      "who": "songhuizhen",
+      "expr": "open",
+      "kind": "say",
+      "text": "好，叫它晒着。"
+    },
+    {
+      "id": "ch02_s05_yeting.l23",
       "who": "narr",
       "kind": "aside",
       "text": "她把帕子放在光里。你收回手，掌心还留着一道折印。"

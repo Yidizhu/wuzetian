@@ -17,109 +17,198 @@
       "id": "ch03_s07_yeting.l1",
       "who": "narr",
       "kind": "aside",
-      "text": "灶下木柴劈啪响了一声。阿荻将两只空桶倒扣，桶底还淌着水。"
+      "text": "经手凭留在书阁，掖庭那边的交班还在继续。"
     },
     {
       "id": "ch03_s07_yeting.l2",
-      "who": "songhuizhen",
-      "expr": "default",
-      "kind": "say",
-      "text": "小的靠里放，明早那个新来的抬不动大桶。别等她抬到门口才换。"
+      "who": "narr",
+      "kind": "aside",
+      "text": "灶下木柴劈啪响了一声。阿荻将两只空桶倒扣，桶底还淌着水。"
     },
     {
       "id": "ch03_s07_yeting.l3",
-      "who": "adi",
+      "who": "songhuizhen",
       "expr": "default",
       "kind": "say",
-      "text": "搬过了。这个底有缝，另记。"
+      "text": "小的靠里。新来的抬不动大桶。"
     },
     {
       "id": "ch03_s07_yeting.l4",
-      "who": "tangjian",
+      "who": "adi",
       "expr": "default",
       "kind": "say",
-      "text": "可以记破损，不能仍作完好交。"
+      "text": "小的。"
     },
     {
       "id": "ch03_s07_yeting.l5",
       "who": "songhuizhen",
-      "expr": "open",
+      "expr": "default",
       "kind": "say",
-      "text": "那就别让它完好。拿来，我看一眼。"
+      "text": "别抬到门口才换。"
     },
     {
       "id": "ch03_s07_yeting.l6",
+      "who": "adi",
+      "expr": "default",
+      "kind": "say",
+      "text": "搬过了。这个底有缝。"
+    },
+    {
+      "id": "ch03_s07_yeting.l7",
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "记破损，不能作完好交。"
+    },
+    {
+      "id": "ch03_s07_yeting.l8",
+      "who": "songhuizhen",
+      "expr": "default",
+      "kind": "say",
+      "text": "完好？"
+    },
+    {
+      "id": "ch03_s07_yeting.l9",
+      "who": "songhuizhen",
+      "expr": "open",
+      "kind": "say",
+      "text": "那就别让它完好。拿来我看。"
+    },
+    {
+      "id": "ch03_s07_yeting.l10",
+      "who": "adi",
+      "expr": "open",
+      "kind": "say",
+      "text": "好。"
+    },
+    {
+      "id": "ch03_s07_yeting.l11",
       "who": "narr",
       "kind": "aside",
       "text": "宋蹲下，指甲沿桶底划过。阿荻扶着桶，没有扶她起来。"
     },
     {
-      "id": "ch03_s07_yeting.l7",
+      "id": "ch03_s07_yeting.l12",
       "who": "songhuizhen",
       "expr": "default",
       "kind": "say",
-      "text": "泡涨也合不上了。"
+      "text": "泡涨也……合不上了。"
     },
     {
-      "id": "ch03_s07_yeting.l8",
+      "id": "ch03_s07_yeting.l13",
       "who": "adi",
       "expr": "default",
       "kind": "say",
-      "text": "记今天发现的。前头是不是就漏，我不知道，不能替上一班答。"
+      "text": "嗯。"
     },
     {
-      "id": "ch03_s07_yeting.l9",
+      "id": "ch03_s07_yeting.l14",
+      "who": "adi",
+      "expr": "default",
+      "kind": "say",
+      "text": "记今天发现的。前头——"
+    },
+    {
+      "id": "ch03_s07_yeting.l15",
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "前头谁接的？"
+    },
+    {
+      "id": "ch03_s07_yeting.l16",
+      "who": "adi",
+      "expr": "default",
+      "kind": "say",
+      "text": "我不知道，不能替上一班答。"
+    },
+    {
+      "id": "ch03_s07_yeting.l17",
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
       "text": "这句照记。"
     },
     {
-      "id": "ch03_s07_yeting.l10",
+      "id": "ch03_s07_yeting.l18",
+      "who": "adi",
+      "expr": "default",
+      "kind": "say",
+      "text": "这句。"
+    },
+    {
+      "id": "ch03_s07_yeting.l19",
+      "who": "adi",
+      "expr": "default",
+      "kind": "say",
+      "text": "好。"
+    },
+    {
+      "id": "ch03_s07_yeting.l20",
       "who": "narr",
       "kind": "aside",
       "text": "宋掸掉膝上的灰，把针包的扣结紧了紧。"
     },
     {
-      "id": "ch03_s07_yeting.l11",
+      "id": "ch03_s07_yeting.l21",
       "who": "songhuizhen",
       "expr": "default",
       "kind": "say",
-      "text": "我明日不来。说好的两回带班已带完，饭也不用多留我的。"
+      "text": "明日不来。两回带班完了，饭别多留。"
     },
     {
-      "id": "ch03_s07_yeting.l12",
+      "id": "ch03_s07_yeting.l22",
+      "who": "adi",
+      "expr": "default",
+      "kind": "say",
+      "text": "两回。"
+    },
+    {
+      "id": "ch03_s07_yeting.l23",
       "who": "adi",
       "expr": "default",
       "kind": "say",
       "text": "不等殿上散了？"
     },
     {
-      "id": "ch03_s07_yeting.l13",
+      "id": "ch03_s07_yeting.l24",
       "who": "songhuizhen",
       "expr": "default",
       "kind": "say",
-      "text": "她们散她们的。我有人等着吃饭。"
+      "text": "她们散她们的。有人等我吃饭。"
     },
     {
-      "id": "ch03_s07_yeting.l14",
+      "id": "ch03_s07_yeting.l25",
       "who": "adi",
       "expr": "open",
       "kind": "say",
-      "text": "那桶就少洗一个。"
+      "text": "那桶少洗一个。"
     },
     {
-      "id": "ch03_s07_yeting.l15",
+      "id": "ch03_s07_yeting.l26",
+      "who": "songhuizhen",
+      "expr": "open",
+      "kind": "say",
+      "text": "嗯。"
+    },
+    {
+      "id": "ch03_s07_yeting.l27",
       "who": "narr",
       "kind": "aside",
       "text": "唐收好交凭。阿荻拿起饭勺，把锅边结住的一圈米刮了下来。"
     },
     {
-      "id": "ch03_s07_yeting.l16",
+      "id": "ch03_s07_yeting.l28",
       "who": "songhuizhen",
       "expr": "open",
       "kind": "say",
       "text": "留那块给我。路上嚼。"
+    },
+    {
+      "id": "ch03_s07_yeting.l29",
+      "who": "narr",
+      "kind": "aside",
+      "text": "唐带着交凭往回走，宋将那块米留给自己。"
     }
   ],
   "goto": "ch03_s08_hanyuan"

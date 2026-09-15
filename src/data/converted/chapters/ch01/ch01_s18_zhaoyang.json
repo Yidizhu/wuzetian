@@ -18,6 +18,12 @@
   "lines": [
     {
       "id": "ch01_s18_zhaoyang.l1",
+      "who": "narr",
+      "kind": "aside",
+      "text": "出了那道门，你赶向昭阳殿送补件。"
+    },
+    {
+      "id": "ch01_s18_zhaoyang.l2",
       "when": {
         "flag.petition_chase_first": true
       },
@@ -26,34 +32,24 @@
       "text": "你跑上石阶，鞋里都是水，袖子贴着仍在发酸的手臂。"
     },
     {
-      "id": "ch01_s18_zhaoyang.l2",
+      "id": "ch01_s18_zhaoyang.l3",
       "when": {
         "flag.petition_chase_first": true
       },
       "who": "wuze",
       "expr": "guarded",
       "kind": "say",
-      "text": "原牒要补一句，那个例证未经当事人允可，请先收下，别让后面的抄件漏掉。"
-    },
-    {
-      "id": "ch01_s18_zhaoyang.l3",
-      "when": {
-        "flag.petition_chase_first": true
-      },
-      "who": "tangjian",
-      "expr": "guarded",
-      "kind": "say",
-      "text": "原件已经入署，补件赶上了后抄的这一份，我能添上，不能替你抽走原件。"
+      "text": "原牒要补一句。"
     },
     {
       "id": "ch01_s18_zhaoyang.l4",
       "when": {
         "flag.petition_chase_first": true
       },
-      "who": "shenheng",
+      "who": "tangjian",
       "expr": "guarded",
       "kind": "say",
-      "text": "阿荻知道里面写了多少？"
+      "text": "你说。"
     },
     {
       "id": "ch01_s18_zhaoyang.l5",
@@ -63,20 +59,100 @@
       "who": "wuze",
       "expr": "guarded",
       "kind": "say",
-      "text": "只念了例证。我让宋才人陪着，先来追。"
+      "text": "例证没经当事人允可，后抄的别漏。"
     },
     {
       "id": "ch01_s18_zhaoyang.l6",
       "when": {
         "flag.petition_chase_first": true
       },
-      "who": "shenheng",
+      "who": "tangjian",
       "expr": "guarded",
       "kind": "say",
-      "text": "她来不及问的还在那里等，你把副本带回去，一条一条说给她听，不能只报追过了。"
+      "text": "原件已入署，补件赶上后抄的这份了。"
     },
     {
       "id": "ch01_s18_zhaoyang.l7",
+      "when": {
+        "flag.petition_chase_first": true
+      },
+      "who": "wuze",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "赶上了……"
+    },
+    {
+      "id": "ch01_s18_zhaoyang.l8",
+      "when": {
+        "flag.petition_chase_first": true
+      },
+      "who": "tangjian",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "能添上，不能抽走原件。"
+    },
+    {
+      "id": "ch01_s18_zhaoyang.l9",
+      "when": {
+        "flag.petition_chase_first": true
+      },
+      "who": "shenheng",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "阿荻知道写了多少？"
+    },
+    {
+      "id": "ch01_s18_zhaoyang.l10",
+      "when": {
+        "flag.petition_chase_first": true
+      },
+      "who": "wuze",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "只念了例证，宋才人陪她，我先来。"
+    },
+    {
+      "id": "ch01_s18_zhaoyang.l11",
+      "when": {
+        "flag.petition_chase_first": true
+      },
+      "who": "shenheng",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "……"
+    },
+    {
+      "id": "ch01_s18_zhaoyang.l12",
+      "when": {
+        "flag.petition_chase_first": true
+      },
+      "who": "shenheng",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "把副本带回去，一条一条说给她听，别只说追过了。"
+    },
+    {
+      "id": "ch01_s18_zhaoyang.l13",
+      "when": {
+        "flag.petition_chase_first": true
+      },
+      "who": "wuze",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "一条条说。"
+    },
+    {
+      "id": "ch01_s18_zhaoyang.l14",
+      "when": {
+        "flag.petition_chase_first": true
+      },
+      "who": "shenheng",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "她还没问完，都在那里等着。"
+    },
+    {
+      "id": "ch01_s18_zhaoyang.l15",
       "when": {
         "flag.petition_explain_first": true
       },
@@ -85,27 +161,67 @@
       "text": "你跨过积水，袖中留着阿荻要你照录的两句话，没有替她润色。"
     },
     {
-      "id": "ch01_s18_zhaoyang.l8",
+      "id": "ch01_s18_zhaoyang.l16",
       "when": {
         "flag.petition_explain_first": true
       },
       "who": "wuze",
       "expr": "guarded",
       "kind": "say",
-      "text": "她已听完抄件，准我补这两句：旧衣确是她送，私话未许我作呈文。"
+      "text": "她听完了，准我补两句。"
     },
     {
-      "id": "ch01_s18_zhaoyang.l9",
+      "id": "ch01_s18_zhaoyang.l17",
       "when": {
         "flag.petition_explain_first": true
       },
       "who": "tangjian",
       "expr": "guarded",
       "kind": "say",
-      "text": "这两句照补，原牒却已另抄出一份；后送的更正得再走一程，不能当它没出去。"
+      "text": "哪两句？"
     },
     {
-      "id": "ch01_s18_zhaoyang.l10",
+      "id": "ch01_s18_zhaoyang.l18",
+      "when": {
+        "flag.petition_explain_first": true
+      },
+      "who": "wuze",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "旧衣是她送的，私话没许我作呈文。"
+    },
+    {
+      "id": "ch01_s18_zhaoyang.l19",
+      "when": {
+        "flag.petition_explain_first": true
+      },
+      "who": "tangjian",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "照补，原牒却已另抄出去一份了。"
+    },
+    {
+      "id": "ch01_s18_zhaoyang.l20",
+      "when": {
+        "flag.petition_explain_first": true
+      },
+      "who": "wuze",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "一份……"
+    },
+    {
+      "id": "ch01_s18_zhaoyang.l21",
+      "when": {
+        "flag.petition_explain_first": true
+      },
+      "who": "tangjian",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "更正还得再走一程。"
+    },
+    {
+      "id": "ch01_s18_zhaoyang.l22",
       "when": {
         "flag.petition_explain_first": true
       },
@@ -115,129 +231,210 @@
       "text": "她还说什么？"
     },
     {
-      "id": "ch01_s18_zhaoyang.l11",
+      "id": "ch01_s18_zhaoyang.l23",
       "when": {
         "flag.petition_explain_first": true
       },
       "who": "wuze",
       "expr": "guarded",
       "kind": "say",
-      "text": "后面的话，要等她自己来讲。"
+      "text": "后面的话，等她自己讲。"
     },
     {
-      "id": "ch01_s18_zhaoyang.l12",
+      "id": "ch01_s18_zhaoyang.l24",
       "when": {
         "flag.petition_explain_first": true
       },
       "who": "shenheng",
       "expr": "guarded",
       "kind": "say",
-      "text": "那就停在这里，她准你带来多少便写多少，预备好的话也不能替她添满。"
+      "text": "嗯。"
     },
     {
-      "id": "ch01_s18_zhaoyang.l13",
+      "id": "ch01_s18_zhaoyang.l25",
+      "when": {
+        "flag.petition_explain_first": true
+      },
+      "who": "shenheng",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "只带来她准的两句，别替她补满。"
+    },
+    {
+      "id": "ch01_s18_zhaoyang.l26",
+      "when": {
+        "flag.petition_explain_first": true
+      },
+      "who": "wuze",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "就这两句。"
+    },
+    {
+      "id": "ch01_s18_zhaoyang.l27",
       "who": "narr",
       "kind": "aside",
       "text": "昭阳殿檐口还在滴雨，缺耳尖的马等着回厩，鼻息吹动湿鬃。"
     },
     {
-      "id": "ch01_s18_zhaoyang.l14",
+      "id": "ch01_s18_zhaoyang.l28",
       "who": "narr",
       "kind": "aside",
       "text": "它听见空桶挪动，又偏了一下头；没有因为那日停过试就不再怕响。"
     },
     {
-      "id": "ch01_s18_zhaoyang.l15",
+      "id": "ch01_s18_zhaoyang.l29",
       "who": "narr",
       "kind": "aside",
       "text": "你下意识想去碰它，唐简手中的回牒却已经展开。"
     },
     {
-      "id": "ch01_s18_zhaoyang.l16",
+      "id": "ch01_s18_zhaoyang.l30",
       "who": "tangjian",
       "expr": "guarded",
       "kind": "say",
       "text": "回来了。"
     },
     {
-      "id": "ch01_s18_zhaoyang.l17",
+      "id": "ch01_s18_zhaoyang.l31",
+      "who": "wuze",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "回牒？"
+    },
+    {
+      "id": "ch01_s18_zhaoyang.l32",
       "who": "wuze",
       "expr": "guarded",
       "kind": "say",
       "text": "叫我何时来？"
     },
     {
-      "id": "ch01_s18_zhaoyang.l18",
+      "id": "ch01_s18_zhaoyang.l33",
       "who": "tangjian",
       "expr": "guarded",
       "kind": "say",
       "text": "没先叫你。"
     },
     {
-      "id": "ch01_s18_zhaoyang.l19",
+      "id": "ch01_s18_zhaoyang.l34",
+      "who": "wuze",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "……"
+    },
+    {
+      "id": "ch01_s18_zhaoyang.l35",
       "who": "narr",
       "kind": "aside",
       "text": "沈衡移开挡光的手。那一行字完整地露出来。"
     },
     {
-      "id": "ch01_s18_zhaoyang.l20",
+      "id": "ch01_s18_zhaoyang.l36",
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "初八西库旧衣十一件，先问当日交纳经手人。"
+      "text": "初八西库旧衣十一件，先问交纳经手人。"
     },
     {
-      "id": "ch01_s18_zhaoyang.l21",
+      "id": "ch01_s18_zhaoyang.l37",
       "who": "wuze",
       "expr": "guarded",
       "kind": "say",
-      "text": "可提出人写的是我。"
+      "text": "提出人是我，先叫我——"
     },
     {
-      "id": "ch01_s18_zhaoyang.l22",
+      "id": "ch01_s18_zhaoyang.l38",
       "who": "shenheng",
       "expr": "guarded",
       "kind": "say",
-      "text": "提出人是你，经手人是她，回牒沿你留下的那几样东西，已经能找过去。"
+      "text": "经手人是她。"
     },
     {
-      "id": "ch01_s18_zhaoyang.l23",
+      "id": "ch01_s18_zhaoyang.l39",
+      "who": "wuze",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "……"
+    },
+    {
+      "id": "ch01_s18_zhaoyang.l40",
+      "who": "shenheng",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "日期、库名、件数，已足够找过去。"
+    },
+    {
+      "id": "ch01_s18_zhaoyang.l41",
       "who": "narr",
       "kind": "aside",
       "text": "你按住冰冷的湿袖口，那里还留着阿荻替你改的针脚。"
     },
     {
-      "id": "ch01_s18_zhaoyang.l24",
+      "id": "ch01_s18_zhaoyang.l42",
       "who": "wuze",
       "expr": "guarded",
       "kind": "say",
-      "text": "把我未经同意便引用的事也记下，别到她开口的时候，又只剩那一行旧欠。"
+      "text": "我没问她就引了私话，也记下。"
     },
     {
-      "id": "ch01_s18_zhaoyang.l25",
+      "id": "ch01_s18_zhaoyang.l43",
+      "who": "tangjian",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "这件……"
+    },
+    {
+      "id": "ch01_s18_zhaoyang.l44",
+      "who": "wuze",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "别等她开口，又只剩那行旧欠。"
+    },
+    {
+      "id": "ch01_s18_zhaoyang.l45",
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "已记。送递的先后也留着。"
+      "text": "已记，送递先后也留着。"
     },
     {
-      "id": "ch01_s18_zhaoyang.l26",
+      "id": "ch01_s18_zhaoyang.l46",
       "who": "narr",
       "kind": "aside",
       "text": "她在补件旁添下时刻，另取一份，不去抹原牒。"
     },
     {
-      "id": "ch01_s18_zhaoyang.l27",
+      "id": "ch01_s18_zhaoyang.l47",
       "who": "shenheng",
       "expr": "guarded",
       "kind": "say",
-      "text": "传问已经往掖庭去了。"
+      "text": "传问已往掖庭去。"
     },
     {
-      "id": "ch01_s18_zhaoyang.l28",
+      "id": "ch01_s18_zhaoyang.l48",
+      "who": "wuze",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "……"
+    },
+    {
+      "id": "ch01_s18_zhaoyang.l49",
       "who": "narr",
       "kind": "aside",
       "text": "马蹄在阶下挪了一步，你却望向来时那道门。"
+    },
+    {
+      "id": "ch01_s18_zhaoyang.l50",
+      "who": "empty",
+      "kind": "aside",
+      "text": "门槛外的日光只剩窄窄一条，照着石面上的旧车辙。"
+    },
+    {
+      "id": "ch01_s18_zhaoyang.l51",
+      "who": "narr",
+      "kind": "aside",
+      "text": "你收起副本，转身往掖庭去。"
     }
   ],
   "chapterEnd": true,

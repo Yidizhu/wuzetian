@@ -2,15 +2,15 @@
   "inputs": [
     {
       "file": "docs/C-2-第一章前六场.md",
-      "sha256": "0ae6f5a9b361c6f15a3fb5da6860e8df92c59b491de3eacd3d4138349c09d361"
+      "sha256": "244a8484dfe013fc7243af61992188d666c6ba92e3edb64ad28403f863e0aa25"
     },
     {
       "file": "docs/C-3-第一章后十二场.md",
-      "sha256": "c0d1f74a64c77177885abe3e0935b31e8bddbdf922546ec580b2fb726614bd00"
+      "sha256": "efe94e8c7052e6110a251468f904474e14c37f7b006b8b3afe4242da4a8c3e65"
     },
     {
       "file": "docs/C-4-第一章书信.md",
-      "sha256": "75eb8d2b35258a782898b747c7ef80fa9f79396062c340c2fd9840074c7b6126"
+      "sha256": "1f833029aefd33e1c7c174361578a2b92c115dea4fe0007b3ad777fb960a8bd4"
     },
     {
       "file": "docs/C0-2-诗词库与对诗.md",
@@ -26,11 +26,11 @@
     },
     {
       "file": "docs/C-7-第二章前十二场.md",
-      "sha256": "8a15fa237c9114ddd71c2fe1d70efbaea7491500803d5ddb6396636cc109441e"
+      "sha256": "8d6274bea42c26d23870922f07da5b3efcc0ef9e720b5c96950bb87087ce6e9d"
     },
     {
       "file": "docs/C-8-第二章后十二场与书信.md",
-      "sha256": "9535b7b02a6cf9c22e8411d21adda8427a751eb3f0f1191986937ddca300b8a5"
+      "sha256": "18445d3cc816905d7a735ed4b0a6cee8b23462e09bf5559fc0e9e6c7d3dcdd63"
     },
     {
       "file": "docs/C-9-第三章大纲.md",
@@ -38,11 +38,11 @@
     },
     {
       "file": "docs/C-10-第三章前十二场.md",
-      "sha256": "43f8c87128b2e8ec1380715d8c5dd10235ebbc45bda805542d9898916ea51786"
+      "sha256": "b252001dfa8f02fe778f522a711cd075307e80180cb73fa35b9315017db57dc5"
     },
     {
       "file": "docs/C-11-第三章后十二场与书信.md",
-      "sha256": "df67b3d2de302c00095360d2694cbea2c58efcf6eb0d6191b4635c6f81394187"
+      "sha256": "6beceeb4121a5c8e054fb293453abe00df3052f0428f35a1676e0e8e17be545d"
     },
     {
       "file": "docs/C-12-第四章大纲.md",
@@ -50,11 +50,11 @@
     },
     {
       "file": "docs/C-13-第四章登基与不受.md",
-      "sha256": "a3769e71b5c3cc2e041aa079a4f28739cc127dd6286c0dd9448e906c4ca348e6"
+      "sha256": "5c84b1df2735e4468cad65192506ec45fa4e54ff20c097c0a5ba15f509e1f917"
     },
     {
       "file": "docs/C-14-第四章其余路线与书信.md",
-      "sha256": "3d3506c1203046c6302c6ff6e4f41e0e9062f92659d38239704a34799f1a1e0d"
+      "sha256": "84898bcb3a43511278b780ad23b0c380698e9fa75882ca1f13b346ba749c565b"
     }
   ],
   "scenes": [
@@ -112,6 +112,9 @@
     "ch03_s07_yeting",
     "ch03_s08_hanyuan",
     "ch03_s09_yuanye",
+    "ch03_s09a_yuanye",
+    "ch03_s09b_yuanye",
+    "ch03_s09c_yuanye",
     "ch03_s10_nvguan",
     "ch03_s11_hanyuan",
     "ch03_s12_hanyuan",
@@ -127,6 +130,22 @@
     "ch03_s22_nvguan",
     "ch03_s23_yeting",
     "ch03_s24_shuge",
+    "ch04_s05p_shuge",
+    "ch04_s05pe_shuge",
+    "ch04_s05m_shuge",
+    "ch04_s05c_shuge",
+    "ch04_s05ca_shuge",
+    "ch04_s05cb_yuanye",
+    "ch04_s05cc_shishe",
+    "ch04_s05cd_yuanye",
+    "ch04_s05q_shuge",
+    "ch04_s05qa_shuge",
+    "ch04_s05qb_yuanye",
+    "ch04_s05qc_shishe",
+    "ch04_s05qd_yuanye",
+    "ch04_s05r_shuge",
+    "ch04_s05z_yeting",
+    "ch04_s08z_shuge",
     "ch04_s01_zhaoyang",
     "ch04_s02_hanyuan",
     "ch04_s03_shuge",
@@ -135,6 +154,7 @@
     "ch04_s07_hanyuan",
     "ch04_s08_shuge",
     "ch04_s10_yuanye",
+    "ch04_s05rl_yuanye",
     "ch04_s06_zhaoyang",
     "ch04_s09_yuanye",
     "ch04_s11_nvguan",
@@ -214,5 +234,5 @@
     "guanshanyouxin",
     "zhishangyouming"
   ],
-  "issues": 17
+  "issues": 4
 }

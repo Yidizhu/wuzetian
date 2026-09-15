@@ -1,0 +1,302 @@
+{
+  "id": "ch04_s05qc_shishe",
+  "chapter": 4,
+  "act": 4,
+  "scene": "shishe",
+  "palette": "ink",
+  "cast": [
+    "wuze",
+    "wenqiao"
+  ],
+  "weightless": false,
+  "leavesLetter": [],
+  "purpose": "听温荞自己答",
+  "lines": [
+    {
+      "id": "ch04_s05qc_shishe.l1",
+      "when": {
+        "intent": "only"
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "温荞，我想只同你相爱。"
+    },
+    {
+      "id": "ch04_s05qc_shishe.l2",
+      "when": {
+        "intent": "only"
+      },
+      "who": "wenqiao",
+      "expr": "default",
+      "kind": "say",
+      "text": "先别把“只”字唱给我听。别人那边说过了？"
+    },
+    {
+      "id": "ch04_s05qc_shishe.l3",
+      "when": {
+        "intent": "only"
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "没有留着等我改口的人。"
+    },
+    {
+      "id": "ch04_s05qc_shishe.l4",
+      "when": {
+        "intent": "only"
+      },
+      "who": "narr",
+      "kind": "aside",
+      "text": "她把手里的纸放下，看着你，没接玩笑。"
+    },
+    {
+      "id": "ch04_s05qc_shishe.l5",
+      "when": {
+        "intent": "only"
+      },
+      "who": "narr",
+      "kind": "aside",
+      "text": "你看温荞压住纸角，嘴角没有像往常那样先弯起来。"
+    },
+    {
+      "id": "ch04_s05qc_shishe.l6",
+      "when": {
+        "intent": "only"
+      },
+      "who": "cg",
+      "kind": "aside",
+      "text": "wenqiao_6_dafu"
+    },
+    {
+      "id": "ch04_s05qc_shishe.l7",
+      "when": {
+        "intent": "only"
+      },
+      "who": "self",
+      "kind": "inner",
+      "text": "（这回别拿笑话混过去。）"
+    },
+    {
+      "id": "ch04_s05qc_shishe.l8",
+      "when": {
+        "intent": "only"
+      },
+      "who": "wenqiao",
+      "expr": "default",
+      "kind": "say",
+      "text": "我也想。"
+    },
+    {
+      "id": "ch04_s05qc_shishe.l9",
+      "when": {
+        "intent": "open"
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "我想同你相爱，但不只同你一人。"
+    },
+    {
+      "id": "ch04_s05qc_shishe.l10",
+      "when": {
+        "intent": "open",
+        "pact.shenheng": "declined"
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "沈衡不愿意，私约已停。"
+    },
+    {
+      "id": "ch04_s05qc_shishe.l11",
+      "when": {
+        "intent": "open",
+        "pact.shenheng": "ended"
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "我已同沈衡说停了私约。"
+    },
+    {
+      "id": "ch04_s05qc_shishe.l12",
+      "when": {
+        "intent": "open",
+        "pact.peizhaoye": "active"
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "我还想同裴照夜相见。"
+    },
+    {
+      "id": "ch04_s05qc_shishe.l13",
+      "when": {
+        "intent": "open",
+        "pact.peizhaoye": "ended"
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "我已同裴照夜说停了私约。"
+    },
+    {
+      "id": "ch04_s05qc_shishe.l14",
+      "when": {
+        "intent": "open",
+        "pact.liqinghe": "active"
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "我还想同李令仪相见。"
+    },
+    {
+      "id": "ch04_s05qc_shishe.l15",
+      "when": {
+        "intent": "open",
+        "pact.liqinghe": "declined"
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "李令仪不愿意，私约已停。"
+    },
+    {
+      "id": "ch04_s05qc_shishe.l16",
+      "when": {
+        "intent": "open",
+        "pact.liqinghe": "ended"
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "我已同李令仪说停了私约。"
+    },
+    {
+      "id": "ch04_s05qc_shishe.l17",
+      "when": {
+        "intent": "open"
+      },
+      "who": "wenqiao",
+      "expr": "default",
+      "kind": "say",
+      "text": "我想了一会儿。"
+    },
+    {
+      "id": "ch04_s05qc_shishe.l18",
+      "when": {
+        "intent": "open"
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "你说。"
+    },
+    {
+      "id": "ch04_s05qc_shishe.l19",
+      "when": {
+        "intent": "open"
+      },
+      "who": "narr",
+      "kind": "aside",
+      "text": "你看她的手掌压在纸上，折歪的那一角露在指缝外。"
+    },
+    {
+      "id": "ch04_s05qc_shishe.l20",
+      "when": {
+        "intent": "open"
+      },
+      "who": "cg",
+      "kind": "aside",
+      "text": "wenqiao_6_dafu"
+    },
+    {
+      "id": "ch04_s05qc_shishe.l21",
+      "when": {
+        "intent": "open"
+      },
+      "who": "self",
+      "kind": "inner",
+      "text": "（还想听她笑。现在先听这句。）"
+    },
+    {
+      "id": "ch04_s05qc_shishe.l22",
+      "when": {
+        "intent": "open"
+      },
+      "who": "wenqiao",
+      "expr": "default",
+      "kind": "say",
+      "text": "我愿意试着这样相爱。可别哪天又少说一个名字。"
+    },
+    {
+      "id": "ch04_s05qc_shishe.l23",
+      "when": {
+        "intent": "open"
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "不会拿你的答应替别人答。"
+    },
+    {
+      "id": "ch04_s05qc_shishe.l24",
+      "when": {
+        "intent": "open"
+      },
+      "who": "wenqiao",
+      "expr": "default",
+      "kind": "say",
+      "text": "也别拿她们的答应来劝我继续。"
+    },
+    {
+      "id": "ch04_s05qc_shishe.l25",
+      "when": {
+        "intent": "open"
+      },
+      "who": "narr",
+      "kind": "aside",
+      "text": "她把刚才折歪的纸角撑开，手掌压了一会儿。"
+    }
+  ],
+  "choices": [
+    {
+      "id": "ch04_s05qc_shishe.cA",
+      "text": "我也愿意，只与你相爱",
+      "require": {
+        "intent": "only"
+      },
+      "effects": {
+        "told.wenqiao": true,
+        "answer.wenqiao": "only"
+      },
+      "irreversible": false,
+      "goto": "ch04_s05q_shuge"
+    },
+    {
+      "id": "ch04_s05qc_shishe.cB",
+      "text": "按说清的这样继续",
+      "require": {
+        "intent": "open"
+      },
+      "effects": {
+        "told.wenqiao": true,
+        "answer.wenqiao": "open"
+      },
+      "irreversible": false,
+      "goto": "ch04_s05q_shuge"
+    },
+    {
+      "id": "ch04_s05qc_shishe.cC",
+      "text": "我还做不到，先停私约",
+      "effects": {
+        "pact.wenqiao": "ended"
+      },
+      "irreversible": false,
+      "goto": "ch04_s05q_shuge"
+    }
+  ]
+}

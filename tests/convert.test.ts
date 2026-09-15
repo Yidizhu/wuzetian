@@ -1,7 +1,8 @@
 import { test, describe } from "node:test";
 import assert from "node:assert/strict";
-import { CASES, sceneId, lineId, choiceId, parseCondition, parseEffects, convert, convertBatch, tableCells, writeOut, issueReport, classify, manualTail, MANUAL_MARK, outputPathFor, storyGraph, flagAudit, sceneEdges, SONG_BLACKLIST, SPEAKERS, SPEAKER_LABELS } from "../tools/convert-story.ts";
+import { CASES, sceneId, lineId, choiceId, parseCondition, parseEffects, convert, convertBatch, tableCells, writeOut, issueReport, classify, manualTail, MANUAL_MARK, outputPathFor, storyGraph, flagAudit, flagIssues, FLAG_LEDGER, FLAG_VERDICTS, sceneEdges, SONG_BLACKLIST, SPEAKERS, SPEAKER_LABELS } from "../tools/convert-story.ts";
 import { readFileSync, mkdtempSync, rmSync } from "node:fs";
+import { AFFINITY_BANDS } from "../src/engine/types.ts";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 
@@ -92,14 +93,16 @@ test('无用场景是/否/空及双色板', () => {
 });
 
 test('前向跨文件去向、选项条件效果及不可逆提示', () => {
+  // 门槛取引擎档位表里识档的下限：这条用例测的是选项解析，档位再调（D-065、D-078）也不该让它变红
+  const floor = AFFINITY_BANDS.find(b => b.label === '识')!.min;
   const first = scene('ch01-01', '', '') + `
 | # | 选项文本 | 需要 | 效果 | 去向 | 备注 |
 |---|---|---|---|---|---|
-| A | 留下 | 好感.shenheng >= 5 | xin +1, flag.stay = 真 | ch01-02 | 不可逆；提示「交情未到」 |
+| A | 留下 | 好感.shenheng >= ${floor} | xin +1, flag.stay = 真 | ch01-02 | 不可逆；提示「交情未到」 |
 `;
   const r = convertBatch([{ markdown: first, file: 'a' }, { markdown: scene('ch01-02'), file: 'b' }]);
   assert.deepEqual(r.issues, []);
-  assert.deepEqual(r.scenes[0].choices[0], { id: 'ch01_s01_shuge.cA', text: '留下', require: { 'affinity.shenheng': { gte: 5 } }, effects: { xin: 1, 'flag.stay': true }, goto: 'ch01_s02_shuge', irreversible: true, lockHint: '交情未到' });
+  assert.deepEqual(r.scenes[0].choices[0], { id: 'ch01_s01_shuge.cA', text: '留下', require: { 'affinity.shenheng': { gte: floor } }, effects: { xin: 1, 'flag.stay': true }, goto: 'ch01_s02_shuge', irreversible: true, lockHint: '交情未到' });
   const linear = convertBatch([{ markdown: scene('ch01-01', '', '| 去向 | ch01-02 |'), file: 'a' }, { markdown: scene('ch01-02'), file: 'b' }]);
   assert.equal(linear.scenes[0].goto, 'ch01_s02_shuge');
 });
@@ -1063,4 +1066,198 @@ test('结局走不到：有结局表、没有终局判定、最后一场是空�
   const chained = convertBatch([{ markdown: scene('ch01-01', '| 章末 | 是 |', '| 去向 | ch01-02 |'), file: 'a' }, { markdown: scene('ch01-02', '', '| 去向 | ch01-01 |'), file: 'b' }, { markdown: ending(''), file: 'e' }]);
   assert.ok(!chained.scenes.some(s => s.ending || (s as any).judgeEnding), '这一例里确实没有终局判定，测的是章末还接着走的那一支');
   assert.ok(!chained.issues.some(i => i.message.includes('终局判定')));
+});
+
+// ------------------------------------------------------------ Prompt D12
+
+test('D-091：拼错的 flag 两头都挡转换，行号指回原文；登记过的降为待交付；登记表过期要报', () => {
+  // 第一场写 took_seal（拼对了）和 idle；第二场按拼错的 took_seel 分岔
+  const writer = scene('ch01-01', '', '') + `
+| # | 选项文本 | 需要 | 效果 | 去向 | 备注 |
+|---|---|---|---|---|---|
+| A | 收印 | | flag.took_seal = 真, flag.idle = 真 | ch01-02 | |
+`;
+  const reader = scene('ch01-02', '| 进入条件 | flag.took_seel |');
+  const inputs = [{ markdown: writer, file: 'a.md' }, { markdown: reader, file: 'b.md' }];
+  const r = convertBatch(inputs);
+  assert.deepEqual(r.issues, [], '每一场单看都合法，convertBatch 自己抓不到');
+  const ctx = { engineText: '', outlineText: '', knownText: '' };
+  const ledgerText = '{\n  "entries": [\n    { "flag": "idle", "verdict": "真死" },\n    { "flag": "gone", "verdict": "漏读" }\n  ]\n}';
+  const ledger = [
+    { flag: 'idle', verdict: '真死' as const, why: '恒真', fix: 'ChatGPT 删掉' },
+    { flag: 'gone', verdict: '漏读' as const, why: '早就修了', fix: '—' },
+  ];
+  const issues = flagIssues(r, ctx, inputs, ledger, ledgerText, 'ledger.json');
+  const blocking = issues.filter(i => i.kind === 'ChatGPT 格式');
+  const lineOf = (md: string, needle: string) => md.split('\n').findIndex(l => l.includes(needle)) + 1;
+  assert.deepEqual(blocking.map(i => [i.file, i.line]).sort(), [['a.md', lineOf(writer, '| A | 收印 |')], ['b.md', lineOf(reader, '| 进入条件 |')]], '写的那头和读的那头各挡一条，行号指到原文那一行');
+  assert.ok(blocking.every(i => i.message.includes('拼错')), '文案要提拼错这一种可能');
+  const pending = issues.find(i => i.kind === '待交付')!;
+  assert.ok(pending.message.includes('flag.idle') && pending.message.includes('真死') && pending.message.includes('ChatGPT 删掉'), '登记过的带上判定与了结');
+  const stale = issues.find(i => i.kind === '警告')!;
+  assert.deepEqual([stale.file, stale.line, stale.excerpt], ['ledger.json', 4, 'gone'], '已经不空的登记行要报出来删掉');
+  // 判定和缺的那头对不上：登记成漏读，其实是没人写
+  const wrong = flagIssues(r, ctx, inputs, [{ flag: 'took_seel', verdict: '漏读', why: '', fix: '' }], '', 'ledger.json');
+  assert.ok(wrong.some(i => i.kind === '警告' && i.message.includes('对不上')));
+  // 引擎在读、或对面在未发布的章：不算
+  const engine = flagIssues(r, { ...ctx, engineText: 'flags.idle' }, inputs, [], '', 'ledger.json');
+  assert.ok(!engine.some(i => i.message.includes('flag.idle')), '引擎读取不挡');
+});
+
+test('flag 体检报告：登记过的空转单列判定与了结，未登记的留在原表', () => {
+  const writer = scene('ch01-01', '', '') + `
+| # | 选项文本 | 需要 | 效果 | 去向 | 备注 |
+|---|---|---|---|---|---|
+| A | 走 | | flag.idle = 真, flag.open_gap = 真 | ch01-02 | |
+`;
+  const r = convertBatch([{ markdown: writer, file: 'a' }, { markdown: scene('ch01-02'), file: 'b' }]);
+  const two = flagAudit(r, { engineText: '', outlineText: '', knownText: '', ledger: [{ flag: 'idle', verdict: '漏读', why: '备注点了名', fix: 'ChatGPT 加附页' }] }).split('## 二')[1].split('## 三')[0];
+  assert.ok(/未登记的 1 个挡转换；登记了判定的 1 个/.test(two));
+  assert.ok(/\| `open_gap` \|.*\| — \|$/m.test(two), '未登记的照旧格式');
+  assert.ok(/\| `idle` \| `ch01_s01_shuge\.cA` \| 漏读 \| 备注点了名 \| ChatGPT 加附页 \|/.test(two), '登记过的单列');
+});
+
+test('flag 登记表本身：判定只有三种，理由与了结不许空，一个 flag 只登记一次', () => {
+  const names = FLAG_LEDGER.map(e => e.flag);
+  assert.equal(new Set(names).size, names.length);
+  for (const e of FLAG_LEDGER) {
+    assert.ok(FLAG_VERDICTS.includes(e.verdict), `${e.flag} 的判定「${e.verdict}」`);
+    assert.ok(e.why.trim() && e.fix.trim(), `${e.flag} 缺理由或了结`);
+    assert.match(e.flag, /^[a-z0-9_]+$/, '登记的是 flag 名本身，不带 flag. 前缀');
+  }
+});
+
+// ------------------------------------------------------------ Prompt D18
+
+test('D18：说话人「事件图」→ cg，类型可以留空，文本是 cgs.ts 里的 key', async () => {
+  const { CGS } = await import('../src/scene/cgs.ts');
+  const key = Object.keys(CGS)[0]!;
+  const md = scene('ch01-01').replace('| 4 | shenheng | guarded | 诗 | 明月松间照。 |', `| 4 | 事件图 |  |  | ${key} |`);
+  const r = convert(md, 'cg.md');
+  assert.deepEqual(r.issues, []);
+  const l = r.scenes[0].lines[3] as any;
+  assert.equal(l.who, 'cg');
+  assert.equal(l.text, key);
+  assert.equal(l.kind, 'aside', '事件图不是说出口的话，按旁白记，不进对话框');
+  assert.equal(l.expr, undefined);
+});
+
+test('D18：事件图的 key 表里没有——这一场照常输出，但挡转换，并列出名字相近的 key', async () => {
+  const { CGS } = await import('../src/scene/cgs.ts');
+  // 造一个「改名撞车」：把表里某个 key 的序号段去掉，或者干脆编一个
+  const real = Object.keys(CGS).find(k => /_\d+_/.test(k)) ?? Object.keys(CGS)[0]!;
+  const renamed = real.replace(/_\d+_/, '_');
+  const md = scene('ch01-01').replace('| 4 | shenheng | guarded | 诗 | 明月松间照。 |', `| 4 | 事件图 |  |  | ${renamed === real ? 'nobody_9_nothing' : renamed} |`);
+  const r = convert(md, 'cg.md');
+  assert.equal(r.scenes.length, 1, '丢的是一张图，戏文一句不少，不扣整场');
+  const hit = r.issues.find(i => i.message.includes('cgs.ts'))!;
+  assert.ok(hit, '必须报出来：引擎找不到图会静默跳过');
+  assert.equal(hit.kind, 'ChatGPT 格式', '静默失效挡转换（R-019）');
+  assert.equal(hit.line, md.split('\n').findIndex(x => x.includes('| 4 | 事件图 |')) + 1, '行号指到事件图那一行');
+  if (renamed !== real) assert.ok(hit.message.includes(real), '改名撞车时把表里相近的那个 key 列出来');
+});
+
+// ------------------------------------------------------------ Prompt D20
+
+test('D20：关系键的条件——等于、其中之一、不是其中之一、真假、计数', () => {
+  assert.deepEqual(parseCondition('pact.shenheng = active'), { 'pact.shenheng': 'active' });
+  assert.deepEqual(parseCondition('pact.liqinghe = active/paused'), { 'pact.liqinghe': { in: ['active', 'paused'] } });
+  assert.deepEqual(parseCondition('pact.shenheng != none/declined'), { 'pact.shenheng': { not: ['none', 'declined'] } });
+  assert.deepEqual(parseCondition('pact.liqinghe != active'), { 'pact.liqinghe': { not: ['active'] } }, '单个值的不等也写成 not，引擎只认这一种');
+  assert.deepEqual(parseCondition('told.wenqiao 且 非 love.shenheng 且 非 asked.liqinghe'), { 'told.wenqiao': true, 'love.shenheng': false, 'asked.liqinghe': false });
+  assert.deepEqual(parseCondition('pacts.active >= 2 且 pacts.love = 0'), { 'pacts.active': { gte: 2 }, 'pacts.love': { eq: 0 } });
+  assert.deepEqual(parseCondition('intent = solo 且 flag.enthroned 且 cai >= 6'), { intent: 'solo', 'flag.enthroned': true, cai: { gte: 6 } });
+});
+
+test('D20：关系键写错——人、字段、取值、真假当枚举、计数当枚举，都当场说清', () => {
+  const bad: [string, RegExp][] = [
+    ['pact.liuchenghuan = active', /人只能是/],
+    ['pact.shenheng = open', /没有「open」这个值/],
+    ['told.wenqiao = active', /真假值/],
+    ['pacts.active = active', /是个数/],
+    ['pact.shenheng', /不是真假值/],
+    ['love.shenheng >= 1', /不是个数/],
+    ['pact.shenheng = active/active', /重复/],
+  ];
+  for (const [text, why] of bad) assert.throws(() => parseCondition(text), why, text);
+});
+
+test('D20：关系键的效果——枚举、真假；算出来的键不能写', () => {
+  assert.deepEqual(parseEffects('pact.shenheng = ended, told.wenqiao = 真, answer.peizhaoye = open, intent = only, flag.x = 假'),
+    { 'pact.shenheng': 'ended', 'told.wenqiao': true, 'answer.peizhaoye': 'open', intent: 'only', 'flag.x': false });
+  assert.throws(() => parseEffects('love.shenheng = 真'), /算出来的/);
+  assert.throws(() => parseEffects('pacts.active = 2'), /算出来的/);
+  assert.throws(() => parseEffects('pact.shenheng = active/paused'), /一次只能写一个值/);
+  assert.throws(() => parseEffects('asked.wenqiao = active'), /只能写真或假/);
+});
+
+test('D20：自动去向 → branches + 兜底 goto；写法不对当场报', () => {
+  const md = (auto: string, extra = '') => scene('ch04-05c', `| 自动去向 | ${auto} |${extra}`, '').replace('| 章 | 1 |', '| 章 | 4 |').replace('| 幕 | 1 |', '| 幕 | 4 |')
+    + '\n' + scene('ch04-05ca').replace('| 章 | 1 |', '| 章 | 4 |').replace('| 幕 | 1 |', '| 幕 | 4 |')
+    + '\n' + scene('ch04-08z').replace('| 章 | 1 |', '| 章 | 4 |').replace('| 幕 | 1 |', '| 幕 | 4 |');
+  const ok = convert(md('pact.shenheng = active/paused 且 非 asked.shenheng → ch04-05ca；兜底 → ch04-08z'), 'a.md');
+  assert.deepEqual(ok.issues, []);
+  const s = ok.scenes.find(x => x.id === 'ch04_s05c_shuge') as any;
+  assert.deepEqual(s.branches, [{ require: { 'pact.shenheng': { in: ['active', 'paused'] }, 'asked.shenheng': false }, goto: 'ch04_s05ca_shuge' }]);
+  assert.equal(s.goto, 'ch04_s08z_shuge', '兜底就是场景级 goto');
+  assert.ok(sceneEdges(ok).some(e => e.from === s.id && e.to === 'ch04_s05ca_shuge' && e.locked), '分支图画出自动去向，带锁');
+  const noFallback = convert(md('flag.enthroned → ch04-05ca'), 'a.md');
+  assert.ok(noFallback.issues.some(i => /卡住|goto/.test(i.message)), '每条都带条件又没兜底：schema 拦（会卡死）');
+  const late = convert(md('兜底 → ch04-08z；flag.enthroned → ch04-05ca'), 'a.md');
+  assert.ok(late.issues.some(i => i.message.includes('兜底」要写在自动去向的最后')));
+  const clash = convert(md('flag.enthroned → ch04-05ca；兜底 → ch04-08z', '\n| 去向 | ch04-05ca |'), 'a.md');
+  assert.ok(clash.issues.some(i => i.message.includes('两处要一致')));
+  const noArrow = convert(md('flag.enthroned ch04-05ca'), 'a.md');
+  assert.ok(noArrow.issues.some(i => i.message.includes('条件 → 场次')));
+});
+
+// ------------------------------------------------------------ Prompt D21
+
+test('D21：台词表空着的中转场（D-169）被 schema 拒——报成 CC1 接口，不算原文写错', () => {
+  const md = scene('ch01-01', '', '| 去向 | ch01-02 |').replace(/\| 1 \| narr[^\n]*\n\| 2 \|[^\n]*\n\| 3 \|[^\n]*\n\| 4 \|[^\n]*\n/, '') + '\n' + scene('ch01-02');
+  const r = convert(md, 'a.md');
+  const hit = r.issues.find(i => i.message.includes('D-169'));
+  if (r.scenes.some(s => s.id === 'ch01_s01_shuge')) {
+    assert.ok(!hit, 'schema 放开之后就不该再报');
+  } else {
+    assert.ok(hit, '被拒要说清原因');
+    assert.equal(hit!.kind, 'CC1 接口');
+  }
+});
+
+// ------------------------------------------------------------ Prompt D22
+
+test('D22：说话人「空镜」→ who: "empty"，类型写旁白或留空都记 aside', () => {
+  const md = (kind: string) => scene('ch01-01').replace('| 2 | self | | 内心 | {名},看\\|纸。 |', `| 2 | 空镜 | | ${kind} | 瓦沟里横着一片枯叶。 |`);
+  for (const kind of ['旁白', '']) {
+    const r = convert(md(kind), 'a.md');
+    assert.deepEqual(r.issues, [], `类型「${kind}」`);
+    const l = r.scenes[0].lines[1] as any;
+    assert.equal(l.who, 'empty');
+    assert.equal(l.kind, 'aside');
+    assert.equal(l.text, '瓦沟里横着一片枯叶。');
+    assert.equal(l.expr, undefined);
+  }
+});
+
+test('D22：空镜格违规——带表情、类型不是旁白、两格连着、选项前最后一格——都报出来，行号指到那一格', () => {
+  const lineOf = (m: string, needle: string) => m.split('\n').findIndex(x => x.includes(needle)) + 1;
+  const expr = scene('ch01-01').replace('| 2 | self | | 内心 | {名},看\\|纸。 |', '| 2 | 空镜 | open | 旁白 | 瓦上有霜。 |');
+  const r1 = convert(expr, 'a.md');
+  const h1 = r1.issues.find(i => i.message.includes('不能带表情'))!;
+  assert.ok(h1, '带表情要拦');
+  assert.equal(h1.line, lineOf(expr, '| 2 | 空镜 |'), '行号指到那一格，不指场景标题');
+  const say = scene('ch01-01').replace('| 2 | self | | 内心 | {名},看\\|纸。 |', '| 2 | 空镜 | | 说 | 瓦上有霜。 |');
+  assert.ok(convert(say, 'a.md').issues.some(i => i.message.includes('旁白')), '类型写成「说」要拦');
+  const twice = scene('ch01-01').replace('| 2 | self | | 内心 | {名},看\\|纸。 |', '| 2 | 空镜 | | 旁白 | 瓦上有霜。 |').replace('| 3 | wuze | open | 说 | 我来。 |', '| 3 | 空镜 | | 旁白 | 檐下没有人。 |');
+  const r3 = convert(twice, 'a.md');
+  const h3 = r3.issues.find(i => i.message.includes('两格连着'))!;
+  assert.ok(h3, '两格连着没人要拦');
+  assert.equal(h3.line, lineOf(twice, '| 2 | 空镜 |'));
+  const last = scene('ch01-01', '', '').replace('| 4 | shenheng | guarded | 诗 | 明月松间照。 |', '| 4 | 空镜 | | 旁白 | 灯芯结了一粒黑花。 |') + `
+| # | 选项文本 | 需要 | 效果 | 去向 | 备注 |
+|---|---|---|---|---|---|
+| A | 走 | | | ch01-02 | |
+` + '\n' + scene('ch01-02');
+  assert.ok(convert(last, 'a.md').issues.some(i => i.message.includes('选项前的最后一格')), '空镜不许是选项前最后一格');
 });

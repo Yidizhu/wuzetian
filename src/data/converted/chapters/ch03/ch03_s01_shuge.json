@@ -43,109 +43,233 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "荐署掌案请求暂撤，署了本名。她说这页放进去，复核的人会迟疑。"
+      "text": "荐署掌案请求暂撤这一页，来牒上署了她自己的名。"
     },
     {
       "id": "ch03_s01_shuge.l6",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "暂撤？"
+    },
+    {
+      "id": "ch03_s01_shuge.l7",
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "说是放进这一页，复核的人会迟疑。"
+    },
+    {
+      "id": "ch03_s01_shuge.l8",
       "who": "narr",
       "kind": "aside",
       "text": "唐把来牒翻到落款。沈没有替你把镇尺挪开。"
     },
     {
-      "id": "ch03_s01_shuge.l7",
+      "id": "ch03_s01_shuge.l9",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
       "text": "她替我省了哪一句？"
     },
     {
-      "id": "ch03_s01_shuge.l8",
+      "id": "ch03_s01_shuge.l10",
       "who": "shenheng",
       "expr": "guarded",
       "kind": "say",
-      "text": "擅引未获许可的私话，补牒晚于原牒。"
+      "text": "擅引未获许可的私话，补牒又晚了。"
     },
     {
-      "id": "ch03_s01_shuge.l9",
+      "id": "ch03_s01_shuge.l11",
+      "who": "wuze",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "晚了。"
+    },
+    {
+      "id": "ch03_s01_shuge.l12",
       "who": "wuze",
       "expr": "guarded",
       "kind": "say",
       "text": "字是你的。"
     },
     {
-      "id": "ch03_s01_shuge.l10",
+      "id": "ch03_s01_shuge.l13",
       "who": "shenheng",
       "expr": "default",
       "kind": "say",
-      "text": "是。驳语也留了我自己的错。"
-    },
-    {
-      "id": "ch03_s01_shuge.l11",
-      "who": "tangjian",
-      "expr": "default",
-      "kind": "say",
-      "text": "原件不能撤。你可附入本轮复核，也可先补证，保留尚未答清的标记。"
-    },
-    {
-      "id": "ch03_s01_shuge.l12",
-      "who": "wuze",
-      "expr": "default",
-      "kind": "say",
-      "text": "后一种要等多久？"
-    },
-    {
-      "id": "ch03_s01_shuge.l13",
-      "who": "tangjian",
-      "expr": "default",
-      "kind": "say",
-      "text": "核证人明日出署。这回不送，终议以前只够收件，不够逐人核签。"
+      "text": "是。"
     },
     {
       "id": "ch03_s01_shuge.l14",
       "who": "shenheng",
       "expr": "default",
       "kind": "say",
-      "text": "已隐去可认出证人的细节。那人未许公开的，不在这一页里。"
+      "text": "驳语里也留了我的错。"
     },
     {
       "id": "ch03_s01_shuge.l15",
-      "who": "self",
-      "kind": "inner",
-      "text": "（留下会迟疑。抽走，他们先读的就是荐我的话。）"
-    },
-    {
-      "id": "ch03_s01_shuge.l16",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "我想再补一段，说明当时为什么急。"
+      "text": "你的错。"
+    },
+    {
+      "id": "ch03_s01_shuge.l16",
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "原件不能撤。"
     },
     {
       "id": "ch03_s01_shuge.l17",
-      "who": "shenheng",
-      "expr": "guarded",
+      "who": "wuze",
+      "expr": "default",
       "kind": "say",
-      "text": "可以补。不能替换这一页。"
+      "text": "不能撤。"
     },
     {
       "id": "ch03_s01_shuge.l18",
-      "who": "narr",
-      "kind": "aside",
-      "text": "镇尺底下露着一个“晚”字。你把拇指从字上拿开。"
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "我再——"
     },
     {
       "id": "ch03_s01_shuge.l19",
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "荐署那位也得留在经手簿上。准不准她抽，由你署答，不能只记她。"
+      "text": "先听完。"
     },
     {
       "id": "ch03_s01_shuge.l20",
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "可以附入本轮，也可补证，留待核标记。"
+    },
+    {
+      "id": "ch03_s01_shuge.l21",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "嗯。"
+    },
+    {
+      "id": "ch03_s01_shuge.l22",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "后一种要等多久？"
+    },
+    {
+      "id": "ch03_s01_shuge.l23",
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "核证人明日出署。"
+    },
+    {
+      "id": "ch03_s01_shuge.l24",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "明日。"
+    },
+    {
+      "id": "ch03_s01_shuge.l25",
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "这回不送，终议前只够收件，核不完签。"
+    },
+    {
+      "id": "ch03_s01_shuge.l26",
+      "who": "shenheng",
+      "expr": "default",
+      "kind": "say",
+      "text": "证人的细节已隐去，没准公开的都没写。"
+    },
+    {
+      "id": "ch03_s01_shuge.l27",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "好。"
+    },
+    {
+      "id": "ch03_s01_shuge.l28",
+      "who": "self",
+      "kind": "inner",
+      "text": "（留下会迟疑。抽走，他们先读的就是荐我的话。）"
+    },
+    {
+      "id": "ch03_s01_shuge.l29",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "我想……补一段，说清当时为何急。"
+    },
+    {
+      "id": "ch03_s01_shuge.l30",
+      "who": "shenheng",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "可以补，不能拿它换这一页。"
+    },
+    {
+      "id": "ch03_s01_shuge.l31",
+      "who": "wuze",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "这一页。"
+    },
+    {
+      "id": "ch03_s01_shuge.l32",
+      "who": "narr",
+      "kind": "aside",
+      "text": "镇尺底下露着一个“晚”字。你把拇指从字上拿开。"
+    },
+    {
+      "id": "ch03_s01_shuge.l33",
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "掌案须留在经手簿上。"
+    },
+    {
+      "id": "ch03_s01_shuge.l34",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "是。"
+    },
+    {
+      "id": "ch03_s01_shuge.l35",
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "准不准她抽，你也得署答，不能只记她。"
+    },
+    {
+      "id": "ch03_s01_shuge.l36",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
       "text": "两份都给我。"
+    },
+    {
+      "id": "ch03_s01_shuge.l37",
+      "who": "empty",
+      "kind": "aside",
+      "text": "窗棂的影子横过案沿，砚里的水面平着。"
+    },
+    {
+      "id": "ch03_s01_shuge.l38",
+      "who": "narr",
+      "kind": "aside",
+      "text": "你把补答与原页并放，等着定下交核之时。"
     }
   ],
   "choices": [

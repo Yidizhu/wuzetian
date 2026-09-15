@@ -10,7 +10,7 @@
   ],
   "require": {
     "affinity.shenheng": {
-      "gte": 10
+      "gte": 8
     },
     "flag.shen_joint_reading": true
   },
@@ -22,81 +22,155 @@
       "id": "ch02_s15_shuge.l1",
       "who": "narr",
       "kind": "aside",
-      "text": "废纸上溅着一团墨，细尾拖到案沿。"
+      "text": "与裴照夜道别后，你去沈衡案边坐坐。"
     },
     {
       "id": "ch02_s15_shuge.l2",
+      "who": "narr",
+      "kind": "aside",
+      "text": "废纸上溅着一团墨，细尾拖到案沿。"
+    },
+    {
+      "id": "ch02_s15_shuge.l3",
       "who": "wuze",
       "expr": "open",
       "kind": "say",
       "text": "一条鱼。"
     },
     {
-      "id": "ch02_s15_shuge.l3",
+      "id": "ch02_s15_shuge.l4",
+      "who": "shenheng",
+      "expr": "open",
+      "kind": "say",
+      "text": "鱼？"
+    },
+    {
+      "id": "ch02_s15_shuge.l5",
       "who": "shenheng",
       "expr": "default",
       "kind": "say",
       "text": "四条腿。"
     },
     {
-      "id": "ch02_s15_shuge.l4",
+      "id": "ch02_s15_shuge.l6",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "鱼也想上岸呢。"
+      "text": "鱼也想上岸——"
     },
     {
-      "id": "ch02_s15_shuge.l5",
+      "id": "ch02_s15_shuge.l7",
       "who": "shenheng",
       "expr": "open",
       "kind": "say",
-      "text": "你把纸转过来看看，这边明明还有一只耳朵；这条鱼得长得多忙。"
+      "text": "还有耳朵。"
     },
     {
-      "id": "ch02_s15_shuge.l6",
+      "id": "ch02_s15_shuge.l8",
+      "who": "wuze",
+      "expr": "open",
+      "kind": "say",
+      "text": "哪里？"
+    },
+    {
+      "id": "ch02_s15_shuge.l9",
+      "who": "shenheng",
+      "expr": "open",
+      "kind": "say",
+      "text": "转过来看，这条鱼可真够忙的。"
+    },
+    {
+      "id": "ch02_s15_shuge.l10",
       "who": "narr",
       "kind": "aside",
       "text": "你转纸，长尾朝上。"
     },
     {
-      "id": "ch02_s15_shuge.l7",
+      "id": "ch02_s15_shuge.l11",
       "who": "wuze",
       "expr": "open",
       "kind": "say",
       "text": "又多一只。"
     },
     {
-      "id": "ch02_s15_shuge.l8",
+      "id": "ch02_s15_shuge.l12",
+      "who": "shenheng",
+      "expr": "open",
+      "kind": "say",
+      "text": "又一只……"
+    },
+    {
+      "id": "ch02_s15_shuge.l13",
       "who": "shenheng",
       "expr": "default",
       "kind": "say",
-      "text": "别转了，再转要站起来。"
+      "text": "别转了，再转就站起来。"
     },
     {
-      "id": "ch02_s15_shuge.l9",
+      "id": "ch02_s15_shuge.l14",
       "who": "wuze",
       "expr": "open",
       "kind": "say",
-      "text": "你先前认的四条腿，我只找到三条；剩下那条，许是被你压在袖子底下了。"
+      "text": "四条腿……你一笑，我就数不清。"
     },
     {
-      "id": "ch02_s15_shuge.l10",
+      "id": "ch02_s15_shuge.l15",
+      "who": "shenheng",
+      "expr": "open",
+      "kind": "say",
+      "text": "怪我？"
+    },
+    {
+      "id": "ch02_s15_shuge.l16",
+      "who": "wuze",
+      "expr": "open",
+      "kind": "say",
+      "text": "嗯。再笑一回，我就不数了。"
+    },
+    {
+      "id": "ch02_s15_shuge.l17",
       "who": "narr",
       "kind": "aside",
-      "text": "沈抬起袖子，底下仍是一块空白。"
+      "text": "沈衡抿住嘴，低头抬袖，底下仍是一块空白。"
     },
     {
-      "id": "ch02_s15_shuge.l11",
+      "id": "ch02_s15_shuge.l18",
       "who": "shenheng",
       "expr": "open",
       "kind": "say",
       "text": "跑了。"
     },
     {
-      "id": "ch02_s15_shuge.l12",
+      "id": "ch02_s15_shuge.l19",
+      "who": "wuze",
+      "expr": "open",
+      "kind": "say",
+      "text": "腿？"
+    },
+    {
+      "id": "ch02_s15_shuge.l20",
+      "who": "shenheng",
+      "expr": "open",
+      "kind": "say",
+      "text": "鱼少一条腿，你少一句话。"
+    },
+    {
+      "id": "ch02_s15_shuge.l21",
       "who": "narr",
       "kind": "aside",
-      "text": "她把袖子放回去，你们谁也没拿笔补那一条。"
+      "text": "你张了张嘴，又闭上。她先笑出了声，手指还捏着袖角。"
+    },
+    {
+      "id": "ch02_s15_shuge.l22",
+      "who": "self",
+      "kind": "inner",
+      "text": "（这回听见了。她平日都只抿着嘴。）"
+    },
+    {
+      "id": "ch02_s15_shuge.l23",
+      "who": "narr",
+      "kind": "aside",
+      "text": "你也笑，胳膊碰歪了废纸。两个人谁都没扶正。"
     }
   ],
   "goto": "ch02_s20_hanyuan"

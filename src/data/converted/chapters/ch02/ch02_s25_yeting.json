@@ -17,142 +17,231 @@
       "id": "ch02_s25_yeting.l1",
       "who": "narr",
       "kind": "aside",
-      "text": "一旬后，柳承欢托来三页纸，缺印处都夹了细签。"
+      "text": "东间的时辰另排妥了；你在掖庭等来柳承欢。"
     },
     {
       "id": "ch02_s25_yeting.l2",
       "who": "narr",
       "kind": "aside",
-      "text": "柳梳单刀半翻髻，襦裙袖边不搭帔帛，两肘撑开，将稿托在胸前。"
+      "text": "一旬后，柳承欢托来三页纸，缺印处都夹了细签。"
     },
     {
       "id": "ch02_s25_yeting.l3",
-      "who": "liuchenghuan",
-      "expr": "default",
-      "kind": "say",
-      "text": "那天我在。你问马是谁的，我站在后头。"
+      "who": "narr",
+      "kind": "aside",
+      "text": "柳梳单刀半翻髻，襦裙袖边不搭帔帛，两肘撑开，将稿托在胸前。"
     },
     {
       "id": "ch02_s25_yeting.l4",
+      "who": "liuchenghuan",
+      "expr": "default",
+      "kind": "say",
+      "text": "那天我在，你问马，我站后头。"
+    },
+    {
+      "id": "ch02_s25_yeting.l5",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "那天……"
+    },
+    {
+      "id": "ch02_s25_yeting.l6",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
       "text": "这三页是你核的？"
     },
     {
-      "id": "ch02_s25_yeting.l5",
+      "id": "ch02_s25_yeting.l7",
       "who": "liuchenghuan",
       "expr": "open",
       "kind": "say",
-      "text": "核了两遍。第三页少一个经手人，已经请她来补，不用你再找。"
-    },
-    {
-      "id": "ch02_s25_yeting.l6",
-      "who": "tangjian",
-      "expr": "default",
-      "kind": "say",
-      "text": "缺的都对。这半日录工照付，不算白帮。"
-    },
-    {
-      "id": "ch02_s25_yeting.l7",
-      "who": "liuchenghuan",
-      "expr": "default",
-      "kind": "say",
-      "text": "往后让我做你的女史。纸到你手里前，先过我这一遍。"
+      "text": "核了两遍。"
     },
     {
       "id": "ch02_s25_yeting.l8",
-      "who": "tangjian",
-      "expr": "default",
+      "who": "wuze",
+      "expr": "open",
       "kind": "say",
-      "text": "女史得另授。今日先按已经准的录工记。"
+      "text": "两遍。"
     },
     {
       "id": "ch02_s25_yeting.l9",
-      "who": "wuze",
-      "expr": "default",
+      "who": "liuchenghuan",
+      "expr": "open",
       "kind": "say",
-      "text": "今夜这份也答应了？"
+      "text": "第三页缺的经手人，已经请她来补。"
     },
     {
       "id": "ch02_s25_yeting.l10",
-      "who": "liuchenghuan",
+      "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "替你答应了。你不必再来，我留着誊完。"
+      "text": "缺的都对，这半日照付录工，不算白帮。"
     },
     {
       "id": "ch02_s25_yeting.l11",
-      "who": "narr",
-      "kind": "aside",
-      "text": "她把自己的抄试报名牒垫在纸底，空着应试时辰那一栏。"
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "核得对。"
     },
     {
       "id": "ch02_s25_yeting.l12",
-      "who": "wuze",
-      "expr": "guarded",
-      "kind": "say",
-      "text": "你那场抄试就在今夜。"
-    },
-    {
-      "id": "ch02_s25_yeting.l13",
       "who": "liuchenghuan",
       "expr": "default",
       "kind": "say",
-      "text": "下回也能去。你这份等不得，少一次也没什么。"
+      "text": "往后做你的女史，纸先过我这里。"
+    },
+    {
+      "id": "ch02_s25_yeting.l13",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "女史……"
     },
     {
       "id": "ch02_s25_yeting.l14",
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "下回没有定日子。我只能记今日谁没来。"
+      "text": "女史须另授，今日照已准的录工记。"
     },
     {
       "id": "ch02_s25_yeting.l15",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "我若自己留，明日就少半日预备。你替我留，误的是你自己的试。"
+      "text": "录工。"
     },
     {
       "id": "ch02_s25_yeting.l16",
-      "who": "liuchenghuan",
-      "expr": "open",
+      "who": "wuze",
+      "expr": "default",
       "kind": "say",
-      "text": "你不用告诉我为什么，我信你。"
+      "text": "今夜这份也答应了？"
     },
     {
       "id": "ch02_s25_yeting.l17",
-      "who": "self",
-      "kind": "inner",
-      "text": "（明日那半日。我确实想要。）"
+      "who": "liuchenghuan",
+      "expr": "default",
+      "kind": "say",
+      "text": "替你答了，我留下誊。"
     },
     {
       "id": "ch02_s25_yeting.l18",
-      "who": "tangjian",
+      "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "已做的工照付。今夜多出的，谁答应，谁自己说。"
+      "text": "替我？"
     },
     {
       "id": "ch02_s25_yeting.l19",
       "who": "narr",
       "kind": "aside",
-      "text": "柳将最上面的一页转正，仍等着你接过去。"
+      "text": "她把自己的抄试报名牒垫在纸底，空着应试时辰那一栏。"
     },
     {
       "id": "ch02_s25_yeting.l20",
+      "who": "wuze",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "你的抄试就在今夜。"
+    },
+    {
+      "id": "ch02_s25_yeting.l21",
+      "who": "liuchenghuan",
+      "expr": "default",
+      "kind": "say",
+      "text": "下回能去，你这份——"
+    },
+    {
+      "id": "ch02_s25_yeting.l22",
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "下回没有定日。"
+    },
+    {
+      "id": "ch02_s25_yeting.l23",
+      "who": "liuchenghuan",
+      "expr": "default",
+      "kind": "say",
+      "text": "……"
+    },
+    {
+      "id": "ch02_s25_yeting.l24",
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "只能记今日谁没来。"
+    },
+    {
+      "id": "ch02_s25_yeting.l25",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "我留，少半日备稿；你留，误自己的试。"
+    },
+    {
+      "id": "ch02_s25_yeting.l26",
+      "who": "liuchenghuan",
+      "expr": "default",
+      "kind": "say",
+      "text": "半日。"
+    },
+    {
+      "id": "ch02_s25_yeting.l27",
+      "who": "liuchenghuan",
+      "expr": "open",
+      "kind": "say",
+      "text": "不用说为什么，我信你。"
+    },
+    {
+      "id": "ch02_s25_yeting.l28",
+      "who": "self",
+      "kind": "inner",
+      "text": "（明日那半日。我确实想要。）"
+    },
+    {
+      "id": "ch02_s25_yeting.l29",
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "做过的工照付，今夜谁应下，得自己说。"
+    },
+    {
+      "id": "ch02_s25_yeting.l30",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "我……"
+    },
+    {
+      "id": "ch02_s25_yeting.l31",
+      "who": "narr",
+      "kind": "aside",
+      "text": "柳将最上面的一页转正，仍等着你接过去。"
+    },
+    {
+      "id": "ch02_s25_yeting.l32",
       "who": "narr",
       "kind": "aside",
       "text": "你取下束稿的一小段朱绳，放在她已经核好的三页旁。"
     },
     {
-      "id": "ch02_s25_yeting.l21",
+      "id": "ch02_s25_yeting.l33",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "这段借你束纸。办完再还。"
+      "text": "这段绳借你束纸，办完再还。"
+    },
+    {
+      "id": "ch02_s25_yeting.l34",
+      "who": "narr",
+      "kind": "aside",
+      "text": "你把朱绳放到柳手边，让她自己束纸。"
     }
   ],
   "choices": [

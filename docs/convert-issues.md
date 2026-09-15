@@ -2,43 +2,25 @@
 
 自动生成（tools/convert-story.ts，CC2 维护）；不修改原文、schema 或引擎。仅处理命令指定的正文和诗词库。
 
-成功解析：87 场、31 首诗、5 局对诗、16 封信、8 个结局。
+成功解析：107 场、31 首诗、5 局对诗、16 封信、8 个结局。
 
 结果保存在 src/data/converted/，不自动接入现有 demo；npm run validate 仅检查正式数据。存在转换问题，不代表可运行章节。
 
 | 类别 | 条数 | 谁处理 |
 |---|---|---|
-| ChatGPT 格式 | 1 | ChatGPT 改 markdown 原文 |
+| ChatGPT 格式 | 0 | ChatGPT 改 markdown 原文 |
 | CC1 接口 | 0 | CC1 改 schema／引擎／校验器 |
-| 待交付 | 0 | 等下一批交付，再跑一次转换 |
-| 警告 | 16 | 人看一眼；不挡转换 |
+| 待交付 | 4 | 等下一批交付，再跑一次转换 |
+| 警告 | 0 | 人看一眼；不挡转换 |
 
-## ChatGPT 格式（1）
-
-| 文件 | 行号 | 原文 | 问题 |
-|---|---|---|---|
-| docs/C-14-第四章其余路线与书信.md | 384 | \| 章末 \| 是 \| | 结局表有 8 个结局，但全库没有一场标「终局判定 \| 是」，而 ch04_s18_wuzibei 是全书最后一个出口、只标了章末。玩家走到这里只会看到「下章待续」，一个结局都出不来。story-schema 1.2：终局判定全游戏只填一次；这一场要改成终局判定（章末与终局判定不能同时写） |
-
-## 警告（16）
+## 待交付（4）
 
 | 文件 | 行号 | 原文 | 问题 |
 |---|---|---|---|
-| docs/C-11-第三章后十二场与书信.md | 195 | \| A \| 去沈衡那里听檐雨 \| 好感.shenheng >= 16 且 flag.shen_meng_boundary \| flag.ch03_scope_closed = 真 \| ch03-17 \| 不可逆仅指已解除旧约；闲处零收益，需要盟事实与好感16 \| | 好感门槛写的是 shenheng >= 16，不是档位下限（疏 0／识 5／契 8／盟 14）。D-065 之后契档门是 8、盟档门是 14；请 ChatGPT 把原文改掉，转换器不替原文改数 |
-| docs/C-11-第三章后十二场与书信.md | 196 | \| B \| 去园里和裴照夜坐坐 \| 好感.peizhaoye >= 16 且 flag.pei_meng_no_troops \| flag.ch03_scope_closed = 真 \| ch03-18 \| 不可逆仅指已解除旧约；闲处零收益，不等于答应拥抱 \| | 好感门槛写的是 peizhaoye >= 16，不是档位下限（疏 0／识 5／契 8／盟 14）。D-065 之后契档门是 8、盟档门是 14；请 ChatGPT 把原文改掉，转换器不替原文改数 |
-| docs/C-11-第三章后十二场与书信.md | 197 | \| C \| 去诗社找温荞乘凉 \| 好感.wenqiao >= 16 且 flag.wen_meng_no_praise \| flag.ch03_scope_closed = 真 \| ch03-19 \| 不可逆仅指已解除旧约；闲处零收益，不要求前场参加合唱 \| | 好感门槛写的是 wenqiao >= 16，不是档位下限（疏 0／识 5／契 8／盟 14）。D-065 之后契档门是 8、盟档门是 14；请 ChatGPT 把原文改掉，转换器不替原文改数 |
-| docs/C-11-第三章后十二场与书信.md | 198 | \| D \| 和李令仪慢慢吃一颗果子 \| 好感.liqinghe >= 16 且 flag.li_meng_real_competition \| flag.ch03_scope_closed = 真 \| ch03-20 \| 不可逆仅指已解除旧约；三种政治身份同门槛 \| | 好感门槛写的是 liqinghe >= 16，不是档位下限（疏 0／识 5／契 8／盟 14）。D-065 之后契档门是 8、盟档门是 14；请 ChatGPT 把原文改掉，转换器不替原文改数 |
-| docs/C-11-第三章后十二场与书信.md | 212 | \| 进入条件 \| 好感.shenheng >= 16 且 flag.shen_meng_boundary \| | 好感门槛写的是 shenheng >= 16，不是档位下限（疏 0／识 5／契 8／盟 14）。D-065 之后契档门是 8、盟档门是 14；请 ChatGPT 把原文改掉，转换器不替原文改数 |
-| docs/C-11-第三章后十二场与书信.md | 240 | \| 进入条件 \| 好感.peizhaoye >= 16 且 flag.pei_meng_no_troops \| | 好感门槛写的是 peizhaoye >= 16，不是档位下限（疏 0／识 5／契 8／盟 14）。D-065 之后契档门是 8、盟档门是 14；请 ChatGPT 把原文改掉，转换器不替原文改数 |
-| docs/C-11-第三章后十二场与书信.md | 268 | \| 进入条件 \| 好感.wenqiao >= 16 且 flag.wen_meng_no_praise \| | 好感门槛写的是 wenqiao >= 16，不是档位下限（疏 0／识 5／契 8／盟 14）。D-065 之后契档门是 8、盟档门是 14；请 ChatGPT 把原文改掉，转换器不替原文改数 |
-| docs/C-11-第三章后十二场与书信.md | 296 | \| 进入条件 \| 好感.liqinghe >= 16 且 flag.li_meng_real_competition \| | 好感门槛写的是 liqinghe >= 16，不是档位下限（疏 0／识 5／契 8／盟 14）。D-065 之后契档门是 8、盟档门是 14；请 ChatGPT 把原文改掉，转换器不替原文改数 |
-| docs/C-8-第二章后十二场与书信.md | 117 | \| A \| 去沈衡那里看墨渍 \| 好感.shenheng >= 10 且 flag.shen_joint_reading \| \| ch02-15 \| 专属契闲处；不另确认相爱 \| | 好感门槛写的是 shenheng >= 10，不是档位下限（疏 0／识 5／契 8／盟 14）。D-065 之后契档门是 8、盟档门是 14；请 ChatGPT 把原文改掉，转换器不替原文改数 |
-| docs/C-8-第二章后十二场与书信.md | 118 | \| B \| 和裴照夜分一块饼 \| 好感.peizhaoye >= 10 且 flag.pei_shared_check \| \| ch02-16 \| 专属契闲处 \| | 好感门槛写的是 peizhaoye >= 10，不是档位下限（疏 0／识 5／契 8／盟 14）。D-065 之后契档门是 8、盟档门是 14；请 ChatGPT 把原文改掉，转换器不替原文改数 |
-| docs/C-8-第二章后十二场与书信.md | 119 | \| C \| 去温荞那里看窗影 \| 好感.wenqiao >= 10 且 flag.wen_reader_help \| \| ch02-17 \| 专属契闲处 \| | 好感门槛写的是 wenqiao >= 10，不是档位下限（疏 0／识 5／契 8／盟 14）。D-065 之后契档门是 8、盟档门是 14；请 ChatGPT 把原文改掉，转换器不替原文改数 |
-| docs/C-8-第二章后十二场与书信.md | 120 | \| D \| 与李令仪看那根歪枝 \| 好感.liqinghe >= 10 且 flag.liqinghe_cost_check \| \| ch02-18 \| 专属契闲处 \| | 好感门槛写的是 liqinghe >= 10，不是档位下限（疏 0／识 5／契 8／盟 14）。D-065 之后契档门是 8、盟档门是 14；请 ChatGPT 把原文改掉，转换器不替原文改数 |
-| docs/C-8-第二章后十二场与书信.md | 132 | \| 进入条件 \| 好感.shenheng >= 10 且 flag.shen_joint_reading \| | 好感门槛写的是 shenheng >= 10，不是档位下限（疏 0／识 5／契 8／盟 14）。D-065 之后契档门是 8、盟档门是 14；请 ChatGPT 把原文改掉，转换器不替原文改数 |
-| docs/C-8-第二章后十二场与书信.md | 162 | \| 进入条件 \| 好感.peizhaoye >= 10 且 flag.pei_shared_check \| | 好感门槛写的是 peizhaoye >= 10，不是档位下限（疏 0／识 5／契 8／盟 14）。D-065 之后契档门是 8、盟档门是 14；请 ChatGPT 把原文改掉，转换器不替原文改数 |
-| docs/C-8-第二章后十二场与书信.md | 192 | \| 进入条件 \| 好感.wenqiao >= 10 且 flag.wen_reader_help \| | 好感门槛写的是 wenqiao >= 10，不是档位下限（疏 0／识 5／契 8／盟 14）。D-065 之后契档门是 8、盟档门是 14；请 ChatGPT 把原文改掉，转换器不替原文改数 |
-| docs/C-8-第二章后十二场与书信.md | 222 | \| 进入条件 \| 好感.liqinghe >= 10 且 flag.liqinghe_cost_check \| | 好感门槛写的是 liqinghe >= 10，不是档位下限（疏 0／识 5／契 8／盟 14）。D-065 之后契档门是 8、盟档门是 14；请 ChatGPT 把原文改掉，转换器不替原文改数 |
+| docs/C-3-第一章后十二场.md | 254 | \| A \| 我来当面挑，也听你驳我 \| \| 好感.liqinghe +3, flag.liqinghe_open_debate = 真 \| ch01-10 \| 愿意暴露尚未成形的主张，仍不答应宗籍门槛；C-4邀请保留反驳权 \| | flag.liqinghe_open_debate 写了，已发布的章里没人读，已登记为「漏读」：ch01-09 二选一的 A。C-3 备注点名了读取者「C-4邀请保留反驳权」，可 lt-ch01-liqinghe-01 的正文不分岔，谁也没读它。了结：ChatGPT：C-4 lt-ch01-liqinghe-01 加附页（D-044），条件 flag.liqinghe_open_debate |
+| docs/C-3-第一章后十二场.md | 255 | \| B \| 先各自写，免得我顺着你说 \| \| 好感.liqinghe +3, flag.liqinghe_separate_draft = 真 \| ch01-10 \| 保住独立推演，但放弃当面及时澄清；C-4让各留原稿，不替她读心 \| | flag.liqinghe_separate_draft 写了，已发布的章里没人读，已登记为「漏读」：ch01-09 二选一的 B。C-3 备注点名了读取者「C-4让各留原稿」，可 lt-ch01-liqinghe-01 的正文不分岔，谁也没读它。了结：ChatGPT：C-4 lt-ch01-liqinghe-01 加附页（D-044），条件 flag.liqinghe_separate_draft |
+| docs/C-3-第一章后十二场.md | 95 | \| A \| 我陪你催，但不替你许归期 \| \| 好感.peizhaoye +3, flag.pei_no_departure_date = 真 \| ch01-08 \| 不以假期限施压，失去立即给等候者定日的安慰；C-4裴信保留未定归期，不写成她已解决欠饷 \| | flag.pei_no_departure_date 写了，已发布的章里没人读，已登记为「漏读」：ch01-07 二选一的 A。C-3 备注点名了读取者「C-4裴信保留未定归期」，可 lt-ch01-peizhaoye-01 的正文不分岔，谁也没读它。了结：ChatGPT：C-4 lt-ch01-peizhaoye-01 加附页（D-044），条件 flag.pei_no_departure_date；转换器与引擎都已支持附页 |
+| docs/C-3-第一章后十二场.md | 96 | \| B \| 日子仍要问，我陪你逐项核 \| \| 好感.peizhaoye +3, flag.pei_seek_departure_date = 真 \| ch01-08 \| 把希望转成催核承诺，须花自己的工时，不能借她名义担保；C-4裴信明确催核与保证之别 \| | flag.pei_seek_departure_date 写了，已发布的章里没人读，已登记为「漏读」：ch01-07 二选一的 B。C-3 备注点名了读取者「C-4裴信明确催核与保证之别」，可 lt-ch01-peizhaoye-01 的正文不分岔，谁也没读它。了结：ChatGPT：C-4 lt-ch01-peizhaoye-01 加附页（D-044），条件 flag.pei_seek_departure_date |
 
 ---
 

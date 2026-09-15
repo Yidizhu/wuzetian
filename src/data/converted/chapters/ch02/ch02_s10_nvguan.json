@@ -14,132 +14,242 @@
   "lines": [
     {
       "id": "ch02_s10_nvguan.l1",
-      "who": "wuze",
-      "expr": "default",
-      "kind": "poem",
-      "text": "至近至远东西，至深至浅清溪。"
+      "who": "narr",
+      "kind": "aside",
+      "text": "温荞的样纸收妥，你到观里，向许静和念起诗。"
     },
     {
       "id": "ch02_s10_nvguan.l2",
       "who": "wuze",
       "expr": "default",
       "kind": "poem",
-      "text": "至高至明日月，至亲至疏夫妻。"
+      "text": "至近至远东西，至深至浅清溪。"
     },
     {
       "id": "ch02_s10_nvguan.l3",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "poem",
+      "text": "至高至明日月，至亲至疏夫妻。"
+    },
+    {
+      "id": "ch02_s10_nvguan.l4",
       "who": "narr",
       "kind": "aside",
       "text": "夜茶搁在窗下，灯芯烧出一个小小的结。"
     },
     {
-      "id": "ch02_s10_nvguan.l4",
+      "id": "ch02_s10_nvguan.l5",
       "who": "xujinghe",
       "expr": "default",
       "kind": "say",
-      "text": "偏停在这一句。"
-    },
-    {
-      "id": "ch02_s10_nvguan.l5",
-      "who": "wuze",
-      "expr": "default",
-      "kind": "say",
-      "text": "我想起宋的那一包东西。"
+      "text": "偏停这句。"
     },
     {
       "id": "ch02_s10_nvguan.l6",
-      "who": "xujinghe",
+      "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "你也想寄什么？"
+      "text": "这句……"
     },
     {
       "id": "ch02_s10_nvguan.l7",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "我在想，她若病了，想见的人来了，却只能在门口说自己是来探病的。"
+      "text": "想起宋那包东西。"
     },
     {
       "id": "ch02_s10_nvguan.l8",
       "who": "xujinghe",
       "expr": "default",
       "kind": "say",
-      "text": "来了便先坐下。"
+      "text": "你也想寄什么？"
     },
     {
       "id": "ch02_s10_nvguan.l9",
       "who": "wuze",
-      "expr": "guarded",
+      "expr": "default",
       "kind": "say",
-      "text": "门口的人不让呢？"
+      "text": "不……"
     },
     {
       "id": "ch02_s10_nvguan.l10",
-      "who": "narr",
-      "kind": "aside",
-      "text": "许拿起灯剪，剪下那一点焦黑。"
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "她若病了，想见的人来了呢？"
     },
     {
       "id": "ch02_s10_nvguan.l11",
       "who": "xujinghe",
       "expr": "default",
       "kind": "say",
-      "text": "我这儿能让她坐下。别处……茶还要么？"
+      "text": "来了。"
     },
     {
       "id": "ch02_s10_nvguan.l12",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "要。写进去会不会好些？"
+      "text": "门口只许说，是来探病的。"
     },
     {
       "id": "ch02_s10_nvguan.l13",
       "who": "xujinghe",
       "expr": "default",
       "kind": "say",
-      "text": "也有人把名字写在一处，几年不肯再见；那册子又能替她答哪一句？"
+      "text": "先让她坐下。"
     },
     {
       "id": "ch02_s10_nvguan.l14",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "可宋愿意见她。"
+      "text": "坐下……"
     },
     {
       "id": "ch02_s10_nvguan.l15",
-      "who": "xujinghe",
-      "expr": "default",
+      "who": "wuze",
+      "expr": "guarded",
       "kind": "say",
-      "text": "是。她们自己知道。"
+      "text": "可门口不让——"
     },
     {
       "id": "ch02_s10_nvguan.l16",
-      "who": "self",
-      "kind": "inner",
-      "text": "（知道。到了门口，又得说一遍……）"
+      "who": "narr",
+      "kind": "aside",
+      "text": "许拿起灯剪，剪下那一点焦黑。"
     },
     {
       "id": "ch02_s10_nvguan.l17",
-      "who": "narr",
-      "kind": "aside",
-      "text": "你扶着杯，茶沿杯口慢慢平下去。"
+      "who": "xujinghe",
+      "expr": "default",
+      "kind": "say",
+      "text": "我这儿能。"
     },
     {
       "id": "ch02_s10_nvguan.l18",
       "who": "wuze",
-      "expr": "guarded",
+      "expr": "default",
       "kind": "say",
-      "text": "不算数，就不算吗？"
+      "text": "……"
     },
     {
       "id": "ch02_s10_nvguan.l19",
       "who": "xujinghe",
       "expr": "default",
       "kind": "say",
-      "text": "你问的是他们，还是你自己？"
+      "text": "别处……"
+    },
+    {
+      "id": "ch02_s10_nvguan.l20",
+      "who": "xujinghe",
+      "expr": "default",
+      "kind": "say",
+      "text": "茶还要么？"
+    },
+    {
+      "id": "ch02_s10_nvguan.l21",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "要。"
+    },
+    {
+      "id": "ch02_s10_nvguan.l22",
+      "who": "xujinghe",
+      "expr": "default",
+      "kind": "say",
+      "text": "这盏。"
+    },
+    {
+      "id": "ch02_s10_nvguan.l23",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "写进去，会好些么？"
+    },
+    {
+      "id": "ch02_s10_nvguan.l24",
+      "who": "xujinghe",
+      "expr": "default",
+      "kind": "say",
+      "text": "也有人名字写在一处，几年不肯再见。"
+    },
+    {
+      "id": "ch02_s10_nvguan.l25",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "……"
+    },
+    {
+      "id": "ch02_s10_nvguan.l26",
+      "who": "xujinghe",
+      "expr": "default",
+      "kind": "say",
+      "text": "那册子能替她答什么？"
+    },
+    {
+      "id": "ch02_s10_nvguan.l27",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "可宋愿见她。"
+    },
+    {
+      "id": "ch02_s10_nvguan.l28",
+      "who": "xujinghe",
+      "expr": "default",
+      "kind": "say",
+      "text": "是。"
+    },
+    {
+      "id": "ch02_s10_nvguan.l29",
+      "who": "xujinghe",
+      "expr": "default",
+      "kind": "say",
+      "text": "她们自己知道。"
+    },
+    {
+      "id": "ch02_s10_nvguan.l30",
+      "who": "self",
+      "kind": "inner",
+      "text": "（知道。到了门口，又得说一遍……）"
+    },
+    {
+      "id": "ch02_s10_nvguan.l31",
+      "who": "narr",
+      "kind": "aside",
+      "text": "你扶着杯，茶沿杯口慢慢平下去。"
+    },
+    {
+      "id": "ch02_s10_nvguan.l32",
+      "who": "wuze",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "不算数，就不算吗？"
+    },
+    {
+      "id": "ch02_s10_nvguan.l33",
+      "who": "xujinghe",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "不算数……"
+    },
+    {
+      "id": "ch02_s10_nvguan.l34",
+      "who": "xujinghe",
+      "expr": "default",
+      "kind": "say",
+      "text": "你问他们，还是问自己？"
+    },
+    {
+      "id": "ch02_s10_nvguan.l35",
+      "who": "narr",
+      "kind": "aside",
+      "text": "你放下茶碗，许静和将灯移到两人中间。"
     }
   ],
   "goto": "ch02_s11_hanyuan"

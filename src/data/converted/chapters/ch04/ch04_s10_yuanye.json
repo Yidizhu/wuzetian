@@ -20,116 +20,241 @@
       "id": "ch04_s10_yuanye.l1",
       "who": "narr",
       "kind": "aside",
-      "text": "暮色落尽，你带着入园前买的胡饼，油纸还暖，芝麻香从折口透出来。"
+      "text": "手边的纸收妥后，你买了胡饼，走进园里。"
     },
     {
       "id": "ch04_s10_yuanye.l2",
-      "who": "songhuizhen",
-      "expr": "default",
-      "kind": "say",
-      "text": "我只吃自己的。你别又分一半过来。"
+      "who": "narr",
+      "kind": "aside",
+      "text": "暮色落尽，你带着入园前买的胡饼，油纸还暖，芝麻香从折口透出来。"
     },
     {
       "id": "ch04_s10_yuanye.l3",
+      "who": "songhuizhen",
+      "expr": "default",
+      "kind": "say",
+      "text": "只吃我自己的，别分半张来。"
+    },
+    {
+      "id": "ch04_s10_yuanye.l4",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "半张？"
+    },
+    {
+      "id": "ch04_s10_yuanye.l5",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
       "text": "我买多了？"
     },
     {
-      "id": "ch04_s10_yuanye.l4",
+      "id": "ch04_s10_yuanye.l6",
       "who": "songhuizhen",
       "expr": "default",
       "kind": "say",
-      "text": "一张。还没吃，你先担心这个。"
+      "text": "一张，还没吃就操心。"
     },
     {
-      "id": "ch04_s10_yuanye.l5",
+      "id": "ch04_s10_yuanye.l7",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "也是。"
+    },
+    {
+      "id": "ch04_s10_yuanye.l8",
       "who": "narr",
       "kind": "aside",
       "text": "你掰开饼，热气散在袖边，最脆的一角掉进掌心。"
     },
     {
-      "id": "ch04_s10_yuanye.l6",
-      "who": "wuze",
-      "expr": "default",
-      "kind": "say",
-      "text": "明日若还是没有定呢？"
-    },
-    {
-      "id": "ch04_s10_yuanye.l7",
-      "who": "songhuizhen",
-      "expr": "default",
-      "kind": "say",
-      "text": "明日照样先吃饭，钱用自己的，住处照旧；没有人等你为这一张饼另立一条章程。"
-    },
-    {
-      "id": "ch04_s10_yuanye.l8",
-      "who": "wuze",
-      "expr": "default",
-      "kind": "say",
-      "text": "你今日这么闲？"
-    },
-    {
       "id": "ch04_s10_yuanye.l9",
-      "who": "songhuizhen",
+      "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "我的交完了，正要回去。别人还没交的，也不能又从我这半夜里扣。"
+      "text": "明日若还没……定呢？"
     },
     {
       "id": "ch04_s10_yuanye.l10",
-      "who": "narr",
-      "kind": "aside",
-      "text": "宋拿起自己的那一份，去找来时的门，没有问你往后打算。"
+      "who": "songhuizhen",
+      "expr": "default",
+      "kind": "say",
+      "text": "明日先吃饭，自己的钱，原来的住处。"
     },
     {
       "id": "ch04_s10_yuanye.l11",
-      "when": {
-        "flag.liqinghe_together": true
-      },
-      "who": "liqinghe",
-      "expr": "default",
-      "kind": "say",
-      "text": "我那边说完了。这里还坐得下么？"
-    },
-    {
-      "id": "ch04_s10_yuanye.l12",
-      "when": {
-        "flag.liqinghe_together": true
-      },
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "来。饼要自己拿。"
+      "text": "嗯。"
+    },
+    {
+      "id": "ch04_s10_yuanye.l12",
+      "who": "songhuizhen",
+      "expr": "default",
+      "kind": "say",
+      "text": "不用为饼立章程。"
     },
     {
       "id": "ch04_s10_yuanye.l13",
-      "when": {
-        "flag.liqinghe_together": true
-      },
-      "who": "narr",
-      "kind": "aside",
-      "text": "她坐在旁边的石阶，先把自己的外衣垫好。"
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "今日这么闲，我——"
     },
     {
       "id": "ch04_s10_yuanye.l14",
-      "when": {
-        "flag.liqinghe_together": false
-      },
-      "who": "narr",
-      "kind": "aside",
-      "text": "你把油纸铺在膝上，慢慢吃完，没有留下一个等人来坐的地方。"
+      "who": "songhuizhen",
+      "expr": "default",
+      "kind": "say",
+      "text": "我的交完了。"
     },
     {
       "id": "ch04_s10_yuanye.l15",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "一张便够了。"
+      "text": "交完了。"
     },
     {
       "id": "ch04_s10_yuanye.l16",
+      "who": "songhuizhen",
+      "expr": "default",
+      "kind": "say",
+      "text": "正要回，别人的不能扣我半夜。"
+    },
+    {
+      "id": "ch04_s10_yuanye.l17",
+      "who": "narr",
+      "kind": "aside",
+      "text": "宋拿起自己的那一份，去找来时的门，没有问你往后打算。"
+    },
+    {
+      "id": "ch04_s10_yuanye.l18",
+      "when": {
+        "love.liqinghe": true
+      },
+      "who": "liqinghe",
+      "expr": "default",
+      "kind": "say",
+      "text": "我那边说完了，还坐得下么？"
+    },
+    {
+      "id": "ch04_s10_yuanye.l19",
+      "when": {
+        "love.liqinghe": true
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "这里？"
+    },
+    {
+      "id": "ch04_s10_yuanye.l20",
+      "when": {
+        "love.liqinghe": true
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "来，饼自己拿。"
+    },
+    {
+      "id": "ch04_s10_yuanye.l21",
+      "when": {
+        "love.liqinghe": true
+      },
+      "who": "narr",
+      "kind": "aside",
+      "text": "她坐在旁边的石阶，先把自己的外衣垫好。"
+    },
+    {
+      "id": "ch04_s10_yuanye.l22",
+      "when": {
+        "love.liqinghe": true
+      },
+      "who": "narr",
+      "kind": "aside",
+      "text": "你看她掰饼，袖口总往下滑，她索性挽起一折。"
+    },
+    {
+      "id": "ch04_s10_yuanye.l23",
+      "when": {
+        "love.liqinghe": true
+      },
+      "who": "wuze",
+      "expr": "open",
+      "kind": "say",
+      "text": "令仪，慢些吃。"
+    },
+    {
+      "id": "ch04_s10_yuanye.l24",
+      "when": {
+        "love.liqinghe": true
+      },
+      "who": "liqinghe",
+      "expr": "open",
+      "kind": "say",
+      "text": "又要同我比谁慢？"
+    },
+    {
+      "id": "ch04_s10_yuanye.l25",
+      "when": {
+        "love.liqinghe": true
+      },
+      "who": "wuze",
+      "expr": "open",
+      "kind": "say",
+      "text": "想你多坐一会儿。"
+    },
+    {
+      "id": "ch04_s10_yuanye.l26",
+      "when": {
+        "love.liqinghe": true
+      },
+      "who": "liqinghe",
+      "expr": "open",
+      "kind": "say",
+      "text": "我吃完也坐着。你慢慢吃你的。"
+    },
+    {
+      "id": "ch04_s10_yuanye.l27",
+      "when": {
+        "love.liqinghe": true
+      },
+      "who": "self",
+      "kind": "inner",
+      "text": "（她连最后一口都不用替我留。）"
+    },
+    {
+      "id": "ch04_s10_yuanye.l28",
+      "when": {
+        "love.liqinghe": true
+      },
+      "who": "narr",
+      "kind": "aside",
+      "text": "你把饼转了半圈，咬住还脆的一边。她把空出的手搁在你们中间。"
+    },
+    {
+      "id": "ch04_s10_yuanye.l29",
+      "when": {
+        "love.liqinghe": false
+      },
+      "who": "narr",
+      "kind": "aside",
+      "text": "你把油纸铺在膝上，慢慢吃完，没有留下一个等人来坐的地方。"
+    },
+    {
+      "id": "ch04_s10_yuanye.l30",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "一张够了。"
+    },
+    {
+      "id": "ch04_s10_yuanye.l31",
       "who": "narr",
       "kind": "aside",
       "text": "夜风吹到指尖，你将碎屑拢进油纸，没有再去买第二张。"

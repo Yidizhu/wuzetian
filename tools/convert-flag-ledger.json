@@ -1,0 +1,29 @@
+{
+  "说明": "flag 体检里「真正的空缺／空转」的登记表（CC2 维护）。D-091 之后立绘按 flag 选，一个没人读的 flag 和一个拼错的 flag 在数据里长得一模一样，所以没登记的空缺／空转一律挡转换（ChatGPT 格式）。登记了的降为待交付，挂在「了结」写的那个人名下；了结之后转换器会报警告，提醒把这一行删掉。verdict 只有三种：漏读（该有人读，没人读）、漏写（该有人写，没人写）、真死（这个 flag 不携带任何信息，删掉）。D13：D12 登记的 8 个真死（含 Cowork 改判的温荞第二章那一对）已由 ChatGPT 在 C19 删掉，登记行随之删除。",
+  "entries": [
+    {
+      "flag": "pei_no_departure_date",
+      "verdict": "漏读",
+      "why": "ch01-07 二选一的 A。C-3 备注点名了读取者「C-4裴信保留未定归期」，可 lt-ch01-peizhaoye-01 的正文不分岔，谁也没读它",
+      "fix": "ChatGPT：C-4 lt-ch01-peizhaoye-01 加附页（D-044），条件 flag.pei_no_departure_date；转换器与引擎都已支持附页"
+    },
+    {
+      "flag": "pei_seek_departure_date",
+      "verdict": "漏读",
+      "why": "ch01-07 二选一的 B。C-3 备注点名了读取者「C-4裴信明确催核与保证之别」，可 lt-ch01-peizhaoye-01 的正文不分岔，谁也没读它",
+      "fix": "ChatGPT：C-4 lt-ch01-peizhaoye-01 加附页（D-044），条件 flag.pei_seek_departure_date"
+    },
+    {
+      "flag": "liqinghe_open_debate",
+      "verdict": "漏读",
+      "why": "ch01-09 二选一的 A。C-3 备注点名了读取者「C-4邀请保留反驳权」，可 lt-ch01-liqinghe-01 的正文不分岔，谁也没读它",
+      "fix": "ChatGPT：C-4 lt-ch01-liqinghe-01 加附页（D-044），条件 flag.liqinghe_open_debate"
+    },
+    {
+      "flag": "liqinghe_separate_draft",
+      "verdict": "漏读",
+      "why": "ch01-09 二选一的 B。C-3 备注点名了读取者「C-4让各留原稿」，可 lt-ch01-liqinghe-01 的正文不分岔，谁也没读它",
+      "fix": "ChatGPT：C-4 lt-ch01-liqinghe-01 加附页（D-044），条件 flag.liqinghe_separate_draft"
+    }
+  ]
+}

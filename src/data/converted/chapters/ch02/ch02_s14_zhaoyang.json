@@ -18,174 +18,264 @@
       "id": "ch02_s14_zhaoyang.l1",
       "who": "narr",
       "kind": "aside",
-      "text": "数日后，宋蕙贞来辞一项夜值。殿门风吹得披帛垂到椅脚。"
+      "text": "封簿已归存。"
     },
     {
       "id": "ch02_s14_zhaoyang.l2",
-      "who": "hetaihou",
-      "expr": "default",
-      "kind": "say",
-      "text": "披着。夜里风硬。"
+      "who": "narr",
+      "kind": "aside",
+      "text": "数日后，宋蕙贞来辞一项夜值。殿门风吹得披帛垂到椅脚。"
     },
     {
       "id": "ch02_s14_zhaoyang.l3",
-      "who": "songhuizhen",
-      "expr": "default",
-      "kind": "say",
-      "text": "谢太后。夜值仍请换人。"
-    },
-    {
-      "id": "ch02_s14_zhaoyang.l4",
       "who": "hetaihou",
       "expr": "default",
       "kind": "say",
-      "text": "这些人你最熟。"
+      "text": "披着，夜里风硬。"
+    },
+    {
+      "id": "ch02_s14_zhaoyang.l4",
+      "who": "songhuizhen",
+      "expr": "default",
+      "kind": "say",
+      "text": "谢太后。"
     },
     {
       "id": "ch02_s14_zhaoyang.l5",
       "who": "songhuizhen",
       "expr": "default",
       "kind": "say",
-      "text": "我带新来的人做两回。往后她熟，我就不用每一夜都在了。"
+      "text": "夜值仍请换人。"
     },
     {
       "id": "ch02_s14_zhaoyang.l6",
-      "who": "narr",
-      "kind": "aside",
-      "text": "太后压住将被风卷走的一角，没替她重新披紧。"
-    },
-    {
-      "id": "ch02_s14_zhaoyang.l7",
       "who": "hetaihou",
       "expr": "default",
       "kind": "say",
-      "text": "当年我留你，是怕她们一换人就减了饭药。"
+      "text": "这些人，你最熟。"
+    },
+    {
+      "id": "ch02_s14_zhaoyang.l7",
+      "who": "songhuizhen",
+      "expr": "default",
+      "kind": "say",
+      "text": "最熟……"
     },
     {
       "id": "ch02_s14_zhaoyang.l8",
       "who": "songhuizhen",
       "expr": "default",
       "kind": "say",
-      "text": "饭药的数可以留下，我的人不能也留成一个数，少一夜便说要坏事。"
+      "text": "我带新人做两回，往后她熟，就不用我夜夜在。"
     },
     {
       "id": "ch02_s14_zhaoyang.l9",
-      "who": "wuze",
-      "expr": "default",
-      "kind": "say",
-      "text": "换班与支给分开记。她肯带两回，不是应下往后的每一夜。"
+      "who": "narr",
+      "kind": "aside",
+      "text": "太后压住将被风卷走的一角，没替她重新披紧。"
     },
     {
       "id": "ch02_s14_zhaoyang.l10",
       "who": "hetaihou",
       "expr": "default",
       "kind": "say",
-      "text": "把新值名与交接日给我。披帛拿走。"
+      "text": "当年留下你，是怕一换人，饭药又被减去。"
     },
     {
       "id": "ch02_s14_zhaoyang.l11",
       "who": "songhuizhen",
-      "expr": "open",
+      "expr": "default",
       "kind": "say",
-      "text": "这个我拿。"
+      "text": "饭药的数留下。"
     },
     {
       "id": "ch02_s14_zhaoyang.l12",
-      "who": "narr",
-      "kind": "aside",
-      "text": "宋告退后，裴照夜奉召交回军需核单，停在殿门内。"
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "数留下。"
     },
     {
       "id": "ch02_s14_zhaoyang.l13",
-      "who": "peizhaoye",
+      "who": "songhuizhen",
       "expr": "default",
       "kind": "say",
-      "text": "她不去了。"
+      "text": "我的人不能也留成一个数，少一夜便坏事。"
     },
     {
       "id": "ch02_s14_zhaoyang.l14",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "转粮那一队？"
+      "text": "换班与支给分开记，她只应了两回。"
     },
     {
       "id": "ch02_s14_zhaoyang.l15",
-      "who": "peizhaoye",
-      "expr": "guarded",
+      "who": "hetaihou",
+      "expr": "default",
       "kind": "say",
-      "text": "这回已定了别人。她另接修具的差，不等我再问。"
+      "text": "两回。"
     },
     {
       "id": "ch02_s14_zhaoyang.l16",
+      "who": "hetaihou",
+      "expr": "default",
+      "kind": "say",
+      "text": "新值姓名与交接日给我，披帛你仍拿走。"
+    },
+    {
+      "id": "ch02_s14_zhaoyang.l17",
+      "who": "songhuizhen",
+      "expr": "open",
+      "kind": "say",
+      "text": "这个我拿。"
+    },
+    {
+      "id": "ch02_s14_zhaoyang.l18",
+      "who": "hetaihou",
+      "expr": "open",
+      "kind": "say",
+      "text": "嗯。"
+    },
+    {
+      "id": "ch02_s14_zhaoyang.l19",
+      "who": "narr",
+      "kind": "aside",
+      "text": "宋告退后，裴照夜奉召交回军需核单，停在殿门内。"
+    },
+    {
+      "id": "ch02_s14_zhaoyang.l20",
+      "who": "peizhaoye",
+      "expr": "default",
+      "kind": "say",
+      "text": "她不去了。"
+    },
+    {
+      "id": "ch02_s14_zhaoyang.l21",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "转粮那队？"
+    },
+    {
+      "id": "ch02_s14_zhaoyang.l22",
+      "who": "peizhaoye",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "这回定了别人，她另接修具，不等我问。"
+    },
+    {
+      "id": "ch02_s14_zhaoyang.l23",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
       "text": "你怎么答？"
     },
     {
-      "id": "ch02_s14_zhaoyang.l17",
+      "id": "ch02_s14_zhaoyang.l24",
       "who": "peizhaoye",
       "expr": "default",
       "kind": "say",
-      "text": "应得的俸补齐。那两个暂缓，仍署我的名。"
+      "text": "怎么答……"
     },
     {
-      "id": "ch02_s14_zhaoyang.l18",
+      "id": "ch02_s14_zhaoyang.l25",
+      "who": "peizhaoye",
+      "expr": "default",
+      "kind": "say",
+      "text": "俸补齐了，那两个暂缓仍署我的名。"
+    },
+    {
+      "id": "ch02_s14_zhaoyang.l26",
       "who": "narr",
       "kind": "aside",
       "text": "裴展开手中的核单，边角磨出了毛，里面没有那个人的新申请。"
     },
     {
-      "id": "ch02_s14_zhaoyang.l19",
+      "id": "ch02_s14_zhaoyang.l27",
       "who": "peizhaoye",
       "expr": "guarded",
       "kind": "say",
-      "text": "她来问的时候，我说天暖了再去。如今真暖了，我倒找不到一句该对她说的话。"
+      "text": "她来问，我说等天暖。"
     },
     {
-      "id": "ch02_s14_zhaoyang.l20",
+      "id": "ch02_s14_zhaoyang.l28",
+      "who": "wuze",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "天暖。"
+    },
+    {
+      "id": "ch02_s14_zhaoyang.l29",
+      "who": "peizhaoye",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "如今真暖了，倒找不到一句该说的话。"
+    },
+    {
+      "id": "ch02_s14_zhaoyang.l30",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "不必叫她再申请一次。"
+      "text": "别再叫她——"
     },
     {
-      "id": "ch02_s14_zhaoyang.l21",
+      "id": "ch02_s14_zhaoyang.l31",
       "who": "peizhaoye",
       "expr": "default",
       "kind": "say",
-      "text": "不叫。"
+      "text": "不叫她再申请。"
     },
     {
-      "id": "ch02_s14_zhaoyang.l22",
+      "id": "ch02_s14_zhaoyang.l32",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "……"
+    },
+    {
+      "id": "ch02_s14_zhaoyang.l33",
       "who": "narr",
       "kind": "aside",
       "text": "裴交出核单。门外牵马的人先行，她没有跟上。"
     },
     {
-      "id": "ch02_s14_zhaoyang.l23",
+      "id": "ch02_s14_zhaoyang.l34",
       "who": "peizhaoye",
       "expr": "open",
       "kind": "say",
-      "text": "我今日早一刻交完，想把这一刻给你。你有事，我就在这儿等风小些。"
+      "text": "早一刻交完，想把这一刻给你。"
     },
     {
-      "id": "ch02_s14_zhaoyang.l24",
+      "id": "ch02_s14_zhaoyang.l35",
+      "who": "wuze",
+      "expr": "open",
+      "kind": "say",
+      "text": "这一刻？"
+    },
+    {
+      "id": "ch02_s14_zhaoyang.l36",
+      "who": "peizhaoye",
+      "expr": "open",
+      "kind": "say",
+      "text": "你若有事，我就在这儿等风小。"
+    },
+    {
+      "id": "ch02_s14_zhaoyang.l37",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "不要去点卯？"
+      "text": "不用点卯？"
     },
     {
-      "id": "ch02_s14_zhaoyang.l25",
+      "id": "ch02_s14_zhaoyang.l38",
       "who": "peizhaoye",
       "expr": "open",
       "kind": "say",
-      "text": "已点过。这一刻是我的。"
+      "text": "点过了，这一刻是我的。"
     },
     {
-      "id": "ch02_s14_zhaoyang.l26",
+      "id": "ch02_s14_zhaoyang.l39",
       "who": "narr",
       "kind": "aside",
       "text": "她站到风来的那一侧，却没替你决定往哪儿走。"
@@ -197,7 +287,7 @@
       "text": "去沈衡那里看墨渍",
       "require": {
         "affinity.shenheng": {
-          "gte": 10
+          "gte": 8
         },
         "flag.shen_joint_reading": true
       },
@@ -210,7 +300,7 @@
       "text": "和裴照夜分一块饼",
       "require": {
         "affinity.peizhaoye": {
-          "gte": 10
+          "gte": 8
         },
         "flag.pei_shared_check": true
       },
@@ -223,7 +313,7 @@
       "text": "去温荞那里看窗影",
       "require": {
         "affinity.wenqiao": {
-          "gte": 10
+          "gte": 8
         },
         "flag.wen_reader_help": true
       },
@@ -236,7 +326,7 @@
       "text": "与李令仪看那根歪枝",
       "require": {
         "affinity.liqinghe": {
-          "gte": 10
+          "gte": 8
         },
         "flag.liqinghe_cost_check": true
       },

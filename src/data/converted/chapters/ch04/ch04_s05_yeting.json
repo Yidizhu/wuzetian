@@ -25,662 +25,191 @@
       "id": "ch04_s05_yeting.l1",
       "who": "narr",
       "kind": "aside",
-      "text": "数日后，掖庭晾起洗过的布，湿气贴着廊柱。阿荻把钱一枚枚分开。"
+      "text": "授凭办法已颁下，你到掖庭核领款。"
     },
     {
       "id": "ch04_s05_yeting.l2",
-      "who": "adi",
-      "expr": "default",
-      "kind": "say",
-      "text": "这一份够了。我收。"
+      "who": "narr",
+      "kind": "aside",
+      "text": "数日后，掖庭晾起洗过的布，湿气贴着廊柱。阿荻把钱一枚枚分开。"
     },
     {
       "id": "ch04_s05_yeting.l3",
+      "who": "adi",
+      "expr": "default",
+      "kind": "say",
+      "text": "够了，我收。"
+    },
+    {
+      "id": "ch04_s05_yeting.l4",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "够了。"
+    },
+    {
+      "id": "ch04_s05_yeting.l5",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
       "text": "还留这边做么？"
     },
     {
-      "id": "ch04_s05_yeting.l4",
+      "id": "ch04_s05_yeting.l6",
       "who": "adi",
       "expr": "default",
       "kind": "say",
-      "text": "我那边已定。今日来领钱。"
-    },
-    {
-      "id": "ch04_s05_yeting.l5",
-      "who": "songhuizhen",
-      "expr": "default",
-      "kind": "say",
-      "text": "她还赶得上那边的饭。别再拿一叠稿叫她顺路。"
-    },
-    {
-      "id": "ch04_s05_yeting.l6",
-      "who": "tangjian",
-      "expr": "default",
-      "kind": "say",
-      "text": "代班、核旧款的人也分别领过，观中俸钱有收凭；未付的另列，不能把空栏算清。"
+      "text": "那边定了，今日只领钱。"
     },
     {
       "id": "ch04_s05_yeting.l7",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "领钱。"
+    },
+    {
+      "id": "ch04_s05_yeting.l8",
+      "who": "songhuizhen",
+      "expr": "default",
+      "kind": "say",
+      "text": "还赶得上饭，别拿稿叫她顺路。"
+    },
+    {
+      "id": "ch04_s05_yeting.l9",
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "代班、核旧款与观中俸钱各有收凭，未付另列。"
+    },
+    {
+      "id": "ch04_s05_yeting.l10",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "未付的。"
+    },
+    {
+      "id": "ch04_s05_yeting.l11",
       "who": "narr",
       "kind": "aside",
       "text": "阿荻提起自己的布包，走到门口，又回身拿走漏下的针。"
     },
     {
-      "id": "ch04_s05_yeting.l8",
+      "id": "ch04_s05_yeting.l12",
       "when": {
         "flag.ch04_contract_registration": true
       },
       "who": "songhuizhen",
       "expr": "default",
       "kind": "say",
-      "text": "两人来核的已经收件。我的第二个名字仍空着，等她自己来答。"
+      "text": "两人核的收件了，我这第二个名等她自己答。"
     },
     {
-      "id": "ch04_s05_yeting.l9",
+      "id": "ch04_s05_yeting.l13",
+      "when": {
+        "flag.ch04_contract_registration": true
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "等她。"
+    },
+    {
+      "id": "ch04_s05_yeting.l14",
       "when": {
         "flag.ch04_separate_authorization": true
       },
       "who": "songhuizhen",
       "expr": "default",
       "kind": "say",
-      "text": "我授的照料凭收了。她自己那份，她另定，没叫我一同带来签。"
-    },
-    {
-      "id": "ch04_s05_yeting.l10",
-      "when": {
-        "flag.ch04_dissent_retained": true,
-        "flag.ch04_originals_retained": true
-      },
-      "who": "tangjian",
-      "expr": "default",
-      "kind": "say",
-      "text": "原议本人按权限查过原案，指出摘要少字。更正已附，核办人今日具名答了。"
-    },
-    {
-      "id": "ch04_s05_yeting.l11",
-      "when": {
-        "flag.ch04_dissent_retained": true,
-        "flag.ch04_originals_retained": true
-      },
-      "who": "wuze",
-      "expr": "default",
-      "kind": "say",
-      "text": "原摘要也留着，叫后来的人知道改过哪一笔。"
-    },
-    {
-      "id": "ch04_s05_yeting.l12",
-      "when": {
-        "flag.ch04_dissent_retained": false
-      },
-      "who": "tangjian",
-      "expr": "default",
-      "kind": "say",
-      "text": "议录查不到她来时的原问，只能看你的答复。新补的工钱，不会让那一页回来。"
-    },
-    {
-      "id": "ch04_s05_yeting.l13",
-      "when": {
-        "flag.ch04_dissent_retained": true,
-        "flag.ch04_originals_retained": false
-      },
-      "who": "tangjian",
-      "expr": "default",
-      "kind": "say",
-      "text": "她的异议在册，原件却已烧了。我们能记她说漏了字，不能再验原笔。"
-    },
-    {
-      "id": "ch04_s05_yeting.l14",
-      "who": "narr",
-      "kind": "aside",
-      "text": "傍晚，沈来领私物，绕开了已经收回的公案。"
+      "text": "我的照料凭收了，她那份另定，没带来代签。"
     },
     {
       "id": "ch04_s05_yeting.l15",
       "when": {
-        "flag.shen_after_intercept_meet": true
+        "flag.ch04_separate_authorization": true
       },
-      "who": "shenheng",
+      "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "你那回愿另听，回话没有夹进公卷。"
+      "text": "她那份。"
     },
     {
       "id": "ch04_s05_yeting.l16",
       "when": {
-        "flag.shen_ch02_letter_poem": true
+        "flag.ch04_dissent_retained": true,
+        "flag.ch04_originals_retained": true
       },
-      "who": "shenheng",
+      "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "你回的那首诗，我留在无案号的纸里。"
+      "text": "她依权限查原案，指出少字，更正附上，具名答了。"
     },
     {
       "id": "ch04_s05_yeting.l17",
       "when": {
-        "flag.shen_ch02_letter_silent": true
+        "flag.ch04_dissent_retained": true,
+        "flag.ch04_originals_retained": true
       },
-      "who": "shenheng",
+      "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "那封你没有回。我没有再添一张催你的。"
+      "text": "更正。"
     },
     {
       "id": "ch04_s05_yeting.l18",
       "when": {
-        "flag.shen_after_intercept_scope": true
+        "flag.ch04_dissent_retained": true,
+        "flag.ch04_originals_retained": true
       },
-      "who": "shenheng",
+      "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "截信后，你要先核已读的范围。我没添私话。"
+      "text": "原摘要也留，叫人知道改哪笔。"
     },
     {
       "id": "ch04_s05_yeting.l19",
       "when": {
-        "flag.shen_after_intercept_private_stop": true
+        "flag.ch04_dissent_retained": false
       },
-      "who": "shenheng",
+      "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "那回你要公事另纸，我便收起了私笺。"
+      "text": "议录只查到你的答复，补工钱也补不回原问。"
     },
     {
       "id": "ch04_s05_yeting.l20",
       "when": {
-        "flag.shen_ch03_letter_meet": true
+        "flag.ch04_dissent_retained": false
       },
-      "who": "shenheng",
+      "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "撤差那封，你回了各自有空再约。我没替你填日子。"
+      "text": "原问。"
     },
     {
       "id": "ch04_s05_yeting.l21",
       "when": {
-        "flag.shen_ch03_letter_wait": true
+        "flag.ch04_dissent_retained": true,
+        "flag.ch04_originals_retained": false
       },
-      "who": "shenheng",
+      "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "撤差那封，你说私见先缓。复议的纸照旧往来。"
+      "text": "异议在，原件烧了，只能记漏字，不能验原笔。"
     },
     {
       "id": "ch04_s05_yeting.l22",
       "when": {
-        "flag.shen_ch03_letter_stop": true
-      },
-      "who": "shenheng",
-      "expr": "default",
-      "kind": "say",
-      "text": "你回撤差那封，要停私笺。这回只带交付凭。"
-    },
-    {
-      "id": "ch04_s05_yeting.l23",
-      "when": {
-        "flag.shen_ch03_letter_poem": true
-      },
-      "who": "shenheng",
-      "expr": "default",
-      "kind": "say",
-      "text": "撤差那封的回诗，我夹在旧笺里，没夹回驳语。"
-    },
-    {
-      "id": "ch04_s05_yeting.l24",
-      "when": {
-        "flag.shen_ch03_letter_silent": true
-      },
-      "who": "shenheng",
-      "expr": "default",
-      "kind": "say",
-      "text": "撤差后那封没等到回话，我便把余纸收了。"
-    },
-    {
-      "id": "ch04_s05_yeting.l25",
-      "when": {
-        "flag.ch04_originals_destroyed": true
-      },
-      "who": "shenheng",
-      "expr": "default",
-      "kind": "say",
-      "text": "物件齐了。我今日不留，也不接下一册。"
-    },
-    {
-      "id": "ch04_s05_yeting.l26",
-      "when": {
-        "flag.ch04_originals_destroyed": false
-      },
-      "who": "shenheng",
-      "expr": "default",
-      "kind": "say",
-      "text": "手冷。这一页放回去了，我也该走了。"
-    },
-    {
-      "id": "ch04_s05_yeting.l27",
-      "who": "narr",
-      "kind": "aside",
-      "text": "翌日裴来交领款凭，把背了半日的布包放到脚边。"
-    },
-    {
-      "id": "ch04_s05_yeting.l28",
-      "when": {
-        "flag.pei_ch02_spare_time": true
-      },
-      "who": "peizhaoye",
-      "expr": "default",
-      "kind": "say",
-      "text": "你叫我有自己的空闲再来。这半刻，我留出来了。"
-    },
-    {
-      "id": "ch04_s05_yeting.l29",
-      "when": {
-        "flag.pei_ch02_letter_poem": true
-      },
-      "who": "peizhaoye",
-      "expr": "default",
-      "kind": "say",
-      "text": "你的回诗，我放在路书后面，没有拿去报程。"
-    },
-    {
-      "id": "ch04_s05_yeting.l30",
-      "when": {
-        "flag.pei_ch02_letter_silent": true
-      },
-      "who": "peizhaoye",
-      "expr": "default",
-      "kind": "say",
-      "text": "那封你没回，我便没叫人替你备马。"
-    },
-    {
-      "id": "ch04_s05_yeting.l31",
-      "when": {
-        "flag.pei_ch02_check_again": true
-      },
-      "who": "peizhaoye",
-      "expr": "default",
-      "kind": "say",
-      "text": "补俸那封，你肯再核一次。我只列了那一次的账。"
-    },
-    {
-      "id": "ch04_s05_yeting.l32",
-      "when": {
-        "flag.pei_ch02_pause_help": true
-      },
-      "who": "peizhaoye",
-      "expr": "default",
-      "kind": "say",
-      "text": "你那回不接核账，也不约同行。我另请了人。"
-    },
-    {
-      "id": "ch04_s05_yeting.l33",
-      "when": {
-        "flag.pei_ch03_letter_meal": true
-      },
-      "who": "peizhaoye",
-      "expr": "default",
-      "kind": "say",
-      "text": "拔刺后那封，你说想吃顿热的。我还没报时辰。"
-    },
-    {
-      "id": "ch04_s05_yeting.l34",
-      "when": {
-        "flag.pei_ch03_letter_no_date": true
-      },
-      "who": "peizhaoye",
-      "expr": "default",
-      "kind": "say",
-      "text": "你叫我别替旧友定日。到今日，那格仍空着。"
-    },
-    {
-      "id": "ch04_s05_yeting.l35",
-      "when": {
-        "flag.pei_ch03_letter_stop": true
-      },
-      "who": "peizhaoye",
-      "expr": "default",
-      "kind": "say",
-      "text": "你回拔刺那封，要停私约。我没多备一副行囊。"
-    },
-    {
-      "id": "ch04_s05_yeting.l36",
-      "when": {
-        "flag.pei_ch03_letter_poem": true
-      },
-      "who": "peizhaoye",
-      "expr": "default",
-      "kind": "say",
-      "text": "拔刺那封的回诗，夹在路书末页，没交署里。"
-    },
-    {
-      "id": "ch04_s05_yeting.l37",
-      "when": {
-        "flag.pei_ch03_letter_silent": true
-      },
-      "who": "peizhaoye",
-      "expr": "default",
-      "kind": "say",
-      "text": "拔刺后那封没有回话。我照值次走，没托人问。"
-    },
-    {
-      "id": "ch04_s05_yeting.l38",
-      "who": "peizhaoye",
-      "expr": "default",
-      "kind": "say",
-      "text": "人走了，钱才追到。我会另寄，不能叫她回来替我凑一个人钱都齐。"
-    },
-    {
-      "id": "ch04_s05_yeting.l39",
-      "who": "wuze",
-      "expr": "default",
-      "kind": "say",
-      "text": "这半张饼，你先吃完再走。"
-    },
-    {
-      "id": "ch04_s05_yeting.l40",
-      "who": "narr",
-      "kind": "aside",
-      "text": "温来取自己的纸样，掌根压过的白痕还在，纸槽的尺寸没有换新。"
-    },
-    {
-      "id": "ch04_s05_yeting.l41",
-      "when": {
-        "flag.wen_ch02_read_again": true
-      },
-      "who": "wenqiao",
-      "expr": "default",
-      "kind": "say",
-      "text": "你回信要照自己的快慢读。我没替你圈停处。"
-    },
-    {
-      "id": "ch04_s05_yeting.l42",
-      "when": {
-        "flag.wen_ch02_letter_poem": true
-      },
-      "who": "wenqiao",
-      "expr": "default",
-      "kind": "say",
-      "text": "你回的诗，我整张留着，没有替它改字。"
-    },
-    {
-      "id": "ch04_s05_yeting.l43",
-      "when": {
-        "flag.wen_ch02_letter_silent": true
-      },
-      "who": "wenqiao",
-      "expr": "default",
-      "kind": "say",
-      "text": "那封你没回，后来的改稿我便留在自己案上。"
-    },
-    {
-      "id": "ch04_s05_yeting.l44",
-      "when": {
-        "flag.wen_ch02_keep_without_pardon": true
-      },
-      "who": "wenqiao",
-      "expr": "default",
-      "kind": "say",
-      "text": "折鱼那封你收了，也叫我别替她猜。我没再猜。"
-    },
-    {
-      "id": "ch04_s05_yeting.l45",
-      "when": {
-        "flag.wen_ch02_private_pause": true
-      },
-      "who": "wenqiao",
-      "expr": "default",
-      "kind": "say",
-      "text": "那回你只肯谈公事，我没有拿私笺充核稿。"
-    },
-    {
-      "id": "ch04_s05_yeting.l46",
-      "when": {
-        "flag.wen_ch03_letter_sing": true
-      },
-      "who": "wenqiao",
-      "expr": "default",
-      "kind": "say",
-      "text": "退钱那封，你还想听我唱错。曲子倒没催我唱准。"
-    },
-    {
-      "id": "ch04_s05_yeting.l47",
-      "when": {
-        "flag.wen_ch03_letter_fair_pay": true
-      },
-      "who": "wenqiao",
-      "expr": "default",
-      "kind": "say",
-      "text": "你说新槽的钱另算。稿工那一笔，我没挪。"
-    },
-    {
-      "id": "ch04_s05_yeting.l48",
-      "when": {
-        "flag.wen_ch03_letter_stop": true
-      },
-      "who": "wenqiao",
-      "expr": "default",
-      "kind": "say",
-      "text": "你回退钱那封，说暂不合唱。我没在曲旁写你的名。"
-    },
-    {
-      "id": "ch04_s05_yeting.l49",
-      "when": {
-        "flag.wen_ch03_letter_poem": true
-      },
-      "who": "wenqiao",
-      "expr": "default",
-      "kind": "say",
-      "text": "退钱那封收了回诗，我用你写的字试过调。"
-    },
-    {
-      "id": "ch04_s05_yeting.l50",
-      "when": {
-        "flag.wen_ch03_letter_silent": true
-      },
-      "who": "wenqiao",
-      "expr": "default",
-      "kind": "say",
-      "text": "退钱那封你没回，我收了余笺，照旧去刷纸槽。"
-    },
-    {
-      "id": "ch04_s05_yeting.l51",
-      "who": "wenqiao",
-      "expr": "default",
-      "kind": "say",
-      "text": "纸样只带了这一份。我留底的那张，背面还得写自己的诗。"
-    },
-    {
-      "id": "ch04_s05_yeting.l52",
-      "who": "narr",
-      "kind": "aside",
-      "text": "最后李取走未获采用的稿，外衣仍披在自己的肩上。"
-    },
-    {
-      "id": "ch04_s05_yeting.l53",
-      "when": {
-        "flag.li_ch02_letter_meet": true
-      },
-      "who": "liqinghe",
-      "expr": "default",
-      "kind": "say",
-      "text": "你信里说时辰另约。我没把那句夹进朝班。"
-    },
-    {
-      "id": "ch04_s05_yeting.l54",
-      "when": {
-        "flag.li_ch02_letter_poem": true
-      },
-      "who": "liqinghe",
-      "expr": "default",
-      "kind": "say",
-      "text": "你回的诗，放在我那张私纸下面，不带上殿。"
-    },
-    {
-      "id": "ch04_s05_yeting.l55",
-      "when": {
-        "flag.li_ch02_letter_silent": true
-      },
-      "who": "liqinghe",
-      "expr": "default",
-      "kind": "say",
-      "text": "那封你没有回，原稿照样给你看。"
-    },
-    {
-      "id": "ch04_s05_yeting.l56",
-      "when": {
-        "flag.li_ch02_letter_after_debate": true
-      },
-      "who": "liqinghe",
-      "expr": "default",
-      "kind": "say",
-      "text": "交全稿那封，你要私话等比较后再问。没有算作应约。"
-    },
-    {
-      "id": "ch04_s05_yeting.l57",
-      "when": {
-        "flag.li_ch02_letter_public_only": true
-      },
-      "who": "liqinghe",
-      "expr": "default",
-      "kind": "say",
-      "text": "你回全稿那封，说私邀到此。我把帖子收回了。"
-    },
-    {
-      "id": "ch04_s05_yeting.l58",
-      "when": {
-        "flag.li_ch03_letter_walk": true
-      },
-      "who": "liqinghe",
-      "expr": "default",
-      "kind": "say",
-      "text": "风筝那封，你想再走一段。我只记了一段。"
-    },
-    {
-      "id": "ch04_s05_yeting.l59",
-      "when": {
-        "flag.li_ch03_letter_separate": true
-      },
-      "who": "liqinghe",
-      "expr": "default",
-      "kind": "say",
-      "text": "你回风筝那封，说账各自算。我没挪你的那一笔。"
-    },
-    {
-      "id": "ch04_s05_yeting.l60",
-      "when": {
-        "flag.li_ch03_letter_stop": true
-      },
-      "who": "liqinghe",
-      "expr": "default",
-      "kind": "say",
-      "text": "风筝那封，你说私约停一停。我没把取稿写成相邀。"
-    },
-    {
-      "id": "ch04_s05_yeting.l61",
-      "when": {
-        "flag.li_ch03_letter_poem": true
-      },
-      "who": "liqinghe",
-      "expr": "default",
-      "kind": "say",
-      "text": "风筝那封的回诗，我放在私纸里，公议仍答原问。"
-    },
-    {
-      "id": "ch04_s05_yeting.l62",
-      "when": {
-        "flag.li_ch03_letter_silent": true
-      },
-      "who": "liqinghe",
-      "expr": "default",
-      "kind": "say",
-      "text": "风筝那封没有回话。线收好了，没有另托人送去。"
-    },
-    {
-      "id": "ch04_s05_yeting.l63",
-      "when": {
-        "flag.li_ch02_private_yes": true
-      },
-      "who": "liqinghe",
-      "expr": "default",
-      "kind": "say",
-      "text": "那夜你留我坐过，次日也真来驳了。今日仍可各答各的。"
-    },
-    {
-      "id": "ch04_s05_yeting.l64",
-      "when": {
-        "flag.li_ch02_private_wait": true
-      },
-      "who": "liqinghe",
-      "expr": "default",
-      "kind": "say",
-      "text": "那夜你说改日再问。今日若仍想独处，也照旧说。"
-    },
-    {
-      "id": "ch04_s05_yeting.l65",
-      "when": {
-        "flag.li_ch02_private_no": true
-      },
-      "who": "liqinghe",
-      "expr": "default",
-      "kind": "say",
-      "text": "那夜只约论议，我记着。今日这份也是公稿。"
-    },
-    {
-      "id": "ch04_s05_yeting.l66",
-      "who": "liqinghe",
-      "expr": "default",
-      "kind": "say",
-      "text": "减掉的供给没有补回，我自己的账仍要算。若另约吃饭，不在这页上署。"
-    },
-    {
-      "id": "ch04_s05_yeting.l67",
-      "who": "narr",
-      "kind": "aside",
-      "text": "你替她拾起卷边，放回她手里，没有把落选的那页扣住。"
-    }
-  ],
-  "choices": [
-    {
-      "id": "ch04_s05_yeting.cA",
-      "text": "收好今日的交付凭",
-      "require": {
-        "flag.ch04_dissent_retained": true,
-        "flag.ch04_originals_retained": true
-      },
-      "effects": {
-        "flag.public_review": true,
-        "flag.ch04_labor_paid": true
-      },
-      "irreversible": false,
-      "goto": "ch04_s06_zhaoyang"
-    },
-    {
-      "id": "ch04_s05_yeting.cB",
-      "text": "收好今日的交付凭",
-      "require": {
-        "flag.ch04_dissent_retained": false
-      },
-      "effects": {
-        "flag.public_review": false,
-        "flag.ch04_labor_paid": true
-      },
-      "irreversible": false,
-      "goto": "ch04_s06_zhaoyang"
-    },
-    {
-      "id": "ch04_s05_yeting.cC",
-      "text": "收好今日的交付凭",
-      "require": {
         "flag.ch04_dissent_retained": true,
         "flag.ch04_originals_retained": false
       },
-      "effects": {
-        "flag.public_review": false,
-        "flag.ch04_labor_paid": true
-      },
-      "irreversible": false,
-      "goto": "ch04_s06_zhaoyang"
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "不能验。"
     }
-  ]
+  ],
+  "goto": "ch04_s05p_shuge"
 }

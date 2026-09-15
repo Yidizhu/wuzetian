@@ -10,7 +10,7 @@
   ],
   "require": {
     "affinity.shenheng": {
-      "gte": 16
+      "gte": 14
     },
     "flag.shen_meng_boundary": true
   },
@@ -22,74 +22,194 @@
       "id": "ch03_s17_shuge.l1",
       "who": "narr",
       "kind": "aside",
-      "text": "檐下一片瓦往外翘，雨从两边落。沈把凳子挪开，凳脚在地上留了两个湿印。"
+      "text": "差务单交清，你留在书阁陪沈衡听雨。"
     },
     {
       "id": "ch03_s17_shuge.l2",
-      "who": "shenheng",
-      "expr": "default",
-      "kind": "say",
-      "text": "坐里边。那滴是横着来的。"
+      "who": "narr",
+      "kind": "aside",
+      "text": "檐下一片瓦往外翘，雨从两边落。沈把凳子挪开，凳脚在地上留了两个湿印。"
     },
     {
       "id": "ch03_s17_shuge.l3",
+      "who": "shenheng",
+      "expr": "default",
+      "kind": "say",
+      "text": "坐里边，那滴横着来。"
+    },
+    {
+      "id": "ch03_s17_shuge.l4",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "里边？"
+    },
+    {
+      "id": "ch03_s17_shuge.l5",
       "who": "wuze",
       "expr": "open",
       "kind": "say",
       "text": "你看准了？"
     },
     {
-      "id": "ch03_s17_shuge.l4",
+      "id": "ch03_s17_shuge.l6",
       "who": "shenheng",
       "expr": "default",
       "kind": "say",
-      "text": "三回了，都落在这儿。"
-    },
-    {
-      "id": "ch03_s17_shuge.l5",
-      "who": "narr",
-      "kind": "aside",
-      "text": "你照她指的地方伸手，一滴没接到。指背挨上窗框，沾了一条灰。"
-    },
-    {
-      "id": "ch03_s17_shuge.l6",
-      "who": "wuze",
-      "expr": "open",
-      "kind": "say",
-      "text": "它知道我要接，便换了一边。方才你不说，我也未必非得伸这只手出去。"
+      "text": "三回了，都落这儿。"
     },
     {
       "id": "ch03_s17_shuge.l7",
-      "who": "shenheng",
-      "expr": "open",
+      "who": "wuze",
+      "expr": "default",
       "kind": "say",
-      "text": "手拿回来，擦在这块布上。另一块刚洗过，给你擦了，我又得洗一遍。"
+      "text": "三回。"
     },
     {
       "id": "ch03_s17_shuge.l8",
       "who": "narr",
       "kind": "aside",
-      "text": "你擦掉灰，布还给她。一滴水落在空出的凳角，她用指尖抹了一下。"
+      "text": "你照她指的地方伸手，一滴没接到。指背挨上窗框，沾了一条灰。"
     },
     {
       "id": "ch03_s17_shuge.l9",
       "who": "wuze",
-      "expr": "default",
+      "expr": "open",
       "kind": "say",
-      "text": "这一回是直的。"
+      "text": "它知道我要接，就……换一边。"
     },
     {
       "id": "ch03_s17_shuge.l10",
       "who": "shenheng",
-      "expr": "default",
+      "expr": "open",
       "kind": "say",
-      "text": "嗯。这一回。"
+      "text": "……"
     },
     {
       "id": "ch03_s17_shuge.l11",
+      "who": "wuze",
+      "expr": "open",
+      "kind": "say",
+      "text": "你不说，我未必伸手。"
+    },
+    {
+      "id": "ch03_s17_shuge.l12",
+      "who": "shenheng",
+      "expr": "open",
+      "kind": "say",
+      "text": "手拿回来，擦这块。"
+    },
+    {
+      "id": "ch03_s17_shuge.l13",
+      "who": "wuze",
+      "expr": "open",
+      "kind": "say",
+      "text": "另一块——"
+    },
+    {
+      "id": "ch03_s17_shuge.l14",
+      "who": "shenheng",
+      "expr": "open",
+      "kind": "say",
+      "text": "刚洗过。"
+    },
+    {
+      "id": "ch03_s17_shuge.l15",
+      "who": "wuze",
+      "expr": "open",
+      "kind": "say",
+      "text": "好。"
+    },
+    {
+      "id": "ch03_s17_shuge.l16",
+      "who": "shenheng",
+      "expr": "open",
+      "kind": "say",
+      "text": "给你擦了，又得洗。"
+    },
+    {
+      "id": "ch03_s17_shuge.l17",
       "who": "narr",
       "kind": "aside",
-      "text": "檐水又接成了线。两张凳子都没再挪。"
+      "text": "你擦掉灰，布还给她。一滴水落在空出的凳角，她用指尖抹了一下。"
+    },
+    {
+      "id": "ch03_s17_shuge.l18",
+      "who": "narr",
+      "kind": "aside",
+      "text": "你看她抹凳角的手，水珠沿着指节往下淌。"
+    },
+    {
+      "id": "ch03_s17_shuge.l19",
+      "who": "wuze",
+      "expr": "open",
+      "kind": "say",
+      "text": "手给我暖暖。"
+    },
+    {
+      "id": "ch03_s17_shuge.l20",
+      "who": "shenheng",
+      "expr": "open",
+      "kind": "say",
+      "text": "你的也凉。"
+    },
+    {
+      "id": "ch03_s17_shuge.l21",
+      "who": "wuze",
+      "expr": "open",
+      "kind": "say",
+      "text": "那就一起。"
+    },
+    {
+      "id": "ch03_s17_shuge.l22",
+      "who": "narr",
+      "kind": "aside",
+      "text": "沈衡伸过手来。你用两只手拢住，低头贴了贴她的指背。"
+    },
+    {
+      "id": "ch03_s17_shuge.l23",
+      "who": "self",
+      "kind": "inner",
+      "text": "（她肯让我这样拿着。还有一只手呢。）"
+    },
+    {
+      "id": "ch03_s17_shuge.l24",
+      "who": "shenheng",
+      "expr": "open",
+      "kind": "say",
+      "text": "握太紧了。"
+    },
+    {
+      "id": "ch03_s17_shuge.l25",
+      "who": "narr",
+      "kind": "aside",
+      "text": "你松开一点。她另一只手覆到你手背上，把你的袖口压住。"
+    },
+    {
+      "id": "ch03_s17_shuge.l26",
+      "who": "wuze",
+      "expr": "open",
+      "kind": "say",
+      "text": "这样？"
+    },
+    {
+      "id": "ch03_s17_shuge.l27",
+      "who": "shenheng",
+      "expr": "open",
+      "kind": "say",
+      "text": "嗯。"
+    },
+    {
+      "id": "ch03_s17_shuge.l28",
+      "who": "narr",
+      "kind": "aside",
+      "text": "檐水接成了线。你们的手搁在膝间，等雨小下来才分开。"
+    },
+    {
+      "id": "ch03_s17_shuge.l29",
+      "who": "narr",
+      "kind": "aside",
+      "text": "你将擦手布叠好放在她凳边，起身回观里。"
     }
   ],
   "goto": "ch03_s22_nvguan"

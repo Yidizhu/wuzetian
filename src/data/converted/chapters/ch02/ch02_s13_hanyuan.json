@@ -19,267 +19,510 @@
       "id": "ch02_s13_hanyuan.l1",
       "who": "narr",
       "kind": "aside",
-      "text": "回到席上，封线仍摊在匣边，灯油少了半指。"
+      "text": "灯留给了阿荻，你再回夜议的席上。"
     },
     {
       "id": "ch02_s13_hanyuan.l2",
+      "who": "narr",
+      "kind": "aside",
+      "text": "回到席上，封线仍摊在匣边，灯油少了半指。"
+    },
+    {
+      "id": "ch02_s13_hanyuan.l3",
       "when": {
         "flag.letter_recall_first": true
       },
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "外案两份先收回了。验封迟了一刻，原件一直由我与沈司记看着。"
+      "text": "外案两份先收回，验封迟了一刻。"
     },
     {
-      "id": "ch02_s13_hanyuan.l3",
+      "id": "ch02_s13_hanyuan.l4",
+      "when": {
+        "flag.letter_recall_first": true
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "一刻。"
+    },
+    {
+      "id": "ch02_s13_hanyuan.l5",
+      "when": {
+        "flag.letter_recall_first": true
+      },
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "原件一直由我与沈司记看着。"
+    },
+    {
+      "id": "ch02_s13_hanyuan.l6",
       "when": {
         "flag.letter_seal_first": true
       },
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "原件先验封。外案两份随后收回，待递人多等一刻，没有再发。"
+      "text": "先验封，再收外案两份，未曾续发。"
     },
     {
-      "id": "ch02_s13_hanyuan.l4",
+      "id": "ch02_s13_hanyuan.l7",
+      "when": {
+        "flag.letter_seal_first": true
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "两份。"
+    },
+    {
+      "id": "ch02_s13_hanyuan.l8",
+      "when": {
+        "flag.letter_seal_first": true
+      },
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "待递的人多等了一刻。"
+    },
+    {
+      "id": "ch02_s13_hanyuan.l9",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
       "text": "一份也没出门？"
     },
     {
-      "id": "ch02_s13_hanyuan.l5",
+      "id": "ch02_s13_hanyuan.l10",
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "今夜这两份没有。先前送往西库的，另算。"
+      "text": "今夜这两份没有，先前去西库的另算。"
     },
     {
-      "id": "ch02_s13_hanyuan.l6",
+      "id": "ch02_s13_hanyuan.l11",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "西库……"
+    },
+    {
+      "id": "ch02_s13_hanyuan.l12",
       "when": {
         "flag.petition_chase_first": true
       },
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "西库原牒与已发抄件逐处追回，先前拦回的那份也核在册上。"
+      "text": "西库原牒与已发抄件逐处追回，都核在册上。"
     },
     {
-      "id": "ch02_s13_hanyuan.l7",
+      "id": "ch02_s13_hanyuan.l13",
+      "when": {
+        "flag.petition_chase_first": true
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "都在册上。"
+    },
+    {
+      "id": "ch02_s13_hanyuan.l14",
       "when": {
         "flag.petition_explain_first": true
       },
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "西库另多发一处，已取回。多看过的人和收回时刻都记了。"
+      "text": "多发那一处已取回，谁看过、何时收都记了。"
     },
     {
-      "id": "ch02_s13_hanyuan.l8",
+      "id": "ch02_s13_hanyuan.l15",
+      "when": {
+        "flag.petition_explain_first": true
+      },
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "阿荻那一行，重抄时去掉可认人的细节。"
+      "text": "收回时刻。"
     },
     {
-      "id": "ch02_s13_hanyuan.l9",
+      "id": "ch02_s13_hanyuan.l16",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "阿荻那行，重抄时去掉能认人的细节。"
+    },
+    {
+      "id": "ch02_s13_hanyuan.l17",
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "她的分项证词留本案，不随你的呈文再抄。"
+      "text": "分项证词留本案，不再跟你的呈文抄。"
     },
     {
-      "id": "ch02_s13_hanyuan.l10",
+      "id": "ch02_s13_hanyuan.l18",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "留本案。"
+    },
+    {
+      "id": "ch02_s13_hanyuan.l19",
       "when": {
         "flag.wen_stop_at_hurt": true
       },
       "who": "wenqiao",
       "expr": "default",
       "kind": "say",
-      "text": "停在这儿。更正不必再抄一遍她的私话。"
+      "text": "停这儿，更正不必再抄她的私话。"
     },
     {
-      "id": "ch02_s13_hanyuan.l11",
+      "id": "ch02_s13_hanyuan.l20",
+      "when": {
+        "flag.wen_stop_at_hurt": true
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "停这儿。"
+    },
+    {
+      "id": "ch02_s13_hanyuan.l21",
       "when": {
         "flag.wen_finish_then_note": true
       },
       "who": "wenqiao",
       "expr": "default",
       "kind": "say",
-      "text": "我听完了。更正这一项，把引她私话的原句撤掉。"
+      "text": "听完了，更正时撤掉引她私话的原句。"
     },
     {
-      "id": "ch02_s13_hanyuan.l12",
+      "id": "ch02_s13_hanyuan.l22",
+      "when": {
+        "flag.wen_finish_then_note": true
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "原句。"
+    },
+    {
+      "id": "ch02_s13_hanyuan.l23",
       "when": {
         "flag.wen_reader_help": false
       },
       "who": "wenqiao",
       "expr": "default",
       "kind": "say",
-      "text": "我只核准你们让我看的公务摘录，私段不看。"
+      "text": "只核给我看的公务摘录，私段不看。"
     },
     {
-      "id": "ch02_s13_hanyuan.l13",
+      "id": "ch02_s13_hanyuan.l24",
+      "when": {
+        "flag.wen_reader_help": false
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "只核摘录。"
+    },
+    {
+      "id": "ch02_s13_hanyuan.l25",
       "who": "hetaihou",
       "expr": "default",
       "kind": "say",
-      "text": "取笺的令与准读的决定，都署我的名。"
+      "text": "取笺的令与准读的决定，两项都署我的名。"
     },
     {
-      "id": "ch02_s13_hanyuan.l14",
+      "id": "ch02_s13_hanyuan.l26",
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
       "text": "停发、取封、宣读，我逐项署经手。"
     },
     {
-      "id": "ch02_s13_hanyuan.l15",
+      "id": "ch02_s13_hanyuan.l27",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "……"
+    },
+    {
+      "id": "ch02_s13_hanyuan.l28",
       "who": "wuze",
       "expr": "guarded",
       "kind": "say",
-      "text": "下次取到往返笺，不能仍凭这一道令，把里外每个字都读给一殿人听。"
+      "text": "下次不能拿一道令，把里外全读了。"
     },
     {
-      "id": "ch02_s13_hanyuan.l16",
+      "id": "ch02_s13_hanyuan.l29",
       "who": "hetaihou",
       "expr": "default",
       "kind": "say",
-      "text": "调来可以先验相关处。要公开，另列范围，先给当事人看。"
+      "text": "调来先验相关处；公开另列范围，先给本人看。"
     },
     {
-      "id": "ch02_s13_hanyuan.l17",
+      "id": "ch02_s13_hanyuan.l30",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "先给本人。"
+    },
+    {
+      "id": "ch02_s13_hanyuan.l31",
       "who": "shenheng",
       "expr": "guarded",
       "kind": "say",
-      "text": "私情不作错办的实据。"
+      "text": "私情不作错办实据。"
     },
     {
-      "id": "ch02_s13_hanyuan.l18",
+      "id": "ch02_s13_hanyuan.l32",
       "who": "hetaihou",
       "expr": "default",
       "kind": "say",
-      "text": "记上。旧案仍照原件查。"
+      "text": "记上，旧案仍须依原件查，不能一并停掉。"
     },
     {
-      "id": "ch02_s13_hanyuan.l19",
+      "id": "ch02_s13_hanyuan.l33",
       "who": "narr",
       "kind": "aside",
       "text": "沈伸手去理封线，线头从两指间落了两回。"
     },
     {
-      "id": "ch02_s13_hanyuan.l20",
+      "id": "ch02_s13_hanyuan.l34",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "我来？"
+      "text": "我来——"
     },
     {
-      "id": "ch02_s13_hanyuan.l21",
+      "id": "ch02_s13_hanyuan.l35",
       "who": "shenheng",
       "expr": "default",
       "kind": "say",
-      "text": "放着。让我坐一会儿。"
+      "text": "放着。"
     },
     {
-      "id": "ch02_s13_hanyuan.l22",
+      "id": "ch02_s13_hanyuan.l36",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "……"
+    },
+    {
+      "id": "ch02_s13_hanyuan.l37",
+      "who": "shenheng",
+      "expr": "default",
+      "kind": "say",
+      "text": "让我坐一会儿。"
+    },
+    {
+      "id": "ch02_s13_hanyuan.l38",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "坐一会儿。"
+    },
+    {
+      "id": "ch02_s13_hanyuan.l39",
       "who": "narr",
       "kind": "aside",
       "text": "众人转去核议抄。你把挡路的矮凳移开，留在她身旁。"
     },
     {
-      "id": "ch02_s13_hanyuan.l23",
+      "id": "ch02_s13_hanyuan.l40",
       "who": "shenheng",
       "expr": "guarded",
       "kind": "say",
-      "text": "我知道他们都已经听见了，方才还是想把那张纸折回去，折到没开过的时候。"
+      "text": "他们都听见了，我知道。"
     },
     {
-      "id": "ch02_s13_hanyuan.l24",
+      "id": "ch02_s13_hanyuan.l41",
+      "who": "wuze",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "我知道。"
+    },
+    {
+      "id": "ch02_s13_hanyuan.l42",
+      "who": "shenheng",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "方才还想折回去，折到没开过的时候。"
+    },
+    {
+      "id": "ch02_s13_hanyuan.l43",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "你不用再念给我听。"
+      "text": "不用再念给我听。"
     },
     {
-      "id": "ch02_s13_hanyuan.l25",
+      "id": "ch02_s13_hanyuan.l44",
       "when": {
         "flag.shen_ch02_private_yes": true
       },
       "who": "shenheng",
       "expr": "default",
       "kind": "say",
-      "text": "今夜我还是想见你。信被谁听过，都不替我收回这句话。"
+      "text": "今夜仍想见你，谁听过信，都不替我收回。"
     },
     {
-      "id": "ch02_s13_hanyuan.l26",
+      "id": "ch02_s13_hanyuan.l45",
+      "when": {
+        "flag.shen_ch02_private_yes": true
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "今夜。"
+    },
+    {
+      "id": "ch02_s13_hanyuan.l46",
       "when": {
         "flag.shen_ch02_private_wait": true
       },
       "who": "shenheng",
       "expr": "default",
       "kind": "say",
-      "text": "私见仍照你说的缓一缓。方才等你回来，我却一直在听门口。"
+      "text": "私见照你说的缓，我方才却一直听着门口。"
     },
     {
-      "id": "ch02_s13_hanyuan.l27",
+      "id": "ch02_s13_hanyuan.l47",
+      "when": {
+        "flag.shen_ch02_private_wait": true
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "门口……"
+    },
+    {
+      "id": "ch02_s13_hanyuan.l48",
       "when": {
         "flag.shen_ch02_private_no": true
       },
       "who": "shenheng",
       "expr": "default",
       "kind": "say",
-      "text": "不约私见，仍照你说的办。方才我盼你回来，这句只说给你，不要你改口。"
+      "text": "不约私见，照你说的办。"
     },
     {
-      "id": "ch02_s13_hanyuan.l28",
+      "id": "ch02_s13_hanyuan.l49",
+      "when": {
+        "flag.shen_ch02_private_no": true
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "……"
+    },
+    {
+      "id": "ch02_s13_hanyuan.l50",
+      "when": {
+        "flag.shen_ch02_private_no": true
+      },
+      "who": "shenheng",
+      "expr": "default",
+      "kind": "say",
+      "text": "盼你回来是我的话，不要你改口。"
+    },
+    {
+      "id": "ch02_s13_hanyuan.l51",
       "when": {
         "flag.shen_ch02_help_no": true
       },
       "who": "shenheng",
       "expr": "default",
       "kind": "say",
-      "text": "不接陪读也没有欠我。你方才回来，我很想先叫你，不是为了那卷。"
+      "text": "没接陪读也不欠我，方才想叫你，与旧卷无关。"
     },
     {
-      "id": "ch02_s13_hanyuan.l29",
+      "id": "ch02_s13_hanyuan.l52",
+      "when": {
+        "flag.shen_ch02_help_no": true
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "叫我。"
+    },
+    {
+      "id": "ch02_s13_hanyuan.l53",
       "who": "self",
       "kind": "inner",
       "text": "（她叫的是我。不是等一个人替她署名。）"
     },
     {
-      "id": "ch02_s13_hanyuan.l30",
+      "id": "ch02_s13_hanyuan.l54",
       "who": "narr",
       "kind": "aside",
       "text": "沈把手放回膝上。唐简将两种存法分别写在纸边。"
     },
     {
-      "id": "ch02_s13_hanyuan.l31",
+      "id": "ch02_s13_hanyuan.l55",
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "全笺限阅封存，日后易核，却须一直有人看守；退私笺，后查就得另请当事人。"
+      "text": "存法……"
     },
     {
-      "id": "ch02_s13_hanyuan.l32",
-      "who": "shenheng",
-      "expr": "default",
-      "kind": "say",
-      "text": "两样我都可。公开的，只留公务摘录。"
-    },
-    {
-      "id": "ch02_s13_hanyuan.l33",
+      "id": "ch02_s13_hanyuan.l56",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "已听去的，不能说一句封存就算没发生。"
+      "text": "你说。"
     },
     {
-      "id": "ch02_s13_hanyuan.l34",
+      "id": "ch02_s13_hanyuan.l57",
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "全笺限阅封存，日后好核，得留人看守。"
+    },
+    {
+      "id": "ch02_s13_hanyuan.l58",
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "退还私笺，后查就得另请本人。"
+    },
+    {
+      "id": "ch02_s13_hanyuan.l59",
+      "who": "shenheng",
+      "expr": "default",
+      "kind": "say",
+      "text": "两样都可，公开只留公务摘录。"
+    },
+    {
+      "id": "ch02_s13_hanyuan.l60",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "好。"
+    },
+    {
+      "id": "ch02_s13_hanyuan.l61",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "不能说封存了，就当没读过。"
+    },
+    {
+      "id": "ch02_s13_hanyuan.l62",
       "who": "hetaihou",
       "expr": "default",
       "kind": "say",
-      "text": "准读失当与更正照存。不得因收回抄件删掉这一项。"
+      "text": "准读失当与更正都留，收回抄件也不许删。"
+    },
+    {
+      "id": "ch02_s13_hanyuan.l63",
+      "who": "narr",
+      "kind": "aside",
+      "text": "唐简将准读失当的记录留在封簿上。"
     }
   ],
   "dressing": "gongyi",

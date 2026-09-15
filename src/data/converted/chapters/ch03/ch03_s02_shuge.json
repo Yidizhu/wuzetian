@@ -18,38 +18,72 @@
       "id": "ch03_s02_shuge.l1",
       "who": "narr",
       "kind": "aside",
-      "text": "午后卷架投下一条斜影。沈将新制的差牌从腰间解下，放在桌角。"
+      "text": "交核的原页还在书阁，你又来找沈衡。"
     },
     {
       "id": "ch03_s02_shuge.l2",
+      "who": "narr",
+      "kind": "aside",
+      "text": "午后卷架投下一条斜影。沈将新制的差牌从腰间解下，放在桌角。"
+    },
+    {
+      "id": "ch03_s02_shuge.l3",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
       "text": "还没用过，就交回去？"
     },
     {
-      "id": "ch03_s02_shuge.l3",
+      "id": "ch03_s02_shuge.l4",
       "who": "shenheng",
       "expr": "default",
       "kind": "say",
-      "text": "荐署撤了我的随议差，说有异议的人不宜替候选人收卷。我今日交牌。"
-    },
-    {
-      "id": "ch03_s02_shuge.l4",
-      "who": "wuze",
-      "expr": "guarded",
-      "kind": "say",
-      "text": "我去请她们改。"
+      "text": "撤了。说我有异议，不宜替你收卷。"
     },
     {
       "id": "ch03_s02_shuge.l5",
-      "who": "shenheng",
-      "expr": "guarded",
+      "who": "wuze",
+      "expr": "default",
       "kind": "say",
-      "text": "可以问撤差的理由。不要替我答，说那一页其实不算反对你。"
+      "text": "随议差？"
     },
     {
       "id": "ch03_s02_shuge.l6",
+      "who": "shenheng",
+      "expr": "default",
+      "kind": "say",
+      "text": "嗯，今日交牌。"
+    },
+    {
+      "id": "ch03_s02_shuge.l7",
+      "who": "wuze",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "我去请她们——"
+    },
+    {
+      "id": "ch03_s02_shuge.l8",
+      "who": "shenheng",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "先别替我答。"
+    },
+    {
+      "id": "ch03_s02_shuge.l9",
+      "who": "shenheng",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "可以问撤差的理由，别说那页不算反对。"
+    },
+    {
+      "id": "ch03_s02_shuge.l10",
+      "who": "wuze",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "……"
+    },
+    {
+      "id": "ch03_s02_shuge.l11",
       "when": {
         "flag.ch03_objection_public": true
       },
@@ -59,7 +93,7 @@
       "text": "我交了原句。你的字，一笔没换。"
     },
     {
-      "id": "ch03_s02_shuge.l7",
+      "id": "ch03_s02_shuge.l12",
       "when": {
         "flag.ch03_objection_deferred": true
       },
@@ -69,91 +103,146 @@
       "text": "我还没交复核。待核标记留着，原句也留着。"
     },
     {
-      "id": "ch03_s02_shuge.l8",
+      "id": "ch03_s02_shuge.l13",
       "who": "shenheng",
       "expr": "default",
       "kind": "say",
       "text": "我看见了。"
     },
     {
-      "id": "ch03_s02_shuge.l9",
+      "id": "ch03_s02_shuge.l14",
       "who": "narr",
       "kind": "aside",
       "text": "她把差牌推到影子里。牌背的系绳还没有磨软。"
     },
     {
-      "id": "ch03_s02_shuge.l10",
+      "id": "ch03_s02_shuge.l15",
       "who": "shenheng",
       "expr": "default",
       "kind": "say",
-      "text": "那个位置，我想了三年。昨夜还算过，换了差，能少轮几回夜值。"
+      "text": "那个位置，我想了三年。"
     },
     {
-      "id": "ch03_s02_shuge.l11",
+      "id": "ch03_s02_shuge.l16",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "我以为你不在乎。"
+      "text": "三年。"
     },
     {
-      "id": "ch03_s02_shuge.l12",
+      "id": "ch03_s02_shuge.l17",
+      "who": "shenheng",
+      "expr": "default",
+      "kind": "say",
+      "text": "昨夜还算过，换了差，能少轮几回夜值。"
+    },
+    {
+      "id": "ch03_s02_shuge.l18",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "我以为……你不在乎。"
+    },
+    {
+      "id": "ch03_s02_shuge.l19",
       "who": "shenheng",
       "expr": "guarded",
       "kind": "say",
       "text": "我很在乎。"
     },
     {
-      "id": "ch03_s02_shuge.l13",
+      "id": "ch03_s02_shuge.l20",
+      "who": "wuze",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "在乎。"
+    },
+    {
+      "id": "ch03_s02_shuge.l21",
+      "who": "wuze",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "嗯。"
+    },
+    {
+      "id": "ch03_s02_shuge.l22",
       "who": "narr",
       "kind": "aside",
       "text": "你伸手扶住歪倒的牌。她也伸了手，停在你指边，没有覆上来。"
     },
     {
-      "id": "ch03_s02_shuge.l14",
+      "id": "ch03_s02_shuge.l23",
       "who": "shenheng",
       "expr": "default",
       "kind": "say",
-      "text": "旧话不催你改。今日若只想核卷，核完便走，我知道门该开着。"
+      "text": "旧话不催你改。"
     },
     {
-      "id": "ch03_s02_shuge.l15",
+      "id": "ch03_s02_shuge.l24",
+      "who": "shenheng",
+      "expr": "default",
+      "kind": "say",
+      "text": "只想核卷，核完便走，门该开着。"
+    },
+    {
+      "id": "ch03_s02_shuge.l25",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "沈衡。"
+    },
+    {
+      "id": "ch03_s02_shuge.l26",
       "who": "self",
       "kind": "inner",
       "text": "（她的手还在这里。我刚才想让它再近一点。）"
     },
     {
-      "id": "ch03_s02_shuge.l16",
+      "id": "ch03_s02_shuge.l27",
       "who": "shenheng",
       "expr": "open",
       "kind": "say",
-      "text": "但我想留你坐一会儿。是我想。"
+      "text": "我想留你坐一会儿。是我想。"
     },
     {
-      "id": "ch03_s02_shuge.l17",
+      "id": "ch03_s02_shuge.l28",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
       "text": "你那句反对，我还未全服。"
     },
     {
-      "id": "ch03_s02_shuge.l18",
+      "id": "ch03_s02_shuge.l29",
       "who": "shenheng",
       "expr": "default",
       "kind": "say",
       "text": "留下也不必服。"
     },
     {
-      "id": "ch03_s02_shuge.l19",
+      "id": "ch03_s02_shuge.l30",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "好。"
+    },
+    {
+      "id": "ch03_s02_shuge.l31",
       "who": "narr",
       "kind": "aside",
       "text": "她将靠门的凳子让出来，自己坐在卷架这一侧。"
     },
     {
-      "id": "ch03_s02_shuge.l20",
+      "id": "ch03_s02_shuge.l32",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "撤差的牒，给我一份。问归问，不拿你的字去换回来。"
+      "text": "撤差牒给我一份。我问，不拿你的字去换。"
+    },
+    {
+      "id": "ch03_s02_shuge.l33",
+      "who": "narr",
+      "kind": "aside",
+      "text": "你将撤差牒收进自己的稿旁。"
     }
   ],
   "choices": [

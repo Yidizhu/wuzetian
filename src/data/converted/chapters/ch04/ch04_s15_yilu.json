@@ -20,91 +20,179 @@
       "id": "ch04_s15_yilu.l1",
       "who": "narr",
       "kind": "aside",
-      "text": "天亮时驿路泥还湿，车辙压出细水，轮边的泥点溅到你的靴面。"
+      "text": "归期纸收稳，你到驿路领款。"
     },
     {
       "id": "ch04_s15_yilu.l2",
-      "who": "tangjian",
-      "expr": "default",
-      "kind": "say",
-      "text": "路费在袋里，当面点。"
+      "who": "narr",
+      "kind": "aside",
+      "text": "天亮时驿路泥还湿，车辙压出细水，轮边的泥点溅到你的靴面。"
     },
     {
       "id": "ch04_s15_yilu.l3",
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "路费袋里，当面点。"
+    },
+    {
+      "id": "ch04_s15_yilu.l4",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "袋里。"
+    },
+    {
+      "id": "ch04_s15_yilu.l5",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
       "text": "齐。"
     },
     {
-      "id": "ch04_s15_yilu.l4",
+      "id": "ch04_s15_yilu.l6",
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "俸凭另收好。这不是裴将军替你领的，回来也向这边核，不往她的军账里并。"
-    },
-    {
-      "id": "ch04_s15_yilu.l5",
-      "who": "narr",
-      "kind": "aside",
-      "text": "你把自己的收凭递回去，唐在交付时辰下落笔。"
-    },
-    {
-      "id": "ch04_s15_yilu.l6",
-      "who": "peizhaoye",
-      "expr": "default",
-      "kind": "say",
-      "text": "我队先行。"
+      "text": "俸凭另收，裴没代领，回来向这边核。"
     },
     {
       "id": "ch04_s15_yilu.l7",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "我随这一车。"
+      "text": "这边。"
     },
     {
       "id": "ch04_s15_yilu.l8",
-      "who": "peizhaoye",
+      "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "车停你就歇，别为赶我多走夜路；这段差程写的是核粮，不是一路追到我面前。"
+      "text": "不并军账。"
     },
     {
       "id": "ch04_s15_yilu.l9",
       "who": "narr",
       "kind": "aside",
-      "text": "前轮陷在软泥里，你与车旁的人垫进干枝，肩头抵住车沿。"
+      "text": "你把自己的收凭递回去，唐在交付时辰下落笔。"
     },
     {
       "id": "ch04_s15_yilu.l10",
-      "who": "wuze",
+      "who": "peizhaoye",
       "expr": "default",
       "kind": "say",
-      "text": "先别催，轮子还偏着。"
+      "text": "我队先行。"
     },
     {
       "id": "ch04_s15_yilu.l11",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "先行。"
+    },
+    {
+      "id": "ch04_s15_yilu.l12",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "我随这一车。"
+    },
+    {
+      "id": "ch04_s15_yilu.l13",
+      "who": "peizhaoye",
+      "expr": "default",
+      "kind": "say",
+      "text": "车停就歇，不为赶我走夜路。"
+    },
+    {
+      "id": "ch04_s15_yilu.l14",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "夜路……"
+    },
+    {
+      "id": "ch04_s15_yilu.l15",
+      "who": "peizhaoye",
+      "expr": "default",
+      "kind": "say",
+      "text": "写的是核粮，不是来追我。"
+    },
+    {
+      "id": "ch04_s15_yilu.l16",
+      "who": "narr",
+      "kind": "aside",
+      "text": "前轮陷在软泥里，你与车旁的人垫进干枝，肩头抵住车沿。"
+    },
+    {
+      "id": "ch04_s15_yilu.l17",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "轮子还偏着，我——"
+    },
+    {
+      "id": "ch04_s15_yilu.l18",
+      "who": "peizhaoye",
+      "expr": "default",
+      "kind": "say",
+      "text": "先别催。"
+    },
+    {
+      "id": "ch04_s15_yilu.l19",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "好。"
+    },
+    {
+      "id": "ch04_s15_yilu.l20",
       "who": "narr",
       "kind": "aside",
       "text": "车轮挪过泥坑，冷泥钻进靴口，马鼻边浮起白气。"
     },
     {
-      "id": "ch04_s15_yilu.l12",
+      "id": "ch04_s15_yilu.l21",
+      "who": "narr",
+      "kind": "aside",
+      "text": "城的那一边，一座方形砖塔露在屋脊上。"
+    },
+    {
+      "id": "ch04_s15_yilu.l22",
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "出了这一段，第一处交接在驿旁。"
+      "text": "出了这段，第一处交接在驿旁。"
     },
     {
-      "id": "ch04_s15_yilu.l13",
+      "id": "ch04_s15_yilu.l23",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "知道。纸在自己身上。"
+      "text": "朝塔那边走？"
     },
     {
-      "id": "ch04_s15_yilu.l14",
+      "id": "ch04_s15_yilu.l24",
+      "who": "peizhaoye",
+      "expr": "default",
+      "kind": "say",
+      "text": "先看轮印。塔露着顶，路还绕着走。"
+    },
+    {
+      "id": "ch04_s15_yilu.l25",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "远看倒近。"
+    },
+    {
+      "id": "ch04_s15_yilu.l26",
+      "who": "narr",
+      "kind": "aside",
+      "text": "你低头磕掉靴边的一块泥，收好身上的纸。"
+    },
+    {
+      "id": "ch04_s15_yilu.l27",
       "who": "narr",
       "kind": "aside",
       "text": "裴的队列转过前面的坡，你随运粮车走上另一道辙。"

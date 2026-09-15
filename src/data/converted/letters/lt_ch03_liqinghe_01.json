@@ -22,9 +22,36 @@
       {
         "key": "各回",
         "when": {
-          "flag.li_ch03_apart": true
+          "flag.li_ch03_apart": true,
+          "flag.li_ch03_only_intent": false,
+          "flag.li_ch03_multi_told": false,
+          "flag.li_ch03_private_paused": false
         },
         "text": "各自回去的那段，我也没多算一笔。今夜不走，往后的邀请仍可另答。",
+        "readAloud": false
+      },
+      {
+        "key": "说完再来",
+        "when": {
+          "flag.li_ch03_only_intent": true
+        },
+        "text": "你说还没告诉温荞。那件事先由你自己说，不用借我的名。我今日没有答应往后的私约。",
+        "readAloud": false
+      },
+      {
+        "key": "还想见两人",
+        "when": {
+          "flag.li_ch03_multi_told": true
+        },
+        "text": "你说还想见她。我听见了；她还不知道的，也由你自己说。我的答复不拿去劝她，她的也不用拿来劝我。",
+        "readAloud": false
+      },
+      {
+        "key": "私约已停",
+        "when": {
+          "flag.li_ch03_private_paused": true
+        },
+        "text": "私约停在石阶下。明日送稿，写稿的名字照留，不必添一句来看我。",
         "readAloud": false
       },
       {
@@ -42,7 +69,7 @@
   },
   "sheMayNotReply": {
     "affinity.liqinghe": {
-      "lt": 5
+      "lt": 4
     }
   },
   "interceptable": false,
@@ -51,7 +78,8 @@
       {
         "effects": {
           "affinity.liqinghe": 2,
-          "flag.li_ch03_letter_walk": true
+          "flag.li_ch03_letter_walk": true,
+          "pact.liqinghe": "active"
         },
         "reaction": "“先约一段。”她只写这次相见，不替以后的日子作答。",
         "id": "lt_ch03_liqinghe_01.rA",
@@ -67,7 +95,8 @@
       },
       {
         "effects": {
-          "flag.li_ch03_letter_stop": true
+          "flag.li_ch03_letter_stop": true,
+          "pact.liqinghe": "ended"
         },
         "reaction": "“公事照议。”她收起私邀，不退掉对你提案的意见。",
         "id": "lt_ch03_liqinghe_01.rC",

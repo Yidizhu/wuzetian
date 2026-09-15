@@ -18,188 +18,407 @@
       "id": "ch01_s07_yuanye.l1",
       "who": "narr",
       "kind": "aside",
-      "text": "次日，园门边的积水映着晴光，那匹马正低头嗅草。"
+      "text": "簿页昨夜已抄完；次日，你走到园门外。"
     },
     {
       "id": "ch01_s07_yuanye.l2",
-      "who": "wuze",
-      "expr": "default",
-      "kind": "say",
-      "text": "照夜，那日踢桶的？"
+      "who": "narr",
+      "kind": "aside",
+      "text": "次日，园门边的积水映着晴光，那匹马正低头嗅草。"
     },
     {
       "id": "ch01_s07_yuanye.l3",
-      "who": "peizhaoye",
-      "expr": "default",
-      "kind": "say",
-      "text": "耳尖缺的那一点，认得？"
-    },
-    {
-      "id": "ch01_s07_yuanye.l4",
-      "who": "narr",
-      "kind": "aside",
-      "text": "你走近，它抬头。裴照夜没有拉着它来迎你。"
-    },
-    {
-      "id": "ch01_s07_yuanye.l5",
-      "who": "peizhaoye",
-      "expr": "default",
-      "kind": "say",
-      "text": "站侧边，让它看见。别急着伸手。"
-    },
-    {
-      "id": "ch01_s07_yuanye.l6",
-      "who": "narr",
-      "kind": "aside",
-      "text": "马闻了闻你垂下的袖口，鼻息暖而潮。"
-    },
-    {
-      "id": "ch01_s07_yuanye.l7",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "现在呢？"
+      "text": "照夜。"
+    },
+    {
+      "id": "ch01_s07_yuanye.l4",
+      "who": "peizhaoye",
+      "expr": "default",
+      "kind": "say",
+      "text": "这边。"
+    },
+    {
+      "id": "ch01_s07_yuanye.l5",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "那日踢桶的马？"
+    },
+    {
+      "id": "ch01_s07_yuanye.l6",
+      "who": "peizhaoye",
+      "expr": "default",
+      "kind": "say",
+      "text": "耳尖缺那一点，认得么？"
+    },
+    {
+      "id": "ch01_s07_yuanye.l7",
+      "who": "narr",
+      "kind": "aside",
+      "text": "你走近，它抬头。裴照夜没有拉着它来迎你。"
     },
     {
       "id": "ch01_s07_yuanye.l8",
       "who": "peizhaoye",
       "expr": "default",
       "kind": "say",
-      "text": "可以。这里。"
+      "text": "站侧边，让它看见。"
     },
     {
       "id": "ch01_s07_yuanye.l9",
-      "who": "narr",
-      "kind": "aside",
-      "text": "你用掌根碰上它颈侧，短毛底下轻轻一颤。"
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "我摸——"
     },
     {
       "id": "ch01_s07_yuanye.l10",
       "who": "peizhaoye",
       "expr": "default",
       "kind": "say",
-      "text": "好，手拿回来。今日够了。"
+      "text": "先别伸手。"
     },
     {
       "id": "ch01_s07_yuanye.l11",
       "who": "wuze",
-      "expr": "open",
+      "expr": "default",
       "kind": "say",
-      "text": "我还以为要等它喜欢我。"
+      "text": "好。"
     },
     {
       "id": "ch01_s07_yuanye.l12",
+      "who": "narr",
+      "kind": "aside",
+      "text": "马闻了闻你垂下的袖口，鼻息暖而潮。"
+    },
+    {
+      "id": "ch01_s07_yuanye.l13",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "现在呢？"
+    },
+    {
+      "id": "ch01_s07_yuanye.l14",
+      "who": "peizhaoye",
+      "expr": "default",
+      "kind": "say",
+      "text": "这里。"
+    },
+    {
+      "id": "ch01_s07_yuanye.l15",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "这里……"
+    },
+    {
+      "id": "ch01_s07_yuanye.l16",
+      "who": "peizhaoye",
+      "expr": "default",
+      "kind": "say",
+      "text": "可以了。"
+    },
+    {
+      "id": "ch01_s07_yuanye.l17",
+      "who": "narr",
+      "kind": "aside",
+      "text": "你望着裴照夜。她低头按着马颈，颊边被马鬃蹭着，也没躲。"
+    },
+    {
+      "id": "ch01_s07_yuanye.l18",
+      "who": "cg",
+      "kind": "aside",
+      "text": "peizhaoye_1_xunma"
+    },
+    {
+      "id": "ch01_s07_yuanye.l19",
+      "who": "self",
+      "kind": "inner",
+      "text": "（还想看她一会儿。手该往哪儿放来着？）"
+    },
+    {
+      "id": "ch01_s07_yuanye.l20",
+      "who": "narr",
+      "kind": "aside",
+      "text": "你用掌根碰上它颈侧，短毛底下轻轻一颤。"
+    },
+    {
+      "id": "ch01_s07_yuanye.l21",
+      "who": "peizhaoye",
+      "expr": "default",
+      "kind": "say",
+      "text": "手拿回来，今日够了。"
+    },
+    {
+      "id": "ch01_s07_yuanye.l22",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "够了。"
+    },
+    {
+      "id": "ch01_s07_yuanye.l23",
+      "who": "wuze",
+      "expr": "open",
+      "kind": "say",
+      "text": "我还以为，要等它喜欢我。"
+    },
+    {
+      "id": "ch01_s07_yuanye.l24",
       "who": "peizhaoye",
       "expr": "open",
       "kind": "say",
       "text": "它不讨厌，已经很忙了。"
     },
     {
-      "id": "ch01_s07_yuanye.l13",
+      "id": "ch01_s07_yuanye.l25",
+      "who": "wuze",
+      "expr": "open",
+      "kind": "say",
+      "text": "也是。"
+    },
+    {
+      "id": "ch01_s07_yuanye.l26",
       "who": "narr",
       "kind": "aside",
       "text": "她递给你一方干布，自己去解湿缰。"
     },
     {
-      "id": "ch01_s07_yuanye.l14",
+      "id": "ch01_s07_yuanye.l27",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "你的人什么时候能走？听说已经准了。"
+      "text": "你的人何时能走？"
     },
     {
-      "id": "ch01_s07_yuanye.l15",
+      "id": "ch01_s07_yuanye.l28",
       "who": "peizhaoye",
-      "expr": "guarded",
+      "expr": "default",
       "kind": "say",
-      "text": "准了。钱还没齐。"
+      "text": "何时……"
     },
     {
-      "id": "ch01_s07_yuanye.l16",
+      "id": "ch01_s07_yuanye.l29",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "先定日子，办钱的人也不敢一直拖。"
+      "text": "听说已经准了。"
     },
     {
-      "id": "ch01_s07_yuanye.l17",
+      "id": "ch01_s07_yuanye.l30",
       "who": "peizhaoye",
       "expr": "guarded",
       "kind": "say",
-      "text": "我从前也这样催过，日子到了，她背着行囊来问，钱仍不在我手里。"
+      "text": "准了，钱还没齐。"
     },
     {
-      "id": "ch01_s07_yuanye.l18",
+      "id": "ch01_s07_yuanye.l31",
+      "who": "wuze",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "钱……"
+    },
+    {
+      "id": "ch01_s07_yuanye.l32",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "先定日子呢？"
+    },
+    {
+      "id": "ch01_s07_yuanye.l33",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "办钱的人总不好一直拖。"
+    },
+    {
+      "id": "ch01_s07_yuanye.l34",
+      "who": "peizhaoye",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "我也这样催过。"
+    },
+    {
+      "id": "ch01_s07_yuanye.l35",
+      "who": "wuze",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "……"
+    },
+    {
+      "id": "ch01_s07_yuanye.l36",
+      "who": "peizhaoye",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "到了定下的日子，她背着收好的行囊，站到我跟前。"
+    },
+    {
+      "id": "ch01_s07_yuanye.l37",
+      "who": "wuze",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "行囊。"
+    },
+    {
+      "id": "ch01_s07_yuanye.l38",
+      "who": "peizhaoye",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "钱仍不在我手里。"
+    },
+    {
+      "id": "ch01_s07_yuanye.l39",
       "who": "narr",
       "kind": "aside",
       "text": "她拉平缰绳上一个折处，许久没有松开。"
     },
     {
-      "id": "ch01_s07_yuanye.l19",
+      "id": "ch01_s07_yuanye.l40",
       "who": "wuze",
       "expr": "guarded",
       "kind": "say",
-      "text": "所以以后都不许日子？她们总得有个盼头。"
+      "text": "以后都不许日子了？"
     },
     {
-      "id": "ch01_s07_yuanye.l20",
+      "id": "ch01_s07_yuanye.l41",
+      "who": "wuze",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "她们总得有个盼头。"
+    },
+    {
+      "id": "ch01_s07_yuanye.l42",
       "who": "peizhaoye",
       "expr": "guarded",
       "kind": "say",
-      "text": "我能答应明日去催，不能拿她再等一回，证明我今日说得好听。"
+      "text": "你听我说。"
     },
     {
-      "id": "ch01_s07_yuanye.l21",
+      "id": "ch01_s07_yuanye.l43",
+      "who": "wuze",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "你说。"
+    },
+    {
+      "id": "ch01_s07_yuanye.l44",
+      "who": "peizhaoye",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "我能答应明日去催。"
+    },
+    {
+      "id": "ch01_s07_yuanye.l45",
+      "who": "peizhaoye",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "不能拿她再空等一回，显得我今日这句话说得好听。"
+    },
+    {
+      "id": "ch01_s07_yuanye.l46",
       "who": "narr",
       "kind": "aside",
       "text": "马把鼻子伸向干布，抢去一个角。你赶忙托住。"
     },
     {
-      "id": "ch01_s07_yuanye.l22",
+      "id": "ch01_s07_yuanye.l47",
       "who": "wuze",
       "expr": "open",
       "kind": "say",
-      "text": "这个倒有个准日子，今日就要吃。"
+      "text": "这位倒等不得，今日就要吃。"
     },
     {
-      "id": "ch01_s07_yuanye.l23",
+      "id": "ch01_s07_yuanye.l48",
       "who": "peizhaoye",
       "expr": "open",
       "kind": "say",
-      "text": "布不准吃。草在那边。"
+      "text": "布不准吃。"
     },
     {
-      "id": "ch01_s07_yuanye.l24",
+      "id": "ch01_s07_yuanye.l49",
+      "who": "wuze",
+      "expr": "open",
+      "kind": "say",
+      "text": "……"
+    },
+    {
+      "id": "ch01_s07_yuanye.l50",
+      "who": "peizhaoye",
+      "expr": "open",
+      "kind": "say",
+      "text": "草在那边。"
+    },
+    {
+      "id": "ch01_s07_yuanye.l51",
       "who": "narr",
       "kind": "aside",
       "text": "她拨开马嘴，用湿指在石上画出一道弯。"
     },
     {
-      "id": "ch01_s07_yuanye.l25",
+      "id": "ch01_s07_yuanye.l52",
       "who": "peizhaoye",
       "expr": "default",
       "kind": "say",
-      "text": "这条路，不赶军程时我想再走一次，溪边有摊子，饼总烤得很慢。"
+      "text": "这条路……"
     },
     {
-      "id": "ch01_s07_yuanye.l26",
+      "id": "ch01_s07_yuanye.l53",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "哪儿？"
+    },
+    {
+      "id": "ch01_s07_yuanye.l54",
+      "who": "peizhaoye",
+      "expr": "default",
+      "kind": "say",
+      "text": "不赶军程的时候，我想再走一次。"
+    },
+    {
+      "id": "ch01_s07_yuanye.l55",
+      "who": "peizhaoye",
+      "expr": "default",
+      "kind": "say",
+      "text": "溪边的饼摊，烤得可慢。"
+    },
+    {
+      "id": "ch01_s07_yuanye.l56",
       "who": "wuze",
       "expr": "open",
       "kind": "say",
       "text": "你还记得饼？"
     },
     {
-      "id": "ch01_s07_yuanye.l27",
+      "id": "ch01_s07_yuanye.l57",
       "who": "peizhaoye",
       "expr": "open",
       "kind": "say",
-      "text": "记得。比记得路的人多。"
+      "text": "记得。"
     },
     {
-      "id": "ch01_s07_yuanye.l28",
+      "id": "ch01_s07_yuanye.l58",
+      "who": "peizhaoye",
+      "expr": "open",
+      "kind": "say",
+      "text": "比记得路的人多。"
+    },
+    {
+      "id": "ch01_s07_yuanye.l59",
       "who": "narr",
       "kind": "aside",
       "text": "那道水痕快干了，她又给你指了一遍转弯处。"
+    },
+    {
+      "id": "ch01_s07_yuanye.l60",
+      "who": "narr",
+      "kind": "aside",
+      "text": "你把干布递还，站在园门边等她说完。"
     }
   ],
   "choices": [

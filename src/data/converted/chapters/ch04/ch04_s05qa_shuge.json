@@ -1,0 +1,284 @@
+{
+  "id": "ch04_s05qa_shuge",
+  "chapter": 4,
+  "act": 4,
+  "scene": "shuge",
+  "palette": "ink",
+  "cast": [
+    "wuze",
+    "shenheng"
+  ],
+  "weightless": false,
+  "leavesLetter": [],
+  "purpose": "听沈衡自己答",
+  "lines": [
+    {
+      "id": "ch04_s05qa_shuge.l1",
+      "when": {
+        "intent": "only"
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "沈衡，我想只同你相爱。"
+    },
+    {
+      "id": "ch04_s05qa_shuge.l2",
+      "when": {
+        "intent": "only"
+      },
+      "who": "narr",
+      "kind": "aside",
+      "text": "沈把正叠着的纸放下，抬头看你。"
+    },
+    {
+      "id": "ch04_s05qa_shuge.l3",
+      "when": {
+        "intent": "only"
+      },
+      "who": "shenheng",
+      "expr": "default",
+      "kind": "say",
+      "text": "这句话，别人还等着听么？"
+    },
+    {
+      "id": "ch04_s05qa_shuge.l4",
+      "when": {
+        "intent": "only"
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "没有旁人还等着我的答复。"
+    },
+    {
+      "id": "ch04_s05qa_shuge.l5",
+      "when": {
+        "intent": "only"
+      },
+      "who": "narr",
+      "kind": "aside",
+      "text": "你看沈衡的手，两只都按在空纸上，纸边没有卷起来。"
+    },
+    {
+      "id": "ch04_s05qa_shuge.l6",
+      "when": {
+        "intent": "only"
+      },
+      "who": "cg",
+      "kind": "aside",
+      "text": "shenheng_6_dafu"
+    },
+    {
+      "id": "ch04_s05qa_shuge.l7",
+      "when": {
+        "intent": "only"
+      },
+      "who": "self",
+      "kind": "inner",
+      "text": "（还想听她再叫我一声。先等她答。）"
+    },
+    {
+      "id": "ch04_s05qa_shuge.l8",
+      "when": {
+        "intent": "only"
+      },
+      "who": "shenheng",
+      "expr": "default",
+      "kind": "say",
+      "text": "我愿意。"
+    },
+    {
+      "id": "ch04_s05qa_shuge.l9",
+      "when": {
+        "intent": "open"
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "我想同你相爱，但不只同你一人。"
+    },
+    {
+      "id": "ch04_s05qa_shuge.l10",
+      "when": {
+        "intent": "open",
+        "pact.peizhaoye": "active"
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "我还想同裴照夜相见。"
+    },
+    {
+      "id": "ch04_s05qa_shuge.l11",
+      "when": {
+        "intent": "open",
+        "pact.peizhaoye": "ended"
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "我已同裴照夜说停了私约。"
+    },
+    {
+      "id": "ch04_s05qa_shuge.l12",
+      "when": {
+        "intent": "open",
+        "pact.wenqiao": "active"
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "我还想同温荞相见。"
+    },
+    {
+      "id": "ch04_s05qa_shuge.l13",
+      "when": {
+        "intent": "open",
+        "pact.wenqiao": "ended"
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "我已同温荞说停了私约。"
+    },
+    {
+      "id": "ch04_s05qa_shuge.l14",
+      "when": {
+        "intent": "open",
+        "pact.liqinghe": "active"
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "我还想同李令仪相见。"
+    },
+    {
+      "id": "ch04_s05qa_shuge.l15",
+      "when": {
+        "intent": "open",
+        "pact.liqinghe": "ended"
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "我已同李令仪说停了私约。"
+    },
+    {
+      "id": "ch04_s05qa_shuge.l16",
+      "when": {
+        "intent": "open"
+      },
+      "who": "shenheng",
+      "expr": "default",
+      "kind": "say",
+      "text": "我听明白了。"
+    },
+    {
+      "id": "ch04_s05qa_shuge.l17",
+      "when": {
+        "intent": "open"
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "你愿意么？"
+    },
+    {
+      "id": "ch04_s05qa_shuge.l18",
+      "when": {
+        "intent": "open"
+      },
+      "who": "narr",
+      "kind": "aside",
+      "text": "你看她按着那张空纸，指尖停在原先朝向你的那一边。"
+    },
+    {
+      "id": "ch04_s05qa_shuge.l19",
+      "when": {
+        "intent": "open"
+      },
+      "who": "cg",
+      "kind": "aside",
+      "text": "shenheng_6_dafu"
+    },
+    {
+      "id": "ch04_s05qa_shuge.l20",
+      "when": {
+        "intent": "open"
+      },
+      "who": "self",
+      "kind": "inner",
+      "text": "（那张纸还在。别伸手。）"
+    },
+    {
+      "id": "ch04_s05qa_shuge.l21",
+      "when": {
+        "intent": "open"
+      },
+      "who": "shenheng",
+      "expr": "default",
+      "kind": "say",
+      "text": "我不愿意这样相爱。"
+    },
+    {
+      "id": "ch04_s05qa_shuge.l22",
+      "when": {
+        "intent": "open"
+      },
+      "who": "narr",
+      "kind": "aside",
+      "text": "她把原先留在你面前的空纸收回去。"
+    },
+    {
+      "id": "ch04_s05qa_shuge.l23",
+      "when": {
+        "intent": "open"
+      },
+      "who": "shenheng",
+      "expr": "default",
+      "kind": "say",
+      "text": "往后的私约停在这里。我的信，不用退。"
+    }
+  ],
+  "choices": [
+    {
+      "id": "ch04_s05qa_shuge.cA",
+      "text": "我也愿意，只与你相爱",
+      "require": {
+        "intent": "only"
+      },
+      "effects": {
+        "told.shenheng": true,
+        "answer.shenheng": "only"
+      },
+      "irreversible": false,
+      "goto": "ch04_s05q_shuge"
+    },
+    {
+      "id": "ch04_s05qa_shuge.cB",
+      "text": "听见了，不再这样约",
+      "require": {
+        "intent": "open"
+      },
+      "effects": {
+        "told.shenheng": true,
+        "answer.shenheng": "no"
+      },
+      "irreversible": false,
+      "goto": "ch04_s05q_shuge"
+    },
+    {
+      "id": "ch04_s05qa_shuge.cC",
+      "text": "我还做不到，先停私约",
+      "require": {
+        "intent": "only"
+      },
+      "effects": {
+        "pact.shenheng": "ended"
+      },
+      "irreversible": false,
+      "goto": "ch04_s05q_shuge"
+    }
+  ]
+}

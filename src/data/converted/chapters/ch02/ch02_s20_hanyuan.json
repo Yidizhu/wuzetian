@@ -19,152 +19,234 @@
       "id": "ch02_s20_hanyuan.l1",
       "who": "narr",
       "kind": "aside",
-      "text": "又过数日，两份拟条放在同一案上，留着一样宽的页边。"
+      "text": "你的手又停在含元殿的两份拟条之间。"
     },
     {
       "id": "ch02_s20_hanyuan.l2",
-      "who": "tangjian",
-      "expr": "default",
-      "kind": "say",
-      "text": "奉准试收议案材料，是否入候选册，仍待新条颁行。"
+      "who": "narr",
+      "kind": "aside",
+      "text": "又过数日，两份拟条放在同一案上，留着一样宽的页边。"
     },
     {
       "id": "ch02_s20_hanyuan.l3",
-      "who": "hetaihou",
+      "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "今日议的是谁能受荐。别把这两件说成你已得了哪一席。"
+      "text": "奉准试收材料，入候选册仍得等新条颁行。"
     },
     {
       "id": "ch02_s20_hanyuan.l4",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "那就把只许宗姓的这一行改掉。"
+      "text": "试收。"
     },
     {
       "id": "ch02_s20_hanyuan.l5",
+      "who": "hetaihou",
+      "expr": "default",
+      "kind": "say",
+      "text": "今日只议谁能受荐，别当作已经得了哪一席。"
+    },
+    {
+      "id": "ch02_s20_hanyuan.l6",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "只许宗姓这行，先改掉。"
+    },
+    {
+      "id": "ch02_s20_hanyuan.l7",
       "who": "liqinghe",
       "expr": "default",
       "kind": "say",
       "text": "改掉以后，谁来核荐书？"
     },
     {
-      "id": "ch02_s20_hanyuan.l6",
-      "who": "shenheng",
-      "expr": "default",
-      "kind": "say",
-      "text": "甲法，三处联署，先核履历与经办，署者须各答所知。"
-    },
-    {
-      "id": "ch02_s20_hanyuan.l7",
+      "id": "ch02_s20_hanyuan.l8",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "找不着三处的人，仍在门外。"
-    },
-    {
-      "id": "ch02_s20_hanyuan.l8",
-      "who": "shenheng",
-      "expr": "default",
-      "kind": "say",
-      "text": "是。不能写成人人已能进来。"
+      "text": "谁核……"
     },
     {
       "id": "ch02_s20_hanyuan.l9",
-      "who": "tangjian",
+      "who": "shenheng",
       "expr": "default",
       "kind": "say",
-      "text": "乙法，限期试问，先收自呈。答卷之外，还核实做过的事。"
+      "text": "甲法由三处联署，核履历与经办，各答所知。"
     },
     {
       "id": "ch02_s20_hanyuan.l10",
-      "who": "liqinghe",
-      "expr": "default",
-      "kind": "say",
-      "text": "路远的来不起呢？"
-    },
-    {
-      "id": "ch02_s20_hanyuan.l11",
-      "who": "tangjian",
-      "expr": "default",
-      "kind": "say",
-      "text": "要留旅费和寄卷人手，评期也长。"
-    },
-    {
-      "id": "ch02_s20_hanyuan.l12",
-      "who": "hetaihou",
-      "expr": "default",
-      "kind": "say",
-      "text": "用甲，旧门第能结成一张荐网；用乙，来得起、等得起的人先占住案前。"
-    },
-    {
-      "id": "ch02_s20_hanyuan.l13",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "都有门槛。把每一道写出来，别只在开头写不问宗姓。"
+      "text": "找不到三处的，还是进不来。"
+    },
+    {
+      "id": "ch02_s20_hanyuan.l11",
+      "who": "shenheng",
+      "expr": "default",
+      "kind": "say",
+      "text": "是，不能写成人人都进来了。"
+    },
+    {
+      "id": "ch02_s20_hanyuan.l12",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "……"
+    },
+    {
+      "id": "ch02_s20_hanyuan.l13",
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "乙法限期试问，先收自呈，还得核实做过的事。"
     },
     {
       "id": "ch02_s20_hanyuan.l14",
       "who": "liqinghe",
       "expr": "default",
       "kind": "say",
-      "text": "我仍主张宗室先试任，有旧供给可接，不必重搭一遍。"
+      "text": "路远的——"
     },
     {
       "id": "ch02_s20_hanyuan.l15",
-      "who": "wuze",
-      "expr": "guarded",
+      "who": "tangjian",
+      "expr": "default",
       "kind": "say",
-      "text": "那供给从哪里来，谁没能分到，也要给我们看。"
+      "text": "得留旅费。"
     },
     {
       "id": "ch02_s20_hanyuan.l16",
       "who": "liqinghe",
       "expr": "default",
       "kind": "say",
-      "text": "看。你做过的，也照这个问。"
+      "text": "旅费。"
     },
     {
       "id": "ch02_s20_hanyuan.l17",
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "还有寄卷人手，评期也长。"
+    },
+    {
+      "id": "ch02_s20_hanyuan.l18",
+      "who": "hetaihou",
+      "expr": "default",
+      "kind": "say",
+      "text": "联署能结成旧门第的荐网；试问也得来得起。"
+    },
+    {
+      "id": "ch02_s20_hanyuan.l19",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "来得起。"
+    },
+    {
+      "id": "ch02_s20_hanyuan.l20",
+      "who": "hetaihou",
+      "expr": "default",
+      "kind": "say",
+      "text": "等得起的人，还会先占案前。"
+    },
+    {
+      "id": "ch02_s20_hanyuan.l21",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "门槛都写出来，别只写不问宗姓。"
+    },
+    {
+      "id": "ch02_s20_hanyuan.l22",
+      "who": "liqinghe",
+      "expr": "default",
+      "kind": "say",
+      "text": "宗室有旧供给可接，我仍主张先试任。"
+    },
+    {
+      "id": "ch02_s20_hanyuan.l23",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "旧供给。"
+    },
+    {
+      "id": "ch02_s20_hanyuan.l24",
+      "who": "wuze",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "钱从哪来，谁没分到，也给我们看。"
+    },
+    {
+      "id": "ch02_s20_hanyuan.l25",
+      "who": "liqinghe",
+      "expr": "default",
+      "kind": "say",
+      "text": "看，你经办的，也得照这个问。"
+    },
+    {
+      "id": "ch02_s20_hanyuan.l26",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "好。"
+    },
+    {
+      "id": "ch02_s20_hanyuan.l27",
       "who": "narr",
       "kind": "aside",
       "text": "她把自家的支出册推到案中，没有递到你手边私看。"
     },
     {
-      "id": "ch02_s20_hanyuan.l18",
+      "id": "ch02_s20_hanyuan.l28",
       "who": "shenheng",
       "expr": "default",
       "kind": "say",
-      "text": "军中不得以兵代荐。往来利害各自申明。"
+      "text": "不得以兵代荐，往来利害各自申明。"
     },
     {
-      "id": "ch02_s20_hanyuan.l19",
+      "id": "ch02_s20_hanyuan.l29",
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "两法都留异议。候选人自己的反对话，也收。"
+      "text": "两法都留异议，候选人反对的话也收。"
     },
     {
-      "id": "ch02_s20_hanyuan.l20",
+      "id": "ch02_s20_hanyuan.l30",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "我擅引阿荻的那一笔，一样列入。她的私话别再随卷发。"
+      "text": "都收。"
     },
     {
-      "id": "ch02_s20_hanyuan.l21",
+      "id": "ch02_s20_hanyuan.l31",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "我的擅引也列，阿荻私话别随卷发。"
+    },
+    {
+      "id": "ch02_s20_hanyuan.l32",
       "who": "hetaihou",
       "expr": "default",
       "kind": "say",
-      "text": "你先选要试办哪一法，写清要花多少、人从何处来。"
+      "text": "先选试哪一法，再写清花多少钱、用谁的人手。"
     },
     {
-      "id": "ch02_s20_hanyuan.l22",
+      "id": "ch02_s20_hanyuan.l33",
       "who": "narr",
       "kind": "aside",
       "text": "两张拟条都没有落你的名，笔搁在正中。"
+    },
+    {
+      "id": "ch02_s20_hanyuan.l34",
+      "who": "narr",
+      "kind": "aside",
+      "text": "你拿起拟条之间的笔，准备署下试办之法。"
     }
   ],
   "choices": [

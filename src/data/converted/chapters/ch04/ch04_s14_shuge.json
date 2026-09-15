@@ -20,106 +20,195 @@
       "id": "ch04_s14_shuge.l1",
       "who": "narr",
       "kind": "aside",
-      "text": "书阁夜灯照着刚递来的差牒，窗下冷，裴把湿靴留在席外。"
+      "text": "手边的纸收妥后，当夜你在书阁问差牒。"
     },
     {
       "id": "ch04_s14_shuge.l2",
+      "who": "narr",
+      "kind": "aside",
+      "text": "书阁夜灯照着刚递来的差牒，窗下冷，裴把湿靴留在席外。"
+    },
+    {
+      "id": "ch04_s14_shuge.l3",
       "when": {
         "flag.ch03_consider_road": true
       },
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "你先前问过独立差程。这份按一月核了俸给，归期在前面。"
+      "text": "独立差程按一月核俸给了，归期在前。"
     },
     {
-      "id": "ch04_s14_shuge.l3",
+      "id": "ch04_s14_shuge.l4",
+      "when": {
+        "flag.ch03_consider_road": true
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "一月。"
+    },
+    {
+      "id": "ch04_s14_shuge.l5",
       "when": {
         "flag.ch03_consider_road": false
       },
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "今日来问独立差程，先看这一月的俸给，再看写定的归期。"
+      "text": "先看一月俸给，再看归期。"
     },
     {
-      "id": "ch04_s14_shuge.l4",
+      "id": "ch04_s14_shuge.l6",
+      "when": {
+        "flag.ch03_consider_road": false
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "归期。"
+    },
+    {
+      "id": "ch04_s14_shuge.l7",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
       "text": "凭什么收我？"
     },
     {
-      "id": "ch04_s14_shuge.l5",
+      "id": "ch04_s14_shuge.l8",
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "文书差公开收人，核过你的经办和错办记录；这一月试差，不借谁的荐名改职。"
+      "text": "公开收人，经办、错办都核了，一月试差。"
     },
     {
-      "id": "ch04_s14_shuge.l6",
+      "id": "ch04_s14_shuge.l9",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "错办也核了。"
+    },
+    {
+      "id": "ch04_s14_shuge.l10",
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "不借荐名改职。"
+    },
+    {
+      "id": "ch04_s14_shuge.l11",
       "who": "peizhaoye",
       "expr": "default",
       "kind": "say",
-      "text": "我只核沿途交接。不是从我军里给你一个位置。"
+      "text": "我只核交接，不从军里给你位置。"
     },
     {
-      "id": "ch04_s14_shuge.l7",
+      "id": "ch04_s14_shuge.l12",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "交接。"
+    },
+    {
+      "id": "ch04_s14_shuge.l13",
       "who": "narr",
       "kind": "aside",
       "text": "唐用指背压住归期，纸的硬边擦过你掌心。"
     },
     {
-      "id": "ch04_s14_shuge.l8",
+      "id": "ch04_s14_shuge.l14",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "我核不清的呢？"
+      "text": "核不清的，我——"
     },
     {
-      "id": "ch04_s14_shuge.l9",
+      "id": "ch04_s14_shuge.l15",
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "照实报未核，原凭带回。你不能替粮户减掉没领的钱，也不能自己添已领。"
+      "text": "照报未核。"
     },
     {
-      "id": "ch04_s14_shuge.l10",
+      "id": "ch04_s14_shuge.l16",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "未核。"
+    },
+    {
+      "id": "ch04_s14_shuge.l17",
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "带回原凭，不能减未领，也不能添已领。"
+    },
+    {
+      "id": "ch04_s14_shuge.l18",
       "who": "peizhaoye",
       "expr": "default",
       "kind": "say",
-      "text": "车先走，我也有另一路。见不上面，你照你的归期回，不要等我来叫。"
+      "text": "车先走，我另一路，照你的归期回，别等我叫。"
     },
     {
-      "id": "ch04_s14_shuge.l11",
+      "id": "ch04_s14_shuge.l19",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "嗯。"
+    },
+    {
+      "id": "ch04_s14_shuge.l20",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
       "text": "路费先领？"
     },
     {
-      "id": "ch04_s14_shuge.l12",
+      "id": "ch04_s14_shuge.l21",
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "明早领，另给这一月的俸凭。少一项便先不启程，不能叫你出门后再求人垫。"
+      "text": "明早领，另给月俸凭，少一项就别走。"
     },
     {
-      "id": "ch04_s14_shuge.l13",
+      "id": "ch04_s14_shuge.l22",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "一月后，回京歇几日。"
+      "text": "少一项。"
     },
     {
-      "id": "ch04_s14_shuge.l14",
+      "id": "ch04_s14_shuge.l23",
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "不能出了门再求人垫。"
+    },
+    {
+      "id": "ch04_s14_shuge.l24",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "一月后……回京歇几日。"
+    },
+    {
+      "id": "ch04_s14_shuge.l25",
       "who": "peizhaoye",
       "expr": "default",
       "kind": "say",
-      "text": "写上。别写等我方便。"
+      "text": "写上，别写等我方便。"
     },
     {
-      "id": "ch04_s14_shuge.l15",
+      "id": "ch04_s14_shuge.l26",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "好。"
+    },
+    {
+      "id": "ch04_s14_shuge.l27",
       "who": "narr",
       "kind": "aside",
       "text": "你把归期读了第二遍，将那一行折在最外面。"

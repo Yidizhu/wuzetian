@@ -10,7 +10,7 @@
   ],
   "require": {
     "affinity.wenqiao": {
-      "gte": 5
+      "gte": 4
     }
   },
   "weightless": true,
@@ -21,88 +21,202 @@
       "id": "ch01_s15_shishe.l1",
       "who": "narr",
       "kind": "aside",
-      "text": "诗社纸槽的湿草气还没散，温荞拿两张干废纸，在你耳边抖。"
+      "text": "从书阁折回诗社，你坐到温荞手边。"
     },
     {
       "id": "ch01_s15_shishe.l2",
-      "who": "wenqiao",
-      "expr": "open",
-      "kind": "say",
-      "text": "闭眼。哪张薄？"
+      "who": "narr",
+      "kind": "aside",
+      "text": "诗社纸槽的湿草气还没散，温荞拿两张干废纸，在你耳边抖。"
     },
     {
       "id": "ch01_s15_shishe.l3",
+      "who": "wenqiao",
+      "expr": "open",
+      "kind": "say",
+      "text": "闭眼。"
+    },
+    {
+      "id": "ch01_s15_shishe.l4",
+      "who": "wuze",
+      "expr": "open",
+      "kind": "say",
+      "text": "嗯。"
+    },
+    {
+      "id": "ch01_s15_shishe.l5",
+      "who": "wenqiao",
+      "expr": "open",
+      "kind": "say",
+      "text": "哪张薄？"
+    },
+    {
+      "id": "ch01_s15_shishe.l6",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
       "text": "近的。"
     },
     {
-      "id": "ch01_s15_shishe.l4",
+      "id": "ch01_s15_shishe.l7",
+      "who": "wenqiao",
+      "expr": "open",
+      "kind": "say",
+      "text": "近的？"
+    },
+    {
+      "id": "ch01_s15_shishe.l8",
+      "who": "wuze",
+      "expr": "open",
+      "kind": "say",
+      "text": "就是——"
+    },
+    {
+      "id": "ch01_s15_shishe.l9",
       "who": "wenqiao",
       "expr": "open",
       "kind": "say",
       "text": "两张一样近。"
     },
     {
-      "id": "ch01_s15_shishe.l5",
+      "id": "ch01_s15_shishe.l10",
       "who": "wuze",
       "expr": "open",
       "kind": "say",
-      "text": "响的。"
+      "text": "那就响的。"
     },
     {
-      "id": "ch01_s15_shishe.l6",
+      "id": "ch01_s15_shishe.l11",
       "who": "wenqiao",
       "expr": "open",
       "kind": "say",
-      "text": "你说得这么含糊，我把哪一张递给你，你都能点头说早就猜到了。"
+      "text": "含糊成这样，我递哪张你都能说对。"
     },
     {
-      "id": "ch01_s15_shishe.l7",
+      "id": "ch01_s15_shishe.l12",
+      "who": "wuze",
+      "expr": "open",
+      "kind": "say",
+      "text": "……"
+    },
+    {
+      "id": "ch01_s15_shishe.l13",
       "who": "narr",
       "kind": "aside",
-      "text": "你睁开一只眼，她立刻把两张纸都藏到身后。"
+      "text": "你睁开一只眼。温荞把两张纸藏到身后，笑得嘴角压也压不住。"
     },
     {
-      "id": "ch01_s15_shishe.l8",
+      "id": "ch01_s15_shishe.l14",
       "who": "wenqiao",
       "expr": "open",
       "kind": "say",
       "text": "这还用偷看？"
     },
     {
-      "id": "ch01_s15_shishe.l9",
+      "id": "ch01_s15_shishe.l15",
       "who": "wuze",
       "expr": "open",
       "kind": "say",
-      "text": "温荞，给我抖一回。你闭眼听着，若也猜错了，今日这两张纸就都算厚的。"
+      "text": "你把纸藏好了，我就不算偷看纸。"
     },
     {
-      "id": "ch01_s15_shishe.l10",
-      "who": "narr",
-      "kind": "aside",
-      "text": "她把纸递给你，闭眼前还特意将头偏向另一边。"
-    },
-    {
-      "id": "ch01_s15_shishe.l11",
-      "who": "wuze",
-      "expr": "default",
-      "kind": "say",
-      "text": "现在呢？"
-    },
-    {
-      "id": "ch01_s15_shishe.l12",
+      "id": "ch01_s15_shishe.l16",
       "who": "wenqiao",
       "expr": "open",
       "kind": "say",
-      "text": "你笑得比纸响。"
+      "text": "那你看什么？"
     },
     {
-      "id": "ch01_s15_shishe.l13",
+      "id": "ch01_s15_shishe.l17",
+      "who": "wuze",
+      "expr": "open",
+      "kind": "say",
+      "text": "你。"
+    },
+    {
+      "id": "ch01_s15_shishe.l18",
       "who": "narr",
       "kind": "aside",
-      "text": "你只好等自己不笑了，再抖一次。"
+      "text": "她嘴角还翘着，手里的纸却不响了。"
+    },
+    {
+      "id": "ch01_s15_shishe.l19",
+      "who": "wenqiao",
+      "expr": "open",
+      "kind": "say",
+      "text": "看出薄厚了？"
+    },
+    {
+      "id": "ch01_s15_shishe.l20",
+      "who": "wuze",
+      "expr": "open",
+      "kind": "say",
+      "text": "没有。再笑一次。"
+    },
+    {
+      "id": "ch01_s15_shishe.l21",
+      "who": "wenqiao",
+      "expr": "open",
+      "kind": "say",
+      "text": "哪有叫人现笑的。"
+    },
+    {
+      "id": "ch01_s15_shishe.l22",
+      "who": "narr",
+      "kind": "aside",
+      "text": "你仍望着她。温荞转开脸，鼻子里出了半声笑。"
+    },
+    {
+      "id": "ch01_s15_shishe.l23",
+      "who": "narr",
+      "kind": "aside",
+      "text": "她再转回来时，笑还没收住。你也偏过头，跟上她的目光。"
+    },
+    {
+      "id": "ch01_s15_shishe.l24",
+      "who": "self",
+      "kind": "inner",
+      "text": "（别藏回去。我刚才就想看这个。）"
+    },
+    {
+      "id": "ch01_s15_shishe.l25",
+      "who": "wenqiao",
+      "expr": "open",
+      "kind": "say",
+      "text": "还猜不猜了？"
+    },
+    {
+      "id": "ch01_s15_shishe.l26",
+      "who": "wuze",
+      "expr": "open",
+      "kind": "say",
+      "text": "换我抖。"
+    },
+    {
+      "id": "ch01_s15_shishe.l27",
+      "who": "narr",
+      "kind": "aside",
+      "text": "她把纸塞到你手里，闭眼前又看了你一眼。"
+    },
+    {
+      "id": "ch01_s15_shishe.l28",
+      "who": "wuze",
+      "expr": "open",
+      "kind": "say",
+      "text": "若你也猜错……"
+    },
+    {
+      "id": "ch01_s15_shishe.l29",
+      "who": "wenqiao",
+      "expr": "open",
+      "kind": "say",
+      "text": "那就睁眼，学你。"
+    },
+    {
+      "id": "ch01_s15_shishe.l30",
+      "who": "narr",
+      "kind": "aside",
+      "text": "你刚举起纸，先笑出了声。"
     }
   ],
   "goto": "ch01_s17_yeting"

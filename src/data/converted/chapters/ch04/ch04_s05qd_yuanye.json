@@ -1,0 +1,284 @@
+{
+  "id": "ch04_s05qd_yuanye",
+  "chapter": 4,
+  "act": 4,
+  "scene": "yuanye",
+  "palette": "ink",
+  "cast": [
+    "wuze",
+    "liqinghe"
+  ],
+  "weightless": false,
+  "leavesLetter": [],
+  "purpose": "听李令仪自己答",
+  "lines": [
+    {
+      "id": "ch04_s05qd_yuanye.l1",
+      "when": {
+        "intent": "only"
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "令仪，我想只同你相爱。"
+    },
+    {
+      "id": "ch04_s05qd_yuanye.l2",
+      "when": {
+        "intent": "only"
+      },
+      "who": "liqinghe",
+      "expr": "default",
+      "kind": "say",
+      "text": "旁人那边，也都说清了？"
+    },
+    {
+      "id": "ch04_s05qd_yuanye.l3",
+      "when": {
+        "intent": "only"
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "没有别的私约还留着。"
+    },
+    {
+      "id": "ch04_s05qd_yuanye.l4",
+      "when": {
+        "intent": "only"
+      },
+      "who": "narr",
+      "kind": "aside",
+      "text": "李令仪将自己的稿收到另一只手里，空出的手垂在身侧。"
+    },
+    {
+      "id": "ch04_s05qd_yuanye.l5",
+      "when": {
+        "intent": "only"
+      },
+      "who": "narr",
+      "kind": "aside",
+      "text": "你看李令仪空着的那只手，袖口垂下来，离你的手还有一截。"
+    },
+    {
+      "id": "ch04_s05qd_yuanye.l6",
+      "when": {
+        "intent": "only"
+      },
+      "who": "cg",
+      "kind": "aside",
+      "text": "liqinghe_6_dafu"
+    },
+    {
+      "id": "ch04_s05qd_yuanye.l7",
+      "when": {
+        "intent": "only"
+      },
+      "who": "self",
+      "kind": "inner",
+      "text": "（想把这一截挪近。先别动。）"
+    },
+    {
+      "id": "ch04_s05qd_yuanye.l8",
+      "when": {
+        "intent": "only"
+      },
+      "who": "liqinghe",
+      "expr": "default",
+      "kind": "say",
+      "text": "我也愿意。"
+    },
+    {
+      "id": "ch04_s05qd_yuanye.l9",
+      "when": {
+        "intent": "open"
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "我想同你相爱，但不只同你一人。"
+    },
+    {
+      "id": "ch04_s05qd_yuanye.l10",
+      "when": {
+        "intent": "open",
+        "pact.shenheng": "declined"
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "沈衡不愿意，私约已停。"
+    },
+    {
+      "id": "ch04_s05qd_yuanye.l11",
+      "when": {
+        "intent": "open",
+        "pact.shenheng": "ended"
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "我已同沈衡说停了私约。"
+    },
+    {
+      "id": "ch04_s05qd_yuanye.l12",
+      "when": {
+        "intent": "open",
+        "pact.peizhaoye": "active"
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "我还想同裴照夜相见。"
+    },
+    {
+      "id": "ch04_s05qd_yuanye.l13",
+      "when": {
+        "intent": "open",
+        "pact.peizhaoye": "ended"
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "我已同裴照夜说停了私约。"
+    },
+    {
+      "id": "ch04_s05qd_yuanye.l14",
+      "when": {
+        "intent": "open",
+        "pact.wenqiao": "active"
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "我还想同温荞相见。"
+    },
+    {
+      "id": "ch04_s05qd_yuanye.l15",
+      "when": {
+        "intent": "open",
+        "pact.wenqiao": "ended"
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "我已同温荞说停了私约。"
+    },
+    {
+      "id": "ch04_s05qd_yuanye.l16",
+      "when": {
+        "intent": "open"
+      },
+      "who": "narr",
+      "kind": "aside",
+      "text": "你看她站在自己的石阶上，稿留在手里，另一只手垂着。"
+    },
+    {
+      "id": "ch04_s05qd_yuanye.l17",
+      "when": {
+        "intent": "open"
+      },
+      "who": "cg",
+      "kind": "aside",
+      "text": "liqinghe_6_dafu"
+    },
+    {
+      "id": "ch04_s05qd_yuanye.l18",
+      "when": {
+        "intent": "open"
+      },
+      "who": "self",
+      "kind": "inner",
+      "text": "（她没下来。我也先站住。）"
+    },
+    {
+      "id": "ch04_s05qd_yuanye.l19",
+      "when": {
+        "intent": "open"
+      },
+      "who": "liqinghe",
+      "expr": "default",
+      "kind": "say",
+      "text": "我不愿意。"
+    },
+    {
+      "id": "ch04_s05qd_yuanye.l20",
+      "when": {
+        "intent": "open"
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "那我们——"
+    },
+    {
+      "id": "ch04_s05qd_yuanye.l21",
+      "when": {
+        "intent": "open"
+      },
+      "who": "liqinghe",
+      "expr": "default",
+      "kind": "say",
+      "text": "就不再这样约。你不用为了让我点头，收回真话。"
+    },
+    {
+      "id": "ch04_s05qd_yuanye.l22",
+      "when": {
+        "intent": "open"
+      },
+      "who": "narr",
+      "kind": "aside",
+      "text": "她把衣领理平，留在自己那一级石阶上。"
+    },
+    {
+      "id": "ch04_s05qd_yuanye.l23",
+      "when": {
+        "intent": "open"
+      },
+      "who": "liqinghe",
+      "expr": "default",
+      "kind": "say",
+      "text": "公事照来。我不等你选完再回来找我。"
+    }
+  ],
+  "choices": [
+    {
+      "id": "ch04_s05qd_yuanye.cA",
+      "text": "我也愿意，只与你相爱",
+      "require": {
+        "intent": "only"
+      },
+      "effects": {
+        "told.liqinghe": true,
+        "answer.liqinghe": "only"
+      },
+      "irreversible": false,
+      "goto": "ch04_s05q_shuge"
+    },
+    {
+      "id": "ch04_s05qd_yuanye.cB",
+      "text": "听见了，不再这样约",
+      "require": {
+        "intent": "open"
+      },
+      "effects": {
+        "told.liqinghe": true,
+        "answer.liqinghe": "no"
+      },
+      "irreversible": false,
+      "goto": "ch04_s05q_shuge"
+    },
+    {
+      "id": "ch04_s05qd_yuanye.cC",
+      "text": "我还做不到，先停私约",
+      "require": {
+        "intent": "only"
+      },
+      "effects": {
+        "pact.liqinghe": "ended"
+      },
+      "irreversible": false,
+      "goto": "ch04_s05q_shuge"
+    }
+  ]
+}

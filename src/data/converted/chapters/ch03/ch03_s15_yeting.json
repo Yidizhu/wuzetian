@@ -16,40 +16,73 @@
       "id": "ch03_s15_yeting.l1",
       "who": "narr",
       "kind": "aside",
-      "text": "柳将杯口缺处转向自己。你进门时，她正把已经空了的稿架再擦一遍。"
+      "text": "柳自己的凭据在你手里，你回掖庭找她。"
     },
     {
       "id": "ch03_s15_yeting.l2",
+      "who": "narr",
+      "kind": "aside",
+      "text": "柳将杯口缺处转向自己。你进门时，她正把已经空了的稿架再擦一遍。"
+    },
+    {
+      "id": "ch03_s15_yeting.l3",
       "who": "liuchenghuan",
       "expr": "open",
       "kind": "say",
       "text": "下一叠还没送来？"
     },
     {
-      "id": "ch03_s15_yeting.l3",
+      "id": "ch03_s15_yeting.l4",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "这一叠是给你的。"
+      "text": "给你的。"
     },
     {
-      "id": "ch03_s15_yeting.l4",
+      "id": "ch03_s15_yeting.l5",
+      "who": "liuchenghuan",
+      "expr": "default",
+      "kind": "say",
+      "text": "我的？"
+    },
+    {
+      "id": "ch03_s15_yeting.l6",
       "who": "narr",
       "kind": "aside",
       "text": "你把纸分开放。柳先伸手去叠齐，指尖碰到最上面的休凭。"
     },
     {
-      "id": "ch03_s15_yeting.l5",
+      "id": "ch03_s15_yeting.l7",
       "when": {
         "flag.chenghuan_accept_3": true
       },
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "更正刚送到各处，收讫在这里。摘要补了你的经手，也留着我准许合记的那句。"
+      "text": "更正送到了，收讫在这。"
     },
     {
-      "id": "ch03_s15_yeting.l6",
+      "id": "ch03_s15_yeting.l8",
+      "when": {
+        "flag.chenghuan_accept_3": true
+      },
+      "who": "liuchenghuan",
+      "expr": "default",
+      "kind": "say",
+      "text": "更正。"
+    },
+    {
+      "id": "ch03_s15_yeting.l9",
+      "when": {
+        "flag.chenghuan_accept_3": true
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "补了你经手，也留着我准合记那句。"
+    },
+    {
+      "id": "ch03_s15_yeting.l10",
       "when": {
         "flag.chenghuan_accept_3": true
       },
@@ -59,17 +92,27 @@
       "text": "写了会不会有人再问你？"
     },
     {
-      "id": "ch03_s15_yeting.l7",
+      "id": "ch03_s15_yeting.l11",
       "when": {
         "flag.chenghuan_accept_3": true
       },
       "who": "wuze",
       "expr": "guarded",
       "kind": "say",
-      "text": "会。我收下过，就得答。"
+      "text": "会，收下过就得答。"
     },
     {
-      "id": "ch03_s15_yeting.l8",
+      "id": "ch03_s15_yeting.l12",
+      "when": {
+        "flag.chenghuan_accept_3": true
+      },
+      "who": "liuchenghuan",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "……"
+    },
+    {
+      "id": "ch03_s15_yeting.l13",
       "when": {
         "flag.chenghuan_accept_3": true
       },
@@ -78,17 +121,27 @@
       "text": "她沿着更正本找到自己的名字，往下看了两行，又翻回你的签字处。"
     },
     {
-      "id": "ch03_s15_yeting.l9",
+      "id": "ch03_s15_yeting.l14",
       "when": {
         "flag.chenghuan_refuse_3": true
       },
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "你的名一直在摘要上。这份报功凭据也是你的，不用留在我的卷里。"
+      "text": "你的名一直在，报功凭你拿着，不留我卷里。"
     },
     {
-      "id": "ch03_s15_yeting.l10",
+      "id": "ch03_s15_yeting.l15",
+      "when": {
+        "flag.chenghuan_refuse_3": true
+      },
+      "who": "liuchenghuan",
+      "expr": "default",
+      "kind": "say",
+      "text": "报功凭。"
+    },
+    {
+      "id": "ch03_s15_yeting.l16",
       "when": {
         "flag.chenghuan_refuse_3": true
       },
@@ -98,17 +151,37 @@
       "text": "放你那里，找着方便。"
     },
     {
-      "id": "ch03_s15_yeting.l11",
+      "id": "ch03_s15_yeting.l17",
       "when": {
         "flag.chenghuan_accept_1": true
       },
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "误了抄试的那一夜，我多出了半日备稿。那半日已经用了，给钱也换不回。"
+      "text": "误抄试那夜，我多出半日备稿。"
     },
     {
-      "id": "ch03_s15_yeting.l12",
+      "id": "ch03_s15_yeting.l18",
+      "when": {
+        "flag.chenghuan_accept_1": true
+      },
+      "who": "liuchenghuan",
+      "expr": "default",
+      "kind": "say",
+      "text": "半日。"
+    },
+    {
+      "id": "ch03_s15_yeting.l19",
+      "when": {
+        "flag.chenghuan_accept_1": true
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "已经用了，给钱也换不回。"
+    },
+    {
+      "id": "ch03_s15_yeting.l20",
       "when": {
         "flag.chenghuan_accept_1": true
       },
@@ -118,43 +191,113 @@
       "text": "你那日没误，便好。"
     },
     {
-      "id": "ch03_s15_yeting.l13",
+      "id": "ch03_s15_yeting.l21",
       "when": {
         "flag.chenghuan_accept_1": true
       },
       "who": "wuze",
       "expr": "guarded",
       "kind": "say",
-      "text": "白日录工的已领，那夜加抄的另结了。旧缺试照记，能再报，日子还没定。"
+      "text": "白日工已领，夜里加抄另结了。"
     },
     {
-      "id": "ch03_s15_yeting.l14",
+      "id": "ch03_s15_yeting.l22",
+      "when": {
+        "flag.chenghuan_accept_1": true
+      },
+      "who": "liuchenghuan",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "嗯。"
+    },
+    {
+      "id": "ch03_s15_yeting.l23",
+      "when": {
+        "flag.chenghuan_accept_1": true
+      },
+      "who": "wuze",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "缺试照记，能再报，日子还没定。"
+    },
+    {
+      "id": "ch03_s15_yeting.l24",
+      "when": {
+        "flag.chenghuan_accept_1": true
+      },
+      "who": "liuchenghuan",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "日子没定。"
+    },
+    {
+      "id": "ch03_s15_yeting.l25",
       "when": {
         "flag.chenghuan_refuse_1": true
       },
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "那回我自己留班，你去过抄试。这一张是你自己的试牒，没有替你另报下一回。"
+      "text": "那回我留班，你去过抄试，这是试牒。"
     },
     {
-      "id": "ch03_s15_yeting.l15",
+      "id": "ch03_s15_yeting.l26",
+      "when": {
+        "flag.chenghuan_refuse_1": true
+      },
+      "who": "liuchenghuan",
+      "expr": "default",
+      "kind": "say",
+      "text": "试牒。"
+    },
+    {
+      "id": "ch03_s15_yeting.l27",
+      "when": {
+        "flag.chenghuan_refuse_1": true
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "没替你另报下一回。"
+    },
+    {
+      "id": "ch03_s15_yeting.l28",
       "who": "narr",
       "kind": "aside",
       "text": "柳用杯底压住纸角，缺口又朝向你。她察觉了，伸手转回去。"
     },
     {
-      "id": "ch03_s15_yeting.l16",
+      "id": "ch03_s15_yeting.l29",
       "when": {
         "flag.chenghuan_accept_2": true
       },
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "这三日休补在本月，代班工钱结清了。我省下过的工费，也写在我的账上。"
+      "text": "三日休补在本月，代班钱清了。"
     },
     {
-      "id": "ch03_s15_yeting.l17",
+      "id": "ch03_s15_yeting.l30",
+      "when": {
+        "flag.chenghuan_accept_2": true
+      },
+      "who": "liuchenghuan",
+      "expr": "default",
+      "kind": "say",
+      "text": "本月。"
+    },
+    {
+      "id": "ch03_s15_yeting.l31",
+      "when": {
+        "flag.chenghuan_accept_2": true
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "省下过的工费，也记在我账上。"
+    },
+    {
+      "id": "ch03_s15_yeting.l32",
       "when": {
         "flag.chenghuan_accept_2": true
       },
@@ -164,17 +307,37 @@
       "text": "你哪几日不忙，就填哪几日。"
     },
     {
-      "id": "ch03_s15_yeting.l18",
+      "id": "ch03_s15_yeting.l33",
       "when": {
         "flag.chenghuan_refuse_2": true
       },
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "三日休你照凭休过了，没划掉。这回交的是你以后自己报班的凭，不是欠我的班。"
+      "text": "三日休没划掉。这是以后自己报班的凭。"
     },
     {
-      "id": "ch03_s15_yeting.l19",
+      "id": "ch03_s15_yeting.l34",
+      "when": {
+        "flag.chenghuan_refuse_2": true
+      },
+      "who": "liuchenghuan",
+      "expr": "default",
+      "kind": "say",
+      "text": "报班的。"
+    },
+    {
+      "id": "ch03_s15_yeting.l35",
+      "when": {
+        "flag.chenghuan_refuse_2": true
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "不是欠我的班。"
+    },
+    {
+      "id": "ch03_s15_yeting.l36",
       "when": {
         "flag.chenghuan_refuse_2": true
       },
@@ -184,20 +347,27 @@
       "text": "你用得着的时候再填。"
     },
     {
-      "id": "ch03_s15_yeting.l20",
+      "id": "ch03_s15_yeting.l37",
       "who": "wuze",
       "expr": "guarded",
       "kind": "say",
-      "text": "我拿着这张，就又会替你填。"
+      "text": "我拿着，又会替你填。"
     },
     {
-      "id": "ch03_s15_yeting.l21",
+      "id": "ch03_s15_yeting.l38",
+      "who": "liuchenghuan",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "……"
+    },
+    {
+      "id": "ch03_s15_yeting.l39",
       "who": "narr",
       "kind": "aside",
       "text": "你推过去，纸停在杯沿。她将两张经手凭放到下面，只留一格时辰给你看。"
     },
     {
-      "id": "ch03_s15_yeting.l22",
+      "id": "ch03_s15_yeting.l40",
       "when": {
         "flag.chenghuan_accept_1": true
       },
@@ -206,7 +376,7 @@
       "text": "（我知道那晚有试，还是走了。）"
     },
     {
-      "id": "ch03_s15_yeting.l23",
+      "id": "ch03_s15_yeting.l41",
       "when": {
         "flag.chenghuan_accept_2": true
       },
@@ -215,7 +385,7 @@
       "text": "（三夜。那时我连重新教人都不想。）"
     },
     {
-      "id": "ch03_s15_yeting.l24",
+      "id": "ch03_s15_yeting.l42",
       "when": {
         "flag.chenghuan_accept_3": true
       },
@@ -224,7 +394,7 @@
       "text": "（那册只写我的名。我真想直接合上。）"
     },
     {
-      "id": "ch03_s15_yeting.l25",
+      "id": "ch03_s15_yeting.l43",
       "when": {
         "flag.chenghuan_refuse_1": true,
         "flag.chenghuan_refuse_2": true,
@@ -235,172 +405,280 @@
       "text": "（三回我都没接。那块温布巾，我却握了很久。）"
     },
     {
-      "id": "ch03_s15_yeting.l26",
-      "who": "wuze",
-      "expr": "default",
-      "kind": "say",
-      "text": "你递热水来，我是高兴的。不是只怕你难过才接。我也想有人先替我想好。"
-    },
-    {
-      "id": "ch03_s15_yeting.l27",
-      "who": "liuchenghuan",
-      "expr": "open",
-      "kind": "say",
-      "text": "那就还照从前。"
-    },
-    {
-      "id": "ch03_s15_yeting.l28",
-      "who": "wuze",
-      "expr": "guarded",
-      "kind": "say",
-      "text": "我不能每回都只接这一句。"
-    },
-    {
-      "id": "ch03_s15_yeting.l29",
-      "who": "narr",
-      "kind": "aside",
-      "text": "她的手还托在稿架旁，掌心向上。那里已经没有纸。"
-    },
-    {
-      "id": "ch03_s15_yeting.l30",
-      "who": "wuze",
-      "expr": "default",
-      "kind": "say",
-      "text": "留在原署，或另报差，都可。已经做过的工，不能拿你肯不肯留来扣。"
-    },
-    {
-      "id": "ch03_s15_yeting.l31",
-      "who": "liuchenghuan",
-      "expr": "default",
-      "kind": "say",
-      "text": "你想用哪一边的人？"
-    },
-    {
-      "id": "ch03_s15_yeting.l32",
-      "who": "wuze",
-      "expr": "default",
-      "kind": "say",
-      "text": "我问的是你。"
-    },
-    {
-      "id": "ch03_s15_yeting.l33",
-      "who": "liuchenghuan",
-      "expr": "guarded",
-      "kind": "say",
-      "text": "知道。"
-    },
-    {
-      "id": "ch03_s15_yeting.l34",
-      "who": "narr",
-      "kind": "aside",
-      "text": "她把休凭推回半寸。杯底带起纸面，留下湿的一圈。"
-    },
-    {
-      "id": "ch03_s15_yeting.l35",
-      "who": "wuze",
-      "expr": "default",
-      "kind": "say",
-      "text": "后日或再后日都有人接班。你可挑，也可今日先不答；晚些仍能拿自己的凭去报。"
-    },
-    {
-      "id": "ch03_s15_yeting.l36",
-      "who": "liuchenghuan",
-      "expr": "default",
-      "kind": "say",
-      "text": "你后日呢？"
-    },
-    {
-      "id": "ch03_s15_yeting.l37",
-      "who": "wuze",
-      "expr": "default",
-      "kind": "say",
-      "text": "我有我的差。这个你自己定。"
-    },
-    {
-      "id": "ch03_s15_yeting.l38",
-      "who": "liuchenghuan",
-      "expr": "guarded",
-      "kind": "say",
-      "text": "还给我以后……你想我怎么选？"
-    },
-    {
-      "id": "ch03_s15_yeting.l39",
-      "who": "self",
-      "kind": "inner",
-      "text": "（我刚才还想把后日圈好。圈好了，好让她肯拿。）"
-    },
-    {
-      "id": "ch03_s15_yeting.l40",
-      "who": "narr",
-      "kind": "aside",
-      "text": "你把笔搁在桌中央。窗外有人晾布，竹竿擦过墙，响了一声。"
-    },
-    {
-      "id": "ch03_s15_yeting.l41",
-      "who": "wuze",
-      "expr": "default",
-      "kind": "say",
-      "text": "今日先不圈。凭据放这里。饭和住处照原簿，不等你答这张。"
-    },
-    {
-      "id": "ch03_s15_yeting.l42",
-      "who": "liuchenghuan",
-      "expr": "default",
-      "kind": "say",
-      "text": "那下一叠稿呢？"
-    },
-    {
-      "id": "ch03_s15_yeting.l43",
-      "who": "wuze",
-      "expr": "default",
-      "kind": "say",
-      "text": "我交原署，另付经办工。不先送到你这里。"
-    },
-    {
       "id": "ch03_s15_yeting.l44",
-      "who": "narr",
-      "kind": "aside",
-      "text": "柳将朱绳从空稿架上解下来。绳的一端绕在腕侧，她解了两下，才从袖口抽出来。"
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "你递热水，我是高兴的。"
     },
     {
       "id": "ch03_s15_yeting.l45",
       "who": "liuchenghuan",
       "expr": "default",
       "kind": "say",
-      "text": "这个，也不要留了？"
+      "text": "高兴？"
     },
     {
       "id": "ch03_s15_yeting.l46",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "那天借你束稿的。稿交完了，绳还我就好。你的纸不用这根束。"
+      "text": "不只怕你难过。我也想有人先替我想好。"
     },
     {
       "id": "ch03_s15_yeting.l47",
+      "who": "liuchenghuan",
+      "expr": "open",
+      "kind": "say",
+      "text": "还照从前，我——"
+    },
+    {
+      "id": "ch03_s15_yeting.l48",
+      "who": "wuze",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "我不能每回只接这句。"
+    },
+    {
+      "id": "ch03_s15_yeting.l49",
+      "who": "liuchenghuan",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "嗯。"
+    },
+    {
+      "id": "ch03_s15_yeting.l50",
+      "who": "narr",
+      "kind": "aside",
+      "text": "她的手还托在稿架旁，掌心向上。那里已经没有纸。"
+    },
+    {
+      "id": "ch03_s15_yeting.l51",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "留原署、另报差都可，做过的工不能扣。"
+    },
+    {
+      "id": "ch03_s15_yeting.l52",
+      "who": "liuchenghuan",
+      "expr": "default",
+      "kind": "say",
+      "text": "你想用哪边的人？"
+    },
+    {
+      "id": "ch03_s15_yeting.l53",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "承欢。"
+    },
+    {
+      "id": "ch03_s15_yeting.l54",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "我问的是你。"
+    },
+    {
+      "id": "ch03_s15_yeting.l55",
+      "who": "liuchenghuan",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "知道。"
+    },
+    {
+      "id": "ch03_s15_yeting.l56",
+      "who": "narr",
+      "kind": "aside",
+      "text": "她把休凭推回半寸。杯底带起纸面，留下湿的一圈。"
+    },
+    {
+      "id": "ch03_s15_yeting.l57",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "后日、再后日都有人接，你可挑。"
+    },
+    {
+      "id": "ch03_s15_yeting.l58",
+      "who": "liuchenghuan",
+      "expr": "default",
+      "kind": "say",
+      "text": "后日……"
+    },
+    {
+      "id": "ch03_s15_yeting.l59",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "今日不答也可，晚些持凭去报。"
+    },
+    {
+      "id": "ch03_s15_yeting.l60",
+      "who": "liuchenghuan",
+      "expr": "default",
+      "kind": "say",
+      "text": "你后日呢？"
+    },
+    {
+      "id": "ch03_s15_yeting.l61",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "我有我的差。这个你自己定。"
+    },
+    {
+      "id": "ch03_s15_yeting.l62",
+      "who": "liuchenghuan",
+      "expr": "default",
+      "kind": "say",
+      "text": "自己定。"
+    },
+    {
+      "id": "ch03_s15_yeting.l63",
+      "who": "liuchenghuan",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "还给我以后……你想我怎么选？"
+    },
+    {
+      "id": "ch03_s15_yeting.l64",
+      "who": "wuze",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "……"
+    },
+    {
+      "id": "ch03_s15_yeting.l65",
+      "who": "self",
+      "kind": "inner",
+      "text": "（我刚才还想把后日圈好。圈好了，好让她肯拿。）"
+    },
+    {
+      "id": "ch03_s15_yeting.l66",
+      "who": "narr",
+      "kind": "aside",
+      "text": "你把笔搁在桌中央。窗外有人晾布，竹竿擦过墙，响了一声。"
+    },
+    {
+      "id": "ch03_s15_yeting.l67",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "今日不圈，凭据留这。饭和住处不等你答。"
+    },
+    {
+      "id": "ch03_s15_yeting.l68",
+      "who": "liuchenghuan",
+      "expr": "default",
+      "kind": "say",
+      "text": "那下一叠稿呢？"
+    },
+    {
+      "id": "ch03_s15_yeting.l69",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "稿。"
+    },
+    {
+      "id": "ch03_s15_yeting.l70",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "交原署，另付经办工，不先送你这。"
+    },
+    {
+      "id": "ch03_s15_yeting.l71",
+      "who": "narr",
+      "kind": "aside",
+      "text": "柳将朱绳从空稿架上解下来。绳的一端绕在腕侧，她解了两下，才从袖口抽出来。"
+    },
+    {
+      "id": "ch03_s15_yeting.l72",
+      "who": "liuchenghuan",
+      "expr": "default",
+      "kind": "say",
+      "text": "这个也不留了？"
+    },
+    {
+      "id": "ch03_s15_yeting.l73",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "绳子。"
+    },
+    {
+      "id": "ch03_s15_yeting.l74",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "借你束稿的，稿交完，绳还我。"
+    },
+    {
+      "id": "ch03_s15_yeting.l75",
+      "who": "liuchenghuan",
+      "expr": "default",
+      "kind": "say",
+      "text": "嗯。"
+    },
+    {
+      "id": "ch03_s15_yeting.l76",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "你的纸不用它束。"
+    },
+    {
+      "id": "ch03_s15_yeting.l77",
       "who": "narr",
       "kind": "aside",
       "text": "你摊开手。她把绳放进来，手指收回时仍弯着。"
     },
     {
-      "id": "ch03_s15_yeting.l48",
+      "id": "ch03_s15_yeting.l78",
+      "who": "narr",
+      "kind": "aside",
+      "text": "你看柳承欢空下来的腕侧，弯着的手指已离开你的掌心。"
+    },
+    {
+      "id": "ch03_s15_yeting.l79",
+      "who": "cg",
+      "kind": "aside",
+      "text": "liuchenghuan_1_guihuan"
+    },
+    {
+      "id": "ch03_s15_yeting.l80",
+      "who": "self",
+      "kind": "inner",
+      "text": "（绳回来了。她的手还没有放平。）"
+    },
+    {
+      "id": "ch03_s15_yeting.l81",
       "who": "liuchenghuan",
       "expr": "default",
       "kind": "say",
-      "text": "杯子留这里。水还温着。"
+      "text": "杯子留这，水还温着。"
     },
     {
-      "id": "ch03_s15_yeting.l49",
+      "id": "ch03_s15_yeting.l82",
       "who": "narr",
       "kind": "aside",
       "text": "柳挪开杯底，把试牒压了进去。应试时辰那一格没有新添的字。"
     },
     {
-      "id": "ch03_s15_yeting.l50",
+      "id": "ch03_s15_yeting.l83",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
       "text": "好。"
+    },
+    {
+      "id": "ch03_s15_yeting.l84",
+      "who": "narr",
+      "kind": "aside",
+      "text": "你收好归还的朱绳，凭据留在柳手边。"
     }
   ],
   "choices": [

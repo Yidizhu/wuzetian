@@ -1,0 +1,47 @@
+{
+  "id": "ch04_s05ca_shuge",
+  "chapter": 4,
+  "act": 4,
+  "scene": "shuge",
+  "palette": "ink",
+  "cast": [
+    "wuze",
+    "shenheng"
+  ],
+  "weightless": false,
+  "leavesLetter": [],
+  "purpose": "同沈衡说停",
+  "lines": [
+    {
+      "id": "ch04_s05ca_shuge.l1",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "往后的私约，我不再应了。是我自己选的。"
+    },
+    {
+      "id": "ch04_s05ca_shuge.l2",
+      "who": "shenheng",
+      "expr": "default",
+      "kind": "say",
+      "text": "那张空纸拿回去。原来的信，我自己留。"
+    },
+    {
+      "id": "ch04_s05ca_shuge.l3",
+      "who": "narr",
+      "kind": "aside",
+      "text": "你接回没写字的纸，她把自己的笺叠好，没有替你收袖。"
+    }
+  ],
+  "choices": [
+    {
+      "id": "ch04_s05ca_shuge.cA",
+      "text": "说到这里，收回私约",
+      "effects": {
+        "pact.shenheng": "ended"
+      },
+      "irreversible": false,
+      "goto": "ch04_s05c_shuge"
+    }
+  ]
+}

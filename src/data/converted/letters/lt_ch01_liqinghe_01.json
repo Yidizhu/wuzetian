@@ -19,7 +19,7 @@
   },
   "sheMayNotReply": {
     "affinity.liqinghe": {
-      "lt": 5
+      "lt": 4
     }
   },
   "interceptable": false,

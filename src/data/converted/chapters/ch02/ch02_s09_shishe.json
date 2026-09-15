@@ -18,217 +18,374 @@
       "id": "ch02_s09_shishe.l1",
       "who": "narr",
       "kind": "aside",
-      "text": "温荞拿圆领袍的袖口垫着纸，纸上的字已经干了。"
+      "text": "许静和的俸钱定下，你去诗社找温荞。"
     },
     {
       "id": "ch02_s09_shishe.l2",
+      "who": "narr",
+      "kind": "aside",
+      "text": "温荞拿圆领袍的袖口垫着纸，纸上的字已经干了。"
+    },
+    {
+      "id": "ch02_s09_shishe.l3",
       "when": {
         "flag.wen_private_critique": true
       },
       "who": "wenqiao",
       "expr": "default",
       "kind": "say",
-      "text": "你肯挑错。今日先挑我。"
+      "text": "你肯挑错，今日先挑我。"
     },
     {
-      "id": "ch02_s09_shishe.l3",
+      "id": "ch02_s09_shishe.l4",
+      "when": {
+        "flag.wen_private_critique": true
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "挑你。"
+    },
+    {
+      "id": "ch02_s09_shishe.l5",
       "when": {
         "flag.wen_read_without_verdict": true
       },
       "who": "wenqiao",
       "expr": "default",
       "kind": "say",
-      "text": "先前说只读不评。今日这句，请你别替我留脸。"
+      "text": "先前只读不评，今日这句别替我留脸。"
     },
     {
-      "id": "ch02_s09_shishe.l4",
+      "id": "ch02_s09_shishe.l6",
+      "when": {
+        "flag.wen_read_without_verdict": true
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "这句？"
+    },
+    {
+      "id": "ch02_s09_shishe.l7",
       "when": {
         "flag.wen_defer_private_visit": true
       },
       "who": "wenqiao",
       "expr": "default",
       "kind": "say",
-      "text": "今日不算赴私约。你先前的话我记着。"
+      "text": "今日不算赴私约，先前的话我记着。"
     },
     {
-      "id": "ch02_s09_shishe.l5",
+      "id": "ch02_s09_shishe.l8",
+      "when": {
+        "flag.wen_defer_private_visit": true
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "先前的话。"
+    },
+    {
+      "id": "ch02_s09_shishe.l9",
       "when": {
         "flag.silent_to_wenqiao": true
       },
       "who": "wenqiao",
       "expr": "default",
       "kind": "say",
-      "text": "上回没回，就留着。这一回另问。"
+      "text": "上回没回便留着，这回另问。"
     },
     {
-      "id": "ch02_s09_shishe.l6",
+      "id": "ch02_s09_shishe.l10",
+      "when": {
+        "flag.silent_to_wenqiao": true
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "你问。"
+    },
+    {
+      "id": "ch02_s09_shishe.l11",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
       "text": "谁的稿？"
     },
     {
-      "id": "ch02_s09_shishe.l7",
+      "id": "ch02_s09_shishe.l12",
       "who": "wenqiao",
       "expr": "guarded",
       "kind": "say",
-      "text": "一个初学的。把一字读错，我学她念，逗了满席。"
+      "text": "一个初学的稿。"
     },
     {
-      "id": "ch02_s09_shishe.l8",
+      "id": "ch02_s09_shishe.l13",
+      "who": "wuze",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "嗯。"
+    },
+    {
+      "id": "ch02_s09_shishe.l14",
+      "who": "wenqiao",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "她错读一字，我学她念，逗了满席。"
+    },
+    {
+      "id": "ch02_s09_shishe.l15",
       "who": "wuze",
       "expr": "guarded",
       "kind": "say",
       "text": "她也笑了？"
     },
     {
-      "id": "ch02_s09_shishe.l9",
+      "id": "ch02_s09_shishe.l16",
       "who": "wenqiao",
       "expr": "default",
       "kind": "say",
       "text": "我没看她。"
     },
     {
-      "id": "ch02_s09_shishe.l10",
+      "id": "ch02_s09_shishe.l17",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "……"
+    },
+    {
+      "id": "ch02_s09_shishe.l18",
       "who": "narr",
       "kind": "aside",
       "text": "温把纸上那一字盖住，指腹停了一息才松开。"
     },
     {
-      "id": "ch02_s09_shishe.l11",
-      "who": "wenqiao",
-      "expr": "guarded",
-      "kind": "say",
-      "text": "她说稿送回去，人就别去了。写得这样明白，我还想添一句“并无恶意”。"
-    },
-    {
-      "id": "ch02_s09_shishe.l12",
-      "who": "wuze",
-      "expr": "default",
-      "kind": "say",
-      "text": "添在哪里？她叫你别去。"
-    },
-    {
-      "id": "ch02_s09_shishe.l13",
-      "who": "wenqiao",
-      "expr": "default",
-      "kind": "say",
-      "text": "是。那句不添。"
-    },
-    {
-      "id": "ch02_s09_shishe.l14",
-      "who": "narr",
-      "kind": "aside",
-      "text": "她折好稿，放到待送的一边，没有附自己的新纸。"
-    },
-    {
-      "id": "ch02_s09_shishe.l15",
-      "who": "wuze",
-      "expr": "default",
-      "kind": "say",
-      "text": "这边的册子也要送？"
-    },
-    {
-      "id": "ch02_s09_shishe.l16",
-      "who": "wenqiao",
-      "expr": "guarded",
-      "kind": "say",
-      "text": "这本不送。"
-    },
-    {
-      "id": "ch02_s09_shishe.l17",
-      "who": "narr",
-      "kind": "aside",
-      "text": "册口夹着一张空页。温合上封皮，没让里面的名露出。"
-    },
-    {
-      "id": "ch02_s09_shishe.l18",
-      "who": "wenqiao",
-      "expr": "default",
-      "kind": "say",
-      "text": "她们愿记的，自己记。有人结契，有人只留诗，谁不肯留便取回自己的页。"
-    },
-    {
       "id": "ch02_s09_shishe.l19",
-      "who": "wuze",
-      "expr": "default",
+      "who": "wenqiao",
+      "expr": "guarded",
       "kind": "say",
-      "text": "官署不认的那本？"
+      "text": "她说送稿回去，人就别去了。"
     },
     {
       "id": "ch02_s09_shishe.l20",
-      "who": "wenqiao",
-      "expr": "default",
+      "who": "wuze",
+      "expr": "guarded",
       "kind": "say",
-      "text": "不算数的册子。你也不能替她们翻。"
+      "text": "别去。"
     },
     {
       "id": "ch02_s09_shishe.l21",
-      "who": "wuze",
-      "expr": "default",
+      "who": "wenqiao",
+      "expr": "guarded",
       "kind": "say",
-      "text": "我不翻。"
+      "text": "我还想添一句，并无——"
     },
     {
       "id": "ch02_s09_shishe.l22",
-      "who": "wenqiao",
-      "expr": "open",
-      "kind": "say",
-      "text": "读点别的。你起头，我跟着。"
-    },
-    {
-      "id": "ch02_s09_shishe.l23",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "我会读错。"
+      "text": "她叫你别去。"
+    },
+    {
+      "id": "ch02_s09_shishe.l23",
+      "who": "wenqiao",
+      "expr": "default",
+      "kind": "say",
+      "text": "……"
     },
     {
       "id": "ch02_s09_shishe.l24",
       "who": "wenqiao",
       "expr": "default",
       "kind": "say",
-      "text": "我也会。今日不抢。"
+      "text": "是，那句不添。"
     },
     {
       "id": "ch02_s09_shishe.l25",
       "who": "narr",
       "kind": "aside",
-      "text": "你念得慢。她快了半拍，停下来，等你再起一句。"
+      "text": "她折好稿，放到待送的一边，没有附自己的新纸。"
     },
     {
       "id": "ch02_s09_shishe.l26",
-      "who": "wenqiao",
-      "expr": "default",
-      "kind": "say",
-      "text": "往后我若又拿旁人取笑，你别陪着笑；先让我听见这一句有多难听。"
-    },
-    {
-      "id": "ch02_s09_shishe.l27",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "别让我替那个人原谅你。"
+      "text": "这册子也送？"
+    },
+    {
+      "id": "ch02_s09_shishe.l27",
+      "who": "wenqiao",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "这本不送。"
     },
     {
       "id": "ch02_s09_shishe.l28",
+      "who": "wuze",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "这本……"
+    },
+    {
+      "id": "ch02_s09_shishe.l29",
+      "who": "narr",
+      "kind": "aside",
+      "text": "册口夹着一张空页。温合上封皮，没让里面的名露出。"
+    },
+    {
+      "id": "ch02_s09_shishe.l30",
+      "who": "wenqiao",
+      "expr": "default",
+      "kind": "say",
+      "text": "愿记的自己记，结契或只留诗，都由她们。"
+    },
+    {
+      "id": "ch02_s09_shishe.l31",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "我听着。"
+    },
+    {
+      "id": "ch02_s09_shishe.l32",
+      "who": "wenqiao",
+      "expr": "default",
+      "kind": "say",
+      "text": "不肯留，就取回自己的页。"
+    },
+    {
+      "id": "ch02_s09_shishe.l33",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "自己的页。"
+    },
+    {
+      "id": "ch02_s09_shishe.l34",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "官署不认的那本？"
+    },
+    {
+      "id": "ch02_s09_shishe.l35",
+      "who": "wenqiao",
+      "expr": "default",
+      "kind": "say",
+      "text": "不算数的册子，你也不能替她们翻。"
+    },
+    {
+      "id": "ch02_s09_shishe.l36",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "我不翻。"
+    },
+    {
+      "id": "ch02_s09_shishe.l37",
+      "who": "wenqiao",
+      "expr": "default",
+      "kind": "say",
+      "text": "好。"
+    },
+    {
+      "id": "ch02_s09_shishe.l38",
+      "who": "wenqiao",
+      "expr": "open",
+      "kind": "say",
+      "text": "读点别的，你起头，我跟着。"
+    },
+    {
+      "id": "ch02_s09_shishe.l39",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "我会读错。"
+    },
+    {
+      "id": "ch02_s09_shishe.l40",
+      "who": "wenqiao",
+      "expr": "default",
+      "kind": "say",
+      "text": "读错……"
+    },
+    {
+      "id": "ch02_s09_shishe.l41",
+      "who": "wenqiao",
+      "expr": "default",
+      "kind": "say",
+      "text": "我也会，今日不抢。"
+    },
+    {
+      "id": "ch02_s09_shishe.l42",
+      "who": "narr",
+      "kind": "aside",
+      "text": "你念得慢。她快了半拍，停下来，等你再起一句。"
+    },
+    {
+      "id": "ch02_s09_shishe.l43",
+      "who": "wenqiao",
+      "expr": "default",
+      "kind": "say",
+      "text": "我若又拿旁人取笑……"
+    },
+    {
+      "id": "ch02_s09_shishe.l44",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "你说。"
+    },
+    {
+      "id": "ch02_s09_shishe.l45",
+      "who": "wenqiao",
+      "expr": "default",
+      "kind": "say",
+      "text": "别陪着笑，让我听见那句多难听。"
+    },
+    {
+      "id": "ch02_s09_shishe.l46",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "别请我替她原谅你。"
+    },
+    {
+      "id": "ch02_s09_shishe.l47",
       "who": "wenqiao",
       "expr": "default",
       "kind": "say",
       "text": "不请你做这个。"
     },
     {
-      "id": "ch02_s09_shishe.l29",
+      "id": "ch02_s09_shishe.l48",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "……"
+    },
+    {
+      "id": "ch02_s09_shishe.l49",
       "who": "narr",
       "kind": "aside",
       "text": "她把样纸转向你。纸背留着两道合不拢的折痕。"
     },
     {
-      "id": "ch02_s09_shishe.l30",
+      "id": "ch02_s09_shishe.l50",
       "who": "wenqiao",
       "expr": "open",
       "kind": "say",
-      "text": "信晚些给你。双鱼的折法我会，今日先别笑这个。"
+      "text": "信晚些给你，双鱼我会折，今日先别笑。"
+    },
+    {
+      "id": "ch02_s09_shishe.l51",
+      "who": "narr",
+      "kind": "aside",
+      "text": "温荞把信留在自己手边，重新铺平样纸。"
     }
   ],
   "choices": [
@@ -257,9 +414,7 @@
     {
       "id": "ch02_s09_shishe.cC",
       "text": "这次我也没余力陪读",
-      "effects": {
-        "flag.wen_help_declined": true
-      },
+      "effects": {},
       "irreversible": false,
       "goto": "ch02_s10_nvguan"
     }

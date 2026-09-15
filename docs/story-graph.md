@@ -11,8 +11,8 @@
 |---|---|---|---|---|---|---|---|
 | 1 | 19 | 19 | 0 | 1 | 5 | 0 | 无 |
 | 2 | 26 | 26 | 0 | 1 | 7 | 2 | 无 |
-| 3 | 24 | 24 | 0 | 1 | 7 | 4 | 无 |
-| 4 | 18 | 18 | 0 | 1 | 2 | 6 | 无 |
+| 3 | 27 | 27 | 0 | 1 | 7 | 4 | 无 |
+| 4 | 35 | 35 | 0 | 0 | 2 | 7 | 无 |
 
 ## 第 1 章
 
@@ -174,6 +174,9 @@ flowchart TD
   ch03_s07_yeting["07_yeting 两个人的交班<br/>yeting"]:::ink
   ch03_s08_hanyuan["08_hanyuan 先把账铺开<br/>hanyuan · 公议"]:::gold
   ch03_s09_yuanye["09_yuanye 今夜不作答卷<br/>yuanye"]:::ink
+  ch03_s09a_yuanye["09a_yuanye 说完再来<br/>yuanye"]:::ink
+  ch03_s09b_yuanye["09b_yuanye 先别约我<br/>yuanye"]:::ink
+  ch03_s09c_yuanye["09c_yuanye 明日的稿照送<br/>yuanye"]:::ink
   ch03_s10_nvguan["10_nvguan 水到这里<br/>nvguan · 无用·公议"]:::ink
   ch03_s11_hanyuan["11_hanyuan 两份答复<br/>hanyuan · 公议"]:::gold
   ch03_s12_hanyuan["12_hanyuan 受不受这一席<br/>hanyuan · 公议"]:::gold
@@ -207,8 +210,18 @@ flowchart TD
   ch03_s08_hanyuan -->|"🔒 C 先办代递，留人核卷"| ch03_s09_yuanye
   ch03_s08_hanyuan -->|"D 保留六处扩办案，先交现有"| ch03_s09_yuanye
   ch03_s08_hanyuan -->|"🔒 E 追问这笔支出的来源"| ch03_s08_hanyuan
-  ch03_s09_yuanye -->|"A 一起走。明日照实争"| ch03_s10_nvguan
-  ch03_s09_yuanye -->|"B 今夜各回。明日照实争"| ch03_s10_nvguan
+  ch03_s09_yuanye -->|"🔒 A 想只同你相爱，我去说清楚"| ch03_s09a_yuanye
+  ch03_s09_yuanye -->|"🔒 B 我还想见她，也想见你"| ch03_s09b_yuanye
+  ch03_s09_yuanye -->|"🔒 C 答不出，先停我们的私约"| ch03_s09c_yuanye
+  ch03_s09_yuanye -->|"🔒 D 一起走。明日照实争"| ch03_s10_nvguan
+  ch03_s09_yuanye -->|"🔒 E 今夜各回。明日照实争"| ch03_s10_nvguan
+  ch03_s09_yuanye -->|"🔒 F 一起走。明日照实争"| ch03_s10_nvguan
+  ch03_s09_yuanye -->|"🔒 G 今夜各回。明日照实争"| ch03_s10_nvguan
+  ch03_s09_yuanye -->|"🔒 H 一起走。明日照实争"| ch03_s10_nvguan
+  ch03_s09_yuanye -->|"🔒 I 今夜各回。明日照实争"| ch03_s10_nvguan
+  ch03_s09a_yuanye --> ch03_s10_nvguan
+  ch03_s09b_yuanye --> ch03_s10_nvguan
+  ch03_s09c_yuanye --> ch03_s10_nvguan
   ch03_s10_nvguan --> ch03_s11_hanyuan
   ch03_s11_hanyuan -->|"🔒 A 我受这一席"| ch03_s12_hanyuan
   ch03_s11_hanyuan -->|"🔒 B 我不受，请依原议重推"| ch03_s12_hanyuan
@@ -250,9 +263,26 @@ flowchart TD
   ch04_s03_shuge["03_shuge 原页不能再生<br/>shuge"]:::gold
   ch04_s04_zhaoyang["04_zhaoyang 谁能签两个人<br/>zhaoyang"]:::ink
   ch04_s05_yeting["05_yeting 钱到了谁手里<br/>yeting"]:::ink
+  ch04_s05c_shuge["05c_shuge 先把旧约说完<br/>shuge"]:::ink
+  ch04_s05ca_shuge["05ca_shuge 同沈衡说停<br/>shuge"]:::ink
+  ch04_s05cb_yuanye["05cb_yuanye 同裴照夜说停<br/>yuanye"]:::ink
+  ch04_s05cc_shishe["05cc_shishe 同温荞说停<br/>shishe"]:::ink
+  ch04_s05cd_yuanye["05cd_yuanye 同李令仪说停<br/>yuanye"]:::ink
+  ch04_s05m_shuge["05m_shuge 把名字想清楚<br/>shuge"]:::ink
+  ch04_s05p_shuge["05p_shuge 往后怎样见面<br/>shuge"]:::ink
+  ch04_s05pe_shuge["05pe_shuge 出门以前<br/>shuge"]:::ink
+  ch04_s05q_shuge["05q_shuge 还没有听完的答复<br/>shuge"]:::ink
+  ch04_s05qa_shuge["05qa_shuge 听沈衡自己答<br/>shuge"]:::ink
+  ch04_s05qb_yuanye["05qb_yuanye 听裴照夜自己答<br/>yuanye"]:::ink
+  ch04_s05qc_shishe["05qc_shishe 听温荞自己答<br/>shishe"]:::ink
+  ch04_s05qd_yuanye["05qd_yuanye 听李令仪自己答<br/>yuanye"]:::ink
+  ch04_s05r_shuge["05r_shuge 各自答过以后<br/>shuge"]:::ink
+  ch04_s05rl_yuanye["05rl_yuanye 相见不替她定去处<br/>yuanye"]:::ink
+  ch04_s05z_yeting["05z_yeting 钱到了谁手里<br/>yeting"]:::ink
   ch04_s06_zhaoyang["06_zhaoyang 灯油添到这里<br/>zhaoyang · 无用"]:::ink
   ch04_s07_hanyuan["07_hanyuan 下一份荐名<br/>hanyuan · 公议"]:::gold
   ch04_s08_shuge["08_shuge 这份只署我<br/>shuge"]:::ink
+  ch04_s08z_shuge["08z_shuge 这份只署我<br/>shuge"]:::ink
   ch04_s09_yuanye["09_yuanye 见面不列朝班<br/>yuanye"]:::ink
   ch04_s10_yuanye["10_yuanye 一张饼够了<br/>yuanye"]:::ink
   ch04_s11_nvguan["11_nvguan 三日以后谁付<br/>nvguan"]:::ink
@@ -262,7 +292,57 @@ flowchart TD
   ch04_s15_yilu["15_yilu 各自领一份<br/>yilu · 公议"]:::ink
   ch04_s16_yilu["16_yilu 驿旁不是归处<br/>yilu · 公议"]:::ink
   ch04_s17_nvguan["17_nvguan 只有这边看得到<br/>nvguan"]:::ink
-  ch04_s18_wuzibei["18_wuzibei 留白以后<br/>wuzibei · 无用·章末"]:::ink
+  ch04_s18_wuzibei["18_wuzibei 留白以后<br/>wuzibei · 无用·公议"]:::ink
+  ch04_s05p_shuge -->|"🔒 A 去见沈衡，我想只同她相爱"| ch04_s05pe_shuge
+  ch04_s05p_shuge -->|"🔒 B 去见裴照夜，我想只同她相"| ch04_s05pe_shuge
+  ch04_s05p_shuge -->|"🔒 C 去见温荞，我想只同她相爱"| ch04_s05pe_shuge
+  ch04_s05p_shuge -->|"🔒 D 去见李令仪，我想只同她相"| ch04_s05pe_shuge
+  ch04_s05p_shuge -->|"🔒 E 还想见不止一人，逐个说清"| ch04_s05pe_shuge
+  ch04_s05p_shuge -->|"🔒 F 先停私约，独自过一阵"| ch04_s05pe_shuge
+  ch04_s05p_shuge -->|"🔒 G 独自过一阵"| ch04_s05pe_shuge
+  ch04_s05pe_shuge -->|"🔒 自动1"| ch04_s05m_shuge
+  ch04_s05pe_shuge --> ch04_s05c_shuge
+  ch04_s05m_shuge -->|"🔒 A 还想问沈衡"| ch04_s05m_shuge
+  ch04_s05m_shuge -->|"🔒 B 还想问裴照夜"| ch04_s05m_shuge
+  ch04_s05m_shuge -->|"🔒 C 还想问温荞"| ch04_s05m_shuge
+  ch04_s05m_shuge -->|"🔒 D 还想问李令仪"| ch04_s05m_shuge
+  ch04_s05m_shuge -->|"E 就这些，分别去说"| ch04_s05c_shuge
+  ch04_s05c_shuge -->|"🔒 自动1"| ch04_s05ca_shuge
+  ch04_s05c_shuge -->|"🔒 自动2"| ch04_s05cb_yuanye
+  ch04_s05c_shuge -->|"🔒 自动3"| ch04_s05cc_shishe
+  ch04_s05c_shuge -->|"🔒 自动4"| ch04_s05cd_yuanye
+  ch04_s05c_shuge --> ch04_s05q_shuge
+  ch04_s05ca_shuge -->|"A 说到这里，收回私约"| ch04_s05c_shuge
+  ch04_s05cb_yuanye -->|"A 说到这里，收回私约"| ch04_s05c_shuge
+  ch04_s05cc_shishe -->|"A 说到这里，收回私约"| ch04_s05c_shuge
+  ch04_s05cd_yuanye -->|"A 说到这里，收回私约"| ch04_s05c_shuge
+  ch04_s05q_shuge -->|"🔒 自动1"| ch04_s05qa_shuge
+  ch04_s05q_shuge -->|"🔒 自动2"| ch04_s05qb_yuanye
+  ch04_s05q_shuge -->|"🔒 自动3"| ch04_s05qc_shishe
+  ch04_s05q_shuge -->|"🔒 自动4"| ch04_s05qd_yuanye
+  ch04_s05q_shuge --> ch04_s05r_shuge
+  ch04_s05qa_shuge -->|"🔒 A 我也愿意，只与你相爱"| ch04_s05q_shuge
+  ch04_s05qa_shuge -->|"🔒 B 听见了，不再这样约"| ch04_s05q_shuge
+  ch04_s05qa_shuge -->|"🔒 C 我还做不到，先停私约"| ch04_s05q_shuge
+  ch04_s05qb_yuanye -->|"🔒 A 我也愿意，只与你相爱"| ch04_s05q_shuge
+  ch04_s05qb_yuanye -->|"🔒 B 按说清的这样继续"| ch04_s05q_shuge
+  ch04_s05qb_yuanye -->|"C 我还做不到，先停私约"| ch04_s05q_shuge
+  ch04_s05qc_shishe -->|"🔒 A 我也愿意，只与你相爱"| ch04_s05q_shuge
+  ch04_s05qc_shishe -->|"🔒 B 按说清的这样继续"| ch04_s05q_shuge
+  ch04_s05qc_shishe -->|"C 我还做不到，先停私约"| ch04_s05q_shuge
+  ch04_s05qd_yuanye -->|"🔒 A 我也愿意，只与你相爱"| ch04_s05q_shuge
+  ch04_s05qd_yuanye -->|"🔒 B 听见了，不再这样约"| ch04_s05q_shuge
+  ch04_s05qd_yuanye -->|"🔒 C 我还做不到，先停私约"| ch04_s05q_shuge
+  ch04_s05r_shuge -->|"🔒 自动1"| ch04_s05z_yeting
+  ch04_s05r_shuge -->|"🔒 自动2"| ch04_s05rl_yuanye
+  ch04_s05r_shuge --> ch04_s08z_shuge
+  ch04_s05z_yeting -->|"🔒 A 收好今日的交付凭"| ch04_s06_zhaoyang
+  ch04_s05z_yeting -->|"🔒 B 收好今日的交付凭"| ch04_s06_zhaoyang
+  ch04_s05z_yeting -->|"🔒 C 收好今日的交付凭"| ch04_s06_zhaoyang
+  ch04_s08z_shuge -->|"🔒 A 今日不定去处，出去吃点东"| ch04_s10_yuanye
+  ch04_s08z_shuge -->|"🔒 B 去见李令仪，私话另答"| ch04_s09_yuanye
+  ch04_s08z_shuge -->|"🔒 C 明日去问借屋教字"| ch04_s11_nvguan
+  ch04_s08z_shuge -->|"🔒 D 去问一份独立差程"| ch04_s14_shuge
   ch04_s01_zhaoyang -->|"🔒 A 写下天"| ch04_s02_hanyuan
   ch04_s01_zhaoyang -->|"🔒 B 写下曌"| ch04_s02_hanyuan
   ch04_s01_zhaoyang -->|"🔒 C 仍用添"| ch04_s02_hanyuan
@@ -279,23 +359,19 @@ flowchart TD
   ch04_s04_zhaoyang -->|"🔒 B 颁行个人分别授权的办法"| ch04_s05_yeting
   ch04_s04_zhaoyang -->|"🔒 C 颁行双方自愿入籍的办法"| ch04_s05_yeting
   ch04_s04_zhaoyang -->|"🔒 D 颁行个人分别授权的办法"| ch04_s05_yeting
-  ch04_s05_yeting -->|"🔒 A 收好今日的交付凭"| ch04_s06_zhaoyang
-  ch04_s05_yeting -->|"🔒 B 收好今日的交付凭"| ch04_s06_zhaoyang
-  ch04_s05_yeting -->|"🔒 C 收好今日的交付凭"| ch04_s06_zhaoyang
+  ch04_s05_yeting --> ch04_s05p_shuge
   ch04_s07_hanyuan -->|"A 颁行多方提名与异议办法"| ch04_s17_nvguan
   ch04_s07_hanyuan -->|"B 颁行仅由在位者提名的办法"| ch04_s17_nvguan
-  ch04_s08_shuge -->|"🔒 A 今日不定去处，出去吃点东"| ch04_s10_yuanye
-  ch04_s08_shuge -->|"🔒 B 去见李令仪，私话另答"| ch04_s09_yuanye
-  ch04_s08_shuge -->|"🔒 C 明日去问借屋教字"| ch04_s11_nvguan
-  ch04_s08_shuge -->|"🔒 D 去问一份独立差程"| ch04_s14_shuge
+  ch04_s08_shuge --> ch04_s05p_shuge
   ch04_s10_yuanye --> ch04_s17_nvguan
+  ch04_s05rl_yuanye -->|"🔒 A 约好再见，收好自己的稿"| ch04_s08z_shuge
   ch04_s06_zhaoyang --> ch04_s07_hanyuan
-  ch04_s09_yuanye -->|"A 我也愿意，先留京再约"| ch04_s10_yuanye
-  ch04_s09_yuanye -->|"B 我也愿意，办学的事仍要去"| ch04_s11_nvguan
-  ch04_s09_yuanye -->|"C 我也愿意，行路的事仍要去"| ch04_s14_shuge
-  ch04_s09_yuanye -->|"D 今后只谈公事，我先留京"| ch04_s10_yuanye
-  ch04_s09_yuanye -->|"E 今后只谈公事，我去问办学"| ch04_s11_nvguan
-  ch04_s09_yuanye -->|"F 今后只谈公事，我去问行路"| ch04_s14_shuge
+  ch04_s09_yuanye -->|"🔒 A 先留京，再约时辰"| ch04_s10_yuanye
+  ch04_s09_yuanye -->|"🔒 B 办学的事仍要去问"| ch04_s11_nvguan
+  ch04_s09_yuanye -->|"🔒 C 行路的事仍要去问"| ch04_s14_shuge
+  ch04_s09_yuanye -->|"🔒 D 今后只谈公事，我先留京"| ch04_s10_yuanye
+  ch04_s09_yuanye -->|"🔒 E 今后只谈公事，我去问办学"| ch04_s11_nvguan
+  ch04_s09_yuanye -->|"🔒 F 今后只谈公事，我去问行路"| ch04_s14_shuge
   ch04_s11_nvguan -->|"A 按这一月的约定办"| ch04_s12_nvguan
   ch04_s11_nvguan -->|"B 这回先不接"| ch04_s10_yuanye
   ch04_s11_nvguan -->|"🔒 C 追问无人来时怎样付钱"| ch04_s11_nvguan

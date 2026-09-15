@@ -1,0 +1,48 @@
+{
+  "id": "ch04_s05r_shuge",
+  "chapter": 4,
+  "act": 4,
+  "scene": "shuge",
+  "palette": "ink",
+  "cast": [
+    "wuze"
+  ],
+  "weightless": false,
+  "leavesLetter": [],
+  "purpose": "各自答过以后",
+  "lines": [
+    {
+      "id": "ch04_s05r_shuge.l1",
+      "when": {
+        "pacts.love": {
+          "eq": 0
+        }
+      },
+      "who": "self",
+      "kind": "inner",
+      "text": "（今夜自己回去。不让谁再替我留着时辰。）"
+    },
+    {
+      "id": "ch04_s05r_shuge.l2",
+      "who": "narr",
+      "kind": "aside",
+      "text": "你收好袖里的纸，走回还亮着灯的廊下。"
+    }
+  ],
+  "branches": [
+    {
+      "require": {
+        "flag.enthroned": true
+      },
+      "goto": "ch04_s05z_yeting"
+    },
+    {
+      "require": {
+        "flag.liqinghe_won": true,
+        "love.liqinghe": true
+      },
+      "goto": "ch04_s05rl_yuanye"
+    }
+  ],
+  "goto": "ch04_s08z_shuge"
+}

@@ -28,6 +28,8 @@ import type { SceneT, PoemT, PoemDuelT, LetterT, EndingT } from "../src/engine/s
 import type { Condition } from "../src/engine/types.ts";
 import { AFFINITY_BANDS } from "../src/engine/types.ts";
 import { DRESSINGS } from "../src/scene/dressings.ts";
+import { CGS } from "../src/scene/cgs.ts";
+import { relationKey, looksLikeRelationKey, LOVE_KEYS, type RelationKeyInfo } from "../src/engine/pact.ts";
 
 // ---------------------------------------------------------------- 结果类型
 
@@ -98,6 +100,12 @@ export function choiceId(id: string, key: string): string {
  * 转成 `{ cai: { gte: 6 }, "flag.took_seal": true, "flag.refused_marriage": false }`
  *
  * 认这些写法：`>= <= > < =`、`且`、`非`、`好感.<key>`（转 `affinity.<key>`）。
+ * 关系键（B27／D-161，键和取值只从 src/engine/pact.ts 取，不抄一份）：
+ *   `pact.shenheng = active`         → `"pact.shenheng": "active"`
+ *   `pact.liqinghe = active/paused`  → `{ in: ["active", "paused"] }`（其中之一）
+ *   `pact.shenheng != none/declined` → `{ not: ["none", "declined"] }`（不是其中之一；单个值也写 not）
+ *   `told.wenqiao`、`非 love.shenheng` → 布尔，写法同 flag
+ *   `pacts.active >= 2`               → 比较，写法同数值
  * 认不出的一律进 issues，不要猜。
  */
 export function parseCondition(text: string): Condition {
@@ -106,6 +114,23 @@ export function parseCondition(text: string): Condition {
   for (const part of text.split("且").map(x => x.trim())) {
     const flag = /^(非\s+)?(flag\.[a-z][a-z0-9_]*)$/.exec(part);
     if (flag) { put(out, flag[2], !flag[1]); continue; }
+    const relBool = /^(非\s+)?((?:pact|told|answer|asked|love|pacts)\.[a-z]+|intent)$/.exec(part);
+    if (relBool) {
+      const info = relationInfo(relBool[2]);
+      if (info.kind !== "bool") throw new Error(`「${relBool[2]}」不是真假值，要写成「${relBool[2]} = 取值」${info.kind === "number" ? "或比较（>= 2 这种）" : `（${(info.kind as readonly string[]).join("／")}）`}`);
+      put(out, relBool[2], !relBool[1]); continue;
+    }
+    const rel = /^((?:pact|told|answer|asked|love|pacts)\.[a-z]+|intent)\s*(!=|=)\s*([a-z]+(?:\s*\/\s*[a-z]+)*)$/.exec(part);
+    if (rel) {
+      const info = relationInfo(rel[1]);
+      if (info.kind === "bool") throw new Error(`「${rel[1]}」是真假值，条件里直接写「${rel[1]}」或「非 ${rel[1]}」`);
+      if (info.kind === "number") throw new Error(`「${rel[1]}」是个数，要写比较（>= 2 这种）`);
+      const vals = rel[3].split("/").map(x => x.trim());
+      for (const x of vals) if (!(info.kind as readonly string[]).includes(x)) throw new Error(`「${rel[1]}」没有「${x}」这个值，只能是 ${(info.kind as readonly string[]).join("／")}`);
+      if (new Set(vals).size !== vals.length) throw new Error(`「${part}」里有重复的值`);
+      put(out, rel[1], rel[2] === "!=" ? { not: vals } : vals.length === 1 ? vals[0] : { in: vals });
+      continue;
+    }
     const m = /^(\S+)\s*(>=|<=|>|<|=)\s*(-?\d+(?:\.\d+)?)$/.exec(part);
     if (!m) throw new Error(`不能解析条件：${part}`);
     const k = numericKey(m[1]);
@@ -116,9 +141,19 @@ export function parseCondition(text: string): Condition {
   }
   return out;
 }
+/** 关系键的说明（src/engine/pact.ts）。长得像关系键却认不出——人写错了或字段写错了——当场说清楚 */
+function relationInfo(key: string): RelationKeyInfo {
+  const info = relationKey(key);
+  if (!info) throw new Error(`关系键「${key}」写错了：人只能是 ${LOVE_KEYS.join("／")}，字段只能是 pact／told／answer／asked／love，或 intent、pacts.active、pacts.love（src/engine/pact.ts）`);
+  return info;
+}
 function numericKey(key: string): string {
   key = key.replace(/^好感\./, "affinity.");
   if (/^(shi|ming|cai|xin)$/.test(key)) return key;
+  if (looksLikeRelationKey(key)) {
+    if (relationInfo(key).kind !== "number") throw new Error(`「${key}」不是个数，不能比大小`);
+    return key;
+  }
   if (key.startsWith("affinity.") && (CHARACTER_KEYS as readonly string[]).includes(key.slice(9))) return key;
   throw new Error(`未知数值或角色：${key}`);
 }
@@ -132,13 +167,27 @@ function put(obj: Record<string, any>, key: string, value: any) {
  * 转成 `{ cai: 2, ming: 1, "flag.took_seal": true }`
  *
  * 数值键是增量，可以为负；flag 键是绝对值，`真`/`假`。
+ * 关系键（B27）也是绝对值：`pact.shenheng = ended`、`answer.peizhaoye = open`、`intent = only`、`told.wenqiao = 真`。
+ * 算出来的键（love.*、pacts.*）不能写；回信能写什么由引擎守（pact.ts 规则 3），转换器不替它挡。
  */
-export function parseEffects(text: string): Record<string, number | boolean> {
-  const out: Record<string, number | boolean> = {};
+export function parseEffects(text: string): Record<string, number | boolean | string> {
+  const out: Record<string, number | boolean | string> = {};
   if (!text.trim()) return out;
   for (const part of text.split(/[,，]/).map(x => x.trim())) {
     const flag = /^(flag\.[a-z][a-z0-9_]*)\s*=\s*(真|假)$/.exec(part);
     if (flag) { put(out, flag[1], flag[2] === "真"); continue; }
+    const rel = /^((?:pact|told|answer|asked|love|pacts)\.[a-z]+|intent)\s*=\s*(\S+)$/.exec(part);
+    if (rel) {
+      const info = relationInfo(rel[1]);
+      if (!info.writable) throw new Error(`「${rel[1]}」是算出来的，只能写在条件里，不能写进效果`);
+      if (info.kind === "bool") {
+        if (rel[2] !== "真" && rel[2] !== "假") throw new Error(`「${rel[1]}」只能写真或假`);
+        put(out, rel[1], rel[2] === "真"); continue;
+      }
+      const allowed = info.kind as readonly string[];
+      if (!allowed.includes(rel[2])) throw new Error(`「${rel[1]}」没有「${rel[2]}」这个值，只能是 ${allowed.join("／")}；效果里一次只能写一个值`);
+      put(out, rel[1], rel[2]); continue;
+    }
     const m = /^(\S+)\s+([+-]\d+(?:\.\d+)?)$/.exec(part);
     if (!m) throw new Error(`不能解析效果：${part}`);
     put(out, numericKey(m[1]), Number(m[2]));
@@ -207,6 +256,7 @@ const SCHEMA_HAS = {
   letterPages: "pages" in shapeOf(shapeOf(Letter).body),                      // D-044
   dressing: "dressing" in shapeOf(Scene),                                     // D-046
   chapterEndChoice: Choice.safeParse({ id: "x", text: "y" }).success,         // D-043
+  branches: "branches" in shapeOf(Scene),                                     // B27 自动去向
 };
 
 /** 说话人允许的取值：十个冻结角色，加主角内心与旁白 */
@@ -217,10 +267,24 @@ export const SPEAKERS = new Set<string>((() => {
   return got.length ? got : [...CHARACTER_KEYS, "self", "narr"];
 })());
 /**
- * 剧本「说话人」一栏里写的中文标签 → schema 的 key。现在只有 D-063 的「题记」→ tiji
- * （src/engine/schema.ts 的 SpeakerKey 注释写明了这一对）。key 本身必须在 SPEAKERS 里，测试会查。
+ * 剧本「说话人」一栏里写的中文标签 → schema 的 key。D-063 的「题记」→ tiji，D-142／B23 的「事件图」→ cg，
+ * D-176／B31 的「空镜」→ empty（值是 CC1 定的；空镜格的三条规矩写在 schema 的 Scene 里，转换器照它报，不另抄一份）
+ * （src/engine/schema.ts 的 SpeakerKey 注释写明了这两对）。key 本身必须在 SPEAKERS 里，测试会查。
  */
-export const SPEAKER_LABELS: Record<string, string> = { 题记: "tiji" };
+export const SPEAKER_LABELS: Record<string, string> = { 题记: "tiji", 事件图: "cg", 空镜: "empty" };
+
+/**
+ * 事件图那一行的文本是图的 key，只有一个出处：src/scene/cgs.ts（CC3 定图、CC1 管机制）。
+ * 写了表里没有的 key，引擎走到那一格找不到图就当它不存在——戏照走、图不出，每一场单看都合法，
+ * 所以在转换这一关报出来，挡转换（R-019）。表里有名字相近的就列出来：多半是改名撞车，不是乱写
+ */
+function unknownCg(key: string): string {
+  const bare = (k: string) => k.replace(/_\d+_/, "_");
+  const near = Object.keys(CGS).filter(k => bare(k) === bare(key) || k.split("_")[0] === key.split("_")[0]);
+  return `事件图「${key}」不在 src/scene/cgs.ts 的表里，引擎走到这一格会找不到图、直接跳过。` +
+    (near.length ? `表里名字相近的有：${near.join("、")}——若是表改了名，请 ChatGPT 按表改文本，或 CC1／CC3 把表的 key 改回来，两边对齐一处即可。` : `现有：${Object.keys(CGS).join("、")}。`) +
+    `这一场照常输出，只是这一格的图出不来`;
+}
 
 /** 认不出的角色 key：可能是新批准的角色还没进枚举，也可能是笔误。两条路都写出来 */
 function unknownCharacter(key: string, where: string): string {
@@ -377,7 +441,7 @@ function duelIdOf(s: string): string {
  */
 const KNOWN_FIELDS: Record<string, { data: string[]; notes?: string[] }> = {
   场景: {
-    data: ["章", "幕", "地点 key", "色板", "在场", "进入条件", "无用场景", "一句话目的", "去向", "章末", "布置", "留信", "对诗", "终局判定", "结局", "BGM"],
+    data: ["章", "幕", "地点 key", "色板", "在场", "进入条件", "无用场景", "一句话目的", "去向", "自动去向", "章末", "布置", "留信", "对诗", "终局判定", "结局", "BGM"],
     notes: ["进场想要", "阻碍", "行动", "翻转", "出场所知"],
   },
   信: { data: ["发信人", "触发", "延迟分钟", "节气", "笺", "明面", "引诗", "引诗要说的", "空白", "她可能不回", "会被截", "被截去向", "截获场景"] },
@@ -616,15 +680,21 @@ export function convertBatch(inputs: { markdown: string; file: string }[]): Conv
     if (v("终局判定")) value.judgeEnding = yes(v("终局判定"));
     if (v("结局")) value.ending = v("结局");
     const lt = lineTable(b);
+    const cgNotes: { row: Row; message: string }[] = [];
+    /** 和 value.lines 一一对应的原文行：schema 按台词下标报的问题（空镜那几条）要指回剧本那一格 */
+    const lineRows: Row[] = [];
     for (const row of lt.table.rows) attempt(b, row, () => {
       const cell = (name: string) => lt.at(row, name);
       const [n, rawWho, expr, kind, text, cond] = [cell("#"), cell("说话人"), cell("表情"), cell("类型"), cell("台词"), cell("条件")];
       const who = SPEAKER_LABELS[rawWho.trim()] ?? rawWho;
       const number = integer(n); const lid = lineId(id, number); unique("line", lid);
       if (number !== value.lines.length + 1) throw new Error("台词序号须从 1 连续递增");
-      const mapped = ({ 说: "say", 内心: "inner", 旁白: "aside", 诗: "poem" } as Record<string, string>)[kind];
+      // 事件图那一行「类型」留空（B23 的写法）：它不是说出口的话，不进对话框，按旁白记，和题记同一类
+      // 事件图、空镜那一行「类型」留空也行：都不是说出口的话，按旁白记（空镜 schema 要求就是 aside）
+      const mapped = (who === "cg" || who === "empty") && !kind.trim() ? "aside" : ({ 说: "say", 内心: "inner", 旁白: "aside", 诗: "poem" } as Record<string, string>)[kind];
       if (!mapped) throw new Error(`未知台词类型：${kind}`);
       if (!SPEAKERS.has(who)) throw new Error(unknownCharacter(who, "说话人"));
+      if (who === "cg" && !CGS[text.trim()]) cgNotes.push({ row, message: unknownCg(text.trim()) });
       const line: any = { id: lid, who, ...(expr ? { expr } : {}), kind: mapped, text };
       // Validate each line at its own source row for precise diagnostics.
       const checked = Line.safeParse(line);
@@ -632,6 +702,7 @@ export function convertBatch(inputs: { markdown: string; file: string }[]): Conv
       // D-026：「条件」列 -> Line.when。空 = 总是播放。写法同选项表「需要」列。
       if (cond.trim()) line.when = parseCondition(cond);
       value.lines.push(line);
+      lineRows.push(row);
     });
     // 先看这一场是不是章末：选项去向写「章末」时要对得上（D-043）
     const chapterEndHere = v("去向").trim() === "章末" || (!!v("章末") && attempt(b, f["章末"], () => yes(v("章末"))) === true);
@@ -659,6 +730,25 @@ export function convertBatch(inputs: { markdown: string; file: string }[]): Conv
     if (chapterEndHere) value.chapterEnd = true;
     const sceneDest = v("去向").trim();
     if (sceneDest && sceneDest !== "章末" && (!choices || chapterEndHere)) value.goto = attempt(b, f["去向"], () => ref(sceneDest));
+    // B27：「自动去向 | 条件 → ch04-05ca；条件 → ch04-05cb；兜底 → ch04-08z」→ branches + goto。
+    // 从上往下取第一个满足的；兜底就是场景级 goto，所以要写在最后，也不能和「去向」各写一个
+    if (v("自动去向")) attempt(b, f["自动去向"], () => {
+      if (!SCHEMA_HAS.branches) throw new Error("场景表写了「自动去向」，但 schema 还没有 Scene.branches，需要 CC1 先加（B27）");
+      const branches: { require?: Condition; goto: string }[] = [];
+      let fallback: string | undefined;
+      for (const piece of v("自动去向").split(/[；;]/).map(x => x.trim()).filter(Boolean)) {
+        const m = /^(.*?)\s*(?:→|->)\s*(\S+)$/.exec(piece);
+        if (!m) throw new Error(`自动去向每一条写成「条件 → 场次」，最后一条可以是「兜底 → 场次」：${piece}`);
+        if (fallback) throw new Error(`「兜底」要写在自动去向的最后一条，后面的「${piece}」永远轮不到`);
+        if (m[1].trim() === "兜底") { fallback = ref(m[2]); continue; }
+        if (!m[1].trim()) throw new Error(`自动去向这一条没写条件：${piece}。不带条件的请写「兜底 → 场次」`);
+        branches.push({ require: parseCondition(m[1]), goto: ref(m[2]) });
+      }
+      if (!branches.length) throw new Error("自动去向只有兜底：直接写「去向」就行");
+      if (fallback && value.goto && value.goto !== fallback) throw new Error(`「去向」写的是 ${value.goto}，「自动去向」的兜底写的是 ${fallback}，两处要一致，或者只写一处`);
+      value.branches = branches;
+      if (fallback) value.goto = fallback;
+    });
     // D-046：场景表「布置 | 公议」-> Scene.dressing。哪几场是公议写在剧本里，不写进引擎白名单，
     // 否则改一句标题就悄悄少一排案，而且没有任何东西会报错。
     // schema 没跟上时照常输出这一场，只把布置记一条：丢的是一排道具，戏文一句不少。
@@ -703,7 +793,17 @@ export function convertBatch(inputs: { markdown: string; file: string }[]): Conv
     if (!r.success) {
       // 去向写了但没解析成功（比如「第二章（待交）」）时，原因已经报过；再报一条「没有出口」只是噪音。
       const gotoFailed = !!v("去向") && !value.goto && !value.choices?.length;
-      for (const i of r.error.issues) if (!(gotoFailed && /场景没有出口/.test(i.message))) addIssue(b, choiceRow(i.path), zodMessage({ issues: [i] }));
+      for (const i of r.error.issues) {
+        if (gotoFailed && /场景没有出口/.test(i.message)) continue;
+        // D-169：循环回到自己的中转场不放台词（每回来一次都会重播）。台词表空着是剧本的本意，
+        // 挡住它的是 schema 的「每场至少一句」，这是接口问题，不是原文写错
+        if (i.path[0] === "lines" && i.code === "too_small" && value.lines.length === 0) {
+          addIssue(b, f["一句话目的"] ?? undefined, `这一场台词表是空的：D-169 定了中转场不放台词，但 src/engine/schema.ts 的 Scene.lines 还要求至少一句。引擎本身能走零台词的场（和台词全被条件跳过同一条路），需要 CC1 把 lines 放开到可以为空（至少对有出口的场）。在那之前这一场不输出`, "CC1 接口");
+          continue;
+        }
+        const lineRow = i.path[0] === "lines" && typeof i.path[1] === "number" ? lineRows[i.path[1]] : undefined;
+        addIssue(b, choiceRow(i.path) ?? lineRow, zodMessage({ issues: [i] }));
+      }
     }
     if (r.success && !blockHasErrors(b)) {
       const parsed: any = r.data;
@@ -713,6 +813,8 @@ export function convertBatch(inputs: { markdown: string; file: string }[]): Conv
       result.titles![id] = b.heading.slice(3).replace(/^ch\d+-\d+[a-z]*\s*/, "").trim();
       // 记在这一场输出之后：它是一条提醒，不是挡住这一场的错
       if (dressingNote) addIssue(b, f["布置"], dressingNote, "CC1 接口");
+      // 同理记在输出之后：丢的是一张图，戏文一句不少，不扣整场；但它是静默失效，要挡转换
+      for (const n of cgNotes) addIssue(b, n.row, n.message, "ChatGPT 格式");
     }
   });
   /** 所有试过转换的信（含失败的），留信核对时用来区分「没交信」和「信交了但没转过」 */
@@ -993,6 +1095,8 @@ export function sceneEdges(r: ConvertResult): Edge[] {
   const edges: Edge[] = [];
   for (const s of r.scenes as any[]) {
     for (const c of s.choices ?? []) if (c.goto) edges.push({ from: s.id, to: c.goto, label: `${c.id.split(".c")[1]} ${c.text}`, kind: "choice", locked: !!c.require });
+    // B27 自动去向：不让玩家选，按条件走。画成带锁的边，标「自动」
+    (s.branches ?? []).forEach((br: any, i: number) => edges.push({ from: s.id, to: br.goto, label: `自动${i + 1}`, kind: "goto", locked: !!(br.require && Object.keys(br.require).length) }));
     if (s.goto) edges.push({ from: s.id, to: s.goto, label: s.chapterEnd ? "章末" : "", kind: s.chapterEnd ? "chapterEnd" : "goto", locked: false });
     const d = s.duel ? duels.get(s.duel) : undefined;
     if (d?.onWin?.goto) edges.push({ from: s.id, to: d.onWin.goto, label: "对诗·赢", kind: "duel", locked: false });
@@ -1060,6 +1164,61 @@ export function storyGraph(r: ConvertResult): string {
   return out.join("\n") + "\n";
 }
 
+/**
+ * flag 登记表（tools/convert-flag-ledger.json，CC2 维护）。
+ * 真正的空缺／空转要么当场修掉，要么在这里登记判定、理由和谁来了结。
+ */
+export type FlagVerdict = "漏读" | "漏写" | "真死";
+export interface FlagLedgerEntry { flag: string; verdict: FlagVerdict; why: string; fix: string }
+export const FLAG_VERDICTS: readonly FlagVerdict[] = ["漏读", "漏写", "真死"];
+export const FLAG_LEDGER_TEXT = readFileSync(new URL("./convert-flag-ledger.json", import.meta.url), "utf8").replace(/^\uFEFF/, "");
+export const FLAG_LEDGER: FlagLedgerEntry[] = JSON.parse(FLAG_LEDGER_TEXT).entries;
+
+/**
+ * 把体检里真正的空缺／空转变成问题单条目。
+ *
+ * 为什么挡转换：D-091 让立绘开始按 flag 选。flag 名拼错时，写的那头变成「没人读」、
+ * 读的那头（若别处没人写）变成「没人写」，每一场单看都合法。R-019 说的正是这一类，做成 error 不做 warning。
+ * 只挡「真正的」：对面在待发布章节、连带假警报、引擎读取的，都不算。
+ *
+ * - 没登记 → ChatGPT 格式（挡）。行号指到原文里第一次写到这个 flag 的那一行。
+ * - 登记了且判定对得上 → 待交付，挂在「了结」那个人名下。
+ * - 登记了但已经不空了、或判定和缺的那头对不上 → 警告，提醒改登记表。登记表不清，以后同名的新问题会被旧登记盖住。
+ */
+export function flagIssues(r: ConvertResult, ctx: FlagAuditContext, inputs: { file: string; markdown: string }[],
+  ledger: FlagLedgerEntry[] = FLAG_LEDGER, ledgerText = FLAG_LEDGER_TEXT, ledgerFile = "tools/convert-flag-ledger.json"): ConvertIssue[] {
+  const real = flagFindings(r, ctx).gaps.filter(g => !g.expected);
+  const at = (name: string): Pick<ConvertIssue, "file" | "line" | "excerpt"> => {
+    const re = new RegExp(`(?<![a-z0-9_])flag\\.${name}(?![a-z0-9_])`);
+    for (const i of inputs) {
+      if (/大纲/.test(i.file)) continue;
+      const lines = i.markdown.split(/\r?\n/);
+      const n = lines.findIndex(l => re.test(l));
+      if (n >= 0) return { file: i.file, line: n + 1, excerpt: lines[n].trim() };
+    }
+    return { file: "docs/convert-flags.md", line: 1, excerpt: `flag.${name}` };
+  };
+  const ledgerLine = (name: string) => Math.max(1, ledgerText.split(/\r?\n/).findIndex(l => l.includes(`"flag": "${name}"`)) + 1);
+  const fits = (v: FlagVerdict, missing: FlagGap["missing"]) => v === "真死" || (v === "漏读") === (missing === "reads");
+  const out: ConvertIssue[] = [];
+  for (const g of real) {
+    const what = g.missing === "reads" ? "写了，已发布的章里没人读" : "被读取，已发布的章里没人写";
+    const entry = ledger.find(e => e.flag === g.name);
+    if (!entry) {
+      out.push({ ...at(g.name), kind: "ChatGPT 格式", message: `flag.${g.name} ${what}（${g.sites.slice(0, 3).join("、")}）。D-091 之后没人${g.missing === "reads" ? "读" : "写"}的 flag 和拼错的 flag 在数据里长得一模一样，所以这一条挡转换：拼错了就改成对的名字；该有人${g.missing === "reads" ? "读" : "写"}就补上；真没用就删掉这条${g.missing === "reads" ? "效果" : "条件"}。一时了结不了的，由 CC2 在 ${ledgerFile} 登记判定与理由` });
+    } else if (!fits(entry.verdict, g.missing)) {
+      out.push({ file: ledgerFile, line: ledgerLine(g.name), excerpt: g.name, kind: "警告", message: `登记表把 flag.${g.name} 判成「${entry.verdict}」，可它现在是${what}，判定和现状对不上。请 CC2 重判这一行` });
+    } else {
+      out.push({ ...at(g.name), kind: "待交付", message: `flag.${g.name} ${what}，已登记为「${entry.verdict}」：${entry.why}。了结：${entry.fix}` });
+    }
+  }
+  for (const e of ledger) {
+    if (real.some(g => g.name === e.flag)) continue;
+    out.push({ file: ledgerFile, line: ledgerLine(e.flag), excerpt: e.flag, kind: "警告", message: `登记表里的 flag.${e.flag}（${e.verdict}）已经不是真正的空缺／空转了：已经了结，或对面进了待发布章节。请 CC2 删掉这一行，免得以后同名的新问题被它盖住` });
+  }
+  return out;
+}
+
 /** 从一份转换结果里收集 flag 的读取点与写入点（只认 flag.*） */
 export function collectFlags(r: ConvertResult): { reads: Map<string, string[]>; writes: Map<string, string[]> } {
   const reads = new Map<string, string[]>(); const writes = new Map<string, string[]>();
@@ -1070,6 +1229,7 @@ export function collectFlags(r: ConvertResult): { reads: Map<string, string[]>; 
     readCond(s.require, `${s.id} 进入条件`);
     for (const l of s.lines) readCond(l.when, `${l.id}`);
     for (const c of s.choices ?? []) { readCond(c.require, `${c.id} 需要`); writeEff(c.effects, c.id); }
+    (s.branches ?? []).forEach((br: any, i: number) => readCond(br.require, `${s.id} 自动去向${i + 1}`));
   }
   for (const d of r.duels as any[]) { writeEff(d.onWin?.effects, `${d.id} 赢`); writeEff(d.onLose?.effects, `${d.id} 输`); }
   for (const l of r.letters as any[]) {
@@ -1094,11 +1254,24 @@ export function collectFlags(r: ConvertResult): { reads: Map<string, string[]>; 
  *  ② 连带假警报：对面那一场（或那封信）这一轮没转出来，它原文里明明写着这个 flag。
  * 引擎代码直接用到的（换图、互斥表、登基前置）另标「引擎读取」，也不算空转。
  */
-export function flagAudit(r: ConvertResult, ctx: {
+export interface FlagAuditContext {
   engineText: string; outlineText: string; knownText: string;
   /** 待发布章节的试转结果（不落盘），用来认出「对面在第四章」 */
   pending?: ConvertResult;
-}): string {
+  /** 登记表，默认空。CLI 传 FLAG_LEDGER */
+  ledger?: FlagLedgerEntry[];
+}
+
+/** 一个缺了读或写的 flag。expected 为空 = 真正的空缺／空转 */
+export interface FlagGap { name: string; missing: "reads" | "writes"; sites: string[]; expected: string }
+
+const flagMention = (name: string) => new RegExp(`(?<![a-z0-9_])(flag\\.)?${name}(?![a-z0-9_])`);
+
+/** 体检的判定部分：flagAudit 拿它出报告，flagIssues 拿它挡转换，两边不许各判各的 */
+export function flagFindings(r: ConvertResult, ctx: FlagAuditContext): {
+  reads: Map<string, string[]>; writes: Map<string, string[]>; gaps: FlagGap[];
+  pending?: ReturnType<typeof collectFlags> & { chapters: Set<number>; unconverted: NonNullable<ConvertResult["unconverted"]> };
+} {
   const { reads, writes } = collectFlags(r);
   const released = new Set(r.scenes.map(s => s.chapter));
   const pending = ctx.pending ? (() => {
@@ -1108,7 +1281,7 @@ export function flagAudit(r: ConvertResult, ctx: {
     return { ...collectFlags(only), chapters, unconverted: (ctx.pending!.unconverted ?? []).filter(u => !released.has(u.chapter)) };
   })() : undefined;
   const failedHere = (r.unconverted ?? []).filter(u => released.has(u.chapter));
-  const mentions = (text: string, name: string) => new RegExp(`(?<![a-z0-9_])(flag\.)?${name}(?![a-z0-9_])`).test(text);
+  const mentions = (text: string, name: string) => flagMention(name).test(text);
   const sites = (xs: string[]) => `${xs.slice(0, 3).map(x => `\`${x}\``).join("、")}${xs.length > 3 ? ` 等 ${xs.length} 处` : ""}`;
   const chapterOfSite = (site: string) => Number(/ch(\d+)/.exec(site)?.[1] ?? NaN);
 
@@ -1128,26 +1301,48 @@ export function flagAudit(r: ConvertResult, ctx: {
     if (mentions(ctx.outlineText, name)) return "① 未发布章节的大纲提到";
     return "";
   };
+  const gap = (name: string, missing: "reads" | "writes"): FlagGap => ({
+    name, missing, sites: (missing === "reads" ? writes : reads).get(name)!,
+    // 写了没人读、但引擎在读：不是空转，而且读它的就是引擎，不必再往大纲里找
+    expected: missing === "reads" && mentions(ctx.engineText, name) ? "引擎读取" : expected(name, missing),
+  });
+  const gaps = [
+    ...[...reads.keys()].filter(n => !writes.has(n)).sort().map(n => gap(n, "writes")),
+    ...[...writes.keys()].filter(n => !reads.has(n)).sort().map(n => gap(n, "reads")),
+  ];
+  return { reads, writes, gaps, pending };
+}
+
+export function flagAudit(r: ConvertResult, ctx: FlagAuditContext): string {
+  const { reads, writes, gaps, pending } = flagFindings(r, ctx);
+  const released = new Set(r.scenes.map(s => s.chapter));
+  const ledger = ctx.ledger ?? [];
+  const mentions = (text: string, name: string) => flagMention(name).test(text);
+  const sites = (xs: string[]) => `${xs.slice(0, 3).map(x => `\`${x}\``).join("、")}${xs.length > 3 ? ` 等 ${xs.length} 处` : ""}`;
+  const esc = (x: string) => x.replace(/\|/g, "\\|");
 
   const row = (n: string, sitesOf: string[], exp: string) =>
     `| \`${n}\` | ${sites(sitesOf)} | ${mentions(ctx.engineText, n) ? "有" : "—"} | ${mentions(ctx.knownText, n) ? "已点名" : "新"} | ${exp || "—"} |`;
   const head = "| flag | 在哪里 | 引擎代码提到 | 缺口清单 | 已知预期 |\n|---|---|---|---|---|";
-  const split = (names: string[], missing: "writes" | "reads", own: Map<string, string[]>) => {
-    const tagged = names.map(n => {
-      // 写了没人读、但引擎在读：不是空转，而且读它的就是引擎，不必再往大纲里找
-      let exp = missing === "reads" && mentions(ctx.engineText, n) ? "引擎读取" : expected(n, missing);
-      return { n, exp };
-    });
-    const real = tagged.filter(t => !t.exp), known = tagged.filter(t => t.exp);
+  const split = (missing: "writes" | "reads") => {
+    const mine = gaps.filter(g => g.missing === missing);
+    const real = mine.filter(g => !g.expected), known = mine.filter(g => g.expected);
+    const open = real.filter(g => !ledger.some(e => e.flag === g.name));
+    const logged = real.flatMap(g => ledger.filter(e => e.flag === g.name).map(e => ({ g, e })));
     return [
       `### 真正的${missing === "writes" ? "空缺" : "空转"}（${real.length}）`, "",
-      real.length ? head + "\n" + real.map(t => row(t.n, own.get(t.n)!, "")).join("\n") : "无。", "",
+      `未登记的 ${open.length} 个挡转换；登记了判定的 ${logged.length} 个降为待交付，等「了结」那一栏写的人处理。`, "",
+      open.length ? head + "\n" + open.map(g => row(g.name, g.sites, "")).join("\n") : "未登记：无。", "",
+      ...(logged.length ? [
+        "| flag | 在哪里 | 判定 | 为什么 | 了结 |", "|---|---|---|---|---|",
+        ...logged.map(({ g, e }) => `| \`${g.name}\` | ${sites(g.sites)} | ${e.verdict} | ${esc(e.why)} | ${esc(e.fix)} |`), "",
+      ] : []),
       `### 已知预期（${known.length}）`, "",
-      known.length ? head + "\n" + known.map(t => row(t.n, own.get(t.n)!, t.exp)).join("\n") : "无。", "",
+      known.length ? head + "\n" + known.map(g => row(g.name, g.sites, g.expected)).join("\n") : "无。", "",
     ];
   };
-  const noWriter = [...reads.keys()].filter(n => !writes.has(n)).sort();
-  const noReader = [...writes.keys()].filter(n => !reads.has(n)).sort();
+  const noWriter = gaps.filter(g => g.missing === "writes");
+  const noReader = gaps.filter(g => g.missing === "reads");
   // D-061：玩家怎么回信，之后要有人提起。逐封信、逐种回法看它写的 flag 有没有读取者
   const echo = (outcome: any): string => {
     const names = Object.keys(outcome?.effects ?? {}).filter(k => k.startsWith("flag.")).map(k => k.slice(5));
@@ -1176,10 +1371,11 @@ export function flagAudit(r: ConvertResult, ctx: {
     "> 由 `tools/convert-story.ts` 在每次转换后生成，读的是 `src/data/converted/` 加结局表。不要手改。", "",
     `已发布的章：第 ${[...released].sort().join("、")} 章。${pendingNote}全库读取 ${reads.size} 个 flag、写入 ${writes.size} 个。`, "",
     "「已知预期」两类：**①** 对面在还没发布的章里；**②** 对面那一场这一轮没转出来，属于连带假警报。「引擎读取」是引擎代码直接用的，也不算空转。只有「真正的空缺／空转」需要有人去补。", "",
+    "D-091 之后立绘按 flag 选，没人读的 flag 和拼错的 flag 在数据里长得一模一样。所以真正的空缺／空转不许悬着：没登记的挡转换，登记表在 `tools/convert-flag-ledger.json`。", "",
     `## 一、被读取，但已发布的章里没有写入点（${noWriter.length}）`, "",
-    ...split(noWriter, "writes", reads),
+    ...split("writes"),
     `## 二、被写入，但已发布的章里没有读取者（${noReader.length}）`, "",
-    ...split(noReader, "reads", writes),
+    ...split("reads"),
     ...echoSection,
   ].join("\n");
 }
@@ -1232,11 +1428,6 @@ export function runCli(args: string[]): number {
       }
     } catch { /* manifest 坏了就不删，宁可留着也不误删 */ }
   }
-  writeFileSync(manifestPath, JSON.stringify({
-    inputs: inputs.map(i => ({ file: i.file, sha256: createHash("sha256").update(i.markdown).digest("hex") })),
-    scenes: result.scenes.map(s => s.id), poems: result.poems.map(p => p.id), duels: result.duels.map(d => d.id), letters: result.letters.map(l => l.id), endings: result.endings.map(e => e.key),
-    issues: result.issues.length,
-  }, null, 2) + "\n", "utf8");
   const poemFiles = inputs.filter(i => i.markdown.includes("完整原文（／换行）")).map(i => i.file);
   if (result.poems.length && !result.issues.some(i => poemFiles.includes(i.file))) {
     // 正式数据是 CC1 的地盘：只合并，不按本批重写，免得删掉他那边加的东西
@@ -1248,10 +1439,6 @@ export function runCli(args: string[]): number {
   if (completeEndings && !result.issues.some(i => endingFiles.includes(i.file))) {
     writeOut({ ...result, scenes: [], duels: [], letters: [], poems: [] }, data);
   }
-  // 人写在问题单末尾的补记（CC1 的处理记录等）原样带过去，别让自动生成把它冲掉
-  const issuePath = join(root, "docs", "convert-issues.md");
-  const tail = existsSync(issuePath) ? manualTail(readFileSync(issuePath, "utf8")) : "";
-  writeFileSync(issuePath, issueReport(result) + `\n---\n\n${MANUAL_MARK}\n${tail}`, "utf8");
   // 分支图与 flag 体检：每次转换都重画，免得又出现「图还停在第一章」这种事（缺口清单第 5 条）
   const walkTs = (dir: string): string[] => readdirSync(dir, { withFileTypes: true }).flatMap(d =>
     d.isDirectory() ? (d.name === "data" ? [] : walkTs(join(dir, d.name))) : d.name.endsWith(".ts") ? [join(dir, d.name)] : []);
@@ -1265,7 +1452,19 @@ export function runCli(args: string[]): number {
   writeFileSync(join(root, "docs", "story-graph.md"), storyGraph(result), "utf8");
   const pendingInputs = pendingFiles.map(file => ({ file: relative(root, resolve(root, file)).split("\\").join("/"), markdown: readFileSync(resolve(root, file), "utf8") }));
   const pending = pendingInputs.length ? convertBatch([...inputs, ...pendingInputs]) : undefined;
-  writeFileSync(join(root, "docs", "convert-flags.md"), flagAudit(result, { engineText, outlineText, knownText, pending }), "utf8");
+  const flagCtx: FlagAuditContext = { engineText, outlineText, knownText, pending, ledger: FLAG_LEDGER };
+  writeFileSync(join(root, "docs", "convert-flags.md"), flagAudit(result, flagCtx), "utf8");
+  // 放在正式数据写完之后：体检条目挂在正文文件上，不该反过来挡住诗词库和结局表的合并
+  result.issues.push(...flagIssues(result, flagCtx, inputs));
+  writeFileSync(manifestPath, JSON.stringify({
+    inputs: inputs.map(i => ({ file: i.file, sha256: createHash("sha256").update(i.markdown).digest("hex") })),
+    scenes: result.scenes.map(s => s.id), poems: result.poems.map(p => p.id), duels: result.duels.map(d => d.id), letters: result.letters.map(l => l.id), endings: result.endings.map(e => e.key),
+    issues: result.issues.length,
+  }, null, 2) + "\n", "utf8");
+  // 人写在问题单末尾的补记（CC1 的处理记录等）原样带过去，别让自动生成把它冲掉
+  const issuePath = join(root, "docs", "convert-issues.md");
+  const tail = existsSync(issuePath) ? manualTail(readFileSync(issuePath, "utf8")) : "";
+  writeFileSync(issuePath, issueReport(result) + `\n---\n\n${MANUAL_MARK}\n${tail}`, "utf8");
   if (pending) {
     const own = pending.issues.filter(i => pendingInputs.some(p => p.file === i.file));
     const released = new Set(result.scenes.map(x => x.chapter));

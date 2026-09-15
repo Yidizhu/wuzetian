@@ -44,155 +44,292 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "是我在呈文里——"
+      "text": "初八……"
     },
     {
       "id": "ch02_s01_yeting.l6",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "是我在呈文里——"
+    },
+    {
+      "id": "ch02_s01_yeting.l7",
       "who": "adi",
       "expr": "guarded",
       "kind": "say",
       "text": "送衣的是我。"
     },
     {
-      "id": "ch02_s01_yeting.l7",
+      "id": "ch02_s01_yeting.l8",
+      "who": "wuze",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "……"
+    },
+    {
+      "id": "ch02_s01_yeting.l9",
       "who": "narr",
       "kind": "aside",
       "text": "阿荻把针包从席边拿到膝上。"
     },
     {
-      "id": "ch02_s01_yeting.l8",
+      "id": "ch02_s01_yeting.l10",
       "when": {
         "flag.petition_chase_first": true
       },
       "who": "adi",
       "expr": "guarded",
       "kind": "say",
-      "text": "你昨晚去追纸。我还没听明白，要问什么？"
+      "text": "昨晚你去追纸。"
     },
     {
-      "id": "ch02_s01_yeting.l9",
+      "id": "ch02_s01_yeting.l11",
+      "when": {
+        "flag.petition_chase_first": true
+      },
+      "who": "wuze",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "是。"
+    },
+    {
+      "id": "ch02_s01_yeting.l12",
+      "when": {
+        "flag.petition_chase_first": true
+      },
+      "who": "adi",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "我还没听明白，要问什么？"
+    },
+    {
+      "id": "ch02_s01_yeting.l13",
       "when": {
         "flag.petition_chase_first": true
       },
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "拦回一份后抄。原牒没有追回。"
+      "text": "只拦回一份后抄，原牒没追回。"
     },
     {
-      "id": "ch02_s01_yeting.l10",
+      "id": "ch02_s01_yeting.l14",
       "when": {
         "flag.petition_explain_first": true
       },
       "who": "adi",
       "expr": "default",
       "kind": "say",
-      "text": "昨晚那两句，我今日自己说。"
+      "text": "昨晚那两句，今日我自己说。"
     },
     {
-      "id": "ch02_s01_yeting.l11",
+      "id": "ch02_s01_yeting.l15",
       "when": {
         "flag.petition_explain_first": true
       },
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "好。另有一份抄件已经送走了。"
+      "text": "那两句。"
     },
     {
-      "id": "ch02_s01_yeting.l12",
+      "id": "ch02_s01_yeting.l16",
+      "when": {
+        "flag.petition_explain_first": true
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "好。"
+    },
+    {
+      "id": "ch02_s01_yeting.l17",
+      "when": {
+        "flag.petition_explain_first": true
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "还有一份抄件，已经送走了。"
+    },
+    {
+      "id": "ch02_s01_yeting.l18",
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
       "text": "先问做工与领钱，别的另记。"
     },
     {
-      "id": "ch02_s01_yeting.l13",
+      "id": "ch02_s01_yeting.l19",
+      "who": "adi",
+      "expr": "default",
+      "kind": "say",
+      "text": "你问。"
+    },
+    {
+      "id": "ch02_s01_yeting.l20",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
       "text": "十一件的工钱——"
     },
     {
-      "id": "ch02_s01_yeting.l14",
+      "id": "ch02_s01_yeting.l21",
       "who": "adi",
       "expr": "guarded",
       "kind": "say",
       "text": "九件。"
     },
     {
-      "id": "ch02_s01_yeting.l15",
+      "id": "ch02_s01_yeting.l22",
+      "who": "wuze",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "九件？"
+    },
+    {
+      "id": "ch02_s01_yeting.l23",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
       "text": "你说过十一件。"
     },
     {
-      "id": "ch02_s01_yeting.l16",
+      "id": "ch02_s01_yeting.l24",
       "who": "adi",
       "expr": "guarded",
       "kind": "say",
-      "text": "十一件是我送的。九件是我做的，另两件的人今日不在这里。"
+      "text": "十一件我送，九件我做。"
     },
     {
-      "id": "ch02_s01_yeting.l17",
+      "id": "ch02_s01_yeting.l25",
+      "who": "wuze",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "……"
+    },
+    {
+      "id": "ch02_s01_yeting.l26",
+      "who": "adi",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "另两件的人不在这里。"
+    },
+    {
+      "id": "ch02_s01_yeting.l27",
       "who": "narr",
       "kind": "aside",
       "text": "唐简在“十一”下面另起了一行。"
     },
     {
-      "id": "ch02_s01_yeting.l18",
+      "id": "ch02_s01_yeting.l28",
       "who": "songhuizhen",
       "expr": "default",
       "kind": "say",
-      "text": "做多少记多少。锅里还有粥，别凉透了。"
+      "text": "做多少就记多少。"
     },
     {
-      "id": "ch02_s01_yeting.l19",
+      "id": "ch02_s01_yeting.l29",
+      "who": "adi",
+      "expr": "default",
+      "kind": "say",
+      "text": "记多少。"
+    },
+    {
+      "id": "ch02_s01_yeting.l30",
+      "who": "songhuizhen",
+      "expr": "default",
+      "kind": "say",
+      "text": "锅里还有粥，别凉透了。"
+    },
+    {
+      "id": "ch02_s01_yeting.l31",
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
       "text": "另两件是谁？"
     },
     {
-      "id": "ch02_s01_yeting.l20",
+      "id": "ch02_s01_yeting.l32",
       "who": "adi",
       "expr": "default",
       "kind": "say",
-      "text": "你去问领料簿。我不替她们答。"
+      "text": "去问领料簿，我不替她们答。"
     },
     {
-      "id": "ch02_s01_yeting.l21",
+      "id": "ch02_s01_yeting.l33",
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "可以。九件，你认。"
+      "text": "好。"
     },
     {
-      "id": "ch02_s01_yeting.l22",
+      "id": "ch02_s01_yeting.l34",
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "九件，你认。"
+    },
+    {
+      "id": "ch02_s01_yeting.l35",
       "who": "adi",
       "expr": "guarded",
       "kind": "say",
-      "text": "我认做过这九件。你们改了多少条文，我没见过，不能叫我也认。"
+      "text": "我认做过九件。"
     },
     {
-      "id": "ch02_s01_yeting.l23",
+      "id": "ch02_s01_yeting.l36",
+      "who": "wuze",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "九件。"
+    },
+    {
+      "id": "ch02_s01_yeting.l37",
+      "who": "adi",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "改的条文我没见，不能叫我也认。"
+    },
+    {
+      "id": "ch02_s01_yeting.l38",
       "who": "self",
       "kind": "inner",
       "text": "（九件。昨晚我还在算十一件。）"
     },
     {
-      "id": "ch02_s01_yeting.l24",
+      "id": "ch02_s01_yeting.l39",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "方才那句话，划掉。听她的。"
+      "text": "方才那句话，划掉。"
     },
     {
-      "id": "ch02_s01_yeting.l25",
+      "id": "ch02_s01_yeting.l40",
+      "who": "tangjian",
+      "expr": "default",
+      "kind": "say",
+      "text": "这句？"
+    },
+    {
+      "id": "ch02_s01_yeting.l41",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "听她的。"
+    },
+    {
+      "id": "ch02_s01_yeting.l42",
       "who": "narr",
       "kind": "aside",
       "text": "唐简横过一笔，旧字仍看得见。"
+    },
+    {
+      "id": "ch02_s01_yeting.l43",
+      "who": "narr",
+      "kind": "aside",
+      "text": "唐简把更正后的纸留在阿荻手边。"
     }
   ],
   "goto": "ch02_s02_yeting"

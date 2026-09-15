@@ -1,0 +1,99 @@
+{
+  "id": "ch04_s05m_shuge",
+  "chapter": 4,
+  "act": 4,
+  "scene": "shuge",
+  "palette": "ink",
+  "cast": [
+    "wuze"
+  ],
+  "weightless": false,
+  "leavesLetter": [],
+  "purpose": "把名字想清楚",
+  "lines": [],
+  "choices": [
+    {
+      "id": "ch04_s05m_shuge.cA",
+      "text": "还想问沈衡",
+      "require": {
+        "pact.shenheng": {
+          "not": [
+            "none",
+            "declined"
+          ]
+        },
+        "asked.shenheng": false
+      },
+      "effects": {
+        "asked.shenheng": true,
+        "pact.shenheng": "active"
+      },
+      "irreversible": false,
+      "goto": "ch04_s05m_shuge"
+    },
+    {
+      "id": "ch04_s05m_shuge.cB",
+      "text": "还想问裴照夜",
+      "require": {
+        "pact.peizhaoye": {
+          "not": [
+            "none",
+            "declined"
+          ]
+        },
+        "asked.peizhaoye": false
+      },
+      "effects": {
+        "asked.peizhaoye": true,
+        "pact.peizhaoye": "active"
+      },
+      "irreversible": false,
+      "goto": "ch04_s05m_shuge"
+    },
+    {
+      "id": "ch04_s05m_shuge.cC",
+      "text": "还想问温荞",
+      "require": {
+        "pact.wenqiao": {
+          "not": [
+            "none",
+            "declined"
+          ]
+        },
+        "asked.wenqiao": false
+      },
+      "effects": {
+        "asked.wenqiao": true,
+        "pact.wenqiao": "active"
+      },
+      "irreversible": false,
+      "goto": "ch04_s05m_shuge"
+    },
+    {
+      "id": "ch04_s05m_shuge.cD",
+      "text": "还想问李令仪",
+      "require": {
+        "pact.liqinghe": {
+          "not": [
+            "none",
+            "declined"
+          ]
+        },
+        "asked.liqinghe": false
+      },
+      "effects": {
+        "asked.liqinghe": true,
+        "pact.liqinghe": "active"
+      },
+      "irreversible": false,
+      "goto": "ch04_s05m_shuge"
+    },
+    {
+      "id": "ch04_s05m_shuge.cE",
+      "text": "就这些，分别去说",
+      "effects": {},
+      "irreversible": false,
+      "goto": "ch04_s05c_shuge"
+    }
+  ]
+}
