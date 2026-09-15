@@ -145,6 +145,28 @@ export interface LetterSlot {
   rev?: number;
 }
 
+/**
+ * 节令信（D-001 定的格式，D-184 定的投递，B33 接的引擎）。
+ *
+ * **不按真实日历，按剧情时间**：主线仍是秋末那几天（C42：节令写成旧景，不推进日期），
+ * 信是「另一时日寄来的节令笺」。一章一封，在这一章**第一个闲场**（`weightless`）之后送到。
+ *
+ * 内部键不动（存档里存的是键）：中秋那个键 `zhongqiu` 留着，玩家看见的名字是「八月望夜」（D-180 照调研改的）。
+ * 七夕 `qixi` 不用了，位置让给重阳——**一年四封，一章一封**，多一个节令就要多一章。
+ */
+export const SOLAR_TERMS = ["shangyuan", "hanshi", "zhongqiu", "chongyang"] as const;
+export type SolarTermKey = (typeof SOLAR_TERMS)[number];
+
+/** 玩家看见的名字。「中秋」按调研改成「八月望夜」，键不动 */
+export const SOLAR_TERM_LABEL: Record<SolarTermKey, string> = {
+  shangyuan: "上元", hanshi: "寒食", zhongqiu: "八月望夜", chongyang: "重阳",
+};
+
+/** 哪一章送哪一封（D-184） */
+export const SOLAR_TERM_CHAPTER: Record<SolarTermKey, number> = {
+  shangyuan: 1, hanshi: 2, zhongqiu: 3, chongyang: 4,
+};
+
 /** 未读上限。第 4 封到达时最旧的一封被截，这不是惩罚，是剧情。 */
 export const INBOX_UNREAD_MAX = 3;
 

@@ -2,7 +2,7 @@ import type { LetterT } from "./schema.ts";
 import type { GameState } from "./state.ts";
 import { Store } from "./state.ts";
 import { meets } from "./conditions.ts";
-import { INBOX_UNREAD_MAX, type LetterSlot } from "./types.ts";
+import { INBOX_UNREAD_MAX, SOLAR_TERM_CHAPTER, type LetterSlot } from "./types.ts";
 
 /**
  * 笺：投递队列。机制见 docs/机制设计-v1.md 第 1 节，数据格式见 story-schema 2.4。
@@ -59,9 +59,41 @@ export class Letters {
     return this.store.state.letters.find((s) => s.id === id);
   }
 
-  /** 场景结束时调用：触发本场留的信，推进在路上的信的场次门。返回这一下送到案上的信 */
-  onSceneEnd(sceneId: string): string[] {
+  /**
+   * 节令信（D-184，B33）：这一章第一个闲场之后送到，一章一封。
+   *
+   * - **闲场**：`weightless` 的那些场。节令笺是私人的东西，跟在办完事之后、不打断正事。
+   * - 好感不够（信自己写的下限）就等这一章下一个闲场；整章过完都不够，记一笔「错过了」，不再送。
+   * - 不占未读上限、不会被截：见 `deliver()`。
+   */
+  private solarTerms(scene: { id: string; chapter: number; weightless?: boolean }): void {
     const s = this.store.state;
+    for (const l of this.byId.values()) {
+      if (l.trigger.kind !== "solarTerm") continue;
+      if (this.slot(l.id)) continue;
+      const want = SOLAR_TERM_CHAPTER[l.trigger.term];
+      if (scene.chapter > want) {
+        // 这一章走完了都没送出去：记一笔，案上不会再出现它
+        s.letters.push({ id: l.id, state: "lost", dueAt: 0, repliedWith: null });
+        console.info(`[letters] ${l.id}（${l.trigger.term}）第 ${want} 章没送出去，记作错过`);
+        continue;
+      }
+      if (scene.chapter !== want || !scene.weightless) continue;
+      if ((s.affinity[l.from] ?? 0) < l.trigger.minAffinity) continue;   // 交情还不到，等这一章下一个闲场
+      s.letters.push({ id: l.id, state: "pending", dueAt: Date.now() + l.delayMinutes * 60_000, repliedWith: null, rev: s.relation.clock });
+    }
+  }
+
+  /** 这一封是不是节令信：不占未读上限、不会被截 */
+  private isSolar(id: string): boolean {
+    return this.byId.get(id)?.trigger.kind === "solarTerm";
+  }
+
+  /** 场景结束时调用：触发本场留的信，推进在路上的信的场次门。返回这一下送到案上的信 */
+  onSceneEnd(scene: { id: string; chapter: number; weightless?: boolean } | string): string[] {
+    const s = this.store.state;
+    const sceneId = typeof scene === "string" ? scene : scene.id;
+    if (typeof scene !== "string") this.solarTerms(scene);
     // 触发
     for (const l of this.bySceneTrigger.get(sceneId) ?? []) {
       if (this.slot(l.id)) continue;               // 重读不累计
@@ -96,7 +128,9 @@ export class Letters {
     // 被截是一场戏：信在朝堂上被念出来，主角要当场应对。没有 onIntercept 去向的信
     // 一旦被截就是凭空消失：案上没有、剧情里也没有，玩家只知道有人给她写过信，
     // 然后信不见了，还不知道为什么。宁可让案上多躺一封，也不要那样丢东西。
-    const unread = () => s.letters.filter((x) => x.state === "arrived");
+    // 节令信不算在这三封里，也不会被选中截走（D-184）：它是私人的节令笺，不该在公议上被念出来，
+    // 也不该因为玩家攒着不拆，就把剧情信挤成「被截」
+    const unread = () => s.letters.filter((x) => x.state === "arrived" && !this.isSolar(x.id));
     while (unread().length > INBOX_UNREAD_MAX) {
       const victim = unread().find((x) => {
         const l = this.byId.get(x.id);

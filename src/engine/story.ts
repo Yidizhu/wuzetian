@@ -207,7 +207,7 @@ export class Story {
     // 离开上一场：触发本场留的信，推进在路上的信的场次门
     if (this.cur && this.cur.id !== sceneId) {
       // arrived 原来这里写死空数组（B28 查出）：信照样送到，事件却说没到，烟测的「只拆一封」因此一封都没拆过
-      const arrived = this.letters.onSceneEnd(this.cur.id);
+      const arrived = this.letters.onSceneEnd(this.cur);
       this.emit({ kind: "letters", unread: this.letters.unreadCount(), arrived });
       // 被截的信优先：进那个朝廷场景，它自己的去向再把人带回主线
       const hit = this.letters.pendingIntercept();

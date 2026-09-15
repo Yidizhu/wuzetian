@@ -3,6 +3,7 @@ import { pagesFor } from "../engine/letters.ts";
 import type { GameState } from "../engine/state.ts";
 import type { ReplyKind, ReplyResult } from "../engine/letters.ts";
 import { NAMES } from "./names.ts";
+import { SOLAR_TERM_LABEL } from "../engine/types.ts";
 
 /**
  * 信箱。案上出现一封，拿起，展开，三层正文，六种回法。
@@ -73,6 +74,11 @@ export class Inbox {
       row.dataset.state = slot?.state ?? "";
       row.innerHTML = `<span class="inbox__from"></span><span class="inbox__paper">${PAPER_NAME[l.paper] ?? l.paper}</span><span class="inbox__mark"></span>`;
       row.querySelector(".inbox__from")!.textContent = NAMES[l.from] ?? l.from;
+      // 节令信：纸那一栏前面写节令（D-184）。「中秋」那个键，玩家看见的是「八月望夜」
+      if (l.trigger.kind === "solarTerm") {
+        const cell = row.querySelector(".inbox__paper")!;
+        cell.textContent = `${SOLAR_TERM_LABEL[l.trigger.term]} · ${cell.textContent}`;
+      }
       // 名字旁边一个关系词（D-154）：不给数字，给「关系到哪儿了」。没来往过的人不写
       const rel = this.relation(l.from);
       if (rel) {

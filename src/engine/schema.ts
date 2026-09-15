@@ -62,6 +62,7 @@ const Cmp = z.object({
 }).strict();
 
 import { relationKey, looksLikeRelationKey } from "./pact.ts";
+import { SOLAR_TERMS } from "./types.ts";
 
 const STAT_RE = /^(shi|ming|cai|xin)$/;
 const REF_RE = /^(affinity|flag)\.[a-z][a-z0-9_]*$/;
@@ -298,7 +299,8 @@ export const PoemDuel = z.object({
   }
 });
 
-const SolarTerm = z.enum(["shangyuan", "hanshi", "qixi", "zhongqiu"]);
+// 节令四个键见 types.ts（B33）：七夕 qixi 让位给重阳；中秋键仍是 zhongqiu，玩家看见的是「八月望夜」
+const SolarTerm = z.enum(SOLAR_TERMS);
 
 const LetterTrigger = z.discriminatedUnion("kind", [
   z.object({
@@ -383,6 +385,12 @@ export const Letter = z.object({
       code: z.ZodIssueCode.custom,
       path: ["onIntercept"],
       message: "会被截的信必须写明被截之后去哪一场",
+    });
+  }
+  if (l.trigger.kind === "solarTerm" && (l.interceptable || l.interceptAt)) {
+    ctx.addIssue({
+      code: z.ZodIssueCode.custom, path: ["interceptable"],
+      message: "节令信不会被截（D-184）：它不占未读上限，也不该在公议上被念出来。把 interceptable／interceptAt 去掉",
     });
   }
   if (l.interceptAt && !l.interceptable) {
