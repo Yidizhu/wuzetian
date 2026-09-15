@@ -448,6 +448,10 @@ html, body {
 /* 结局卡两拍收掉台上的人（CC3 E25，D-168）：结局卡是决定之后的画面，最后一场的人站在题名底下，等于告诉玩家戏没完。
    两拍都收：第一拍没有结局图时只有色板，人也不该在。读档回到场景时 main.ts 删掉 data-ending，人自己回来 */
 #app[data-ending] .cast { opacity: 0; transition: opacity 700ms var(--ease); }
+/* 结局第一拍收掉 HUD 和右上数值框（CC3 E26，D-174）：「存档」「声」和势名才心压在结局图上。
+   只收第一拍：第二拍图已经收掉，玩家读完正文要能存档、读档、清档重来，按钮得在 */
+#app[data-ending="picture"] .hud,
+#app[data-ending="picture"] .status { opacity: 0; pointer-events: none; transition: opacity 400ms var(--ease); }
 .cast__slot {
   position: absolute;
   /* 脚对地：3D 舞台把地平线在屏幕上的位置写成 --stage-floor（离底边的百分比），
