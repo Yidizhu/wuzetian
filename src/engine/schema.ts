@@ -154,7 +154,12 @@ export const Scene = z.object({
   weightless: z.boolean().default(false),
   leavesLetter: z.array(CharacterKey).default([]),
   purpose: z.string().min(1, "说不出目的的场景应该被合并或删掉"),
-  lines: z.array(Line).min(1),
+  /**
+   * 台词表。**可以为空（B30，D-172）**：D-169 定第四章的中转场（05c／05m／05q，谈完一个人回到自己）不放台词，
+   * 否则每回来一次重播一句。空台词场一进来就直接到出口，引擎走的是「台词读完」那一条路（全被条件跳过也是这条）。
+   * 但**没有选项、自动去向、goto 的场仍要至少一句**——结局、章末、对诗那种场没有一句就一闪而过，下面 superRefine 拦
+   */
+  lines: z.array(Line),
   /**
    * 场景布置（D-046 第 2 条）。自由字符串，现在只有 `"gongyi"`（公议：多几张案、一面收封簿）。
    *
@@ -186,6 +191,12 @@ export const Scene = z.object({
   goto: z.string().optional(),
   ending: z.string().optional(),
 }).superRefine((s, ctx) => {
+  if (!s.lines.length && !(s.choices?.length || s.branches?.length || s.goto)) {
+    ctx.addIssue({
+      code: z.ZodIssueCode.custom, path: ["lines"],
+      message: "空台词场只能是中转场：要有选项、自动去向或 goto。结局、章末、对诗那种场一句都没有，玩家看到的是一闪而过（D-172）",
+    });
+  }
   if (s.branches) {
     if (s.choices?.length) ctx.addIssue({ code: z.ZodIssueCode.custom, path: ["branches"], message: "有选项的场不能再写自动去向：选项是玩家选，自动去向是不让她选，两个只能有一个" });
     if (s.chapterEnd || s.ending || s.judgeEnding || s.duel) ctx.addIssue({ code: z.ZodIssueCode.custom, path: ["branches"], message: "自动去向不和章末、结局、对诗写在同一场" });

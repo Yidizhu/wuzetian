@@ -205,3 +205,28 @@ test("自动去向写死路、和选项并存，校验拦", () => {
   assert.ok(!SceneSchema.safeParse(both).success);
   assert.ok(SceneSchema.safeParse(scene("a", { branches: [{ require: { "love.shenheng": true }, goto: "b" }, { goto: "c" }] })).success);
 });
+
+test("B30 空台词场：有出口就放行、一进来直接到出口；没出口仍拦", async () => {
+  const empty = (id: string, extra: Partial<Scene>) => ({ ...scene(id, extra), lines: [] } as Scene);
+  assert.ok(SceneSchema.safeParse(empty("a", { goto: "b" })).success, "goto");
+  assert.ok(SceneSchema.safeParse(empty("a", { branches: [{ goto: "b" }] })).success, "自动去向");
+  assert.ok(SceneSchema.safeParse(empty("a", { choices: [{ id: "a.cA", text: "走", goto: "b", irreversible: false }] })).success, "选项");
+  for (const bad of [{ ending: "x" }, { judgeEnding: true }, { chapterEnd: true }, { duel: "d" }, {}]) {
+    const r = SceneSchema.safeParse(empty("a", bad as Partial<Scene>));
+    assert.ok(!r.success, `没有出口的空台词场要拦：${JSON.stringify(bad)}`);
+  }
+  // 真引擎：05m 那样的空台词中转场，一进来直接出选项，不卡在「没有下一句」
+  const store = new Store();
+  store.apply({ "pact.shenheng": "active", "pact.peizhaoye": "active" });
+  const { seen, menu } = await play([
+    scene("start", { goto: "hub" }),
+    empty("hub", { choices: [
+      { id: "hub.cA", text: "还想问沈衡", require: { "asked.shenheng": false }, effects: { "asked.shenheng": true }, goto: "hub", irreversible: false },
+      { id: "hub.cE", text: "就这些", goto: "pass", irreversible: false },
+    ] }),
+    empty("pass", { branches: [{ require: { "asked.shenheng": true }, goto: "end" }], goto: "start" }),
+    scene("end", { goto: "end" }),
+  ], store);
+  assert.deepEqual(seen.slice(0, 2), ["start", "hub"]);
+  assert.deepEqual(menu, ["hub.cA", "hub.cE"], "空台词场直接出选项");
+});
