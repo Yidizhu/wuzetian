@@ -18,7 +18,7 @@ import { hasRelationKey } from "../src/engine/conditions.ts";
 import { AFFINITY_BANDS } from "../src/engine/types.ts";
 import { IDENTITY_RANKS } from "../src/engine/identity.ts";
 import { PORTRAITS } from "../src/char/portraits.ts";
-import { BACKDROPS, backdropKey } from "../src/scene/backdrops.ts";
+import { BACKDROPS, VISTAS, backdropKey } from "../src/scene/backdrops.ts";
 import { CGS } from "../src/scene/cgs.ts";
 import { readdirSync } from "node:fs";
 
@@ -485,7 +485,7 @@ if (mainRun) {
     if (!knee.has(f)) warn(`public/char/full/${f}.webp`, "knee", "只有全身、没有膝上。念台词时会用全身摆，人不会放大");
   }
   for (const f of knee) if (!full.has(f)) err(`public/char/knee/${f}.webp`, "full", "只有膝上、没有全身。引擎按全身图判断这个人有没有光栅图，这张永远用不上");
-  for (const k of sceneImgs) if (!BACKDROPS[k]) err(`public/scene/${k}.webp`, "file", "这张背景不在 src/scene/backdrops.ts 的表里，引擎永远选不到它");
+  for (const k of sceneImgs) if (!BACKDROPS[k] && !VISTAS[k]) err(`public/scene/${k}.webp`, "file", "这张背景不在 src/scene/backdrops.ts 的表里，引擎永远选不到它");
 
   // 事件图（B23）：剧本里写的 key 表里要有；public/cg 里的文件要叫得上名字
   for (const k of webps("cg")) if (!CGS[k]) err(`public/cg/${k}.webp`, "file", "这张事件图不在 src/scene/cgs.ts 的表里，剧本里写不到它");

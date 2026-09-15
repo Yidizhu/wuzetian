@@ -39,6 +39,25 @@ export function backdropKey(d: Pick<SceneDescriptor, "key" | "palette" | "dressi
   return [d.key, d.palette, d.dressing].filter(Boolean).join("_");
 }
 
+/**
+ * 章首风景（D-181，B32）：章首题记那一屏的底图。横构图、无人无字，上方六成是安静的天或雾，题记从右上起笔压在上面。
+ * **归背景类，不进事件图表**：文件是 `public/scene/vista_chN.webp`，走 `art:post -- scene`。
+ * 不在上面那张背景表里——它不是哪一场的地点，校验器按这张表认它。序幕和第一章共用 ch1。
+ * 图没有：题记照旧是纸色底
+ */
+export const VISTAS: Record<string, { chapter: number; where: string }> = {
+  vista_ch1: { chapter: 1, where: "序幕＋第一章题记。秋末清早，从掖庭高处看一层层宫墙灰瓦" },
+  vista_ch2: { chapter: 2, where: "第二章题记。天刚亮，禁苑旷野、霜、苑墙" },
+  vista_ch3: { chapter: 3, where: "第三章题记。晴冷早晨，从龙尾道下仰看含元殿（gold）" },
+  vista_ch4: { chapter: 4, where: "第四章题记。雨后天亮，驿路伸向远山，车辙里有细水" },
+};
+
+/** 这一章题记用哪张风景。表里没有是 null */
+export function vistaFor(chapter: number): string | null {
+  const key = `vista_ch${Math.max(1, Math.floor(chapter) || 1)}`;
+  return VISTAS[key] ? key : null;
+}
+
 export const BACKDROPS: Record<string, Backdrop> = {
   // B18：这四行的数是看 Codex 第一批 v1 原件、四张都在整屏里截过图之后填的（D-118）。图还没验收，验收换版后要再看一次
   yeting_ink:           { floor: 22, person: 1, push: "center", where: "掖庭，十六场。v1：院子土地铺到画底，人站 22% 踩在土上" },

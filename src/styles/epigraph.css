@@ -67,6 +67,17 @@
 .tiji[data-state="in"]  { animation: title-in 620ms var(--ease) both; }
 .tiji[data-state="out"] { animation: title-out 460ms var(--ease) both; }
 
+/* 章首风景（D-181，B32，CC1 加，数归 CC3 调）：景铺满，偏下对齐——景物在下四成，上六成是天，字写在天上。
+   上面薄薄压一层纸色，字在亮天上也读得出；纸纹照旧叠在最上 */
+.tiji__vista {
+  position: absolute; inset: 0; pointer-events: none;
+  background: center 70% / cover no-repeat;
+}
+.tiji__vista::after {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(to bottom, color-mix(in srgb, var(--c-ground) 38%, transparent) 0%, transparent 62%);
+}
+
 @media (prefers-reduced-motion: reduce) {
   .tiji[data-state="in"], .tiji[data-state="out"], .tiji__col { animation: none; }
 }

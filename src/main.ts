@@ -25,6 +25,8 @@ import { attachDebut } from "./scene/Debut.ts";
 import { mountEpigraph } from "./scene/Epigraph.ts";
 import { debutsOn, setDebutsOn, soundOn, setSoundOn } from "./ui/prefs.ts";
 import { Ambient } from "./audio/ambient.ts";
+import { Bgm, bgmForChapter } from "./audio/bgm.ts";
+import { vistaFor } from "./scene/backdrops.ts";
 import { cuesForScene, cuesForLine, newCueState, type Cue } from "./audio/cues.ts";
 import endingData from "./data/endings.json";
 import adultScenes from "virtual:adult-scenes";
@@ -192,10 +194,20 @@ const story = new Story(
       return summary.show(store.state, { chapter: ch, poemsThisChapter: ps, closest }).finally(() => dlg.setVisible(true));
     },
     // 题记（D-063）：CC3 的那张纸，和标题同一套版式。看它的时候对话框和选项都收起来
+    // 章首风景（D-181）：这一章有图就先解码好（最多等 0.8 秒），铺在纸底下；没有、读不出、太慢都照旧纸色底
     epigraph: (lines) => new Promise<void>((resolve) => {
       dlg.setVisible(false);
       choices.hide();
-      mountEpigraph(document.body, { lines, onDone: () => { dlg.setVisible(true); resolve(); } });
+      const key = vistaFor(story.currentScene?.chapter ?? 1);
+      const url = key && raster.hasBackdrop(key) ? raster.backdropUrl(key) : null;
+      const ready = url
+        ? Promise.race([
+          (async () => { const im = new Image(); im.src = url; await im.decode(); return url; })()
+            .catch(() => { raster.markBroken(`scene/${key}`); return null; }),
+          new Promise<null>((r) => window.setTimeout(() => r(null), 800)),
+        ])
+        : Promise.resolve(null);
+      void ready.then((vista) => mountEpigraph(document.body, { lines, vista: vista ?? undefined, onDone: () => { dlg.setVisible(true); resolve(); } }));
     }),
     // 事件图（D-142，B23）：铺整图、点一下退回。看图时对话框和选项收起
     cg: async (key, first) => {
@@ -244,6 +256,8 @@ store.subscribe((s) => status.update(s));
 
 // 环境声（D-053）。默认静音；真正出声要等玩家在手势里打开（iOS 的规矩）
 const ambient = new Ambient();
+// 配乐（D-179）：共用环境声那个上下文，「声」开关一起管；进章放那一章的，结局卡淡出
+const bgm = new Bgm(ambient);
 const cueState = newCueState();
 const play = (cues: Cue[]): void => {
   for (const c of cues) {
@@ -261,6 +275,7 @@ story.on((e) => {
       cgLayer.clear();
       delete app.dataset.ending;
       delete app.dataset.shot;
+      bgm.play(import.meta.env.BASE_URL + bgmForChapter(e.scene.chapter));
       app.querySelectorAll(".ending-title").forEach((n) => n.remove());
       play(cuesForScene(e.scene, cueState, performance.now()));
       // 阵容必须同步定下来：紧跟着的 line 事件会马上问「说话的人在不在台上」。
@@ -314,6 +329,7 @@ story.on((e) => {
       break;
     case "ending": {
       app.dataset.ending = "text";
+      bgm.stop(3);
       choices.hide();
       dlg.setVisible(true);
       dlg.show("narr", e.body, "aside", store.state, true);
@@ -438,6 +454,7 @@ soundBtn.addEventListener("click", (e) => {
   ambient.unlock();
   const on = !ambient.enabled;
   ambient.setEnabled(on);
+  bgm.setEnabled(on);
   setSoundOn(on);
   // 刚打开的时候，如果这一场该有雨，现在补上
   if (on) play(cuesForScene({ id: story.sceneId, act: story.currentScene?.act ?? 1, dressing: story.currentScene?.dressing }, { lastAct: story.currentScene?.act ?? null, lastDrumAt: 0 }, 0));
@@ -500,7 +517,7 @@ const begin = (fresh: boolean): void => {
   // 「入宫」这一下是手机上唯一合法的解锁音频的时机（D-053）。解锁不等于出声：
   // 上次开着声音的人这里才真的开，第一次来的人仍是静的
   ambient.unlock();
-  if (soundOn()) { ambient.setEnabled(true); paintSound(); }
+  if (soundOn()) { ambient.setEnabled(true); bgm.setEnabled(true); paintSound(); }
   showFirstRunNotice(app, () => slots.show());
   void story.start({ fresh });
 };

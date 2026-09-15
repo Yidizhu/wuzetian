@@ -20,6 +20,11 @@ export interface EpigraphOptions {
   lines: string[];
   /** 落款：接在最后一列左边，小一号、淡一档。不给就不画 */
   sign?: string;
+  /**
+   * 章首风景（D-181，B32，CC1 加，待协调）：给了就铺在纸底下，题记写在景的天上。
+   * 地址由调用方给，要先解码好再挂——墨晕开的那一下景已经在。不给还是纸色底
+   */
+  vista?: string;
   onDone(): void;
 }
 
@@ -55,6 +60,13 @@ export function mountEpigraph(root: HTMLElement, opts: EpigraphOptions): () => v
     els.push(s);
   }
   cols.append(...els);
+  if (opts.vista) {
+    const v = document.createElement("div");
+    v.className = "tiji__vista";
+    v.style.backgroundImage = `url("${opts.vista}")`;
+    box.dataset.vista = "1";
+    box.append(v);
+  }
   box.append(paper, cols);
   root.appendChild(box);
 

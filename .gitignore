@@ -30,3 +30,7 @@ assets/scenes/*_v*.png
 # 事件图原件（E19，CC3 加，待协调——同 D-112）
 assets/cg/*_v*.png
 assets/portraits/imagegen-write-test.png
+
+# 配乐原件（D-179，CC1 加）。一首 54–66 MB 的长曲，进版本库删不掉历史。
+# 上线的是从里面剪出来的 public/bgm/ch1–4.m4a（2 分 45 秒循环段，约 2 MB 一首），那四个进版本库
+/bgm/

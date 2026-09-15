@@ -418,19 +418,25 @@ export class Story {
       i += 1;
     }
     this.autosave();
+    // 点击的门一直关到景显完、题记后第一格推出去为止（B32，CC2 D22 第四节）。
+    // 原来纸一收就开门：墨晕开的那 180 毫秒里再点一下，第一格被 advance 跳过、第二格先发一次，
+    // 墨晕开完这里再 present 又发一次——序幕那格空镜 3000 遍一次都没播到。
+    // token：看题记时读了档、新场又开了一张题记，旧的这一次收尾不许把新的门打开
+    const token = ++this.epigraphToken;
     this.epigraphing = true;
     try {
       await this.hooks.epigraph?.(texts);
+      if (this.cur !== scene) return;        // 看题记的时候读了档，别把位置写回去
+      this.idx = i;
+      // 纸收起来了，景这时候才墨晕开（D-076）。先显景再读下一句：墨晕开的那一下，对话框还是空的
+      if (this.stagePending) await this.showStage(scene);
+      if (this.cur !== scene) return;
     } finally {
-      this.epigraphing = false;
+      if (token === this.epigraphToken) this.epigraphing = false;
     }
-    if (this.cur !== scene) return;        // 看题记的时候读了档，别把位置写回去
-    this.idx = i;
-    // 纸收起来了，景这时候才墨晕开（D-076）。先显景再读下一句：墨晕开的那一下，对话框还是空的
-    if (this.stagePending) await this.showStage(scene);
-    if (this.cur !== scene) return;
     this.present();
   }
+  private epigraphToken = 0;
 
   private duelDone = new Set<string>();
   /** 已经结算过的章末场。玩家在结算页后面再点一下，不该把结算页再叫出来 */

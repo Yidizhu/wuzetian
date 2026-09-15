@@ -36,6 +36,9 @@ export class Ambient {
 
   get enabled(): boolean { return this.on; }
 
+  /** 解锁过的上下文（配乐 bgm.ts 共用这一个，开关、切后台暂停都跟着它）。没解锁是 null */
+  get audio(): AudioContext | null { return this.ctx; }
+
   /**
    * 在手势回调里调。建上下文、恢复它，但**不出声**——开不开声由 setEnabled 定。
    * 标题的「入宫」、HUD 的开关都会调它，重复调没关系。

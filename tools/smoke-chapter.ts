@@ -206,6 +206,12 @@ async function walk(picks: number[], chooser?: Chooser, letterWalk?: LetterWalk)
     // 不让出控制权就比较，换场还没发生，会把正常的过场误判成卡住。
     // 用微任务而不是 setTimeout(0)：后者每次一两毫秒，几千步乘几百条路径就要跑几分钟。
     await drain();
+    // 位置没动先别判卡住：题记收起到景显完那一段引擎不收点击（B32 修的竞态），这一下是被正当地挡掉的。
+    // 多等几轮让它静下来；静下来还没动、也没有选项和结局，才是真卡住
+    for (let k = 0; k < 40 && !pending && !ended && `${story.sceneId}#${story.lineIndex}` === before; k++) {
+      await drain();
+      if (k === 20) { story.advance(); }
+    }
     if (!pending && !ended && `${story.sceneId}#${story.lineIndex}` === before) {
       stuck = { scene: story.sceneId, line: story.lineIndex, why: "点击没有任何反应，也没有出口" };
       break;

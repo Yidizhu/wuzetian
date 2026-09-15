@@ -18,7 +18,7 @@ import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { ROOT } from "./load.ts";
 import { PORTRAITS } from "../src/char/portraits.ts";
-import { BACKDROPS } from "../src/scene/backdrops.ts";
+import { BACKDROPS, VISTAS } from "../src/scene/backdrops.ts";
 import { CGS } from "../src/scene/cgs.ts";
 import { DATA, loadDir } from "./load.ts";
 import { ENDING_DRESSINGS } from "../src/engine/story.ts";
@@ -63,6 +63,11 @@ const missing = keys.filter((k) => !scenes.has(k) && !(BACKDROPS[k]!.from && sce
 console.log(`  背景 ${own.length + borrowed.length}/${keys.length} 条有图（自己的 ${own.length} 条，借图的 ${borrowed.length} 条）`);
 if (borrowed.length) console.log(`    借图：${borrowed.map((k) => `${k} ← ${BACKDROPS[k]!.from}`).join("、")}`);
 if (missing.length) console.log(`    还没有图，走渐变：${missing.join("、")}`);
+{
+  const vk = Object.keys(VISTAS);
+  const haveV = vk.filter((k) => scenes.has(k));
+  console.log(`  章首风景 ${haveV.length}/${vk.length} 张有图${haveV.length < vk.length ? `（没有图的章，题记照旧纸色底：${vk.filter((k) => !scenes.has(k)).join("、")}）` : ""}`);
+}
 
 // ---------------------------------------------------------------- 事件图（B23、D-152）
 // 和背景那次同一个理由：剧本里写了图名而图不在，是合法状态（那一格跳过），永远不会自己报错。
