@@ -37,7 +37,9 @@
    样子照标题页那枚（title.css .title__seal），大小、颜色、晚多久盖归 CC3 */
 .cg__seal {
   position: absolute; z-index: 1;                   /* 压过 contain 模式的 ::after 整张图 */
-  transform: translate(-50%, -50%);
+  /* 压扁贴纸面（CC3 E27，D-177）：纸往远处斜，原件上纸的上边宽约是下边的 0.57、纵向压到约 0.75。
+     印只有 30–52px，按这个斜率换算：上下宽比约 0.92、高压到约 0.77。只变形不移中心，seal 坐标照旧 */
+  transform: translate(-50%, -50%) perspective(420px) rotateX(40deg);
   width: clamp(30px, 6vmin, 52px); aspect-ratio: 1;
   display: grid; place-items: center;
   background: var(--c-accent, var(--c-ink-4));
