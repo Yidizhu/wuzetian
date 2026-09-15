@@ -73,7 +73,14 @@ export const CGS: Record<string, Cg> = {
   liqinghe_3_xiangying:   { who: ["liqinghe", "wuze"],     beat: "亲密", where: "ch03-20（C39：21 格后）。主角凑过去，李令仪迎上来，唇相贴（侧面）" },
   shenheng_1_tengxie:     { who: ["shenheng"],             beat: "本行", where: "ch01-01 昭阳殿第 4、10 格。沈衡站在案边誊清，笔持得低、尖朝下，废稿折进袖里。单人" },
   liqinghe_1_boyi:        { who: ["liqinghe"],             beat: "本行", where: "ch01-08 第 25、56 格。李令仪穿紫礼衣拢起大袖、压平册子，抬眼问「这两笔代价，你选哪笔」。单人" },
-  // 风物（D-180）：画东西不画人，who 为空。六行等 CC3 E28 公布 key 再加
+  // 风物（D-180，E28）：画东西不画人，`who` 空；key 接画面里那样东西的名字，不接节名。
+  // 四张节令配四封节令信与节令空镜，两张吃的配每章那个闲场
+  wu_denglun:   { who: [], beat: "风物", where: "上元（gold）。宫墙边一架七层灯轮；前景矮案上点名簿、一叠领灯差牌、一盏快熄的小灯" },
+  wu_lengzao:   { who: [], beat: "风物", where: "寒食（ink）。泥封的冷灶，灶台上前一天做好的冷饼、凉粥，一盏凉了的药" },
+  wu_yuejiu:    { who: [], beat: "风物", where: "八月望夜（ink）。窗外满月；案上一盏酒、一碟梨和葡萄、一封折好还没封口的信" },
+  wu_zhuyu:     { who: [], beat: "风物", where: "重阳（ink）。塔顶栏杆上系着的茱萸囊被风吹横；一盏菊花酒；远处是长安的坊" },
+  wu_sushan:    { who: [], beat: "风物", where: "酥山（gold）。一人一案的食案上，碎冰淋酥、插着花草，底下开始化" },
+  wu_lengtao:   { who: [], beat: "风物", where: "槐叶冷淘（ink）。掖庭井栏上一碗碧绿的凉面，旁边刚打上来的水桶在滴水" },
 
   // D-160：八个结局各一张，结局卡第一拍。名字按 ending_<结局 key>，CC3 定了别的名字改这里一处就行。
   // 画面含义照 C-B 结局树（D-159「别自己发明结局的含义」），where 只抄 endings.json 的主题句，人由 CC3 按提示词改
