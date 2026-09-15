@@ -444,6 +444,10 @@ html, body {
 /* ---------- 立绘层：背景之上，对话框之下 ---------- */
 
 .cast { position: absolute; inset: 0; z-index: 1; pointer-events: none; overflow: hidden; }
+
+/* 结局卡两拍收掉台上的人（CC3 E25，D-168）：结局卡是决定之后的画面，最后一场的人站在题名底下，等于告诉玩家戏没完。
+   两拍都收：第一拍没有结局图时只有色板，人也不该在。读档回到场景时 main.ts 删掉 data-ending，人自己回来 */
+#app[data-ending] .cast { opacity: 0; transition: opacity 700ms var(--ease); }
 .cast__slot {
   position: absolute;
   /* 脚对地：3D 舞台把地平线在屏幕上的位置写成 --stage-floor（离底边的百分比），
