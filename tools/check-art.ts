@@ -19,7 +19,7 @@ import { join } from "node:path";
 import { ROOT } from "./load.ts";
 import { PORTRAITS } from "../src/char/portraits.ts";
 import { BACKDROPS, VISTAS } from "../src/scene/backdrops.ts";
-import { CGS } from "../src/scene/cgs.ts";
+import { CGS, isFeiVariant } from "../src/scene/cgs.ts";
 import { DATA, loadDir } from "./load.ts";
 import { ENDING_DRESSINGS } from "../src/engine/story.ts";
 
@@ -87,7 +87,10 @@ if (missing.length) console.log(`    还没有图，走渐变：${missing.join("
   const usedMissing = [...used].filter(([k]) => !cgFiles.has(k));
   if (used.size) console.log(`    剧本写到 ${used.size} 张`);
   for (const [k, where] of usedMissing) console.log(`    剧本写到了、图还没有（那一格会跳过）：${k}（${where.join("、")}）`);
-  const notInScript = haveCg.filter((k) => !used.has(k) && !CGS[k]!.ending);
+  // 绯版（D-216）不写在剧本里，铺原图那一格时引擎自己换，不算「没写到」；但剧本不许直接写绯版的 key，图格 key 不变
+  const notInScript = haveCg.filter((k) => !used.has(k) && !CGS[k]!.ending && !isFeiVariant(k));
+  for (const k of used.keys()) if (isFeiVariant(k)) fail(`剧本直接写了绯版 ${k}。图格写原图的 key，主角是绯时引擎自己换（D-216）`);
+  for (const k of cgKeys) if (k.endsWith("_fei") && !isFeiVariant(k)) fail(`${k} 是绯版的名字，表里却没有去掉 _fei 的那一行`);
   if (notInScript.length) console.log(`    有图、剧本还没写到：${notInScript.join("、")}`);
 
   // 结局图（D-160，B27）：表要装得下每一个结局；印只在无字之碑，而且有图就得写位置

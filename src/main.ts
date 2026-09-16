@@ -27,6 +27,7 @@ import { debutsOn, setDebutsOn, soundOn, setSoundOn } from "./ui/prefs.ts";
 import { Ambient } from "./audio/ambient.ts";
 import { Bgm, bgmForChapter } from "./audio/bgm.ts";
 import { loadTuning } from "./audio/tuning.ts";
+import { MediaKeepAlive } from "./audio/keepalive.ts";
 import { vistaFor, BACKDROPS, backdropKey } from "./scene/backdrops.ts";
 import { cuesForScene, cuesForLine, newCueState, type Cue, ambienceForScene, cuesForShot, cuesForPaper, cuesAfterEpigraph, newEpigraphCueState, cuesForCg, cuesForEndingCg, cuesForEnter, newEnterCueState, cuesForEnding, type SfxName } from "./audio/cues.ts";
 import { Sfx } from "./audio/sfx.ts";
@@ -36,7 +37,8 @@ import converted from "virtual:converted-data";
 import rasterList from "virtual:raster-assets";
 import { RasterCatalog, framingFor } from "./scene/raster.ts";
 import { CgLayer } from "./ui/CgLayer.ts";
-import { endingCg, CGS } from "./scene/cgs.ts";
+import { endingCg, CGS, cgFor } from "./scene/cgs.ts";
+import { protagonistRank } from "./engine/identity.ts";
 import { sealGlyph } from "./engine/endings.ts";
 import { relationTiers, relationWord, closestThisChapter } from "./engine/relation.ts";
 import poemData from "./data/poems.json";
@@ -217,9 +219,11 @@ const story = new Story(
       } }));
     }),
     // 事件图（D-142，B23）：铺整图、点一下退回。看图时对话框和选项收起
-    cg: async (key, first) => {
+    cg: async (scriptKey, first) => {
       choices.hide();
       dlg.setVisible(false);
+      // 主角是绯、有绯版的图就铺绯版（D-216）；解锁照旧记剧本写的那个 key（story.ts），回廊按它认
+      const key = cgFor(scriptKey, protagonistRank((f) => store.state.flags[f] === true, (k) => store.state.cgsSeen.has(k)), (k) => raster.hasCg(k));
       // 声音桥 ③：图铺开那一下响——表里写了衣料、马铃就用它，风物图不响，其余纸响（D-202）。没图这一格跳过，不响
       if (raster.hasCg(key)) sfx.run(cuesForCg(CGS[key]));
       // HUD 和数值框随图收（D-207）：有图才收，收图那一下（淡出开始）回来
@@ -227,7 +231,7 @@ const story = new Story(
       // 点下去、图还盖着舞台时就记下解锁，台上的人跟着对一遍：受位那张图收起来，她已经穿绯（D-205）
       const shown = await cgLayer.show(key, first, () => {
         delete app.dataset.cg;
-        store.state.cgsSeen.add(key);
+        store.state.cgsSeen.add(scriptKey);
         void cast.refresh();
       }).finally(() => { delete app.dataset.cg; });
       dlg.setVisible(true);
@@ -278,6 +282,8 @@ const bgm = new Bgm(ambient);
 const cueState = newCueState();
 // 声音桥（D-198）：真音效文件，四条规则在 cues.ts。文件没到退回合成，合成也没有就静音
 const sfx = new Sfx(ambient, rasterList.sfx ?? [], import.meta.env.BASE_URL);
+/** iPhone 静音键（D-218）：开着声时放一段循环的静音 <audio>，页面算「媒体播放」，Web Audio 不再听静音键 */
+const keepAlive = new MediaKeepAlive(import.meta.env.BASE_URL + "sfx/silence.m4a");
 const epigraphCues = newEpigraphCueState();
 /** 章首进声的两个开关（D-209）：`?intro=plain|soft`、`?epihit=drum|bell`，这台设备记住 */
 const tuning = loadTuning();
@@ -499,6 +505,7 @@ soundBtn.addEventListener("click", (e) => {
   ambient.setEnabled(on);
   bgm.setEnabled(on);
   sfx.setEnabled(on);
+  keepAlive.set(on);                     // iPhone 静音键（D-218）：开声就把页面切成媒体播放
   setSoundOn(on);
   // 刚打开的时候，这一场该有的环境声现在补上
   if (on) sfx.run(ambienceForScene(story.currentScene?.dressing));
@@ -602,17 +609,20 @@ const begin = (fresh: boolean): void => {
   // 「入宫」这一下是手机上唯一合法的解锁音频的时机（D-053）。解锁不等于出声：
   // 上次开着声音的人这里才真的开，第一次来的人仍是静的
   ambient.unlock();
-  if (soundOn()) { ambient.setEnabled(true); bgm.setEnabled(true); sfx.setEnabled(true); paintSound(); }
+  if (soundOn()) { ambient.setEnabled(true); bgm.setEnabled(true); sfx.setEnabled(true); keepAlive.set(true); paintSound(); }
   showFirstRunNotice(app, () => slots.show());
   void story.start({ fresh });
 };
 if (new URLSearchParams(location.search).has("notitle")) {
   begin(false);
 } else {
-  mountTitle(document.body, {
+  const title = (): void => { mountTitle(document.body, {
     resume: saveApi.hasResumable() ? { onResume: () => begin(false) } : undefined,
     onStart: () => begin(true),
-  });
+  }); };
+  // 开启页的门（D-219）：测试期六位数字，本机记住。**发布前拆**：构建带 VITE_GATE=off，这一块整个不进包
+  if (import.meta.env.VITE_GATE === "off") title();
+  else void import("./ui/Gate.ts").then(({ mountGate }) => mountGate(document.body, title)).catch(title);
 }
 }
 

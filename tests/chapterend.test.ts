@@ -830,3 +830,21 @@ test("D-066 第四幕合法，墨层整片是墨，势多少都一样", () => {
   for (const shi of [0, 10, 20]) assert.equal(inkLevel(withShi(shi), 4), 1);
 });
 
+
+test("B42 柳承欢归还朱绳后换 _bare 能落到光栅图上：图到了就用，没到用底那一套，不回 SVG", async () => {
+  const { rasterCandidates } = await import("../src/engine/identity.ts");
+  const { RasterCatalog } = await import("../src/scene/raster.ts");
+  const { readFileSync } = await import("node:fs");
+  // 剧本里写真这个 flag 的是 ch03-15 出口那个选项，下一场进场时对一遍台上的人（main.ts 的 refresh）
+  const s = JSON.parse(readFileSync(new URL("../src/data/chapters/ch03/ch03_s15_yeting.json", import.meta.url), "utf8"));
+  assert.equal(s.choices.some((c: { effects?: Record<string, unknown> }) => c.effects?.["flag.chenghuan_returned"] === true), true);
+  const returned = { has: (f: string) => f === "chenghuan_returned", dressing: "" };
+  const before = { has: () => false, dressing: "" };
+  assert.deepEqual(rasterCandidates("liuchenghuan", returned), ["liuchenghuan_default_bare", "liuchenghuan_default"]);
+  const withBare = new RasterCatalog({ full: ["liuchenghuan_default", "liuchenghuan_default_bare"], knee: ["liuchenghuan_default", "liuchenghuan_default_bare"], scenes: [] }, "/");
+  const withoutBare = new RasterCatalog({ full: ["liuchenghuan_default"], knee: ["liuchenghuan_default"], scenes: [] }, "/");
+  assert.equal(withBare.pickPortrait(rasterCandidates("liuchenghuan", returned)), "liuchenghuan_default_bare", "C42 的图上线后：直接用");
+  assert.equal(withBare.pickPortrait(rasterCandidates("liuchenghuan", before)), "liuchenghuan_default", "归还之前：原图");
+  assert.equal(withoutBare.pickPortrait(rasterCandidates("liuchenghuan", returned)), "liuchenghuan_default", "现在（图没到）：底那一套");
+  assert.equal(withBare.portraitUrl("liuchenghuan_default_bare", "knee").url, "/char/knee/liuchenghuan_default_bare.webp");
+});

@@ -68,6 +68,11 @@ export const CGS: Record<string, Cg> = {
   peizhaoye_6_dafu:       { who: ["peizhaoye", "wuze"],    beat: "答复", where: "ch04-05qb 第 4 格。裴照夜把行囊放到脚边，空着手站到主角面前" },
   wenqiao_6_dafu:         { who: ["wenqiao", "wuze"],      beat: "答复", where: "ch04-05qc 第 4／19 格。温荞手掌压着一张纸，看着主角，没接玩笑" },
   liqinghe_6_dafu:        { who: ["liqinghe", "wuze"],     beat: "答复", where: "ch04-05qd 第 4／16 格。李令仪站在自己那一级石阶上，稿在一只手里，另一只手空着" },
+  // 绯版（D-216，B42）：同一刻、主角穿绯。**剧本图格 key 不变**，铺图时主角是绯、这一行有图就换成它（cgFor）。图待上线
+  shenheng_6_dafu_fei:    { who: ["shenheng", "wuze"],     beat: "答复", where: "shenheng_6_dafu 的绯版，登基路用" },
+  peizhaoye_6_dafu_fei:   { who: ["peizhaoye", "wuze"],    beat: "答复", where: "peizhaoye_6_dafu 的绯版，登基路用" },
+  wenqiao_6_dafu_fei:     { who: ["wenqiao", "wuze"],      beat: "答复", where: "wenqiao_6_dafu 的绯版，登基路用" },
+  liqinghe_6_dafu_fei:    { who: ["liqinghe", "wuze"],     beat: "答复", where: "liqinghe_6_dafu 的绯版，登基路用" },
   liqinghe_5_suanshenme:  { who: ["liqinghe", "wuze"],     beat: "追问", where: "ch03-09 第 40—41 格。她把松线绕在指上，问「那我算什么」，主角还没答" },
   wuze_huian:             { who: ["wuze", "shenheng", "tangjian"], beat: "转变", where: "ch04-03 第 17—27 格（毁卷两选在 03 末尾）。沈衡把缺字的那页摊平，手没交出去；罩灯没挪近纸；唐简在门边逆光。绯，不许有火" },
   liuchenghuan_1_guihuan: { who: ["liuchenghuan", "wuze"], beat: "关系", where: "ch03-15 第 77 格。柳承欢把朱绳放进主角摊开的手里，手指收回来时还弯着；她腕上已空" },
@@ -109,6 +114,24 @@ export const CGS: Record<string, Cg> = {
   ending_guanshanyouxin:  { who: ["peizhaoye", "wuze"], beat: "结局", ending: "guanshanyouxin", sfx: "horse_bell", where: "关山有信（ink）。在地方把事情办下去，与裴照夜各有职分" },
   ending_zhishangyouming: { who: ["wuze"],             beat: "结局", ending: "zhishangyouming", where: "纸上有名（ink）。没有取得权位，人生仍不只剩失败" },
 };
+
+/** 身份变体的后缀（D-216）：和立绘 `_fei` 同一个词 */
+export const CG_FEI_SUFFIX = "_fei";
+
+/** 这一行是不是另一行的绯版（后缀 `_fei`，去掉后缀那一行在表里） */
+export function isFeiVariant(key: string): boolean {
+  return key.endsWith(CG_FEI_SUFFIX) && !!CGS[key.slice(0, -CG_FEI_SUFFIX.length)];
+}
+
+/**
+ * 剧本图格写的是 `key`，这一刻实际铺哪一张（D-216，B42）。和立绘同一个规则（`engine/identity.ts`）：
+ * **主角此刻是绯、表里有 `<key>_fei`、那张图在** → 用绯版；缺一样就是原图，不空、不跳过。
+ * `hasImage` 由调用方给（构建期扫出来的清单），这里不碰文件
+ */
+export function cgFor(key: string, rank: "qing" | "fei", hasImage: (k: string) => boolean): string {
+  const fei = key + CG_FEI_SUFFIX;
+  return rank === "fei" && CGS[fei] && hasImage(fei) ? fei : key;
+}
 
 /** 这个结局的结局图 key，表里没有就是 null */
 export function endingCg(endingKey: string): string | null {
