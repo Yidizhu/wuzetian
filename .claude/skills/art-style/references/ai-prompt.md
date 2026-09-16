@@ -3100,6 +3100,7 @@ C-B：「两人在驿旁相见时，先争了一笔不该由乡人垫出的钱�
 **装束（D-164）**：
 - **答复四张穿青**，是按多数玩家定的。实走下来，不受、纸上有名、开门授字、关山有信、两席之间五种结局加起来约占七成，这些线的第四章她都是才人。
 - 登基线的玩家在这四张里会看到穿青的自己，有半秒不对。这是一张图盖两条线的代价，账本记着。
+- **E37 起登基路改用绯版**（D-216）：`<key>_fei` 四张，提示词在 `docs/art-c42-prompts.md`，引擎在 `enthroned` 为真、`_fei` 有图时用它。
 - 那我算什么在第三章，才人，青。
 - 毁案只在登基线（进入条件 `flag.enthroned`），穿绯。
 - 归还在第三章 15，才人，青。
@@ -4733,3 +4734,9 @@ key：`wu_chaipai`（候选差牌）、`wu_cishoudie`（辞受牒）、`wu_yinsh
 提示词**只有一份原文，在 `docs/art-c41-prompts.md`**（Codex C41 从那里读），这里不抄。
 key：`yuanye_ink_qingguang`（布置「晴光」），落 `assets/scenes/yuanye_ink_qingguang_v1.png`。照第二节背景公共段，逐字相同。
 这是第六节「默认只画日景」之外的又一个例外：苑野的日景由 E14 起的真夜景 `yuanye_ink` v2 反过来出——附 v2 只照构图，附 `liqinghe_2_diye_v1` 只照灰瓦灰墙的颜色和冬日晴光；月亮、风灯去掉，光仍从左上来，水洼只在两侧三分之一。
+
+## 二十、E37 答复四张绯版＋柳承欢 `_bare` 修图（D-216）
+
+提示词**只有一份原文，在 `docs/art-c42-prompts.md`**（Codex C42 从那里读），这里不抄。
+key：`shenheng_6_dafu_fei`、`peizhaoye_6_dafu_fei`、`wenqiao_6_dafu_fei`、`liqinghe_6_dafu_fei`：逐字照第十四节那四份，只改主角「装束」一行（青→绯，约 #A8454A），附已上线的 v1 锁构图、附 `wuze_tianzi_fei_default_v1` 只照衣色。错处是颜色不是形，附上一版适用（D-193；E32 那条例外不管这里）。
+`liuchenghuan_default_bare`：不生成，从 `assets/portraits/liuchenghuan_gongren_huiqing_default_v1.png`（绿幕底）图编辑修掉右手腕（画面左边那只手）的朱绳，朱红像素在 x 396–414、y 560–627，其余不动。
