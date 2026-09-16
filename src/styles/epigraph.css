@@ -88,7 +88,10 @@
     color-mix(in srgb, var(--c-ground) 34%, transparent) 52%,
     transparent 82%);
 }
-.tiji[data-vista-key="vista_ch3"] .tiji__cols { height: min(26vh, 240px); }   /* D-201：CC3 E32 量的，B35 是 min(46vh, 430px) */
+/* CC3 E34（B40）：按字数卡列，不按 vh——每列 11 字，手机高矮都一样；起笔提到 8vh，字尾落在屋脊之上。
+   B37 是 min(26vh, 240px)（「李令仪」断在两列），B35 是 min(46vh, 430px) */
+.tiji[data-vista-key="vista_ch3"] .tiji__cols { top: 8vh; height: 320px; }
+.tiji[data-vista-key="vista_ch3"] .tiji__col  { inline-size: 13.1em; }
 
 @media (prefers-reduced-motion: reduce) {
   .tiji[data-state="in"], .tiji[data-state="out"], .tiji__col { animation: none; }

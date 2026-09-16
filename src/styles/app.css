@@ -450,8 +450,12 @@ html, body {
 #app[data-ending] .cast { opacity: 0; transition: opacity 700ms var(--ease); }
 /* 结局第一拍收掉 HUD 和右上数值框（CC3 E26，D-174）：「存档」「声」和势名才心压在结局图上。
    只收第一拍：第二拍图已经收掉，玩家读完正文要能存档、读档、清档重来，按钮得在 */
+/* 事件图铺开时同样收（D-207，B40；CC1 改，待协调）：按钮和数值框压在图上。收图那一下回来，和图的淡出一起 */
 #app[data-ending="picture"] .hud,
-#app[data-ending="picture"] .status { opacity: 0; pointer-events: none; transition: opacity 400ms var(--ease); }
+#app[data-ending="picture"] .status,
+#app[data-cg] .hud,
+#app[data-cg] .status { opacity: 0; pointer-events: none; transition: opacity 400ms var(--ease); }
+.hud, .status { transition: opacity 400ms var(--ease); }
 .cast__slot {
   position: absolute;
   /* 脚对地：3D 舞台把地平线在屏幕上的位置写成 --stage-floor（离底边的百分比），

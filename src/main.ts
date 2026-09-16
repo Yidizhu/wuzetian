@@ -26,6 +26,7 @@ import { mountEpigraph } from "./scene/Epigraph.ts";
 import { debutsOn, setDebutsOn, soundOn, setSoundOn } from "./ui/prefs.ts";
 import { Ambient } from "./audio/ambient.ts";
 import { Bgm, bgmForChapter } from "./audio/bgm.ts";
+import { loadTuning } from "./audio/tuning.ts";
 import { vistaFor, BACKDROPS, backdropKey } from "./scene/backdrops.ts";
 import { cuesForScene, cuesForLine, newCueState, type Cue, ambienceForScene, cuesForShot, cuesForPaper, cuesAfterEpigraph, newEpigraphCueState, cuesForCg, cuesForEndingCg, cuesForEnter, newEnterCueState, cuesForEnding, type SfxName } from "./audio/cues.ts";
 import { Sfx } from "./audio/sfx.ts";
@@ -211,7 +212,7 @@ const story = new Story(
       void ready.then((vista) => mountEpigraph(document.body, { lines, vista: vista ?? undefined, vistaKey: vista ? key ?? undefined : undefined, onDone: () => {
         dlg.setVisible(true);
         // 声音桥 ④：题记收起、转第一场对白，远处一通鼓，一章一次
-        sfx.run(cuesAfterEpigraph(story.currentScene?.chapter ?? 1, epigraphCues));
+        sfx.run(cuesAfterEpigraph(story.currentScene?.chapter ?? 1, epigraphCues, tuning.epihit === "drum" ? "drum_far" : "bell_far"));
         resolve();
       } }));
     }),
@@ -221,8 +222,14 @@ const story = new Story(
       dlg.setVisible(false);
       // 声音桥 ③：图铺开那一下响——表里写了衣料、马铃就用它，风物图不响，其余纸响（D-202）。没图这一格跳过，不响
       if (raster.hasCg(key)) sfx.run(cuesForCg(CGS[key]));
+      // HUD 和数值框随图收（D-207）：有图才收，收图那一下（淡出开始）回来
+      if (raster.hasCg(key)) app.dataset.cg = key;
       // 点下去、图还盖着舞台时就记下解锁，台上的人跟着对一遍：受位那张图收起来，她已经穿绯（D-205）
-      const shown = await cgLayer.show(key, first, () => { store.state.cgsSeen.add(key); void cast.refresh(); });
+      const shown = await cgLayer.show(key, first, () => {
+        delete app.dataset.cg;
+        store.state.cgsSeen.add(key);
+        void cast.refresh();
+      }).finally(() => { delete app.dataset.cg; });
       dlg.setVisible(true);
       return shown;
     },
@@ -272,6 +279,8 @@ const cueState = newCueState();
 // 声音桥（D-198）：真音效文件，四条规则在 cues.ts。文件没到退回合成，合成也没有就静音
 const sfx = new Sfx(ambient, rasterList.sfx ?? [], import.meta.env.BASE_URL);
 const epigraphCues = newEpigraphCueState();
+/** 章首进声的两个开关（D-209）：`?intro=plain|soft`、`?epihit=drum|bell`，这台设备记住 */
+const tuning = loadTuning();
 const enterCues = newEnterCueState();
 /** 这一场可能响的单响，进场时先取回来（B37） */
 const hitsForScene = (s: Scene): SfxName[] => {
@@ -297,9 +306,12 @@ story.on((e) => {
       // 从结局那一屏读档回来：两拍留下的东西收干净；看事件图时读了档，图也收掉
       releaseEndingPicture = null;
       cgLayer.clear();
+      delete app.dataset.cg;
       delete app.dataset.ending;
       delete app.dataset.shot;
-      bgm.play(import.meta.env.BASE_URL + bgmForChapter(e.scene.chapter));
+      // 第一章（含序幕）那一首慢慢进：4 秒淡入、从最静的一小节起（D-209）。别的章照旧
+      bgm.play(import.meta.env.BASE_URL + bgmForChapter(e.scene.chapter),
+        e.scene.chapter <= 1 && tuning.intro === "soft" ? { fadeIn: 4, quietStart: true } : {});
       app.querySelectorAll(".ending-title").forEach((n) => n.remove());
       play(cuesForScene(e.scene, cueState, performance.now()));
       sfx.run(ambienceForScene(e.scene.dressing));      // 声音桥 ①：这一场的环境声，淡出开始就起
