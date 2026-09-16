@@ -448,12 +448,12 @@
     },
     {
       "id": "ch01_s12_shuge.cE",
-      "text": "直接去找阿荻",
+      "text": "到诗社歇脚，再去找阿荻",
       "effects": {
         "flag.petition_sent": true
       },
-      "irreversible": true,
-      "goto": "ch01_s17_yeting"
+      "irreversible": false,
+      "goto": "ch01_s15_shishe"
     }
   ]
 }

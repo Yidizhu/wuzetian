@@ -64,7 +64,7 @@ flowchart TD
   ch01_s12_shuge -->|"🔒 B 到园里找裴照夜"| ch01_s14_yuanye
   ch01_s12_shuge -->|"🔒 C 去听温荞说纸声"| ch01_s15_shishe
   ch01_s12_shuge -->|"🔒 D 和公主玩一会儿"| ch01_s16_yuanye
-  ch01_s12_shuge -->|"E 直接去找阿荻"| ch01_s17_yeting
+  ch01_s12_shuge -->|"E 到诗社歇脚，再去找阿荻"| ch01_s15_shishe
   ch01_s13_shuge --> ch01_s17_yeting
   ch01_s14_yuanye --> ch01_s17_yeting
   ch01_s15_shishe --> ch01_s17_yeting

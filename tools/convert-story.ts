@@ -496,7 +496,10 @@ export function convertBatch(inputs: { markdown: string; file: string }[]): Conv
     return isOutline(i.file) ? read.map(b => ({ ...b, heading: `大纲：${b.heading}`, tables: b.tables.filter(isIndexTable), prose: [] })) : read;
   });
   const blockEnd = (b: Block) => blocks.find(x => x.file === b.file && x.line > b.line)?.line ?? Infinity;
-  const blockHasErrors = (b: Block) => result.issues.some(i => i.file === b.file && i.line >= b.line && i.line < blockEnd(b));
+  // 「警告」不挡这一块（D-193）：它的意思就是「照转，人看一眼」。以前这里不分轻重，
+  // 块里先记一条警告，这一块就不写出去了——D25 的 minAffinity 就这样把整封信丢过。
+  // 只放过明写的「警告」：「待交付」有一类是去向没法解析（「第二章（待交）」），那一块本来就不该出
+  const blockHasErrors = (b: Block) => result.issues.some(i => i.file === b.file && i.line >= b.line && i.line < blockEnd(b) && i.kind !== "警告");
   const sceneRefs = new Map<string, string>();
   const seen = new Set<string>();
   const addIssue = (b: Block, row: Row | undefined, message: string, kind?: IssueKind) =>
@@ -846,10 +849,11 @@ export function convertBatch(inputs: { markdown: string; file: string }[]): Conv
     if (v("minAffinity")) {
       if (!term) throw new LocatedError(f["minAffinity"], "minAffinity 只对节令信有用，场次触发的信不看好感；要么删掉这一栏，要么把触发改成节令");
       minAffinity = attempt(b, f["minAffinity"], () => integer(v("minAffinity")));
+      // 高过最高档只是「人看一眼」，信照转（警告不挡这一块，见 blockHasErrors）
+      if (minAffinity !== undefined && minAffinity > AFFINITY_BANDS[0]!.min) {
+        addIssue(b, f["minAffinity"], `好感门槛写到 ${minAffinity}，比最高档「${AFFINITY_BANDS[0]!.label}」的门 ${AFFINITY_BANDS[0]!.min} 还高，这封信可能整章都送不出去。要是有意为之，人看一眼即可`, "警告");
+      }
     }
-    // 门槛高过最高档只是「人看一眼」。警告要等信转出来之后再记：blockHasErrors 不分轻重，
-    // 这一段里先记下问题，下面那封信就不会被写出去了
-    const minTooHigh = minAffinity !== undefined && minAffinity > AFFINITY_BANDS[0]!.min;
     const paper = ({ 黄麻纸: "huangma", 秘书省黄麻纸: "huangma", 军中素笺: "junzhong", 泥金笺: "nijin", 自制花笺: "huajian", 常笺: "chang" } as Record<string,string>)[v("笺")];
     const reactions = new Map<string, string>();
     const replyKeys = ["直言 A", "直言 B", "直言 C", "以诗代答 · 合意象", "以诗代答 · 不合", "不回"];
@@ -914,7 +918,6 @@ export function convertBatch(inputs: { markdown: string; file: string }[]): Conv
       }
       if (value.interceptAt) (parsed as any).interceptAt = value.interceptAt;
       result.letters.push(parsed);
-      if (minTooHigh) addIssue(b, f["minAffinity"], `好感门槛写到 ${minAffinity}，比最高档「${AFFINITY_BANDS[0]!.label}」的门 ${AFFINITY_BANDS[0]!.min} 还高，这封信可能整章都送不出去。要是有意为之，人看一眼即可`, "警告");
     }
   });
   for (const b of blocks.filter(b => b.tables.some(t => t.rows.some(r => r.cells[0] === "结局 key")))) attempt(b, undefined, () => {

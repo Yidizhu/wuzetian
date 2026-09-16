@@ -2,11 +2,11 @@
   "inputs": [
     {
       "file": "docs/C-2-第一章前六场.md",
-      "sha256": "5af04c46d97f56570bafc9faafcd4ade01e1c033f96adf4b6813640e027235b6"
+      "sha256": "4c38c54a9ec506bc44c1ca746835573888e8e52814e7b55164defd07870d42ca"
     },
     {
       "file": "docs/C-3-第一章后十二场.md",
-      "sha256": "7e0a46426048ffdbc608c38875ce8b945430738cc42e2329e13313396d1432c8"
+      "sha256": "3f9a4bc9c4f3f7672f8e7b729758c753ee402df1e77c30644ae14e73795472cd"
     },
     {
       "file": "docs/C-4-第一章书信.md",
@@ -38,11 +38,11 @@
     },
     {
       "file": "docs/C-10-第三章前十二场.md",
-      "sha256": "ddda62dfb63bc585c1139e28988bb1773db6628c5501bb62bf4ec83bf328b1a5"
+      "sha256": "22456c36812788afcb84a62c2e53620c0d26453b738a9517365282288a2db0f3"
     },
     {
       "file": "docs/C-11-第三章后十二场与书信.md",
-      "sha256": "aec0fb0b38031570d771bc14e7cfe02be17fe88d4c61e0fa8203437a9ca4b068"
+      "sha256": "aeeb477f9785addf21ff24b7b0bc796ed340eabe37cc74581d5d8fd321ba0d94"
     },
     {
       "file": "docs/C-12-第四章大纲.md",
