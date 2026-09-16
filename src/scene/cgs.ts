@@ -73,6 +73,13 @@ export const CGS: Record<string, Cg> = {
   liqinghe_3_xiangying:   { who: ["liqinghe", "wuze"],     beat: "亲密", where: "ch03-20（C39：21 格后）。主角凑过去，李令仪迎上来，唇相贴（侧面）" },
   shenheng_1_tengxie:     { who: ["shenheng"],             beat: "本行", where: "ch01-01 昭阳殿第 4、10 格。沈衡站在案边誊清，笔持得低、尖朝下，废稿折进袖里。单人" },
   liqinghe_1_boyi:        { who: ["liqinghe"],             beat: "本行", where: "ch01-08 第 25、56 格。李令仪穿紫礼衣拢起大袖、压平册子，抬眼问「这两笔代价，你选哪笔」。单人" },
+  // E30（D-173）：最后四张。落点、装束照 C42；「为你」是 D-143 第二段，宋蕙贞不是恋爱线、这是她的第一张。
+  // 温荞那张的动作词 CC3 定为 dengju（等句），不是日志里的 dengqi
+  peizhaoye_2_dangfeng:   { who: ["peizhaoye", "wuze"],    beat: "为你", where: "ch02-14 第 39 格后。她站到来风那一侧，袍角还在翻，靴子停在主角身侧；门口留着一块空地" },
+  wenqiao_2_dengju:       { who: ["wenqiao", "wuze"],      beat: "为你", where: "ch02-09 第 42 格后。她收住声，嘴唇还张着、手停在半空，等主角起下一句；两人抬头看着对方" },
+  shenheng_2_rangzuo:     { who: ["shenheng", "wuze"],     beat: "为你", where: "ch03-02 第 31 格后。她坐到卷架那一侧，靠门的凳子空着、凳脚朝着主角；主角还站着" },
+  songhuizhen_1_diwen:    { who: ["songhuizhen", "wuze", "adi"], beat: "关系", where: "ch02-12 第 2 格后。宋蕙贞把温水挪到席边，手指还扶着碗沿；阿荻在旁边缝自己的针包，不回头" },
+
   // 风物（D-180，E28）：画东西不画人，`who` 空；key 接画面里那样东西的名字，不接节名。
   // 四张节令配四封节令信与节令空镜，两张吃的配每章那个闲场
   wu_denglun:   { who: [], beat: "风物", where: "上元（gold）。宫墙边一架七层灯轮；前景矮案上点名簿、一叠领灯差牌、一盏快熄的小灯" },
