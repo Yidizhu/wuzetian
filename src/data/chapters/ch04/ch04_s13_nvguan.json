@@ -11,7 +11,7 @@
   "require": {
     "flag.founded_school": true
   },
-  "weightless": false,
+  "weightless": true,
   "leavesLetter": [],
   "purpose": "在没有主角的屋里协商半间地方",
   "lines": [

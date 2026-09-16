@@ -12,7 +12,7 @@
   "require": {
     "flag.enthroned": false
   },
-  "weightless": false,
+  "weightless": true,
   "leavesLetter": [],
   "purpose": "允许今晚只有吃饼，不替明日领新职责",
   "lines": [

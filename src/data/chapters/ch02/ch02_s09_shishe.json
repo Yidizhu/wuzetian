@@ -328,61 +328,79 @@
     },
     {
       "id": "ch02_s09_shishe.l43",
+      "who": "narr",
+      "kind": "aside",
+      "text": "你看向温荞，她收住了声，嘴唇还张着，等你起句。"
+    },
+    {
+      "id": "ch02_s09_shishe.l44",
+      "who": "cg",
+      "kind": "aside",
+      "text": "wenqiao_2_dengju"
+    },
+    {
+      "id": "ch02_s09_shishe.l45",
+      "who": "self",
+      "kind": "inner",
+      "text": "（慢一点也行。下一句还想跟她念。）"
+    },
+    {
+      "id": "ch02_s09_shishe.l46",
       "who": "wenqiao",
       "expr": "default",
       "kind": "say",
       "text": "我若又拿旁人取笑……"
     },
     {
-      "id": "ch02_s09_shishe.l44",
+      "id": "ch02_s09_shishe.l47",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
       "text": "你说。"
     },
     {
-      "id": "ch02_s09_shishe.l45",
+      "id": "ch02_s09_shishe.l48",
       "who": "wenqiao",
       "expr": "default",
       "kind": "say",
       "text": "别陪着笑，让我听见那句多难听。"
     },
     {
-      "id": "ch02_s09_shishe.l46",
+      "id": "ch02_s09_shishe.l49",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
       "text": "别请我替她原谅你。"
     },
     {
-      "id": "ch02_s09_shishe.l47",
+      "id": "ch02_s09_shishe.l50",
       "who": "wenqiao",
       "expr": "default",
       "kind": "say",
       "text": "不请你做这个。"
     },
     {
-      "id": "ch02_s09_shishe.l48",
+      "id": "ch02_s09_shishe.l51",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
       "text": "……"
     },
     {
-      "id": "ch02_s09_shishe.l49",
+      "id": "ch02_s09_shishe.l52",
       "who": "narr",
       "kind": "aside",
       "text": "她把样纸转向你。纸背留着两道合不拢的折痕。"
     },
     {
-      "id": "ch02_s09_shishe.l50",
+      "id": "ch02_s09_shishe.l53",
       "who": "wenqiao",
       "expr": "open",
       "kind": "say",
       "text": "信晚些给你，双鱼我会折，今日先别笑。"
     },
     {
-      "id": "ch02_s09_shishe.l51",
+      "id": "ch02_s09_shishe.l54",
       "who": "narr",
       "kind": "aside",
       "text": "温荞把信留在自己手边，重新铺平样纸。"

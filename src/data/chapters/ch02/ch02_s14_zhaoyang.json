@@ -24,7 +24,7 @@
       "id": "ch02_s14_zhaoyang.l2",
       "who": "narr",
       "kind": "aside",
-      "text": "数日后，宋蕙贞来辞一项夜值。殿门风吹得披帛垂到椅脚。"
+      "text": "数日后，宋蕙贞来辞一项夜值。殿门风吹得披帛垂到凳脚。"
     },
     {
       "id": "ch02_s14_zhaoyang.l3",
@@ -279,6 +279,24 @@
       "who": "narr",
       "kind": "aside",
       "text": "她站到风来的那一侧，却没替你决定往哪儿走。"
+    },
+    {
+      "id": "ch02_s14_zhaoyang.l40",
+      "who": "narr",
+      "kind": "aside",
+      "text": "你看她站到迎风处，袍角翻起，靴子仍停在你身侧。"
+    },
+    {
+      "id": "ch02_s14_zhaoyang.l41",
+      "who": "cg",
+      "kind": "aside",
+      "text": "peizhaoye_2_dangfeng"
+    },
+    {
+      "id": "ch02_s14_zhaoyang.l42",
+      "who": "self",
+      "kind": "inner",
+      "text": "（这边不冷了。想再站一会儿。）"
     }
   ],
   "choices": [

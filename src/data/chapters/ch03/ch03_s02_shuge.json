@@ -233,13 +233,31 @@
     },
     {
       "id": "ch03_s02_shuge.l32",
+      "who": "narr",
+      "kind": "aside",
+      "text": "你看她在卷架边坐下，靠门那张凳子空着，凳脚朝着你。"
+    },
+    {
+      "id": "ch03_s02_shuge.l33",
+      "who": "cg",
+      "kind": "aside",
+      "text": "shenheng_2_rangzuo"
+    },
+    {
+      "id": "ch03_s02_shuge.l34",
+      "who": "self",
+      "kind": "inner",
+      "text": "（想坐过去。那句话，还得跟她争。）"
+    },
+    {
+      "id": "ch03_s02_shuge.l35",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
       "text": "撤差牒给我一份。我问，不拿你的字去换。"
     },
     {
-      "id": "ch03_s02_shuge.l33",
+      "id": "ch03_s02_shuge.l36",
       "who": "narr",
       "kind": "aside",
       "text": "你将撤差牒收进自己的稿旁。"
