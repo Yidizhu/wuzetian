@@ -11,7 +11,7 @@
   "require": {
     "flag.road_agreement": true
   },
-  "weightless": false,
+  "weightless": true,
   "leavesLetter": [],
   "purpose": "在真实差程中相见，按各自归期离开",
   "lines": [

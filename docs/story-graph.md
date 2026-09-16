@@ -12,7 +12,7 @@
 | 1 | 19 | 19 | 0 | 1 | 5 | 0 | 无 |
 | 2 | 26 | 26 | 0 | 1 | 7 | 2 | 无 |
 | 3 | 27 | 27 | 0 | 1 | 7 | 4 | 无 |
-| 4 | 35 | 35 | 0 | 0 | 2 | 7 | 无 |
+| 4 | 35 | 35 | 0 | 0 | 5 | 7 | 无 |
 
 ## 第 1 章
 
@@ -284,13 +284,13 @@ flowchart TD
   ch04_s08_shuge["08_shuge 这份只署我<br/>shuge"]:::ink
   ch04_s08z_shuge["08z_shuge 这份只署我<br/>shuge"]:::ink
   ch04_s09_yuanye["09_yuanye 见面不列朝班<br/>yuanye"]:::ink
-  ch04_s10_yuanye["10_yuanye 一张饼够了<br/>yuanye"]:::ink
+  ch04_s10_yuanye["10_yuanye 一张饼够了<br/>yuanye · 无用"]:::ink
   ch04_s11_nvguan["11_nvguan 三日以后谁付<br/>nvguan"]:::ink
   ch04_s12_nvguan["12_nvguan 半日也算来过<br/>nvguan · 公议"]:::ink
-  ch04_s13_nvguan["13_nvguan 她们收自己的席<br/>nvguan · 公议"]:::ink
+  ch04_s13_nvguan["13_nvguan 她们收自己的席<br/>nvguan · 无用·公议"]:::ink
   ch04_s14_shuge["14_shuge 归期写在前面<br/>shuge"]:::ink
   ch04_s15_yilu["15_yilu 各自领一份<br/>yilu · 公议"]:::ink
-  ch04_s16_yilu["16_yilu 驿旁不是归处<br/>yilu · 公议"]:::ink
+  ch04_s16_yilu["16_yilu 驿旁不是归处<br/>yilu · 无用·公议"]:::ink
   ch04_s17_nvguan["17_nvguan 只有这边看得到<br/>nvguan"]:::ink
   ch04_s18_wuzibei["18_wuzibei 留白以后<br/>wuzibei · 无用·公议"]:::ink
   ch04_s05p_shuge -->|"🔒 A 去见沈衡，我想只同她相爱"| ch04_s05pe_shuge

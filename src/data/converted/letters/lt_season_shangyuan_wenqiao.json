@@ -4,7 +4,7 @@
   "trigger": {
     "kind": "solarTerm",
     "term": "shangyuan",
-    "minAffinity": 5
+    "minAffinity": 3
   },
   "delayMinutes": 5,
   "paper": "huajian",

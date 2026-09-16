@@ -227,6 +227,30 @@ test('四节气与五种笺、缺反应和缺留信必须报告', () => {
   assert.ok(convert(scene('ch01-01', '| 留信 | shenheng, wenqiao |'), 'l').issues.some(i => i.message.includes('wenqiao')));
 });
 
+/** D-189：节令信的好感门槛写在信表里（上元 3、寒食 4），空着仍是引擎默认的 5 */
+test('D-189 信表 minAffinity：写了就写进触发；只对节令信有用；不是整数要报', () => {
+  const asTerm = (cn: string) => letter.replace('| 触发 | 场景 ch01-01 之后第 3 场 |', `| 节气 | ${cn} |`).replace('| 会被截 | 是 |', '| 会被截 | 否 |').replace('| 被截去向 | ch01-01 |', '| 被截去向 | |');
+  const withMin = (cn: string, val: string) => asTerm(cn).replace(`| 节气 | ${cn} |`, `| minAffinity | ${val} |\n| 节气 | ${cn} |`);
+  assert.deepEqual(convert(withMin('上元', '3'), 'l').letters[0].trigger, { kind: 'solarTerm', term: 'shangyuan', minAffinity: 3 });
+  assert.deepEqual(convert(withMin('寒食', '4'), 'l').letters[0].trigger, { kind: 'solarTerm', term: 'hanshi', minAffinity: 4 });
+  assert.deepEqual(convert(withMin('重阳', ''), 'l').letters[0].trigger, { kind: 'solarTerm', term: 'chongyang', minAffinity: 5 }, '空栏走引擎默认的 5');
+
+  // 场次触发的信不看好感：写在那儿等于没写，要报出来，别当成转出来的信还带着门槛
+  const onScene = letter.replace('| 触发 |', '| minAffinity | 3 |\n| 触发 |');
+  const r = convert(scene() + onScene, 'l');
+  assert.equal(r.letters.length, 0);
+  assert.ok(r.issues.some(i => i.message.includes('只对节令信有用')), '场次触发的信写 minAffinity 要报');
+
+  const bad = convert(withMin('上元', '三'), 'l');
+  assert.equal(bad.letters.length, 0, '门槛不是整数就别转出来');
+  assert.ok(bad.issues.some(i => i.message.includes('应为整数')));
+
+  // 高过最高档只是警告：也许有意为之，人看一眼；转换照走
+  const high = convert(withMin('上元', '99'), 'l');
+  assert.equal(high.letters[0].trigger.minAffinity, 99);
+  assert.ok(high.issues.some(i => i.kind === '警告' && i.message.includes('送不出去')));
+});
+
 /** 诗库会随剧本增补（D-033 就加过一首），所以数目从原文的表格行数来，不写死 */
 const poemRows = (md: string) => md.split('\n').filter(l => /^\|\s*\d+\s*\|/.test(l)).length;
 

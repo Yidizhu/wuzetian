@@ -454,7 +454,7 @@ const KNOWN_FIELDS: Record<string, { data: string[]; notes?: string[] }> = {
     data: ["章", "幕", "地点 key", "色板", "在场", "进入条件", "无用场景", "一句话目的", "去向", "自动去向", "章末", "布置", "留信", "对诗", "终局判定", "结局", "BGM"],
     notes: ["进场想要", "阻碍", "行动", "翻转", "出场所知"],
   },
-  信: { data: ["发信人", "触发", "延迟分钟", "节气", "笺", "明面", "引诗", "引诗要说的", "空白", "她可能不回", "会被截", "被截去向", "截获场景"] },
+  信: { data: ["发信人", "触发", "延迟分钟", "节气", "minAffinity", "笺", "明面", "引诗", "引诗要说的", "空白", "她可能不回", "会被截", "被截去向", "截获场景"] },
   对诗: { data: ["出句", "出处", "难度", "题面", "给玩家的题面", "判题重点", "正确答案"] },
   结局: { data: ["结局 key", "标题", "判定", "色板", "主题", "正文", "正文 · 天", "正文 · 曌", "正文 · 不改", "结局卡"] },
 };
@@ -840,6 +840,16 @@ export function convertBatch(inputs: { markdown: string; file: string }[]): Conv
     const term = SOLAR_TERMS_BY_NAME[v("节气")];
     if (v("节气") && !term) throw new LocatedError(f["节气"], "未知节气");
     if (!term && !trigger) throw new LocatedError(f["触发"], "触发须写场景 ch01-06 之后第 3 场");
+    // 节令信的好感门槛（D-189）：这一栏写了才算，空着按引擎的默认 5 走。
+    // 只有节令信用得上——场次触发的信不看好感，写在那儿等于没写，要报出来而不是悄悄吞掉
+    let minAffinity: number | undefined;
+    if (v("minAffinity")) {
+      if (!term) throw new LocatedError(f["minAffinity"], "minAffinity 只对节令信有用，场次触发的信不看好感；要么删掉这一栏，要么把触发改成节令");
+      minAffinity = attempt(b, f["minAffinity"], () => integer(v("minAffinity")));
+    }
+    // 门槛高过最高档只是「人看一眼」。警告要等信转出来之后再记：blockHasErrors 不分轻重，
+    // 这一段里先记下问题，下面那封信就不会被写出去了
+    const minTooHigh = minAffinity !== undefined && minAffinity > AFFINITY_BANDS[0]!.min;
     const paper = ({ 黄麻纸: "huangma", 秘书省黄麻纸: "huangma", 军中素笺: "junzhong", 泥金笺: "nijin", 自制花笺: "huajian", 常笺: "chang" } as Record<string,string>)[v("笺")];
     const reactions = new Map<string, string>();
     const replyKeys = ["直言 A", "直言 B", "直言 C", "以诗代答 · 合意象", "以诗代答 · 不合", "不回"];
@@ -872,7 +882,7 @@ export function convertBatch(inputs: { markdown: string; file: string }[]): Conv
     const quote = v("引诗").split(/\s*·\s*/);
     if (quote.length !== 2) throw new LocatedError(f["引诗"], "引诗须写作者《题名》· 诗句");
     const mayNot = attempt(b, f["她可能不回"], () => parseCondition(v("她可能不回")));
-    const value = { id, from: v("发信人"), trigger: term ? { kind: "solarTerm", term } : { kind: "scene", sceneId: ref(trigger![1]), afterScenes: Number(trigger![2]) },
+    const value = { id, from: v("发信人"), trigger: term ? { kind: "solarTerm", term, ...(minAffinity !== undefined ? { minAffinity } : {}) } : { kind: "scene", sceneId: ref(trigger![1]), afterScenes: Number(trigger![2]) },
       delayMinutes: integer(v("延迟分钟")), paper, body: { surface: v("明面"), poem: { ref: poemRef(quote[0]), line: quote[1] }, poemMeans: v("引诗要说的"), blank: v("空白"), ...(pages?.length ? { pages } : {}) },
       ...(mayNot && Object.keys(mayNot).length ? { sheMayNotReply: mayNot } : {}), interceptable: yes(v("会被截")), ...(v("被截去向") ? { onIntercept: { goto: ref(v("被截去向")) } } : {}),
       ...(v("截获场景") ? { interceptAt: attempt(b, f["截获场景"], () => ref(v("截获场景"))) } : {}),
@@ -904,6 +914,7 @@ export function convertBatch(inputs: { markdown: string; file: string }[]): Conv
       }
       if (value.interceptAt) (parsed as any).interceptAt = value.interceptAt;
       result.letters.push(parsed);
+      if (minTooHigh) addIssue(b, f["minAffinity"], `好感门槛写到 ${minAffinity}，比最高档「${AFFINITY_BANDS[0]!.label}」的门 ${AFFINITY_BANDS[0]!.min} 还高，这封信可能整章都送不出去。要是有意为之，人看一眼即可`, "警告");
     }
   });
   for (const b of blocks.filter(b => b.tables.some(t => t.rows.some(r => r.cells[0] === "结局 key")))) attempt(b, undefined, () => {
