@@ -11,7 +11,7 @@
     "validate:demo": "node --experimental-strip-types tools/validate-story.ts tools/fixtures/broken",
     "graph": "node --experimental-strip-types tools/convert-story.ts docs/C-2-第一章前六场.md docs/C-3-第一章后十二场.md docs/C-4-第一章书信.md docs/C0-2-诗词库与对诗.md docs/C-B-结局树.md docs/C-6-第二章大纲.md docs/C-7-第二章前十二场.md docs/C-8-第二章后十二场与书信.md docs/C-9-第三章大纲.md docs/C-10-第三章前十二场.md docs/C-11-第三章后十二场与书信.md docs/C-12-第四章大纲.md docs/C-13-第四章登基与不受.md docs/C-14-第四章其余路线与书信.md",
     "test": "node --experimental-strip-types --test tests/*.test.ts",
-    "test:engine": "node --experimental-strip-types --test tests/engine.test.ts tests/savecode.test.ts tests/chapterend.test.ts tests/tap.test.ts tests/cues.test.ts tests/frameJudge.test.ts tests/relation.test.ts tests/pact.test.ts tests/cg.test.ts tests/emptyshot.test.ts tests/epigraph.test.ts tests/solarterm.test.ts",
+    "test:engine": "node --experimental-strip-types --test tests/engine.test.ts tests/savecode.test.ts tests/chapterend.test.ts tests/tap.test.ts tests/cues.test.ts tests/frameJudge.test.ts tests/relation.test.ts tests/pact.test.ts tests/cg.test.ts tests/emptyshot.test.ts tests/epigraph.test.ts tests/solarterm.test.ts tests/names.test.ts",
     "build:artifact": "npm run build && node --experimental-strip-types tools/build-artifact.ts",
     "build:3d": "node --experimental-strip-types tools/build-3d.ts",
     "build:adult": "node --experimental-strip-types tools/build-adult.ts",

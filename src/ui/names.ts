@@ -12,4 +12,5 @@ export const NAMES: Record<string, string> = {
   xujinghe: "许静和",
   tangjian: "唐简",
   adi: "阿荻",
+  liuchenghuan: "柳承欢",   // B41：漏了，对话框里名字一直是空的
 };
