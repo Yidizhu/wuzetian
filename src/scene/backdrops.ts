@@ -68,6 +68,9 @@ export const BACKDROPS: Record<string, Backdrop> = {
   zhaoyang_ink_yedeng:  { night: true, paintedNight: true, where: "四章 06 夜谈四（夜灯）。dressings.ts 里有，剧本眼下没写这一条布置" },
   shuge_ink:            { floor: 22, person: 1, push: "right", where: "书阁水墨，十二场。四章 08、14 是夜里，剧本没有时辰一栏，眼下按日景（D-107）。v1：光从左窗进来，右边书架间有纵深，朝右推" },
   shuge_gold:           { from: "shuge_ink", tone: "gold", floor: 22, person: 1, push: "right", where: "书阁金碧。借水墨那张，加金" },
+  // D-210（B41）：ch01-08 宫内策问试补了布置「公议」，只为李令仪换紫礼衣；**公议只换人不换景**，和书阁金碧同一张。
+  // 借图只认一层（raster.resolveBackdrop），shuge_gold 自己也是借的，所以直接写它借的那张＋同一种金，效果和 shuge_gold 一样
+  shuge_gold_gongyi:    { from: "shuge_ink", tone: "gold", floor: 22, person: 1, push: "right", where: "一章 08 宫内策问试（公议）。同书阁金碧那张：借水墨、加金" },
   // D-208（B40）：样场查出书阁、掖庭有夜戏演在日景里。**不出图**，借日景那张套夜滤镜（D-107 原来的办法）；构图跟原图走
   shuge_ink_yedeng:     { from: "shuge_ink", night: true, floor: 22, person: 1, push: "right", where: "书阁夜里一盏灯。借书阁水墨日景，套夜滤镜；场次见 C48" },
   // B22：以下八行看第二批 v1（E18 验收）在缩略图上量过：地面都铺过 22% 那条线；推向朝画面里空着的那一边
