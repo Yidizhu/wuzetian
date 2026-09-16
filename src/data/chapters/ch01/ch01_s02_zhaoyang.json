@@ -302,9 +302,21 @@
     },
     {
       "id": "ch01_s02_zhaoyang.l43",
+      "who": "empty",
+      "kind": "aside",
+      "text": "旧景·上元。宫墙边的灯轮亮着，矮案上一盏小灯将熄。"
+    },
+    {
+      "id": "ch01_s02_zhaoyang.l44",
+      "who": "cg",
+      "kind": "aside",
+      "text": "wu_denglun"
+    },
+    {
+      "id": "ch01_s02_zhaoyang.l45",
       "who": "narr",
       "kind": "aside",
-      "text": "你把更正纸留在昭阳殿案上，等着署名。"
+      "text": "眼前，你把更正纸留在昭阳殿案上，等着署名。"
     }
   ],
   "choices": [

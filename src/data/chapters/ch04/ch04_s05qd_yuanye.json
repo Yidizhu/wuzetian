@@ -56,13 +56,40 @@
       "when": {
         "intent": "only"
       },
+      "who": "narr",
+      "kind": "aside",
+      "text": "你看李令仪空着的那只手，袖口垂下来，离你的手还有一截。"
+    },
+    {
+      "id": "ch04_s05qd_yuanye.l6",
+      "when": {
+        "intent": "only"
+      },
+      "who": "cg",
+      "kind": "aside",
+      "text": "liqinghe_6_dafu"
+    },
+    {
+      "id": "ch04_s05qd_yuanye.l7",
+      "when": {
+        "intent": "only"
+      },
+      "who": "self",
+      "kind": "inner",
+      "text": "（想把这一截挪近。先别动。）"
+    },
+    {
+      "id": "ch04_s05qd_yuanye.l8",
+      "when": {
+        "intent": "only"
+      },
       "who": "liqinghe",
       "expr": "default",
       "kind": "say",
       "text": "我也愿意。"
     },
     {
-      "id": "ch04_s05qd_yuanye.l6",
+      "id": "ch04_s05qd_yuanye.l9",
       "when": {
         "intent": "open"
       },
@@ -72,7 +99,7 @@
       "text": "我想同你相爱，但不只同你一人。"
     },
     {
-      "id": "ch04_s05qd_yuanye.l7",
+      "id": "ch04_s05qd_yuanye.l10",
       "when": {
         "intent": "open",
         "pact.shenheng": "declined"
@@ -83,7 +110,7 @@
       "text": "沈衡不愿意，私约已停。"
     },
     {
-      "id": "ch04_s05qd_yuanye.l8",
+      "id": "ch04_s05qd_yuanye.l11",
       "when": {
         "intent": "open",
         "pact.shenheng": "ended"
@@ -94,7 +121,7 @@
       "text": "我已同沈衡说停了私约。"
     },
     {
-      "id": "ch04_s05qd_yuanye.l9",
+      "id": "ch04_s05qd_yuanye.l12",
       "when": {
         "intent": "open",
         "pact.peizhaoye": "active"
@@ -105,7 +132,7 @@
       "text": "我还想同裴照夜相见。"
     },
     {
-      "id": "ch04_s05qd_yuanye.l10",
+      "id": "ch04_s05qd_yuanye.l13",
       "when": {
         "intent": "open",
         "pact.peizhaoye": "ended"
@@ -116,7 +143,7 @@
       "text": "我已同裴照夜说停了私约。"
     },
     {
-      "id": "ch04_s05qd_yuanye.l11",
+      "id": "ch04_s05qd_yuanye.l14",
       "when": {
         "intent": "open",
         "pact.wenqiao": "active"
@@ -127,7 +154,7 @@
       "text": "我还想同温荞相见。"
     },
     {
-      "id": "ch04_s05qd_yuanye.l12",
+      "id": "ch04_s05qd_yuanye.l15",
       "when": {
         "intent": "open",
         "pact.wenqiao": "ended"
@@ -138,7 +165,34 @@
       "text": "我已同温荞说停了私约。"
     },
     {
-      "id": "ch04_s05qd_yuanye.l13",
+      "id": "ch04_s05qd_yuanye.l16",
+      "when": {
+        "intent": "open"
+      },
+      "who": "narr",
+      "kind": "aside",
+      "text": "你看她站在自己的石阶上，稿留在手里，另一只手垂着。"
+    },
+    {
+      "id": "ch04_s05qd_yuanye.l17",
+      "when": {
+        "intent": "open"
+      },
+      "who": "cg",
+      "kind": "aside",
+      "text": "liqinghe_6_dafu"
+    },
+    {
+      "id": "ch04_s05qd_yuanye.l18",
+      "when": {
+        "intent": "open"
+      },
+      "who": "self",
+      "kind": "inner",
+      "text": "（她没下来。我也先站住。）"
+    },
+    {
+      "id": "ch04_s05qd_yuanye.l19",
       "when": {
         "intent": "open"
       },
@@ -148,7 +202,7 @@
       "text": "我不愿意。"
     },
     {
-      "id": "ch04_s05qd_yuanye.l14",
+      "id": "ch04_s05qd_yuanye.l20",
       "when": {
         "intent": "open"
       },
@@ -158,7 +212,7 @@
       "text": "那我们——"
     },
     {
-      "id": "ch04_s05qd_yuanye.l15",
+      "id": "ch04_s05qd_yuanye.l21",
       "when": {
         "intent": "open"
       },
@@ -168,7 +222,7 @@
       "text": "就不再这样约。你不用为了让我点头，收回真话。"
     },
     {
-      "id": "ch04_s05qd_yuanye.l16",
+      "id": "ch04_s05qd_yuanye.l22",
       "when": {
         "intent": "open"
       },
@@ -177,7 +231,7 @@
       "text": "她把衣领理平，留在自己那一级石阶上。"
     },
     {
-      "id": "ch04_s05qd_yuanye.l17",
+      "id": "ch04_s05qd_yuanye.l23",
       "when": {
         "intent": "open"
       },

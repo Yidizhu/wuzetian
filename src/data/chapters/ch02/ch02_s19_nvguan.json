@@ -145,7 +145,19 @@
       "id": "ch02_s19_nvguan.l20",
       "who": "narr",
       "kind": "aside",
-      "text": "你擦掉手上的水，把水壶放回去。"
+      "text": "旧景·夏日。井栏上搁着一碗槐叶冷淘，桶底的水滴在苔上。"
+    },
+    {
+      "id": "ch02_s19_nvguan.l21",
+      "who": "cg",
+      "kind": "aside",
+      "text": "wu_lengtao"
+    },
+    {
+      "id": "ch02_s19_nvguan.l22",
+      "who": "narr",
+      "kind": "aside",
+      "text": "眼前，你擦掉手上的水，把水壶放回去。"
     }
   ],
   "goto": "ch02_s20_hanyuan"

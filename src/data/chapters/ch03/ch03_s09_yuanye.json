@@ -330,13 +330,43 @@
         "pact.liqinghe": "active",
         "pact.wenqiao": "active"
       },
+      "who": "narr",
+      "kind": "aside",
+      "text": "你看她指上的松线，一圈贴着指节，外袍的袖子垂在肩旁。"
+    },
+    {
+      "id": "ch03_s09_yuanye.l43",
+      "when": {
+        "pact.liqinghe": "active",
+        "pact.wenqiao": "active"
+      },
+      "who": "cg",
+      "kind": "aside",
+      "text": "liqinghe_5_suanshenme"
+    },
+    {
+      "id": "ch03_s09_yuanye.l44",
+      "when": {
+        "pact.liqinghe": "active",
+        "pact.wenqiao": "active"
+      },
+      "who": "self",
+      "kind": "inner",
+      "text": "（又想说“也”。先把这个字咽下去。）"
+    },
+    {
+      "id": "ch03_s09_yuanye.l45",
+      "when": {
+        "pact.liqinghe": "active",
+        "pact.wenqiao": "active"
+      },
       "who": "wuze",
       "expr": "default",
       "kind": "say",
       "text": "我也想见你。"
     },
     {
-      "id": "ch03_s09_yuanye.l43",
+      "id": "ch03_s09_yuanye.l46",
       "when": {
         "pact.liqinghe": "active",
         "pact.wenqiao": "active"
@@ -347,7 +377,7 @@
       "text": "我问的就是这个“也”。"
     },
     {
-      "id": "ch03_s09_yuanye.l44",
+      "id": "ch03_s09_yuanye.l47",
       "when": {
         "pact.liqinghe": "active",
         "pact.wenqiao": "active"
@@ -358,7 +388,7 @@
       "text": "我没有想清楚——"
     },
     {
-      "id": "ch03_s09_yuanye.l45",
+      "id": "ch03_s09_yuanye.l48",
       "when": {
         "pact.liqinghe": "active",
         "pact.wenqiao": "active"
@@ -369,7 +399,7 @@
       "text": "可你已经答应过我了。"
     },
     {
-      "id": "ch03_s09_yuanye.l46",
+      "id": "ch03_s09_yuanye.l49",
       "when": {
         "pact.liqinghe": "active",
         "pact.wenqiao": "active"
@@ -379,7 +409,7 @@
       "text": "你伸手想拿她指上的线。她收进掌心，没有递。"
     },
     {
-      "id": "ch03_s09_yuanye.l47",
+      "id": "ch03_s09_yuanye.l50",
       "when": {
         "pact.liqinghe": "active",
         "pact.wenqiao": "active"
@@ -387,48 +417,6 @@
       "who": "self",
       "kind": "inner",
       "text": "（她在等一句话。我还想先牵她的手。）"
-    },
-    {
-      "id": "ch03_s09_yuanye.l48",
-      "when": {
-        "pact.liqinghe": {
-          "not": [
-            "active"
-          ]
-        }
-      },
-      "who": "liqinghe",
-      "expr": "open",
-      "kind": "say",
-      "text": "你冷不冷？"
-    },
-    {
-      "id": "ch03_s09_yuanye.l49",
-      "when": {
-        "pact.liqinghe": {
-          "not": [
-            "active"
-          ]
-        }
-      },
-      "who": "wuze",
-      "expr": "open",
-      "kind": "say",
-      "text": "冷。"
-    },
-    {
-      "id": "ch03_s09_yuanye.l50",
-      "when": {
-        "pact.liqinghe": {
-          "not": [
-            "active"
-          ]
-        }
-      },
-      "who": "liqinghe",
-      "expr": "open",
-      "kind": "say",
-      "text": "冷。"
     },
     {
       "id": "ch03_s09_yuanye.l51",
@@ -442,7 +430,7 @@
       "who": "liqinghe",
       "expr": "open",
       "kind": "say",
-      "text": "各自穿好，走到有灯的地方。"
+      "text": "你冷不冷？"
     },
     {
       "id": "ch03_s09_yuanye.l52",
@@ -456,7 +444,7 @@
       "who": "wuze",
       "expr": "open",
       "kind": "say",
-      "text": "嗯。"
+      "text": "冷。"
     },
     {
       "id": "ch03_s09_yuanye.l53",
@@ -470,10 +458,52 @@
       "who": "liqinghe",
       "expr": "open",
       "kind": "say",
-      "text": "路上不问答卷。"
+      "text": "冷。"
     },
     {
       "id": "ch03_s09_yuanye.l54",
+      "when": {
+        "pact.liqinghe": {
+          "not": [
+            "active"
+          ]
+        }
+      },
+      "who": "liqinghe",
+      "expr": "open",
+      "kind": "say",
+      "text": "各自穿好，走到有灯的地方。"
+    },
+    {
+      "id": "ch03_s09_yuanye.l55",
+      "when": {
+        "pact.liqinghe": {
+          "not": [
+            "active"
+          ]
+        }
+      },
+      "who": "wuze",
+      "expr": "open",
+      "kind": "say",
+      "text": "嗯。"
+    },
+    {
+      "id": "ch03_s09_yuanye.l56",
+      "when": {
+        "pact.liqinghe": {
+          "not": [
+            "active"
+          ]
+        }
+      },
+      "who": "liqinghe",
+      "expr": "open",
+      "kind": "say",
+      "text": "路上不问答卷。"
+    },
+    {
+      "id": "ch03_s09_yuanye.l57",
       "when": {
         "pact.liqinghe": {
           "not": [
@@ -486,7 +516,7 @@
       "text": "她将自己的领口扣好，站在两步以外。那条松线留在你刚才坐过的石上。"
     },
     {
-      "id": "ch03_s09_yuanye.l55",
+      "id": "ch03_s09_yuanye.l58",
       "when": {
         "pact.liqinghe": {
           "not": [
@@ -500,7 +530,7 @@
       "text": "旧邀照旧答。今夜……另问。"
     },
     {
-      "id": "ch03_s09_yuanye.l56",
+      "id": "ch03_s09_yuanye.l59",
       "when": {
         "pact.liqinghe": {
           "not": [
@@ -514,7 +544,7 @@
       "text": "另问。"
     },
     {
-      "id": "ch03_s09_yuanye.l57",
+      "id": "ch03_s09_yuanye.l60",
       "when": {
         "pact.liqinghe": {
           "not": [
@@ -528,7 +558,7 @@
       "text": "你不走，也不拿它答明日。"
     },
     {
-      "id": "ch03_s09_yuanye.l58",
+      "id": "ch03_s09_yuanye.l61",
       "when": {
         "pact.liqinghe": {
           "not": [
@@ -540,57 +570,6 @@
       "expr": "default",
       "kind": "say",
       "text": "明日各争各的。赢不算更肯爱，输不用赔。"
-    },
-    {
-      "id": "ch03_s09_yuanye.l59",
-      "when": {
-        "pact.liqinghe": "active",
-        "pact.wenqiao": {
-          "in": [
-            "none",
-            "ended",
-            "declined"
-          ]
-        }
-      },
-      "who": "liqinghe",
-      "expr": "open",
-      "kind": "say",
-      "text": "你冷不冷？"
-    },
-    {
-      "id": "ch03_s09_yuanye.l60",
-      "when": {
-        "pact.liqinghe": "active",
-        "pact.wenqiao": {
-          "in": [
-            "none",
-            "ended",
-            "declined"
-          ]
-        }
-      },
-      "who": "wuze",
-      "expr": "open",
-      "kind": "say",
-      "text": "冷。"
-    },
-    {
-      "id": "ch03_s09_yuanye.l61",
-      "when": {
-        "pact.liqinghe": "active",
-        "pact.wenqiao": {
-          "in": [
-            "none",
-            "ended",
-            "declined"
-          ]
-        }
-      },
-      "who": "liqinghe",
-      "expr": "open",
-      "kind": "say",
-      "text": "冷。"
     },
     {
       "id": "ch03_s09_yuanye.l62",
@@ -607,7 +586,7 @@
       "who": "liqinghe",
       "expr": "open",
       "kind": "say",
-      "text": "各自穿好，走到有灯的地方。"
+      "text": "你冷不冷？"
     },
     {
       "id": "ch03_s09_yuanye.l63",
@@ -624,7 +603,7 @@
       "who": "wuze",
       "expr": "open",
       "kind": "say",
-      "text": "嗯。"
+      "text": "冷。"
     },
     {
       "id": "ch03_s09_yuanye.l64",
@@ -641,10 +620,61 @@
       "who": "liqinghe",
       "expr": "open",
       "kind": "say",
-      "text": "路上不问答卷。"
+      "text": "冷。"
     },
     {
       "id": "ch03_s09_yuanye.l65",
+      "when": {
+        "pact.liqinghe": "active",
+        "pact.wenqiao": {
+          "in": [
+            "none",
+            "ended",
+            "declined"
+          ]
+        }
+      },
+      "who": "liqinghe",
+      "expr": "open",
+      "kind": "say",
+      "text": "各自穿好，走到有灯的地方。"
+    },
+    {
+      "id": "ch03_s09_yuanye.l66",
+      "when": {
+        "pact.liqinghe": "active",
+        "pact.wenqiao": {
+          "in": [
+            "none",
+            "ended",
+            "declined"
+          ]
+        }
+      },
+      "who": "wuze",
+      "expr": "open",
+      "kind": "say",
+      "text": "嗯。"
+    },
+    {
+      "id": "ch03_s09_yuanye.l67",
+      "when": {
+        "pact.liqinghe": "active",
+        "pact.wenqiao": {
+          "in": [
+            "none",
+            "ended",
+            "declined"
+          ]
+        }
+      },
+      "who": "liqinghe",
+      "expr": "open",
+      "kind": "say",
+      "text": "路上不问答卷。"
+    },
+    {
+      "id": "ch03_s09_yuanye.l68",
       "when": {
         "pact.liqinghe": "active",
         "pact.wenqiao": {
@@ -660,7 +690,7 @@
       "text": "她将自己的领口扣好，站在两步以外。那条松线留在你刚才坐过的石上。"
     },
     {
-      "id": "ch03_s09_yuanye.l66",
+      "id": "ch03_s09_yuanye.l69",
       "when": {
         "pact.liqinghe": "active",
         "pact.wenqiao": {
@@ -677,7 +707,7 @@
       "text": "旧邀照旧答。今夜……另问。"
     },
     {
-      "id": "ch03_s09_yuanye.l67",
+      "id": "ch03_s09_yuanye.l70",
       "when": {
         "pact.liqinghe": "active",
         "pact.wenqiao": {
@@ -694,7 +724,7 @@
       "text": "另问。"
     },
     {
-      "id": "ch03_s09_yuanye.l68",
+      "id": "ch03_s09_yuanye.l71",
       "when": {
         "pact.liqinghe": "active",
         "pact.wenqiao": {
@@ -711,7 +741,7 @@
       "text": "你不走，也不拿它答明日。"
     },
     {
-      "id": "ch03_s09_yuanye.l69",
+      "id": "ch03_s09_yuanye.l72",
       "when": {
         "pact.liqinghe": "active",
         "pact.wenqiao": {
@@ -728,7 +758,7 @@
       "text": "明日各争各的。赢不算更肯爱，输不用赔。"
     },
     {
-      "id": "ch03_s09_yuanye.l70",
+      "id": "ch03_s09_yuanye.l73",
       "when": {
         "pact.liqinghe": "active",
         "pact.wenqiao": "paused"
@@ -739,39 +769,6 @@
       "text": "你冷不冷？"
     },
     {
-      "id": "ch03_s09_yuanye.l71",
-      "when": {
-        "pact.liqinghe": "active",
-        "pact.wenqiao": "paused"
-      },
-      "who": "wuze",
-      "expr": "open",
-      "kind": "say",
-      "text": "冷。"
-    },
-    {
-      "id": "ch03_s09_yuanye.l72",
-      "when": {
-        "pact.liqinghe": "active",
-        "pact.wenqiao": "paused"
-      },
-      "who": "liqinghe",
-      "expr": "open",
-      "kind": "say",
-      "text": "冷。"
-    },
-    {
-      "id": "ch03_s09_yuanye.l73",
-      "when": {
-        "pact.liqinghe": "active",
-        "pact.wenqiao": "paused"
-      },
-      "who": "liqinghe",
-      "expr": "open",
-      "kind": "say",
-      "text": "各自穿好，走到有灯的地方。"
-    },
-    {
       "id": "ch03_s09_yuanye.l74",
       "when": {
         "pact.liqinghe": "active",
@@ -780,7 +777,7 @@
       "who": "wuze",
       "expr": "open",
       "kind": "say",
-      "text": "嗯。"
+      "text": "冷。"
     },
     {
       "id": "ch03_s09_yuanye.l75",
@@ -791,10 +788,43 @@
       "who": "liqinghe",
       "expr": "open",
       "kind": "say",
-      "text": "路上不问答卷。"
+      "text": "冷。"
     },
     {
       "id": "ch03_s09_yuanye.l76",
+      "when": {
+        "pact.liqinghe": "active",
+        "pact.wenqiao": "paused"
+      },
+      "who": "liqinghe",
+      "expr": "open",
+      "kind": "say",
+      "text": "各自穿好，走到有灯的地方。"
+    },
+    {
+      "id": "ch03_s09_yuanye.l77",
+      "when": {
+        "pact.liqinghe": "active",
+        "pact.wenqiao": "paused"
+      },
+      "who": "wuze",
+      "expr": "open",
+      "kind": "say",
+      "text": "嗯。"
+    },
+    {
+      "id": "ch03_s09_yuanye.l78",
+      "when": {
+        "pact.liqinghe": "active",
+        "pact.wenqiao": "paused"
+      },
+      "who": "liqinghe",
+      "expr": "open",
+      "kind": "say",
+      "text": "路上不问答卷。"
+    },
+    {
+      "id": "ch03_s09_yuanye.l79",
       "when": {
         "pact.liqinghe": "active",
         "pact.wenqiao": "paused"
@@ -804,7 +834,7 @@
       "text": "她将自己的领口扣好，站在两步以外。那条松线留在你刚才坐过的石上。"
     },
     {
-      "id": "ch03_s09_yuanye.l77",
+      "id": "ch03_s09_yuanye.l80",
       "when": {
         "pact.liqinghe": "active",
         "pact.wenqiao": "paused"
@@ -815,7 +845,7 @@
       "text": "旧邀照旧答。今夜……另问。"
     },
     {
-      "id": "ch03_s09_yuanye.l78",
+      "id": "ch03_s09_yuanye.l81",
       "when": {
         "pact.liqinghe": "active",
         "pact.wenqiao": "paused"
@@ -826,7 +856,7 @@
       "text": "另问。"
     },
     {
-      "id": "ch03_s09_yuanye.l79",
+      "id": "ch03_s09_yuanye.l82",
       "when": {
         "pact.liqinghe": "active",
         "pact.wenqiao": "paused"
@@ -837,7 +867,7 @@
       "text": "你不走，也不拿它答明日。"
     },
     {
-      "id": "ch03_s09_yuanye.l80",
+      "id": "ch03_s09_yuanye.l83",
       "when": {
         "pact.liqinghe": "active",
         "pact.wenqiao": "paused"

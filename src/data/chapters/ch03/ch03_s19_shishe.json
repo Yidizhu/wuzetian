@@ -221,12 +221,39 @@
     },
     {
       "id": "ch03_s19_shishe.l31",
+      "when": {
+        "flag.enthroned": false
+      },
+      "who": "narr",
+      "kind": "aside",
+      "text": "温荞挨过来，你看她低头合拢纸角，肩头贴着你的肩。"
+    },
+    {
+      "id": "ch03_s19_shishe.l32",
+      "when": {
+        "flag.enthroned": false
+      },
+      "who": "cg",
+      "kind": "aside",
+      "text": "wenqiao_3_tiejian"
+    },
+    {
+      "id": "ch03_s19_shishe.l33",
+      "when": {
+        "flag.enthroned": false
+      },
+      "who": "self",
+      "kind": "inner",
+      "text": "（再扇两下。肩膀先别挪。）"
+    },
+    {
+      "id": "ch03_s19_shishe.l34",
       "who": "narr",
       "kind": "aside",
       "text": "窗扇碰了木框。温拿空鞋抵住，脚收回垫上，纸仍在你们手里。"
     },
     {
-      "id": "ch03_s19_shishe.l32",
+      "id": "ch03_s19_shishe.l35",
       "who": "narr",
       "kind": "aside",
       "text": "临走你把纸放回窗边，压平两只坐垫的卷角。"

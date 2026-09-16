@@ -638,26 +638,44 @@
     },
     {
       "id": "ch03_s15_yeting.l78",
+      "who": "narr",
+      "kind": "aside",
+      "text": "你看柳承欢空下来的腕侧，弯着的手指已离开你的掌心。"
+    },
+    {
+      "id": "ch03_s15_yeting.l79",
+      "who": "cg",
+      "kind": "aside",
+      "text": "liuchenghuan_1_guihuan"
+    },
+    {
+      "id": "ch03_s15_yeting.l80",
+      "who": "self",
+      "kind": "inner",
+      "text": "（绳回来了。她的手还没有放平。）"
+    },
+    {
+      "id": "ch03_s15_yeting.l81",
       "who": "liuchenghuan",
       "expr": "default",
       "kind": "say",
       "text": "杯子留这，水还温着。"
     },
     {
-      "id": "ch03_s15_yeting.l79",
+      "id": "ch03_s15_yeting.l82",
       "who": "narr",
       "kind": "aside",
       "text": "柳挪开杯底，把试牒压了进去。应试时辰那一格没有新添的字。"
     },
     {
-      "id": "ch03_s15_yeting.l80",
+      "id": "ch03_s15_yeting.l83",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
       "text": "好。"
     },
     {
-      "id": "ch03_s15_yeting.l81",
+      "id": "ch03_s15_yeting.l84",
       "who": "narr",
       "kind": "aside",
       "text": "你收好归还的朱绳，凭据留在柳手边。"

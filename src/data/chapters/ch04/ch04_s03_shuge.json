@@ -210,6 +210,24 @@
       "who": "narr",
       "kind": "aside",
       "text": "罩灯没有挪近纸。唐在门边等你亲口说定。"
+    },
+    {
+      "id": "ch04_s03_shuge.l28",
+      "who": "narr",
+      "kind": "aside",
+      "text": "你看沈衡按着那页纸，罩灯还在原处，门边露着唐的衣角。"
+    },
+    {
+      "id": "ch04_s03_shuge.l29",
+      "who": "cg",
+      "kind": "aside",
+      "text": "wuze_huian"
+    },
+    {
+      "id": "ch04_s03_shuge.l30",
+      "who": "self",
+      "kind": "inner",
+      "text": "（她的手还压着。我却先看了灯。）"
     }
   ],
   "choices": [

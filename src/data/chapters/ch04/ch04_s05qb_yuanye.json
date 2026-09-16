@@ -56,13 +56,40 @@
       "when": {
         "intent": "only"
       },
+      "who": "narr",
+      "kind": "aside",
+      "text": "你看她空下来的手，行囊带落在靴边，没有绕回腕上。"
+    },
+    {
+      "id": "ch04_s05qb_yuanye.l6",
+      "when": {
+        "intent": "only"
+      },
+      "who": "cg",
+      "kind": "aside",
+      "text": "peizhaoye_6_dafu"
+    },
+    {
+      "id": "ch04_s05qb_yuanye.l7",
+      "when": {
+        "intent": "only"
+      },
+      "who": "self",
+      "kind": "inner",
+      "text": "（想牵。等她说完。）"
+    },
+    {
+      "id": "ch04_s05qb_yuanye.l8",
+      "when": {
+        "intent": "only"
+      },
       "who": "peizhaoye",
       "expr": "default",
       "kind": "say",
       "text": "我也愿意。"
     },
     {
-      "id": "ch04_s05qb_yuanye.l6",
+      "id": "ch04_s05qb_yuanye.l9",
       "when": {
         "intent": "open"
       },
@@ -72,7 +99,7 @@
       "text": "我想同你相爱，但不只同你一人。"
     },
     {
-      "id": "ch04_s05qb_yuanye.l7",
+      "id": "ch04_s05qb_yuanye.l10",
       "when": {
         "intent": "open",
         "pact.shenheng": "declined"
@@ -83,7 +110,7 @@
       "text": "沈衡不愿意，私约已停。"
     },
     {
-      "id": "ch04_s05qb_yuanye.l8",
+      "id": "ch04_s05qb_yuanye.l11",
       "when": {
         "intent": "open",
         "pact.shenheng": "ended"
@@ -94,7 +121,7 @@
       "text": "我已同沈衡说停了私约。"
     },
     {
-      "id": "ch04_s05qb_yuanye.l9",
+      "id": "ch04_s05qb_yuanye.l12",
       "when": {
         "intent": "open",
         "pact.wenqiao": "active"
@@ -105,7 +132,7 @@
       "text": "我还想同温荞相见。"
     },
     {
-      "id": "ch04_s05qb_yuanye.l10",
+      "id": "ch04_s05qb_yuanye.l13",
       "when": {
         "intent": "open",
         "pact.wenqiao": "ended"
@@ -116,7 +143,7 @@
       "text": "我已同温荞说停了私约。"
     },
     {
-      "id": "ch04_s05qb_yuanye.l11",
+      "id": "ch04_s05qb_yuanye.l14",
       "when": {
         "intent": "open",
         "pact.liqinghe": "active"
@@ -127,7 +154,7 @@
       "text": "我还想同李令仪相见。"
     },
     {
-      "id": "ch04_s05qb_yuanye.l12",
+      "id": "ch04_s05qb_yuanye.l15",
       "when": {
         "intent": "open",
         "pact.liqinghe": "declined"
@@ -138,7 +165,7 @@
       "text": "李令仪不愿意，私约已停。"
     },
     {
-      "id": "ch04_s05qb_yuanye.l13",
+      "id": "ch04_s05qb_yuanye.l16",
       "when": {
         "intent": "open",
         "pact.liqinghe": "ended"
@@ -149,7 +176,7 @@
       "text": "我已同李令仪说停了私约。"
     },
     {
-      "id": "ch04_s05qb_yuanye.l14",
+      "id": "ch04_s05qb_yuanye.l17",
       "when": {
         "intent": "open"
       },
@@ -159,7 +186,7 @@
       "text": "你说的这些人，都听见了同样的话？"
     },
     {
-      "id": "ch04_s05qb_yuanye.l15",
+      "id": "ch04_s05qb_yuanye.l18",
       "when": {
         "intent": "open"
       },
@@ -169,7 +196,7 @@
       "text": "我一个个说，不拿谁答应来劝谁。"
     },
     {
-      "id": "ch04_s05qb_yuanye.l16",
+      "id": "ch04_s05qb_yuanye.l19",
       "when": {
         "intent": "open"
       },
@@ -179,7 +206,34 @@
       "text": "那我先答我自己的。"
     },
     {
-      "id": "ch04_s05qb_yuanye.l17",
+      "id": "ch04_s05qb_yuanye.l20",
+      "when": {
+        "intent": "open"
+      },
+      "who": "narr",
+      "kind": "aside",
+      "text": "你看裴照夜站在面前，行囊在脚边，她的手没有伸向刀。"
+    },
+    {
+      "id": "ch04_s05qb_yuanye.l21",
+      "when": {
+        "intent": "open"
+      },
+      "who": "cg",
+      "kind": "aside",
+      "text": "peizhaoye_6_dafu"
+    },
+    {
+      "id": "ch04_s05qb_yuanye.l22",
+      "when": {
+        "intent": "open"
+      },
+      "who": "self",
+      "kind": "inner",
+      "text": "（她还站在这儿。我把手放下。）"
+    },
+    {
+      "id": "ch04_s05qb_yuanye.l23",
       "when": {
         "intent": "open"
       },
@@ -189,7 +243,7 @@
       "text": "我愿意继续和你相爱，不只彼此也可以。"
     },
     {
-      "id": "ch04_s05qb_yuanye.l18",
+      "id": "ch04_s05qb_yuanye.l24",
       "when": {
         "intent": "open"
       },
@@ -199,7 +253,7 @@
       "text": "你的空闲，不用一直给我留。"
     },
     {
-      "id": "ch04_s05qb_yuanye.l19",
+      "id": "ch04_s05qb_yuanye.l25",
       "when": {
         "intent": "open"
       },

@@ -242,7 +242,19 @@
       "id": "ch01_s16_yuanye.l34",
       "who": "narr",
       "kind": "aside",
-      "text": "你把断梗叶投出去，袖中那一片没再拿出来。"
+      "text": "旧景·夏日宫宴。食案上的酥山淌下一线水，花枝歪在碗沿。"
+    },
+    {
+      "id": "ch01_s16_yuanye.l35",
+      "who": "cg",
+      "kind": "aside",
+      "text": "wu_sushan"
+    },
+    {
+      "id": "ch01_s16_yuanye.l36",
+      "who": "narr",
+      "kind": "aside",
+      "text": "眼前，你把断梗叶投出去，袖中那一片没再拿出来。"
     }
   ],
   "goto": "ch01_s17_yeting"

@@ -301,19 +301,25 @@
     },
     {
       "id": "ch02_s24_shuge.l39",
+      "who": "empty",
+      "kind": "aside",
+      "text": "窗纸下沿开了一道细口，风翻起案边一角素笺。"
+    },
+    {
+      "id": "ch02_s24_shuge.l40",
       "who": "narr",
       "kind": "aside",
       "text": "她移开袖边的稿，露出半张席，却没有径自坐下。"
     },
     {
-      "id": "ch02_s24_shuge.l40",
+      "id": "ch02_s24_shuge.l41",
       "who": "liqinghe",
       "expr": "default",
       "kind": "say",
       "text": "不留我就走，明日不会因此少给你看一页。"
     },
     {
-      "id": "ch02_s24_shuge.l41",
+      "id": "ch02_s24_shuge.l42",
       "who": "narr",
       "kind": "aside",
       "text": "李将全稿留在书阁的案上，等你答今夜。"
