@@ -32,6 +32,16 @@ const SHOTS: Shot[] = [
     poem: ["尺素如残雪", "结为双鲤鱼"], sign: "李冶句 吾则添 录", cast: ["shenheng_guarded"],
   },
   {
+    // E34（CC3）：四句是题跋最宽的情形，版式按它对——最左一列和落款、印都不许压到画心的边线
+    key: "yuanye", palette: "ink", act: 1, label: "四句题跋 · 最宽的一种",
+    poem: ["露涤清音远，", "风吹数叶齐。", "声声似相接，", "各在一枝栖。"], sign: "薛涛句 吾则添 录",
+    cast: ["wuze_open"],
+  },
+  {
+    key: "zhaoyang", palette: "gold", act: 1, label: "四句七言 · 最长的一种",
+    poem: ["去春零落暮春时，", "泪湿红笺怨别离。", "常恐便同巫峡散，", "因何重有武陵期。"], sign: "薛涛句 吾则添 录",
+  },
+  {
     key: "wuzibei", palette: "ink", act: 1, label: "无字碑 · 无人无诗",
     poem: [], sign: "吾则天 立", seal: "则天",
   },
