@@ -145,11 +145,18 @@ for (const k of keys) {
 // ---------------------------------------------------------------- 图与版本库
 // 配乐、音效（B37，D-202）和图同一条规矩：上线的文件要进版本库，版本库里有的磁盘上不许没了
 const AUDIO_DIRS = ["bgm", "sfx"];
-const tracked = new Set(
-  execFileSync("git", ["ls-files", "public"], { cwd: ROOT, encoding: "utf8" })
-    .split("\n").map((s) => s.trim())
-    .filter((s) => s.endsWith(".webp") || AUDIO_DIRS.some((d) => s.startsWith(`public/${d}/`) && s.endsWith(".m4a"))),
-);
+// D-204：线上构建目录（Vercel 的 /vercel/path0）没有 .git，git 也可能不在。那里的文件本来就是从这台机器传上去的，
+// 这条检查在那儿是空话——跳过、说一句，其余照跑。build:web 链上调外部命令的地方都照这个办法退化，不许失败
+let tracked: Set<string> | null = null;
+try {
+  tracked = new Set(
+    execFileSync("git", ["ls-files", "public"], { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "ignore"] })
+      .split("\n").map((s) => s.trim())
+      .filter((s) => s.endsWith(".webp") || AUDIO_DIRS.some((d) => s.startsWith(`public/${d}/`) && s.endsWith(".m4a"))),
+  );
+} catch {
+  console.log("  不是版本库，跳过 D-130 版本库检查");
+}
 const onDisk = new Set<string>();
 for (const dir of ["char/full", "char/knee", "scene", "cg"]) {
   for (const f of list(dir)) onDisk.add(`public/${dir}/${f}.webp`);
@@ -172,8 +179,12 @@ for (const dir of AUDIO_DIRS) {
     for (const n of sfxOnDisk) if (!listed.has(n)) console.log(`    public/sfx/${n}.m4a 不在 docs/sfx-ledger.md 里：来源、许可没记`);
   }
 }
-for (const f of onDisk) if (!tracked.has(f)) fail(`${f} 已入表但没进版本库（D-130）。验收过的图、上线的配乐和音效都要提交，否则换台机器、或者误删一次就没了`);
-for (const f of tracked) if (!onDisk.has(f)) fail(`${f} 在版本库里，磁盘上没了。是不是连目录一起删了（public/scene 出过一次）`);
+if (tracked) {
+  for (const f of onDisk) if (!tracked.has(f)) fail(`${f} 已入表但没进版本库（D-130）。验收过的图、上线的配乐和音效都要提交，否则换台机器、或者误删一次就没了`);
+  for (const f of tracked) if (!onDisk.has(f)) fail(`${f} 在版本库里，磁盘上没了。是不是连目录一起删了（public/scene 出过一次）`);
+}
 
-console.log(bad ? `\n  ${bad} 项不合格。\n` : `  已入表的 ${onDisk.size} 个文件（图、配乐、音效）都在版本库里。\n`);
+console.log(bad ? `\n  ${bad} 项不合格。\n`
+  : tracked ? `  已入表的 ${onDisk.size} 个文件（图、配乐、音效）都在版本库里。\n`
+  : `  已入表的 ${onDisk.size} 个文件（图、配乐、音效）在磁盘上；版本库那一条跳过了。\n`);
 process.exit(bad ? 1 : 0);
