@@ -37,6 +37,38 @@ export function audibleSpan(channels: Float32Array[], threshold = 1e-4): [number
   return a < b ? [a, b] : [0, n];
 }
 
+/**
+ * 这一首里最静的一小节从哪儿起（D-209）：以 `win` 秒为一窗、半窗一步，比每窗的均方根，取最小那一窗的起点（秒，相对 span 起点）。
+ * 慢曲一小节两三秒，默认 2.5 秒。多声道取平均；为了快，每 8 个样本看一个——找「静的地方」不需要逐样本
+ */
+export function quietestBar(channels: Float32Array[], sampleRate: number, span: [number, number], win = 2.5): number {
+  const [a, b] = span;
+  const w = Math.floor(win * sampleRate);
+  if (b - a <= w) return 0;
+  const STEP = 8;
+  let best = Infinity;
+  let at = a;
+  for (let s = a; s + w <= b; s += Math.floor(w / 2)) {
+    let sum = 0;
+    for (let i = s; i < s + w; i += STEP) {
+      let v = 0;
+      for (const c of channels) v += c[i]!;
+      v /= channels.length;
+      sum += v * v;
+    }
+    if (sum < best) { best = sum; at = s; }
+  }
+  return (at - a) / sampleRate;
+}
+
+/** 这一首怎么进（D-209）。不给就是 B32 的样子：1.6 秒淡入、从头起 */
+export interface Entry {
+  /** 淡入秒数 */
+  fadeIn?: number;
+  /** 第一遍从最静的一小节起（之后每一遍照常从头） */
+  quietStart?: boolean;
+}
+
 /** 两遍之间的交叉（秒）：只抹样本级跳变，听不出 */
 const SEAM = 0.03;
 /** 换章：旧的淡出、新的淡入（秒） */
@@ -62,6 +94,7 @@ export class Bgm {
   private on = false;
   /** 该放哪一首（进章时定）。没开声也记着，开声那一刻才取 */
   private want: string | null = null;
+  private entry: Entry = {};
   private cur: Playing | null = null;
   /** 取图解码是异步的：换得快时，只让最后一次请求落地 */
   private token = 0;
@@ -84,8 +117,9 @@ export class Bgm {
     else window.setTimeout(() => { if (!this.on) this.drop(0); }, 900);
   }
 
-  /** 进了一章：放这一首。同一首在放就不动 */
-  play(url: string): void {
+  /** 进了一章：放这一首。同一首在放就不动。`entry` 只管这一首第一次进来的样子 */
+  play(url: string, entry: Entry = {}): void {
+    if (this.want !== url) this.entry = entry;
     this.want = url;
     if (this.on) void this.sync();
   }
@@ -125,36 +159,39 @@ export class Bgm {
     this.cache.clear();                    // 只留当前这一首
     this.cache.set(url, buf);
     this.drop(SWITCH);
-    this.start(ctx, url, buf);
+    this.start(ctx, url, buf, this.entry);
   }
 
-  private start(ctx: AudioContext, url: string, buf: AudioBuffer): void {
+  private start(ctx: AudioContext, url: string, buf: AudioBuffer, entry: Entry): void {
     const chans = Array.from({ length: buf.numberOfChannels }, (_, i) => buf.getChannelData(i));
     const [a, b] = audibleSpan(chans);
     const offset = a / buf.sampleRate;
     const dur = (b - a) / buf.sampleRate;
+    const skip = entry.quietStart ? quietestBar(chans, buf.sampleRate, [a, b]) : 0;
     const gain = ctx.createGain();
     gain.connect(this.out(ctx));
     const t0 = ctx.currentTime + 0.05;
     gain.gain.setValueAtTime(0, t0);
-    gain.gain.linearRampToValueAtTime(1, t0 + SWITCH);
+    gain.gain.linearRampToValueAtTime(1, t0 + (entry.fadeIn ?? SWITCH));
     const p: Playing = { url, gain, sources: [], timer: 0 };
     let next = t0;
-    const queue = (at: number): void => {
+    // `from`：这一遍从循环段里第几秒起。只有第一遍可能不是 0
+    const queue = (at: number, from = 0): void => {
+      const len = dur - from;
       const src = ctx.createBufferSource();
       src.buffer = buf;
       const env = ctx.createGain();
       env.gain.setValueAtTime(0, at);
       env.gain.linearRampToValueAtTime(1, at + SEAM);
-      env.gain.setValueAtTime(1, at + dur - SEAM);
-      env.gain.linearRampToValueAtTime(0, at + dur);
+      env.gain.setValueAtTime(1, at + len - SEAM);
+      env.gain.linearRampToValueAtTime(0, at + len);
       src.connect(env).connect(gain);
-      src.start(at, offset, dur);
+      src.start(at, offset + from, len);
       src.onended = () => { p.sources = p.sources.filter((s) => s !== src); env.disconnect(); };
       p.sources.push(src);
-      next = at + dur - SEAM;
+      next = at + len - SEAM;
     };
-    queue(t0);
+    queue(t0, skip);
     // 下一遍提前两秒排上。后台时上下文是停的，currentTime 不走，这里也就不会越排越多
     const tick = (): void => {
       if (this.cur !== p) return;

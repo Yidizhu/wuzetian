@@ -68,11 +68,31 @@ test("声音桥 ③：事件图、拆信一声纸响", () => {
   assert.deepEqual(cuesForPaper(), [{ kind: "hit", name: "paper_unfold" }]);
 });
 
-test("声音桥 ④：章首题记转对白敲一通鼓，同一章不重复，下一章再敲", () => {
+test("声音桥 ④：章首题记收起响一声，同一章不重复，下一章再响；D-209 默认远钟，开关给鼓就是鼓", () => {
   const st = newEpigraphCueState();
-  assert.deepEqual(cuesAfterEpigraph(1, st), [{ kind: "hit", name: "drum_far" }]);
-  assert.deepEqual(cuesAfterEpigraph(1, st), [], "读档回到题记前再看一遍，不再敲");
-  assert.deepEqual(cuesAfterEpigraph(2, st), [{ kind: "hit", name: "drum_far" }]);
+  assert.deepEqual(cuesAfterEpigraph(1, st), [{ kind: "hit", name: "bell_far" }]);
+  assert.deepEqual(cuesAfterEpigraph(1, st), [], "读档回到题记前再看一遍，不再响");
+  assert.deepEqual(cuesAfterEpigraph(2, st, "drum_far"), [{ kind: "hit", name: "drum_far" }]);
+});
+
+test("D-209 进声开关：网址优先并记下；没参数读记下的；坏的、没有的回默认（淡入＋远钟）", async () => {
+  const { resolveTuning, TUNING_DEFAULTS } = await import("../src/audio/tuning.ts");
+  assert.deepEqual(TUNING_DEFAULTS, { intro: "soft", epihit: "bell" });
+  assert.deepEqual(resolveTuning("", null), { tuning: { intro: "soft", epihit: "bell" }, save: false });
+  assert.deepEqual(resolveTuning("?epihit=drum", null), { tuning: { intro: "soft", epihit: "drum" }, save: true });
+  assert.deepEqual(resolveTuning("", '{"intro":"plain","epihit":"drum"}').tuning, { intro: "plain", epihit: "drum" }, "记下的照用");
+  assert.deepEqual(resolveTuning("?intro=soft", '{"intro":"plain","epihit":"drum"}').tuning, { intro: "soft", epihit: "drum" }, "网址只改它写的那一个");
+  assert.deepEqual(resolveTuning("?intro=loud", "{坏的").tuning, TUNING_DEFAULTS, "认不得的值、坏的记录都回默认");
+});
+
+test("D-209 最静的一小节：找得到安静的那一段；比一窗还短的曲子从头起", async () => {
+  const { quietestBar } = await import("../src/audio/bgm.ts");
+  const sr = 1000;
+  const c = new Float32Array(20 * sr).map((_, i) => Math.sin(i / 3) * (i >= 12 * sr && i < 15 * sr ? 0.01 : 0.5));
+  const at = quietestBar([c], sr, [0, c.length]);
+  assert.ok(at >= 12 && at <= 12.5, `静的那段在 12—15 秒，找到 ${at}`);
+  assert.equal(quietestBar([c], sr, [0, 2 * sr]), 0);
+  assert.equal(quietestBar([c], sr, [5 * sr, c.length]) + 5 >= 12, true, "span 起点之后算相对秒数");
 });
 
 test("文件没到不报错：真文件 → 合成 → 静音", () => {

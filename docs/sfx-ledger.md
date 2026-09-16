@@ -19,4 +19,4 @@
 
 **转码工具**：剪映自带的 ffmpeg（机器上唯一一份，MP3 编码器坏的，出 AAC，和配乐 D-179 同一个原因）。
 
-**现在用上的**（规则只四条，D-198）：`rain_loop`（夜雨那一场）、`wind_loop`（空镜）、`paper_unfold`（事件图、拆信）、`drum_far`（章首题记转对白）。B37 起另外四条也接上了（D-202）：`cloth_rustle`（受位、拒位、握手、挡风、并坐五张图）、`horse_bell`（驯马、关山有信结局图）、`steps_hall`（进受位那一场）、`bell_far`（结局卡淡到无声之前）。
+**现在用上的**（规则只四条，D-198）：`rain_loop`（夜雨那一场）、`wind_loop`（空镜）、`paper_unfold`（事件图、拆信）、`drum_far`（章首题记转对白；**B40 起默认换成 `bell_far`**，`?epihit=drum` 换回，D-209）。B37 起另外四条也接上了（D-202）：`cloth_rustle`（受位、拒位、握手、挡风、并坐五张图）、`horse_bell`（驯马、关山有信结局图）、`steps_hall`（进受位那一场）、`bell_far`（结局卡淡到无声之前）。

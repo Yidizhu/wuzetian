@@ -104,11 +104,14 @@ export function cuesForPaper(): SoundCue[] {
 export interface EpigraphCueState { drummedChapter: number | null }
 export function newEpigraphCueState(): EpigraphCueState { return { drummedChapter: null } }
 
-/** 规则 ④：章首题记收起、转第一场对白，一通鼓。同一章不重复（读档回到题记前再看一遍，不再敲） */
-export function cuesAfterEpigraph(chapter: number, st: EpigraphCueState): SoundCue[] {
+/**
+ * 规则 ④：章首题记收起、转第一场对白，远处一声。同一章不重复（读档回到题记前再看一遍，不再响）。
+ * D-209（B40）：鼓听着「跳」，默认换成一声远钟；`hit` 给 `drum_far` 就是 B36 原样。切换在 `tuning.ts`
+ */
+export function cuesAfterEpigraph(chapter: number, st: EpigraphCueState, hit: "drum_far" | "bell_far" = "bell_far"): SoundCue[] {
   if (st.drummedChapter === chapter) return [];
   st.drummedChapter = chapter;
-  return [{ kind: "hit", name: "drum_far" }];
+  return [{ kind: "hit", name: hit }];
 }
 
 // ------------------------------------------------------------ 四条之外的落点（D-202，B37）
