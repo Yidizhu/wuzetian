@@ -14,15 +14,15 @@
   "lines": [
     {
       "id": "ch04_s01_zhaoyang.l1",
-      "who": "narr",
-      "kind": "aside",
-      "text": "唐递来的纸留在案前，你将旧笔拿稳。"
-    },
-    {
-      "id": "ch04_s01_zhaoyang.l2",
       "who": "tiji",
       "kind": "aside",
       "text": "册命已经收起，案上另铺了一张纸。"
+    },
+    {
+      "id": "ch04_s01_zhaoyang.l2",
+      "who": "narr",
+      "kind": "aside",
+      "text": "唐递来的纸留在案前，你将旧笔拿稳。"
     },
     {
       "id": "ch04_s01_zhaoyang.l3",
