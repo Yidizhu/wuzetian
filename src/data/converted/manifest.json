@@ -2,11 +2,11 @@
   "inputs": [
     {
       "file": "docs/C-2-第一章前六场.md",
-      "sha256": "4c38c54a9ec506bc44c1ca746835573888e8e52814e7b55164defd07870d42ca"
+      "sha256": "91ec2ee6ea960197a71f284fb60aecad07c5187e3b62013c56f634722fc1520f"
     },
     {
       "file": "docs/C-3-第一章后十二场.md",
-      "sha256": "3f9a4bc9c4f3f7672f8e7b729758c753ee402df1e77c30644ae14e73795472cd"
+      "sha256": "2a5a538676599ad21e4d5fbf0d6ab6475c6f9c382467c871d7fc84c1b9860fc1"
     },
     {
       "file": "docs/C-4-第一章书信.md",
@@ -26,7 +26,7 @@
     },
     {
       "file": "docs/C-7-第二章前十二场.md",
-      "sha256": "fd7fd6174cbe2524fe687ecb2a8d0b635fd77c4bb75e1031cbc3fde80b2c6ef4"
+      "sha256": "03589a3377d320113bf4cbc2ffb33c6a7383c03aed16e3bc645c33a190a21f7b"
     },
     {
       "file": "docs/C-8-第二章后十二场与书信.md",
@@ -42,7 +42,7 @@
     },
     {
       "file": "docs/C-11-第三章后十二场与书信.md",
-      "sha256": "aeeb477f9785addf21ff24b7b0bc796ed340eabe37cc74581d5d8fd321ba0d94"
+      "sha256": "2e5535bb79542cbc5ff80948d4ebb4edf39fd18d1c5213c129aaea66636e93ea"
     },
     {
       "file": "docs/C-12-第四章大纲.md",
@@ -50,7 +50,7 @@
     },
     {
       "file": "docs/C-13-第四章登基与不受.md",
-      "sha256": "4e88b95296d095075ff7f3ce03a26c21d3ffb3eb554c403ecc00e71067ee85cf"
+      "sha256": "d2e71b9c25a25b3d554069c2409c07a40428ae944ce555880a3121ed336b69ea"
     },
     {
       "file": "docs/C-14-第四章其余路线与书信.md",

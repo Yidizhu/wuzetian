@@ -1148,12 +1148,15 @@ export function storyGraph(r: ConvertResult): string {
   const chapters = [...new Set(r.scenes.map(s => s.chapter))].sort((a, b) => a - b);
   const esc = (t: string) => t.replace(/["|<>#]/g, "").slice(0, 14);
   const node = (id: string) => id.replace(/[^A-Za-z0-9_]/g, "_");
+  // 布置写中文名（D28）。以前布置只有「公议」一种，这里就写死了「公议」；后来夜雨、受位、开课、晴光、夜灯都进来了，
+  // 图上一律标成公议是错的。名字从 dressings.ts 反查，表里查不到的 key 原样写出来
+  const dressingName = (key: string) => Object.entries(DRESSINGS).find(([, d]) => d.key === key)?.[0] ?? key;
   const out: string[] = [
     "# 剧情分支图", "",
     "> 由 `tools/convert-story.ts` 在每次转换后生成，读的是 `src/data/converted/`（CC2 转换产物），覆盖已交付的所有章。不要手改。",
     "> CC1 的 `npm run graph` 读正式数据，正式数据接入之前它只画得出第一章；两者不一致时以这一份为准。", "",
     `起点 \`${start ?? "（无）"}\`。纸色是水墨、绢色是金碧；**朱砂描边是从起点走不到的孤儿**；虚线框是还没交付、只被指向的场；🔒 是有条件的选项；虚线箭头是章末结算后的去向。`, "",
-    "## 摘要", "", "| 章 | 场数 | 从起点可达 | 孤儿 | 章末 | 无用场景 | 公议布置 | 指向未交付 |", "|---|---|---|---|---|---|---|---|",
+    "## 摘要", "", "| 章 | 场数 | 从起点可达 | 孤儿 | 章末 | 无用场景 | 有布置 | 指向未交付 |", "|---|---|---|---|---|---|---|---|",
   ];
   for (const ch of chapters) {
     const mine = r.scenes.filter(s => s.chapter === ch) as any[];
@@ -1168,7 +1171,7 @@ export function storyGraph(r: ConvertResult): string {
       "  classDef orphan stroke:#b23a2a,stroke-width:3px", "  classDef pending fill:#ffffff,stroke:#999,stroke-dasharray:4 3,color:#666");
     const external = new Set<string>();
     for (const s of mine) {
-      const marks = [s.weightless ? "无用" : "", s.chapterEnd ? "章末" : "", s.dressing ? "公议" : "", s.duel ? "对诗" : ""].filter(Boolean).join("·");
+      const marks = [s.weightless ? "无用" : "", s.chapterEnd ? "章末" : "", s.dressing ? dressingName(s.dressing) : "", s.duel ? "对诗" : ""].filter(Boolean).join("·");
       out.push(`  ${node(s.id)}["${s.id.replace(/^ch\d+_s/, "")} ${esc(r.titles?.[s.id] ?? "")}<br/>${s.scene}${marks ? " · " + marks : ""}"]:::${s.palette === "gold" ? "gold" : "ink"}`);
       if (!seen.has(s.id)) out.push(`  class ${node(s.id)} orphan`);
     }

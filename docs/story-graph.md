@@ -7,12 +7,12 @@
 
 ## 摘要
 
-| 章 | 场数 | 从起点可达 | 孤儿 | 章末 | 无用场景 | 公议布置 | 指向未交付 |
+| 章 | 场数 | 从起点可达 | 孤儿 | 章末 | 无用场景 | 有布置 | 指向未交付 |
 |---|---|---|---|---|---|---|---|
-| 1 | 19 | 19 | 0 | 1 | 5 | 0 | 无 |
-| 2 | 26 | 26 | 0 | 1 | 7 | 2 | 无 |
-| 3 | 27 | 27 | 0 | 1 | 7 | 4 | 无 |
-| 4 | 35 | 35 | 0 | 0 | 5 | 7 | 无 |
+| 1 | 19 | 19 | 0 | 1 | 5 | 4 | 无 |
+| 2 | 26 | 26 | 0 | 1 | 7 | 3 | 无 |
+| 3 | 27 | 27 | 0 | 1 | 7 | 5 | 无 |
+| 4 | 35 | 35 | 0 | 0 | 5 | 9 | 无 |
 
 ## 第 1 章
 
@@ -26,19 +26,19 @@ flowchart TD
   ch01_s01_zhaoyang["01_zhaoyang 先签的自愿<br/>zhaoyang"]:::gold
   ch01_s02_zhaoyang["02_zhaoyang 马不识公文<br/>zhaoyang"]:::gold
   ch01_s03_yeting["03_yeting 一寸旧线<br/>yeting"]:::ink
-  ch01_s04_shuge["04_shuge 半句留给你<br/>shuge · 对诗"]:::ink
+  ch01_s04_shuge["04_shuge 半句留给你<br/>shuge · 夜灯·对诗"]:::ink
   ch01_s05_yuanye["05_yuanye 学不像的鸟<br/>yuanye · 无用"]:::ink
   ch01_s06_yeting["06_yeting 各领各的<br/>yeting"]:::ink
-  ch01_s07_yuanye["07_yuanye 还没付清的行囊<br/>yuanye"]:::ink
+  ch01_s07_yuanye["07_yuanye 还没付清的行囊<br/>yuanye · 晴光"]:::ink
   ch01_s08_shuge["08_shuge 榜外也收卷<br/>shuge"]:::gold
   ch01_s09_shuge["09_shuge 不借母亲的话<br/>shuge"]:::ink
   ch01_s10_yeting["10_yeting 没有她的商量<br/>yeting"]:::ink
   ch01_s11_shishe["11_shishe 纸的背面<br/>shishe"]:::ink
   ch01_s12_shuge["12_shuge 擅添的一行<br/>shuge"]:::gold
   ch01_s13_shuge["13_shuge 两杯一样凉<br/>shuge · 无用"]:::ink
-  ch01_s14_yuanye["14_yuanye 解结不论兵<br/>yuanye · 无用"]:::ink
+  ch01_s14_yuanye["14_yuanye 解结不论兵<br/>yuanye · 无用·晴光"]:::ink
   ch01_s15_shishe["15_shishe 只猜纸声<br/>shishe · 无用"]:::ink
-  ch01_s16_yuanye["16_yuanye 不记这一局<br/>yuanye · 无用"]:::ink
+  ch01_s16_yuanye["16_yuanye 不记这一局<br/>yuanye · 无用·晴光"]:::ink
   ch01_s17_yeting["17_yeting 只说给你听<br/>yeting"]:::ink
   ch01_s18_zhaoyang["18_zhaoyang 回牒不找她<br/>zhaoyang · 章末"]:::gold
   ch01_s00_zhaoyang --> ch01_s01_zhaoyang
@@ -94,7 +94,7 @@ flowchart TD
   ch02_s09_shishe["09_shishe 这句先让我听见<br/>shishe"]:::ink
   ch02_s10_nvguan["10_nvguan 夜谈二：不算数，就不算吗<br/>nvguan · 无用"]:::ink
   ch02_s11_hanyuan["11_hanyuan 谁准拆这封信<br/>hanyuan · 公议"]:::gold
-  ch02_s12_yeting["12_yeting 别请我替你说好话<br/>yeting"]:::ink
+  ch02_s12_yeting["12_yeting 别请我替你说好话<br/>yeting · 夜灯"]:::ink
   ch02_s13_hanyuan["13_hanyuan 封到哪，读到哪<br/>hanyuan · 公议"]:::gold
   ch02_s14_zhaoyang["14_zhaoyang 披帛留不住人<br/>zhaoyang"]:::gold
   ch02_s15_shuge["15_shuge 墨渍像什么<br/>shuge · 无用"]:::ink
@@ -177,9 +177,9 @@ flowchart TD
   ch03_s09a_yuanye["09a_yuanye 说完再来<br/>yuanye"]:::ink
   ch03_s09b_yuanye["09b_yuanye 先别约我<br/>yuanye"]:::ink
   ch03_s09c_yuanye["09c_yuanye 明日的稿照送<br/>yuanye"]:::ink
-  ch03_s10_nvguan["10_nvguan 水到这里<br/>nvguan · 无用·公议"]:::ink
+  ch03_s10_nvguan["10_nvguan 水到这里<br/>nvguan · 无用·夜雨"]:::ink
   ch03_s11_hanyuan["11_hanyuan 两份答复<br/>hanyuan · 公议"]:::gold
-  ch03_s12_hanyuan["12_hanyuan 受不受这一席<br/>hanyuan · 公议"]:::gold
+  ch03_s12_hanyuan["12_hanyuan 受不受这一席<br/>hanyuan · 受位"]:::gold
   ch03_s13_yeting["13_yeting 她要带走的针包<br/>yeting"]:::ink
   ch03_s14_shuge["14_shuge 谁还欠哪一班<br/>shuge"]:::gold
   ch03_s15_yeting["15_yeting 这个你自己定<br/>yeting"]:::ink
@@ -187,7 +187,7 @@ flowchart TD
   ch03_s17_shuge["17_shuge 雨没下到这里<br/>shuge · 无用"]:::ink
   ch03_s18_yuanye["18_yuanye 谁先被鸟吵醒<br/>yuanye · 无用"]:::ink
   ch03_s19_shishe["19_shishe 哪边坐着有风<br/>shishe · 无用"]:::ink
-  ch03_s20_yuanye["20_yuanye 这一口先不猜<br/>yuanye · 无用"]:::ink
+  ch03_s20_yuanye["20_yuanye 这一口先不猜<br/>yuanye · 无用·晴光"]:::ink
   ch03_s21_nvguan["21_nvguan 灯花落在哪边<br/>nvguan · 无用"]:::ink
   ch03_s22_nvguan["22_nvguan 这屋不等诏来<br/>nvguan"]:::ink
   ch03_s23_yeting["23_yeting 一块方光<br/>yeting · 无用"]:::ink
@@ -273,9 +273,9 @@ flowchart TD
   ch04_s05pe_shuge["05pe_shuge 出门以前<br/>shuge"]:::ink
   ch04_s05q_shuge["05q_shuge 还没有听完的答复<br/>shuge"]:::ink
   ch04_s05qa_shuge["05qa_shuge 听沈衡自己答<br/>shuge"]:::ink
-  ch04_s05qb_yuanye["05qb_yuanye 听裴照夜自己答<br/>yuanye"]:::ink
+  ch04_s05qb_yuanye["05qb_yuanye 听裴照夜自己答<br/>yuanye · 晴光"]:::ink
   ch04_s05qc_shishe["05qc_shishe 听温荞自己答<br/>shishe"]:::ink
-  ch04_s05qd_yuanye["05qd_yuanye 听李令仪自己答<br/>yuanye"]:::ink
+  ch04_s05qd_yuanye["05qd_yuanye 听李令仪自己答<br/>yuanye · 晴光"]:::ink
   ch04_s05r_shuge["05r_shuge 各自答过以后<br/>shuge"]:::ink
   ch04_s05rl_yuanye["05rl_yuanye 相见不替她定去处<br/>yuanye"]:::ink
   ch04_s05z_yeting["05z_yeting 钱到了谁手里<br/>yeting"]:::ink
@@ -286,13 +286,13 @@ flowchart TD
   ch04_s09_yuanye["09_yuanye 见面不列朝班<br/>yuanye"]:::ink
   ch04_s10_yuanye["10_yuanye 一张饼够了<br/>yuanye · 无用"]:::ink
   ch04_s11_nvguan["11_nvguan 三日以后谁付<br/>nvguan"]:::ink
-  ch04_s12_nvguan["12_nvguan 半日也算来过<br/>nvguan · 公议"]:::ink
-  ch04_s13_nvguan["13_nvguan 她们收自己的席<br/>nvguan · 无用·公议"]:::ink
+  ch04_s12_nvguan["12_nvguan 半日也算来过<br/>nvguan · 开课"]:::ink
+  ch04_s13_nvguan["13_nvguan 她们收自己的席<br/>nvguan · 无用·开课"]:::ink
   ch04_s14_shuge["14_shuge 归期写在前面<br/>shuge"]:::ink
-  ch04_s15_yilu["15_yilu 各自领一份<br/>yilu · 公议"]:::ink
-  ch04_s16_yilu["16_yilu 驿旁不是归处<br/>yilu · 无用·公议"]:::ink
+  ch04_s15_yilu["15_yilu 各自领一份<br/>yilu · 启程"]:::ink
+  ch04_s16_yilu["16_yilu 驿旁不是归处<br/>yilu · 无用·驿旁"]:::ink
   ch04_s17_nvguan["17_nvguan 只有这边看得到<br/>nvguan"]:::ink
-  ch04_s18_wuzibei["18_wuzibei 留白以后<br/>wuzibei · 无用·公议"]:::ink
+  ch04_s18_wuzibei["18_wuzibei 留白以后<br/>wuzibei · 无用·碑样"]:::ink
   ch04_s05p_shuge -->|"🔒 A 去见沈衡，我想只同她相爱"| ch04_s05pe_shuge
   ch04_s05p_shuge -->|"🔒 B 去见裴照夜，我想只同她相"| ch04_s05pe_shuge
   ch04_s05p_shuge -->|"🔒 C 去见温荞，我想只同她相爱"| ch04_s05pe_shuge
