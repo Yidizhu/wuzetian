@@ -101,46 +101,92 @@ export class CssParallaxRenderer implements SceneRenderer {
     window.addEventListener("pointermove", this.onPointer, { passive: true });
   }
 
+  /** 正在取的图：进场和预取可能同时要同一张，只取一次（D-211） */
+  private loading = new Map<string, Promise<void>>();
+
   async load(d: SceneDescriptor): Promise<void> {
-    // 引擎先 await load 再 show：图在这里解码完，墨晕开的那一下它已经在内存里，不会先白一下。
+    // 引擎先 await load 再 show：图在这里解码完，交叉的那一下它已经在内存里。
     // 引擎还会拿下一场的描述符提前调一次（story.ts 的 prefetch），那一次的结果就存在 ready 里
     const key = backdropKey(d);
     const src = this.raster.resolveBackdrop(key, BACKDROPS[key]?.from);
     if (!src || this.ready.has(key)) return;
-    const url = this.raster.backdropUrl(src);
-    const img = new Image();
-    img.decoding = "async";
-    img.src = url;
-    try {
-      await img.decode();
-      this.ready.set(key, url);
-    } catch {
-      console.warn(`[stage] 背景图读不出来，这一场退回渐变：${url}`);
-      this.raster.markBroken(`scene/${src}`);
+    let job = this.loading.get(key);
+    if (!job) {
+      job = this.fetchImage(key, src).finally(() => this.loading.delete(key));
+      this.loading.set(key, job);
     }
+    return job;
   }
 
+  /**
+   * D-211：慢网上一次读不出来不等于没有这张图。再试一次才算坏——
+   * 记成坏图这一局就一直是渐变底，渐变底只该给「确实没有图」的场
+   */
+  private async fetchImage(key: string, src: string): Promise<void> {
+    const url = this.raster.backdropUrl(src);
+    for (let attempt = 0; attempt < 2; attempt++) {
+      const img = new Image();
+      img.decoding = "async";
+      img.src = url;
+      try {
+        await img.decode();
+        this.ready.set(key, url);
+        return;
+      } catch { /* 再试一次 */ }
+    }
+    console.warn(`[stage] 背景图读不出来，这一场退回渐变：${url}`);
+    this.raster.markBroken(`scene/${src}`);
+  }
+
+  /**
+   * 换景（D-211，B41 重写）。**旧景一直在，新景解码好了才交叉**：
+   * 原来是整层先淡到纸色（stage--wiping）、换图、再淡回来，手机上看就是「先空一下再出新景」；
+   * 而且 CSS 背景图在 WebKit 里解码完也可能晚一帧才画，空的那一下更长。
+   *
+   * 现在：新景铺在旧景上面一层，透明度 0；等浏览器画过两帧，新景淡入 420ms（CROSS_MS）；盖满之后拿掉旧景。
+   * 旧景在交叉期间把自己的滤镜和推近位置冻住——根上的 data-tone／data-night 换成新景的，旧景不能跟着变色。
+   * 两场都没有图（纯渐变）照旧走墨晕开那一下。
+   */
   async show(d: SceneDescriptor): Promise<void> {
     const look = LOOKS[d.key];
     const [sky, mid, ground] = this.layers as [HTMLElement, HTMLElement, HTMLElement];
-    // 墨晕开：先把整层遮住，换完内容再散开。见 art-style 的 ui.md。
-    this.root.classList.add("stage--wiping");
-    await wait(180);
-    sky.style.background = `radial-gradient(ellipse ${look.sky})`;
-    mid.style.background = `radial-gradient(ellipse ${look.mid})`;
-    ground.style.background = `radial-gradient(ellipse ${look.ground})`;
-    this.root.dataset.night = look.night ? "1" : "";
-    // CSS 版没有真的地平线，给立绘层一个固定值。变量的说明见 ThreeStageRenderer.markFloor
-    document.documentElement.style.setProperty("--stage-floor", "22%");
-    // 3D 舞台会把人收小（--stage-person），退回 CSS 版时要还原，不然人就一直是小的
-    document.documentElement.style.setProperty("--stage-person", "1");
-
-    // 整图：有就铺上，按背景表摆（脚线、人多大、往哪推、夜不夜）
     const key = backdropKey(d);
+    await this.load(d);                      // 进场时已经 await 过；读档直接 show 的路也不许先空
     const url = this.ready.get(key);
-    if (url && this.image) {
+    const old = this.image;
+    const hadImage = !!this.root.dataset.image;
+
+    if (!url && !hadImage) {
+      // 渐变 → 渐变：原来的墨晕开
+      this.root.classList.add("stage--wiping");
+      await wait(180);
+      this.paintGradient(look, sky, mid, ground);
+      this.root.classList.remove("stage--wiping");
+      await wait(320);
+      return;
+    }
+
+    // 旧景冻住：自己的滤镜、推到哪儿了，都写成行内的，不再跟根上的属性走
+    if (old) {
+      const cs = getComputedStyle(old);
+      old.style.filter = cs.filter;
+      old.style.transform = cs.transform;
+      old.style.animation = "none";
+      old.style.opacity = hadImage ? "1" : "0";
+    }
+
+    this.paintGradient(look, sky, mid, ground);   // 在图底下，有图时 CSS 把它收掉
+
+    if (url) {
       const b = BACKDROPS[key] ?? { where: "" };
-      this.image.style.backgroundImage = `url("${url}")`;
+      const next = document.createElement("div");
+      next.className = "stage__layer stage__image";
+      next.style.backgroundImage = `url("${url}")`;
+      next.style.opacity = "0";
+      next.style.transition = `opacity ${CROSS_MS}ms ease`;
+      if (old) old.after(next);
+      else this.root.insertBefore(next, this.root.querySelector(".stage__paper"));
+      this.image = next;
       this.root.dataset.image = "1";
       this.root.dataset.push = b.push ?? "center";
       this.root.dataset.night = b.night ? "1" : "";
@@ -149,19 +195,38 @@ export class CssParallaxRenderer implements SceneRenderer {
       if (b.paintedNight) this.root.dataset.painted = "night"; else delete this.root.dataset.painted;
       if (b.floor !== undefined) document.documentElement.style.setProperty("--stage-floor", `${b.floor}%`);
       if (b.person !== undefined) document.documentElement.style.setProperty("--stage-person", String(b.person));
-      // 换场从头推起：动画重置一次
-      this.image.classList.remove("stage__image--push");
-      void this.image.offsetWidth;
-      this.image.classList.add("stage__image--push");
-    } else if (this.image) {
-      this.image.style.backgroundImage = "";
+      next.classList.add("stage__image--push");     // 新的一层，推近从头起
+      await frames(2);                              // 让浏览器先把这张背景画上，再开始淡入
+      next.style.opacity = "";                      // 回到 CSS 的 1，走上面那条 transition
+      await wait(CROSS_MS + 40);
+    } else if (old) {
+      // 有图 → 没图（确实没有这张图）：旧景淡出，露出底下的渐变
+      old.style.transition = `opacity ${CROSS_MS}ms ease`;
+      await frames(1);
+      old.style.opacity = "0";
+      await wait(CROSS_MS + 40);
+      const empty = document.createElement("div");
+      empty.className = "stage__layer stage__image";
+      old.after(empty);
+      this.image = empty;
       delete this.root.dataset.image;
       delete this.root.dataset.push;
       delete this.root.dataset.tone;
       delete this.root.dataset.painted;
+      this.root.dataset.night = look.night ? "1" : "";
     }
-    this.root.classList.remove("stage--wiping");
-    await wait(320);
+    if (old && old !== this.image) old.remove();
+  }
+
+  private paintGradient(look: SceneLook, sky: HTMLElement, mid: HTMLElement, ground: HTMLElement): void {
+    sky.style.background = `radial-gradient(ellipse ${look.sky})`;
+    mid.style.background = `radial-gradient(ellipse ${look.mid})`;
+    ground.style.background = `radial-gradient(ellipse ${look.ground})`;
+    if (!this.root.dataset.image) this.root.dataset.night = look.night ? "1" : "";
+    // CSS 版没有真的地平线，给立绘层一个固定值。变量的说明见 ThreeStageRenderer.markFloor
+    document.documentElement.style.setProperty("--stage-floor", "22%");
+    // 3D 舞台会把人收小（--stage-person），退回 CSS 版时要还原，不然人就一直是小的
+    document.documentElement.style.setProperty("--stage-person", "1");
   }
 
   beat(name: string): void {
@@ -201,6 +266,16 @@ export class CssParallaxRenderer implements SceneRenderer {
     this.image = null;
     this.ready.clear();
   }
+}
+
+/** 新旧两张景交叉多久（D-211） */
+const CROSS_MS = 420;
+
+function frames(n: number): Promise<void> {
+  return new Promise((r) => {
+    const step = (left: number): void => { if (left <= 0) r(); else requestAnimationFrame(() => step(left - 1)); };
+    step(n);
+  });
 }
 
 function wait(ms: number): Promise<void> {
