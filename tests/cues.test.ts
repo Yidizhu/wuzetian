@@ -42,3 +42,44 @@ test("雨只跟着夜雨布置走，不跟着「雨」字走——「雨停了�
   assert.equal(rain("gongyi").on, false);
   assert.equal(rain(undefined).on, false, "离开夜雨那一场，雨要停");
 });
+
+// ------------------------------------------------------------ 声音桥（D-198，B36）：只四条
+
+import {
+  SFX_NAMES, ambienceForScene, cuesForShot, cuesForPaper, cuesAfterEpigraph, newEpigraphCueState, sourceFor,
+} from "../src/audio/cues.ts";
+
+test("声音桥 ①：进夜雨那一场起雨，进别的场收雨；换场也把空镜的风收掉", () => {
+  assert.deepEqual(ambienceForScene("yeyu"), [
+    { kind: "loop", name: "rain_loop", on: true },
+    { kind: "loop", name: "wind_loop", on: false },
+  ]);
+  assert.deepEqual(ambienceForScene("gongyi")[0], { kind: "loop", name: "rain_loop", on: false });
+  assert.deepEqual(ambienceForScene(undefined)[0], { kind: "loop", name: "rain_loop", on: false });
+});
+
+test("声音桥 ②：空镜那一格起风，下一格有人说话就收（序幕人还没上台的空镜也起）", () => {
+  assert.deepEqual(cuesForShot("empty"), [{ kind: "loop", name: "wind_loop", on: true }]);
+  assert.deepEqual(cuesForShot("narr"), [{ kind: "loop", name: "wind_loop", on: false }]);
+  assert.deepEqual(cuesForShot("shenheng"), [{ kind: "loop", name: "wind_loop", on: false }]);
+});
+
+test("声音桥 ③：事件图、拆信一声纸响", () => {
+  assert.deepEqual(cuesForPaper(), [{ kind: "hit", name: "paper_unfold" }]);
+});
+
+test("声音桥 ④：章首题记转对白敲一通鼓，同一章不重复，下一章再敲", () => {
+  const st = newEpigraphCueState();
+  assert.deepEqual(cuesAfterEpigraph(1, st), [{ kind: "hit", name: "drum_far" }]);
+  assert.deepEqual(cuesAfterEpigraph(1, st), [], "读档回到题记前再看一遍，不再敲");
+  assert.deepEqual(cuesAfterEpigraph(2, st), [{ kind: "hit", name: "drum_far" }]);
+});
+
+test("文件没到不报错：真文件 → 合成 → 静音", () => {
+  const none = new Set<string>();
+  assert.equal(sourceFor("rain_loop", new Set(["rain_loop"])), "file");
+  assert.equal(sourceFor("rain_loop", none), "synth", "雨、风、纸、鼓合成那层顶得上");
+  assert.equal(sourceFor("drum_far", none), "synth");
+  assert.equal(sourceFor("steps_hall", none), "silent", "合成没有的就静音");
+  assert.equal(SFX_NAMES.length, 8, "文件名照 D-198 那张表，八条");
+});

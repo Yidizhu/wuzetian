@@ -15,6 +15,8 @@ export interface RasterList {
   scenes: string[];
   /** 事件图（B23）。老清单没有这一项，按空算 */
   cgs?: string[];
+  /** 声音桥的音效（B36，public/sfx/*.m4a，不带扩展名）。图不用它，放在这张清单里只是同一次扫盘 */
+  sfx?: string[];
 }
 
 export class RasterCatalog {

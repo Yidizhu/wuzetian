@@ -34,3 +34,6 @@ assets/portraits/imagegen-write-test.png
 # 配乐原件（D-179，CC1 加）。一首 54–66 MB 的长曲，进版本库删不掉历史。
 # 上线的是从里面剪出来的 public/bgm/ch1–4.m4a（2 分 45 秒循环段，约 2 MB 一首），那四个进版本库
 /bgm/
+
+# 音效原件（D-198，CC1 加）。YIDI 下的素材放这里，不进版本库；上线的是转出来的 public/sfx/<名>.m4a，来源与许可记在 docs/sfx-ledger.md
+/sfx/

@@ -27,7 +27,8 @@ import { debutsOn, setDebutsOn, soundOn, setSoundOn } from "./ui/prefs.ts";
 import { Ambient } from "./audio/ambient.ts";
 import { Bgm, bgmForChapter } from "./audio/bgm.ts";
 import { vistaFor } from "./scene/backdrops.ts";
-import { cuesForScene, cuesForLine, newCueState, type Cue } from "./audio/cues.ts";
+import { cuesForScene, cuesForLine, newCueState, type Cue, ambienceForScene, cuesForShot, cuesForPaper, cuesAfterEpigraph, newEpigraphCueState } from "./audio/cues.ts";
+import { Sfx } from "./audio/sfx.ts";
 import endingData from "./data/endings.json";
 import adultScenes from "virtual:adult-scenes";
 import converted from "virtual:converted-data";
@@ -207,12 +208,18 @@ const story = new Story(
           new Promise<null>((r) => window.setTimeout(() => r(null), 800)),
         ])
         : Promise.resolve(null);
-      void ready.then((vista) => mountEpigraph(document.body, { lines, vista: vista ?? undefined, vistaKey: vista ? key ?? undefined : undefined, onDone: () => { dlg.setVisible(true); resolve(); } }));
+      void ready.then((vista) => mountEpigraph(document.body, { lines, vista: vista ?? undefined, vistaKey: vista ? key ?? undefined : undefined, onDone: () => {
+        dlg.setVisible(true);
+        // 声音桥 ④：题记收起、转第一场对白，远处一通鼓，一章一次
+        sfx.run(cuesAfterEpigraph(story.currentScene?.chapter ?? 1, epigraphCues));
+        resolve();
+      } }));
     }),
     // 事件图（D-142，B23）：铺整图、点一下退回。看图时对话框和选项收起
     cg: async (key, first) => {
       choices.hide();
       dlg.setVisible(false);
+      if (raster.hasCg(key)) sfx.run(cuesForPaper());   // 声音桥 ③：图铺开那一下纸响（没图这一格跳过，不响）
       const shown = await cgLayer.show(key, first);
       dlg.setVisible(true);
       return shown;
@@ -259,10 +266,16 @@ const ambient = new Ambient();
 // 配乐（D-179）：共用环境声那个上下文，「声」开关一起管；进章放那一章的，结局卡淡出
 const bgm = new Bgm(ambient);
 const cueState = newCueState();
+// 声音桥（D-198）：真音效文件，四条规则在 cues.ts。文件没到退回合成，合成也没有就静音
+const sfx = new Sfx(ambient, rasterList.sfx ?? [], import.meta.env.BASE_URL);
+const epigraphCues = newEpigraphCueState();
+/**
+ * D-053 合成的那一层：雨交给声音桥管了（文件在用文件，不在它自己退回合成）；
+ * 街鼓（换幕、旁白写到鼓）只在真鼓文件不在时才敲——有真文件就只剩规则 ④ 那一通
+ */
 const play = (cues: Cue[]): void => {
   for (const c of cues) {
-    if (c.kind === "drum") ambient.drum(c.beats);
-    else ambient.rain(c.on);
+    if (c.kind === "drum") { if (!sfx.has("drum_far")) ambient.drum(c.beats); }
   }
 };
 
@@ -278,6 +291,7 @@ story.on((e) => {
       bgm.play(import.meta.env.BASE_URL + bgmForChapter(e.scene.chapter));
       app.querySelectorAll(".ending-title").forEach((n) => n.remove());
       play(cuesForScene(e.scene, cueState, performance.now()));
+      sfx.run(ambienceForScene(e.scene.dressing));      // 声音桥 ①：这一场的环境声，淡出开始就起
       // 阵容必须同步定下来：紧跟着的 line 事件会马上问「说话的人在不在台上」。
       // B11 写成了先 await refresh() 再 setCast，结果每一场第一个开口的人如果不在前两位，
       // 查到的是一张空名单，不换上台——阿荻在第一章 03 场说话，台上站的却是主角和宋蕙贞。
@@ -304,6 +318,7 @@ story.on((e) => {
     case "line": {
       // 空镜那一格照旁白显示：没有名字、没有人开口
       const who = e.who === "empty" ? "narr" : e.who;
+      sfx.run(cuesForShot(e.who));                       // 声音桥 ②：空镜这一格起风，下一格有人说话就收
       play(cuesForLine(who, e.lineKind, e.text, cueState, performance.now()));
       choices.hide();
       dlg.setVisible(true);
@@ -323,6 +338,7 @@ story.on((e) => {
       break;
     }
     case "choices":
+      sfx.run(cuesForShot(""));                          // 出选项：空镜的风收掉（校验器本来就不许空镜做选项前最后一格）
       cast.setFraming(framingFor("choices"));          // 要做决定：镜头退开，全身（D-108 第 2 条）
       dlg.setVisible(false);
       choices.show(e.items);
@@ -330,6 +346,7 @@ story.on((e) => {
     case "ending": {
       app.dataset.ending = "text";
       bgm.stop(3);
+      sfx.run(ambienceForScene(undefined));              // 落幕：环境声跟配乐一起收
       choices.hide();
       dlg.setVisible(true);
       dlg.show("narr", e.body, "aside", store.state, true);
@@ -455,9 +472,10 @@ soundBtn.addEventListener("click", (e) => {
   const on = !ambient.enabled;
   ambient.setEnabled(on);
   bgm.setEnabled(on);
+  sfx.setEnabled(on);
   setSoundOn(on);
-  // 刚打开的时候，如果这一场该有雨，现在补上
-  if (on) play(cuesForScene({ id: story.sceneId, act: story.currentScene?.act ?? 1, dressing: story.currentScene?.dressing }, { lastAct: story.currentScene?.act ?? null, lastDrumAt: 0 }, 0));
+  // 刚打开的时候，这一场该有的环境声现在补上
+  if (on) sfx.run(ambienceForScene(story.currentScene?.dressing));
   paintSound();
 });
 paintSound();
@@ -477,7 +495,7 @@ if (dev) {
 }
 inbox = new Inbox(app, hud, {
   poems,
-  onRead: (id) => story.markLetterRead(id),
+  onRead: (id) => { sfx.run(cuesForPaper()); story.markLetterRead(id); },   // 声音桥 ③：拆信一声纸响
   onReply: (id, kind, tags) => story.replyLetter(id, kind, tags),
 }, () => story.letters.onDesk(), () => store.state, (who) => relationWord(who, store.state, tiers));
 inbox.setUnread(story.letters.unreadCount(), story.letters.onDesk().length);
@@ -517,7 +535,7 @@ const begin = (fresh: boolean): void => {
   // 「入宫」这一下是手机上唯一合法的解锁音频的时机（D-053）。解锁不等于出声：
   // 上次开着声音的人这里才真的开，第一次来的人仍是静的
   ambient.unlock();
-  if (soundOn()) { ambient.setEnabled(true); bgm.setEnabled(true); paintSound(); }
+  if (soundOn()) { ambient.setEnabled(true); bgm.setEnabled(true); sfx.setEnabled(true); paintSound(); }
   showFirstRunNotice(app, () => slots.show());
   void story.start({ fresh });
 };

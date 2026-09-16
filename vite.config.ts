@@ -104,14 +104,14 @@ const RASTER_ID = "virtual:raster-assets";
 function rasterAssets(): Plugin {
   const resolved = "\0" + RASTER_ID;
   const pub = join(import.meta.dirname, "public");
-  const list = (dir: string): string[] =>
-    existsSync(join(pub, dir)) ? readdirSync(join(pub, dir)).filter((f) => f.endsWith(".webp")).map((f) => f.slice(0, -5)).sort() : [];
+  const list = (dir: string, ext = ".webp"): string[] =>
+    existsSync(join(pub, dir)) ? readdirSync(join(pub, dir)).filter((f) => f.endsWith(ext)).map((f) => f.slice(0, -ext.length)).sort() : [];
   return {
     name: "wuzetian-raster-assets",
     resolveId: (id) => (id === RASTER_ID ? resolved : null),
     load(id) {
       if (id !== resolved) return null;
-      return `export default ${JSON.stringify({ full: list("char/full"), knee: list("char/knee"), scenes: list("scene"), cgs: list("cg") })};`;
+      return `export default ${JSON.stringify({ full: list("char/full"), knee: list("char/knee"), scenes: list("scene"), cgs: list("cg"), sfx: list("sfx", ".m4a") })};`;
     },
   };
 }
