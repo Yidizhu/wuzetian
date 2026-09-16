@@ -83,3 +83,37 @@ test("文件没到不报错：真文件 → 合成 → 静音", () => {
   assert.equal(sourceFor("steps_hall", none), "silent", "合成没有的就静音");
   assert.equal(SFX_NAMES.length, 8, "文件名照 D-198 那张表，八条");
 });
+
+// ------------------------------------------------------------ D-202（B37）：四条之外的落点
+
+import { cuesForCg, cuesForEndingCg, cuesForEnter, newEnterCueState, cuesForEnding } from "../src/audio/cues.ts";
+import { CGS } from "../src/scene/cgs.ts";
+
+test("D-202 事件图铺开：表里写了衣料／马铃用它，没写纸响，风物图不响，表里没有不响", () => {
+  assert.deepEqual(cuesForCg(CGS.wuze_shouwei), [{ kind: "hit", name: "cloth_rustle" }]);
+  assert.deepEqual(cuesForCg(CGS.peizhaoye_1_xunma), [{ kind: "hit", name: "horse_bell" }]);
+  assert.deepEqual(cuesForCg(CGS.liqinghe_2_diye), [{ kind: "hit", name: "paper_unfold" }]);
+  assert.deepEqual(cuesForCg(CGS.wu_chaipai), [], "风物不是纸，也不是动作");
+  assert.deepEqual(cuesForCg(undefined), []);
+  // 落点照 D-202 一张不多一张不少
+  const rustle = Object.keys(CGS).filter((k) => CGS[k]!.sfx === "cloth_rustle").sort();
+  assert.deepEqual(rustle, ["peizhaoye_2_dangfeng", "peizhaoye_3_woshou", "shenheng_4_bingzuo", "wuze_juwei", "wuze_shouwei"]);
+  const bell = Object.keys(CGS).filter((k) => CGS[k]!.sfx === "horse_bell").sort();
+  assert.deepEqual(bell, ["ending_guanshanyouxin", "peizhaoye_1_xunma"]);
+});
+
+test("D-202 结局图：只有表里写明的响（关山有信马铃），别的结局图不响纸", () => {
+  assert.deepEqual(cuesForEndingCg(CGS.ending_guanshanyouxin), [{ kind: "hit", name: "horse_bell" }]);
+  assert.deepEqual(cuesForEndingCg(CGS.ending_wuzibei), []);
+});
+
+test("D-202 进受位那一场：空殿脚步一次；同一场再来一次不重复；别的布置不响", () => {
+  const st = newEnterCueState();
+  assert.deepEqual(cuesForEnter({ id: "ch03_s12_hanyuan", dressing: "shouwei" }, st), [{ kind: "hit", name: "steps_hall" }]);
+  assert.deepEqual(cuesForEnter({ id: "ch03_s12_hanyuan", dressing: "shouwei" }, st), []);
+  assert.deepEqual(cuesForEnter({ id: "ch03_s11_hanyuan", dressing: "gongyi" }, st), []);
+});
+
+test("D-202 规则 ⑤：结局卡淡到无声之前一声钟", () => {
+  assert.deepEqual(cuesForEnding(), [{ kind: "hit", name: "bell_far" }]);
+});

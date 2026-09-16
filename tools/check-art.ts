@@ -143,16 +143,37 @@ for (const k of keys) {
 }
 
 // ---------------------------------------------------------------- 图与版本库
+// 配乐、音效（B37，D-202）和图同一条规矩：上线的文件要进版本库，版本库里有的磁盘上不许没了
+const AUDIO_DIRS = ["bgm", "sfx"];
 const tracked = new Set(
   execFileSync("git", ["ls-files", "public"], { cwd: ROOT, encoding: "utf8" })
-    .split("\n").map((s) => s.trim()).filter((s) => s.endsWith(".webp")),
+    .split("\n").map((s) => s.trim())
+    .filter((s) => s.endsWith(".webp") || AUDIO_DIRS.some((d) => s.startsWith(`public/${d}/`) && s.endsWith(".m4a"))),
 );
 const onDisk = new Set<string>();
 for (const dir of ["char/full", "char/knee", "scene", "cg"]) {
   for (const f of list(dir)) onDisk.add(`public/${dir}/${f}.webp`);
 }
-for (const f of onDisk) if (!tracked.has(f)) fail(`${f} 已入表但没进版本库（D-130）。验收过的 webp 要提交，否则换台机器、或者误删一次就没了`);
+for (const dir of AUDIO_DIRS) {
+  if (!existsSync(join(pub, dir))) continue;
+  for (const f of readdirSync(join(pub, dir)).filter((x) => x.endsWith(".m4a"))) onDisk.add(`public/${dir}/${f}`);
+}
+
+// 音效账本（D-198、D-202）：许可一栏还写着「待补」的念出来，不拦——许可是人确认的事，工具只提醒
+{
+  const ledger = join(ROOT, "docs", "sfx-ledger.md");
+  if (existsSync(ledger)) {
+    const rows = readFileSync(ledger, "utf8").split("\n").filter((l) => /^\| `[a-z_]+` \|/.test(l));
+    const nameOf = (l: string) => /`([a-z_]+)`/.exec(l)![1]!;
+    const owed = rows.filter((l) => (l.split("|")[4] ?? "").includes("待")).map(nameOf);
+    const sfxOnDisk = existsSync(join(pub, "sfx")) ? readdirSync(join(pub, "sfx")).filter((x) => x.endsWith(".m4a")).map((x) => x.slice(0, -4)) : [];
+    const listed = new Set(rows.map(nameOf));
+    console.log(`  音效 ${sfxOnDisk.length} 条上线${owed.length ? `；账本许可待补：${owed.join("、")}` : "，账本里许可都填了"}`);
+    for (const n of sfxOnDisk) if (!listed.has(n)) console.log(`    public/sfx/${n}.m4a 不在 docs/sfx-ledger.md 里：来源、许可没记`);
+  }
+}
+for (const f of onDisk) if (!tracked.has(f)) fail(`${f} 已入表但没进版本库（D-130）。验收过的图、上线的配乐和音效都要提交，否则换台机器、或者误删一次就没了`);
 for (const f of tracked) if (!onDisk.has(f)) fail(`${f} 在版本库里，磁盘上没了。是不是连目录一起删了（public/scene 出过一次）`);
 
-console.log(bad ? `\n  ${bad} 项不合格。\n` : `  已入表的 ${onDisk.size} 张图都在版本库里。\n`);
+console.log(bad ? `\n  ${bad} 项不合格。\n` : `  已入表的 ${onDisk.size} 个文件（图、配乐、音效）都在版本库里。\n`);
 process.exit(bad ? 1 : 0);

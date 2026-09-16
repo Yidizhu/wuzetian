@@ -24,7 +24,7 @@ export interface Portrait {
   /**
    * 生成原件的名字，`<who>_<身份>_<色>_<表情>`，原件落在 `assets/portraits/<asset>_v<N>.png`，一版一个文件、不覆盖。
    * 这是 Codex 第一张实测图（`wuze_cairen_qing_default_v1.png`）已经在用的写法，照它定。
-   * 主角的绯是登基之后（`enthroned`，D-105），身份位写 tianzi
+   * 主角的绯是受位之后（`enthroned` 或 `ch03_accept_offer` 任一，D-105、D-201；规则在 engine/identity.ts），身份位写 tianzi
    */
   asset: string;
   who: string;

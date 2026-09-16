@@ -39,24 +39,29 @@ export interface Cg {
   ending?: string;
   /** 印的中心，占图宽、高的百分比（D-067）。**只有无字之碑那张能写**，数由 CC3 看图后填 */
   seal?: { x: number; y: number };
+  /**
+   * 这张图铺开那一下响什么（D-202，B37）。不写就是规则 ③ 的纸响；风物图（`beat: "风物"`）不响——它们不是纸，也不是动作。
+   * 身体、衣料动的写 `cloth_rustle`，有马的写 `horse_bell`
+   */
+  sfx?: "cloth_rustle" | "horse_bell";
   /** 给人看：画的是什么、在哪一场 */
   where: string;
 }
 
 export const CGS: Record<string, Cg> = {
   // E19／E20：先试的两张（D-146）
-  peizhaoye_1_xunma:  { who: ["peizhaoye"],            beat: "本行",       focus: { x: 45, y: 30 }, where: "裴照夜驯马（单人）。ch01-07 苑野。主体本身是宽的，按 D-150 横构图。焦点 CC3 E22 按 v2 量：她的脸 x 520–660、马头 760–960，手机那一条 478–951 都装得下（CC3 加，待协调）" },
+  peizhaoye_1_xunma:  { who: ["peizhaoye"],            beat: "本行",       focus: { x: 45, y: 30 }, sfx: "horse_bell", where: "裴照夜驯马（单人）。ch01-07 苑野。主体本身是宽的，按 D-150 横构图。焦点 CC3 E22 按 v2 量：她的脸 x 520–660、马头 760–960，手机那一条 478–951 都装得下（CC3 加，待协调）" },
   adi_1_buxiu:        { who: ["adi", "wuze"],          beat: "关系",       where: "阿荻替主角补袖（双人，有接触）。ch01-03" },
   // E21：四种类型各一张，位置来自 C32 样稿（样稿写回正文之前，剧本里还没有这四句）
   wenqiao_1_chaozhi:  { who: ["wenqiao"],              beat: "本行",       where: "温荞在纸坊提帘抄纸（单人，竖）。D-151／D-158；剧本还没有格子（CC3 加，待协调）" },
   wenqiao_1_cangzhi:  { who: ["wenqiao", "wuze"],      beat: "注意到她",   where: "温荞把两张纸藏到身后，笑得收不住，两人对看。ch01-15 诗社" },
   liqinghe_2_diye:    { who: ["liqinghe", "wuze"],     beat: "为你",       where: "李令仪捡一片断梗的叶子递到主角面前，眼睛看着她的袖口。ch01-16 苑墙" },
-  peizhaoye_3_woshou: { who: ["peizhaoye", "wuze"],    beat: "亲密",       where: "「这只手，给我握一会儿」，裴照夜垂眼看两人握着的手。ch01-14 苑里" },
-  shenheng_4_bingzuo: { who: ["shenheng", "wuze"],     beat: "主角先想要", where: "主角把月牙凳提到沈衡身侧坐下，沈衡侧过脸看她。ch01-04 书阁，当夜" },
+  peizhaoye_3_woshou: { who: ["peizhaoye", "wuze"],    beat: "亲密",       sfx: "cloth_rustle", where: "「这只手，给我握一会儿」，裴照夜垂眼看两人握着的手。ch01-14 苑里" },
+  shenheng_4_bingzuo: { who: ["shenheng", "wuze"],     beat: "主角先想要", sfx: "cloth_rustle", where: "主角把月牙凳提到沈衡身侧坐下，沈衡侧过脸看她。ch01-04 书阁，当夜" },
 
   // D-159 第二优先：受位／拒位，ch03-12 含元殿，两张都竖（ai-prompt 第十三节）。剧本那一格「事件图」还没写，ChatGPT 补
-  wuze_shouwei:       { who: ["wuze", "shenheng"],     beat: "转变",       where: "受位。ch03-12 第 12 格，她穿上绯，看自己沉下来的袖口；赭黄叠在旁边漆盘里，没穿（D-165）" },
-  wuze_juwei:         { who: ["wuze", "tangjian"],     beat: "转变",       where: "拒位。ch03-12 第 37—41 格，她解下候选差牌放回匣里，帛带上空了一截丝绦，手还往那里去。青，不变" },
+  wuze_shouwei:       { who: ["wuze", "shenheng"],     beat: "转变",       sfx: "cloth_rustle", where: "受位。ch03-12 第 12 格，她穿上绯，看自己沉下来的袖口；赭黄叠在旁边漆盘里，没穿（D-165）" },
+  wuze_juwei:         { who: ["wuze", "tangjian"],     beat: "转变",       sfx: "cloth_rustle", where: "拒位。ch03-12 第 37—41 格，她解下候选差牌放回匣里，帛带上空了一截丝绦，手还往那里去。青，不变" },
 
   // E26（D-173）：七张双人，落点和画面照 CC3 E26 第二节。都是竖图；答复四张一张图盖「愿意」「不愿意」两支，主角穿青
   shenheng_6_dafu:        { who: ["shenheng", "wuze"],     beat: "答复", where: "ch04-05qa 第 2／16 格。沈衡在案后，两手按着那张空纸，抬头看主角" },
@@ -75,7 +80,7 @@ export const CGS: Record<string, Cg> = {
   liqinghe_1_boyi:        { who: ["liqinghe"],             beat: "本行", where: "ch01-08 第 25、56 格。李令仪穿紫礼衣拢起大袖、压平册子，抬眼问「这两笔代价，你选哪笔」。单人" },
   // E30（D-173）：最后四张。落点、装束照 C42；「为你」是 D-143 第二段，宋蕙贞不是恋爱线、这是她的第一张。
   // 温荞那张的动作词 CC3 定为 dengju（等句），不是日志里的 dengqi
-  peizhaoye_2_dangfeng:   { who: ["peizhaoye", "wuze"],    beat: "为你", where: "ch02-14 第 39 格后。她站到来风那一侧，袍角还在翻，靴子停在主角身侧；门口留着一块空地" },
+  peizhaoye_2_dangfeng:   { who: ["peizhaoye", "wuze"],    beat: "为你", sfx: "cloth_rustle", where: "ch02-14 第 39 格后。她站到来风那一侧，袍角还在翻，靴子停在主角身侧；门口留着一块空地" },
   wenqiao_2_dengju:       { who: ["wenqiao", "wuze"],      beat: "为你", where: "ch02-09 第 42 格后。她收住声，嘴唇还张着、手停在半空，等主角起下一句；两人抬头看着对方" },
   shenheng_2_rangzuo:     { who: ["shenheng", "wuze"],     beat: "为你", where: "ch03-02 第 31 格后。她坐到卷架那一侧，靠门的凳子空着、凳脚朝着主角；主角还站着" },
   songhuizhen_1_diwen:    { who: ["songhuizhen", "wuze", "adi"], beat: "关系", where: "ch02-12 第 2 格后。宋蕙贞把温水挪到席边，手指还扶着碗沿；阿荻在旁边缝自己的针包，不回头" },
@@ -101,7 +106,7 @@ export const CGS: Record<string, Cg> = {
   ending_liangxizhijian:  { who: ["liqinghe", "wuze"], beat: "结局", ending: "liangxizhijian", focus: { x: 62, y: 50 }, where: "两席之间（ink）。李令仪赢了，主角没有赢；落选者不消失" },
   ending_kaimenshouzi:    { who: ["wuze"],             beat: "结局", ending: "kaimenshouzi",    where: "开门授字（ink）。不登基，让更多人有可用的本领与去处" },
   ending_bushou:          { who: ["wuze"],             beat: "结局", ending: "bushou",          where: "不受（ink）。赢得了受位资格，又选择不要" },
-  ending_guanshanyouxin:  { who: ["peizhaoye", "wuze"], beat: "结局", ending: "guanshanyouxin", where: "关山有信（ink）。在地方把事情办下去，与裴照夜各有职分" },
+  ending_guanshanyouxin:  { who: ["peizhaoye", "wuze"], beat: "结局", ending: "guanshanyouxin", sfx: "horse_bell", where: "关山有信（ink）。在地方把事情办下去，与裴照夜各有职分" },
   ending_zhishangyouming: { who: ["wuze"],             beat: "结局", ending: "zhishangyouming", where: "纸上有名（ink）。没有取得权位，人生仍不只剩失败" },
 };
 

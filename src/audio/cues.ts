@@ -111,6 +111,40 @@ export function cuesAfterEpigraph(chapter: number, st: EpigraphCueState): SoundC
   return [{ kind: "hit", name: "drum_far" }];
 }
 
+// ------------------------------------------------------------ 四条之外的落点（D-202，B37）
+
+/** 事件图那一行里声音要看的两样（`cgs.ts` 的 Cg 的子集；cues.ts 不引数据表，保持纯函数） */
+export interface CgSound { beat: string; sfx?: SfxName }
+
+/**
+ * 规则 ③ 的细化：剧本里一格事件图铺开时响什么。
+ * 表里写了 `sfx` 用它（衣料、马铃），没写是纸响；风物图不响——它们不是纸，也不是动作。表里没有这张图也不响（那一格会跳过）
+ */
+export function cuesForCg(cg: CgSound | undefined): SoundCue[] {
+  if (!cg || cg.beat === "风物") return [];
+  return [{ kind: "hit", name: cg.sfx ?? "paper_unfold" }];
+}
+
+/** 结局图（结局卡第一拍）：只响表里写明的（关山有信的马铃）；没写不响，结局卡不是「翻开一张纸」 */
+export function cuesForEndingCg(cg: CgSound | undefined): SoundCue[] {
+  return cg?.sfx ? [{ kind: "hit", name: cg.sfx }] : [];
+}
+
+export interface EnterCueState { lastScene: string | null }
+export function newEnterCueState(): EnterCueState { return { lastScene: null } }
+
+/** 进布置为「受位」的场：空殿里几步脚步，一次（同一场的场景事件再来一次不重复，比如读档读回这一场） */
+export function cuesForEnter(scene: { id: string; dressing?: string }, st: EnterCueState): SoundCue[] {
+  if (st.lastScene === scene.id) return [];
+  st.lastScene = scene.id;
+  return scene.dressing === "shouwei" ? [{ kind: "hit", name: "steps_hall" }] : [];
+}
+
+/** 规则 ⑤（D-202）：结局卡淡到无声之前，远寺一声钟 */
+export function cuesForEnding(): SoundCue[] {
+  return [{ kind: "hit", name: "bell_far" }];
+}
+
 /** 合成那层能顶上的：没有真文件时退回它。其余没有就静音 */
 const SYNTH_FALLBACK: ReadonlySet<SfxName> = new Set(["rain_loop", "wind_loop", "paper_unfold", "drum_far"]);
 

@@ -1,14 +1,19 @@
 /* 题画（D-014）。全屏盖住游戏，只剩一张立轴。
    样式故意做得极少：这一层不该像一个「分享弹窗」，该像把一张纸举起来看。 */
 
+/* 居中（B37，CC1 改，待协调）：原来是 flex 的 justify-content: center，内容比屏幕高时（矮屏、横屏手机）上面那截被切掉、
+   也滚不上去——信纸 B24 踩过同一个坑。改成从上排、可以滚，头尾各垫一个 auto 外边距：够高时照旧居中，不够高时从顶上开始 */
 .tihua {
   position: fixed; inset: 0; z-index: 40;
-  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  display: flex; flex-direction: column; align-items: center; justify-content: flex-start;
+  overflow-y: auto; -webkit-overflow-scrolling: touch;
   gap: 14px; padding: 16px;
   background: color-mix(in srgb, var(--c-ground) 88%, var(--c-line));
   animation: tihua-in 320ms var(--ease);
 }
 @keyframes tihua-in { from { opacity: 0; } to { opacity: 1; } }
+.tihua > :first-child { margin-top: auto; }
+.tihua > :last-child { margin-bottom: auto; }
 
 .tihua__img {
   max-width: min(100%, 520px);

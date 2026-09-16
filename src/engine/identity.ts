@@ -19,6 +19,9 @@ export interface RankRule {
 
 export const IDENTITY_RANKS: readonly RankRule[] = [
   { rank: "fei", flags: ["enthroned"], why: "三章 12 场受位礼成：制授承位，她答了受（D-105 确认）" },
+  // D-201（B37）：受位支从 ch03-12 起就穿绯——正文第 13 格她答了「绯」，图 wuze_shouwei 也是绯，舞台立绘却还是青。
+  // 受位的选项一定把 enthroned 写真，所以不会有「穿了绯又脱下」的路（烟测「只升不降」那条守着）。表是「任一条成立」
+  { rank: "fei", flags: ["ch03_accept_offer"], why: "三章 11 场答了受位，12 场试衣要的是绯（D-165、D-201）" },
 ];
 
 export function protagonistRank(has: (flag: string) => boolean): Rank {

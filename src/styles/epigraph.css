@@ -88,7 +88,7 @@
     color-mix(in srgb, var(--c-ground) 34%, transparent) 52%,
     transparent 82%);
 }
-.tiji[data-vista-key="vista_ch3"] .tiji__cols { height: min(46vh, 430px); }
+.tiji[data-vista-key="vista_ch3"] .tiji__cols { height: min(26vh, 240px); }   /* D-201：CC3 E32 量的，B35 是 min(46vh, 430px) */
 
 @media (prefers-reduced-motion: reduce) {
   .tiji[data-state="in"], .tiji[data-state="out"], .tiji__col { animation: none; }

@@ -26,8 +26,8 @@ import { mountEpigraph } from "./scene/Epigraph.ts";
 import { debutsOn, setDebutsOn, soundOn, setSoundOn } from "./ui/prefs.ts";
 import { Ambient } from "./audio/ambient.ts";
 import { Bgm, bgmForChapter } from "./audio/bgm.ts";
-import { vistaFor } from "./scene/backdrops.ts";
-import { cuesForScene, cuesForLine, newCueState, type Cue, ambienceForScene, cuesForShot, cuesForPaper, cuesAfterEpigraph, newEpigraphCueState } from "./audio/cues.ts";
+import { vistaFor, BACKDROPS, backdropKey } from "./scene/backdrops.ts";
+import { cuesForScene, cuesForLine, newCueState, type Cue, ambienceForScene, cuesForShot, cuesForPaper, cuesAfterEpigraph, newEpigraphCueState, cuesForCg, cuesForEndingCg, cuesForEnter, newEnterCueState, cuesForEnding, type SfxName } from "./audio/cues.ts";
 import { Sfx } from "./audio/sfx.ts";
 import endingData from "./data/endings.json";
 import adultScenes from "virtual:adult-scenes";
@@ -35,7 +35,7 @@ import converted from "virtual:converted-data";
 import rasterList from "virtual:raster-assets";
 import { RasterCatalog, framingFor } from "./scene/raster.ts";
 import { CgLayer } from "./ui/CgLayer.ts";
-import { endingCg } from "./scene/cgs.ts";
+import { endingCg, CGS } from "./scene/cgs.ts";
 import { sealGlyph } from "./engine/endings.ts";
 import { relationTiers, relationWord, closestThisChapter } from "./engine/relation.ts";
 import poemData from "./data/poems.json";
@@ -219,7 +219,8 @@ const story = new Story(
     cg: async (key, first) => {
       choices.hide();
       dlg.setVisible(false);
-      if (raster.hasCg(key)) sfx.run(cuesForPaper());   // 声音桥 ③：图铺开那一下纸响（没图这一格跳过，不响）
+      // 声音桥 ③：图铺开那一下响——表里写了衣料、马铃就用它，风物图不响，其余纸响（D-202）。没图这一格跳过，不响
+      if (raster.hasCg(key)) sfx.run(cuesForCg(CGS[key]));
       const shown = await cgLayer.show(key, first);
       dlg.setVisible(true);
       return shown;
@@ -236,6 +237,7 @@ const story = new Story(
       const key = endingCg(ending.key);
       const seal = ENDING_DRESSINGS[ending.key] === "yin" ? sealGlyph(store.state) : null;
       const shown = key ? cgLayer.holdEnding(key, seal) : Promise.resolve(false);
+      if (key && raster.hasCg(key)) sfx.run(cuesForEndingCg(CGS[key]));   // 关山有信的马铃（D-202）
       const at = performance.now();
       releaseEndingPicture = () => {
         // 画面至少停这么久才认点击：读最后一句的人手还在连点，第一拍会被直接点掉
@@ -269,6 +271,14 @@ const cueState = newCueState();
 // 声音桥（D-198）：真音效文件，四条规则在 cues.ts。文件没到退回合成，合成也没有就静音
 const sfx = new Sfx(ambient, rasterList.sfx ?? [], import.meta.env.BASE_URL);
 const epigraphCues = newEpigraphCueState();
+const enterCues = newEnterCueState();
+/** 这一场可能响的单响，进场时先取回来（B37） */
+const hitsForScene = (s: Scene): SfxName[] => {
+  const out = new Set<SfxName>(["paper_unfold", "drum_far", "bell_far"]);
+  if (s.dressing === "shouwei") out.add("steps_hall");
+  for (const l of s.lines) if (l.who === "cg") { const x = CGS[l.text]?.sfx; if (x) out.add(x); }
+  return [...out];
+};
 /**
  * D-053 合成的那一层：雨交给声音桥管了（文件在用文件，不在它自己退回合成）；
  * 街鼓（换幕、旁白写到鼓）只在真鼓文件不在时才敲——有真文件就只剩规则 ④ 那一通
@@ -292,6 +302,8 @@ story.on((e) => {
       app.querySelectorAll(".ending-title").forEach((n) => n.remove());
       play(cuesForScene(e.scene, cueState, performance.now()));
       sfx.run(ambienceForScene(e.scene.dressing));      // 声音桥 ①：这一场的环境声，淡出开始就起
+      sfx.run(cuesForEnter(e.scene, enterCues));         // 受位那一场：空殿里几步脚步（D-202）
+      sfx.preload(hitsForScene(e.scene));
       // 阵容必须同步定下来：紧跟着的 line 事件会马上问「说话的人在不在台上」。
       // B11 写成了先 await refresh() 再 setCast，结果每一场第一个开口的人如果不在前两位，
       // 查到的是一张空名单，不换上台——阿荻在第一章 03 场说话，台上站的却是主角和宋蕙贞。
@@ -345,6 +357,7 @@ story.on((e) => {
       break;
     case "ending": {
       app.dataset.ending = "text";
+      sfx.run(cuesForEnding());                          // 规则 ⑤：配乐淡到无声之前，远寺一声钟（D-202）
       bgm.stop(3);
       sfx.run(ambienceForScene(undefined));              // 落幕：环境声跟配乐一起收
       choices.hide();
@@ -480,6 +493,47 @@ soundBtn.addEventListener("click", (e) => {
 });
 paintSound();
 hud.append(soundBtn);
+
+/**
+ * 题画（D-014、D-046 第 4 条，B37 接进游戏）：把这一幕合成一张立轴，存进相册。
+ *
+ * - **画心**：这一场实际铺着的那张背景图（光栅渲染器没有画布，就把背景图画进一张画布交给它）；没图就是一张空纸。
+ * - **人不入画**：题画合成只认 SVG 立绘，现在台上是光栅立绘，混进去画风对不上；要不要把光栅立绘也合进去，归 CC3。
+ * - **题跋**：从玩家收到的诗里挑（不新写诗）；一首都没有就只留落款。印文是主角名末二字。
+ */
+const tihuaBtn = document.createElement("button");
+tihuaBtn.type = "button";
+tihuaBtn.textContent = "题画";
+tihuaBtn.addEventListener("click", (e) => {
+  e.stopPropagation();
+  const sc = story.currentScene;
+  if (!sc || document.querySelector(".tihua")) return;
+  const key = backdropKey({ key: sc.scene, palette: sc.palette, dressing: sc.dressing });
+  const file = raster.resolveBackdrop(key, BACKDROPS[key]?.from);
+  const name = store.state.protagonistName;
+  const collected = [...store.state.poemsCollected].map((id) => poems.get(id)).filter((p): p is PoemT => !!p);
+  // 题画按需加载：合成那一块带着全部 SVG 立绘，不该让每个玩家开局就多下这一截
+  const open = (source: HTMLCanvasElement | null): void => {
+    void import("./scene/TiHua.ts").then(({ openTiHua }) => openTiHua(document.body, {
+      source,
+      palette: sc.palette,
+      night: !!BACKDROPS[key]?.night,
+      poems: collected.length ? collected.map((p) => p.lines.slice(0, 4)) : [[]],
+      signs: collected.length ? collected.map((p) => `${p.author}句 ${name} 录`) : [`${name} 题`],
+      name,
+    }));
+  };
+  if (!file) { open(null); return; }
+  const im = new Image();
+  im.src = raster.backdropUrl(file);
+  im.decode().then(() => {
+    const c = document.createElement("canvas");
+    c.width = im.naturalWidth; c.height = im.naturalHeight;
+    c.getContext("2d")?.drawImage(im, 0, 0);
+    open(c);
+  }, () => open(null));
+});
+hud.append(tihuaBtn);
 if (dev) {
   const swap = document.createElement("button");
   swap.type = "button";

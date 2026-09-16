@@ -655,11 +655,25 @@ test("D-091、D-105 袍色跟身份 flag 走，只有青与绯；图没到位就
   assert.equal(protagonistRank(none), "qing", "什么都没有是青");
   assert.equal(protagonistRank((f) => f === "liqinghe_won" || f === "declined_crown"), "qing", "落选、辞受都还是青");
   assert.equal(protagonistRank(enthroned), "fei");
-  assert.deepEqual(IDENTITY_RANKS.map((r) => r.rank), ["fei"], "D-105：没有绿");
+  assert.ok(IDENTITY_RANKS.every((r) => r.rank === "fei"), "D-105：没有绿");
+  assert.equal(protagonistRank((f) => f === "ch03_accept_offer"), "fei", "D-201：答了受位就穿绯，不等 enthroned");
   assert.deepEqual(spriteCandidates("wuze", "open", ctx(enthroned)), ["wuze_open_fei", "wuze_open"]);
   assert.deepEqual(spriteCandidates("shenheng", "open", ctx(enthroned)), ["shenheng_open"], "别人不跟主角的身份换图");
   assert.deepEqual(spriteCandidates("liuchenghuan", "default", ctx((f) => f === "chenghuan_returned")),
     ["liuchenghuan_default_bare", "liuchenghuan_default"]);
+});
+
+test("D-201 ch03-12 受位支：答了「绯」那一格（第 13 格）起舞台立绘是 wuze_default_fei", async () => {
+  const { rasterCandidates } = await import("../src/engine/identity.ts");
+  const { readFileSync } = await import("node:fs");
+  const s = JSON.parse(readFileSync(new URL("../src/data/chapters/ch03/ch03_s12_hanyuan.json", import.meta.url), "utf8"));
+  const l13 = s.lines.find((l: { id: string }) => l.id === "ch03_s12_hanyuan.l13");
+  assert.equal(l13?.text, "绯。", "第 13 格是她答「绯」那一格");
+  // 受位支：ch03-11 的选项写真 ch03_accept_offer，enthroned 要到后面才写
+  const flags = new Set(["ch03_accept_offer"]);
+  assert.deepEqual(l13.when, { "flag.ch03_accept_offer": true }, "这一格只在受位支出现");
+  assert.equal(rasterCandidates("wuze", { has: (f) => flags.has(f), dressing: s.dressing ?? "" })[0], "wuze_default_fei");
+  assert.equal(rasterCandidates("wuze", { has: () => false, dressing: s.dressing ?? "" })[0], "wuze_default", "拒位支仍是青");
 });
 
 test("D-095、D-108 光栅立绘：一套一个中性表情；李令仪公议受位穿紫；有选项全身、其余膝上", async () => {

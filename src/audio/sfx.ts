@@ -44,6 +44,15 @@ export class Sfx {
     this.base = base;
   }
 
+  /**
+   * 单响预取（B37）：进场时把这一场可能用到的先取回来、解好码，第一次响不再晚一两百毫秒。
+   * 没开声不取（静音的人不花流量）；取不到照旧不报错
+   */
+  preload(names: SfxName[]): void {
+    if (!this.host.enabled || !this.host.audio) return;
+    for (const n of names) if (this.available.has(n)) void this.buffer(n);
+  }
+
   /** 真文件在不在（在就不用合成那一层） */
   has(name: SfxName): boolean { return this.available.has(name); }
 
