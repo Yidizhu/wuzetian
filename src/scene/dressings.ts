@@ -17,7 +17,9 @@ export const DRESSINGS: Record<string, Dressing> = {
   公议: { key: "gongyi",  scene: "zhaoyang / hanyuan", where: "二章 11、13；三章 08、11；四章 02、07" },
   夜雨: { key: "yeyu",    scene: "nvguan",   where: "三章 10 夜谈三" },
   受位: { key: "shouwei", scene: "hanyuan",  where: "三章 12 受位议决" },
-  夜灯: { key: "yedeng",  scene: "zhaoyang", where: "四章 06 夜谈四（水墨）" },
+  夜灯: { key: "yedeng",  scene: "zhaoyang / shuge / yeting", where: "四章 06 夜谈四（昭阳殿水墨）；书阁、掖庭的夜戏（C48，D-208）" },
+  // D-208：苑野的白天戏。苑野不写布置是夜（那张图画的是夜）
+  晴光: { key: "qingguang", scene: "yuanye", where: "苑野的白天戏（C48）" },
   开课: { key: "kaike",   scene: "nvguan",   where: "四章 11—13" },
   碑样: { key: "beiyang", scene: "wuzibei",  where: "四章 18 夜谈五。夜里，碑前一张碑样纸" },
   // D-067：无字碑默认无印。那枚朱砂印是「无字之碑」结局的记号，只有写明「印」才盖上

@@ -61,12 +61,15 @@ export function vistaFor(chapter: number): string | null {
 export const BACKDROPS: Record<string, Backdrop> = {
   // B18：这四行的数是看 Codex 第一批 v1 原件、四张都在整屏里截过图之后填的（D-118）。图还没验收，验收换版后要再看一次
   yeting_ink:           { floor: 22, person: 1, push: "center", where: "掖庭，十六场。v1：院子土地铺到画底，人站 22% 踩在土上" },
+  yeting_ink_yedeng:    { from: "yeting_ink", night: true, floor: 22, person: 1, push: "center", where: "掖庭夜里一盏灯。借掖庭水墨日景，套夜滤镜；场次见 C48（D-208）" },
   // 序幕走的就是这一条。B21 之前它没有图，序幕是一片白底（YIDI 真机报的第 2 条）
   zhaoyang_ink:         { from: "zhaoyang_gold", tone: "ink", floor: 22, person: 1, push: "center", where: "昭阳殿水墨，序幕与四章。借金碧那张，降饱和去金" },
   zhaoyang_gold:        { floor: 22, person: 1, push: "center", where: "昭阳殿金碧。v1：红毯居中铺到画底，朝毯心推" },
   zhaoyang_ink_yedeng:  { night: true, paintedNight: true, where: "四章 06 夜谈四（夜灯）。dressings.ts 里有，剧本眼下没写这一条布置" },
   shuge_ink:            { floor: 22, person: 1, push: "right", where: "书阁水墨，十二场。四章 08、14 是夜里，剧本没有时辰一栏，眼下按日景（D-107）。v1：光从左窗进来，右边书架间有纵深，朝右推" },
   shuge_gold:           { from: "shuge_ink", tone: "gold", floor: 22, person: 1, push: "right", where: "书阁金碧。借水墨那张，加金" },
+  // D-208（B40）：样场查出书阁、掖庭有夜戏演在日景里。**不出图**，借日景那张套夜滤镜（D-107 原来的办法）；构图跟原图走
+  shuge_ink_yedeng:     { from: "shuge_ink", night: true, floor: 22, person: 1, push: "right", where: "书阁夜里一盏灯。借书阁水墨日景，套夜滤镜；场次见 C48" },
   // B22：以下八行看第二批 v1（E18 验收）在缩略图上量过：地面都铺过 22% 那条线；推向朝画面里空着的那一边
   nvguan_ink:           { floor: 22, person: 1, push: "center", where: "女冠观。v1：左门开着，中间一张案，地面铺到画底" },
   nvguan_ink_kaike:     { floor: 22, person: 1, push: "center", where: "四章 12、13 开课。与素版同一构图，多晾纸与两张低案" },
@@ -75,6 +78,9 @@ export const BACKDROPS: Record<string, Backdrop> = {
   shishe_ink:           { floor: 22, person: 1, push: "left", where: "诗社。v1：左边临水、晾着诗笺，朝左推" },
   // v2 是画出来的真夜景（E15 验收过）：背景不再套滤镜，人照样套
   yuanye_ink:           { night: true, paintedNight: true, floor: 22, person: 1, push: "center", where: "原野，十三场。v2 真夜景：月在左上、风灯在左；路朝城门居中收，朝中推" },
+  // D-208（B40）：苑野那张是画出来的夜，白天戏演在月亮底下。新出一张白天的（Codex C41），**不写 night**。
+  // 图没到之前这一条没有图、也不借夜那张（借了又是月亮）——CSS 渐变底兜着。floor／push 是占位，图到了 CC3 量过再改
+  yuanye_ink_qingguang: { floor: 22, person: 1, push: "center", where: "苑野白天（晴光）。新图待上线（C41）；场次见 C48" },
   hanyuan_gold:         { where: "含元殿" },
   hanyuan_gold_gongyi:  { floor: 22, person: 1, push: "center", where: "含元殿公议，六场。v1：两排议案，殿门在正中" },
   hanyuan_gold_shouwei: { floor: 22, person: 1, push: "center", where: "三章 12 受位议决。v1：御床在殿门前正中" },
