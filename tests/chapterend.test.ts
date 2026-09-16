@@ -656,24 +656,41 @@ test("D-091、D-105 袍色跟身份 flag 走，只有青与绯；图没到位就
   assert.equal(protagonistRank((f) => f === "liqinghe_won" || f === "declined_crown"), "qing", "落选、辞受都还是青");
   assert.equal(protagonistRank(enthroned), "fei");
   assert.ok(IDENTITY_RANKS.every((r) => r.rank === "fei"), "D-105：没有绿");
-  assert.equal(protagonistRank((f) => f === "ch03_accept_offer"), "fei", "D-201：答了受位就穿绯，不等 enthroned");
+  assert.equal(protagonistRank((f) => f === "ch03_accept_offer"), "qing", "D-205：答了受位、图还没铺开，仍是青");
+  assert.equal(protagonistRank((f) => f === "ch03_accept_offer", (k) => k === "wuze_shouwei"), "fei", "D-205：受位那张图铺开过，换绯");
+  assert.equal(protagonistRank(none, (k) => k === "wuze_shouwei"), "qing", "光看过图、没受位不算");
   assert.deepEqual(spriteCandidates("wuze", "open", ctx(enthroned)), ["wuze_open_fei", "wuze_open"]);
   assert.deepEqual(spriteCandidates("shenheng", "open", ctx(enthroned)), ["shenheng_open"], "别人不跟主角的身份换图");
   assert.deepEqual(spriteCandidates("liuchenghuan", "default", ctx((f) => f === "chenghuan_returned")),
     ["liuchenghuan_default_bare", "liuchenghuan_default"]);
 });
 
-test("D-201 ch03-12 受位支：答了「绯」那一格（第 13 格）起舞台立绘是 wuze_default_fei", async () => {
+test("D-205 ch03-12 受位支：绯以图为铰链——第 12 格青，wuze_shouwei 那一格之后绯；拒位支全程青", async () => {
   const { rasterCandidates } = await import("../src/engine/identity.ts");
   const { readFileSync } = await import("node:fs");
   const s = JSON.parse(readFileSync(new URL("../src/data/chapters/ch03/ch03_s12_hanyuan.json", import.meta.url), "utf8"));
-  const l13 = s.lines.find((l: { id: string }) => l.id === "ch03_s12_hanyuan.l13");
-  assert.equal(l13?.text, "绯。", "第 13 格是她答「绯」那一格");
-  // 受位支：ch03-11 的选项写真 ch03_accept_offer，enthroned 要到后面才写
-  const flags = new Set(["ch03_accept_offer"]);
-  assert.deepEqual(l13.when, { "flag.ch03_accept_offer": true }, "这一格只在受位支出现");
-  assert.equal(rasterCandidates("wuze", { has: (f) => flags.has(f), dressing: s.dressing ?? "" })[0], "wuze_default_fei");
-  assert.equal(rasterCandidates("wuze", { has: () => false, dressing: s.dressing ?? "" })[0], "wuze_default", "拒位支仍是青");
+  type L = { id: string; who: string; text: string; when?: Record<string, unknown> };
+  const lines: L[] = s.lines;
+  const at = lines.findIndex((l) => l.who === "cg" && l.text === "wuze_shouwei");
+  assert.ok(at > 0, "受位那张图在这一场");
+  assert.deepEqual(lines[at]!.when, { "flag.ch03_accept_offer": true }, "图格只在受位支出现");
+  assert.equal(lines.find((l) => l.id === "ch03_s12_hanyuan.l12")?.text.includes("赭黄"), true, "第 12 格是女史捧来赭黄那一格");
+  const accept = (f: string) => f === "ch03_accept_offer";
+  // 受位支逐格走：图格之前（含第 12 格）青，图铺开过之后绯
+  const seen = new Set<string>();
+  const dressing = s.dressing ?? "";
+  lines.forEach((l, i) => {
+    if (l.when && !accept(Object.keys(l.when)[0]!.replace("flag.", ""))) return;
+    const pick = rasterCandidates("wuze", { has: accept, dressing, seen: (k) => seen.has(k) })[0];
+    assert.equal(pick, i <= at ? "wuze_default" : "wuze_default_fei", `受位支第 ${i + 1} 格`);
+    if (l.who === "cg") seen.add(l.text);
+  });
+  assert.equal(seen.has("wuze_shouwei"), true);
+  // 拒位支：没有 ch03_accept_offer，那张图也走不到，全程青
+  for (const l of lines) {
+    if (l.when?.["flag.ch03_accept_offer"]) continue;
+    assert.equal(rasterCandidates("wuze", { has: (f) => f === "ch03_decline_offer", dressing, seen: () => false })[0], "wuze_default", `拒位支 ${l.id}`);
+  }
 });
 
 test("D-095、D-108 光栅立绘：一套一个中性表情；李令仪公议受位穿紫；有选项全身、其余膝上", async () => {

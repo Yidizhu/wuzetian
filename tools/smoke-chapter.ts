@@ -133,6 +133,8 @@ async function walk(picks: number[], chooser?: Chooser, letterWalk?: LetterWalk)
     {
       // 对诗输赢两种都要跑：赢了才攒得起好感，专属闲处场是好感门槛后面的
       async duel() { return winDuels; },
+      // 事件图当玩家看过：解锁记进 cgsSeen，绯以图为铰链（D-205）那条「只升不降」才验得到
+      async cg() { return true; },
       // 结算页出的那一刻，引擎的当前场景还是章末那一场
       async chapterEnd() { summarized.add(story.sceneId); },
     },
@@ -141,7 +143,7 @@ async function walk(picks: number[], chooser?: Chooser, letterWalk?: LetterWalk)
   story.on((e) => {
     if (e.kind === "scene") {
       if (path.at(-1) !== e.scene.id) path.push(e.scene.id);
-      ranks.push(protagonistRank((f) => store.state.flags[f] === true));
+      ranks.push(protagonistRank((f) => store.state.flags[f] === true, (k) => store.state.cgsSeen.has(k)));
     }
     else if (e.kind === "choices") pending = e as unknown as { items: { enabled: boolean }[] };
     // 章末停在「下章待续」也是走完了，不是卡住（D-034）
@@ -238,7 +240,7 @@ async function walk(picks: number[], chooser?: Chooser, letterWalk?: LetterWalk)
     }
     for (const [f, v] of Object.entries(store.state.flags)) if (v) flagsEverTrue.add(f);
     // 不变式 5
-    const finalRank = protagonistRank((f) => store.state.flags[f] === true);
+    const finalRank = protagonistRank((f) => store.state.flags[f] === true, (k) => store.state.cgsSeen.has(k));
     ranks.push(finalRank);
     for (let i = 1; i < ranks.length; i++) {
       if (RANK_ORDER[ranks[i]!] < RANK_ORDER[ranks[i - 1]!]) {

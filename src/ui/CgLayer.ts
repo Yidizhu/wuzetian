@@ -34,7 +34,8 @@ export class CgLayer {
     return true;
   }
 
-  async show(key: string, first: boolean): Promise<boolean> {
+  /** `onRelease`：点下去、图开始淡出之前调一次——图还盖着舞台，台上换衣这时候换看不见（D-205） */
+  async show(key: string, first: boolean, onRelease?: () => void): Promise<boolean> {
     const m = await this.mount(key, null);
     if (!m) return false;
     const { el, unfit } = m;
@@ -48,6 +49,7 @@ export class CgLayer {
       };
     });
 
+    onRelease?.();
     el.dataset.state = "out";
     unfit();
     await new Promise((r) => window.setTimeout(r, FADE_MS));

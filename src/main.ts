@@ -172,7 +172,7 @@ app.appendChild(stageRoot);
 let renderer = await pickRenderer(stageRoot);
 
 const store = new Store();
-const cast = new CharacterLayer(app, sprites, (f) => store.state.flags[f] === true, raster);
+const cast = new CharacterLayer(app, sprites, (f) => store.state.flags[f] === true, raster, (k) => store.state.cgsSeen.has(k));
 const cgLayer = new CgLayer(app, raster);
 const status = new StatusBar(app);
 const dlg = new DialogueBox(app);
@@ -221,12 +221,13 @@ const story = new Story(
       dlg.setVisible(false);
       // 声音桥 ③：图铺开那一下响——表里写了衣料、马铃就用它，风物图不响，其余纸响（D-202）。没图这一格跳过，不响
       if (raster.hasCg(key)) sfx.run(cuesForCg(CGS[key]));
-      const shown = await cgLayer.show(key, first);
+      // 点下去、图还盖着舞台时就记下解锁，台上的人跟着对一遍：受位那张图收起来，她已经穿绯（D-205）
+      const shown = await cgLayer.show(key, first, () => { store.state.cgsSeen.add(key); void cast.refresh(); });
       dlg.setVisible(true);
       return shown;
     },
     // 换场前把这一场的立绘先解码好（B21）；引擎预取下一场时也调这里，那一次不阻塞
-    preload: (scene) => cast.preload(scene.cast, scene.dressing ?? ""),
+    preload: (scene) => cast.preload(scene.cast, scene.dressing ?? "", scene.lines.filter((l) => l.who === "cg").map((l) => l.text)),
     // 结局第一拍（D-084）：只有画面。对话框、选项收起，点一下才出正文。
     // 排版归 CC3：这一拍 #app 上是 data-ending="picture"，第二拍是 "text"，按这两个值写样式
     // 有结局图（D-160）就在这一拍铺上；印（D-067）只给无字之碑，引擎按表决定，印文是她选的那一个字（和正文同一条规则）

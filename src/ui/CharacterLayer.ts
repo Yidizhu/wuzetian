@@ -32,6 +32,8 @@ export class CharacterLayer {
    */
   private sprites: Record<string, string>;
   private hasFlag: (flag: string) => boolean;
+  /** 事件图铺开过没有：主角受位之后看过那张图才换绯（D-205） */
+  private seenCg: (cg: string) => boolean;
   private raster: RasterCatalog;
   /** 这一场的布置。李令仪的礼衣看它（D-108 第 3 条） */
   private dressing = "";
@@ -39,9 +41,10 @@ export class CharacterLayer {
   private framing: "full" | "knee" = "knee";
 
   constructor(root: HTMLElement, sprites: Record<string, string>, hasFlag: (flag: string) => boolean = () => false,
-    raster: RasterCatalog = RasterCatalog.empty()) {
+    raster: RasterCatalog = RasterCatalog.empty(), seenCg: (cg: string) => boolean = () => false) {
     this.sprites = sprites;
     this.hasFlag = hasFlag;
+    this.seenCg = seenCg;
     this.raster = raster;
     this.el = document.createElement("div");
     this.el.className = "cast";
@@ -55,15 +58,19 @@ export class CharacterLayer {
    * 把这一场要用的立绘先解码好（B21：立绘和对白出来有延迟）。
    * 引擎在进场前 await 这一场的，进场后不 await 地预取下一场的（story.ts 的 prefetch）。
    * 全身和膝上两张都备：同一场里有选项的那一格用全身，其余用膝上，换框法时不该再等一次。
+   * `cgs`：这一场会铺的事件图。当它们都看过了再挑一遍，受位那张图收起时绯那一套已经解好码（D-205）
    */
-  async preload(cast: string[], dressing: string): Promise<void> {
-    const ctx: SpriteContext = { has: this.hasFlag, dressing };
+  async preload(cast: string[], dressing: string, cgs: string[] = []): Promise<void> {
+    const now: SpriteContext = { has: this.hasFlag, dressing, seen: this.seenCg };
+    const after: SpriteContext = { ...now, seen: (k) => cgs.includes(k) || this.seenCg(k) };
     const jobs: Promise<void>[] = [];
     for (const who of cast.slice(0, 2)) {
-      const pic = this.raster.pickPortrait(rasterCandidates(who, ctx));
-      if (!pic) continue;                            // 还是 SVG 的人：构建期就打进包里了，没什么可备的
-      for (const framing of ["full", "knee"] as const) {
-        jobs.push(this.decode(this.raster.portraitUrl(pic, framing).url));
+      const pics = new Set([now, after].map((ctx) => this.raster.pickPortrait(rasterCandidates(who, ctx))));
+      for (const pic of pics) {
+        if (!pic) continue;                          // 还是 SVG 的人：构建期就打进包里了，没什么可备的
+        for (const framing of ["full", "knee"] as const) {
+          jobs.push(this.decode(this.raster.portraitUrl(pic, framing).url));
+        }
       }
     }
     await Promise.all(jobs);
@@ -83,7 +90,7 @@ export class CharacterLayer {
   }
 
   private get ctx(): SpriteContext {
-    return { has: this.hasFlag, dressing: this.dressing };
+    return { has: this.hasFlag, dressing: this.dressing, seen: this.seenCg };
   }
 
   /** 换场时给这一场的布置，在 setCast 之前调 */
