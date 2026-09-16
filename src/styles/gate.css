@@ -1,0 +1,37 @@
+/* 开启页的门（D-219，B42，CC1 加）：和 HUD「声」开关同一个体系——淡墨细框、2px 圆角、纸色底、12px 字。
+   整屏是一张纸，门居中偏上，不做花的。发布前拆掉（见 src/ui/Gate.ts） */
+.gate {
+  position: fixed; inset: 0; z-index: 50;
+  display: flex; align-items: flex-start; justify-content: center;
+  padding-top: 38vh; padding-top: 38dvh;
+  background: var(--c-ground);
+  transition: opacity 300ms var(--ease);
+}
+.gate[data-state="out"] { opacity: 0; pointer-events: none; }
+.gate__form { display: flex; gap: 10px; align-items: center; }
+.gate__input,
+.gate__btn {
+  font-family: var(--font); color: var(--c-text-soft);
+  background: color-mix(in srgb, var(--c-ground) 78%, transparent);
+  border: 1px solid var(--c-ink-4); border-radius: 2px;
+  min-height: 28px;
+}
+.gate__input {
+  width: 9.5em; padding: 4px 9px;
+  font-size: 16px;                /* 小于 16px 时 iOS 会自动放大页面 */
+  letter-spacing: 0.4em; text-align: center;
+  outline: none;
+}
+.gate__input:focus { border-color: var(--c-ink-2); color: var(--c-text); }
+.gate__btn { font-size: 12px; letter-spacing: 0.04em; padding: 4px 9px; cursor: pointer; }
+.gate__btn:hover { color: var(--c-text); border-color: var(--c-ink-2); }
+.gate--wrong .gate__form { animation: gate-shake 360ms var(--ease); }
+@keyframes gate-shake {
+  20% { transform: translateX(-6px); }
+  40% { transform: translateX(5px); }
+  60% { transform: translateX(-3px); }
+  80% { transform: translateX(2px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .gate--wrong .gate__form { animation: none; }
+}
