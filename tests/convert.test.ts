@@ -2,7 +2,7 @@ import { test, describe } from "node:test";
 import assert from "node:assert/strict";
 import { CASES, sceneId, lineId, choiceId, parseCondition, parseEffects, convert, convertBatch, tableCells, writeOut, issueReport, classify, manualTail, MANUAL_MARK, outputPathFor, storyGraph, flagAudit, flagIssues, FLAG_LEDGER, FLAG_VERDICTS, sceneEdges, SONG_BLACKLIST, SPEAKERS, SPEAKER_LABELS } from "../tools/convert-story.ts";
 import { readFileSync, mkdtempSync, rmSync } from "node:fs";
-import { AFFINITY_BANDS } from "../src/engine/types.ts";
+import { AFFINITY_BANDS, SOLAR_TERMS } from "../src/engine/types.ts";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 
@@ -483,16 +483,23 @@ test('R-006 放宽之后：军中素笺 8 分钟、隔 1 场的信照常转出',
 
 const readDoc = (f: string) => ({ file: f, markdown: readFileSync(new URL(`../docs/${f}`, import.meta.url), 'utf8') });
 
-test('真实 C-4：四封信一封不少，要么转出要么有问题；不静默丢信', () => {
+/** 封数不写死：C43 起第一章多了一封节令信，以后还会加，数目从原文的信表头数来 */
+test('真实 C-4：信一封不少，要么转出要么有问题；不静默丢信', () => {
   const inputs = ['C-2-第一章前六场.md', 'C-3-第一章后十二场.md', 'C-4-第一章书信.md'].map(readDoc);
   const r = convertBatch(inputs);
   const headings = [...inputs[2].markdown.matchAll(/^### 信 (lt-[a-z0-9-]+)/gm)].map(m => m[1].replace(/-/g, '_'));
-  assert.equal(headings.length, 4);
+  assert.ok(headings.length >= 4, `C-4 至少四封，现在数到 ${headings.length}`);
   for (const id of headings) {
     const ok = r.letters.some(l => l.id === id) || r.issues.some(i => i.file === 'C-4-第一章书信.md');
     assert.ok(ok, `${id} 既没转出也没有问题记录`);
   }
   for (const l of r.letters) {
+    if (l.trigger.kind === 'solarTerm') {
+      // 节令信按剧情时间投递（D-184）：没有触发场景，也不该写截获支
+      assert.ok(SOLAR_TERMS.includes(l.trigger.term), `${l.id} 的节令键 ${l.trigger.term} 不在 types.ts 那张表里`);
+      assert.ok(!l.interceptable && !l.onIntercept, `${l.id} 是节令信，不该会被截`);
+      continue;
+    }
     assert.equal(l.trigger.kind, 'scene');
     const from = r.scenes.find(s => s.id === l.trigger.sceneId);
     assert.ok(from, '触发场景必须是本批转出的场');

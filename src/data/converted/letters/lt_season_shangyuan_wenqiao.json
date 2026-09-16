@@ -1,0 +1,62 @@
+{
+  "id": "lt_season_shangyuan_wenqiao",
+  "from": "wenqiao",
+  "trigger": {
+    "kind": "solarTerm",
+    "term": "shangyuan",
+    "minAffinity": 5
+  },
+  "delayMinutes": 5,
+  "paper": "huajian",
+  "body": {
+    "surface": "旧日节令笺·上元。灯轮底下太挤，我把新裁的笺收进袖里，空着手出来了。方才有盏小灯快灭，领灯的人拿回去添油，我便在旁边等了会儿。今夜想同你走一段。你若来，别往最亮的地方找，我在灯轮外那株树下。你不来，我看够了也会回去。",
+    "poem": {
+      "ref": "dufu_chunyexiyu",
+      "line": "野径云俱黑，江船火独明。"
+    },
+    "poemMeans": "只取夜里的灯火，不把诗中的雨写成眼前天气。",
+    "blank": "（她说空着手。想知道她会不会把手递过来。）"
+  },
+  "interceptable": false,
+  "replies": {
+    "plain": [
+      {
+        "effects": {},
+        "reaction": "“找好了。你到了再看够不够两个人站。”",
+        "id": "lt_season_shangyuan_wenqiao.rA",
+        "text": "我来。你先替自己找个不挤的地方。"
+      },
+      {
+        "effects": {},
+        "reaction": "“灯影在树干上爬了半截。只这一句。”",
+        "id": "lt_season_shangyuan_wenqiao.rB",
+        "text": "今夜想独处，把你看见的留一句给我。"
+      },
+      {
+        "effects": {},
+        "reaction": "“好。我还想再看一轮。”",
+        "id": "lt_season_shangyuan_wenqiao.rC",
+        "text": "今夜不约，你看够了就回去。"
+      }
+    ],
+    "poem": {
+      "resonantTags": [
+        "灯火",
+        "夜",
+        "径"
+      ],
+      "onResonant": {
+        "effects": {},
+        "reaction": "“读到了。你要来，仍写一句来，别让我猜时辰。”"
+      },
+      "onMismatch": {
+        "effects": {},
+        "reaction": "“这首我留着。今夜来不来，另答就好。”"
+      }
+    },
+    "silence": {
+      "effects": {},
+      "reaction": "她看过灯便自行回去，没有在树下等到天明。"
+    }
+  }
+}

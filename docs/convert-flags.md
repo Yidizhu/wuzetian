@@ -67,3 +67,7 @@ D-091 之后立绘按 flag 选，没人读的 flag 和拼错的 flag 在数据�
 | `lt_ch04_peizhaoye_01` | （不写 flag） | （不写 flag） | （不写 flag） | （不写 flag） | （不写 flag） |
 | `lt_ch04_shenheng_01` | （不写 flag） | （不写 flag） | （不写 flag） | （不写 flag） | （不写 flag） |
 | `lt_ch04_wenqiao_01` | （不写 flag） | （不写 flag） | （不写 flag） | （不写 flag） | （不写 flag） |
+| `lt_season_chongyang_liqinghe` | （不写 flag） | （不写 flag） | （不写 flag） | （不写 flag） | （不写 flag） |
+| `lt_season_hanshi_shenheng` | （不写 flag） | （不写 flag） | （不写 flag） | （不写 flag） | （不写 flag） |
+| `lt_season_shangyuan_wenqiao` | （不写 flag） | （不写 flag） | （不写 flag） | （不写 flag） | （不写 flag） |
+| `lt_season_zhongqiu_peizhaoye` | （不写 flag） | （不写 flag） | （不写 flag） | （不写 flag） | （不写 flag） |

@@ -1,0 +1,62 @@
+{
+  "id": "lt_season_chongyang_liqinghe",
+  "from": "liqinghe",
+  "trigger": {
+    "kind": "solarTerm",
+    "term": "chongyang",
+    "minAffinity": 5
+  },
+  "delayMinutes": 5,
+  "paper": "chang",
+  "body": {
+    "surface": "旧日节令笺·重阳。走到塔栏，茱萸囊被风吹到袖子另一边。我解下来重新系了一回，酒也没喝完。从这里看，坊墙窄了许多，路上的人却仍要一步步走。今日不拿这个作驳议。我只想问你，下回肯不肯同来。走累了就坐，不必陪我到最上头。",
+    "poem": {
+      "ref": "wangzhihuan_denguqueLou",
+      "line": "欲穷千里目，更上一层楼。"
+    },
+    "poemMeans": "想看远处；走到哪一层仍由两人各自决定。",
+    "blank": "（她也会走累。想看看她停下来时的样子。）"
+  },
+  "interceptable": false,
+  "replies": {
+    "plain": [
+      {
+        "effects": {},
+        "reaction": "“好。我不替你定，你也别替我少走。”",
+        "id": "lt_season_chongyang_liqinghe.rA",
+        "text": "想同去。走到哪一层，各自说。"
+      },
+      {
+        "effects": {},
+        "reaction": "“两条路拐在同一座坊后。我下去再看。”",
+        "id": "lt_season_chongyang_liqinghe.rB",
+        "text": "这回不登高，想听你说栏外看见什么。"
+      },
+      {
+        "effects": {},
+        "reaction": "“知道了。那只囊我自己系好。”",
+        "id": "lt_season_chongyang_liqinghe.rC",
+        "text": "不约同游，来信读过了。"
+      }
+    ],
+    "poem": {
+      "resonantTags": [
+        "楼",
+        "塔",
+        "茱萸"
+      ],
+      "onResonant": {
+        "effects": {},
+        "reaction": "“诗里那一层很高。到时仍看你的脚，不照诗走。”"
+      },
+      "onMismatch": {
+        "effects": {},
+        "reaction": "“这一首先收着。同不同来，不从诗里替你认。”"
+      }
+    },
+    "silence": {
+      "effects": {},
+      "reaction": "她把未饮尽的酒收走，按自己的脚程下塔，不另差人问回信。"
+    }
+  }
+}

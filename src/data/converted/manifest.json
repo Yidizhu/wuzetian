@@ -10,19 +10,19 @@
     },
     {
       "file": "docs/C-4-第一章书信.md",
-      "sha256": "1f833029aefd33e1c7c174361578a2b92c115dea4fe0007b3ad777fb960a8bd4"
+      "sha256": "2edfe4124bc1ec5767fcf8687f5455fee253477d8db12542fbbc77d7a0820496"
     },
     {
       "file": "docs/C0-2-诗词库与对诗.md",
-      "sha256": "8651df46250eb3fa41e28308076bcb0e3d0ad4ea6f8ae2a675e4040c56891706"
+      "sha256": "9f3aaf782b4a6c69943858aa80aa74e8de36be446f2ded94e2c1a8614f1881d1"
     },
     {
       "file": "docs/C-B-结局树.md",
-      "sha256": "00b49bd41721cfc8c69e75a7adfafa0bed3d0ab911374e2d438a727b00e5ca35"
+      "sha256": "6ea82d7dc1e00e5a78fd46d48e9654ce0a4895b36e91f7787df022cd86164a56"
     },
     {
       "file": "docs/C-6-第二章大纲.md",
-      "sha256": "c4a0971a805b261790c7c6fbe9c8746dd04c411c8c6a9ad2ef7f38f86b43d2a4"
+      "sha256": "cbf9639c7ba612b0c41fed62c9c2b6dd987234622e54457363113680b2971d04"
     },
     {
       "file": "docs/C-7-第二章前十二场.md",
@@ -30,7 +30,7 @@
     },
     {
       "file": "docs/C-8-第二章后十二场与书信.md",
-      "sha256": "9533197b9810cd6a76d838aee66e84c783f4f175732130e9847206d09d769bbe"
+      "sha256": "4ab6266c704095bb55c1fb036160f00074462af3bcd1e832ae02e6f4e99f5bba"
     },
     {
       "file": "docs/C-9-第三章大纲.md",
@@ -42,7 +42,7 @@
     },
     {
       "file": "docs/C-11-第三章后十二场与书信.md",
-      "sha256": "8134ca76b69fc36544d4e745ce68b62c1d97ba56d9ef80077316e73c3892b0f5"
+      "sha256": "aec0fb0b38031570d771bc14e7cfe02be17fe88d4c61e0fa8203437a9ca4b068"
     },
     {
       "file": "docs/C-12-第四章大纲.md",
@@ -54,7 +54,7 @@
     },
     {
       "file": "docs/C-14-第四章其余路线与书信.md",
-      "sha256": "bb1668c6b55e5fbb600c2270d9eac62e520965e20f91292393e1a3e36fa414fe"
+      "sha256": "5a6c83fb0ec2bef7b959385d43a6773100ba915a50b9f13dab44b63db81fbfa5"
     }
   ],
   "scenes": [
@@ -211,18 +211,22 @@
     "lt_ch01_peizhaoye_01",
     "lt_ch01_liqinghe_01",
     "lt_ch01_wenqiao_01",
+    "lt_season_shangyuan_wenqiao",
     "lt_ch02_shenheng_01",
     "lt_ch02_peizhaoye_01",
     "lt_ch02_wenqiao_01",
     "lt_ch02_liqinghe_01",
+    "lt_season_hanshi_shenheng",
     "lt_ch03_shenheng_01",
     "lt_ch03_peizhaoye_01",
     "lt_ch03_wenqiao_01",
     "lt_ch03_liqinghe_01",
+    "lt_season_zhongqiu_peizhaoye",
     "lt_ch04_shenheng_01",
     "lt_ch04_peizhaoye_01",
     "lt_ch04_wenqiao_01",
-    "lt_ch04_liqinghe_01"
+    "lt_ch04_liqinghe_01",
+    "lt_season_chongyang_liqinghe"
   ],
   "endings": [
     "mandianwusheng",
