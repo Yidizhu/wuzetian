@@ -207,51 +207,63 @@
     },
     {
       "id": "ch01_s16_yuanye.l29",
+      "who": "narr",
+      "kind": "aside",
+      "text": "你看她指间断了梗的叶子，手还停在你面前。"
+    },
+    {
+      "id": "ch01_s16_yuanye.l30",
+      "who": "cg",
+      "kind": "aside",
+      "text": "liqinghe_2_diye"
+    },
+    {
+      "id": "ch01_s16_yuanye.l31",
       "who": "self",
       "kind": "inner",
       "text": "（她看见我收了。还好，没叫我还。）"
     },
     {
-      "id": "ch01_s16_yuanye.l30",
+      "id": "ch01_s16_yuanye.l32",
       "who": "liqinghe",
       "expr": "open",
       "kind": "say",
       "text": "还想赢，就站回线后。"
     },
     {
-      "id": "ch01_s16_yuanye.l31",
+      "id": "ch01_s16_yuanye.l33",
       "who": "narr",
       "kind": "aside",
       "text": "你接过断梗叶，退回原处。她手里的叶子投偏了，落在你鞋边。"
     },
     {
-      "id": "ch01_s16_yuanye.l32",
+      "id": "ch01_s16_yuanye.l34",
       "who": "wuze",
       "expr": "open",
       "kind": "say",
       "text": "这也不算？"
     },
     {
-      "id": "ch01_s16_yuanye.l33",
+      "id": "ch01_s16_yuanye.l35",
       "who": "liqinghe",
       "expr": "open",
       "kind": "say",
       "text": "不算。再来。"
     },
     {
-      "id": "ch01_s16_yuanye.l34",
+      "id": "ch01_s16_yuanye.l36",
       "who": "narr",
       "kind": "aside",
       "text": "旧景·夏日宫宴。食案上的酥山淌下一线水，花枝歪在碗沿。"
     },
     {
-      "id": "ch01_s16_yuanye.l35",
+      "id": "ch01_s16_yuanye.l37",
       "who": "cg",
       "kind": "aside",
       "text": "wu_sushan"
     },
     {
-      "id": "ch01_s16_yuanye.l36",
+      "id": "ch01_s16_yuanye.l38",
       "who": "narr",
       "kind": "aside",
       "text": "眼前，你把断梗叶投出去，袖中那一片没再拿出来。"

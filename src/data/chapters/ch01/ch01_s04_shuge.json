@@ -75,277 +75,295 @@
     },
     {
       "id": "ch01_s04_shuge.l10",
+      "who": "narr",
+      "kind": "aside",
+      "text": "你低头看她的袖边，两张凳子间只剩一道窄缝。"
+    },
+    {
+      "id": "ch01_s04_shuge.l11",
+      "who": "cg",
+      "kind": "aside",
+      "text": "shenheng_4_bingzuo"
+    },
+    {
+      "id": "ch01_s04_shuge.l12",
+      "who": "self",
+      "kind": "inner",
+      "text": "（这点地方，够挨着她了。）"
+    },
+    {
+      "id": "ch01_s04_shuge.l13",
       "who": "shenheng",
       "expr": "open",
       "kind": "say",
       "text": "别压着卷。"
     },
     {
-      "id": "ch01_s04_shuge.l11",
+      "id": "ch01_s04_shuge.l14",
       "who": "narr",
       "kind": "aside",
       "text": "你松开袖边。她把卷向里挪了些，没再挪灯。"
     },
     {
-      "id": "ch01_s04_shuge.l12",
+      "id": "ch01_s04_shuge.l15",
       "who": "narr",
       "kind": "aside",
       "text": "你扶住凳沿坐下，手还没去拿卷。"
     },
     {
-      "id": "ch01_s04_shuge.l13",
+      "id": "ch01_s04_shuge.l16",
       "who": "narr",
       "kind": "aside",
       "text": "沈衡侧过脸看你，灯照着她唇边的一点茶水。"
     },
     {
-      "id": "ch01_s04_shuge.l14",
+      "id": "ch01_s04_shuge.l17",
       "who": "self",
       "kind": "inner",
       "text": "（还想看。先别低头。）"
     },
     {
-      "id": "ch01_s04_shuge.l15",
+      "id": "ch01_s04_shuge.l18",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
       "text": "这句“无异辞”，是人人都答了？"
     },
     {
-      "id": "ch01_s04_shuge.l16",
+      "id": "ch01_s04_shuge.l19",
       "who": "shenheng",
       "expr": "default",
       "kind": "say",
       "text": "这句？"
     },
     {
-      "id": "ch01_s04_shuge.l17",
+      "id": "ch01_s04_shuge.l20",
       "who": "shenheng",
       "expr": "guarded",
       "kind": "say",
       "text": "卷上只留了这三个字。"
     },
     {
-      "id": "ch01_s04_shuge.l18",
+      "id": "ch01_s04_shuge.l21",
       "who": "wuze",
       "expr": "guarded",
       "kind": "say",
       "text": "这三个字……"
     },
     {
-      "id": "ch01_s04_shuge.l19",
+      "id": "ch01_s04_shuge.l22",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
       "text": "没答，也能算进去？"
     },
     {
-      "id": "ch01_s04_shuge.l20",
+      "id": "ch01_s04_shuge.l23",
       "who": "shenheng",
       "expr": "guarded",
       "kind": "say",
       "text": "能，可我不能添一句“她不肯”。"
     },
     {
-      "id": "ch01_s04_shuge.l21",
+      "id": "ch01_s04_shuge.l24",
       "who": "wuze",
       "expr": "guarded",
       "kind": "say",
       "text": "那它倒替她肯了。"
     },
     {
-      "id": "ch01_s04_shuge.l22",
+      "id": "ch01_s04_shuge.l25",
       "who": "shenheng",
       "expr": "guarded",
       "kind": "say",
       "text": "……"
-    },
-    {
-      "id": "ch01_s04_shuge.l23",
-      "who": "shenheng",
-      "expr": "guarded",
-      "kind": "say",
-      "text": "所以得找原问辞，再找当日的人。"
-    },
-    {
-      "id": "ch01_s04_shuge.l24",
-      "who": "wuze",
-      "expr": "guarded",
-      "kind": "say",
-      "text": "可等到找到——"
-    },
-    {
-      "id": "ch01_s04_shuge.l25",
-      "who": "narr",
-      "kind": "aside",
-      "text": "沈衡伸手去压卷角，压偏了半寸。"
     },
     {
       "id": "ch01_s04_shuge.l26",
       "who": "shenheng",
       "expr": "guarded",
       "kind": "say",
-      "text": "我找过。"
+      "text": "所以得找原问辞，再找当日的人。"
     },
     {
       "id": "ch01_s04_shuge.l27",
       "who": "wuze",
       "expr": "guarded",
       "kind": "say",
-      "text": "……"
+      "text": "可等到找到——"
     },
     {
       "id": "ch01_s04_shuge.l28",
       "who": "narr",
       "kind": "aside",
-      "text": "她收回手，麻纸的毛边刮过指腹；纸角又翘了起来。"
+      "text": "沈衡伸手去压卷角，压偏了半寸。"
     },
     {
       "id": "ch01_s04_shuge.l29",
-      "who": "wuze",
-      "expr": "default",
-      "kind": "say",
-      "text": "她还在么？"
-    },
-    {
-      "id": "ch01_s04_shuge.l30",
       "who": "shenheng",
       "expr": "guarded",
       "kind": "say",
-      "text": "不在这里了。"
+      "text": "我找过。"
     },
     {
-      "id": "ch01_s04_shuge.l31",
+      "id": "ch01_s04_shuge.l30",
       "who": "wuze",
       "expr": "guarded",
       "kind": "say",
-      "text": "嗯。"
+      "text": "……"
+    },
+    {
+      "id": "ch01_s04_shuge.l31",
+      "who": "narr",
+      "kind": "aside",
+      "text": "她收回手，麻纸的毛边刮过指腹；纸角又翘了起来。"
     },
     {
       "id": "ch01_s04_shuge.l32",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "我没让你编，只怕等得太久。"
+      "text": "她还在么？"
     },
     {
       "id": "ch01_s04_shuge.l33",
+      "who": "shenheng",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "不在这里了。"
+    },
+    {
+      "id": "ch01_s04_shuge.l34",
+      "who": "wuze",
+      "expr": "guarded",
+      "kind": "say",
+      "text": "嗯。"
+    },
+    {
+      "id": "ch01_s04_shuge.l35",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "我没让你编，只怕等得太久。"
+    },
+    {
+      "id": "ch01_s04_shuge.l36",
       "who": "shenheng",
       "expr": "default",
       "kind": "say",
       "text": "我怕写得太快，她还没来得及张口，我们就收卷了。"
     },
     {
-      "id": "ch01_s04_shuge.l34",
+      "id": "ch01_s04_shuge.l37",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
       "text": "太快。"
     },
     {
-      "id": "ch01_s04_shuge.l35",
+      "id": "ch01_s04_shuge.l38",
       "who": "shenheng",
       "expr": "default",
       "kind": "say",
       "text": "卷里已经有了替她说的话。"
     },
     {
-      "id": "ch01_s04_shuge.l36",
+      "id": "ch01_s04_shuge.l39",
       "who": "narr",
       "kind": "aside",
       "text": "灯芯响了一声。谁都没有让步。"
     },
     {
-      "id": "ch01_s04_shuge.l37",
+      "id": "ch01_s04_shuge.l40",
       "who": "shenheng",
       "expr": "default",
       "kind": "say",
       "text": "换半句。"
     },
     {
-      "id": "ch01_s04_shuge.l38",
+      "id": "ch01_s04_shuge.l41",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
       "text": "半句？"
     },
     {
-      "id": "ch01_s04_shuge.l39",
+      "id": "ch01_s04_shuge.l42",
       "who": "shenheng",
       "expr": "default",
       "kind": "say",
       "text": "这个我知道怎么判。"
     },
     {
-      "id": "ch01_s04_shuge.l40",
+      "id": "ch01_s04_shuge.l43",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
       "text": "也先说规矩。"
     },
     {
-      "id": "ch01_s04_shuge.l41",
+      "id": "ch01_s04_shuge.l44",
       "who": "shenheng",
       "expr": "default",
       "kind": "say",
       "text": "听着。"
     },
     {
-      "id": "ch01_s04_shuge.l42",
+      "id": "ch01_s04_shuge.l45",
       "who": "shenheng",
       "expr": "open",
       "kind": "say",
       "text": "五个字，物、处所、动作，末字平声。"
     },
     {
-      "id": "ch01_s04_shuge.l43",
+      "id": "ch01_s04_shuge.l46",
       "who": "shenheng",
       "expr": "default",
       "kind": "poem",
       "text": "明月松间照。"
     },
     {
-      "id": "ch01_s04_shuge.l44",
+      "id": "ch01_s04_shuge.l47",
       "who": "wuze",
       "expr": "open",
       "kind": "say",
       "text": "接错了呢？"
     },
     {
-      "id": "ch01_s04_shuge.l45",
+      "id": "ch01_s04_shuge.l48",
       "who": "shenheng",
       "expr": "open",
       "kind": "say",
       "text": "接错了也可以再坐一会儿，我这盏灯又不急着熄。"
     },
     {
-      "id": "ch01_s04_shuge.l46",
+      "id": "ch01_s04_shuge.l49",
       "who": "wuze",
       "expr": "open",
       "kind": "say",
       "text": "……"
     },
     {
-      "id": "ch01_s04_shuge.l47",
+      "id": "ch01_s04_shuge.l50",
       "who": "shenheng",
       "expr": "open",
       "kind": "say",
       "text": "我也没说，只为听你的对句。"
     },
     {
-      "id": "ch01_s04_shuge.l48",
+      "id": "ch01_s04_shuge.l51",
       "who": "narr",
       "kind": "aside",
       "text": "你看向门，门一直开着，外头的冷气贴着席边流进来。"
     },
     {
-      "id": "ch01_s04_shuge.l49",
+      "id": "ch01_s04_shuge.l52",
       "who": "self",
       "kind": "inner",
       "text": "（留下，便不是因为走不了。）"
     },
     {
-      "id": "ch01_s04_shuge.l50",
+      "id": "ch01_s04_shuge.l53",
       "who": "narr",
       "kind": "aside",
       "text": "你在书阁的灯边坐定，等她听你的对句。"

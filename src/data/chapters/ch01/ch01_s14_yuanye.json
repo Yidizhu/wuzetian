@@ -175,50 +175,62 @@
       "id": "ch01_s14_yuanye.l24",
       "who": "narr",
       "kind": "aside",
-      "text": "她掌根贴过来，指节有一层薄茧。你合拢手指，去看她的脸。"
+      "text": "你看她递来的手，指尖越过衣带，落在你掌中。"
     },
     {
       "id": "ch01_s14_yuanye.l25",
+      "who": "cg",
+      "kind": "aside",
+      "text": "peizhaoye_3_woshou"
+    },
+    {
+      "id": "ch01_s14_yuanye.l26",
+      "who": "narr",
+      "kind": "aside",
+      "text": "她掌根贴过来，指节有一层薄茧。你合拢手指，去看她的脸。"
+    },
+    {
+      "id": "ch01_s14_yuanye.l27",
       "who": "self",
       "kind": "inner",
       "text": "（还真给我了。先不松。）"
     },
     {
-      "id": "ch01_s14_yuanye.l26",
+      "id": "ch01_s14_yuanye.l28",
       "who": "peizhaoye",
       "expr": "open",
       "kind": "say",
       "text": "方才怎么不说？"
     },
     {
-      "id": "ch01_s14_yuanye.l27",
+      "id": "ch01_s14_yuanye.l29",
       "who": "wuze",
       "expr": "open",
       "kind": "say",
       "text": "方才还想把结解开。"
     },
     {
-      "id": "ch01_s14_yuanye.l28",
+      "id": "ch01_s14_yuanye.l30",
       "who": "narr",
       "kind": "aside",
       "text": "她拇指在你虎口停着。树上的水又滴下来，落在她膝头。"
     },
     {
-      "id": "ch01_s14_yuanye.l29",
+      "id": "ch01_s14_yuanye.l31",
       "who": "peizhaoye",
       "expr": "open",
       "kind": "say",
       "text": "这回倒不拉了。"
     },
     {
-      "id": "ch01_s14_yuanye.l30",
+      "id": "ch01_s14_yuanye.l32",
       "who": "wuze",
       "expr": "open",
       "kind": "say",
       "text": "不拉。"
     },
     {
-      "id": "ch01_s14_yuanye.l31",
+      "id": "ch01_s14_yuanye.l33",
       "who": "narr",
       "kind": "aside",
       "text": "你们握着手，衣带放在两人膝间。"
