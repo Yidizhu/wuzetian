@@ -78,6 +78,18 @@
   background: linear-gradient(to bottom, color-mix(in srgb, var(--c-ground) 38%, transparent) 0%, transparent 62%);
 }
 
+/* 第三章（D-190，B35，CC1 加）：含元殿那张天只占五成，字的后半截压在屋檐、斗拱、栏杆上——
+   量过背景亮度 112、起伏 42，另外三章同一段是 160—190。不重出图，走两条样式：
+   1. 纸色底压重一档，而且往下多盖一截（另外三章 38%／到 62% 止，这里 58%／到 82% 止）；
+   2. 题记列缩短，字写到一半就折到下一列去，都留在上半截的天上 */
+.tiji[data-vista-key="vista_ch3"] .tiji__vista::after {
+  background: linear-gradient(to bottom,
+    color-mix(in srgb, var(--c-ground) 58%, transparent) 0%,
+    color-mix(in srgb, var(--c-ground) 34%, transparent) 52%,
+    transparent 82%);
+}
+.tiji[data-vista-key="vista_ch3"] .tiji__cols { height: min(46vh, 430px); }
+
 @media (prefers-reduced-motion: reduce) {
   .tiji[data-state="in"], .tiji[data-state="out"], .tiji__col { animation: none; }
 }

@@ -207,7 +207,7 @@ const story = new Story(
           new Promise<null>((r) => window.setTimeout(() => r(null), 800)),
         ])
         : Promise.resolve(null);
-      void ready.then((vista) => mountEpigraph(document.body, { lines, vista: vista ?? undefined, onDone: () => { dlg.setVisible(true); resolve(); } }));
+      void ready.then((vista) => mountEpigraph(document.body, { lines, vista: vista ?? undefined, vistaKey: vista ? key ?? undefined : undefined, onDone: () => { dlg.setVisible(true); resolve(); } }));
     }),
     // 事件图（D-142，B23）：铺整图、点一下退回。看图时对话框和选项收起
     cg: async (key, first) => {

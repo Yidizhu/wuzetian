@@ -25,6 +25,8 @@ export interface EpigraphOptions {
    * 地址由调用方给，要先解码好再挂——墨晕开的那一下景已经在。不给还是纸色底
    */
   vista?: string;
+  /** 哪一张风景（`vista_chN`）。挂在 `data-vista-key` 上，样式按章微调用得着（B35：第三章天只占五成） */
+  vistaKey?: string;
   onDone(): void;
 }
 
@@ -65,6 +67,7 @@ export function mountEpigraph(root: HTMLElement, opts: EpigraphOptions): () => v
     v.className = "tiji__vista";
     v.style.backgroundImage = `url("${opts.vista}")`;
     box.dataset.vista = "1";
+    if (opts.vistaKey) box.dataset.vistaKey = opts.vistaKey;
     box.append(v);
   }
   box.append(paper, cols);

@@ -1,0 +1,62 @@
+{
+  "id": "lt_season_hanshi_shenheng",
+  "from": "shenheng",
+  "trigger": {
+    "kind": "solarTerm",
+    "term": "hanshi",
+    "minAffinity": 5
+  },
+  "delayMinutes": 5,
+  "paper": "huangma",
+  "body": {
+    "surface": "旧日节令笺·寒食。饼是昨日备好的，放在笼里，取了把布盖回去。灶口的封泥没动。你若领晚了，先吃自己的，不必分给我，我已经吃过。案上还有半卷，我核完便歇。今日不谈卷里的事。你带着你的那份来坐，也可以吃完再走。",
+    "poem": {
+      "ref": "yuxuanji_tiyinwuting",
+      "line": "空卷珠帘不曾下，长移一榻对山眠。"
+    },
+    "poemMeans": "卷外有可歇的地方，不必先把所有事做完。",
+    "blank": "（“已经吃过”。她知道我又会先问她。）"
+  },
+  "interceptable": false,
+  "replies": {
+    "plain": [
+      {
+        "effects": {},
+        "reaction": "“这一行核完就合。你不必替我等饼凉。”",
+        "id": "lt_season_hanshi_shenheng.rA",
+        "text": "我拿自己的来，卷先合上。"
+      },
+      {
+        "effects": {},
+        "reaction": "“布盖好。吃完再办你的。”",
+        "id": "lt_season_hanshi_shenheng.rB",
+        "text": "饼领到了，今日想自己吃。"
+      },
+      {
+        "effects": {},
+        "reaction": "“好。改日也先问，不替彼此空着。”",
+        "id": "lt_season_hanshi_shenheng.rC",
+        "text": "今日接不下相坐，改日再问。"
+      }
+    ],
+    "poem": {
+      "resonantTags": [
+        "榻",
+        "帘",
+        "山"
+      ],
+      "onResonant": {
+        "effects": {},
+        "reaction": "“诗收到了。饼别压在纸底下。”"
+      },
+      "onMismatch": {
+        "effects": {},
+        "reaction": "“这首另看。今日那句话，你不急着答。”"
+      }
+    },
+    "silence": {
+      "effects": {},
+      "reaction": "她收好自己的卷，将余下饼食盖住，没有催第二封。"
+    }
+  }
+}
