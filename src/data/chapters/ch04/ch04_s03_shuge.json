@@ -86,21 +86,21 @@
       "who": "shenheng",
       "expr": "default",
       "kind": "say",
-      "text": "写她承认经手，后头七字：不认替我定过的事。"
+      "text": "写她承认经手，后头八字：不认替我定过的事。"
     },
     {
       "id": "ch04_s03_shuge.l10",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "七字。"
+      "text": "八字。"
     },
     {
       "id": "ch04_s03_shuge.l11",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "那七字不在摘要里。"
+      "text": "那八字不在摘要里。"
     },
     {
       "id": "ch04_s03_shuge.l12",
@@ -141,7 +141,7 @@
       "id": "ch04_s03_shuge.l17",
       "who": "narr",
       "kind": "aside",
-      "text": "她将缺了七字的那一处摊平，没有把手交给你。"
+      "text": "她将缺了八字的那一处摊平，没有把手交给你。"
     },
     {
       "id": "ch04_s03_shuge.l18",
@@ -203,7 +203,7 @@
       "id": "ch04_s03_shuge.l26",
       "who": "self",
       "kind": "inner",
-      "text": "（快。干净。她把那七个字又露出来。）"
+      "text": "（快。干净。她把那八个字又露出来。）"
     },
     {
       "id": "ch04_s03_shuge.l27",
