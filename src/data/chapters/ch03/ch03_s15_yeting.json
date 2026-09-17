@@ -644,6 +644,9 @@
     },
     {
       "id": "ch03_s15_yeting.l79",
+      "when": {
+        "flag.enthroned": false
+      },
       "who": "cg",
       "kind": "aside",
       "text": "liuchenghuan_1_guihuan"
