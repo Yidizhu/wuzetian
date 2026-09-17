@@ -996,6 +996,7 @@
       "require": {
         "flag.ch03_evidence_majority": true
       },
+      "lockHint": "公议未授你",
       "effects": {
         "flag.ch03_offer_li": false,
         "flag.ch03_accept_offer": true
@@ -1009,6 +1010,7 @@
       "require": {
         "flag.ch03_evidence_majority": true
       },
+      "lockHint": "公议未授你",
       "effects": {
         "flag.ch03_offer_li": false,
         "flag.ch03_decline_offer": true
@@ -1022,6 +1024,7 @@
       "require": {
         "flag.ch03_evidence_majority": false
       },
+      "lockHint": "你已获授",
       "effects": {
         "flag.ch03_offer_li": true
       },
