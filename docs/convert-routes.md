@@ -1,7 +1,7 @@
 # 八条线的场次骨架
 
 > 由 `tools/convert-routes.ts` 生成（CC2，D-115 第一步），交 ChatGPT 写《八条线的故事线》。不要手改；数据变了重跑这个脚本。
-> 读的是 `src/data/converted/`（数据指纹 `19cef03cd233`，对应 manifest 里 14 份原文的那一次转换），不读剧本原文。
+> 读的是 `src/data/converted/`（数据指纹 `d5a26d496b41`，对应 manifest 里 14 份原文的那一次转换），不读剧本原文。
 
 ## 这份表是怎么来的
 
