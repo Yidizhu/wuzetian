@@ -9,7 +9,7 @@
 
 | 章 | 场数 | 从起点可达 | 孤儿 | 章末 | 无用场景 | 有布置 | 指向未交付 |
 |---|---|---|---|---|---|---|---|
-| 1 | 19 | 19 | 0 | 1 | 5 | 4 | 无 |
+| 1 | 19 | 19 | 0 | 1 | 5 | 5 | 无 |
 | 2 | 26 | 26 | 0 | 1 | 7 | 3 | 无 |
 | 3 | 27 | 27 | 0 | 1 | 7 | 5 | 无 |
 | 4 | 35 | 35 | 0 | 0 | 5 | 9 | 无 |
@@ -30,7 +30,7 @@ flowchart TD
   ch01_s05_yuanye["05_yuanye 学不像的鸟<br/>yuanye · 无用"]:::ink
   ch01_s06_yeting["06_yeting 各领各的<br/>yeting"]:::ink
   ch01_s07_yuanye["07_yuanye 还没付清的行囊<br/>yuanye · 晴光"]:::ink
-  ch01_s08_shuge["08_shuge 榜外也收卷<br/>shuge"]:::gold
+  ch01_s08_shuge["08_shuge 榜外也收卷<br/>shuge · 公议"]:::gold
   ch01_s09_shuge["09_shuge 不借母亲的话<br/>shuge"]:::ink
   ch01_s10_yeting["10_yeting 没有她的商量<br/>yeting"]:::ink
   ch01_s11_shishe["11_shishe 纸的背面<br/>shishe"]:::ink

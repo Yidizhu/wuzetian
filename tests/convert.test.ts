@@ -3,6 +3,7 @@ import assert from "node:assert/strict";
 import { CASES, sceneId, lineId, choiceId, parseCondition, parseEffects, convert, convertBatch, tableCells, writeOut, issueReport, classify, manualTail, MANUAL_MARK, outputPathFor, storyGraph, flagAudit, flagIssues, FLAG_LEDGER, FLAG_VERDICTS, sceneEdges, SONG_BLACKLIST, SPEAKERS, SPEAKER_LABELS } from "../tools/convert-story.ts";
 import { readFileSync, mkdtempSync, rmSync } from "node:fs";
 import { AFFINITY_BANDS, SOLAR_TERMS } from "../src/engine/types.ts";
+import { NAMES } from "../src/ui/names.ts";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 
@@ -225,6 +226,26 @@ test('四节气与五种笺、缺反应和缺留信必须报告', () => {
   }
   assert.ok(convert(scene() + letter.replace('| 直言 A | 她留灯。 |', ''), 'l').issues.some(i => i.message.includes('缺少她的反应')));
   assert.ok(convert(scene('ch01-01', '| 留信 | shenheng, wenqiao |'), 'l').issues.some(i => i.message.includes('wenqiao')));
+});
+
+/** D-215：说话的人不在 src/ui/names.ts 的 NAMES 里，名牌会打出 key。转换这一步就要报，但戏照转 */
+test('D-215 说话人不在 NAMES 里：报 CC1 接口、一人一场只报一次、这一场照常输出', () => {
+  const md = scene().replace('| 3 | wuze | open | 说 | 我来。 |', '| 3 | shenheng | open | 说 | 我来。 |');
+  assert.ok(!convert(md, 'a.md').issues.some(i => i.message.includes('NAMES')), '名单齐全时不报');
+  const saved = NAMES.shenheng;
+  delete NAMES.shenheng;   // 模拟「加了人、忘了加名字」：直接从 names.ts 那张表里拿掉，不另造一张名单
+  try {
+    const r = convert(md, 'a.md');
+    const hits = r.issues.filter(i => i.message.includes('NAMES'));
+    assert.equal(hits.length, 1, '沈衡在这一场说了两句，只报一次');
+    assert.equal(hits[0].kind, 'CC1 接口');
+    assert.ok(hits[0].message.includes('shenheng'));
+    assert.equal(r.scenes.length, 1, '缺的只是名牌上的字，这一场照常输出');
+  } finally {
+    NAMES.shenheng = saved;
+  }
+  // 旁白、内心、题记、事件图、空镜不上名牌，不该被当成漏了名字
+  for (const w of ['narr', 'self', ...Object.values(SPEAKER_LABELS)]) assert.ok(w in NAMES || Object.values(SPEAKER_LABELS).includes(w), w);
 });
 
 /** D-189：节令信的好感门槛写在信表里（上元 3、寒食 4），空着仍是引擎默认的 5 */

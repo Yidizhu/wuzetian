@@ -28,6 +28,7 @@ import type { SceneT, PoemT, PoemDuelT, LetterT, EndingT } from "../src/engine/s
 import type { Condition } from "../src/engine/types.ts";
 import { AFFINITY_BANDS, SOLAR_TERM_LABEL } from "../src/engine/types.ts";
 import { DRESSINGS } from "../src/scene/dressings.ts";
+import { NAMES } from "../src/ui/names.ts";
 import { CGS } from "../src/scene/cgs.ts";
 import { relationKey, looksLikeRelationKey, LOVE_KEYS, type RelationKeyInfo } from "../src/engine/pact.ts";
 
@@ -272,6 +273,15 @@ export const SPEAKERS = new Set<string>((() => {
  * （src/engine/schema.ts 的 SpeakerKey 注释写明了这两对）。key 本身必须在 SPEAKERS 里，测试会查。
  */
 export const SPEAKER_LABELS: Record<string, string> = { 题记: "tiji", 事件图: "cg", 空镜: "empty" };
+
+/**
+ * D-215：名牌上的名字只有一个出处，src/ui/names.ts 的 NAMES（CC1 维护）。说话人是 schema 认的角色、
+ * 却不在 NAMES 里，对话框名牌就直接打出 key——柳承欢 74 句就这样显示了很久，谁也没拦。
+ * 不是「人」的几个 who 不上名牌：题记、事件图、空镜是上面这张表转出来的，旁白、内心在 NAMES 里本来就有（名字是空串）。
+ * 两边都从原处读，这里不另抄一份名单。
+ */
+const NOT_ON_NAMEPLATE = new Set(Object.values(SPEAKER_LABELS));
+export const missingName = (who: string) => !NOT_ON_NAMEPLATE.has(who) && !(who in NAMES);
 
 /**
  * 信件表「节气」一栏的中文名 → 节令 key。名字和 key 都由 CC1 在 types.ts 里定（B33：七夕让位给重阳，
@@ -694,6 +704,8 @@ export function convertBatch(inputs: { markdown: string; file: string }[]): Conv
     if (v("结局")) value.ending = v("结局");
     const lt = lineTable(b);
     const cgNotes: { row: Row; message: string }[] = [];
+    /** 这一场里第一次出现、却不在 NAMES 里的说话人（D-215）。一人报一次，不按句刷屏 */
+    const nameNotes = new Map<string, Row>();
     /** 和 value.lines 一一对应的原文行：schema 按台词下标报的问题（空镜那几条）要指回剧本那一格 */
     const lineRows: Row[] = [];
     for (const row of lt.table.rows) attempt(b, row, () => {
@@ -708,6 +720,7 @@ export function convertBatch(inputs: { markdown: string; file: string }[]): Conv
       if (!mapped) throw new Error(`未知台词类型：${kind}`);
       if (!SPEAKERS.has(who)) throw new Error(unknownCharacter(who, "说话人"));
       if (who === "cg" && !CGS[text.trim()]) cgNotes.push({ row, message: unknownCg(text.trim()) });
+      if (missingName(who) && !nameNotes.has(who)) nameNotes.set(who, row);
       const line: any = { id: lid, who, ...(expr ? { expr } : {}), kind: mapped, text };
       // Validate each line at its own source row for precise diagnostics.
       const checked = Line.safeParse(line);
@@ -828,6 +841,8 @@ export function convertBatch(inputs: { markdown: string; file: string }[]): Conv
       if (dressingNote) addIssue(b, f["布置"], dressingNote, "CC1 接口");
       // 同理记在输出之后：丢的是一张图，戏文一句不少，不扣整场；但它是静默失效，要挡转换
       for (const n of cgNotes) addIssue(b, n.row, n.message, "ChatGPT 格式");
+      // 同理记在输出之后：戏文一句不少，只是名牌会打出 key。缺的是 names.ts 那一行，归 CC1，要挡转换
+      for (const [who, row] of nameNotes) addIssue(b, row, `说话人 ${who} 在 schema 里是角色，但 src/ui/names.ts 的 NAMES 没有这个人：对话框名牌会直接显示「${who}」。请 CC1 在 NAMES 里加一行（D-215）`, "CC1 接口");
     }
   });
   /** 所有试过转换的信（含失败的），留信核对时用来区分「没交信」和「信交了但没转过」 */
