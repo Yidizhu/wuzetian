@@ -232,6 +232,7 @@ const story = new Story(
       const shown = await cgLayer.show(key, first, () => {
         delete app.dataset.cg;
         store.state.cgsSeen.add(scriptKey);
+        if (key !== scriptKey) store.state.cgsSeen.add(key);   // 看的是绯版：回廊显示绯版（D-220）
         void cast.refresh();
       }).finally(() => { delete app.dataset.cg; });
       dlg.setVisible(true);
@@ -554,6 +555,23 @@ tihuaBtn.addEventListener("click", (e) => {
   }, () => open(null));
 });
 hud.append(tihuaBtn);
+
+/**
+ * 事件图回廊（D-220，B43）：解锁过的事件图按章列、结局图一排，没解锁的留空位。点了才加载那一块。
+ * 排法（哪张在哪章）按剧本算一次就够，打开时再按存档画
+ */
+const galleryBtn = document.createElement("button");
+galleryBtn.type = "button";
+galleryBtn.textContent = "回廊";
+galleryBtn.addEventListener("click", (e) => {
+  e.stopPropagation();
+  if (document.querySelector(".gallery")) return;
+  void Promise.all([import("./ui/Gallery.ts"), import("./scene/gallery.ts")]).then(([{ openGallery }, { galleryLayout }]) => {
+    const endingKeys = endings.map((x) => endingCg(x.key)).filter((k): k is string => !!k);
+    openGallery(document.body, { sections: galleryLayout(scenes, endingKeys), seen: () => store.state.cgsSeen, raster });
+  });
+});
+hud.append(galleryBtn);
 if (dev) {
   const swap = document.createElement("button");
   swap.type = "button";

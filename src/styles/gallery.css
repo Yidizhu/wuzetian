@@ -1,0 +1,62 @@
+/* 事件图回廊（D-220，B43，CC1 加）。和题画（tihua.css）同一个体系：纸色底、没有卡片阴影、按钮上下两条细线。
+   新文件，不动 app.css。数（格子多宽、空位多淡）CC3 看了要调就改这里 */
+.gallery {
+  position: fixed; inset: 0; z-index: 40;
+  overflow-y: auto; -webkit-overflow-scrolling: touch;
+  padding: max(16px, env(safe-area-inset-top)) 16px max(24px, env(safe-area-inset-bottom));
+  background: color-mix(in srgb, var(--c-ground) 88%, var(--c-line));
+  animation: gallery-in 320ms var(--ease);
+  transition: opacity 240ms var(--ease);
+}
+.gallery[data-state="out"] { opacity: 0; pointer-events: none; }
+@keyframes gallery-in { from { opacity: 0; } to { opacity: 1; } }
+
+.gallery__head {
+  display: flex; align-items: center; justify-content: space-between;
+  max-width: 960px; margin: 0 auto 8px;
+}
+.gallery__title { font-size: 18px; letter-spacing: 0.3em; color: var(--c-text); }
+.gallery__close {
+  appearance: none; background: none; cursor: pointer;
+  border: 0; border-top: 1px solid var(--c-line); border-bottom: 1px solid var(--c-line);
+  padding: 8px 18px; min-height: 44px;
+  color: var(--c-text); font: inherit; font-size: 16px;
+}
+.gallery__close:hover { border-color: var(--c-text); }
+
+.gallery__sec { max-width: 960px; margin: 18px auto 0; }
+.gallery__sec-title {
+  margin: 0 0 10px; font-weight: normal; font-size: 14px; letter-spacing: 0.12em; color: var(--c-text-soft);
+  display: flex; align-items: baseline; gap: 10px;
+}
+.gallery__count { font-size: 12px; letter-spacing: 0.04em; color: var(--c-ink-3, var(--c-text-soft)); }
+
+/* 手机竖屏一屏两列；宽了多排几列，格子不小于 150px */
+.gallery__grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+@media (min-width: 640px) { .gallery__grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); } }
+
+.gallery__cell {
+  aspect-ratio: 3 / 4; display: block; width: 100%; padding: 0; margin: 0;
+  border: 1px solid color-mix(in srgb, var(--c-line) 60%, transparent); border-radius: 2px;
+  background: var(--c-ground); overflow: hidden;
+}
+button.gallery__cell { cursor: pointer; appearance: none; }
+.gallery__cell > img { width: 100%; height: 100%; object-fit: cover; display: block; }
+/* 没解锁：一块空纸，比解锁的格子淡一档，不写字 */
+.gallery__cell[data-locked] {
+  background: color-mix(in srgb, var(--c-ground) 70%, var(--c-line));
+  border-style: dashed; opacity: 0.55;
+}
+
+.gallery__view {
+  position: fixed; inset: 0; z-index: 41;
+  display: flex; align-items: center; justify-content: center;
+  background: color-mix(in srgb, var(--c-ground) 94%, var(--c-line));
+  animation: gallery-in 240ms var(--ease);
+  cursor: pointer;
+}
+.gallery__view > img { max-width: 100%; max-height: 100%; object-fit: contain; display: block; }
+
+@media (prefers-reduced-motion: reduce) {
+  .gallery, .gallery__view { animation: none; }
+}

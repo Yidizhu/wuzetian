@@ -48,3 +48,33 @@ test("D-216 事件图绯版：主角是绯、表里有绯版、图在才换；�
     for (const l of s.lines) if (l.who === "cg") assert.equal(isFeiVariant(l.text), false, `${f} 直接写了绯版 ${l.text}`);
   }
 });
+
+test("D-220 回廊：按章列、结局一排；没解锁是空位；绯版原版算一张，解锁哪个显示哪个", async () => {
+  const { galleryLayout, galleryPick, sectionTitle } = await import("../src/scene/gallery.ts");
+  const { CGS, endingCg, isFeiVariant } = await import("../src/scene/cgs.ts");
+  const { readdirSync, readFileSync } = await import("node:fs");
+  const dir = new URL("../src/data/chapters/", import.meta.url);
+  const scenes = readdirSync(dir).flatMap((ch) => readdirSync(new URL(`${ch}/`, dir))
+    .map((f) => JSON.parse(readFileSync(new URL(`${ch}/${f}`, dir), "utf8"))));
+  const endings = JSON.parse(readFileSync(new URL("../src/data/endings.json", import.meta.url), "utf8")) as { key: string }[];
+  const secs = galleryLayout(scenes, endings.map((e) => endingCg(e.key)!).filter(Boolean));
+  const all = secs.flatMap((s) => s.keys);
+  assert.equal(new Set(all).size, all.length, "一张图只出现一次");
+  assert.ok(all.every((k) => !isFeiVariant(k)), "格子里没有绯版");
+  assert.equal(secs.at(-1)!.chapter, null);
+  assert.equal(sectionTitle(secs.at(-1)!), "结局");
+  assert.equal(secs.at(-1)!.keys.length, 8, "结局图八张一排");
+  const chapters = secs.filter((s) => s.chapter !== null).map((s) => s.chapter);
+  assert.deepEqual(chapters, [...chapters].sort(), "按章排");
+  // 剧本写到的每一张非结局图都在回廊里
+  const used = new Set(scenes.flatMap((s: { lines: { who: string; text: string }[] }) => s.lines.filter((l) => l.who === "cg").map((l) => l.text)));
+  for (const k of used) if (CGS[k] && !CGS[k]!.ending) assert.ok(all.includes(k), `${k} 在回廊里`);
+  assert.ok(secs.find((s) => s.keys.includes("wuze_shouwei"))!.chapter === 3, "受位那张在第三章");
+
+  const img = () => true;
+  assert.equal(galleryPick("shenheng_6_dafu", new Set(), img), null, "没看过：空位");
+  assert.equal(galleryPick("shenheng_6_dafu", new Set(["shenheng_6_dafu"]), img), "shenheng_6_dafu");
+  assert.equal(galleryPick("shenheng_6_dafu", new Set(["shenheng_6_dafu", "shenheng_6_dafu_fei"]), img), "shenheng_6_dafu_fei", "看过绯版：显示绯版");
+  assert.equal(galleryPick("shenheng_6_dafu", new Set(["shenheng_6_dafu", "shenheng_6_dafu_fei"]), (k) => !k.endsWith("_fei")), "shenheng_6_dafu", "绯版图读不出来：原图");
+  assert.equal(galleryPick("shenheng_6_dafu", new Set(["shenheng_6_dafu"]), () => false), null, "图都没有：空位");
+});
