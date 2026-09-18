@@ -58,19 +58,11 @@
       },
       "who": "narr",
       "kind": "aside",
-      "text": "你看沈衡的手，两只都按在空纸上，纸边没有卷起来。"
+      "text": "你看沈衡的手，两只都按在空纸上，纸边没有卷起来。",
+      "image": "shenheng_6_dafu"
     },
     {
       "id": "ch04_s05qa_shuge.l6",
-      "when": {
-        "intent": "only"
-      },
-      "who": "cg",
-      "kind": "aside",
-      "text": "shenheng_6_dafu"
-    },
-    {
-      "id": "ch04_s05qa_shuge.l7",
       "when": {
         "intent": "only"
       },
@@ -79,7 +71,7 @@
       "text": "（还想听她再叫我一声。先等她答。）"
     },
     {
-      "id": "ch04_s05qa_shuge.l8",
+      "id": "ch04_s05qa_shuge.l7",
       "when": {
         "intent": "only"
       },
@@ -89,7 +81,7 @@
       "text": "我愿意。"
     },
     {
-      "id": "ch04_s05qa_shuge.l9",
+      "id": "ch04_s05qa_shuge.l8",
       "when": {
         "intent": "open"
       },
@@ -99,7 +91,7 @@
       "text": "我想同你相爱，但不只同你一人。"
     },
     {
-      "id": "ch04_s05qa_shuge.l10",
+      "id": "ch04_s05qa_shuge.l9",
       "when": {
         "intent": "open",
         "pact.peizhaoye": "active"
@@ -110,7 +102,7 @@
       "text": "我还想同裴照夜相见。"
     },
     {
-      "id": "ch04_s05qa_shuge.l11",
+      "id": "ch04_s05qa_shuge.l10",
       "when": {
         "intent": "open",
         "pact.peizhaoye": "ended"
@@ -121,7 +113,7 @@
       "text": "我已同裴照夜说停了私约。"
     },
     {
-      "id": "ch04_s05qa_shuge.l12",
+      "id": "ch04_s05qa_shuge.l11",
       "when": {
         "intent": "open",
         "pact.wenqiao": "active"
@@ -132,7 +124,7 @@
       "text": "我还想同温荞相见。"
     },
     {
-      "id": "ch04_s05qa_shuge.l13",
+      "id": "ch04_s05qa_shuge.l12",
       "when": {
         "intent": "open",
         "pact.wenqiao": "ended"
@@ -143,7 +135,7 @@
       "text": "我已同温荞说停了私约。"
     },
     {
-      "id": "ch04_s05qa_shuge.l14",
+      "id": "ch04_s05qa_shuge.l13",
       "when": {
         "intent": "open",
         "pact.liqinghe": "active"
@@ -154,7 +146,7 @@
       "text": "我还想同李令仪相见。"
     },
     {
-      "id": "ch04_s05qa_shuge.l15",
+      "id": "ch04_s05qa_shuge.l14",
       "when": {
         "intent": "open",
         "pact.liqinghe": "ended"
@@ -165,7 +157,7 @@
       "text": "我已同李令仪说停了私约。"
     },
     {
-      "id": "ch04_s05qa_shuge.l16",
+      "id": "ch04_s05qa_shuge.l15",
       "when": {
         "intent": "open"
       },
@@ -175,7 +167,7 @@
       "text": "我听明白了。"
     },
     {
-      "id": "ch04_s05qa_shuge.l17",
+      "id": "ch04_s05qa_shuge.l16",
       "when": {
         "intent": "open"
       },
@@ -185,25 +177,17 @@
       "text": "你愿意么？"
     },
     {
-      "id": "ch04_s05qa_shuge.l18",
+      "id": "ch04_s05qa_shuge.l17",
       "when": {
         "intent": "open"
       },
       "who": "narr",
       "kind": "aside",
-      "text": "你看她按着那张空纸，指尖停在原先朝向你的那一边。"
+      "text": "你看她按着那张空纸，指尖停在原先朝向你的那一边。",
+      "image": "shenheng_6_dafu"
     },
     {
-      "id": "ch04_s05qa_shuge.l19",
-      "when": {
-        "intent": "open"
-      },
-      "who": "cg",
-      "kind": "aside",
-      "text": "shenheng_6_dafu"
-    },
-    {
-      "id": "ch04_s05qa_shuge.l20",
+      "id": "ch04_s05qa_shuge.l18",
       "when": {
         "intent": "open"
       },
@@ -212,7 +196,7 @@
       "text": "（那张纸还在。别伸手。）"
     },
     {
-      "id": "ch04_s05qa_shuge.l21",
+      "id": "ch04_s05qa_shuge.l19",
       "when": {
         "intent": "open"
       },
@@ -222,7 +206,7 @@
       "text": "我不愿意这样相爱。"
     },
     {
-      "id": "ch04_s05qa_shuge.l22",
+      "id": "ch04_s05qa_shuge.l20",
       "when": {
         "intent": "open"
       },
@@ -231,7 +215,7 @@
       "text": "她把原先留在你面前的空纸收回去。"
     },
     {
-      "id": "ch04_s05qa_shuge.l23",
+      "id": "ch04_s05qa_shuge.l21",
       "when": {
         "intent": "open"
       },

@@ -44,14 +44,14 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "少了一个人，合领那栏就结不了。"
+      "text": "旧簿要整组的人都签字，少一人，谁也领不了。"
     },
     {
       "id": "ch01_s06_yeting.l6",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "合领？"
+      "text": "一个人病了，整组都等？"
     },
     {
       "id": "ch01_s06_yeting.l7",
@@ -65,7 +65,7 @@
       "who": "tangjian",
       "expr": "guarded",
       "kind": "say",
-      "text": "旧簿合记一笔，拆开得另抄另核。"
+      "text": "原来整组合记一笔，分开领就得重新抄、逐人对账。"
     },
     {
       "id": "ch01_s06_yeting.l9",
@@ -107,21 +107,21 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "我抄分领簿。"
+      "text": "我来抄，每个人单记一行。"
     },
     {
       "id": "ch01_s06_yeting.l15",
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "分领簿……"
+      "text": "旧账也得一同留着。"
     },
     {
       "id": "ch01_s06_yeting.l16",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "旧笔留着，逐人对。"
+      "text": "留着，对得上才知道谁领了多少。"
     },
     {
       "id": "ch01_s06_yeting.l17",
@@ -170,7 +170,7 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "她那份单列未领，明日到病舍当面核，不能代签。"
+      "text": "她那份记着没领。明日去病舍问清，不能替她签。"
     },
     {
       "id": "ch01_s06_yeting.l24",
@@ -224,7 +224,7 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "可以，再留一栏记差数。"
+      "text": "可以，再留一栏，写还欠她多少。"
     },
     {
       "id": "ch01_s06_yeting.l32",
@@ -259,7 +259,7 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "内箱到掌灯才复核。"
+      "text": "那只箱子要等掌灯时，才有人来一同清点。"
     },
     {
       "id": "ch01_s06_yeting.l37",
@@ -280,7 +280,7 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "先发已核的也行，余数挂着，得再来。"
+      "text": "可以先领已点清的布，线记着欠数，改日再领。"
     },
     {
       "id": "ch01_s06_yeting.l40",
@@ -329,7 +329,7 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "经办只能先做一种，你接哪一头？"
+      "text": "眼下只能先办一种。你打算怎么做？"
     },
     {
       "id": "ch01_s06_yeting.l47",
@@ -376,7 +376,7 @@
   "choices": [
     {
       "id": "ch01_s06_yeting.cA",
-      "text": "先发已核的，我记余数追领",
+      "text": "先领布，我记下缺线再追领",
       "effects": {
         "shi": 1,
         "ming": -1,
@@ -387,7 +387,7 @@
     },
     {
       "id": "ch01_s06_yeting.cB",
-      "text": "等核齐，我来补夜里的抄工",
+      "text": "等布线齐了，我留下补抄",
       "effects": {
         "ming": 1,
         "shi": -1,

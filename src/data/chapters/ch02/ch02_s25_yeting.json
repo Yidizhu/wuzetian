@@ -23,7 +23,7 @@
       "id": "ch02_s25_yeting.l2",
       "who": "narr",
       "kind": "aside",
-      "text": "一旬后，柳承欢托来三页纸，缺印处都夹了细签。"
+      "text": "一旬后，柳承欢托来三页稿，把缺印的地方都夹了细签。"
     },
     {
       "id": "ch02_s25_yeting.l3",
@@ -50,35 +50,35 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "这三页是你核的？"
+      "text": "这几处，你都查过了？"
     },
     {
       "id": "ch02_s25_yeting.l7",
       "who": "liuchenghuan",
       "expr": "open",
       "kind": "say",
-      "text": "核了两遍。"
+      "text": "前后查了两遍。"
     },
     {
       "id": "ch02_s25_yeting.l8",
       "who": "wuze",
       "expr": "open",
       "kind": "say",
-      "text": "两遍。"
+      "text": "一处处查了两遍？"
     },
     {
       "id": "ch02_s25_yeting.l9",
       "who": "liuchenghuan",
       "expr": "open",
       "kind": "say",
-      "text": "第三页缺的经手人，已经请她来补。"
+      "text": "第三页还缺经手人的名字，已经请她来补了。"
     },
     {
       "id": "ch02_s25_yeting.l10",
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "缺的都对，这半日照付录工，不算白帮。"
+      "text": "这些都对。这半日照付工钱，记你做的，不能算白帮忙。"
     },
     {
       "id": "ch02_s25_yeting.l11",
@@ -92,28 +92,28 @@
       "who": "liuchenghuan",
       "expr": "default",
       "kind": "say",
-      "text": "往后做你的女史，纸先过我这里。"
+      "text": "我想做你的女史，往后送你的纸，先过我这里。"
     },
     {
       "id": "ch02_s25_yeting.l13",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "女史……"
+      "text": "你想一直替我管这些文书？"
     },
     {
       "id": "ch02_s25_yeting.l14",
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "女史须另授，今日照已准的录工记。"
+      "text": "女史得另行授职。今日先记你做了多少，工钱已经准了。"
     },
     {
       "id": "ch02_s25_yeting.l15",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "录工。"
+      "text": "那今晚的稿子……"
     },
     {
       "id": "ch02_s25_yeting.l16",
@@ -127,7 +127,7 @@
       "who": "liuchenghuan",
       "expr": "default",
       "kind": "say",
-      "text": "替你答了，我留下誊。"
+      "text": "今夜这份，替你答应了。我留下来誊写。"
     },
     {
       "id": "ch02_s25_yeting.l18",
@@ -175,14 +175,14 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "只能记今日谁没来。"
+      "text": "可你今日缺席，那边就会记下。"
     },
     {
       "id": "ch02_s25_yeting.l25",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "我留，少半日备稿；你留，误自己的试。"
+      "text": "我留下，只少半日备稿。你留下，会误了自己的考试。"
     },
     {
       "id": "ch02_s25_yeting.l26",
@@ -209,7 +209,7 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "做过的工照付，今夜谁应下，得自己说。"
+      "text": "已经做的照付工钱。今夜谁接这份活，得自己答。"
     },
     {
       "id": "ch02_s25_yeting.l30",

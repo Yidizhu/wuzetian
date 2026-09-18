@@ -52,7 +52,7 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "还没让她认。"
+      "text": "这份记录，还没请她一句句认过。"
     },
     {
       "id": "ch02_s02_yeting.l7",
@@ -66,7 +66,7 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "初八送衣十一，其中自做九件。"
+      "text": "初八交衣十一件，其中九件是她做的。"
     },
     {
       "id": "ch02_s02_yeting.l9",
@@ -80,7 +80,7 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "所欠工钱，请依呈文并核。"
+      "text": "呈文还说欠她工钱，请一并查清。"
     },
     {
       "id": "ch02_s02_yeting.l11",
@@ -115,7 +115,7 @@
       "who": "shenheng",
       "expr": "guarded",
       "kind": "say",
-      "text": "另纸记下，署你自己的名。"
+      "text": "另拿张纸，把你怎么用她的话写清楚，署你自己的名。"
     },
     {
       "id": "ch02_s02_yeting.l16",
@@ -135,7 +135,7 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "领钱归领钱，擅引另问你。"
+      "text": "该付她的钱照付。擅用她的话，我另问你。"
     },
     {
       "id": "ch02_s02_yeting.l19",
@@ -197,7 +197,7 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "改字在这里，只认这一问。"
+      "text": "改的字写在这里。认这一问，不算认下整张纸。"
     },
     {
       "id": "ch02_s02_yeting.l28",
@@ -239,14 +239,14 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "只我和她答应的见证留下。"
+      "text": "作证的人，只留下我和她都答应的。"
     },
     {
       "id": "ch02_s02_yeting.l34",
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "现在核少跑一趟，午后核得另挪一班。"
+      "text": "现在查，她少跑一趟。挪到午后，就得另调一班人。"
     },
     {
       "id": "ch02_s02_yeting.l35",
@@ -260,7 +260,7 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "她两样都肯。"
+      "text": "两种时候，她都肯来。"
     },
     {
       "id": "ch02_s02_yeting.l37",
@@ -279,7 +279,7 @@
   "choices": [
     {
       "id": "ch02_s02_yeting.cA",
-      "text": "现在逐项核，门外散去",
+      "text": "现在逐项查清，请门外的人散去",
       "effects": {
         "shi": 1,
         "flag.adi_verify_now": true
@@ -289,7 +289,7 @@
     },
     {
       "id": "ch02_s02_yeting.cB",
-      "text": "午后再核，给她留半日",
+      "text": "午后再查，给她留半日",
       "effects": {
         "xin": 1,
         "flag.adi_verify_later": true

@@ -26,7 +26,8 @@
       "id": "ch01_s17_yeting.l2",
       "who": "narr",
       "kind": "aside",
-      "text": "天又落起细雨，宋蕙贞把半扇窗关上，留下案边一点亮光。"
+      "text": "天又落起细雨，宋蕙贞把半扇窗关上，留下案边一点亮光。",
+      "image": "e39_ch01_s17_l2"
     },
     {
       "id": "ch01_s17_yeting.l3",
@@ -101,14 +102,14 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "工钱未付，待核。"
+      "text": "工钱未付，还得查原账。"
     },
     {
       "id": "ch01_s17_yeting.l14",
       "who": "adi",
       "expr": "default",
       "kind": "say",
-      "text": "待核？"
+      "text": "这就要查到我了？"
     },
     {
       "id": "ch01_s17_yeting.l15",
@@ -155,7 +156,7 @@
       "who": "wuze",
       "expr": "guarded",
       "kind": "say",
-      "text": "我署了名，问起来我去。"
+      "text": "呈文签的是我的名，问起来我去。"
     },
     {
       "id": "ch01_s17_yeting.l22",
@@ -203,7 +204,8 @@
       "id": "ch01_s17_yeting.l28",
       "who": "narr",
       "kind": "aside",
-      "text": "雨点从窗隙打进来，抄件一角慢慢洇湿。"
+      "text": "雨点从窗隙打进来，抄件一角慢慢洇湿。",
+      "image": "e39_ch01_s17_l28"
     },
     {
       "id": "ch01_s17_yeting.l29",
@@ -286,7 +288,7 @@
       "who": "wuze",
       "expr": "guarded",
       "kind": "say",
-      "text": "封递后，我不知道。"
+      "text": "封好送出去后，我就不知道传到哪儿了。"
     },
     {
       "id": "ch01_s17_yeting.l41",
@@ -300,14 +302,14 @@
       "who": "songhuizhen",
       "expr": "default",
       "kind": "say",
-      "text": "追得去署门；若留这里，就把呈文说全。"
+      "text": "要追呈文，得去衙署门口；留下，就先给阿荻讲清楚。"
     },
     {
       "id": "ch01_s17_yeting.l43",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "说全。"
+      "text": "她得知道我写了什么。"
     },
     {
       "id": "ch01_s17_yeting.l44",
@@ -375,7 +377,7 @@
   "choices": [
     {
       "id": "ch01_s17_yeting.cA",
-      "text": "我先追原牒，请宋才人陪你",
+      "text": "先追呈文，请宋才人陪你",
       "effects": {
         "shi": 1,
         "xin": -1,

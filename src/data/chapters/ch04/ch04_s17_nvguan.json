@@ -22,7 +22,7 @@
       },
       "who": "narr",
       "kind": "aside",
-      "text": "荐牒收退已办妥，你来到女观。"
+      "text": "该收该退的荐书办妥了，你来到女观。"
     },
     {
       "id": "ch04_s17_nvguan.l2",
@@ -40,7 +40,7 @@
       },
       "who": "narr",
       "kind": "aside",
-      "text": "归凭交回以后，你在休整日来到女观。"
+      "text": "外出的凭据交回以后，你在休整日来到女观。"
     },
     {
       "id": "ch04_s17_nvguan.l4",
@@ -57,7 +57,8 @@
       "id": "ch04_s17_nvguan.l5",
       "who": "narr",
       "kind": "aside",
-      "text": "一个多月后，女观窗下晒着新洗的布，冷风带进院中煎药的气味。"
+      "text": "一个多月后，女观窗下晒着新洗的布，冷风带进院中煎药的气味。",
+      "image": "e39_ch04_s17_l5"
     },
     {
       "id": "ch04_s17_nvguan.l6",
@@ -68,7 +69,7 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "多方提名已颁，外郡照收，核验付了钱，异议可递。"
+      "text": "许多处荐人的办法已颁。外郡那份收了，查验付了钱，也能递反对的话。"
     },
     {
       "id": "ch04_s17_nvguan.l7",
@@ -79,7 +80,7 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "外郡。"
+      "text": "没叫她另来求我。"
     },
     {
       "id": "ch04_s17_nvguan.l8",
@@ -90,7 +91,7 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "仅由在位者提名已颁，外郡退了，只缺你的提名。"
+      "text": "只许在位者荐人的办法已颁。外郡那份退了，缺的只是你的提名。"
     },
     {
       "id": "ch04_s17_nvguan.l9",
@@ -101,7 +102,7 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "提名。"
+      "text": "别的都齐，只缺我点头。"
     },
     {
       "id": "ch04_s17_nvguan.l10",
@@ -111,7 +112,7 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "收退缘由留实，不写没来过。"
+      "text": "收或退，为什么，都照实留着。不能写成她没来过。"
     },
     {
       "id": "ch04_s17_nvguan.l11",
@@ -383,7 +384,7 @@
       "who": "wenqiao",
       "expr": "default",
       "kind": "say",
-      "text": "给你，册子不算数，也不能逼你留话。"
+      "text": "给你。官署不认这册子，我也不能拿它逼你留下自己的话。"
     },
     {
       "id": "ch04_s17_nvguan.l43",

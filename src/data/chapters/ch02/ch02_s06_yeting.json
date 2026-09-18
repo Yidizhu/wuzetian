@@ -80,7 +80,7 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "九件核准，另两件找各自的做工人。"
+      "text": "她做的九件查清了。另两件，得问做衣的人。"
     },
     {
       "id": "ch02_s06_yeting.l9",
@@ -94,14 +94,14 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "这张。"
+      "text": "这张是给你离开时用的。"
     },
     {
       "id": "ch02_s06_yeting.l11",
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "辞出持凭，欠款仍归你，不必住这里等。"
+      "text": "拿着它离开，欠款也仍归你。不必住在这里等钱。"
     },
     {
       "id": "ch02_s06_yeting.l12",
@@ -143,7 +143,7 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "西库与我这里各留一联，照纸上日期来领。"
+      "text": "西库和我这里各留一份。哪天领，纸上写明白。"
     },
     {
       "id": "ch02_s06_yeting.l18",
@@ -157,7 +157,7 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "不必再找原班人。"
+      "text": "不必再把原先那一班人找齐。"
     },
     {
       "id": "ch02_s06_yeting.l20",
@@ -205,7 +205,7 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "今日旧款只到六件，另三件得再催。"
+      "text": "旧账的钱今日只够付六件。还欠三件，得再催。"
     },
     {
       "id": "ch02_s06_yeting.l27",
@@ -233,7 +233,7 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "今夜回报，不到就明晨持凭去问。"
+      "text": "今夜没等到回话，明晨就拿这张凭据去问。"
     },
     {
       "id": "ch02_s06_yeting.l31",
@@ -261,7 +261,7 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "东廊补栏款准了暂支，垫了就下旬再刷。"
+      "text": "修东廊栏杆的钱准了，能先垫。但栏杆就得下旬再刷。"
     },
     {
       "id": "ch02_s06_yeting.l35",
@@ -275,7 +275,7 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "没坏，只是旧。"
+      "text": "没坏，只是漆旧了。"
     },
     {
       "id": "ch02_s06_yeting.l37",
@@ -296,7 +296,7 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "不动，垫付与催原项都已准了。"
+      "text": "饭钱药钱不动。先垫钱，或催原来的钱，两样都准了。"
     },
     {
       "id": "ch02_s06_yeting.l40",
@@ -358,7 +358,7 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "垫付就今日告知；催原项就另记工时。"
+      "text": "垫钱就今日告知。若去催款，跑这一趟也要算工钱。"
     },
     {
       "id": "ch02_s06_yeting.l49",
@@ -370,7 +370,7 @@
   "choices": [
     {
       "id": "ch02_s06_yeting.cA",
-      "text": "暂垫补栏款，今日付清",
+      "text": "先垫修栏的钱，今日付清",
       "effects": {
         "shi": 1,
         "flag.adi_pay_advance": true
@@ -380,7 +380,7 @@
     },
     {
       "id": "ch02_s06_yeting.cB",
-      "text": "先付六件，余款催原项",
+      "text": "先付六件，余下三件另催",
       "effects": {
         "ming": 1,
         "flag.adi_pay_original": true

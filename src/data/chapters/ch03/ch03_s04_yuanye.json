@@ -52,14 +52,14 @@
       "who": "peizhaoye",
       "expr": "default",
       "kind": "say",
-      "text": "有人要把送我入门写成护你赴议，我把队列撤了。"
+      "text": "有人想带队送我，说是护你赴议。我把人撤了。"
     },
     {
       "id": "ch03_s04_yuanye.l7",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "撤了。"
+      "text": "现在只你一个来？"
     },
     {
       "id": "ch03_s04_yuanye.l8",
@@ -80,7 +80,7 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "匣里。"
+      "text": "那就让它留着。"
     },
     {
       "id": "ch03_s04_yuanye.l11",
@@ -134,14 +134,15 @@
       "id": "ch03_s04_yuanye.l18",
       "who": "narr",
       "kind": "aside",
-      "text": "你扶住行囊，让她空出两只手。那根刺落进泥里，比米粒长一点。"
+      "text": "你扶住行囊，让她空出两只手。那根刺落进泥里，比米粒长一点。",
+      "image": "e39_ch03_s04_l18"
     },
     {
       "id": "ch03_s04_yuanye.l19",
       "who": "peizhaoye",
       "expr": "default",
       "kind": "say",
-      "text": "明日已有公务人手。"
+      "text": "明日办事的人手已经齐了。"
     },
     {
       "id": "ch03_s04_yuanye.l20",
@@ -183,7 +184,7 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "名册不添军职。我的话，让他们听完。"
+      "text": "名册不添军职。别让人看着兵马，才肯听我的话。"
     },
     {
       "id": "ch03_s04_yuanye.l26",

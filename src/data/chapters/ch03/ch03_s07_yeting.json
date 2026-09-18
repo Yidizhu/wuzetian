@@ -58,21 +58,21 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "记破损，不能作完好交。"
+      "text": "把裂缝记上，不能当好桶交给下一班。"
     },
     {
       "id": "ch03_s07_yeting.l8",
       "who": "songhuizhen",
       "expr": "default",
       "kind": "say",
-      "text": "完好？"
+      "text": "还要说它是好的？"
     },
     {
       "id": "ch03_s07_yeting.l9",
       "who": "songhuizhen",
       "expr": "open",
       "kind": "say",
-      "text": "那就别让它完好。拿来我看。"
+      "text": "拿来我看，别叫下一个提着漏水。"
     },
     {
       "id": "ch03_s07_yeting.l10",
@@ -127,14 +127,14 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "这句照记。"
+      "text": "那就记你不知道，再找上一班来问。"
     },
     {
       "id": "ch03_s07_yeting.l18",
       "who": "adi",
       "expr": "default",
       "kind": "say",
-      "text": "这句。"
+      "text": "别替我添成我验过了。"
     },
     {
       "id": "ch03_s07_yeting.l19",
@@ -161,7 +161,7 @@
       "who": "adi",
       "expr": "default",
       "kind": "say",
-      "text": "两回。"
+      "text": "明日就不留你的饭了。"
     },
     {
       "id": "ch03_s07_yeting.l23",
@@ -195,7 +195,7 @@
       "id": "ch03_s07_yeting.l27",
       "who": "narr",
       "kind": "aside",
-      "text": "唐收好交凭。阿荻拿起饭勺，把锅边结住的一圈米刮了下来。"
+      "text": "唐收好交班凭据。阿荻拿起饭勺，把锅边结住的一圈米刮下来。"
     },
     {
       "id": "ch03_s07_yeting.l28",
@@ -208,7 +208,7 @@
       "id": "ch03_s07_yeting.l29",
       "who": "narr",
       "kind": "aside",
-      "text": "唐带着交凭往回走，宋将那块米留给自己。"
+      "text": "唐带着交班凭据往回走，宋将那块米留给自己。"
     }
   ],
   "goto": "ch03_s08_hanyuan"

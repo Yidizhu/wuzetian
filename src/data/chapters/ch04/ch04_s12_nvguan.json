@@ -27,7 +27,8 @@
       "id": "ch04_s12_nvguan.l2",
       "who": "narr",
       "kind": "aside",
-      "text": "午后日光越过门槛，屋里坐席没有铺满；新裁的纸边碰着你的腕。"
+      "text": "午后日光越过门槛，屋里坐席没有铺满；新裁的纸边碰着你的腕。",
+      "image": "e39_ch04_s12_l2"
     },
     {
       "id": "ch04_s12_nvguan.l3",
@@ -41,7 +42,7 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "四回。"
+      "text": "之后我自己接着教。"
     },
     {
       "id": "ch04_s12_nvguan.l5",
@@ -62,7 +63,7 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "这个。"
+      "text": "那就从你用得着的学。"
     },
     {
       "id": "ch04_s12_nvguan.l8",
@@ -110,7 +111,7 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "领。"
+      "text": "确实得写谁领到了。"
     },
     {
       "id": "ch04_s12_nvguan.l15",
@@ -130,7 +131,7 @@
       "who": "adi",
       "expr": "default",
       "kind": "say",
-      "text": "两个。"
+      "text": "一个付，一个领。"
     },
     {
       "id": "ch04_s12_nvguan.l18",
@@ -178,7 +179,7 @@
       "who": "adi",
       "expr": "default",
       "kind": "say",
-      "text": "错的。"
+      "text": "我留着，知道哪里改过。"
     },
     {
       "id": "ch04_s12_nvguan.l25",

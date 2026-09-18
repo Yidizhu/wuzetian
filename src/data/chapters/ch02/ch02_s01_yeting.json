@@ -18,7 +18,7 @@
       "id": "ch02_s01_yeting.l1",
       "who": "tiji",
       "kind": "aside",
-      "text": "前夜，补件赶上了署门，传问已经先往掖庭去。"
+      "text": "前夜补件赶到署门，叫人问话的差使却已先往掖庭去了。"
     },
     {
       "id": "ch02_s01_yeting.l2",
@@ -111,7 +111,7 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "只拦回一份后抄，原牒没追回。"
+      "text": "拦回了一份抄件，最先递出的那份还没追回。"
     },
     {
       "id": "ch02_s01_yeting.l14",
@@ -158,7 +158,7 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "先问做工与领钱，别的另记。"
+      "text": "先问你做了多少、该领多少。别的另说。"
     },
     {
       "id": "ch02_s01_yeting.l19",
@@ -200,7 +200,7 @@
       "who": "adi",
       "expr": "guarded",
       "kind": "say",
-      "text": "十一件我送，九件我做。"
+      "text": "交去的是十一件。我只做了九件。"
     },
     {
       "id": "ch02_s01_yeting.l25",
@@ -255,7 +255,7 @@
       "who": "adi",
       "expr": "default",
       "kind": "say",
-      "text": "去问领料簿，我不替她们答。"
+      "text": "领料簿上有她们的名字。问她们，我不能代答。"
     },
     {
       "id": "ch02_s01_yeting.l33",
@@ -269,7 +269,7 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "九件，你认。"
+      "text": "你做的九件，数目没错？"
     },
     {
       "id": "ch02_s01_yeting.l35",
@@ -290,7 +290,7 @@
       "who": "adi",
       "expr": "guarded",
       "kind": "say",
-      "text": "改的条文我没见，不能叫我也认。"
+      "text": "可你改了什么条文，我没见过。不能也算我认了。"
     },
     {
       "id": "ch02_s01_yeting.l38",

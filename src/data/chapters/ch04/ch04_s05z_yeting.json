@@ -35,7 +35,7 @@
       "who": "shenheng",
       "expr": "default",
       "kind": "say",
-      "text": "那回另听的回话，没夹公卷。"
+      "text": "那回你单独说给我听的，我没夹进公卷。"
     },
     {
       "id": "ch04_s05z_yeting.l3",
@@ -45,7 +45,7 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "另听。"
+      "text": "那一回，只说给你听。"
     },
     {
       "id": "ch04_s05z_yeting.l4",
@@ -55,7 +55,7 @@
       "who": "shenheng",
       "expr": "default",
       "kind": "say",
-      "text": "回诗留在无案号的纸里。"
+      "text": "你的回诗我另收了，纸上没写案号。"
     },
     {
       "id": "ch04_s05z_yeting.l5",
@@ -65,7 +65,7 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "回诗。"
+      "text": "那张是给你的。"
     },
     {
       "id": "ch04_s05z_yeting.l6",
@@ -95,7 +95,7 @@
       "who": "shenheng",
       "expr": "default",
       "kind": "say",
-      "text": "截信后只核已读范围，没添私话。"
+      "text": "截信以后，我们只查当众念过哪些，没再往里添私话。"
     },
     {
       "id": "ch04_s05z_yeting.l9",
@@ -105,7 +105,7 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "范围。"
+      "text": "不能再叫没念过的也传出去。"
     },
     {
       "id": "ch04_s05z_yeting.l10",
@@ -115,7 +115,7 @@
       "who": "shenheng",
       "expr": "default",
       "kind": "say",
-      "text": "你要公事另纸，私笺我收了。"
+      "text": "你要把公事另写一张，原来的私信我收好了。"
     },
     {
       "id": "ch04_s05z_yeting.l11",
@@ -125,7 +125,7 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "另纸。"
+      "text": "公事仍另写。"
     },
     {
       "id": "ch04_s05z_yeting.l12",
@@ -135,7 +135,7 @@
       "who": "shenheng",
       "expr": "default",
       "kind": "say",
-      "text": "撤差那封说有空再约，日子没替你填。"
+      "text": "撤差后那封信，你说有空再约。我没替你定日子。"
     },
     {
       "id": "ch04_s05z_yeting.l13",
@@ -145,7 +145,7 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "有空。"
+      "text": "等各自有空，再说。"
     },
     {
       "id": "ch04_s05z_yeting.l14",
@@ -155,7 +155,7 @@
       "who": "shenheng",
       "expr": "default",
       "kind": "say",
-      "text": "撤差那封私见先缓，复议照来往。"
+      "text": "撤差后你说，私下先不见。重议差事的文书，仍照常往来。"
     },
     {
       "id": "ch04_s05z_yeting.l15",
@@ -165,7 +165,7 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "先缓。"
+      "text": "公事不因此搁下。"
     },
     {
       "id": "ch04_s05z_yeting.l16",
@@ -175,7 +175,7 @@
       "who": "shenheng",
       "expr": "default",
       "kind": "say",
-      "text": "你叫停私笺，这回只带交付凭。"
+      "text": "你说先不收私信。这回我只带交清差事的凭据。"
     },
     {
       "id": "ch04_s05z_yeting.l17",
@@ -185,7 +185,7 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "交付凭。"
+      "text": "放这里，我收好。"
     },
     {
       "id": "ch04_s05z_yeting.l18",
@@ -195,7 +195,7 @@
       "who": "shenheng",
       "expr": "default",
       "kind": "say",
-      "text": "撤差的回诗夹旧笺，没夹驳语。"
+      "text": "你那时回的诗，夹在旧信里，没有夹进反对的文书。"
     },
     {
       "id": "ch04_s05z_yeting.l19",
@@ -205,7 +205,7 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "旧笺。"
+      "text": "这两样分开留。"
     },
     {
       "id": "ch04_s05z_yeting.l20",
@@ -332,7 +332,8 @@
       },
       "who": "narr",
       "kind": "aside",
-      "text": "她偏过脸，没绷住。你陪她笑了一会儿，才把卷拿稳。"
+      "text": "她偏过脸，没绷住。你陪她笑了一会儿，才把卷拿稳。",
+      "image": "e39_ch04_s05z_l31"
     },
     {
       "id": "ch04_s05z_yeting.l32",
@@ -408,7 +409,7 @@
       "who": "peizhaoye",
       "expr": "default",
       "kind": "say",
-      "text": "回诗在路书后，没拿去报程。"
+      "text": "你的回诗放在路书后面，没同报行程的文书交上去。"
     },
     {
       "id": "ch04_s05z_yeting.l40",
@@ -418,7 +419,7 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "路书后。"
+      "text": "那张你自己留。"
     },
     {
       "id": "ch04_s05z_yeting.l41",
@@ -448,7 +449,7 @@
       "who": "peizhaoye",
       "expr": "default",
       "kind": "say",
-      "text": "补俸你肯再核，只列那一次账。"
+      "text": "补发俸钱的账，你肯再查。我只列了你答应的那一次。"
     },
     {
       "id": "ch04_s05z_yeting.l44",
@@ -458,7 +459,7 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "那一次。"
+      "text": "多出的差事，仍要另问。"
     },
     {
       "id": "ch04_s05z_yeting.l45",
@@ -468,7 +469,7 @@
       "who": "peizhaoye",
       "expr": "default",
       "kind": "say",
-      "text": "不核账、不同行，我另请人了。"
+      "text": "你说不查账，也不同路。我已另请人来查。"
     },
     {
       "id": "ch04_s05z_yeting.l46",
@@ -478,7 +479,7 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "另请的。"
+      "text": "有人接就好。"
     },
     {
       "id": "ch04_s05z_yeting.l47",
@@ -488,7 +489,7 @@
       "who": "peizhaoye",
       "expr": "default",
       "kind": "say",
-      "text": "拔刺那封说吃热的，还没报时辰。"
+      "text": "拔刺那夜写的信，你说找一回一起吃热的，时辰还没定。"
     },
     {
       "id": "ch04_s05z_yeting.l48",
@@ -508,7 +509,7 @@
       "who": "peizhaoye",
       "expr": "default",
       "kind": "say",
-      "text": "不替旧友定日，那格还空着。"
+      "text": "你说不能替我的旧友定归日，我还留着那一格，没填。"
     },
     {
       "id": "ch04_s05z_yeting.l50",
@@ -518,7 +519,7 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "空着。"
+      "text": "等她亲口说。"
     },
     {
       "id": "ch04_s05z_yeting.l51",
@@ -548,7 +549,7 @@
       "who": "peizhaoye",
       "expr": "default",
       "kind": "say",
-      "text": "拔刺的回诗在路书末，没交署里。"
+      "text": "拔刺那夜的信，你回的诗放在路书末页，没交给官署。"
     },
     {
       "id": "ch04_s05z_yeting.l54",
@@ -558,7 +559,7 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "末页。"
+      "text": "好，那张不作公文。"
     },
     {
       "id": "ch04_s05z_yeting.l55",
@@ -700,7 +701,8 @@
       },
       "who": "narr",
       "kind": "aside",
-      "text": "你越想越笑，没说成。裴陪你坐了一会儿，才起身。"
+      "text": "你越想越笑，没说成。裴陪你坐了一会儿，才起身。",
+      "image": "e39_ch04_s05z_l70"
     },
     {
       "id": "ch04_s05z_yeting.l71",
@@ -796,7 +798,7 @@
       "who": "wenqiao",
       "expr": "default",
       "kind": "say",
-      "text": "只谈公事，私笺没充核稿。"
+      "text": "你说只谈公事，我没把私信塞进请你看的稿子里。"
     },
     {
       "id": "ch04_s05z_yeting.l81",
@@ -806,7 +808,7 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "公事。"
+      "text": "只按原先答应的来。"
     },
     {
       "id": "ch04_s05z_yeting.l82",
@@ -836,7 +838,7 @@
       "who": "wenqiao",
       "expr": "default",
       "kind": "say",
-      "text": "新槽钱另算，稿工的钱没挪。"
+      "text": "新纸槽的钱，我另想法子。付查稿工钱的那笔没动。"
     },
     {
       "id": "ch04_s05z_yeting.l85",
@@ -846,7 +848,7 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "稿工。"
+      "text": "做过的工，不能欠着。"
     },
     {
       "id": "ch04_s05z_yeting.l86",
@@ -986,7 +988,8 @@
       },
       "who": "narr",
       "kind": "aside",
-      "text": "温荞从头哼起。你跟进去，又差半拍，她拖住尾音等你。"
+      "text": "温荞从头哼起。你跟进去，又差半拍，她拖住尾音等你。",
+      "image": "e39_ch04_s05z_l100"
     },
     {
       "id": "ch04_s05z_yeting.l101",
@@ -1031,7 +1034,7 @@
       "who": "liqinghe",
       "expr": "default",
       "kind": "say",
-      "text": "另约时辰那句，没夹朝班。"
+      "text": "你说另约时辰，我没把私下相见排进朝班。"
     },
     {
       "id": "ch04_s05z_yeting.l106",
@@ -1041,7 +1044,7 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "另约。"
+      "text": "有空的时候，再问。"
     },
     {
       "id": "ch04_s05z_yeting.l107",
@@ -1051,7 +1054,7 @@
       "who": "liqinghe",
       "expr": "default",
       "kind": "say",
-      "text": "回诗放私纸下，不带上殿。"
+      "text": "回的诗，我放在自己的纸里，不带上殿。"
     },
     {
       "id": "ch04_s05z_yeting.l108",
@@ -1061,7 +1064,7 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "私纸。"
+      "text": "原是私下给你的。"
     },
     {
       "id": "ch04_s05z_yeting.l109",
@@ -1091,7 +1094,7 @@
       "who": "liqinghe",
       "expr": "default",
       "kind": "say",
-      "text": "全稿那封说比完再问，不算应约。"
+      "text": "寄全稿那回，你说比较完再问。我没当作你已答应相见。"
     },
     {
       "id": "ch04_s05z_yeting.l112",
@@ -1101,7 +1104,7 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "再问。"
+      "text": "嗯，不能替那时的我点头。"
     },
     {
       "id": "ch04_s05z_yeting.l113",
@@ -1111,7 +1114,7 @@
       "who": "liqinghe",
       "expr": "default",
       "kind": "say",
-      "text": "全稿那封停私邀，帖子收回了。"
+      "text": "寄全稿那回，你说停下私邀，我就把帖子收回了。"
     },
     {
       "id": "ch04_s05z_yeting.l114",
@@ -1121,7 +1124,7 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "帖子。"
+      "text": "公事仍照常来往。"
     },
     {
       "id": "ch04_s05z_yeting.l115",
@@ -1151,7 +1154,7 @@
       "who": "liqinghe",
       "expr": "default",
       "kind": "say",
-      "text": "风筝那封各算账，没挪你的钱。"
+      "text": "风筝那封信，你说钱各自算。我没有挪你那一份。"
     },
     {
       "id": "ch04_s05z_yeting.l118",
@@ -1161,7 +1164,7 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "各算。"
+      "text": "不能混在一处。"
     },
     {
       "id": "ch04_s05z_yeting.l119",
@@ -1171,7 +1174,7 @@
       "who": "liqinghe",
       "expr": "default",
       "kind": "say",
-      "text": "风筝那封停私约，取稿没作相邀。"
+      "text": "风筝那封信，你说先停私约。后来你来取稿，我没算作赴约。"
     },
     {
       "id": "ch04_s05z_yeting.l120",
@@ -1181,7 +1184,7 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "取稿。"
+      "text": "取稿的那回，只谈了稿。"
     },
     {
       "id": "ch04_s05z_yeting.l121",
@@ -1191,7 +1194,7 @@
       "who": "liqinghe",
       "expr": "default",
       "kind": "say",
-      "text": "回诗放私纸，公议仍答原问。"
+      "text": "回诗我私下收着。公议问过的钱，仍得答。"
     },
     {
       "id": "ch04_s05z_yeting.l122",
@@ -1201,7 +1204,7 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "原问。"
+      "text": "钱从哪儿来，这句没撤。"
     },
     {
       "id": "ch04_s05z_yeting.l123",
@@ -1231,7 +1234,7 @@
       "who": "liqinghe",
       "expr": "default",
       "kind": "say",
-      "text": "那夜留我坐，次日来驳，今日也各自答。"
+      "text": "那夜你留我坐，次日照样来反对。今日也各答各的。"
     },
     {
       "id": "ch04_s05z_yeting.l126",
@@ -1241,7 +1244,7 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "各答。"
+      "text": "坐在一处，也不必一样想。"
     },
     {
       "id": "ch04_s05z_yeting.l127",
@@ -1271,7 +1274,7 @@
       "who": "liqinghe",
       "expr": "default",
       "kind": "say",
-      "text": "那夜只约论议，这份也是公稿。"
+      "text": "那夜只约了谈公事。这份也只是要议的稿。"
     },
     {
       "id": "ch04_s05z_yeting.l130",
@@ -1281,21 +1284,21 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "公稿。"
+      "text": "稿拿来，我看。"
     },
     {
       "id": "ch04_s05z_yeting.l131",
       "who": "liqinghe",
       "expr": "default",
       "kind": "say",
-      "text": "供给没补回，我还得算账，约饭别署这页。"
+      "text": "减下的供给没补回来，我还得算账。约吃饭的话，别写这页。"
     },
     {
       "id": "ch04_s05z_yeting.l132",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "这页。"
+      "text": "这页只记钱。"
     },
     {
       "id": "ch04_s05z_yeting.l133",
@@ -1358,7 +1361,8 @@
       },
       "who": "narr",
       "kind": "aside",
-      "text": "她把卷移到外侧，你们沿廊走了一小段，才松手各回。"
+      "text": "她把卷移到外侧，你们沿廊走了一小段，才松手各回。",
+      "image": "e39_ch04_s05z_l139"
     }
   ],
   "choices": [

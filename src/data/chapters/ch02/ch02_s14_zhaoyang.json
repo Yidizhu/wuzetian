@@ -107,7 +107,7 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "换班与支给分开记，她只应了两回。"
+      "text": "换班另排，该付的钱照付。她只答应带新人两回。"
     },
     {
       "id": "ch02_s14_zhaoyang.l15",
@@ -121,7 +121,7 @@
       "who": "hetaihou",
       "expr": "default",
       "kind": "say",
-      "text": "新值姓名与交接日给我，披帛你仍拿走。"
+      "text": "新来的人名、交接日给我。披帛仍归你，拿走。"
     },
     {
       "id": "ch02_s14_zhaoyang.l17",
@@ -141,7 +141,7 @@
       "id": "ch02_s14_zhaoyang.l19",
       "who": "narr",
       "kind": "aside",
-      "text": "宋告退后，裴照夜奉召交回军需核单，停在殿门内。"
+      "text": "宋告退后，裴奉召交回查过的军需清单，停在殿门内。"
     },
     {
       "id": "ch02_s14_zhaoyang.l20",
@@ -183,7 +183,7 @@
       "who": "peizhaoye",
       "expr": "default",
       "kind": "say",
-      "text": "俸补齐了，那两个暂缓仍署我的名。"
+      "text": "该补的钱齐了。那两处暂缓，仍写我的名字，是我压下的。"
     },
     {
       "id": "ch02_s14_zhaoyang.l26",
@@ -284,16 +284,11 @@
       "id": "ch02_s14_zhaoyang.l40",
       "who": "narr",
       "kind": "aside",
-      "text": "你看她站到迎风处，袍角翻起，靴子仍停在你身侧。"
+      "text": "你看她站到迎风处，袍角翻起，靴子仍停在你身侧。",
+      "image": "peizhaoye_2_dangfeng"
     },
     {
       "id": "ch02_s14_zhaoyang.l41",
-      "who": "cg",
-      "kind": "aside",
-      "text": "peizhaoye_2_dangfeng"
-    },
-    {
-      "id": "ch02_s14_zhaoyang.l42",
       "who": "self",
       "kind": "inner",
       "text": "（这边不冷了。想再站一会儿。）"

@@ -32,7 +32,8 @@
       },
       "who": "narr",
       "kind": "aside",
-      "text": "次日，女观窗下晾着药筛，晒干的草叶气味混进纸里。"
+      "text": "次日，女观窗下晾着药筛，晒干的草叶气味混进纸里。",
+      "image": "e39_ch04_s11_l2"
     },
     {
       "id": "ch04_s11_nvguan.l3",
@@ -54,7 +55,7 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "这几段。"
+      "text": "只按你能借的时辰用。"
     },
     {
       "id": "ch04_s11_nvguan.l5",
@@ -76,7 +77,7 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "这几段。"
+      "text": "先让我看看空在哪时辰。"
     },
     {
       "id": "ch04_s11_nvguan.l7",
@@ -96,7 +97,7 @@
       "who": "xujinghe",
       "expr": "default",
       "kind": "say",
-      "text": "三日已过，病舍与原课不动，只剩午后半间。"
+      "text": "先前借温的三日过了。病舍和原来的课不挪，只能午后借你半间。"
     },
     {
       "id": "ch04_s11_nvguan.l9",
@@ -106,7 +107,7 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "午后。"
+      "text": "早晚仍让原来的人用。"
     },
     {
       "id": "ch04_s11_nvguan.l10",
@@ -116,7 +117,7 @@
       "who": "wenqiao",
       "expr": "default",
       "kind": "say",
-      "text": "纸照价，教习另付，买纸不连我半日。"
+      "text": "买纸照价付。请我教课另算钱，不能买了纸，就算买我半日。"
     },
     {
       "id": "ch04_s11_nvguan.l11",
@@ -126,7 +127,7 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "半日。"
+      "text": "两笔分开算。"
     },
     {
       "id": "ch04_s11_nvguan.l12",
@@ -156,7 +157,7 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "四回。"
+      "text": "剩下的，我自己教。"
     },
     {
       "id": "ch04_s11_nvguan.l15",
@@ -205,7 +206,7 @@
       "who": "xujinghe",
       "expr": "default",
       "kind": "say",
-      "text": "来半日也留位置。停课先说，别叫人空工时等。"
+      "text": "学字的人只来半日，也给她留位置。停课先说，别叫她误了做工来等。"
     },
     {
       "id": "ch04_s11_nvguan.l20",
@@ -235,7 +236,7 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "纸背。"
+      "text": "背面还有一行。"
     },
     {
       "id": "ch04_s11_nvguan.l23",
@@ -245,7 +246,7 @@
       "who": "wenqiao",
       "expr": "default",
       "kind": "say",
-      "text": "退改时辰在那儿，别当没看见。"
+      "text": "要停、要改，到几时前得说，都在那里。"
     },
     {
       "id": "ch04_s11_nvguan.l24",
@@ -283,7 +284,7 @@
       "who": "wenqiao",
       "expr": "default",
       "kind": "say",
-      "text": "没人来？"
+      "text": "学生一个都不来？"
     },
     {
       "id": "ch04_s11_nvguan.l28",
@@ -313,7 +314,7 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "半日。"
+      "text": "你别的活儿已经推了。"
     },
     {
       "id": "ch04_s11_nvguan.l31",
@@ -323,7 +324,7 @@
       "who": "wenqiao",
       "expr": "default",
       "kind": "say",
-      "text": "不能拿工钱赔她们没来。"
+      "text": "对。不能因为她们没来，就扣我的工钱。"
     },
     {
       "id": "ch04_s11_nvguan.l32",
@@ -333,7 +334,7 @@
       "who": "xujinghe",
       "expr": "default",
       "kind": "say",
-      "text": "课前照约通知可另定，过时照付，背面写了。"
+      "text": "照约在课前告知，可以另定。过了时辰，照付。纸背都写了。"
     },
     {
       "id": "ch04_s11_nvguan.l33",
@@ -343,7 +344,7 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "背面。"
+      "text": "这一行我看清了。"
     },
     {
       "id": "ch04_s11_nvguan.l34",

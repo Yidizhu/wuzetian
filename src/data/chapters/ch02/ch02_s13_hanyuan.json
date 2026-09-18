@@ -35,7 +35,7 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "外案两份先收回，验封迟了一刻。"
+      "text": "两份议抄先收住了。验原封迟了一刻。"
     },
     {
       "id": "ch02_s13_hanyuan.l4",
@@ -65,7 +65,7 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "先验封，再收外案两份，未曾续发。"
+      "text": "先验了原封，再收抄件。两份都还没发出。"
     },
     {
       "id": "ch02_s13_hanyuan.l7",
@@ -99,7 +99,7 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "今夜这两份没有，先前去西库的另算。"
+      "text": "今夜这两份没发。先前传到西库的，另算。"
     },
     {
       "id": "ch02_s13_hanyuan.l11",
@@ -116,7 +116,7 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "西库原牒与已发抄件逐处追回，都核在册上。"
+      "text": "西库的原文和已发的抄件，都逐处追回了，册上也已查明。"
     },
     {
       "id": "ch02_s13_hanyuan.l13",
@@ -160,7 +160,7 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "分项证词留本案，不再跟你的呈文抄。"
+      "text": "作证的话一项项留下，只供本案查问，不再跟着呈文到处抄。"
     },
     {
       "id": "ch02_s13_hanyuan.l18",
@@ -234,14 +234,14 @@
       "who": "hetaihou",
       "expr": "default",
       "kind": "say",
-      "text": "取笺的令与准读的决定，两项都署我的名。"
+      "text": "调信是我下的令，准许宣读也是我定的。两处都署我的名。"
     },
     {
       "id": "ch02_s13_hanyuan.l26",
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "停发、取封、宣读，我逐项署经手。"
+      "text": "我扣信、取封、宣读，做过哪件，就在哪件下面署名。"
     },
     {
       "id": "ch02_s13_hanyuan.l27",
@@ -262,7 +262,7 @@
       "who": "hetaihou",
       "expr": "default",
       "kind": "say",
-      "text": "调来先验相关处；公开另列范围，先给本人看。"
+      "text": "往后调来先验。哪些公务要公开，先列清楚，让本人看过。"
     },
     {
       "id": "ch02_s13_hanyuan.l30",
@@ -276,14 +276,14 @@
       "who": "shenheng",
       "expr": "guarded",
       "kind": "say",
-      "text": "私情不作错办实据。"
+      "text": "不能拿私情当作办错公事的凭据。"
     },
     {
       "id": "ch02_s13_hanyuan.l32",
       "who": "hetaihou",
       "expr": "default",
       "kind": "say",
-      "text": "记上，旧案仍须依原件查，不能一并停掉。"
+      "text": "旧案也不能因此就不查了。"
     },
     {
       "id": "ch02_s13_hanyuan.l33",
@@ -330,7 +330,8 @@
       "id": "ch02_s13_hanyuan.l39",
       "who": "narr",
       "kind": "aside",
-      "text": "众人转去核议抄。你把挡路的矮凳移开，留在她身旁。"
+      "text": "众人转去核议抄。你把挡路的矮凳移开，留在她身旁。",
+      "image": "e39_ch02_s13_l39"
     },
     {
       "id": "ch02_s13_hanyuan.l40",
@@ -481,21 +482,21 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "全笺限阅封存，日后好核，得留人看守。"
+      "text": "整封留下，限人查阅，日后好对证；也得留人保管。"
     },
     {
       "id": "ch02_s13_hanyuan.l58",
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "退还私笺，后查就得另请本人。"
+      "text": "私信退回，往后要再查，就得另请本人拿来。"
     },
     {
       "id": "ch02_s13_hanyuan.l59",
       "who": "shenheng",
       "expr": "default",
       "kind": "say",
-      "text": "两样都可，公开只留公务摘录。"
+      "text": "两种都能办。公开的那份，只抄与公务有关的。"
     },
     {
       "id": "ch02_s13_hanyuan.l60",
@@ -516,7 +517,7 @@
       "who": "hetaihou",
       "expr": "default",
       "kind": "say",
-      "text": "准读失当与更正都留，收回抄件也不许删。"
+      "text": "今夜读错了什么、如何更正，也得留着，不能删。"
     },
     {
       "id": "ch02_s13_hanyuan.l63",
@@ -529,7 +530,7 @@
   "choices": [
     {
       "id": "ch02_s13_hanyuan.cA",
-      "text": "全笺限阅，另存公务摘录",
+      "text": "整封限人查阅，另抄公务部分",
       "effects": {
         "affinity.shenheng": 2,
         "affinity.wenqiao": 2,
@@ -540,7 +541,7 @@
     },
     {
       "id": "ch02_s13_hanyuan.cB",
-      "text": "验存公务摘录，退还私笺",
+      "text": "核存公务部分，把私信退还",
       "effects": {
         "affinity.shenheng": 2,
         "affinity.wenqiao": 2,

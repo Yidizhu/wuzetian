@@ -43,55 +43,55 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "荐署掌案请求暂撤这一页，来牒上署了她自己的名。"
+      "text": "管荐卷的人想先抽掉这一页。她写了来由，也署了名。"
     },
     {
       "id": "ch03_s01_shuge.l6",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "暂撤？"
+      "text": "她为什么要抽掉？"
     },
     {
       "id": "ch03_s01_shuge.l7",
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "说是放进这一页，复核的人会迟疑。"
+      "text": "她说，放进这页，复查的人看见了会迟疑。"
     },
     {
       "id": "ch03_s01_shuge.l8",
       "who": "narr",
       "kind": "aside",
-      "text": "唐把来牒翻到落款。沈没有替你把镇尺挪开。"
+      "text": "唐简翻开她送来的说明，指着落款。沈衡没有挪开镇尺。"
     },
     {
       "id": "ch03_s01_shuge.l9",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "她替我省了哪一句？"
+      "text": "这一页写了我什么？"
     },
     {
       "id": "ch03_s01_shuge.l10",
       "who": "shenheng",
       "expr": "guarded",
       "kind": "say",
-      "text": "擅引未获许可的私话，补牒又晚了。"
+      "text": "你没问过阿荻，就把她的私话写进呈文；补的说明也迟了。"
     },
     {
       "id": "ch03_s01_shuge.l11",
       "who": "wuze",
       "expr": "guarded",
       "kind": "say",
-      "text": "晚了。"
+      "text": "我急着递上去，没等她答应。"
     },
     {
       "id": "ch03_s01_shuge.l12",
       "who": "wuze",
       "expr": "guarded",
       "kind": "say",
-      "text": "字是你的。"
+      "text": "这段反对的话，是你写的？"
     },
     {
       "id": "ch03_s01_shuge.l13",
@@ -105,35 +105,35 @@
       "who": "shenheng",
       "expr": "default",
       "kind": "say",
-      "text": "驳语里也留了我的错。"
+      "text": "反对的话里，也留了我办错的那一处。"
     },
     {
       "id": "ch03_s01_shuge.l15",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "你的错。"
+      "text": "那就不能只删掉对我不利的。"
     },
     {
       "id": "ch03_s01_shuge.l16",
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "原件不能撤。"
+      "text": "原件必须留下，不能撤走。"
     },
     {
       "id": "ch03_s01_shuge.l17",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "不能撤。"
+      "text": "留下原件，这回先不送呢？"
     },
     {
       "id": "ch03_s01_shuge.l18",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "我再——"
+      "text": "我还想补些——"
     },
     {
       "id": "ch03_s01_shuge.l19",
@@ -147,62 +147,62 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "可以附入本轮，也可补证，留待核标记。"
+      "text": "可以连着荐卷一起送，也可等你补证，注明还没查清。"
     },
     {
       "id": "ch03_s01_shuge.l21",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "嗯。"
+      "text": "补证以后再送？"
     },
     {
       "id": "ch03_s01_shuge.l22",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "后一种要等多久？"
+      "text": "要等多久？"
     },
     {
       "id": "ch03_s01_shuge.l23",
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "核证人明日出署。"
+      "text": "查证的人明日就离开衙署。"
     },
     {
       "id": "ch03_s01_shuge.l24",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "明日。"
+      "text": "今天不送，就赶不上她们？"
     },
     {
       "id": "ch03_s01_shuge.l25",
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "这回不送，终议前只够收件，核不完签。"
+      "text": "等你补齐，只来得及收件，最后议定前查不完。"
     },
     {
       "id": "ch03_s01_shuge.l26",
       "who": "shenheng",
       "expr": "default",
       "kind": "say",
-      "text": "证人的细节已隐去，没准公开的都没写。"
+      "text": "证人的私事已隐去。她没准公开的，我没写进去。"
     },
     {
       "id": "ch03_s01_shuge.l27",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "好。"
+      "text": "这部分别再动。"
     },
     {
       "id": "ch03_s01_shuge.l28",
       "who": "self",
       "kind": "inner",
-      "text": "（留下会迟疑。抽走，他们先读的就是荐我的话。）"
+      "text": "（留下这页，她们会犹豫。抽走，就只看见夸我的话。）"
     },
     {
       "id": "ch03_s01_shuge.l29",
@@ -216,14 +216,14 @@
       "who": "shenheng",
       "expr": "guarded",
       "kind": "say",
-      "text": "可以补，不能拿它换这一页。"
+      "text": "可以另补一段，不能拿它换掉这页反对的话。"
     },
     {
       "id": "ch03_s01_shuge.l31",
       "who": "wuze",
       "expr": "guarded",
       "kind": "say",
-      "text": "这一页。"
+      "text": "两份都得让她们看见。"
     },
     {
       "id": "ch03_s01_shuge.l32",
@@ -236,21 +236,21 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "掌案须留在经手簿上。"
+      "text": "提出抽页的人，要在经手簿上留下名字。"
     },
     {
       "id": "ch03_s01_shuge.l34",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "是。"
+      "text": "我也得答复她。"
     },
     {
       "id": "ch03_s01_shuge.l35",
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "准不准她抽，你也得署答，不能只记她。"
+      "text": "这页留不留，你也要签名。不能只让她担着。"
     },
     {
       "id": "ch03_s01_shuge.l36",
@@ -263,19 +263,20 @@
       "id": "ch03_s01_shuge.l37",
       "who": "empty",
       "kind": "aside",
-      "text": "旧景·上巳。水边一只柳圈搁在石上，细浪沾湿了梢头。"
+      "text": "旧景·上巳。水边一只柳圈搁在石上，细浪沾湿了梢头。",
+      "image": "wu_shangsi_liuquan"
     },
     {
       "id": "ch03_s01_shuge.l38",
       "who": "narr",
       "kind": "aside",
-      "text": "眼前，你把补答与原页并放，等着定下交核之时。"
+      "text": "眼前，你把解释当时缘由的补答放到原页旁，等着决定何时送查。"
     }
   ],
   "choices": [
     {
       "id": "ch03_s01_shuge.cA",
-      "text": "不利页与补答一同交核",
+      "text": "反对的话和我的说明一起送查",
       "effects": {
         "flag.ch03_objection_public": true
       },
@@ -284,7 +285,7 @@
     },
     {
       "id": "ch03_s01_shuge.cB",
-      "text": "暂缓公开，先补证",
+      "text": "先补证再公开，错过本轮查证",
       "effects": {
         "flag.ch03_objection_deferred": true
       },

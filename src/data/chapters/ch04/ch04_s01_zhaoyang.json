@@ -35,14 +35,14 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "旧笔私物点清了，只收差牌，没收帕子。"
+      "text": "旧笔和私物都点清了。该收的是差牌，帕子仍是你的。"
     },
     {
       "id": "ch04_s01_zhaoyang.l5",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "帕子。"
+      "text": "那就一并还我。"
     },
     {
       "id": "ch04_s01_zhaoyang.l6",
@@ -114,7 +114,7 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "册命成了，新名这一处，昨日没补。"
+      "text": "受位已成。你要不要用新名，昨日还没填。"
     },
     {
       "id": "ch04_s01_zhaoyang.l16",
@@ -162,7 +162,7 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "这一笔。"
+      "text": "我自己来写。"
     },
     {
       "id": "ch04_s01_zhaoyang.l21",
@@ -192,7 +192,7 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "今日有公议，去听不算领差。"
+      "text": "今日有公议。去听一听，不等于你答应接差事。"
     },
     {
       "id": "ch04_s01_zhaoyang.l24",
@@ -202,7 +202,7 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "议件给我，仍署我自己的名。"
+      "text": "要议的文书给我，我仍署自己的名。"
     },
     {
       "id": "ch04_s01_zhaoyang.l25",
@@ -212,7 +212,7 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "自己的名。"
+      "text": "你写的，就记你的名。"
     },
     {
       "id": "ch04_s01_zhaoyang.l26",
@@ -222,13 +222,14 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "存件在这，不与受位册合装。"
+      "text": "留给你的那份在这，没同授位的册子装一起。"
     },
     {
       "id": "ch04_s01_zhaoyang.l27",
       "who": "empty",
       "kind": "aside",
-      "text": "旧景·八月望夜。满月照进窗，案上酒盏投下一弯黑影。"
+      "text": "旧景·八月望夜。满月照进窗，案上酒盏投下一弯黑影。",
+      "image": "wu_yuejiu"
     },
     {
       "id": "ch04_s01_zhaoyang.l28",

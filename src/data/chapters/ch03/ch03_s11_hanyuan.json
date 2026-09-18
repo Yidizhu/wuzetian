@@ -19,27 +19,27 @@
       "id": "ch03_s11_hanyuan.l1",
       "who": "narr",
       "kind": "aside",
-      "text": "观里的灯燃过一夜，次晨你到含元殿核凭。"
+      "text": "观里的灯燃过一夜。次晨，你到含元殿听查证的结果。"
     },
     {
       "id": "ch03_s11_hanyuan.l2",
       "who": "narr",
       "kind": "aside",
-      "text": "次日，门槛的露水还没干。三席将封好的核凭摆上案，李和你同时起身。"
+      "text": "门槛的露水还没干，三位评议官已把封好的凭据摆上案。你和李同时起身。"
     },
     {
       "id": "ch03_s11_hanyuan.l3",
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "支出办完了，三席各核了签，先读项再读名。"
+      "text": "昨日要花的钱都办了。三位各查过凭据，先读比较的项目，再读支持谁。"
     },
     {
       "id": "ch03_s11_hanyuan.l4",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "先读项。"
+      "text": "一项项听。"
     },
     {
       "id": "ch03_s11_hanyuan.l5",
@@ -55,7 +55,7 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "四处收了延期牒，两处代递收了首件。"
+      "text": "四处都收到延期告知，两处请人代送的，也已收到第一件。"
     },
     {
       "id": "ch03_s11_hanyuan.l7",
@@ -65,7 +65,7 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "两处。"
+      "text": "这两处确实办起来了。"
     },
     {
       "id": "ch03_s11_hanyuan.l8",
@@ -75,7 +75,7 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "核卷人随行，原案没复对。"
+      "text": "可查卷的人跟着出去了，改前改后的原稿没能再对一遍。"
     },
     {
       "id": "ch03_s11_hanyuan.l9",
@@ -85,7 +85,7 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "缩办的即期钱入账了，前后卷也核完了。"
+      "text": "减了开支，眼前的钱够了。前后的卷子也都对完了。"
     },
     {
       "id": "ch03_s11_hanyuan.l10",
@@ -95,7 +95,7 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "核完了。"
+      "text": "两件都办完了。"
     },
     {
       "id": "ch03_s11_hanyuan.l11",
@@ -105,7 +105,7 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "新代递没开，缓办牒已送。"
+      "text": "新设的代送没办。暂缓的告知已经送去。"
     },
     {
       "id": "ch03_s11_hanyuan.l12",
@@ -115,7 +115,7 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "代递收了件，前后卷核完，余款已支去。"
+      "text": "代送已收到文书，前后卷子也对完了。本轮余钱已经花出。"
     },
     {
       "id": "ch03_s11_hanyuan.l13",
@@ -125,7 +125,7 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "余款。"
+      "text": "下月还得找钱接着办。"
     },
     {
       "id": "ch03_s11_hanyuan.l14",
@@ -135,7 +135,7 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "下月续费还没拨凭。"
+      "text": "下月接续要用的钱，还没拿到准拨的凭据。"
     },
     {
       "id": "ch03_s11_hanyuan.l15",
@@ -145,7 +145,7 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "六处待扩办。原案附上，没换名目添钱。"
+      "text": "六处仍待添办。原提案附着，没另换名目添钱。"
     },
     {
       "id": "ch03_s11_hanyuan.l16",
@@ -155,7 +155,7 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "原案。"
+      "text": "没办成的，照实记。"
     },
     {
       "id": "ch03_s11_hanyuan.l17",
@@ -165,7 +165,7 @@
       "who": "shenheng",
       "expr": "default",
       "kind": "say",
-      "text": "逐人回签在此，证人细节另封。"
+      "text": "每个人亲自确认的署名在此。证人的细节另外封着。"
     },
     {
       "id": "ch03_s11_hanyuan.l18",
@@ -185,7 +185,7 @@
       "who": "shenheng",
       "expr": "default",
       "kind": "say",
-      "text": "本轮没复对的，没盖已核。"
+      "text": "这轮没有重新对过的地方，没有盖上已查的印。"
     },
     {
       "id": "ch03_s11_hanyuan.l20",
@@ -195,7 +195,7 @@
       "who": "shenheng",
       "expr": "default",
       "kind": "say",
-      "text": "仍标待核，原件在封中。"
+      "text": "原件还封着，仍写待查。"
     },
     {
       "id": "ch03_s11_hanyuan.l21",
@@ -205,7 +205,7 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "待核。"
+      "text": "不能说查清了。"
     },
     {
       "id": "ch03_s11_hanyuan.l22",
@@ -215,7 +215,7 @@
       "who": "shenheng",
       "expr": "default",
       "kind": "say",
-      "text": "没回的签不代填，不能算核全。"
+      "text": "当事人没回来确认的署名，不能替填，也不能算查全。"
     },
     {
       "id": "ch03_s11_hanyuan.l23",
@@ -225,7 +225,7 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "柳的经手凭另附，你准合记的答复已录。"
+      "text": "柳做事的凭据另附着。你准许简录只列自己的话，也记了。"
     },
     {
       "id": "ch03_s11_hanyuan.l24",
@@ -245,7 +245,7 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "摘要须更正，不能算亲核。"
+      "text": "简录得更正，不能说那些错是你亲自查的。"
     },
     {
       "id": "ch03_s11_hanyuan.l26",
@@ -255,7 +255,7 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "柳的经手与总办并列，两项各有回签。"
+      "text": "柳做了什么、你总管什么，并列着，双方也都确认了。"
     },
     {
       "id": "ch03_s11_hanyuan.l27",
@@ -265,7 +265,7 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "并列。"
+      "text": "各人做的，各认各的。"
     },
     {
       "id": "ch03_s11_hanyuan.l28",
@@ -275,13 +275,13 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "亲核之名没有借去。"
+      "text": "没把她查的，说成你亲自查的。"
     },
     {
       "id": "ch03_s11_hanyuan.l29",
       "who": "narr",
       "kind": "aside",
-      "text": "度支核账官将两份收支并排，手指停在拨款日期。唐照她签下的评语宣读。"
+      "text": "管钱的官员并排摆好两份收支，指着拨款日期。唐照她署名的评语念。"
     },
     {
       "id": "ch03_s11_hanyuan.l30",
@@ -291,7 +291,7 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "财政项支持{名}。"
+      "text": "钱这一项，支持{名}。"
     },
     {
       "id": "ch03_s11_hanyuan.l31",
@@ -311,7 +311,7 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "缩办小了，即期钱到了；李案扩款待下月。"
+      "text": "减了要办的地方，眼前的钱已到；李令仪添办的钱还得等下月。"
     },
     {
       "id": "ch03_s11_hanyuan.l33",
@@ -321,7 +321,7 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "财政项支持{名}。"
+      "text": "钱这一项，支持{名}。"
     },
     {
       "id": "ch03_s11_hanyuan.l34",
@@ -341,7 +341,7 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "缩支足付本轮，李案即期钱还没全拨到。"
+      "text": "减下开支后，钱够办完这一轮。李令仪眼前要用的钱，还没拨齐。"
     },
     {
       "id": "ch03_s11_hanyuan.l36",
@@ -351,7 +351,7 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "财政项支持李令仪。"
+      "text": "钱这一项，支持李令仪。"
     },
     {
       "id": "ch03_s11_hanyuan.l37",
@@ -361,7 +361,7 @@
       "who": "liqinghe",
       "expr": "default",
       "kind": "say",
-      "text": "财政项。"
+      "text": "先听钱的来处。"
     },
     {
       "id": "ch03_s11_hanyuan.l38",
@@ -371,7 +371,7 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "合署额度已准，{名}新增续费还没出处。"
+      "text": "各署给李令仪合拨的数目已准，{名}下月新增的开支还没着落。"
     },
     {
       "id": "ch03_s11_hanyuan.l39",
@@ -381,7 +381,7 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "财政项支持李令仪。"
+      "text": "钱这一项，支持李令仪。"
     },
     {
       "id": "ch03_s11_hanyuan.l40",
@@ -391,7 +391,7 @@
       "who": "liqinghe",
       "expr": "default",
       "kind": "say",
-      "text": "财政。"
+      "text": "接着念理由。"
     },
     {
       "id": "ch03_s11_hanyuan.l41",
@@ -401,13 +401,13 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "两处能续，{名}的六处现款开不了。"
+      "text": "李令仪那两处能接着办。{名}手里的钱，开不了六处。"
     },
     {
       "id": "ch03_s11_hanyuan.l42",
       "who": "narr",
       "kind": "aside",
-      "text": "别署录事取出昨日收件的回执。上面的掌印有一枚压得歪，已经当面补认。"
+      "text": "管收文书的官员取出昨日的收件凭据。一枚掌印压歪了，已请本人补认。"
     },
     {
       "id": "ch03_s11_hanyuan.l43",
@@ -417,7 +417,7 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "可及项支持{名}。"
+      "text": "能不能把文书递进来，这一项支持{名}。"
     },
     {
       "id": "ch03_s11_hanyuan.l44",
@@ -427,7 +427,7 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "可及项。"
+      "text": "来看人有没有被拦在外头。"
     },
     {
       "id": "ch03_s11_hanyuan.l45",
@@ -437,7 +437,7 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "两处能自递、代递，李案仍止于轮值。"
+      "text": "这两处能自己递，也有人代送。李令仪那两处只有轮班收件。"
     },
     {
       "id": "ch03_s11_hanyuan.l46",
@@ -447,7 +447,7 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "可及项支持{名}。"
+      "text": "能不能把文书递进来，这一项支持{名}。"
     },
     {
       "id": "ch03_s11_hanyuan.l47",
@@ -457,7 +457,7 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "可及项。"
+      "text": "昨日第一件已经送到了。"
     },
     {
       "id": "ch03_s11_hanyuan.l48",
@@ -467,7 +467,7 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "代递收了首件，李案远处代递尚未开。"
+      "text": "请人代送的已收到第一件。李令仪给远处代送的，还没办起来。"
     },
     {
       "id": "ch03_s11_hanyuan.l49",
@@ -477,7 +477,7 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "可及项支持李令仪。"
+      "text": "能不能把文书递进来，这一项支持李令仪。"
     },
     {
       "id": "ch03_s11_hanyuan.l50",
@@ -487,7 +487,7 @@
       "who": "liqinghe",
       "expr": "default",
       "kind": "say",
-      "text": "可及项。"
+      "text": "照办成的来说。"
     },
     {
       "id": "ch03_s11_hanyuan.l51",
@@ -497,7 +497,7 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "两处轮值已开，{名}新代递缓了。"
+      "text": "李令仪两处已轮班收件，{名}新办代送的事却缓下了。"
     },
     {
       "id": "ch03_s11_hanyuan.l52",
@@ -507,7 +507,7 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "可及项支持李令仪。"
+      "text": "能不能把文书递进来，这一项支持李令仪。"
     },
     {
       "id": "ch03_s11_hanyuan.l53",
@@ -517,7 +517,7 @@
       "who": "liqinghe",
       "expr": "default",
       "kind": "say",
-      "text": "可及。"
+      "text": "六处还没开，不能凭数目多就算赢。"
     },
     {
       "id": "ch03_s11_hanyuan.l54",
@@ -527,13 +527,13 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "六处还没开门，多画四处也不能多算。"
+      "text": "是，六处还没开门。多写四处，不能多算四处。"
     },
     {
       "id": "ch03_s11_hanyuan.l55",
       "who": "narr",
       "kind": "aside",
-      "text": "外署校案官把初稿与改稿分放，核证人的回签夹在两页当中。"
+      "text": "查错案的官员分开放好初稿与改稿，把证人确认过的署名夹在中间。"
     },
     {
       "id": "ch03_s11_hanyuan.l56",
@@ -543,7 +543,7 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "纠错项支持{名}。"
+      "text": "错办的事能否查改，这一项支持{名}。"
     },
     {
       "id": "ch03_s11_hanyuan.l57",
@@ -553,7 +553,7 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "纠错项。"
+      "text": "请念怎么查过的。"
     },
     {
       "id": "ch03_s11_hanyuan.l58",
@@ -563,7 +563,7 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "不利页、前后稿与回签复对完，退改可查。"
+      "text": "反对的那页、前后改稿和本人署名，全已对过。哪里退改，都能查。"
     },
     {
       "id": "ch03_s11_hanyuan.l59",
@@ -573,7 +573,7 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "纠错项支持{名}。"
+      "text": "错办的事能否查改，这一项支持{名}。"
     },
     {
       "id": "ch03_s11_hanyuan.l60",
@@ -583,7 +583,7 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "纠错项。"
+      "text": "两个人留着查完了。"
     },
     {
       "id": "ch03_s11_hanyuan.l61",
@@ -593,7 +593,7 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "两人对完经手回签，谁改哪处都留得下。"
+      "text": "对。两人把经手者确认的署名都对过，谁改哪处，都留得下。"
     },
     {
       "id": "ch03_s11_hanyuan.l62",
@@ -603,7 +603,7 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "纠错项支持李令仪。"
+      "text": "错办的事能否查改，这一项支持李令仪。"
     },
     {
       "id": "ch03_s11_hanyuan.l63",
@@ -613,7 +613,7 @@
       "who": "liqinghe",
       "expr": "default",
       "kind": "say",
-      "text": "纠错项。"
+      "text": "我这边查完的，凭据在这里。"
     },
     {
       "id": "ch03_s11_hanyuan.l64",
@@ -623,7 +623,7 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "李案复对完，{名}人手外派，少这一道。"
+      "text": "李令仪前后已对完。{名}的人派了出去，还少这一步。"
     },
     {
       "id": "ch03_s11_hanyuan.l65",
@@ -634,7 +634,7 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "纠错项支持{名}。"
+      "text": "错办的事能否查改，这一项支持{名}。"
     },
     {
       "id": "ch03_s11_hanyuan.l66",
@@ -645,7 +645,7 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "纠错。"
+      "text": "这一项请照查过的算。"
     },
     {
       "id": "ch03_s11_hanyuan.l67",
@@ -656,7 +656,7 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "回签随原案核过，这项不能替六处生钱。"
+      "text": "本人确认的署名随原稿查过了。但这一项，不能替六处添出钱。"
     },
     {
       "id": "ch03_s11_hanyuan.l68",
@@ -667,7 +667,7 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "纠错项支持李令仪。"
+      "text": "错办的事能否查改，这一项支持李令仪。"
     },
     {
       "id": "ch03_s11_hanyuan.l69",
@@ -678,7 +678,7 @@
       "who": "liqinghe",
       "expr": "default",
       "kind": "say",
-      "text": "这一项。"
+      "text": "也请把还没办到的念出来。"
     },
     {
       "id": "ch03_s11_hanyuan.l70",
@@ -689,28 +689,28 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "{名}回签未齐，李案一轮已经办完。"
+      "text": "{名}还缺本人的署名确认。李令仪这边，已查完一轮。"
     },
     {
       "id": "ch03_s11_hanyuan.l71",
       "who": "liqinghe",
       "expr": "default",
       "kind": "say",
-      "text": "我的三日追核……还没全试过，保留意见也读。"
+      "text": "我说三日内查回，可还没全部试过。这句保留的话，也念。"
     },
     {
       "id": "ch03_s11_hanyuan.l72",
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "保留意见。"
+      "text": "三日能否办完，仍有疑处。"
     },
     {
       "id": "ch03_s11_hanyuan.l73",
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "已读，照留。只支持本轮这项，不保往后。"
+      "text": "已经念了，照实留下。今次支持这一项，不等于往后都准成。"
     },
     {
       "id": "ch03_s11_hanyuan.l74",
@@ -730,7 +730,7 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "两项。"
+      "text": "这次比较，我得了两项。"
     },
     {
       "id": "ch03_s11_hanyuan.l76",
@@ -740,7 +740,7 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "三席具名奏请授位，陛下已阅。"
+      "text": "三位已署名奏请授位，陛下看过了。"
     },
     {
       "id": "ch03_s11_hanyuan.l77",
@@ -762,7 +762,7 @@
       "who": "liqinghe",
       "expr": "default",
       "kind": "say",
-      "text": "两项。"
+      "text": "今次是我得了两项。"
     },
     {
       "id": "ch03_s11_hanyuan.l79",
@@ -773,7 +773,7 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "三席具名奏请授位，陛下已阅。"
+      "text": "三位已署名奏请授位，陛下看过了。"
     },
     {
       "id": "ch03_s11_hanyuan.l80",
@@ -795,7 +795,7 @@
       "who": "liqinghe",
       "expr": "default",
       "kind": "say",
-      "text": "三项。"
+      "text": "三项都支持我，没办完的仍要记。"
     },
     {
       "id": "ch03_s11_hanyuan.l82",
@@ -806,7 +806,7 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "三席具名奏请授位，陛下已阅。"
+      "text": "三位已署名奏请授位，陛下看过了。"
     },
     {
       "id": "ch03_s11_hanyuan.l83",
@@ -822,7 +822,7 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "制授{名}承位。问受否。"
+      "text": "奉诏授{名}承位。请亲口答，受不受。"
     },
     {
       "id": "ch03_s11_hanyuan.l85",
@@ -842,7 +842,7 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "若辞，依原议重推，不能改记失选。"
+      "text": "若辞受，就依原议重新推选。不能倒改成你没有选上。"
     },
     {
       "id": "ch03_s11_hanyuan.l87",
@@ -851,19 +851,11 @@
       },
       "who": "narr",
       "kind": "aside",
-      "text": "你解下候选差牌，反扣在漆匣口，看丝绦垂下。"
+      "text": "你解下候选差牌，反扣在漆匣口，看丝绦垂下。",
+      "image": "wu_chaipai"
     },
     {
       "id": "ch03_s11_hanyuan.l88",
-      "when": {
-        "flag.ch03_evidence_majority": true
-      },
-      "who": "cg",
-      "kind": "aside",
-      "text": "wu_chaipai"
-    },
-    {
-      "id": "ch03_s11_hanyuan.l89",
       "when": {
         "flag.ch03_evidence_majority": true
       },
@@ -872,99 +864,99 @@
       "text": "你收回手，将差牌系回腰间，抬眼等下一句。"
     },
     {
-      "id": "ch03_s11_hanyuan.l90",
+      "id": "ch03_s11_hanyuan.l89",
       "when": {
         "flag.ch03_evidence_majority": false
       },
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "制授李令仪承位。问受否。"
+      "text": "奉诏授李令仪承位。请亲口答，受不受。"
+    },
+    {
+      "id": "ch03_s11_hanyuan.l90",
+      "when": {
+        "flag.ch03_evidence_majority": false
+      },
+      "who": "wuze",
+      "expr": "default",
+      "kind": "say",
+      "text": "……"
     },
     {
       "id": "ch03_s11_hanyuan.l91",
       "when": {
         "flag.ch03_evidence_majority": false
       },
-      "who": "wuze",
+      "who": "liqinghe",
       "expr": "default",
       "kind": "say",
-      "text": "……"
+      "text": "受。钱还没拨到、查错还没试完的，照今日说的继续办。"
     },
     {
       "id": "ch03_s11_hanyuan.l92",
       "when": {
-        "flag.ch03_evidence_majority": false
+        "flag.ch03_evidence_majority": true
       },
       "who": "liqinghe",
       "expr": "default",
       "kind": "say",
-      "text": "受。未到拨款、未试完追核，依今日答复办。"
+      "text": "我输的那项照样记。你受不受位，都不能改掉这次比较。"
     },
     {
       "id": "ch03_s11_hanyuan.l93",
       "when": {
         "flag.ch03_evidence_majority": true
       },
-      "who": "liqinghe",
-      "expr": "default",
-      "kind": "say",
-      "text": "落下那项照录。你受不受，这次比较不改。"
-    },
-    {
-      "id": "ch03_s11_hanyuan.l94",
-      "when": {
-        "flag.ch03_evidence_majority": true
-      },
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "照录。"
+      "text": "赢输的理由，都留下。"
     },
     {
-      "id": "ch03_s11_hanyuan.l95",
+      "id": "ch03_s11_hanyuan.l94",
       "who": "hetaihou",
       "expr": "default",
       "kind": "say",
       "text": "授位之名读出了。"
     },
     {
-      "id": "ch03_s11_hanyuan.l96",
+      "id": "ch03_s11_hanyuan.l95",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
       "text": "……"
     },
     {
-      "id": "ch03_s11_hanyuan.l97",
+      "id": "ch03_s11_hanyuan.l96",
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "受辞——"
+      "text": "受不受，请——"
     },
     {
-      "id": "ch03_s11_hanyuan.l98",
+      "id": "ch03_s11_hanyuan.l97",
       "who": "hetaihou",
       "expr": "default",
       "kind": "say",
       "text": "让她自己答。"
     },
     {
-      "id": "ch03_s11_hanyuan.l99",
+      "id": "ch03_s11_hanyuan.l98",
       "who": "hetaihou",
       "expr": "default",
       "kind": "say",
       "text": "旁人不能替她说愿意。"
     },
     {
-      "id": "ch03_s11_hanyuan.l100",
+      "id": "ch03_s11_hanyuan.l99",
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
       "text": "是。"
     },
     {
-      "id": "ch03_s11_hanyuan.l101",
+      "id": "ch03_s11_hanyuan.l100",
       "when": {
         "flag.ch03_evidence_majority": true
       },
@@ -973,7 +965,7 @@
       "text": "（名已到我这里。还有一个字，要从我口里出去。）"
     },
     {
-      "id": "ch03_s11_hanyuan.l102",
+      "id": "ch03_s11_hanyuan.l101",
       "when": {
         "flag.ch03_evidence_majority": false
       },
@@ -982,10 +974,10 @@
       "text": "（她答得很稳。我的手为什么还压着那份提案。）"
     },
     {
-      "id": "ch03_s11_hanyuan.l103",
+      "id": "ch03_s11_hanyuan.l102",
       "who": "narr",
       "kind": "aside",
-      "text": "你按住提案，起身听唐读受辞。"
+      "text": "你按住提案，起身等唐问你是否受位。"
     }
   ],
   "dressing": "gongyi",

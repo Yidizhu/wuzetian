@@ -21,7 +21,7 @@
       "id": "ch01_s00_zhaoyang.l2",
       "who": "tiji",
       "kind": "aside",
-      "text": "皇子、公主皆可承统，宗室以外的人还不在册上。"
+      "text": "皇子、公主都可继位；宗室以外的人，还没有参选的资格。"
     },
     {
       "id": "ch01_s00_zhaoyang.l3",
@@ -33,7 +33,8 @@
       "id": "ch01_s00_zhaoyang.l4",
       "who": "empty",
       "kind": "aside",
-      "text": "宫墙上沿积着薄霜，瓦沟里横着一片枯叶。"
+      "text": "宫墙上沿积着薄霜，瓦沟里横着一片枯叶。",
+      "image": "e39_ch01_s00_l4"
     },
     {
       "id": "ch01_s00_zhaoyang.l5",

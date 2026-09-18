@@ -9,7 +9,9 @@
     "liuchenghuan"
   ],
   "weightless": false,
-  "leavesLetter": [],
+  "leavesLetter": [
+    "liuchenghuan"
+  ],
   "purpose": "主角确实为她的照顾心动，也看见没有说出的自己",
   "lines": [
     {
@@ -102,7 +104,8 @@
       "id": "ch02_s26_shuge.l14",
       "who": "narr",
       "kind": "aside",
-      "text": "你把膝边的书往里挪。她坐过来，裙角铺到那一小块亮处。"
+      "text": "你把膝边的书往里挪。她坐过来，裙角铺到那一小块亮处。",
+      "image": "liuchenghuan_2_jinzuo"
     },
     {
       "id": "ch02_s26_shuge.l15",

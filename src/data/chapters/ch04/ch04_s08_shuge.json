@@ -23,7 +23,7 @@
       "id": "ch04_s08_shuge.l1",
       "who": "narr",
       "kind": "aside",
-      "text": "宋的取药凭已收好，当晚你在书阁领存件。"
+      "text": "宋收好取药凭据，当晚你去书阁拿留给自己的那份文书。"
     },
     {
       "id": "ch04_s08_shuge.l2",
@@ -36,14 +36,14 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "本人回凭，原话存了，不带任免，不替在位者点头。"
+      "text": "这是给你的回话，原话存下了。没任免谁，也不替在位的人点头。"
     },
     {
       "id": "ch04_s08_shuge.l4",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "本人。"
+      "text": "只答我自己提的那件。"
     },
     {
       "id": "ch04_s08_shuge.l5",
@@ -57,7 +57,7 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "这行。"
+      "text": "在这儿，没改。"
     },
     {
       "id": "ch04_s08_shuge.l7",
@@ -83,7 +83,7 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "私物。"
+      "text": "拿齐就好。"
     },
     {
       "id": "ch04_s08_shuge.l10",
@@ -93,7 +93,7 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "反对留着，她逐条答，不能拿见面换收回。"
+      "text": "反对的话留下了，她会逐条答，不能拿私下相见换你收回。"
     },
     {
       "id": "ch04_s08_shuge.l11",
@@ -103,21 +103,21 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "逐条。"
+      "text": "那就一条条等她答。"
     },
     {
       "id": "ch04_s08_shuge.l12",
       "who": "shenheng",
       "expr": "default",
       "kind": "say",
-      "text": "半张纸在这，别人没准记的仍没添。"
+      "text": "半张纸在这。旁人没准许记的，我仍没添。"
     },
     {
       "id": "ch04_s08_shuge.l13",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "半张。"
+      "text": "空的仍让它空着。"
     }
   ],
   "goto": "ch04_s05p_shuge"

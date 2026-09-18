@@ -22,13 +22,14 @@
       "id": "ch03_s17_shuge.l1",
       "who": "narr",
       "kind": "aside",
-      "text": "差务单交清，你留在书阁陪沈衡听雨。"
+      "text": "差务交清，入夜你留在书阁陪沈衡听雨。"
     },
     {
       "id": "ch03_s17_shuge.l2",
       "who": "narr",
       "kind": "aside",
-      "text": "檐下一片瓦往外翘，雨从两边落。沈把凳子挪开，凳脚在地上留了两个湿印。"
+      "text": "檐下一片瓦翘起，雨从两边落。沈挪开凳子，凳脚留下两个湿印。",
+      "image": "e39_ch03_s17_l2"
     },
     {
       "id": "ch03_s17_shuge.l3",
@@ -69,7 +70,8 @@
       "id": "ch03_s17_shuge.l8",
       "who": "narr",
       "kind": "aside",
-      "text": "你照她指的地方伸手，一滴没接到。指背挨上窗框，沾了一条灰。"
+      "text": "你照她指的地方伸手，一滴没接到。指背挨上窗框，沾了一条灰。",
+      "image": "shenheng_7_jieyu"
     },
     {
       "id": "ch03_s17_shuge.l9",
@@ -173,16 +175,18 @@
       },
       "who": "narr",
       "kind": "aside",
-      "text": "你抬眼看沈衡，她低着头，指节还贴在你唇边。"
+      "text": "你抬眼看沈衡，她低着头，指节还贴在你唇边。",
+      "image": "shenheng_3_zhibei"
     },
     {
       "id": "ch03_s17_shuge.l24",
       "when": {
-        "flag.enthroned": false
+        "flag.enthroned": true
       },
-      "who": "cg",
+      "who": "narr",
       "kind": "aside",
-      "text": "shenheng_3_zhibei"
+      "text": "你抬眼看沈衡，她低着头，指节还贴在你唇边。",
+      "image": "shenheng_3_zhibei"
     },
     {
       "id": "ch03_s17_shuge.l25",
@@ -221,7 +225,8 @@
       "id": "ch03_s17_shuge.l30",
       "who": "narr",
       "kind": "aside",
-      "text": "檐水接成了线。你们的手搁在膝间，等雨小下来才分开。"
+      "text": "檐水接成了线。你们的手搁在膝间，等雨小下来才分开。",
+      "image": "e39_ch03_s17_l30"
     },
     {
       "id": "ch03_s17_shuge.l31",

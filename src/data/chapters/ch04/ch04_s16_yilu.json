@@ -66,14 +66,14 @@
       "who": "peizhaoye",
       "expr": "default",
       "kind": "say",
-      "text": "认借过。谁叫她垫的另问。"
+      "text": "军里认借过她的钱。谁叫她垫的，还得另问。"
     },
     {
       "id": "ch04_s16_yilu.l9",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "借过。"
+      "text": "认借过，不算还给她了。"
     },
     {
       "id": "ch04_s16_yilu.l10",
@@ -87,7 +87,7 @@
       "who": "peizhaoye",
       "expr": "default",
       "kind": "say",
-      "text": "没拿到。"
+      "text": "那已领这栏就先空着。"
     },
     {
       "id": "ch04_s16_yilu.l12",
@@ -101,20 +101,21 @@
       "who": "peizhaoye",
       "expr": "default",
       "kind": "say",
-      "text": "抄支出经手给她，我也追，追过不算领过。"
+      "text": "谁经手支钱，抄给她。我也去追。追过账，不等于她领过钱。"
     },
     {
       "id": "ch04_s16_yilu.l14",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "追过。"
+      "text": "等她真领到了，再填这一栏。"
     },
     {
       "id": "ch04_s16_yilu.l15",
       "who": "narr",
       "kind": "aside",
-      "text": "你将原凭收好，裴把空靴口递过来，让你看那粒砂。"
+      "text": "你将原凭收好，裴把空靴口递过来，让你看那粒砂。",
+      "image": "peizhaoye_9_yipang"
     },
     {
       "id": "ch04_s16_yilu.l16",
@@ -155,7 +156,7 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "归期……"
+      "text": "照原先写的办。"
     },
     {
       "id": "ch04_s16_yilu.l22",
@@ -189,7 +190,7 @@
       "id": "ch04_s16_yilu.l26",
       "who": "narr",
       "kind": "aside",
-      "text": "到了约定归日，你带着核过与仍待核的两摞凭，沿自己的差程回京。"
+      "text": "到了约定归日，你带上查完和没查完的两摞凭据，照自己的行程回京。"
     }
   ],
   "dressing": "yipang",

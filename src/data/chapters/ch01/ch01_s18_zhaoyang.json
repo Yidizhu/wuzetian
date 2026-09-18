@@ -39,7 +39,7 @@
       "who": "wuze",
       "expr": "guarded",
       "kind": "say",
-      "text": "原牒要补一句。"
+      "text": "刚送来的呈文，我要补一句。"
     },
     {
       "id": "ch01_s18_zhaoyang.l4",
@@ -59,7 +59,7 @@
       "who": "wuze",
       "expr": "guarded",
       "kind": "say",
-      "text": "例证没经当事人允可，后抄的别漏。"
+      "text": "写阿荻的事，没问过她。后面抄的都得带上这句。"
     },
     {
       "id": "ch01_s18_zhaoyang.l6",
@@ -69,7 +69,7 @@
       "who": "tangjian",
       "expr": "guarded",
       "kind": "say",
-      "text": "原件已入署，补件赶上后抄的这份了。"
+      "text": "原件已收进去了，你补的这句赶上了后抄这一份。"
     },
     {
       "id": "ch01_s18_zhaoyang.l7",
@@ -79,7 +79,7 @@
       "who": "wuze",
       "expr": "guarded",
       "kind": "say",
-      "text": "赶上了……"
+      "text": "原件上还没有？"
     },
     {
       "id": "ch01_s18_zhaoyang.l8",
@@ -139,7 +139,7 @@
       "who": "wuze",
       "expr": "guarded",
       "kind": "say",
-      "text": "一条条说。"
+      "text": "副本我带回去，一条条说给她听。"
     },
     {
       "id": "ch01_s18_zhaoyang.l14",
@@ -188,7 +188,7 @@
       "who": "wuze",
       "expr": "guarded",
       "kind": "say",
-      "text": "旧衣是她送的，私话没许我作呈文。"
+      "text": "衣是她送的，她没许我把私下的话写进呈文。"
     },
     {
       "id": "ch01_s18_zhaoyang.l19",
@@ -198,7 +198,7 @@
       "who": "tangjian",
       "expr": "guarded",
       "kind": "say",
-      "text": "照补，原牒却已另抄出去一份了。"
+      "text": "我照写。但原文已经另抄了一份送走。"
     },
     {
       "id": "ch01_s18_zhaoyang.l20",
@@ -208,7 +208,7 @@
       "who": "wuze",
       "expr": "guarded",
       "kind": "say",
-      "text": "一份……"
+      "text": "那一份还没带上更正。"
     },
     {
       "id": "ch01_s18_zhaoyang.l21",
@@ -218,7 +218,7 @@
       "who": "tangjian",
       "expr": "guarded",
       "kind": "say",
-      "text": "更正还得再走一程。"
+      "text": "还得把更正送去，已经来不及跟原文一道。"
     },
     {
       "id": "ch01_s18_zhaoyang.l22",
@@ -274,7 +274,8 @@
       "id": "ch01_s18_zhaoyang.l27",
       "who": "narr",
       "kind": "aside",
-      "text": "昭阳殿檐口还在滴雨，缺耳尖的马等着回厩，鼻息吹动湿鬃。"
+      "text": "昭阳殿檐口还在滴雨，缺耳尖的马等着回厩，鼻息吹动湿鬃。",
+      "image": "e39_ch01_s18_l27"
     },
     {
       "id": "ch01_s18_zhaoyang.l28",
@@ -286,7 +287,7 @@
       "id": "ch01_s18_zhaoyang.l29",
       "who": "narr",
       "kind": "aside",
-      "text": "你下意识想去碰它，唐简手中的回牒却已经展开。"
+      "text": "你正要去碰马，唐简已把衙署送回的答复展开。"
     },
     {
       "id": "ch01_s18_zhaoyang.l30",
@@ -300,7 +301,7 @@
       "who": "wuze",
       "expr": "guarded",
       "kind": "say",
-      "text": "回牒？"
+      "text": "他们有答复了？"
     },
     {
       "id": "ch01_s18_zhaoyang.l32",
@@ -334,7 +335,7 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "初八西库旧衣十一件，先问交纳经手人。"
+      "text": "初八西库的十一件旧衣，要先问是谁送来的。"
     },
     {
       "id": "ch01_s18_zhaoyang.l37",
@@ -389,14 +390,14 @@
       "who": "wuze",
       "expr": "guarded",
       "kind": "say",
-      "text": "别等她开口，又只剩那行旧欠。"
+      "text": "我擅自写她的事，别只记成她来讨欠钱。"
     },
     {
       "id": "ch01_s18_zhaoyang.l45",
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "已记，送递先后也留着。"
+      "text": "记下了，原文和更正何时送来，也都记着。"
     },
     {
       "id": "ch01_s18_zhaoyang.l46",
@@ -409,7 +410,7 @@
       "who": "shenheng",
       "expr": "guarded",
       "kind": "say",
-      "text": "传问已往掖庭去。"
+      "text": "叫阿荻来问话的人，已往掖庭去了。"
     },
     {
       "id": "ch01_s18_zhaoyang.l48",
@@ -428,7 +429,8 @@
       "id": "ch01_s18_zhaoyang.l50",
       "who": "empty",
       "kind": "aside",
-      "text": "门槛外的日光只剩窄窄一条，照着石面上的旧车辙。"
+      "text": "门槛外的日光只剩窄窄一条，照着石面上的旧车辙。",
+      "image": "e39_ch01_s18_l50"
     },
     {
       "id": "ch01_s18_zhaoyang.l51",

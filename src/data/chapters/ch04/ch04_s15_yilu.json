@@ -26,7 +26,8 @@
       "id": "ch04_s15_yilu.l2",
       "who": "narr",
       "kind": "aside",
-      "text": "天亮时驿路泥还湿，车辙压出细水，轮边的泥点溅到你的靴面。"
+      "text": "天亮时驿路泥还湿，车辙压出细水，轮边的泥点溅到你的靴面。",
+      "image": "e39_ch04_s15_l2"
     },
     {
       "id": "ch04_s15_yilu.l3",
@@ -40,7 +41,7 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "袋里。"
+      "text": "我先点一遍。"
     },
     {
       "id": "ch04_s15_yilu.l5",
@@ -54,27 +55,27 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "俸凭另收，裴没代领，回来向这边核。"
+      "text": "领俸的凭据另收，裴没代领。回来向这里核钱。"
     },
     {
       "id": "ch04_s15_yilu.l7",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "这边。"
+      "text": "找你们，不找军中。"
     },
     {
       "id": "ch04_s15_yilu.l8",
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "不并军账。"
+      "text": "对，你的钱不并进军账。"
     },
     {
       "id": "ch04_s15_yilu.l9",
       "who": "narr",
       "kind": "aside",
-      "text": "你把自己的收凭递回去，唐在交付时辰下落笔。"
+      "text": "你递回自己领到钱的凭据，唐写下交付时辰。"
     },
     {
       "id": "ch04_s15_yilu.l10",
@@ -88,7 +89,7 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "先行。"
+      "text": "你照你的时辰走。"
     },
     {
       "id": "ch04_s15_yilu.l12",
@@ -109,14 +110,14 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "夜路……"
+      "text": "不用追着你的队伍赶。"
     },
     {
       "id": "ch04_s15_yilu.l15",
       "who": "peizhaoye",
       "expr": "default",
       "kind": "say",
-      "text": "写的是核粮，不是来追我。"
+      "text": "你接的是查粮的差，照那份文书走，不是来追我。"
     },
     {
       "id": "ch04_s15_yilu.l16",
