@@ -94,12 +94,10 @@ export class Letters {
     const s = this.store.state;
     const sceneId = typeof scene === "string" ? scene : scene.id;
     if (typeof scene !== "string") this.solarTerms(scene);
-    // 触发
-    for (const l of this.bySceneTrigger.get(sceneId) ?? []) {
-      if (this.slot(l.id)) continue;               // 重读不累计
-      s.letters.push({ id: l.id, state: "pending", dueAt: 0, repliedWith: null, scenesLeft: l.trigger.kind === "scene" ? l.trigger.afterScenes : 0, rev: s.relation.clock });
-    }
-    // 场次门
+    // 场次门（先推进已经在路上的，再触发本场留的信）。
+    // B46 修：原来先触发、再推进，本场刚留的信当场就扣掉一场——「之后第 1 场」成了「这一场结束就算」，
+    // 五分钟一到不用再过一场就送到（CC2 D32 复现）。「之后第 N 场」是触发那一场之后**再过完 N 场**才开始计时
+    // （story-schema 1.8：裴照夜「隔一场、过五分钟就到」）
     for (const slot of s.letters) {
       if (slot.state !== "pending" || slot.dueAt) continue;
       if (slot.scenesLeft === undefined) continue;
@@ -108,6 +106,11 @@ export class Letters {
         const l = this.byId.get(slot.id);
         slot.dueAt = Date.now() + (l?.delayMinutes ?? 10) * 60_000;   // 时间门开始计时
       }
+    }
+    // 触发
+    for (const l of this.bySceneTrigger.get(sceneId) ?? []) {
+      if (this.slot(l.id)) continue;               // 重读不累计
+      s.letters.push({ id: l.id, state: "pending", dueAt: 0, repliedWith: null, scenesLeft: l.trigger.kind === "scene" ? l.trigger.afterScenes : 0, rev: s.relation.clock });
     }
     return this.deliver();
   }

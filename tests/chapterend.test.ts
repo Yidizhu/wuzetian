@@ -735,7 +735,8 @@ test("D-124 未读攒满截走了有固定截获点的信：不跳场，走到�
   });
   const fixed = mk("fixed", { interceptable: true, interceptAt: "s11", onIntercept: { goto: "s11" } });
   const inbox = new Letters([mk("l1"), mk("l2"), mk("l3"), fixed], store);
-  inbox.onSceneEnd("a");                                  // 四封一起触发，时间门开始走
+  inbox.onSceneEnd("a");                                  // 四封一起触发
+  inbox.onSceneEnd("b");                                  // 再过完一场，时间门开始走（B46：「之后第 1 场」）
   const realNow = Date.now;
   Date.now = () => realNow() + 3600_000;                  // 一小时后回来：四封一起到，超过上限 3
   try { inbox.deliver(); } finally { Date.now = realNow; }
@@ -753,10 +754,11 @@ test("B28 换场时送到案上的信，onSceneEnd 要报出来（原来写死�
     ...base, id: "l1", trigger: { kind: "scene", sceneId: "a", afterScenes: 1 }, delayMinutes: 5,
     interceptable: false, interceptAt: undefined, onIntercept: undefined,
   })], store);
-  assert.deepEqual(inbox.onSceneEnd("a"), [], "刚触发，时间门还没过");
+  assert.deepEqual(inbox.onSceneEnd("a"), [], "刚触发");
+  assert.deepEqual(inbox.onSceneEnd("b"), [], "之后第 1 场过完：时间门才开始走（B46）");
   const realNow = Date.now;
   Date.now = () => realNow() + 3600_000;
-  try { assert.deepEqual(inbox.onSceneEnd("b"), ["l1"], "一小时后换场，这一下送到的信要报出来"); } finally { Date.now = realNow; }
+  try { assert.deepEqual(inbox.onSceneEnd("c"), ["l1"], "一小时后换场，这一下送到的信要报出来"); } finally { Date.now = realNow; }
 });
 
 test("B23 事件图：铺图时推进不算；第一次才算解锁；没有图就当这一格不存在", async () => {
@@ -874,8 +876,14 @@ test("D-225 承欢告白信的接口：常笺、ch02-26 后第 1 场＋5 分钟�
     const inbox = new Letters([letter], store);
     assert.deepEqual(inbox.onSceneEnd("ch02_s26_shuge"), [], "近坐那一场结束：触发，还没到");
     const realNow = Date.now;
+    // CC2 D32 的复现：不再过一场、光等五分钟，**不该**到
     Date.now = () => realNow() + 5 * 60_000 + 1000;
-    try { assert.deepEqual(inbox.onSceneEnd("ch03_s01_shuge"), ["lt_ch02_liuchenghuan_01"], "之后第 1 场、五分钟后到"); } finally { Date.now = realNow; }
+    try { assert.deepEqual(inbox.deliver(), [], "只过了五分钟、还没过完之后那一场：不到"); } finally { Date.now = realNow; }
+    assert.deepEqual(inbox.onSceneEnd("ch03_s01_shuge"), [], "之后第 1 场过完：五分钟从这时起算");
+    Date.now = () => realNow() + 4 * 60_000;
+    try { assert.deepEqual(inbox.deliver(), [], "那一场之后才四分钟：还不到"); } finally { Date.now = realNow; }
+    Date.now = () => realNow() + 5 * 60_000 + 1000;
+    try { assert.deepEqual(inbox.deliver(), ["lt_ch02_liuchenghuan_01"], "之后第 1 场＋五分钟：到"); } finally { Date.now = realNow; }
     const r = inbox.reply("lt_ch02_liuchenghuan_01", kind, kind === "poemResonant" ? letter.replies.poem.resonantTags : []);
     assert.ok(r?.reaction, `${kind}：有她的反应`);
     assert.equal(r?.goto, undefined, `${kind}：不跳场`);
