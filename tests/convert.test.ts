@@ -1317,3 +1317,89 @@ test('D22：空镜格违规——带表情、类型不是旁白、两格连着�
 ` + '\n' + scene('ch01-02');
   assert.ok(convert(last, 'a.md').issues.some(i => i.message.includes('选项前的最后一格')), '空镜不许是选项前最后一格');
 });
+
+// D32 前半：独立样例，不读取 C52 未解锁工作稿。
+function imageScene(columns = ['#', '说话人', '表情', '类型', '条件', '台词', '画面']) {
+  const rows: Record<string, string>[] = [
+    { '#': '1', '说话人': 'narr', '类型': '旁白', '台词': '雨落在窗边。', '画面': 'shenheng_3_zhibei', '条件': '非 flag.name_tian 且 affinity.shenheng >= 10' },
+    { '#': '2', '说话人': 'shenheng', '表情': 'open', '类型': '说', '台词': '这里。', '画面': 'shenheng_3_zhibei' },
+    { '#': '3', '说话人': 'wuze', '类型': '说', '台词': '我来。' },
+  ];
+  return scene().split('| # | 说话人')[0] +
+    '| ' + columns.join(' | ') + ' |\n| ' + columns.map(() => '---').join(' | ') + ' |\n' +
+    rows.map(row => '| ' + columns.map(c => row[c] ?? '').join(' | ') + ' |').join('\n') + '\n';
+}
+
+test('D32 画面与条件按列名读取：同拍不增格，同 key 不合并，空列不输出', () => {
+  const orders = [
+    ['#', '说话人', '表情', '类型', '条件', '台词', '画面'],
+    ['#', '画面', '台词', '类型', '表情', '说话人', '条件'],
+    ['#', '说话人', '表情', '类型', '台词', '画面', '条件'],
+  ];
+  const expected = convert(imageScene(), 'd32.md');
+  assert.deepEqual(expected.issues, []);
+  const lines = expected.scenes[0].lines;
+  assert.deepEqual(lines.map(l => l.id), [1, 2, 3].map(n => `ch01_s01_shuge.l${n}`));
+  assert.deepEqual(lines.map(l => l.image), ['shenheng_3_zhibei', 'shenheng_3_zhibei', undefined]);
+  assert.deepEqual(lines[0].when, { 'flag.name_tian': false, 'affinity.shenheng': { gte: 10 } });
+  assert.equal(lines[1].when, undefined);
+  assert.ok(!('image' in lines[2]));
+  assert.ok(lines.every(l => l.who !== 'cg'));
+  for (const order of orders) assert.deepEqual(convert(imageScene(order), 'd32.md'), expected);
+});
+
+test('D32 无画面列旧表兼容；空画面列与缺列结果一致', () => {
+  const cols = ['#', '说话人', '表情', '类型', '台词'];
+  const old = convert(imageScene(cols), 'old.md');
+  const blank = convert(imageScene([...cols, '画面']).replaceAll('shenheng_3_zhibei', ''), 'old.md');
+  assert.deepEqual(blank, old);
+  assert.deepEqual(old.issues, []);
+});
+
+test('D32 unknown key 原样保留给 B45 校验器，不丢图、不补图、不丢正文', async () => {
+  const key = 'd32_nonexistent_image_key';
+  const { CGS } = await import('../src/scene/cgs.ts');
+  assert.ok(!(key in CGS));
+  const r = convert(imageScene().replaceAll('shenheng_3_zhibei', key), 'd32.md');
+  assert.deepEqual(r.issues, []); // story-schema 1.3.1：合法性由 validate-story 负责。
+  assert.equal(r.scenes[0].lines[0].image, key);
+  assert.equal(r.scenes[0].lines[0].text, '雨落在窗边。');
+});
+
+test('D32 画面列重复或拼错仍拒绝；坏条件不因带图绕过', () => {
+  for (const md of [imageScene(['#', '说话人', '表情', '类型', '台词', '画面', '画面']), imageScene().replace('台词 | 画面', '台词 | 画图')]) {
+    const r = convert(md, 'd32.md');
+    assert.equal(r.scenes.length, 0);
+    assert.ok(r.issues.some(i => i.message.includes('列名不合规范')));
+  }
+  const bad = convert(imageScene().replace('非 flag.name_tian 且 affinity.shenheng >= 10', '不认识的条件'), 'd32.md');
+  assert.equal(bad.scenes.length, 0);
+  assert.ok(bad.issues.some(i => i.message.includes('不能解析条件')));
+});
+
+test('D32 空镜可带画面；既有独立 cg 格仍保持', () => {
+  const r = convert(imageScene().replace('| 1 | narr |', '| 1 | 空镜 |'), 'd32.md');
+  assert.deepEqual(r.issues, []);
+  assert.equal(r.scenes[0].lines[0].who, 'empty');
+  assert.equal(r.scenes[0].lines[0].image, 'shenheng_3_zhibei');
+  const legacy = convert(scene().replace('| 1 | narr | | 旁白 | 灯亮着。 |', '| 1 | 事件图 | | | shenheng_3_zhibei |'), 'old.md');
+  assert.deepEqual(legacy.issues, []);
+  assert.equal(legacy.scenes[0].lines[0].who, 'cg');
+  assert.equal(legacy.scenes[0].lines[0].image, undefined);
+});
+
+test('D32 图文同格落盘，连续两次转换逐字节相同', () => {
+  const dir = mkdtempSync(join(tmpdir(), 'wuzetian-d32-'));
+  try {
+    const r = convert(imageScene(), 'd32.md');
+    writeOut(r, dir);
+    const path = outputPathFor(r.scenes[0].id, dir);
+    const first = readFileSync(path);
+    writeOut(convert(imageScene(), 'd32.md'), dir);
+    assert.deepEqual(readFileSync(path), first);
+    const parsed = JSON.parse(first.toString('utf8'));
+    assert.equal(parsed.lines.length, 3);
+    assert.equal(parsed.lines[0].image, 'shenheng_3_zhibei');
+    assert.deepEqual(parsed.lines[0].when, r.scenes[0].lines[0].when);
+  } finally { rmSync(dir, { recursive: true, force: true }); }
+});

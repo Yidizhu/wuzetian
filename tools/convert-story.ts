@@ -413,7 +413,7 @@ function integer(s: string): number {
 }
 const LINE_COLUMNS = ["#", "说话人", "表情", "类型", "台词"] as const;
 /**
- * 台词表：五列基本表，或按 D-026 多一列「条件」。
+ * 台词表：五列基本表，可加 D-026「条件」及 D-223「画面」。
  *
  * 取值按列名，不按位置：story-schema 1.3 把「条件」写在「台词」之前，
  * 第一章的 C-3 写在最后，两种都得认，否则不是第一章断就是第二章断。
@@ -423,7 +423,7 @@ function lineTable(b: Block): { table: Table; at: (row: Row, name: string) => st
   const ok = (t: Table) => {
     const names = new Set(t.header);
     return names.size === t.header.length && LINE_COLUMNS.every(c => names.has(c)) &&
-      [...names].every(c => (LINE_COLUMNS as readonly string[]).includes(c) || c === "条件");
+      [...names].every(c => (LINE_COLUMNS as readonly string[]).includes(c) || c === "条件" || c === "画面");
   };
   const table = b.tables.find(ok);
   if (table) {
@@ -431,7 +431,7 @@ function lineTable(b: Block): { table: Table; at: (row: Row, name: string) => st
     return { table, at: (row, name) => (index.has(name) ? row.cells[index.get(name)!] : "") };
   }
   const near = b.tables.find(t => t.header[0] === "#" && t.header.includes("台词"));
-  if (near) throw new Error(`台词表列名不合规范：要有且只有「# | 说话人 | 表情 | 类型 | 台词」，可另加一列「条件」（D-026）；实际「${near.header.join(" | ")}」`);
+  if (near) throw new Error(`台词表列名不合规范：要有且只有「# | 说话人 | 表情 | 类型 | 台词」，可另加「条件」（D-026）和「画面」（D-223）各一列；实际「${near.header.join(" | ")}」`);
   throw new Error("缺少规范台词表（# | 说话人 | 表情 | 类型 | 条件 | 台词）。承接段正文请按 D-026 合并进本表，用「条件」列标条件");
 }
 type ZodLike = { issues: { path: (string | number)[]; message: string }[] };
@@ -722,6 +722,9 @@ export function convertBatch(inputs: { markdown: string; file: string }[]): Conv
       if (who === "cg" && !CGS[text.trim()]) cgNotes.push({ row, message: unknownCg(text.trim()) });
       if (missingName(who) && !nameNotes.has(who)) nameNotes.set(who, row);
       const line: any = { id: lid, who, ...(expr ? { expr } : {}), kind: mapped, text };
+      // B45：图与本句同拍，不插入 cg 格；空列不输出。key 合法性归 validate-story。
+      const image = cell("画面").trim();
+      if (image) line.image = image;
       // Validate each line at its own source row for precise diagnostics.
       const checked = Line.safeParse(line);
       if (!checked.success) throw new Error(zodMessage(checked.error));
