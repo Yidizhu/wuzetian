@@ -19,6 +19,10 @@ export interface InboxDeps {
   poems: Map<string, PoemT>;
   onRead: (id: string) => void;
   onReply: (id: string, kind: ReplyKind, poemTags: string[]) => Promise<ReplyResult | null>;
+  /** 拿起一封信（B46：承欢那封读时换她的曲） */
+  onOpen?: (l: LetterT) => void;
+  /** 离开正在读的那封：合上、回到案上、换读别的信之前（B46：换回剧情的配乐） */
+  onLeave?: () => void;
 }
 
 const PAPER_NAME: Record<string, string> = {
@@ -46,7 +50,7 @@ export class Inbox {
   }
 
   get visible(): boolean { return !this.el.hidden; }
-  hide(): void { this.el.hidden = true; this.el.innerHTML = ""; }
+  hide(): void { this.el.hidden = true; this.el.innerHTML = ""; this.deps.onLeave?.(); }
 
   /** 案上有几封。为零就把角标收起来 */
   setUnread(n: number, total: number): void {
@@ -56,6 +60,7 @@ export class Inbox {
   }
 
   showDesk(): void {
+    this.deps.onLeave?.();
     const letters = this.listDesk();
     this.el.innerHTML = "";
     const panel = document.createElement("div");
@@ -101,6 +106,8 @@ export class Inbox {
 
   /** 拿起一封信：展开三层，然后回 */
   open(l: LetterT): void {
+    this.deps.onLeave?.();
+    this.deps.onOpen?.(l);
     this.deps.onRead(l.id);
     const s = this.state();
     const slot = s.letters.find((x) => x.id === l.id);

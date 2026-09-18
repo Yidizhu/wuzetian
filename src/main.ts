@@ -29,6 +29,7 @@ import { Bgm, bgmForChapter } from "./audio/bgm.ts";
 import { loadTuning } from "./audio/tuning.ts";
 import { MediaKeepAlive } from "./audio/keepalive.ts";
 import { ambienceAt, lineNo } from "./audio/soundscape.ts";
+import { dateTrackAt, dateTrackUrl, letterTrack } from "./audio/datemusic.ts";
 import { vistaFor, BACKDROPS, backdropKey } from "./scene/backdrops.ts";
 import { cuesForScene, cuesForLine, newCueState, type Cue, ambienceForScene, rainCue, cuesForShot, cuesForPaper, cuesAfterEpigraph, newEpigraphCueState, cuesForCg, cuesForEndingCg, cuesForEnter, newEnterCueState, cuesForEnding, type SfxName } from "./audio/cues.ts";
 import { Sfx } from "./audio/sfx.ts";
@@ -299,6 +300,21 @@ const applyAmbience = (cues: (a: ReturnType<typeof ambienceAt>) => SoundCueList,
 };
 type SoundCueList = Parameters<typeof sfx.run>[0];
 
+/** 正在读承欢那封信时换上的曲；null 是没在读（D-231） */
+let letterMusic: string | null = null;
+/**
+ * 这一场这一格该放的配乐（D-231）：约会段放那个人的曲，别的放章曲；读承欢的信时让信先。
+ * 同一首在放就不动（bgm.play 自己判）：一段约会只切一次，段里换图不重播；跨场连着同一首不断。
+ * 第一章章曲的慢进（D-209）只给章曲，约会曲照常 1.6 秒淡入
+ */
+const playMusic = (scene: Scene, at: number): void => {
+  if (letterMusic) return;
+  const t = dateTrackAt(scene.id, scene.lines, at);
+  if (t) { bgm.play(import.meta.env.BASE_URL + dateTrackUrl(t)); return; }
+  bgm.play(import.meta.env.BASE_URL + bgmForChapter(scene.chapter),
+    scene.chapter <= 1 && tuning.intro === "soft" ? { fadeIn: 4, quietStart: true } : {});
+};
+
 /**
  * 同一拍的画面（D-223，B45）。台词格写了 `image`：图和字一起出来，立绘收起；下一格没写就退回舞台；连着同一个 key 不闪。
  * 主角是绯、有绯版图就铺绯版（D-216，和剧本事件图格同一个规则）。**真的铺上了**才记进回廊和存档（原 key；绯版另记一笔）。
@@ -355,9 +371,9 @@ story.on((e) => {
       delete app.dataset.cg;
       delete app.dataset.ending;
       delete app.dataset.shot;
-      // 第一章（含序幕）那一首慢慢进：4 秒淡入、从最静的一小节起（D-209）。别的章照旧
-      bgm.play(import.meta.env.BASE_URL + bgmForChapter(e.scene.chapter),
-        e.scene.chapter <= 1 && tuning.intro === "soft" ? { fadeIn: 4, quietStart: true } : {});
+      // 配乐：章曲；整场是约会的场进场就换那个人的曲（D-231）。换场、读档都清掉读信时的临时换曲
+      letterMusic = null;
+      playMusic(e.scene, -1);
       app.querySelectorAll(".ending-title").forEach((n) => n.remove());
       play(cuesForScene(e.scene, cueState, performance.now()));
       // 声音桥 ①：这一场的环境声，淡出开始就起。场次音景表优先（D-226：书阁听夜雨），其次布置夜雨
@@ -394,6 +410,7 @@ story.on((e) => {
       const who = e.who === "empty" ? "narr" : e.who;
       sfx.run(cuesForShot(e.who));                       // 声音桥 ②：空镜这一格起风，下一格有人说话就收
       curLine = lineNo(e.id);
+      if (story.currentScene) playMusic(story.currentScene, story.currentScene.lines.findIndex((l) => l.id === e.id));   // 约会段起止（D-231）
       applyAmbience((a) => [rainCue(a)], story.currentScene?.id, story.currentScene?.dressing, curLine);   // 场次表：从第几格起雨
       showPicture(e.image ?? null, e.first);             // 同一拍的画面（D-223）：这一格有就铺，没有就退回舞台
       play(cuesForLine(who, e.lineKind, e.text, cueState, performance.now()));
@@ -424,6 +441,7 @@ story.on((e) => {
     case "ending": {
       app.dataset.ending = "text";
       sfx.run(cuesForEnding());                          // 规则 ⑤：配乐淡到无声之前，远寺一声钟（D-202）
+      letterMusic = null;
       bgm.stop(3);
       sfx.run(ambienceForScene({ rain: false, level: 1 }));   // 落幕：环境声跟配乐一起收
       bgm.setDuck(1);
@@ -637,6 +655,18 @@ inbox = new Inbox(app, hud, {
   poems,
   onRead: (id) => { sfx.run(cuesForPaper()); story.markLetterRead(id); },   // 声音桥 ③：拆信一声纸响
   onReply: (id, kind, tags) => story.replyLetter(id, kind, tags),
+  // 承欢的告白信：读时换她的曲，离开这封信回到剧情当下的配乐（D-231 第 5 条）。别的信不换曲
+  onOpen: (l) => {
+    const t = letterTrack(l.from);
+    if (!t) return;
+    letterMusic = import.meta.env.BASE_URL + dateTrackUrl(t);
+    bgm.play(letterMusic);
+  },
+  onLeave: () => {
+    if (!letterMusic) return;
+    letterMusic = null;
+    if (story.currentScene) playMusic(story.currentScene, story.currentScene.lines.findIndex((l) => lineNo(l.id) === curLine));
+  },
 }, () => story.letters.onDesk(), () => store.state, (who) => relationWord(who, store.state, tiers));
 inbox.setUnread(story.letters.unreadCount(), story.letters.onDesk().length);
 if (dev && (renderer as { name?: string }).name === "three-stage") {

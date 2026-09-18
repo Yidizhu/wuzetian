@@ -174,3 +174,41 @@ test("D-202 进受位那一场：空殿脚步一次；同一场再来一次不�
 test("D-202 规则 ⑤：结局卡淡到无声之前一声钟", () => {
   assert.deepEqual(cuesForEnding(), [{ kind: "hit", name: "bell_far" }]);
 });
+
+test("D-231 约会配乐：十三场整场约会＋承欢近坐一段；锚点在正式数据里找得到；说停、拒绝、公务不放", async () => {
+  const { DATE_SEGMENTS, dateTrackAt, dateTrackUrl, letterTrack, DATE_TRACKS } = await import("../src/audio/datemusic.ts");
+  const { readFileSync, readdirSync, existsSync } = await import("node:fs");
+  const load = (id: string) => {
+    const dir = new URL(`../src/data/chapters/${id.slice(0, 4)}/`, import.meta.url);
+    return JSON.parse(readFileSync(new URL(`${id}.json`, dir), "utf8")) as { id: string; cast: string[]; lines: { id: string; text: string }[] };
+  };
+  for (const seg of DATE_SEGMENTS) {
+    const s = load(seg.scene);
+    assert.ok(s.cast.includes(seg.track), `${seg.scene} 的阵容里有 ${seg.track}`);
+    if (seg.from) assert.ok(s.lines.some((l) => l.text.includes(seg.from!)), `${seg.scene} 找得到起句「${seg.from}」`);
+    if (seg.until) assert.ok(s.lines.some((l) => l.text.includes(seg.until!)), `${seg.scene} 找得到止句「${seg.until}」`);
+  }
+  // 五首都有成品
+  for (const t of DATE_TRACKS) assert.ok(existsSync(new URL(`../public/${dateTrackUrl(t)}`, import.meta.url)), `public/${dateTrackUrl(t)}`);
+  // 整场约会：进场那一刻就起，到场末
+  const s17 = load("ch03_s17_shuge");
+  assert.equal(dateTrackAt("ch03_s17_shuge", s17.lines, -1), "shenheng");
+  assert.equal(dateTrackAt("ch03_s17_shuge", s17.lines, s17.lines.length - 1), "shenheng");
+  // 承欢：她坐过来之前是章曲，从那一句起是她的
+  const s26 = load("ch02_s26_shuge");
+  const sit = s26.lines.findIndex((l) => l.text.includes("她坐过来"));
+  assert.equal(dateTrackAt("ch02_s26_shuge", s26.lines, sit - 1), null);
+  assert.equal(dateTrackAt("ch02_s26_shuge", s26.lines, sit), "liuchenghuan");
+  // 说停私约四场、听答复、分开、公务：不放约会曲（E39 第 5 节）
+  for (const id of ["ch04_s05ca_shuge", "ch04_s05cb_yuanye", "ch04_s05cc_shishe", "ch04_s05cd_yuanye", "ch03_s09a_yuanye", "ch03_s09c_yuanye", "ch01_s08_shuge", "ch03_s12_hanyuan"]) {
+    const s = load(id);
+    assert.equal(s.lines.every((_, i) => dateTrackAt(id, s.lines, i) === null), true, `${id} 不放约会曲`);
+  }
+  assert.equal(dateTrackAt(undefined, [], 0), null);
+  // 锚点落空（稿改了）：这一段当不存在，不猜
+  assert.equal(dateTrackAt("ch02_s26_shuge", [{ text: "改过的稿" }], 0), null);
+  // 信：只有承欢那封换曲
+  assert.equal(letterTrack("liuchenghuan"), "liuchenghuan");
+  assert.equal(letterTrack("shenheng"), null);
+  void readdirSync;
+});

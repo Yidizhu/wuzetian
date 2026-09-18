@@ -32,3 +32,15 @@
 | ch1、ch3、ch4 | B32 那三首，没动 | `bgm/1.mp3`、`3.mp3`、`4.mp3` | — | 见 B32 汇报 | — | 欠账（D-179） |
 
 旧的 `bgm/2.mp3` 留着没删、没覆盖（`ae9b9ab0…`）。
+
+### 约会曲（D-231，B46）
+
+| 角色 | 成品 | 原件 | 原件 SHA-256 | 选段 | 成品 SHA-256 | 来源／许可 |
+|---|---|---|---|---|---|---|
+| 沈衡 | `public/bgm/date_shenheng.m4a`（179 秒循环，-21.9 LUFS，2 189 680 字节） | `bgm/date_shenheng.mp3` | `9efdec3e02ad537f58e4ea8a3758205e652bd547ed8f3663002270e65b366b63` | 第 4—188 秒（去掉开头淡入／结尾淡出），首尾 5 秒等功率交叉 | `071ab53b521a3b1d6ee5e563825bd26856339c0e1c7e848728eee5d78715197a` | **未提供**：文件里没有标题、作者、许可元数据 |
+| 裴照夜 | `public/bgm/date_peizhaoye.m4a`（240 秒循环，-22.0 LUFS，2 935 889 字节） | `bgm/date_peizhaoye.mp3` | `186108d06d98d80407f44e0da56d4a08ecc9d70efab051d91e07f3b906a85f80` | 第 0.5—245 秒（去掉开头淡入／结尾淡出），首尾 5 秒等功率交叉 | `09348363cd764b6b235932ec3329fd602f3218529e0de9b72413e5575eff675f` | **未提供**：文件里没有标题、作者、许可元数据 |
+| 温荞 | `public/bgm/date_wenqiao.m4a`（86 秒循环，-22.0 LUFS，1 053 378 字节） | `bgm/date_wenqiao.mp3` | `923553c81c5035ff325471ba57a7d563c6c563199ad8600fb13f48cb9b09e184` | 第 0—91 秒（去掉开头淡入／结尾淡出），首尾 5 秒等功率交叉 | `0876643ba09bd1d85743e58bfc8d286f6703e5610340d28f5a36940032702d01` | **未提供**：文件里没有标题、作者、许可元数据 |
+| 李令仪 | `public/bgm/date_liqinghe.m4a`（165 秒循环，-22.0 LUFS，2 035 506 字节） | `bgm/date_liqinghe.mp3` | `f0c866b72a014d7f7e9ba9c8196e69e407f8aab78d090c681c0a07b509766fab` | 第 0—170 秒（去掉开头淡入／结尾淡出），首尾 5 秒等功率交叉 | `db00b54034ff5331ccf40d61ce9417dbbba3fe6ea6d5b28bf052e1e2f0bb20db` | **未提供**：文件里没有标题、作者、许可元数据 |
+| 柳承欢 | `public/bgm/date_liuchenghuan.m4a`（100 秒循环，-21.8 LUFS，1 222 325 字节） | `bgm/date_liuchenghuan.mp3` | `8d87cfa25ab9e907faa5c26f09b656d3ca89706cac6ba511f2e8fb54e382357d` | 第 0—105 秒（去掉开头淡入／结尾淡出），首尾 5 秒等功率交叉 | `30051b50f58549f24a13047af5c3c98f750fdc634c908683c0f35d3f1e6dafa1` | **未提供**：文件里没有标题、作者、许可元数据 |
+
+规格和章曲一样：-22 LUFS、AAC 96 kbps、44.1 kHz 立体声。五首原件都没动。放在哪一段见 `src/audio/datemusic.ts`。
