@@ -49,13 +49,49 @@ import {
   SFX_NAMES, ambienceForScene, cuesForShot, cuesForPaper, cuesAfterEpigraph, newEpigraphCueState, sourceFor,
 } from "../src/audio/cues.ts";
 
-test("声音桥 ①：进夜雨那一场起雨，进别的场收雨；换场也把空镜的风收掉", () => {
-  assert.deepEqual(ambienceForScene("yeyu"), [
-    { kind: "loop", name: "rain_loop", on: true },
+test("声音桥 ①：进夜雨那一场起雨，进别的场收雨；换场也把空镜的风收掉", async () => {
+  const { ambienceAt } = await import("../src/audio/soundscape.ts");
+  assert.deepEqual(ambienceForScene(ambienceAt("ch03_s10_nvguan", "yeyu", 0)), [
+    { kind: "loop", name: "rain_loop", on: true, level: 1 },
     { kind: "loop", name: "wind_loop", on: false },
-  ]);
-  assert.deepEqual(ambienceForScene("gongyi")[0], { kind: "loop", name: "rain_loop", on: false });
-  assert.deepEqual(ambienceForScene(undefined)[0], { kind: "loop", name: "rain_loop", on: false });
+  ], "三章 10 女冠观夜雨：回归对照，照旧进场就起");
+  assert.deepEqual(ambienceForScene(ambienceAt("x", "gongyi", 0))[0], { kind: "loop", name: "rain_loop", on: false });
+  assert.deepEqual(ambienceForScene(ambienceAt(undefined, undefined, 0))[0], { kind: "loop", name: "rain_loop", on: false });
+});
+
+test("D-226 场次音景：书阁听夜雨、抢湿纸、关窗细雨有雨；檐滴两场不铺雨；起止格号对得上剧本", async () => {
+  const { ambienceAt, SCENE_SOUNDSCAPES, lineNo } = await import("../src/audio/soundscape.ts");
+  const { readFileSync, readdirSync } = await import("node:fs");
+  const find = (id: string) => {
+    const ch = id.slice(0, 4);
+    const f = readdirSync(new URL(`../src/data/chapters/${ch}/`, import.meta.url)).find((x) => x === `${id}.json`)!;
+    return JSON.parse(readFileSync(new URL(`../src/data/chapters/${ch}/${f}`, import.meta.url), "utf8")) as { dressing?: string; lines: { id: string; text: string }[] };
+  };
+  // 书阁听夜雨（ch03-17）：布置不是夜雨，照样整场有雨；配乐退一半
+  const s17 = find("ch03_s17_shuge");
+  assert.notEqual(s17.dressing, "yeyu", "不是把书阁改成女冠观");
+  assert.deepEqual(ambienceAt("ch03_s17_shuge", s17.dressing, 0), { rain: true, level: 1, bgmDuck: 0.5 });
+  // 抢湿纸（ch01-11）：第 1 格还没下，第 2 格「雨忽然砸在檐口」起
+  const s11 = find("ch01_s11_shishe");
+  assert.ok(s11.lines.find((l) => lineNo(l.id) === 2)!.text.includes("雨忽然"));
+  assert.equal(ambienceAt("ch01_s11_shishe", s11.dressing, 1).rain, false);
+  assert.equal(ambienceAt("ch01_s11_shishe", s11.dressing, 2).rain, true);
+  assert.equal(ambienceAt("ch01_s11_shishe", s11.dressing, 73).rain, true, "雨声薄下去，还在下");
+  // 关窗细雨（ch01-17）：第 2 格起，比诗社小
+  const s17a = find("ch01_s17_yeting");
+  assert.ok(s17a.lines.find((l) => lineNo(l.id) === 2)!.text.includes("细雨"));
+  const fine = ambienceAt("ch01_s17_yeting", s17a.dressing, 2);
+  assert.ok(fine.rain && fine.level < 1);
+  // 雨后檐滴：没有素材，不拿整场雨冒充
+  for (const id of ["ch01_s12_shuge", "ch01_s18_zhaoyang"]) {
+    assert.equal(ambienceAt(id, find(id).dressing, 99).rain, false, `${id} 是雨后檐滴，不铺雨`);
+    assert.equal(SCENE_SOUNDSCAPES[id]!.loop, null);
+    assert.ok(SCENE_SOUNDSCAPES[id]!.gap, "缺什么写明");
+  }
+  // 表里每一场都真的存在
+  for (const id of Object.keys(SCENE_SOUNDSCAPES)) assert.ok(find(id), id);
+  assert.equal(lineNo("ch01_s11_shishe.l12"), 12);
+  assert.equal(lineNo(undefined), 0);
 });
 
 test("声音桥 ②：空镜那一格起风，下一格有人说话就收（序幕人还没上台的空镜也起）", () => {

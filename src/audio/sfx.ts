@@ -36,6 +36,8 @@ export class Sfx {
   private buffers = new Map<string, Promise<AudioBuffer | null>>();
   /** 循环声现在该不该响（关着声时也记着，开声那一刻补上） */
   private want: Record<LoopName, boolean> = { rain_loop: false, wind_loop: false };
+  /** 循环声的音量倍数（D-226：细雨小一点） */
+  private level: Record<LoopName, number> = { rain_loop: 1, wind_loop: 1 };
   private playing = new Map<LoopName, { src: AudioBufferSourceNode; gain: GainNode }>();
 
   constructor(host: Host, available: string[], base: string) {
@@ -58,7 +60,7 @@ export class Sfx {
 
   run(cues: SoundCue[]): void {
     for (const c of cues) {
-      if (c.kind === "loop") this.loop(c.name, c.on);
+      if (c.kind === "loop") this.loop(c.name, c.on, c.level ?? 1);
       else this.hit(c.name);
     }
   }
@@ -71,8 +73,20 @@ export class Sfx {
     }
   }
 
-  private loop(name: LoopName, on: boolean): void {
+  private loop(name: LoopName, on: boolean, level = 1): void {
     this.want[name] = on;
+    if (on && level !== this.level[name]) {
+      this.level[name] = level;
+      // 已经在响：换音量不重起，慢慢过去
+      const p = this.playing.get(name);
+      const ctx = this.host.audio;
+      if (p && ctx) {
+        const t = ctx.currentTime;
+        p.gain.gain.cancelScheduledValues(t);
+        p.gain.gain.setValueAtTime(p.gain.gain.value, t);
+        p.gain.gain.linearRampToValueAtTime(GAIN[name] * level, t + LOOP_FADE);
+      }
+    }
     const src = sourceFor(name, this.available);
     if (src === "synth") { if (name === "rain_loop") this.host.rain(on); else this.host.wind(on); return; }
     if (src === "silent") return;
@@ -119,7 +133,7 @@ export class Sfx {
     const g = ctx.createGain();
     const t = ctx.currentTime;
     g.gain.setValueAtTime(0, t);
-    g.gain.linearRampToValueAtTime(GAIN[name], t + LOOP_FADE);
+    g.gain.linearRampToValueAtTime(GAIN[name] * this.level[name], t + LOOP_FADE);
     s.connect(g).connect(ctx.destination);
     s.start(t, s.loopStart);
     this.playing.set(name, { src: s, gain: g });

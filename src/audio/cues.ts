@@ -73,19 +73,24 @@ export type SfxName = (typeof SFX_NAMES)[number];
 export type LoopName = "rain_loop" | "wind_loop";
 
 export type SoundCue =
-  | { kind: "loop"; name: LoopName; on: boolean }
+  /** `level`：这条循环的音量倍数（D-226 音景表，细雨小一点）。不写是 1 */
+  | { kind: "loop"; name: LoopName; on: boolean; level?: number }
   | { kind: "hit"; name: SfxName };
 
-/** 哪种布置底下铺哪条环境声。现在只有夜雨 */
-export const DRESSING_AMBIENCE: Readonly<Record<string, LoopName>> = { yeyu: "rain_loop" };
-
-/** 规则 ①：进一场。按布置起／收环境声；换场也把空镜的风收掉（空镜只在一场里面） */
-export function ambienceForScene(dressing: string | undefined): SoundCue[] {
-  const want = dressing ? DRESSING_AMBIENCE[dressing] : undefined;
+/**
+ * 规则 ①：进一场。按这一场的音景起／收雨（`soundscape.ts`：场次表优先，其次布置夜雨）；换场也把空镜的风收掉（空镜只在一场里面）。
+ * D-226（B45）起雨不再只认布置：书阁听夜雨、诗社抢湿纸这些场，布置不是夜雨，照样有雨
+ */
+export function ambienceForScene(a: { rain: boolean; level: number }): SoundCue[] {
   return [
-    { kind: "loop", name: "rain_loop", on: want === "rain_loop" },
+    rainCue(a),
     { kind: "loop", name: "wind_loop", on: false },
   ];
+}
+
+/** 这一格的雨（场次表可以从第几格起）。每一格都算一遍，读档读到哪一格都对 */
+export function rainCue(a: { rain: boolean; level: number }): SoundCue {
+  return a.rain ? { kind: "loop", name: "rain_loop", on: true, level: a.level } : { kind: "loop", name: "rain_loop", on: false };
 }
 
 /**
