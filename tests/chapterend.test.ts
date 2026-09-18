@@ -669,9 +669,11 @@ test("D-205 ch03-12 受位支：绯以图为铰链——第 12 格青，wuze_sho
   const { rasterCandidates } = await import("../src/engine/identity.ts");
   const { readFileSync } = await import("node:fs");
   const s = JSON.parse(readFileSync(new URL("../src/data/chapters/ch03/ch03_s12_hanyuan.json", import.meta.url), "utf8"));
-  type L = { id: string; who: string; text: string; when?: Record<string, unknown> };
+  type L = { id: string; who: string; text: string; when?: Record<string, unknown>; image?: string };
   const lines: L[] = s.lines;
-  const at = lines.findIndex((l) => l.who === "cg" && l.text === "wuze_shouwei");
+  // 受位那张图：旧稿是一格独立事件图，C52 起是某一格的「画面」（D-223）。两种都认
+  const hasHinge = (l: L) => (l.who === "cg" && l.text === "wuze_shouwei") || l.image === "wuze_shouwei";
+  const at = lines.findIndex(hasHinge);
   assert.ok(at > 0, "受位那张图在这一场");
   assert.deepEqual(lines[at]!.when, { "flag.ch03_accept_offer": true }, "图格只在受位支出现");
   assert.equal(lines.find((l) => l.id === "ch03_s12_hanyuan.l12")?.text.includes("赭黄"), true, "第 12 格是女史捧来赭黄那一格");
@@ -683,7 +685,7 @@ test("D-205 ch03-12 受位支：绯以图为铰链——第 12 格青，wuze_sho
     if (l.when && !accept(Object.keys(l.when)[0]!.replace("flag.", ""))) return;
     const pick = rasterCandidates("wuze", { has: accept, dressing, seen: (k) => seen.has(k) })[0];
     assert.equal(pick, i <= at ? "wuze_default" : "wuze_default_fei", `受位支第 ${i + 1} 格`);
-    if (l.who === "cg") seen.add(l.text);
+    if (hasHinge(l)) seen.add("wuze_shouwei");
   });
   assert.equal(seen.has("wuze_shouwei"), true);
   // 拒位支：没有 ch03_accept_offer，那张图也走不到，全程青

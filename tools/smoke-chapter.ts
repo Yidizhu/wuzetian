@@ -145,6 +145,8 @@ async function walk(picks: number[], chooser?: Chooser, letterWalk?: LetterWalk)
       if (path.at(-1) !== e.scene.id) path.push(e.scene.id);
       ranks.push(protagonistRank((f) => store.state.flags[f] === true, (k) => store.state.cgsSeen.has(k)));
     }
+    // 台词格的画面（D-223）也当玩家看过了：受位那张图 C52 起是画面列，绯以图为铰链（D-205）要靠它
+    else if (e.kind === "line" && e.image) store.state.cgsSeen.add(e.image);
     else if (e.kind === "choices") pending = e as unknown as { items: { enabled: boolean }[] };
     // 章末停在「下章待续」也是走完了，不是卡住（D-034）
     else if (e.kind === "ending" || e.kind === "end" || e.kind === "toBeContinued") {

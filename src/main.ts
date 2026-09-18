@@ -332,6 +332,8 @@ const showPicture = (scriptKey: string | null, firstRead = false): void => {
     if (ok) {
       store.state.cgsSeen.add(scriptKey);
       if (key !== scriptKey) store.state.cgsSeen.add(key);
+      // 以图为铰链的换衣（D-205）：受位那张图在 C52 稿里改成了画面列。图铺着时立绘收着，这时对一遍，人回来已经是绯
+      void cast.refresh();
     } else if (app.dataset.picture === key) delete app.dataset.picture;
   });
 };
