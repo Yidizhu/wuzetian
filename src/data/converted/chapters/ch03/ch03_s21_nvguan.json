@@ -151,16 +151,11 @@
       "id": "ch03_s21_nvguan.l21",
       "who": "narr",
       "kind": "aside",
-      "text": "旧景·八月望夜。月照着一盏酒、梨和葡萄，折好的信还没封。"
+      "text": "旧景·八月望夜。月照着一盏酒、梨和葡萄，折好的信还没封。",
+      "image": "wu_yuejiu"
     },
     {
       "id": "ch03_s21_nvguan.l22",
-      "who": "cg",
-      "kind": "aside",
-      "text": "wu_yuejiu"
-    },
-    {
-      "id": "ch03_s21_nvguan.l23",
       "who": "narr",
       "kind": "aside",
       "text": "眼前，你收回扶碟的手，仍留在观里。"

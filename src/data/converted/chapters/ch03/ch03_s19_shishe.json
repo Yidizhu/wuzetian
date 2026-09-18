@@ -69,176 +69,186 @@
       "id": "ch03_s19_shishe.l8",
       "who": "narr",
       "kind": "aside",
-      "text": "温挪到另一边，把半扇窗又推开一些。窗外的晾布鼓起，风没进来。"
+      "text": "温挪到另一边，把半扇窗又推开一些。"
     },
     {
       "id": "ch03_s19_shishe.l9",
+      "who": "narr",
+      "kind": "aside",
+      "text": "窗外的晾布鼓起，风没进来。",
+      "image": "e39_ch03_s19_l8"
+    },
+    {
+      "id": "ch03_s19_shishe.l10",
       "who": "wuze",
       "expr": "open",
       "kind": "say",
       "text": "别动，我这边又有一点。"
     },
     {
-      "id": "ch03_s19_shishe.l10",
+      "id": "ch03_s19_shishe.l11",
       "who": "wenqiao",
       "expr": "open",
       "kind": "say",
       "text": "一点？"
     },
     {
-      "id": "ch03_s19_shishe.l11",
+      "id": "ch03_s19_shishe.l12",
       "who": "wuze",
       "expr": "open",
       "kind": "say",
       "text": "等它……吹过来。"
     },
     {
-      "id": "ch03_s19_shishe.l12",
+      "id": "ch03_s19_shishe.l13",
       "who": "wenqiao",
       "expr": "open",
       "kind": "say",
       "text": "嗯。"
     },
     {
-      "id": "ch03_s19_shishe.l13",
+      "id": "ch03_s19_shishe.l14",
       "who": "wenqiao",
       "expr": "open",
       "kind": "say",
       "text": "还得候它？垫子都挪热了。"
     },
     {
-      "id": "ch03_s19_shishe.l14",
+      "id": "ch03_s19_shishe.l15",
       "who": "wuze",
       "expr": "open",
       "kind": "say",
       "text": "那搬——"
     },
     {
-      "id": "ch03_s19_shishe.l15",
+      "id": "ch03_s19_shishe.l16",
       "who": "wenqiao",
       "expr": "open",
       "kind": "say",
       "text": "搬回也是热的。"
     },
     {
-      "id": "ch03_s19_shishe.l16",
+      "id": "ch03_s19_shishe.l17",
       "who": "wuze",
       "expr": "open",
       "kind": "say",
       "text": "也是。"
     },
     {
-      "id": "ch03_s19_shishe.l17",
+      "id": "ch03_s19_shishe.l18",
       "who": "wenqiao",
       "expr": "open",
       "kind": "say",
       "text": "翻一面。"
     },
     {
-      "id": "ch03_s19_shishe.l18",
+      "id": "ch03_s19_shishe.l19",
       "who": "narr",
       "kind": "aside",
       "text": "她翻过坐垫。你从窗边取一张废纸，折了两折，朝她扇。"
     },
     {
-      "id": "ch03_s19_shishe.l19",
+      "id": "ch03_s19_shishe.l20",
       "who": "wenqiao",
       "expr": "open",
       "kind": "say",
       "text": "你不热？"
     },
     {
-      "id": "ch03_s19_shishe.l20",
+      "id": "ch03_s19_shishe.l21",
       "who": "wuze",
       "expr": "open",
       "kind": "say",
       "text": "热。先给你。"
     },
     {
-      "id": "ch03_s19_shishe.l21",
+      "id": "ch03_s19_shishe.l22",
       "who": "narr",
       "kind": "aside",
       "text": "温荞没坐回去，先把自己的垫子拖到你身旁。"
     },
     {
-      "id": "ch03_s19_shishe.l22",
+      "id": "ch03_s19_shishe.l23",
       "who": "wenqiao",
       "expr": "open",
       "kind": "say",
       "text": "往这边偏，一起吹。"
     },
     {
-      "id": "ch03_s19_shishe.l23",
+      "id": "ch03_s19_shishe.l24",
       "who": "narr",
       "kind": "aside",
       "text": "你偏过纸扇。风掀开她颊边一缕发，她望着你，等你扇下一下。"
     },
     {
-      "id": "ch03_s19_shishe.l24",
+      "id": "ch03_s19_shishe.l25",
       "who": "self",
       "kind": "inner",
       "text": "（她等着。我还想慢慢看一会儿。）"
     },
     {
-      "id": "ch03_s19_shishe.l25",
+      "id": "ch03_s19_shishe.l26",
       "who": "wuze",
       "expr": "open",
       "kind": "say",
       "text": "手酸了。"
     },
     {
-      "id": "ch03_s19_shishe.l26",
+      "id": "ch03_s19_shishe.l27",
       "who": "wenqiao",
       "expr": "open",
       "kind": "say",
       "text": "给我，别逞能。"
     },
     {
-      "id": "ch03_s19_shishe.l27",
+      "id": "ch03_s19_shishe.l28",
       "who": "narr",
       "kind": "aside",
       "text": "她接过去，没扇两下，纸腰先塌了。"
     },
     {
-      "id": "ch03_s19_shishe.l28",
+      "id": "ch03_s19_shishe.l29",
       "who": "wuze",
       "expr": "open",
       "kind": "say",
       "text": "还说我。"
     },
     {
-      "id": "ch03_s19_shishe.l29",
+      "id": "ch03_s19_shishe.l30",
       "who": "wenqiao",
       "expr": "open",
       "kind": "say",
       "text": "纸不争气。"
     },
     {
-      "id": "ch03_s19_shishe.l30",
-      "who": "narr",
-      "kind": "aside",
-      "text": "你替她撑开纸角，两人各捏一边，扇起一点风。"
-    },
-    {
       "id": "ch03_s19_shishe.l31",
-      "when": {
-        "flag.enthroned": false
-      },
       "who": "narr",
       "kind": "aside",
-      "text": "温荞挨过来，你看她低头合拢纸角，肩头贴着你的肩。"
+      "text": "你替她撑开纸角，两人各捏一边，扇起一点风。",
+      "image": "e39_ch03_s19_l30"
     },
     {
       "id": "ch03_s19_shishe.l32",
       "when": {
         "flag.enthroned": false
       },
-      "who": "cg",
+      "who": "narr",
       "kind": "aside",
-      "text": "wenqiao_3_tiejian"
+      "text": "温荞挨过来，你看她低头合拢纸角，肩头贴着你的肩。",
+      "image": "wenqiao_3_tiejian"
     },
     {
       "id": "ch03_s19_shishe.l33",
+      "when": {
+        "flag.enthroned": true
+      },
+      "who": "narr",
+      "kind": "aside",
+      "text": "温荞挨过来，你看她低头合拢纸角，肩头贴着你的肩。",
+      "image": "wenqiao_3_tiejian"
+    },
+    {
+      "id": "ch03_s19_shishe.l34",
       "when": {
         "flag.enthroned": false
       },
@@ -247,13 +257,13 @@
       "text": "（再扇两下。肩膀先别挪。）"
     },
     {
-      "id": "ch03_s19_shishe.l34",
+      "id": "ch03_s19_shishe.l35",
       "who": "narr",
       "kind": "aside",
       "text": "窗扇碰了木框。温拿空鞋抵住，脚收回垫上，纸仍在你们手里。"
     },
     {
-      "id": "ch03_s19_shishe.l35",
+      "id": "ch03_s19_shishe.l36",
       "who": "narr",
       "kind": "aside",
       "text": "临走你把纸放回窗边，压平两只坐垫的卷角。"

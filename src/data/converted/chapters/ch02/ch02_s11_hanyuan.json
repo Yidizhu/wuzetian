@@ -32,14 +32,15 @@
       "id": "ch02_s11_hanyuan.l3",
       "who": "narr",
       "kind": "aside",
-      "text": "何太后冠上横梁掠过灯影，大袖垂在案侧，一只手扶着案沿。"
+      "text": "何太后冠上横梁掠过灯影，大袖垂在案侧，一只手扶着案沿。",
+      "image": "e39_ch02_s11_l3"
     },
     {
       "id": "ch02_s11_hanyuan.l4",
       "who": "hetaihou",
       "expr": "default",
       "kind": "say",
-      "text": "先核“无券，不录”这句，谁当年经手？"
+      "text": "先查当年是谁写了无券不录，谁就这样搁下没办。"
     },
     {
       "id": "ch02_s11_hanyuan.l5",
@@ -60,14 +61,14 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "旧案在此，今晨往返笺与调卷回执同封。"
+      "text": "这封是今日往来的信，同调卷回执装在一起。"
     },
     {
       "id": "ch02_s11_hanyuan.l8",
       "who": "wuze",
       "expr": "guarded",
       "kind": "say",
-      "text": "午后提过异议，私段不许随卷读。"
+      "text": "我午后已说过：私人的那几段，不许随着案卷念。"
     },
     {
       "id": "ch02_s11_hanyuan.l9",
@@ -81,14 +82,14 @@
       "who": "hetaihou",
       "expr": "default",
       "kind": "say",
-      "text": "相关往返是我具令调的，取到时如何？"
+      "text": "有关往来是我下令取的。取到的时候，信发出了吗？"
     },
     {
       "id": "ch02_s11_hanyuan.l11",
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "未发，外封有案号，按令停发，簿上已记。"
+      "text": "还未发出。外封有案号，依令扣下，收信经过已记在簿上。"
     },
     {
       "id": "ch02_s11_hanyuan.l12",
@@ -109,7 +110,7 @@
       "who": "shenheng",
       "expr": "guarded",
       "kind": "say",
-      "text": "回执可核，还有只给她的话。"
+      "text": "回执可以查。可里头还有只写给她的话。"
     },
     {
       "id": "ch02_s11_hanyuan.l15",
@@ -123,7 +124,7 @@
       "who": "hetaihou",
       "expr": "default",
       "kind": "say",
-      "text": "谁校谁的稿，也得核；准依旧例全读。"
+      "text": "谁校过、谁起的稿，也要查。照旧例，从头念。"
     },
     {
       "id": "ch02_s11_hanyuan.l17",
@@ -265,7 +266,7 @@
       "who": "hetaihou",
       "expr": "default",
       "kind": "say",
-      "text": "余文停，已读的与准读、异议都照实留下。"
+      "text": "余下别念了。谁准念、谁反对、已经念了什么，都照实记。"
     },
     {
       "id": "ch02_s11_hanyuan.l35",
@@ -285,14 +286,14 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "旧议例的目名，旁边写了你不认。"
+      "text": "这是旧议例的名目。你不认，我已在旁边记下。"
     },
     {
       "id": "ch02_s11_hanyuan.l38",
       "who": "shenheng",
       "expr": "guarded",
       "kind": "say",
-      "text": "我不认这个目名，哪件公务错，列哪件。"
+      "text": "我不认这个名目。哪件公事办错了，请一件件列出来。"
     },
     {
       "id": "ch02_s11_hanyuan.l39",
@@ -320,7 +321,7 @@
       "who": "liqinghe",
       "expr": "guarded",
       "kind": "say",
-      "text": "今夜核驳案；说私情误事，拿哪件错办为据？"
+      "text": "今夜要查的是当年驳案。若说私情误事，就拿错办的事来问。"
     },
     {
       "id": "ch02_s11_hanyuan.l43",
@@ -334,7 +335,7 @@
       "who": "hetaihou",
       "expr": "default",
       "kind": "say",
-      "text": "爱谁不问罪，案如何办，仍要依原卷核问。"
+      "text": "爱谁，不拿来问罪。案子怎么办，照原卷查。"
     },
     {
       "id": "ch02_s11_hanyuan.l45",
@@ -374,7 +375,7 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "调令、封簿、原笺和议录都留。"
+      "text": "调取的命令、收封的簿、原信和今夜记录，全留下。"
     },
     {
       "id": "ch02_s11_hanyuan.l51",
@@ -388,7 +389,7 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "两份待发议抄还在外案。"
+      "text": "外案还有两份将要发出的议抄。"
     },
     {
       "id": "ch02_s11_hanyuan.l53",
@@ -416,7 +417,7 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "先收外案的纸还是先验封，须分两趟做。"
+      "text": "是先收住那两份抄件，还是先验原封？得分两趟跑。"
     },
     {
       "id": "ch02_s11_hanyuan.l57",
@@ -429,7 +430,7 @@
   "choices": [
     {
       "id": "ch02_s11_hanyuan.cA",
-      "text": "先收议抄，再一同验封",
+      "text": "先收住议抄，再查原封",
       "effects": {
         "affinity.liqinghe": 2,
         "flag.letter_recall_first": true
@@ -439,7 +440,7 @@
     },
     {
       "id": "ch02_s11_hanyuan.cB",
-      "text": "先验封原件，再收议抄",
+      "text": "先查原封，再收住议抄",
       "effects": {
         "affinity.liqinghe": 2,
         "flag.letter_seal_first": true

@@ -2,7 +2,7 @@
 
 自动生成（tools/convert-story.ts，CC2 维护）；不修改原文、schema 或引擎。仅处理命令指定的正文和诗词库。
 
-成功解析：107 场、31 首诗、5 局对诗、20 封信、8 个结局。
+成功解析：107 场、31 首诗、5 局对诗、21 封信、8 个结局。
 
 结果保存在 src/data/converted/，不自动接入现有 demo；npm run validate 仅检查正式数据。存在转换问题，不代表可运行章节。
 
@@ -17,10 +17,10 @@
 
 | 文件 | 行号 | 原文 | 问题 |
 |---|---|---|---|
-| docs/C-3-第一章后十二场.md | 259 | \| A \| 我来当面挑，也听你驳我 \| \| 好感.liqinghe +3, flag.liqinghe_open_debate = 真 \| ch01-10 \| 愿意暴露尚未成形的主张，仍不答应宗籍门槛；C-4邀请保留反驳权 \| | flag.liqinghe_open_debate 写了，已发布的章里没人读，已登记为「漏读」：ch01-09 二选一的 A。C-3 备注点名了读取者「C-4邀请保留反驳权」，可 lt-ch01-liqinghe-01 的正文不分岔，谁也没读它。了结：ChatGPT：C-4 lt-ch01-liqinghe-01 加附页（D-044），条件 flag.liqinghe_open_debate |
-| docs/C-3-第一章后十二场.md | 260 | \| B \| 先各自写，免得我顺着你说 \| \| 好感.liqinghe +3, flag.liqinghe_separate_draft = 真 \| ch01-10 \| 保住独立推演，但放弃当面及时澄清；C-4让各留原稿，不替她读心 \| | flag.liqinghe_separate_draft 写了，已发布的章里没人读，已登记为「漏读」：ch01-09 二选一的 B。C-3 备注点名了读取者「C-4让各留原稿」，可 lt-ch01-liqinghe-01 的正文不分岔，谁也没读它。了结：ChatGPT：C-4 lt-ch01-liqinghe-01 加附页（D-044），条件 flag.liqinghe_separate_draft |
-| docs/C-3-第一章后十二场.md | 96 | \| A \| 我陪你催，但不替你许归期 \| \| 好感.peizhaoye +3, flag.pei_no_departure_date = 真 \| ch01-08 \| 不以假期限施压，失去立即给等候者定日的安慰；C-4裴信保留未定归期，不写成她已解决欠饷 \| | flag.pei_no_departure_date 写了，已发布的章里没人读，已登记为「漏读」：ch01-07 二选一的 A。C-3 备注点名了读取者「C-4裴信保留未定归期」，可 lt-ch01-peizhaoye-01 的正文不分岔，谁也没读它。了结：ChatGPT：C-4 lt-ch01-peizhaoye-01 加附页（D-044），条件 flag.pei_no_departure_date；转换器与引擎都已支持附页 |
-| docs/C-3-第一章后十二场.md | 97 | \| B \| 日子仍要问，我陪你逐项核 \| \| 好感.peizhaoye +3, flag.pei_seek_departure_date = 真 \| ch01-08 \| 把希望转成催核承诺，须花自己的工时，不能借她名义担保；C-4裴信明确催核与保证之别 \| | flag.pei_seek_departure_date 写了，已发布的章里没人读，已登记为「漏读」：ch01-07 二选一的 B。C-3 备注点名了读取者「C-4裴信明确催核与保证之别」，可 lt-ch01-peizhaoye-01 的正文不分岔，谁也没读它。了结：ChatGPT：C-4 lt-ch01-peizhaoye-01 加附页（D-044），条件 flag.pei_seek_departure_date |
+| docs/C-3-第一章后十二场.md | 257 | \| A \| 我来当面挑，也听你驳我 \| \| 好感.liqinghe +3, flag.liqinghe_open_debate = 真 \| ch01-10 \| 愿意暴露尚未成形的主张，仍不答应宗籍门槛；C-4邀请保留反驳权 \| | flag.liqinghe_open_debate 写了，已发布的章里没人读，已登记为「漏读」：ch01-09 二选一的 A。C-3 备注点名了读取者「C-4邀请保留反驳权」，可 lt-ch01-liqinghe-01 的正文不分岔，谁也没读它。了结：ChatGPT：C-4 lt-ch01-liqinghe-01 加附页（D-044），条件 flag.liqinghe_open_debate |
+| docs/C-3-第一章后十二场.md | 258 | \| B \| 先各自写，免得我顺着你说 \| \| 好感.liqinghe +3, flag.liqinghe_separate_draft = 真 \| ch01-10 \| 保住独立推演，但放弃当面及时澄清；C-4让各留原稿，不替她读心 \| | flag.liqinghe_separate_draft 写了，已发布的章里没人读，已登记为「漏读」：ch01-09 二选一的 B。C-3 备注点名了读取者「C-4让各留原稿」，可 lt-ch01-liqinghe-01 的正文不分岔，谁也没读它。了结：ChatGPT：C-4 lt-ch01-liqinghe-01 加附页（D-044），条件 flag.liqinghe_separate_draft |
+| docs/C-3-第一章后十二场.md | 95 | \| A \| 陪你催欠钱，不替你许归期 \|  \| 好感.peizhaoye +3, flag.pei_no_departure_date = 真 \| ch01-08 \| 不以假期限施压，失去立即给等候者定日的安慰；C-4裴信保留未定归期，不写成她已解决欠饷 \| | flag.pei_no_departure_date 写了，已发布的章里没人读，已登记为「漏读」：ch01-07 二选一的 A。C-3 备注点名了读取者「C-4裴信保留未定归期」，可 lt-ch01-peizhaoye-01 的正文不分岔，谁也没读它。了结：ChatGPT：C-4 lt-ch01-peizhaoye-01 加附页（D-044），条件 flag.pei_no_departure_date；转换器与引擎都已支持附页 |
+| docs/C-3-第一章后十二场.md | 96 | \| B \| 陪你逐项查清，再问归期 \|  \| 好感.peizhaoye +3, flag.pei_seek_departure_date = 真 \| ch01-08 \| 把希望转成催核承诺，须花自己的工时，不能借她名义担保；C-4裴信明确催核与保证之别 \| | flag.pei_seek_departure_date 写了，已发布的章里没人读，已登记为「漏读」：ch01-07 二选一的 B。C-3 备注点名了读取者「C-4裴信明确催核与保证之别」，可 lt-ch01-peizhaoye-01 的正文不分岔，谁也没读它。了结：ChatGPT：C-4 lt-ch01-peizhaoye-01 加附页（D-044），条件 flag.pei_seek_departure_date |
 
 ---
 

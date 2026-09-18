@@ -20,7 +20,8 @@
       },
       "who": "narr",
       "kind": "aside",
-      "text": "昨夜你错入了一拍，温跟着错了半句。到第三遍，你们才一同收住尾音。"
+      "text": "昨夜你错入了一拍，温跟着错了半句。到第三遍，你们才一同收住尾音。",
+      "image": "e39_ch03_s06_l1"
     },
     {
       "id": "ch03_s06_shuge.l2",
@@ -45,7 +46,7 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "三夜她全核了，原休留底，工费仍在备议账。"
+      "text": "三夜的卷她都查了。原来的休假凭据留着，省的工钱还在账上。"
     },
     {
       "id": "ch03_s06_shuge.l5",
@@ -55,7 +56,7 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "原休留底。"
+      "text": "不能说她没损失什么。"
     },
     {
       "id": "ch03_s06_shuge.l6",
@@ -65,7 +66,7 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "两人已结钱，你交了半日卷，她休了三日。"
+      "text": "另雇两人的钱付了。你花了半日交班，她休满三日。"
     },
     {
       "id": "ch03_s06_shuge.l7",
@@ -75,7 +76,7 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "三日。"
+      "text": "这三日没再叫她回来吧。"
     },
     {
       "id": "ch03_s06_shuge.l8",
@@ -103,14 +104,14 @@
       "who": "liuchenghuan",
       "expr": "open",
       "kind": "say",
-      "text": "两份履历抄重了，找过本人，分开了。"
+      "text": "两份履历抄重了。我找过本人，已经分开。"
     },
     {
       "id": "ch03_s06_shuge.l12",
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "底簿有她与本人的签，摘要只列你的名。"
+      "text": "底簿有她和本人的署名，可对外的简录只写了你。"
     },
     {
       "id": "ch03_s06_shuge.l13",
@@ -151,7 +152,7 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "只留我，他们会以为重牒是我找的。"
+      "text": "只写我，人家会以为错处是我找出来的。"
     },
     {
       "id": "ch03_s06_shuge.l19",
@@ -165,7 +166,7 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "往后你拿什么报差？"
+      "text": "往后你凭什么报自己做过的事？"
     },
     {
       "id": "ch03_s06_shuge.l21",
@@ -179,14 +180,14 @@
       "who": "wuze",
       "expr": "open",
       "kind": "say",
-      "text": "记得。"
+      "text": "只有我记得，不够。"
     },
     {
       "id": "ch03_s06_shuge.l23",
       "who": "tangjian",
       "expr": "guarded",
       "kind": "say",
-      "text": "摘要未送，可以依她请示合记总办。"
+      "text": "简录还没送。可以照她的意思，只记你总管此事。"
     },
     {
       "id": "ch03_s06_shuge.l24",
@@ -200,14 +201,14 @@
       "who": "tangjian",
       "expr": "guarded",
       "kind": "say",
-      "text": "底簿不能动。"
+      "text": "但底簿上谁做的，不能改。"
     },
     {
       "id": "ch03_s06_shuge.l26",
       "who": "wuze",
       "expr": "guarded",
       "kind": "say",
-      "text": "底簿。"
+      "text": "她在底簿的名字要留着。"
     },
     {
       "id": "ch03_s06_shuge.l27",
@@ -228,28 +229,28 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "合记以后，她报功呢？"
+      "text": "简录不写她，她往后报功怎么办？"
     },
     {
       "id": "ch03_s06_shuge.l30",
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "合记须调底簿，多等一轮。"
+      "text": "就得再调底簿来证明，多等一轮。"
     },
     {
       "id": "ch03_s06_shuge.l31",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "一轮。"
+      "text": "报功还得多等这一轮。"
     },
     {
       "id": "ch03_s06_shuge.l32",
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "此刻把经手并列，她拿着这份摘要就能直接报验。"
+      "text": "现在把她也写上，她拿这份简录就能去报，不必再等。"
     },
     {
       "id": "ch03_s06_shuge.l33",
@@ -303,26 +304,26 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "总办、经手可并列，这两项就不能单记亲核。"
+      "text": "你总管、她查出错处，可以并列。但不能说这两处是你亲自查的。"
     },
     {
       "id": "ch03_s06_shuge.l41",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "两项。"
+      "text": "都写清楚，是哪两处。"
     },
     {
       "id": "ch03_s06_shuge.l42",
       "who": "narr",
       "kind": "aside",
-      "text": "你将柳的经手凭摆在总办一栏旁，等着署名。"
+      "text": "你把写着她姓名的凭据，摆到总管一栏旁，等着署名。"
     }
   ],
   "choices": [
     {
       "id": "ch03_s06_shuge.cA",
-      "text": "收下合记摘要，底簿照留",
+      "text": "简录只列我，底簿留她的名",
       "effects": {
         "shi": 1,
         "xin": -1,
@@ -333,7 +334,7 @@
     },
     {
       "id": "ch03_s06_shuge.cB",
-      "text": "并列她的经手，我只署总办",
+      "text": "并列她做的事，我只署总管",
       "effects": {
         "flag.chenghuan_refuse_3": true
       },

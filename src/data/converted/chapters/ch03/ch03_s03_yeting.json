@@ -77,14 +77,14 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "后头？"
+      "text": "原来准你的休假，挪掉了？"
     },
     {
       "id": "ch03_s03_yeting.l10",
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "她答了后三夜，每日一班，没超上限。"
+      "text": "她答应连值三夜，每日一班，没超一日的限数。"
     },
     {
       "id": "ch03_s03_yeting.l11",
@@ -98,7 +98,7 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "原准的三日休划掉了。"
+      "text": "可原来准的三日休，划掉了。"
     },
     {
       "id": "ch03_s03_yeting.l13",
@@ -146,7 +146,7 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "不接这三班，就另雇两人，备议钱支工费。"
+      "text": "她不接这三班，就另雇两人。工钱从备议的钱里出。"
     },
     {
       "id": "ch03_s03_yeting.l20",
@@ -160,14 +160,14 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "能。"
+      "text": "人手找到了。"
     },
     {
       "id": "ch03_s03_yeting.l22",
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "能，两人都回了价。"
+      "text": "两人都报了要多少工钱。"
     },
     {
       "id": "ch03_s03_yeting.l23",
@@ -181,7 +181,7 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "你还须交半日旧卷，教她们认改过的符号。"
+      "text": "你还得花半日交旧卷，教她们认你改过的记号。"
     },
     {
       "id": "ch03_s03_yeting.l25",
@@ -195,7 +195,7 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "半日。"
+      "text": "连重新教人的半日，你也想替我省。"
     },
     {
       "id": "ch03_s03_yeting.l27",
@@ -209,7 +209,7 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "你认得。"
+      "text": "换别人，我又得从头教。"
     },
     {
       "id": "ch03_s03_yeting.l29",
@@ -222,7 +222,7 @@
       "who": "wuze",
       "expr": "guarded",
       "kind": "say",
-      "text": "三日休不能填成你本来该值。"
+      "text": "三日休是你让出来的，不能写成本就该你值班。"
     },
     {
       "id": "ch03_s03_yeting.l31",
@@ -270,7 +270,7 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "原休凭据留底，代班写实数，三日休不抹。"
+      "text": "原来准休的凭据留下。代了几班照实写，那三日休不能抹掉。"
     },
     {
       "id": "ch03_s03_yeting.l38",
@@ -293,7 +293,7 @@
     },
     {
       "id": "ch03_s03_yeting.cB",
-      "text": "撤回代答，我出工费并交班",
+      "text": "请另两人代班，我付钱并交班",
       "effects": {
         "flag.chenghuan_refuse_2": true
       },

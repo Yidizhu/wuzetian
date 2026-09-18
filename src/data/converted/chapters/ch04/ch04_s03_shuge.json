@@ -36,7 +36,7 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "原议附入，受理人已署名，三日不完给延期凭。"
+      "text": "反对原话附进议录了，谁收的也署了名。三日办不完，要书面告知延期。"
     },
     {
       "id": "ch04_s03_shuge.l4",
@@ -46,7 +46,7 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "延期凭。"
+      "text": "到期没答，不能就不出声了。"
     },
     {
       "id": "ch04_s03_shuge.l5",
@@ -56,7 +56,7 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "照你定的，议录只剩答复，原牒另存，记你准移。"
+      "text": "照你定的，议录只留答复，反对原稿另收。记明是你准许移出的。"
     },
     {
       "id": "ch04_s03_shuge.l6",
@@ -86,14 +86,14 @@
       "who": "shenheng",
       "expr": "default",
       "kind": "say",
-      "text": "写她承认经手，后头八字：不认替我定过的事。"
+      "text": "这里只抄她认了经手。后面还写着：不认替我定过的事。"
     },
     {
       "id": "ch04_s03_shuge.l10",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "八字。"
+      "text": "后面还有八个字。"
     },
     {
       "id": "ch04_s03_shuge.l11",
@@ -114,7 +114,7 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "全存要付看守和核卷工钱，限权借阅逐次记经手。"
+      "text": "全留，就得付看守、查卷的工钱。谁许看、每回谁拿过，都要记。"
     },
     {
       "id": "ch04_s03_shuge.l14",
@@ -155,7 +155,7 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "记得。"
+      "text": "但纸上的原字，再也对不到了。"
     },
     {
       "id": "ch04_s03_shuge.l20",
@@ -169,7 +169,7 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "抄件能留，错漏也留，烧了不保哪笔能补回。"
+      "text": "抄件能留下，错漏也会留下。原稿烧了，不能保证补得回来。"
     },
     {
       "id": "ch04_s03_shuge.l22",
@@ -197,7 +197,7 @@
       "who": "shenheng",
       "expr": "default",
       "kind": "say",
-      "text": "真烧了，我交清辞署，不核它作全本。"
+      "text": "真烧了，我交清差事辞署，也不把留下的抄件当全本查。"
     },
     {
       "id": "ch04_s03_shuge.l26",
@@ -215,16 +215,11 @@
       "id": "ch04_s03_shuge.l28",
       "who": "narr",
       "kind": "aside",
-      "text": "你看沈衡按着那页纸，罩灯还在原处，门边露着唐的衣角。"
+      "text": "你看沈衡按着那页纸，罩灯还在原处，门边露着唐的衣角。",
+      "image": "wuze_huian"
     },
     {
       "id": "ch04_s03_shuge.l29",
-      "who": "cg",
-      "kind": "aside",
-      "text": "wuze_huian"
-    },
-    {
-      "id": "ch04_s03_shuge.l30",
       "who": "self",
       "kind": "inner",
       "text": "（她的手还压着。我却先看了灯。）"
@@ -233,7 +228,7 @@
   "choices": [
     {
       "id": "ch04_s03_shuge.cA",
-      "text": "原件归存，照权限查阅",
+      "text": "保存原件，按准许的范围查阅",
       "require": {
         "flag.ch04_dissent_keep_order": true
       },
@@ -263,7 +258,7 @@
     },
     {
       "id": "ch04_s03_shuge.cC",
-      "text": "原件归存，照权限查阅",
+      "text": "保存原件，按准许的范围查阅",
       "require": {
         "flag.ch04_dissent_remove_order": true
       },

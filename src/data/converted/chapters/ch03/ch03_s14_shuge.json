@@ -19,27 +19,27 @@
       "id": "ch03_s14_shuge.l1",
       "who": "narr",
       "kind": "aside",
-      "text": "扶过包袱的手空下来，你再去书阁核交班。"
+      "text": "扶过包袱的手空下来，你又去书阁查交班的事。"
     },
     {
       "id": "ch03_s14_shuge.l2",
       "who": "narr",
       "kind": "aside",
-      "text": "裴从近营回署缴凭，靴边的泥已干。宋把空匣搁到案上，抖出一小片折断的竹签。"
+      "text": "裴从近营回来交凭据，靴边泥已干。宋搁下空匣，抖出一小片断竹签。"
     },
     {
       "id": "ch03_s14_shuge.l3",
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "收卷的人接了、欠钱付了，才署讫。"
+      "text": "卷有人接了，欠的钱付了，才能签交清。"
     },
     {
       "id": "ch03_s14_shuge.l4",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "署讫。"
+      "text": "没到手的，就还不能算完。"
     },
     {
       "id": "ch03_s14_shuge.l5",
@@ -56,7 +56,7 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "旧卷交回原署，别用新印盖住旧签。"
+      "text": "旧卷交回原署。我换了新印，也不能盖住原来谁署的名。"
     },
     {
       "id": "ch03_s14_shuge.l7",
@@ -66,7 +66,7 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "辞受交接完了，今日交余项，重推卷不经我。"
+      "text": "辞受的手续完了，今日交剩下的差事。重新推选的卷，不再经我。"
     },
     {
       "id": "ch03_s14_shuge.l8",
@@ -76,34 +76,34 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "提案留着续补，托核的卷交回，分开收。"
+      "text": "我的提案留着接着补，受托查的卷交回去，两样分开收。"
     },
     {
       "id": "ch03_s14_shuge.l9",
       "who": "shenheng",
       "expr": "default",
       "kind": "say",
-      "text": "撤差牒呢？"
+      "text": "撤我差事的文书，有回话了吗？"
     },
     {
       "id": "ch03_s14_shuge.l10",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "撤差牒。"
+      "text": "有，带给你了。"
     },
     {
       "id": "ch03_s14_shuge.l11",
       "who": "narr",
       "kind": "aside",
-      "text": "你将问过撤差理由的回牒交给沈。背面没有为她改写的异议。"
+      "text": "你递过问撤差理由的回话，没有替沈改掉反对的话。"
     },
     {
       "id": "ch03_s14_shuge.l12",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "原署收了复议，另署的人来核。"
+      "text": "原署收下了重议的请求，请了别署的人来查。"
     },
     {
       "id": "ch03_s14_shuge.l13",
@@ -124,7 +124,7 @@
       "who": "shenheng",
       "expr": "guarded",
       "kind": "say",
-      "text": "经手人留了，先这样。"
+      "text": "写了谁负责，那先这样。"
     },
     {
       "id": "ch03_s14_shuge.l16",
@@ -181,7 +181,7 @@
       "who": "shenheng",
       "expr": "default",
       "kind": "say",
-      "text": "那日你先走，牒也带去问了。"
+      "text": "那日你先走，也把文书带去问了。"
     },
     {
       "id": "ch03_s14_shuge.l22",
@@ -218,21 +218,21 @@
       "who": "peizhaoye",
       "expr": "default",
       "kind": "say",
-      "text": "名册带来了，没添军职，营里照点卯。"
+      "text": "名册带来了，没加军职。营里的人仍照常点卯。"
     },
     {
       "id": "ch03_s14_shuge.l26",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "名册。"
+      "text": "给我看看。"
     },
     {
       "id": "ch03_s14_shuge.l27",
       "who": "peizhaoye",
       "expr": "default",
       "kind": "say",
-      "text": "没人改作私随。"
+      "text": "没人被改作私下跟随你。"
     },
     {
       "id": "ch03_s14_shuge.l28",
@@ -260,14 +260,14 @@
       "who": "peizhaoye",
       "expr": "open",
       "kind": "say",
-      "text": "今日缴完凭，有半日是我的。"
+      "text": "今日交完凭据，还有半日归我自己。"
     },
     {
       "id": "ch03_s14_shuge.l32",
       "who": "wuze",
       "expr": "open",
       "kind": "say",
-      "text": "半日。"
+      "text": "那半日不另派给你差事。"
     },
     {
       "id": "ch03_s14_shuge.l33",
@@ -287,7 +287,7 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "两回。"
+      "text": "第三回得另找人。"
     },
     {
       "id": "ch03_s14_shuge.l36",
@@ -318,7 +318,7 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "柳的三夜另核，补休凭与结工回执我亲交。"
+      "text": "柳值的三夜另查。补休和结清工钱的凭据，我亲手给她。"
     },
     {
       "id": "ch03_s14_shuge.l40",
@@ -328,7 +328,7 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "亲交。"
+      "text": "交到她自己手里。"
     },
     {
       "id": "ch03_s14_shuge.l41",
@@ -338,7 +338,7 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "代班工费清了，半日卷已记，她没欠我三夜。"
+      "text": "代班工钱清了，我花的半日也记了。她不欠我那三夜。"
     },
     {
       "id": "ch03_s14_shuge.l42",
@@ -348,7 +348,7 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "三夜。"
+      "text": "这一笔已结清。"
     },
     {
       "id": "ch03_s14_shuge.l43",
@@ -358,7 +358,7 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "更正牒备好了，连你准合记的答复一起存，旧本别撤。"
+      "text": "更正写好了，连你准许只列自己的话一起存，旧本不撤。"
     },
     {
       "id": "ch03_s14_shuge.l44",
@@ -368,20 +368,20 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "经手签原就并列，别再补名，照本发报功凭。"
+      "text": "原来就并列她的名，不必补第二回。照原本给她报功的凭据。"
     },
     {
       "id": "ch03_s14_shuge.l45",
       "who": "narr",
       "kind": "aside",
-      "text": "裴将自己的收凭折好。沈抽走撤差回牒，案上少了两份压在你名下的纸。"
+      "text": "裴折好自己的凭据，沈取走撤差的回话。案上压在你名下的纸少了两份。"
     },
     {
       "id": "ch03_s14_shuge.l46",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "核完的今日交讫。她自己的，交到手再说。"
+      "text": "查完的今日签交清。归她自己的，亲手给她再说。"
     },
     {
       "id": "ch03_s14_shuge.l47",
@@ -394,13 +394,13 @@
       "id": "ch03_s14_shuge.l48",
       "who": "narr",
       "kind": "aside",
-      "text": "你收好核讫的纸，拿起柳自己的凭据。"
+      "text": "你收好查完的纸，拿起要交给柳的凭据。"
     }
   ],
   "choices": [
     {
       "id": "ch03_s14_shuge.cA",
-      "text": "署下交讫，带走柳的凭据",
+      "text": "签明交清，带走柳的凭据",
       "effects": {
         "affinity.shenheng": 3,
         "affinity.peizhaoye": 3

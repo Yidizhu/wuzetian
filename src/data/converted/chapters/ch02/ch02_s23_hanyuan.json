@@ -25,21 +25,21 @@
       "id": "ch02_s23_hanyuan.l2",
       "who": "narr",
       "kind": "aside",
-      "text": "正式议决那日，唐简展开颁牒。案后的帘已卷起。"
+      "text": "正式议决那日，唐展开颁下的文书，案后的帘已卷起。"
     },
     {
       "id": "ch02_s23_hanyuan.l3",
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "奉诏，承统受荐，不限宗姓。"
+      "text": "诏令准了：受荐承统，不再只限宗姓。"
     },
     {
       "id": "ch02_s23_hanyuan.l4",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "不限宗姓。"
+      "text": "我们这样的出身，也能受荐了。"
     },
     {
       "id": "ch02_s23_hanyuan.l5",
@@ -49,7 +49,7 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "本轮三处联署，回避、申辩、复核照附条行。"
+      "text": "附条写了三处联署。该避嫌的、要申辩的，怎么复查也列了。"
     },
     {
       "id": "ch02_s23_hanyuan.l6",
@@ -59,7 +59,7 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "三处联署。"
+      "text": "不能拿三处署名就堵住追问。"
     },
     {
       "id": "ch02_s23_hanyuan.l7",
@@ -69,7 +69,7 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "本轮限期试问，寄卷、旅费、复核照附条行。"
+      "text": "附条写了自行呈卷和答问，也列了邮资、路费怎么查。"
     },
     {
       "id": "ch02_s23_hanyuan.l8",
@@ -79,21 +79,21 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "限期试问。"
+      "text": "钱没给到的人，还能问这笔账。"
     },
     {
       "id": "ch02_s23_hanyuan.l9",
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "此后变更仍须再议，不得只为一人破例。"
+      "text": "往后要改，仍须再议，不能只为某一个人破例。"
     },
     {
       "id": "ch02_s23_hanyuan.l10",
       "who": "hetaihou",
       "expr": "default",
       "kind": "say",
-      "text": "陛下依议颁条，谁受位仍待比较，今日不定。"
+      "text": "女皇颁的是新规。究竟谁受位，还要逐人比较。"
     },
     {
       "id": "ch02_s23_hanyuan.l11",
@@ -134,28 +134,28 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "履历、支出、未决之事，两人的都附了。"
+      "text": "两个人办过的事、花过的钱、没办完的事，都送来。"
     },
     {
       "id": "ch02_s23_hanyuan.l17",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "两人的。"
+      "text": "欠着的事也不许略去。"
     },
     {
       "id": "ch02_s23_hanyuan.l18",
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "你的擅引与她的旧支出，一样在册后。"
+      "text": "你擅用私话的事要列，她旧日的开支册也要交。"
     },
     {
       "id": "ch02_s23_hanyuan.l19",
       "who": "shenheng",
       "expr": "default",
       "kind": "say",
-      "text": "异议仍可依限送来，入册不封后面的口。"
+      "text": "有人反对，就依限来答。做了候选，更不能不许人开口。"
     },
     {
       "id": "ch02_s23_hanyuan.l20",
@@ -169,7 +169,7 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "全稿。"
+      "text": "连不利于自己的那页，也一起交。"
     },
     {
       "id": "ch02_s23_hanyuan.l22",
@@ -236,7 +236,7 @@
   "choices": [
     {
       "id": "ch02_s23_hanyuan.cA",
-      "text": "收下候选文牒，准备比较",
+      "text": "收下候选文书，准备逐项比较",
       "effects": {
         "flag.succession_open": true
       },

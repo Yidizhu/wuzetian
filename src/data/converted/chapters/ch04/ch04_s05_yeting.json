@@ -25,7 +25,7 @@
       "id": "ch04_s05_yeting.l1",
       "who": "narr",
       "kind": "aside",
-      "text": "授凭办法已颁下，你到掖庭核领款。"
+      "text": "照料凭据的办法颁下了，你到掖庭查钱是否到了本人手里。"
     },
     {
       "id": "ch04_s05_yeting.l2",
@@ -45,7 +45,7 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "够了。"
+      "text": "亲手点过就好。"
     },
     {
       "id": "ch04_s05_yeting.l5",
@@ -66,7 +66,7 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "领钱。"
+      "text": "不另算你今日来做工。"
     },
     {
       "id": "ch04_s05_yeting.l8",
@@ -80,14 +80,14 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "代班、核旧款与观中俸钱各有收凭，未付另列。"
+      "text": "代班、查旧欠款和观里的工钱，各有领到的凭据。没付的另列。"
     },
     {
       "id": "ch04_s05_yeting.l10",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "未付的。"
+      "text": "没付的不能写成结清。"
     },
     {
       "id": "ch04_s05_yeting.l11",
@@ -103,7 +103,7 @@
       "who": "songhuizhen",
       "expr": "default",
       "kind": "say",
-      "text": "两人核的收件了，我这第二个名等她自己答。"
+      "text": "两人一起入册的来件，官署收了。我这第二个名字，等她自己答。"
     },
     {
       "id": "ch04_s05_yeting.l13",
@@ -113,7 +113,7 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "等她。"
+      "text": "别让旁人替填。"
     },
     {
       "id": "ch04_s05_yeting.l14",
@@ -123,7 +123,7 @@
       "who": "songhuizhen",
       "expr": "default",
       "kind": "say",
-      "text": "我的照料凭收了，她那份另定，没带来代签。"
+      "text": "我给的照料凭据，官署收了。她肯给哪些，另由她定，我不代签。"
     },
     {
       "id": "ch04_s05_yeting.l15",
@@ -133,7 +133,7 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "她那份。"
+      "text": "等她自己来。"
     },
     {
       "id": "ch04_s05_yeting.l16",
@@ -144,7 +144,7 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "她依权限查原案，指出少字，更正附上，具名答了。"
+      "text": "她获准查原案，找出了漏字。更正已附上，谁答的也署了名。"
     },
     {
       "id": "ch04_s05_yeting.l17",
@@ -155,7 +155,7 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "更正。"
+      "text": "把改前改后放在一起。"
     },
     {
       "id": "ch04_s05_yeting.l18",
@@ -176,7 +176,7 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "议录只查到你的答复，补工钱也补不回原问。"
+      "text": "议录里只找得到你的答复。多付查卷的钱，也补不回这里缺的原问。"
     },
     {
       "id": "ch04_s05_yeting.l20",
@@ -186,7 +186,7 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "原问。"
+      "text": "是我准许移出的。"
     },
     {
       "id": "ch04_s05_yeting.l21",
@@ -197,7 +197,7 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "异议在，原件烧了，只能记漏字，不能验原笔。"
+      "text": "反对的话还在，可原稿烧了。只能记漏过字，不能再验原来的笔迹。"
     },
     {
       "id": "ch04_s05_yeting.l22",
@@ -208,7 +208,7 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "不能验。"
+      "text": "只能留着这个缺处。"
     }
   ],
   "goto": "ch04_s05p_shuge"

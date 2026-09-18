@@ -24,7 +24,8 @@
       "id": "ch01_s09_shuge.l2",
       "who": "narr",
       "kind": "aside",
-      "text": "移到侧室，帘影把泥金书签遮成一条暗线。"
+      "text": "移到侧室，帘影把泥金书签遮成一条暗线。",
+      "image": "e39_ch01_s09_l2"
     },
     {
       "id": "ch01_s09_shuge.l3",
@@ -52,7 +53,7 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "你肯收无荐卷。"
+      "text": "没人举荐，你也肯收她的卷。"
     },
     {
       "id": "ch01_s09_shuge.l7",
@@ -66,7 +67,7 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "无宗籍的人谈承统，就不许？"
+      "text": "不是宗室的人，为什么连争取继位都不许？"
     },
     {
       "id": "ch01_s09_shuge.l9",
@@ -80,7 +81,7 @@
       "who": "wuze",
       "expr": "guarded",
       "kind": "say",
-      "text": "两件？"
+      "text": "都是先看出身，再问本事。"
     },
     {
       "id": "ch01_s09_shuge.l11",
@@ -108,7 +109,7 @@
       "who": "liqinghe",
       "expr": "guarded",
       "kind": "say",
-      "text": "宗籍至少让争位的人有个数目，不能人人自称贤能。"
+      "text": "只许宗室参选，至少划得清谁能争位。"
     },
     {
       "id": "ch01_s09_shuge.l15",
@@ -122,7 +123,7 @@
       "who": "wuze",
       "expr": "guarded",
       "kind": "say",
-      "text": "兵强的……"
+      "text": "我也不愿谁兵多，谁就能当皇帝。"
     },
     {
       "id": "ch01_s09_shuge.l17",
@@ -230,7 +231,7 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "少一层代领，多一个见证？"
+      "text": "领东西少转一道手，但要另找人见证？"
     },
     {
       "id": "ch01_s09_shuge.l33",
@@ -244,7 +245,7 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "病着的人，去哪里找这一个？"
+      "text": "人病在床上，要到哪里找见证的人？"
     },
     {
       "id": "ch01_s09_shuge.l35",
@@ -264,7 +265,8 @@
       "id": "ch01_s09_shuge.l37",
       "who": "narr",
       "kind": "aside",
-      "text": "她这回把整页推过来，遮住那四字，只露自己的正文。"
+      "text": "她这回把整页推过来，遮住那四字，只露自己的正文。",
+      "image": "e39_ch01_s09_l37"
     },
     {
       "id": "ch01_s09_shuge.l38",

@@ -26,21 +26,22 @@
       "id": "ch04_s07_hanyuan.l2",
       "who": "narr",
       "kind": "aside",
-      "text": "早朝的风吹过龙尾道，殿门外两份荐牒用同一块石压着。"
+      "text": "早朝的风吹过龙尾道。殿门外，两份举荐的文书用同一块石压着。",
+      "image": "e39_ch04_s07_l2"
     },
     {
       "id": "ch04_s07_hanyuan.l3",
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "定下一轮从哪儿收荐。"
+      "text": "下一轮要从哪些地方收荐书，得定下来。"
     },
     {
       "id": "ch04_s07_hanyuan.l4",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "下一轮。"
+      "text": "不能只管我们这一回。"
     },
     {
       "id": "ch04_s07_hanyuan.l5",
@@ -54,14 +55,14 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "一份旧署荐名，一份外郡来，核验齐了。"
+      "text": "一份是原来官署荐的，一份从外郡来，都查验齐了。"
     },
     {
       "id": "ch04_s07_hanyuan.l7",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "外郡。"
+      "text": "外郡那位，可曾找人来求？"
     },
     {
       "id": "ch04_s07_hanyuan.l8",
@@ -75,7 +76,7 @@
       "who": "liqinghe",
       "expr": "default",
       "kind": "say",
-      "text": "多处能荐，就得留核验、回避、异议的时辰。"
+      "text": "让多处都能荐人，就得留足时辰，查凭据、避亲故，也听反对的话。"
     },
     {
       "id": "ch04_s07_hanyuan.l10",
@@ -110,21 +111,21 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "列过。"
+      "text": "够用么？"
     },
     {
       "id": "ch04_s07_hanyuan.l15",
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "多方能荐就少开一署，先付核验人。"
+      "text": "若许多处荐人，就少开一处新署，把钱先付给查证的人。"
     },
     {
       "id": "ch04_s07_hanyuan.l16",
       "who": "liqinghe",
       "expr": "default",
       "kind": "say",
-      "text": "全由你荐是快些，外郡那人却连递的由头都没了。"
+      "text": "只许你荐，确实快。可外郡那人，连递这份荐书的资格都没了。"
     },
     {
       "id": "ch04_s07_hanyuan.l17",
@@ -158,14 +159,14 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "下一回。"
+      "text": "不能都等我记得。"
     },
     {
       "id": "ch04_s07_hanyuan.l22",
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "两法拟全了，颁行后照条收退，不能只写不问宗姓。"
+      "text": "两种办法都拟好了。颁下后收谁、退谁，都照办，不能只说不限宗姓。"
     },
     {
       "id": "ch04_s07_hanyuan.l23",
@@ -190,14 +191,14 @@
       "id": "ch04_s07_hanyuan.l26",
       "who": "narr",
       "kind": "aside",
-      "text": "你将荐牒留在案上，等着答下一轮。"
+      "text": "你把荐书留在案上，等着决定下一轮从哪里收人。"
     }
   ],
   "dressing": "gongyi",
   "choices": [
     {
       "id": "ch04_s07_hanyuan.cA",
-      "text": "颁行多方提名与异议办法",
+      "text": "许多处荐人，并收反对的话",
       "effects": {
         "flag.ch04_nomination_open_order": true,
         "flag.ch04_nomination_closed_order": false
@@ -207,7 +208,7 @@
     },
     {
       "id": "ch04_s07_hanyuan.cB",
-      "text": "颁行仅由在位者提名的办法",
+      "text": "只许在位者荐人",
       "effects": {
         "flag.ch04_nomination_open_order": false,
         "flag.ch04_nomination_closed_order": true

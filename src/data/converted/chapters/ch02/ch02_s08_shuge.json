@@ -32,21 +32,21 @@
       "who": "liqinghe",
       "expr": "default",
       "kind": "say",
-      "text": "这半日，谁算的？"
+      "text": "这半日工钱，是从什么时候算的？"
     },
     {
       "id": "ch02_s08_shuge.l4",
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "半日？"
+      "text": "你问的是这半日工钱？"
     },
     {
       "id": "ch02_s08_shuge.l5",
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "从入署算到出署。"
+      "text": "原先只算进署到出署。"
     },
     {
       "id": "ch02_s08_shuge.l6",
@@ -60,21 +60,21 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "门外没算。"
+      "text": "那就漏了她在门外等的时辰。"
     },
     {
       "id": "ch02_s08_shuge.l8",
       "who": "liqinghe",
       "expr": "default",
       "kind": "say",
-      "text": "门外。"
+      "text": "不能叫她白等。"
     },
     {
       "id": "ch02_s08_shuge.l9",
       "who": "liqinghe",
       "expr": "default",
       "kind": "say",
-      "text": "那就一同核，你真走过，别照我纸上的猜。"
+      "text": "一同查清，别凭我猜时辰。"
     },
     {
       "id": "ch02_s08_shuge.l10",
@@ -84,7 +84,7 @@
       "who": "peizhaoye",
       "expr": "default",
       "kind": "say",
-      "text": "欠的护袋布已找到，补领也有凭。"
+      "text": "护袋的布找到了，补领的凭据也在。"
     },
     {
       "id": "ch02_s08_shuge.l11",
@@ -94,7 +94,7 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "有凭了。"
+      "text": "先记下这一笔已经补齐。"
     },
     {
       "id": "ch02_s08_shuge.l12",
@@ -104,7 +104,7 @@
       "who": "peizhaoye",
       "expr": "default",
       "kind": "say",
-      "text": "往返漏了卸袋的一程，时辰得补。"
+      "text": "还漏了卸袋那一段路，往返的钱没算。"
     },
     {
       "id": "ch02_s08_shuge.l13",
@@ -114,7 +114,7 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "这一程。"
+      "text": "把这段也添上。"
     },
     {
       "id": "ch02_s08_shuge.l14",
@@ -124,7 +124,7 @@
       "who": "peizhaoye",
       "expr": "default",
       "kind": "say",
-      "text": "另请人核过，往返与缺项分开写了。"
+      "text": "另请人查过了。路上花多久、东西缺什么，已经分开写。"
     },
     {
       "id": "ch02_s08_shuge.l15",
@@ -134,7 +134,7 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "分开写。"
+      "text": "两笔都记，别漏掉一头。"
     },
     {
       "id": "ch02_s08_shuge.l16",
@@ -144,7 +144,7 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "九件付清，刷栏推到下旬，做工的已告知。"
+      "text": "九件工钱已付清。刷栏杆改到下旬，人也告知了。"
     },
     {
       "id": "ch02_s08_shuge.l17",
@@ -154,7 +154,7 @@
       "who": "liqinghe",
       "expr": "default",
       "kind": "say",
-      "text": "下旬。"
+      "text": "到下旬还得照办。"
     },
     {
       "id": "ch02_s08_shuge.l18",
@@ -164,7 +164,7 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "六件先付，三件已催，今夜回报。"
+      "text": "六件的钱付了，另三件正在催，今夜等回话。"
     },
     {
       "id": "ch02_s08_shuge.l19",
@@ -174,7 +174,7 @@
       "who": "liqinghe",
       "expr": "default",
       "kind": "say",
-      "text": "三件……"
+      "text": "余下三件仍记作欠款。"
     },
     {
       "id": "ch02_s08_shuge.l20",
@@ -184,7 +184,7 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "催款另记工时。"
+      "text": "催款跑的工夫也别漏算。"
     },
     {
       "id": "ch02_s08_shuge.l21",
@@ -212,7 +212,7 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "这里只校读验封，别的还得另问你。"
+      "text": "这里只请你校读、验封。别的差事，还得另问你。"
     },
     {
       "id": "ch02_s08_shuge.l25",
@@ -226,14 +226,14 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "按次，还是算上往返半日？"
+      "text": "是来一次付一次，还是连往返算半日？"
     },
     {
       "id": "ch02_s08_shuge.l27",
       "who": "liqinghe",
       "expr": "default",
       "kind": "say",
-      "text": "按次省款，她就得逐次记路。"
+      "text": "按次付能省钱，可每回路上花多少工夫，都得记。"
     },
     {
       "id": "ch02_s08_shuge.l28",
@@ -247,14 +247,14 @@
       "who": "liqinghe",
       "expr": "default",
       "kind": "say",
-      "text": "半日少零账，空出的时辰也照付。"
+      "text": "按半日付，少记几笔；没做满半日，也照付。"
     },
     {
       "id": "ch02_s08_shuge.l30",
       "who": "xujinghe",
       "expr": "default",
       "kind": "say",
-      "text": "两样能接，半日满了就回去。"
+      "text": "两种我都能接。做满半日，我就得回观里。"
     },
     {
       "id": "ch02_s08_shuge.l31",
@@ -295,7 +295,7 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "先停了发。"
+      "text": "那封信先扣住了。"
     },
     {
       "id": "ch02_s08_shuge.l37",
@@ -309,21 +309,21 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "太后具令调旧案往返，外封有案号。"
+      "text": "太后下了调取旧案的命令，连外封写案号的往来信也要取。"
     },
     {
       "id": "ch02_s08_shuge.l39",
       "who": "liqinghe",
       "expr": "default",
       "kind": "say",
-      "text": "母亲委祖母核旧案，今夜公议，调令在此。"
+      "text": "母亲请祖母查旧案。今夜公议，会把这道命令拿出来。"
     },
     {
       "id": "ch02_s08_shuge.l40",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "调令。"
+      "text": "是谁准的、准取哪些，让我看看。"
     },
     {
       "id": "ch02_s08_shuge.l41",
@@ -336,7 +336,7 @@
       "who": "xujinghe",
       "expr": "default",
       "kind": "say",
-      "text": "我只验原封，没在这里开过。"
+      "text": "只验了外封，还没拆。"
     },
     {
       "id": "ch02_s08_shuge.l43",
@@ -364,14 +364,14 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "调取没另分，怎么读得去席上问。"
+      "text": "眼下只说调取，没说哪些能当众念。到席上还得问。"
     },
     {
       "id": "ch02_s08_shuge.l47",
       "who": "liqinghe",
       "expr": "guarded",
       "kind": "say",
-      "text": "先记你的异议，看见了可不能算你答应。"
+      "text": "把反对的话也记下。拿到了信，不等于信里什么都能读。"
     },
     {
       "id": "ch02_s08_shuge.l48",
@@ -391,7 +391,7 @@
       "who": "liqinghe",
       "expr": "default",
       "kind": "say",
-      "text": "许的俸钱先定，今日的脚程她已经走了。"
+      "text": "先把许静和这半日的工钱定下来。"
     },
     {
       "id": "ch02_s08_shuge.l51",

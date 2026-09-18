@@ -24,7 +24,7 @@
       "who": "liqinghe",
       "expr": "default",
       "kind": "say",
-      "text": "替谁送卷？经手簿上没有你。"
+      "text": "替谁送卷？送卷的簿上没记你的名字。"
     },
     {
       "id": "ch01_s08_shuge.l3",
@@ -66,7 +66,7 @@
       "who": "liqinghe",
       "expr": "default",
       "kind": "say",
-      "text": "典记，给她留一行。"
+      "text": "唐典记，给她记上一行。"
     },
     {
       "id": "ch01_s08_shuge.l9",
@@ -85,7 +85,7 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "补抄的簿页已清，预先看题的时辰也过了。"
+      "text": "你忙着补抄，提前看题的时辰已经过了。"
     },
     {
       "id": "ch01_s08_shuge.l11",
@@ -95,7 +95,7 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "过了……"
+      "text": "那就现在给我题吧。"
     },
     {
       "id": "ch01_s08_shuge.l12",
@@ -164,7 +164,7 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "试次续上了，可新旧字迹还得说清。"
+      "text": "考试接着办了，你还得解释纸上为何有两种写法。"
     },
     {
       "id": "ch01_s08_shuge.l19",
@@ -184,7 +184,7 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "原写骑试，实授牵行。"
+      "text": "纸上写要骑，裴将军教的却是牵着走。"
     },
     {
       "id": "ch01_s08_shuge.l21",
@@ -214,7 +214,7 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "两份都留着，好让后来的人核。"
+      "text": "改前改后的都留着，日后才查得清。"
     },
     {
       "id": "ch01_s08_shuge.l24",
@@ -243,7 +243,7 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "无人荐的，放哪里？"
+      "text": "没人举荐，自己送来的卷放哪里？"
     },
     {
       "id": "ch01_s08_shuge.l28",
@@ -257,21 +257,21 @@
       "who": "liqinghe",
       "expr": "default",
       "kind": "say",
-      "text": "无人荐……"
+      "text": "你问的是自己报名的人？"
     },
     {
       "id": "ch01_s08_shuge.l30",
       "who": "liqinghe",
       "expr": "default",
       "kind": "say",
-      "text": "这一批没有。"
+      "text": "这一批原先没收这种卷。"
     },
     {
       "id": "ch01_s08_shuge.l31",
       "who": "wuze",
       "expr": "guarded",
       "kind": "say",
-      "text": "可这题，没荐名也读得懂。"
+      "text": "可没人举荐，也未必答不好这道题。"
     },
     {
       "id": "ch01_s08_shuge.l32",
@@ -306,14 +306,14 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "我还得核病舍领物，不能再添一夜。"
+      "text": "我还得查病舍领了多少东西，不能再熬一夜。"
     },
     {
       "id": "ch01_s08_shuge.l37",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "誊颂辞的钱……"
+      "text": "那些颂辞，能不能少抄几本？"
     },
     {
       "id": "ch01_s08_shuge.l38",
@@ -327,7 +327,7 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "少抄几本，移给副卷的抄工呢？"
+      "text": "省下的钱，付给抄这些新卷的人。"
     },
     {
       "id": "ch01_s08_shuge.l40",
@@ -355,7 +355,7 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "价钱先定。"
+      "text": "先把工价定了，再问谁肯接。"
     },
     {
       "id": "ch01_s08_shuge.l44",
@@ -376,7 +376,7 @@
       "who": "liqinghe",
       "expr": "default",
       "kind": "say",
-      "text": "这条可以，抄工与评卷分记。"
+      "text": "可以。抄卷的钱照付，卷好不好另评。"
     },
     {
       "id": "ch01_s08_shuge.l47",
@@ -396,14 +396,14 @@
       "who": "liqinghe",
       "expr": "default",
       "kind": "say",
-      "text": "自呈另收，但得说清收到何时为止。"
+      "text": "自己报名的卷，可以另收。先定下什么时候不再收。"
     },
     {
       "id": "ch01_s08_shuge.l50",
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "份数或时辰。"
+      "text": "是收满便停，还是等到定下的时辰？"
     },
     {
       "id": "ch01_s08_shuge.l51",
@@ -438,52 +438,47 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "也等……"
+      "text": "有举荐的人，也不能先评。"
     },
     {
       "id": "ch01_s08_shuge.l56",
       "who": "narr",
       "kind": "aside",
-      "text": "你看她拢住紫色大袖，手掌压着册子，抬眼等你。"
+      "text": "你看她拢住紫色大袖，手掌压着册子，抬眼等你。",
+      "image": "liqinghe_1_boyi"
     },
     {
       "id": "ch01_s08_shuge.l57",
-      "who": "cg",
-      "kind": "aside",
-      "text": "liqinghe_1_boyi"
-    },
-    {
-      "id": "ch01_s08_shuge.l58",
       "who": "self",
       "kind": "inner",
       "text": "（她真等我选。别只顾着看她。）"
     },
     {
-      "id": "ch01_s08_shuge.l59",
+      "id": "ch01_s08_shuge.l58",
       "who": "liqinghe",
       "expr": "default",
       "kind": "say",
       "text": "这两笔代价，你选哪笔？"
     },
     {
-      "id": "ch01_s08_shuge.l60",
+      "id": "ch01_s08_shuge.l59",
       "who": "narr",
       "kind": "aside",
       "text": "唐简拿起木夹，把“自呈”两字夹在空出的案边。"
     },
     {
-      "id": "ch01_s08_shuge.l61",
+      "id": "ch01_s08_shuge.l60",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "收了，不能还压在荐名卷底下。"
+      "text": "自己送来的卷，不能总排在有举荐的后面。"
     },
     {
-      "id": "ch01_s08_shuge.l62",
+      "id": "ch01_s08_shuge.l61",
       "who": "liqinghe",
       "expr": "default",
       "kind": "say",
-      "text": "同批评，我要答卷有用，空话留在门外。"
+      "text": "一同评。我看答得有没有用，不看是谁荐来的。"
     }
   ],
   "dressing": "gongyi",

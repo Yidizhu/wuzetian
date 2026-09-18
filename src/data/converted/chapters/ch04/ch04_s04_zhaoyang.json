@@ -22,13 +22,14 @@
       "id": "ch04_s04_zhaoyang.l1",
       "who": "narr",
       "kind": "aside",
-      "text": "原案的存毁已定，你回昭阳殿核授凭。"
+      "text": "原案留还是毁已经定下，你回昭阳殿看照料凭据的办法。"
     },
     {
       "id": "ch04_s04_zhaoyang.l2",
       "who": "narr",
       "kind": "aside",
-      "text": "次日帷幔已卷起，殿内残留熏香，门口的冷风吹不到案后。"
+      "text": "次日帷幔已卷起，殿内残留熏香，门口的冷风吹不到案后。",
+      "image": "e39_ch04_s04_l2"
     },
     {
       "id": "ch04_s04_zhaoyang.l3",
@@ -38,7 +39,7 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "原案归存，封号、权限、保管人在此，缺字另记。"
+      "text": "原案存好了。封了哪号、谁能看、谁保管，都在这里。缺的字另记。"
     },
     {
       "id": "ch04_s04_zhaoyang.l4",
@@ -48,7 +49,7 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "另记。"
+      "text": "别在原字上悄悄补。"
     },
     {
       "id": "ch04_s04_zhaoyang.l5",
@@ -68,7 +69,7 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "昨夜。"
+      "text": "是依我昨夜说的办。"
     },
     {
       "id": "ch04_s04_zhaoyang.l7",
@@ -87,7 +88,7 @@
       "who": "shenheng",
       "expr": "default",
       "kind": "say",
-      "text": "经手交了，辞署也存原话。"
+      "text": "经手的事交清了。我为什么辞署，也请留原话。"
     },
     {
       "id": "ch04_s04_zhaoyang.l9",
@@ -97,7 +98,7 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "原话。"
+      "text": "照你的原话存。"
     },
     {
       "id": "ch04_s04_zhaoyang.l10",
@@ -127,7 +128,7 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "两份新法，你与她……想怎么记？"
+      "text": "这两种新办法，你和她……想怎么登记？"
     },
     {
       "id": "ch04_s04_zhaoyang.l14",
@@ -141,21 +142,21 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "你的。"
+      "text": "那先听你的。"
     },
     {
       "id": "ch04_s04_zhaoyang.l16",
       "who": "xujinghe",
       "expr": "default",
       "kind": "say",
-      "text": "一法双方自愿入籍，照料、财产逐项说定。"
+      "text": "第一种，两人都愿意便一起入册，谁照料谁、财产怎么管，逐项说定。"
     },
     {
       "id": "ch04_s04_zhaoyang.l17",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "双方。"
+      "text": "两个人都得亲口答。"
     },
     {
       "id": "ch04_s04_zhaoyang.l18",
@@ -169,28 +170,28 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "另一法各自授凭，照料、代领、财产分写。"
+      "text": "第二种，不一起入册。各自写准许谁照料、代领或管财产，分项给凭据。"
     },
     {
       "id": "ch04_s04_zhaoyang.l20",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "分写。"
+      "text": "每件准许什么，都分开写。"
     },
     {
       "id": "ch04_s04_zhaoyang.l21",
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "许哪项，只办哪项。"
+      "text": "她准了哪件，就只能替她办哪件。"
     },
     {
       "id": "ch04_s04_zhaoyang.l22",
       "who": "songhuizhen",
       "expr": "default",
       "kind": "say",
-      "text": "许哪项。"
+      "text": "没准的，不能顺手也办了。"
     },
     {
       "id": "ch04_s04_zhaoyang.l23",
@@ -204,7 +205,7 @@
       "who": "xujinghe",
       "expr": "default",
       "kind": "say",
-      "text": "授过照料凭便能核入，不能因未入籍再拦。"
+      "text": "给过照料凭据，查过就能进。不能再因为没一起入册而拦人。"
     },
     {
       "id": "ch04_s04_zhaoyang.l25",
@@ -225,7 +226,7 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "本人、照料人与核办者看，公示办法不列姓名。"
+      "text": "本人、照料的人和办这件事的人看。对外只公布办法，不列姓名。"
     },
     {
       "id": "ch04_s04_zhaoyang.l28",
@@ -239,7 +240,7 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "这张。"
+      "text": "可以，带回去给她看。"
     },
     {
       "id": "ch04_s04_zhaoyang.l30",
@@ -267,7 +268,7 @@
       "who": "xujinghe",
       "expr": "default",
       "kind": "say",
-      "text": "各撤自己的授权，已交钱物另核清。"
+      "text": "各自能收回自己准许的事。已经交的钱物，另算清。"
     },
     {
       "id": "ch04_s04_zhaoyang.l34",
@@ -280,13 +281,13 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "入籍双方核，省举凭；各授少问私事，多走几次。"
+      "text": "一起入册，双方查过便少带几张凭据。分项给凭据，少问私事，却得多跑。"
     },
     {
       "id": "ch04_s04_zhaoyang.l36",
       "who": "narr",
       "kind": "aside",
-      "text": "你把两份授凭办法分开放好，等着落笔。"
+      "text": "你把两份办法分开放好，等着落笔。"
     }
   ],
   "choices": [

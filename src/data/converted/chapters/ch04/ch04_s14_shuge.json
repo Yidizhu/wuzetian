@@ -20,13 +20,13 @@
       "id": "ch04_s14_shuge.l1",
       "who": "narr",
       "kind": "aside",
-      "text": "手边的纸收妥后，当夜你在书阁问差牒。"
+      "text": "手边的纸收妥，当夜你到书阁问那份外出查粮的差事。"
     },
     {
       "id": "ch04_s14_shuge.l2",
       "who": "narr",
       "kind": "aside",
-      "text": "书阁夜灯照着刚递来的差牒，窗下冷，裴把湿靴留在席外。"
+      "text": "书阁夜灯照着刚送来的差事文书。窗下冷，裴把湿靴留在席外。"
     },
     {
       "id": "ch04_s14_shuge.l3",
@@ -36,7 +36,7 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "独立差程按一月核俸给了，归期在前。"
+      "text": "你问的那份差，俸钱按一月算好了。先看何时回来。"
     },
     {
       "id": "ch04_s14_shuge.l4",
@@ -46,7 +46,7 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "一月。"
+      "text": "只接这一月。"
     },
     {
       "id": "ch04_s14_shuge.l5",
@@ -56,7 +56,7 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "先看一月俸给，再看归期。"
+      "text": "先看这一月有多少俸钱，再看何时回来。"
     },
     {
       "id": "ch04_s14_shuge.l6",
@@ -66,7 +66,7 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "归期。"
+      "text": "回来的日子得先定。"
     },
     {
       "id": "ch04_s14_shuge.l7",
@@ -80,21 +80,21 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "公开收人，经办、错办都核了，一月试差。"
+      "text": "这回公开招人。你办过的、办错的都查了，先试做一月。"
     },
     {
       "id": "ch04_s14_shuge.l9",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "错办也核了。"
+      "text": "没把错办的藏起来。"
     },
     {
       "id": "ch04_s14_shuge.l10",
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "不借荐名改职。"
+      "text": "也没借谁举荐，替你换个官职。"
     },
     {
       "id": "ch04_s14_shuge.l11",
@@ -108,7 +108,7 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "交接。"
+      "text": "我的差事，另外来领。"
     },
     {
       "id": "ch04_s14_shuge.l13",
@@ -128,21 +128,21 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "照报未核。"
+      "text": "没查清就报没查清。"
     },
     {
       "id": "ch04_s14_shuge.l16",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "未核。"
+      "text": "不能先写齐了。"
     },
     {
       "id": "ch04_s14_shuge.l17",
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "带回原凭，不能减未领，也不能添已领。"
+      "text": "原始凭据带回来。没领到的不能划掉，也不能替她填成领了。"
     },
     {
       "id": "ch04_s14_shuge.l18",
@@ -170,14 +170,14 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "明早领，另给月俸凭，少一项就别走。"
+      "text": "明早领。另给领月俸的凭据，少一样都别走。"
     },
     {
       "id": "ch04_s14_shuge.l22",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "少一项。"
+      "text": "两样到手再动身。"
     },
     {
       "id": "ch04_s14_shuge.l23",

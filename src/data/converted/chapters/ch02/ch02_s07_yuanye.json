@@ -185,7 +185,8 @@
       "id": "ch02_s07_yuanye.l22",
       "who": "narr",
       "kind": "aside",
-      "text": "她松开托底的手。重量沉下来，你们一同挪到檐下。"
+      "text": "她松开托底的手。重量沉下来，你们一同挪到檐下。",
+      "image": "e39_ch02_s07_l22"
     },
     {
       "id": "ch02_s07_yuanye.l23",
@@ -199,7 +200,7 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "这页，暂缓……"
+      "text": "这页写着暂缓，是你压下的？"
     },
     {
       "id": "ch02_s07_yuanye.l25",
@@ -220,7 +221,7 @@
       "who": "peizhaoye",
       "expr": "guarded",
       "kind": "say",
-      "text": "她想领一队去转粮。"
+      "text": "她想带一队人去运粮。"
     },
     {
       "id": "ch02_s07_yuanye.l28",
@@ -234,7 +235,7 @@
       "who": "peizhaoye",
       "expr": "default",
       "kind": "say",
-      "text": "做得了，路不熟。"
+      "text": "事情做得了，可那条路她不熟。"
     },
     {
       "id": "ch02_s07_yuanye.l30",
@@ -268,7 +269,7 @@
       "who": "peizhaoye",
       "expr": "guarded",
       "kind": "say",
-      "text": "她又问两回，我都叫她等。"
+      "text": "她来问过两回，我都让她等。"
     },
     {
       "id": "ch02_s07_yuanye.l35",
@@ -296,7 +297,7 @@
       "who": "peizhaoye",
       "expr": "default",
       "kind": "say",
-      "text": "先问她，拖过了，不能又替她答愿意。"
+      "text": "我该先问她。已经拖了这些日子，不能再替她作主。"
     },
     {
       "id": "ch02_s07_yuanye.l39",
@@ -324,14 +325,14 @@
       "who": "peizhaoye",
       "expr": "default",
       "kind": "say",
-      "text": "陪我核衣粮，缺哪项照实写。"
+      "text": "陪我查一回衣粮。欠了什么，就写什么。"
     },
     {
       "id": "ch02_s07_yuanye.l43",
       "who": "peizhaoye",
       "expr": "default",
       "kind": "say",
-      "text": "别因我说稳妥，就替我删。"
+      "text": "别听我说一句稳妥，就把缺的东西划掉。"
     },
     {
       "id": "ch02_s07_yuanye.l44",
@@ -359,7 +360,7 @@
       "who": "peizhaoye",
       "expr": "default",
       "kind": "say",
-      "text": "信里把她的答复与我欠办的分开。"
+      "text": "信里分开写：她怎么答，我还有什么没办。"
     },
     {
       "id": "ch02_s07_yuanye.l48",
@@ -371,7 +372,7 @@
   "choices": [
     {
       "id": "ch02_s07_yuanye.cA",
-      "text": "我核欠项，你去问她",
+      "text": "我查欠了什么，你去问她",
       "effects": {
         "affinity.peizhaoye": 3,
         "flag.pei_shared_check": true,
@@ -382,7 +383,7 @@
     },
     {
       "id": "ch02_s07_yuanye.cB",
-      "text": "我核脚程，你把粮数列齐",
+      "text": "我查行程，你列齐粮数",
       "effects": {
         "affinity.peizhaoye": 3,
         "flag.pei_shared_check": true,
@@ -393,7 +394,7 @@
     },
     {
       "id": "ch02_s07_yuanye.cC",
-      "text": "我今日接不下，另请人核",
+      "text": "这回不接，请另找人查",
       "effects": {
         "flag.pei_check_declined": true
       },

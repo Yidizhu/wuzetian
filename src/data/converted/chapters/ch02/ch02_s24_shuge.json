@@ -31,28 +31,28 @@
       "who": "liqinghe",
       "expr": "default",
       "kind": "say",
-      "text": "全稿，末页也在。"
+      "text": "整份稿子都在，包括最后一页。"
     },
     {
       "id": "ch02_s24_shuge.l4",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "末页。"
+      "text": "末页这笔，我看见了。"
     },
     {
       "id": "ch02_s24_shuge.l5",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "从你的旧供给里减？"
+      "text": "要从你原有的供给里减？"
     },
     {
       "id": "ch02_s24_shuge.l6",
       "who": "liqinghe",
       "expr": "default",
       "kind": "say",
-      "text": "是，腾来付远处的寄卷与核验。"
+      "text": "是，收外地卷子的钱，从这里出。"
     },
     {
       "id": "ch02_s24_shuge.l7",
@@ -66,7 +66,7 @@
       "who": "liqinghe",
       "expr": "default",
       "kind": "say",
-      "text": "原来。"
+      "text": "她原先肯荐我。"
     },
     {
       "id": "ch02_s24_shuge.l9",
@@ -80,7 +80,7 @@
       "who": "wuze",
       "expr": "guarded",
       "kind": "say",
-      "text": "不荐了……"
+      "text": "如今不肯了。"
     },
     {
       "id": "ch02_s24_shuge.l11",
@@ -93,7 +93,7 @@
       "who": "liqinghe",
       "expr": "guarded",
       "kind": "say",
-      "text": "从我小时就替我收账，今日却叫我不必再拿。"
+      "text": "我小时候，她就替我管账。今日却叫我不必再把稿拿去了。"
     },
     {
       "id": "ch02_s24_shuge.l13",
@@ -114,7 +114,7 @@
       "who": "liqinghe",
       "expr": "default",
       "kind": "say",
-      "text": "想过，改这一笔，另一边的钱就没来处。"
+      "text": "想过。可这笔若不减，收外地卷子的钱就没来处。"
     },
     {
       "id": "ch02_s24_shuge.l16",
@@ -142,7 +142,7 @@
       "who": "liqinghe",
       "expr": "default",
       "kind": "say",
-      "text": "撤署那页也在，明日照样驳。"
+      "text": "撤回署名的那一页也带上。明日要反驳，就照稿来问。"
     },
     {
       "id": "ch02_s24_shuge.l20",
@@ -303,13 +303,15 @@
       "id": "ch02_s24_shuge.l39",
       "who": "empty",
       "kind": "aside",
-      "text": "窗纸下沿开了一道细口，风翻起案边一角素笺。"
+      "text": "窗纸下沿开了一道细口，风翻起案边一角素笺。",
+      "image": "e39_ch02_s24_l39"
     },
     {
       "id": "ch02_s24_shuge.l40",
       "who": "narr",
       "kind": "aside",
-      "text": "她移开袖边的稿，露出半张席，却没有径自坐下。"
+      "text": "她移开袖边的稿，露出半张席，却没有径自坐下。",
+      "image": "e39_ch02_s24_l40"
     },
     {
       "id": "ch02_s24_shuge.l41",

@@ -30,14 +30,14 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "各人各有差，这张只解旧约。"
+      "text": "这张只了结原来的差事。往后各人做什么，各自再答。"
     },
     {
       "id": "ch03_s16_shuge.l4",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "旧约。"
+      "text": "只把旧的交清。"
     },
     {
       "id": "ch03_s16_shuge.l5",
@@ -64,7 +64,7 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "只列这班旧人，余下还须议，不能算人人有份。"
+      "text": "这张只结清原来这一班人的钱。旁人的还得议，不能说都领到了。"
     },
     {
       "id": "ch03_s16_shuge.l8",
@@ -84,7 +84,7 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "重推开了，我不等再劝，这几张也别续。"
+      "text": "重新推选已开始，我不等人再劝。这几张旧差，也别接着派给我。"
     },
     {
       "id": "ch03_s16_shuge.l10",
@@ -94,7 +94,7 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "辞受照录，旧俸结足，居处未定也不断供给。"
+      "text": "辞受照实记，原来的俸钱结足。你没定新住处，也不断供给。"
     },
     {
       "id": "ch03_s16_shuge.l11",
@@ -104,7 +104,7 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "旧俸。"
+      "text": "该领的先结清。"
     },
     {
       "id": "ch03_s16_shuge.l12",
@@ -114,7 +114,7 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "我续补案，借抄另问，不能用旧牌传人。"
+      "text": "我的提案接着补。要请人抄，另问，不能还拿旧差牌叫人。"
     },
     {
       "id": "ch03_s16_shuge.l13",
@@ -124,7 +124,7 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "另问。"
+      "text": "也得另付工钱。"
     },
     {
       "id": "ch03_s16_shuge.l14",
@@ -138,7 +138,7 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "纸钱。"
+      "text": "这笔钱先说清。"
     },
     {
       "id": "ch03_s16_shuge.l16",
@@ -166,7 +166,7 @@
       "who": "xujinghe",
       "expr": "default",
       "kind": "say",
-      "text": "温只借三个午后，没搬来。"
+      "text": "温只借了三个午后来教，没搬进观里。"
     },
     {
       "id": "ch03_s16_shuge.l20",
@@ -179,7 +179,7 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "各人留了份，余款不扣，签后不能按旧约传。"
+      "text": "各人都留了份，该付的不扣。签完了，就不能再按旧约叫她们做事。"
     },
     {
       "id": "ch03_s16_shuge.l22",

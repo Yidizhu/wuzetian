@@ -59,7 +59,7 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "更正送到了，收讫在这。"
+      "text": "更正已送到。这是收到更正的凭据。"
     },
     {
       "id": "ch03_s15_yeting.l8",
@@ -69,7 +69,7 @@
       "who": "liuchenghuan",
       "expr": "default",
       "kind": "say",
-      "text": "更正。"
+      "text": "补了我的名字？"
     },
     {
       "id": "ch03_s15_yeting.l9",
@@ -79,7 +79,7 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "补了你经手，也留着我准合记那句。"
+      "text": "补上你做的事，也留下我准许只列自己的那句话。"
     },
     {
       "id": "ch03_s15_yeting.l10",
@@ -128,7 +128,7 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "你的名一直在，报功凭你拿着，不留我卷里。"
+      "text": "你的名一直在。这份报功的凭据，你拿着，不留我的卷里。"
     },
     {
       "id": "ch03_s15_yeting.l15",
@@ -138,7 +138,7 @@
       "who": "liuchenghuan",
       "expr": "default",
       "kind": "say",
-      "text": "报功凭。"
+      "text": "这份交给我么？"
     },
     {
       "id": "ch03_s15_yeting.l16",
@@ -158,7 +158,7 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "误抄试那夜，我多出半日备稿。"
+      "text": "你误了抄写考试的那夜，我多出半日备稿。"
     },
     {
       "id": "ch03_s15_yeting.l18",
@@ -168,7 +168,7 @@
       "who": "liuchenghuan",
       "expr": "default",
       "kind": "say",
-      "text": "半日。"
+      "text": "那半日，你能专心备稿了。"
     },
     {
       "id": "ch03_s15_yeting.l19",
@@ -198,7 +198,7 @@
       "who": "wuze",
       "expr": "guarded",
       "kind": "say",
-      "text": "白日工已领，夜里加抄另结了。"
+      "text": "白日的工钱已领，夜里多抄的，也另外结清了。"
     },
     {
       "id": "ch03_s15_yeting.l22",
@@ -218,7 +218,7 @@
       "who": "wuze",
       "expr": "guarded",
       "kind": "say",
-      "text": "缺试照记，能再报，日子还没定。"
+      "text": "缺考照实记。还可以再报，只是日子没定。"
     },
     {
       "id": "ch03_s15_yeting.l24",
@@ -228,7 +228,7 @@
       "who": "liuchenghuan",
       "expr": "guarded",
       "kind": "say",
-      "text": "日子没定。"
+      "text": "那先不急着填。"
     },
     {
       "id": "ch03_s15_yeting.l25",
@@ -238,7 +238,7 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "那回我留班，你去过抄试，这是试牒。"
+      "text": "那回我留下做完，你去应了试。这是应试的文书。"
     },
     {
       "id": "ch03_s15_yeting.l26",
@@ -248,7 +248,7 @@
       "who": "liuchenghuan",
       "expr": "default",
       "kind": "say",
-      "text": "试牒。"
+      "text": "也给我带来了。"
     },
     {
       "id": "ch03_s15_yeting.l27",
@@ -284,7 +284,7 @@
       "who": "liuchenghuan",
       "expr": "default",
       "kind": "say",
-      "text": "本月。"
+      "text": "就在这个月补给我？"
     },
     {
       "id": "ch03_s15_yeting.l31",
@@ -314,7 +314,7 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "三日休没划掉。这是以后自己报班的凭。"
+      "text": "三日休没划掉。这张留给你，往后自己报哪日值班。"
     },
     {
       "id": "ch03_s15_yeting.l34",
@@ -324,7 +324,7 @@
       "who": "liuchenghuan",
       "expr": "default",
       "kind": "say",
-      "text": "报班的。"
+      "text": "时辰还没填。"
     },
     {
       "id": "ch03_s15_yeting.l35",
@@ -457,7 +457,7 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "留原署、另报差都可，做过的工不能扣。"
+      "text": "留原署，或另报差事，都可。做过的工，钱不能扣。"
     },
     {
       "id": "ch03_s15_yeting.l52",
@@ -512,7 +512,7 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "今日不答也可，晚些持凭去报。"
+      "text": "今日不答也行。晚些拿这张凭据去报。"
     },
     {
       "id": "ch03_s15_yeting.l60",
@@ -566,7 +566,7 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "今日不圈，凭据留这。饭和住处不等你答。"
+      "text": "今日不圈，凭据留这。你还没选，也照样有饭吃、有住处。"
     },
     {
       "id": "ch03_s15_yeting.l68",
@@ -580,14 +580,14 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "稿。"
+      "text": "下一叠另送。"
     },
     {
       "id": "ch03_s15_yeting.l70",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "交原署，另付经办工，不先送你这。"
+      "text": "交回原署，另付办事的人，不先送你这里。"
     },
     {
       "id": "ch03_s15_yeting.l71",
@@ -640,45 +640,37 @@
       "id": "ch03_s15_yeting.l78",
       "who": "narr",
       "kind": "aside",
-      "text": "你看柳承欢空下来的腕侧，弯着的手指已离开你的掌心。"
+      "text": "你看柳承欢空下来的腕侧，弯着的手指已离开你的掌心。",
+      "image": "liuchenghuan_1_guihuan"
     },
     {
       "id": "ch03_s15_yeting.l79",
-      "when": {
-        "flag.enthroned": false
-      },
-      "who": "cg",
-      "kind": "aside",
-      "text": "liuchenghuan_1_guihuan"
-    },
-    {
-      "id": "ch03_s15_yeting.l80",
       "who": "self",
       "kind": "inner",
       "text": "（绳回来了。她的手还没有放平。）"
     },
     {
-      "id": "ch03_s15_yeting.l81",
+      "id": "ch03_s15_yeting.l80",
       "who": "liuchenghuan",
       "expr": "default",
       "kind": "say",
       "text": "杯子留这，水还温着。"
     },
     {
-      "id": "ch03_s15_yeting.l82",
+      "id": "ch03_s15_yeting.l81",
       "who": "narr",
       "kind": "aside",
-      "text": "柳挪开杯底，把试牒压了进去。应试时辰那一格没有新添的字。"
+      "text": "柳挪开杯底，把应试的文书压在下面。应试时辰那一格，仍没添新字。"
     },
     {
-      "id": "ch03_s15_yeting.l83",
+      "id": "ch03_s15_yeting.l82",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
       "text": "好。"
     },
     {
-      "id": "ch03_s15_yeting.l84",
+      "id": "ch03_s15_yeting.l83",
       "who": "narr",
       "kind": "aside",
       "text": "你收好归还的朱绳，凭据留在柳手边。"

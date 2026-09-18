@@ -22,180 +22,187 @@
       "id": "ch01_s05_yuanye.l2",
       "who": "narr",
       "kind": "aside",
-      "text": "苑墙挡住了北风，落叶晒出干草味，阿荻在树下仰着脸。"
+      "text": "苑墙挡住了北风，落叶晒出干草味。",
+      "image": "e39_ch01_s05_l2"
     },
     {
       "id": "ch01_s05_yuanye.l3",
+      "who": "narr",
+      "kind": "aside",
+      "text": "阿荻在树下仰着脸。"
+    },
+    {
+      "id": "ch01_s05_yuanye.l4",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
       "text": "阿荻。"
     },
     {
-      "id": "ch01_s05_yuanye.l4",
+      "id": "ch01_s05_yuanye.l5",
       "who": "adi",
       "expr": "default",
       "kind": "say",
       "text": "嗯？"
     },
     {
-      "id": "ch01_s05_yuanye.l5",
+      "id": "ch01_s05_yuanye.l6",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
       "text": "看什么？"
     },
     {
-      "id": "ch01_s05_yuanye.l6",
+      "id": "ch01_s05_yuanye.l7",
       "who": "adi",
       "expr": "default",
       "kind": "say",
       "text": "没看见，听见了。"
     },
     {
-      "id": "ch01_s05_yuanye.l7",
+      "id": "ch01_s05_yuanye.l8",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
       "text": "听见了……"
     },
     {
-      "id": "ch01_s05_yuanye.l8",
+      "id": "ch01_s05_yuanye.l9",
       "who": "narr",
       "kind": "aside",
       "text": "叶子里落下两声鸟鸣。"
     },
     {
-      "id": "ch01_s05_yuanye.l9",
+      "id": "ch01_s05_yuanye.l10",
       "who": "wuze",
       "expr": "open",
       "kind": "say",
       "text": "是这样？啾，啾——"
     },
     {
-      "id": "ch01_s05_yuanye.l10",
+      "id": "ch01_s05_yuanye.l11",
       "who": "adi",
       "expr": "open",
       "kind": "say",
       "text": "等等！"
     },
     {
-      "id": "ch01_s05_yuanye.l11",
+      "id": "ch01_s05_yuanye.l12",
       "who": "wuze",
       "expr": "open",
       "kind": "say",
       "text": "怎么？"
     },
     {
-      "id": "ch01_s05_yuanye.l12",
+      "id": "ch01_s05_yuanye.l13",
       "who": "adi",
       "expr": "open",
       "kind": "say",
       "text": "你这只在打喷嚏。"
     },
     {
-      "id": "ch01_s05_yuanye.l13",
+      "id": "ch01_s05_yuanye.l14",
       "who": "wuze",
       "expr": "open",
       "kind": "say",
       "text": "喷嚏？"
     },
     {
-      "id": "ch01_s05_yuanye.l14",
+      "id": "ch01_s05_yuanye.l15",
       "who": "adi",
       "expr": "open",
       "kind": "say",
       "text": "真有鸟听懂，还要来问你冷不冷。"
     },
     {
-      "id": "ch01_s05_yuanye.l15",
+      "id": "ch01_s05_yuanye.l16",
       "who": "wuze",
       "expr": "open",
       "kind": "say",
       "text": "你来。"
     },
     {
-      "id": "ch01_s05_yuanye.l16",
+      "id": "ch01_s05_yuanye.l17",
       "who": "narr",
       "kind": "aside",
       "text": "阿荻抿嘴吹出细气，冷风漏进你的领口，你缩了一下肩。"
     },
     {
-      "id": "ch01_s05_yuanye.l17",
+      "id": "ch01_s05_yuanye.l18",
       "who": "wuze",
       "expr": "open",
       "kind": "say",
       "text": "你这只……"
     },
     {
-      "id": "ch01_s05_yuanye.l18",
+      "id": "ch01_s05_yuanye.l19",
       "who": "adi",
       "expr": "open",
       "kind": "say",
       "text": "如何？"
     },
     {
-      "id": "ch01_s05_yuanye.l19",
+      "id": "ch01_s05_yuanye.l20",
       "who": "wuze",
       "expr": "open",
       "kind": "say",
       "text": "还没醒，我只听见一口气。"
     },
     {
-      "id": "ch01_s05_yuanye.l20",
+      "id": "ch01_s05_yuanye.l21",
       "who": "adi",
       "expr": "open",
       "kind": "say",
       "text": "它困着呢。"
     },
     {
-      "id": "ch01_s05_yuanye.l21",
+      "id": "ch01_s05_yuanye.l22",
       "who": "wuze",
       "expr": "open",
       "kind": "say",
       "text": "也罢。"
     },
     {
-      "id": "ch01_s05_yuanye.l22",
+      "id": "ch01_s05_yuanye.l23",
       "who": "narr",
       "kind": "aside",
       "text": "两个人笑了一会儿。树上的鸟不叫了。"
     },
     {
-      "id": "ch01_s05_yuanye.l23",
+      "id": "ch01_s05_yuanye.l24",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
       "text": "再试一声？"
     },
     {
-      "id": "ch01_s05_yuanye.l24",
+      "id": "ch01_s05_yuanye.l25",
       "who": "adi",
       "expr": "default",
       "kind": "say",
       "text": "等它。"
     },
     {
-      "id": "ch01_s05_yuanye.l25",
+      "id": "ch01_s05_yuanye.l26",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
       "text": "……"
     },
     {
-      "id": "ch01_s05_yuanye.l26",
+      "id": "ch01_s05_yuanye.l27",
       "who": "narr",
       "kind": "aside",
       "text": "你们坐着，谁也没再出声。"
     },
     {
-      "id": "ch01_s05_yuanye.l27",
+      "id": "ch01_s05_yuanye.l28",
       "who": "narr",
       "kind": "aside",
       "text": "过了一会儿，叶子里又响了。"
     },
     {
-      "id": "ch01_s05_yuanye.l28",
+      "id": "ch01_s05_yuanye.l29",
       "who": "narr",
       "kind": "aside",
       "text": "你向阿荻摆摆手，仍坐着听。"

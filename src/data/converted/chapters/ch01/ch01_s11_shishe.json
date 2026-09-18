@@ -24,7 +24,8 @@
       "id": "ch01_s11_shishe.l2",
       "who": "narr",
       "kind": "aside",
-      "text": "雨忽然砸在檐口，晾纸绳一抖，水沿着纸角往下淌。"
+      "text": "雨忽然砸在檐口，晾纸绳一抖，水沿着纸角往下淌。",
+      "image": "e39_ch01_s11_l2"
     },
     {
       "id": "ch01_s11_shishe.l3",
@@ -126,7 +127,8 @@
       "id": "ch01_s11_shishe.l17",
       "who": "narr",
       "kind": "aside",
-      "text": "她一脚抵住门，腾出两手，和你抬过湿滑的门槛。"
+      "text": "她一脚抵住门，腾出两手，和你抬过湿滑的门槛。",
+      "image": "e39_ch01_s11_l17"
     },
     {
       "id": "ch01_s11_shishe.l18",
@@ -220,7 +222,7 @@
       "who": "wenqiao",
       "expr": "guarded",
       "kind": "say",
-      "text": "你定的止处，真有人站在外头了。"
+      "text": "你定只收六份，她就真的交不进去了。"
     },
     {
       "id": "ch01_s11_shishe.l30",
@@ -269,7 +271,8 @@
       },
       "who": "narr",
       "kind": "aside",
-      "text": "收卷篮满了，旁边又添一只，雨水滴在空篮沿上。"
+      "text": "收卷篮满了，旁边又添一只，雨水滴在空篮沿上。",
+      "image": "e39_ch01_s11_l34"
     },
     {
       "id": "ch01_s11_shishe.l35",
@@ -279,7 +282,7 @@
       "who": "wenqiao",
       "expr": "guarded",
       "kind": "say",
-      "text": "午后前的都收了，评期也真往后挪了。"
+      "text": "午后前的都收了，评卷的日子也往后推了。"
     },
     {
       "id": "ch01_s11_shishe.l36",
@@ -289,7 +292,7 @@
       "who": "wuze",
       "expr": "guarded",
       "kind": "say",
-      "text": "往后……"
+      "text": "所有人都得多等。"
     },
     {
       "id": "ch01_s11_shishe.l37",
@@ -309,7 +312,7 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "添的抄工照价记。"
+      "text": "多抄的卷，也照原价付钱。"
     },
     {
       "id": "ch01_s11_shishe.l39",
@@ -366,7 +369,7 @@
       "who": "wenqiao",
       "expr": "default",
       "kind": "say",
-      "text": "这首不收了，他们要诗，不要名字。"
+      "text": "他们肯收诗，却要删掉我的名字。这笔我不接。"
     },
     {
       "id": "ch01_s11_shishe.l46",
@@ -380,7 +383,7 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "不要名字……"
+      "text": "拿你的诗，不让人知道是你写的？"
     },
     {
       "id": "ch01_s11_shishe.l48",
@@ -408,7 +411,7 @@
       "who": "wenqiao",
       "expr": "guarded",
       "kind": "say",
-      "text": "两件事，我不拿来抵。"
+      "text": "认得出，也不能抵掉该署的名字。"
     },
     {
       "id": "ch01_s11_shishe.l52",
@@ -484,7 +487,7 @@
       "who": "wenqiao",
       "expr": "default",
       "kind": "say",
-      "text": "钱买不走这一处。"
+      "text": "你付的是纸钱，可没买下我赞成。"
     },
     {
       "id": "ch01_s11_shishe.l63",
@@ -518,7 +521,7 @@
       "who": "wenqiao",
       "expr": "open",
       "kind": "say",
-      "text": "呈文放这里，等纸干了再核。"
+      "text": "呈文先放这里，等纸干了再看。"
     },
     {
       "id": "ch01_s11_shishe.l68",
@@ -558,7 +561,8 @@
       "id": "ch01_s11_shishe.l73",
       "who": "narr",
       "kind": "aside",
-      "text": "檐外雨声薄下去，你们把湿纸挪到风能吹到的一层。"
+      "text": "檐外雨声薄下去，你们把湿纸挪到风能吹到的一层。",
+      "image": "e39_ch01_s11_l73"
     }
   ],
   "choices": [

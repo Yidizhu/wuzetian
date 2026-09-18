@@ -62,7 +62,8 @@
       "id": "ch03_s20_yuanye.l7",
       "who": "narr",
       "kind": "aside",
-      "text": "你挑了一只小的，咬到果肉才发现皮厚。李把自己那只转向另一面。"
+      "text": "你挑了一只小的，咬到果肉才发现皮厚。李把自己那只转向另一面。",
+      "image": "e39_ch03_s20_l7"
     },
     {
       "id": "ch03_s20_yuanye.l8",
@@ -193,19 +194,21 @@
       },
       "who": "narr",
       "kind": "aside",
-      "text": "你贴着她的唇，看见她颊边的碎发挨上了你的脸。"
+      "text": "你贴着她的唇，看见她颊边的碎发挨上了你的脸。",
+      "image": "liqinghe_3_xiangying"
     },
     {
       "id": "ch03_s20_yuanye.l23",
       "when": {
-        "flag.enthroned": false,
+        "flag.enthroned": true,
         "flag.li_ch03_only_intent": false,
         "flag.li_ch03_multi_told": false,
         "flag.li_ch03_private_paused": false
       },
-      "who": "cg",
+      "who": "narr",
       "kind": "aside",
-      "text": "liqinghe_3_xiangying"
+      "text": "你贴着她的唇，看见她颊边的碎发挨上了你的脸。",
+      "image": "liqinghe_3_xiangying"
     },
     {
       "id": "ch03_s20_yuanye.l24",

@@ -110,7 +110,8 @@
       "id": "ch02_s17_shishe.l14",
       "who": "narr",
       "kind": "aside",
-      "text": "她拨开发尾，把肩侧让给你。你挪过去，额角贴上她的肩。"
+      "text": "她拨开发尾，把肩侧让给你。你挪过去，额角贴上她的肩。",
+      "image": "wenqiao_7_chuangying"
     },
     {
       "id": "ch02_s17_shishe.l15",
@@ -218,7 +219,8 @@
       "id": "ch02_s17_shishe.l30",
       "who": "narr",
       "kind": "aside",
-      "text": "温荞放下抬着的手，仍让窗影留在袖上。"
+      "text": "温荞放下抬着的手，仍让窗影留在袖上。",
+      "image": "e39_ch02_s17_l30"
     }
   ],
   "goto": "ch02_s20_hanyuan"

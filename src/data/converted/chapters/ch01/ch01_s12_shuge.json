@@ -17,7 +17,7 @@
       "id": "ch01_s12_shuge.l1",
       "who": "narr",
       "kind": "aside",
-      "text": "纸上余潮未干，你便带回书阁候封递。"
+      "text": "纸上余潮未干，你带回书阁，等着封好送出去。"
     },
     {
       "id": "ch01_s12_shuge.l2",
@@ -46,7 +46,7 @@
       "who": "shenheng",
       "expr": "default",
       "kind": "say",
-      "text": "前面？"
+      "text": "后添的这一段，她没看过？"
     },
     {
       "id": "ch01_s12_shuge.l5",
@@ -115,7 +115,7 @@
       "who": "shenheng",
       "expr": "default",
       "kind": "say",
-      "text": "你的。"
+      "text": "那就不能写成她也赞成。"
     },
     {
       "id": "ch01_s12_shuge.l12",
@@ -161,7 +161,8 @@
       "id": "ch01_s12_shuge.l16",
       "who": "narr",
       "kind": "aside",
-      "text": "檐水一滴一滴敲着石阶，封递用的油布已铺在唐简膝上。"
+      "text": "檐水一滴一滴敲着石阶，封递用的油布已铺在唐简膝上。",
+      "image": "e39_ch01_s12_l16"
     },
     {
       "id": "ch01_s12_shuge.l17",
@@ -182,21 +183,21 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "往后分人核，旧欠也该准她们查。"
+      "text": "往后逐人对账，先前欠的工钱，也要准她们追查。"
     },
     {
       "id": "ch01_s12_shuge.l20",
       "who": "shenheng",
       "expr": "default",
       "kind": "say",
-      "text": "写清楚：少一道旧记认，不能就抹了工钱。"
+      "text": "写明白：少了当初收衣的签字，不能就不给工钱。"
     },
     {
       "id": "ch01_s12_shuge.l21",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "写清楚……"
+      "text": "不能叫她们的工白做。"
     },
     {
       "id": "ch01_s12_shuge.l22",
@@ -209,14 +210,14 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "只说旧欠，回头还得问哪批，又是一程。"
+      "text": "还得写哪批欠钱，不然送上去，又要来回问。"
     },
     {
       "id": "ch01_s12_shuge.l24",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "哪批……"
+      "text": "我倒知道一批。"
     },
     {
       "id": "ch01_s12_shuge.l25",
@@ -264,14 +265,14 @@
       "who": "shenheng",
       "expr": "guarded",
       "kind": "say",
-      "text": "这只能作一件待核的例，不能算作已经定下的欠数。"
+      "text": "先写尚未查清，不能把听来的数当成已查实。"
     },
     {
       "id": "ch01_s12_shuge.l32",
       "who": "wuze",
       "expr": "guarded",
       "kind": "say",
-      "text": "待核。"
+      "text": "得去查原账，才能定欠了多少。"
     },
     {
       "id": "ch01_s12_shuge.l33",
@@ -285,7 +286,7 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "好，写待核。"
+      "text": "好，把“待核”写上。"
     },
     {
       "id": "ch01_s12_shuge.l35",
@@ -317,14 +318,14 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "抄件留一份，封了可就伸手拿不回了。"
+      "text": "留一份抄件。封好送出去，原件就拿不回来了。"
     },
     {
       "id": "ch01_s12_shuge.l40",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "封了以后……"
+      "text": "这份得由我负责。"
     },
     {
       "id": "ch01_s12_shuge.l41",
@@ -343,7 +344,7 @@
       "who": "shenheng",
       "expr": "default",
       "kind": "say",
-      "text": "只是递上去请议，还没准你追欠。"
+      "text": "送去只是请他们商议，还没准你查旧账。"
     },
     {
       "id": "ch01_s12_shuge.l44",

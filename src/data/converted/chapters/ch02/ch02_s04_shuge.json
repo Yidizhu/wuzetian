@@ -34,7 +34,7 @@
       "who": "shenheng",
       "expr": "default",
       "kind": "say",
-      "text": "你想先访人，人还没请到，别凭纸补她的话。"
+      "text": "你想先问当事人。人还没来，别替她猜。"
     },
     {
       "id": "ch02_s04_shuge.l4",
@@ -44,7 +44,7 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "先访人。"
+      "text": "那就等她亲口说。"
     },
     {
       "id": "ch02_s04_shuge.l5",
@@ -54,7 +54,7 @@
       "who": "shenheng",
       "expr": "default",
       "kind": "say",
-      "text": "先看旧记，是你说的，我取来了。"
+      "text": "你说先看旧记录。我取来了。"
     },
     {
       "id": "ch02_s04_shuge.l6",
@@ -64,7 +64,7 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "旧记。"
+      "text": "先看当年怎么写的。"
     },
     {
       "id": "ch02_s04_shuge.l7",
@@ -74,7 +74,7 @@
       "who": "shenheng",
       "expr": "default",
       "kind": "say",
-      "text": "你说暂缓，今日只核公事，别的再问。"
+      "text": "你说今日只查这桩案子。"
     },
     {
       "id": "ch02_s04_shuge.l8",
@@ -84,7 +84,7 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "公事。"
+      "text": "嗯，别的先不谈。"
     },
     {
       "id": "ch02_s04_shuge.l9",
@@ -111,21 +111,21 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "经手人写在哪里？"
+      "text": "当年办这件事的人，姓名在哪儿？"
     },
     {
       "id": "ch02_s04_shuge.l12",
       "who": "shenheng",
       "expr": "guarded",
       "kind": "say",
-      "text": "末行。"
+      "text": "最末一行，你看这里。"
     },
     {
       "id": "ch02_s04_shuge.l13",
       "who": "wuze",
       "expr": "guarded",
       "kind": "say",
-      "text": "末行……"
+      "text": "找到了。"
     },
     {
       "id": "ch02_s04_shuge.l14",
@@ -152,7 +152,7 @@
       "who": "shenheng",
       "expr": "guarded",
       "kind": "say",
-      "text": "少两份领券，又不能——"
+      "text": "少两张领钱的凭据，我当时就不肯——"
     },
     {
       "id": "ch02_s04_shuge.l18",
@@ -179,14 +179,14 @@
       "who": "shenheng",
       "expr": "default",
       "kind": "say",
-      "text": "我又在说那两份券。"
+      "text": "我又拿缺凭据来解释了。"
     },
     {
       "id": "ch02_s04_shuge.l22",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "两份券。"
+      "text": "可她们说没领到的钱，还是没查。"
     },
     {
       "id": "ch02_s04_shuge.l23",
@@ -248,7 +248,7 @@
       "who": "shenheng",
       "expr": "default",
       "kind": "say",
-      "text": "我若抢着解释，你先把那句念完，别停。"
+      "text": "我若又急着解释，你先把那一页念完。"
     },
     {
       "id": "ch02_s04_shuge.l32",
@@ -276,7 +276,7 @@
       "who": "shenheng",
       "expr": "default",
       "kind": "say",
-      "text": "找漏处，后一件不请你。"
+      "text": "请你找出我当年漏查的地方。相见的事，不拿这个请你。"
     },
     {
       "id": "ch02_s04_shuge.l36",
@@ -316,14 +316,15 @@
       "id": "ch02_s04_shuge.l41",
       "who": "narr",
       "kind": "aside",
-      "text": "她取出一张窄笺，与待交的调卷回执并放。"
+      "text": "她取出一张窄笺，与待交的调卷回执并放。",
+      "image": "e39_ch02_s04_l41"
     },
     {
       "id": "ch02_s04_shuge.l42",
       "who": "shenheng",
       "expr": "default",
       "kind": "say",
-      "text": "时辰写给你，调卷回执也请署里一同送。"
+      "text": "见面的时辰另写给你。调卷的回执，请官署一道送去。"
     },
     {
       "id": "ch02_s04_shuge.l43",

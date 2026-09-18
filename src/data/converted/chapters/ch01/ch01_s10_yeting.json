@@ -65,7 +65,7 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "余数没抹，下回约在一处交，省得各跑。"
+      "text": "欠下的没抹。下回约在一处交，省得你们各跑。"
     },
     {
       "id": "ch01_s10_yeting.l7",
@@ -75,7 +75,7 @@
       "who": "songhuizhen",
       "expr": "default",
       "kind": "say",
-      "text": "一处交。"
+      "text": "可别又到了才说缺东西。"
     },
     {
       "id": "ch01_s10_yeting.l8",
@@ -134,7 +134,7 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "新才人抄完才走，我核到了末行。"
+      "text": "她把新簿抄完才走，我也一笔笔对完了。"
     },
     {
       "id": "ch01_s10_yeting.l14",
@@ -144,7 +144,7 @@
       "who": "songhuizhen",
       "expr": "default",
       "kind": "say",
-      "text": "末行……"
+      "text": "你们也守了一夜。"
     },
     {
       "id": "ch01_s10_yeting.l15",
@@ -164,7 +164,7 @@
       "who": "songhuizhen",
       "expr": "default",
       "kind": "say",
-      "text": "灯下留了两处位子，夜核的人也得轮。"
+      "text": "夜里对账得换着来，总不能只靠你们两个。"
     },
     {
       "id": "ch01_s10_yeting.l17",
@@ -192,7 +192,7 @@
       "who": "tangjian",
       "expr": "guarded",
       "kind": "say",
-      "text": "谁见证她领了？"
+      "text": "得另有一个人，看见她确实收到了。"
     },
     {
       "id": "ch01_s10_yeting.l21",
@@ -213,7 +213,7 @@
       "who": "tangjian",
       "expr": "guarded",
       "kind": "say",
-      "text": "你送、你核，还替她答，出了错全找你一个人。"
+      "text": "你送东西，又替她签、替她查，出了错全得你担。"
     },
     {
       "id": "ch01_s10_yeting.l24",
@@ -267,14 +267,14 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "今日我去，明日换核簿的当值人。"
+      "text": "今日我跟你去。明日请当班查账的人去。"
     },
     {
       "id": "ch01_s10_yeting.l32",
       "who": "songhuizhen",
       "expr": "default",
       "kind": "say",
-      "text": "当值人。"
+      "text": "那也先告诉病舍是谁来。"
     },
     {
       "id": "ch01_s10_yeting.l33",
@@ -288,7 +288,7 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "名字写在门内，换值先交代未领的。"
+      "text": "当班的名字写在门内，交班时说清还有谁没领。"
     },
     {
       "id": "ch01_s10_yeting.l35",
@@ -309,7 +309,7 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "说完让她复一遍，我记。"
+      "text": "说完让她自己复述一遍，我再记下。"
     },
     {
       "id": "ch01_s10_yeting.l38",

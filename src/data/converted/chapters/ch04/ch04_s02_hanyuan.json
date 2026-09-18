@@ -32,14 +32,14 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "病者指定了照料人，病舍不认凭，取药晚了一回。"
+      "text": "病人写明要谁来照料，病舍却不认那张凭据，耽误了一回取药。"
     },
     {
       "id": "ch04_s02_hanyuan.l4",
       "who": "songhuizhen",
       "expr": "default",
       "kind": "say",
-      "text": "一回。"
+      "text": "药已经迟了一回。"
     },
     {
       "id": "ch04_s02_hanyuan.l5",
@@ -103,7 +103,7 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "几日。"
+      "text": "别只写准了，却还让人空等。"
     },
     {
       "id": "ch04_s02_hanyuan.l13",
@@ -115,7 +115,7 @@
       "who": "liqinghe",
       "expr": "default",
       "kind": "say",
-      "text": "登记等几日？经手人列上，别只写准了。"
+      "text": "登记要等几日？谁来办，也写上，别只说准了。"
     },
     {
       "id": "ch04_s02_hanyuan.l14",
@@ -127,7 +127,7 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "经手人。"
+      "text": "谁办这件，先写清楚。"
     },
     {
       "id": "ch04_s02_hanyuan.l15",
@@ -141,7 +141,7 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "照料凭。"
+      "text": "先查她指定照料人的那张凭据。"
     },
     {
       "id": "ch04_s02_hanyuan.l17",
@@ -155,7 +155,7 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "原有代领凭可以核，先办，另案报。"
+      "text": "原来就准代领，可以凭旧例查办。先送药，另把经过报上来。"
     },
     {
       "id": "ch04_s02_hanyuan.l19",
@@ -172,7 +172,7 @@
       "who": "shenheng",
       "expr": "default",
       "kind": "say",
-      "text": "还有反对新署用人的原议。"
+      "text": "还有一份反对你新署用人的话。"
     },
     {
       "id": "ch04_s02_hanyuan.l21",
@@ -202,7 +202,7 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "原议。"
+      "text": "把她原来怎么问的给我看。"
     },
     {
       "id": "ch04_s02_hanyuan.l24",
@@ -212,7 +212,7 @@
       "who": "shenheng",
       "expr": "default",
       "kind": "say",
-      "text": "换个职名，是不是仍只有近人能问。"
+      "text": "她问：换了官职名字，是不是仍只有你身边的人能过问。"
     },
     {
       "id": "ch04_s02_hanyuan.l25",
@@ -232,7 +232,7 @@
       "who": "shenheng",
       "expr": "default",
       "kind": "say",
-      "text": "主张只登你的答复，反对另存。"
+      "text": "有人提议，只登你的答复，把她反对的话另收起来。"
     },
     {
       "id": "ch04_s02_hanyuan.l27",
@@ -262,7 +262,7 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "同存要逐项答，三日办不完就记延期。"
+      "text": "一起存，就得逐条答。三日答不完，要明记延期。"
     },
     {
       "id": "ch04_s02_hanyuan.l30",
@@ -272,7 +272,7 @@
       "who": "shenheng",
       "expr": "default",
       "kind": "say",
-      "text": "移出议录，原牒暂存，后来人就找不到来由。"
+      "text": "反对的话移出去，只另收原稿，后来翻议录的人就不知道她问过什么。"
     },
     {
       "id": "ch04_s02_hanyuan.l31",
@@ -282,7 +282,7 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "来由。"
+      "text": "也看不出我到底有没有答。"
     },
     {
       "id": "ch04_s02_hanyuan.l32",
@@ -292,7 +292,7 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "只算本人意见，不替在位的人批。"
+      "text": "你交的是自己的意见，不能替如今在位的人作批复。"
     },
     {
       "id": "ch04_s02_hanyuan.l33",
@@ -312,7 +312,7 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "本人意见。"
+      "text": "先把你自己的话说清楚。"
     },
     {
       "id": "ch04_s02_hanyuan.l35",
@@ -332,7 +332,7 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "反对照收，署谁记谁，李的答复另列。"
+      "text": "你反对的照收，署你的名。李令仪怎么答，另列。"
     },
     {
       "id": "ch04_s02_hanyuan.l37",
@@ -352,7 +352,7 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "照收。"
+      "text": "也一样收。"
     },
     {
       "id": "ch04_s02_hanyuan.l39",
@@ -368,7 +368,8 @@
       "id": "ch04_s02_hanyuan.l40",
       "who": "empty",
       "kind": "aside",
-      "text": "帷幔下摆离地半寸，光从底下穿过，落在空着的砖面上。"
+      "text": "帷幔下摆离地半寸，光从底下穿过，落在空着的砖面上。",
+      "image": "e39_ch04_s02_l40"
     },
     {
       "id": "ch04_s02_hanyuan.l41",
@@ -381,7 +382,7 @@
   "choices": [
     {
       "id": "ch04_s02_hanyuan.cA",
-      "text": "原议与答复同收",
+      "text": "把反对原话与我的答复一起存",
       "require": {
         "flag.enthroned": true
       },
@@ -394,7 +395,7 @@
     },
     {
       "id": "ch04_s02_hanyuan.cB",
-      "text": "议录只收答复，原议另存",
+      "text": "议录只留我答的，反对原话另存",
       "require": {
         "flag.enthroned": true
       },
@@ -407,7 +408,7 @@
     },
     {
       "id": "ch04_s02_hanyuan.cC",
-      "text": "递交本人意见，领回存件",
+      "text": "交自己的意见，取一份留存",
       "require": {
         "flag.enthroned": false
       },

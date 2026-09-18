@@ -39,7 +39,7 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "原话。"
+      "text": "没有改成客气话就好。"
     },
     {
       "id": "ch04_s09_yuanye.l5",
@@ -60,7 +60,7 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "下月。"
+      "text": "那我下月还来问。"
     },
     {
       "id": "ch04_s09_yuanye.l8",
@@ -93,7 +93,8 @@
       "id": "ch04_s09_yuanye.l12",
       "who": "narr",
       "kind": "aside",
-      "text": "你在石阶下停住，她把卷放到另一侧。"
+      "text": "你在石阶下停住，她把卷放到另一侧。",
+      "image": "e39_ch04_s09_l12"
     },
     {
       "id": "ch04_s09_yuanye.l13",
@@ -164,7 +165,7 @@
       "who": "liqinghe",
       "expr": "default",
       "kind": "say",
-      "text": "另约。归期不列朝班，不拿差事换你留下。"
+      "text": "那就另约。何时回来，不写进朝班，也不拿差事留你。"
     },
     {
       "id": "ch04_s09_yuanye.l22",

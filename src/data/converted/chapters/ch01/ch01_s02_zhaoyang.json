@@ -92,7 +92,7 @@
       "who": "shenheng",
       "expr": "default",
       "kind": "say",
-      "text": "裴将军，起处和止处都请写明。"
+      "text": "裴将军，从哪里牵到哪里，请写明。"
     },
     {
       "id": "ch01_s02_zhaoyang.l13",
@@ -134,7 +134,7 @@
       "who": "shenheng",
       "expr": "default",
       "kind": "say",
-      "text": "看过试项，再署名。"
+      "text": "先看清考什么，再签名字。"
     },
     {
       "id": "ch01_s02_zhaoyang.l19",
@@ -154,14 +154,14 @@
       "who": "shenheng",
       "expr": "guarded",
       "kind": "say",
-      "text": "旧纸得留着，明日再有人问，才拿得出原纸来核。"
+      "text": "得留着。日后追问谁写错了，要拿这张纸作证。"
     },
     {
       "id": "ch01_s02_zhaoyang.l22",
       "who": "wuze",
       "expr": "guarded",
       "kind": "say",
-      "text": "原纸。"
+      "text": "改正了，也不抹掉写错的那份。"
     },
     {
       "id": "ch01_s02_zhaoyang.l23",
@@ -182,7 +182,7 @@
       "who": "shenheng",
       "expr": "default",
       "kind": "say",
-      "text": "先说重抄。"
+      "text": "先说整批重新抄的办法。"
     },
     {
       "id": "ch01_s02_zhaoyang.l26",
@@ -196,7 +196,7 @@
       "who": "shenheng",
       "expr": "default",
       "kind": "say",
-      "text": "整批重抄，试次得另排。"
+      "text": "这一批全重抄，考试时辰就得重排。"
     },
     {
       "id": "ch01_s02_zhaoyang.l28",
@@ -224,21 +224,21 @@
       "who": "shenheng",
       "expr": "default",
       "kind": "say",
-      "text": "也可逐张附改，更正处一同署名。"
+      "text": "也可在每张纸上补明改处，我们一起签名。"
     },
     {
       "id": "ch01_s02_zhaoyang.l32",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "附改的话……"
+      "text": "这样就不用重排？"
     },
     {
       "id": "ch01_s02_zhaoyang.l33",
       "who": "shenheng",
       "expr": "guarded",
       "kind": "say",
-      "text": "今日能续试，日后查问你得来说明。"
+      "text": "今日能接着试。但日后查问，你得来说明改过什么。"
     },
     {
       "id": "ch01_s02_zhaoyang.l34",
@@ -252,14 +252,14 @@
       "who": "shenheng",
       "expr": "default",
       "kind": "say",
-      "text": "你看这里。"
+      "text": "你不是一个人担这件事。"
     },
     {
       "id": "ch01_s02_zhaoyang.l36",
       "who": "shenheng",
       "expr": "default",
       "kind": "say",
-      "text": "经我手的，也问我。"
+      "text": "我经手写的，也得由我解释。"
     },
     {
       "id": "ch01_s02_zhaoyang.l37",
@@ -304,16 +304,11 @@
       "id": "ch01_s02_zhaoyang.l43",
       "who": "empty",
       "kind": "aside",
-      "text": "旧景·上元。宫墙边的灯轮亮着，矮案上一盏小灯将熄。"
+      "text": "旧景·上元。宫墙边的灯轮亮着，矮案上一盏小灯将熄。",
+      "image": "wu_denglun"
     },
     {
       "id": "ch01_s02_zhaoyang.l44",
-      "who": "cg",
-      "kind": "aside",
-      "text": "wu_denglun"
-    },
-    {
-      "id": "ch01_s02_zhaoyang.l45",
       "who": "narr",
       "kind": "aside",
       "text": "眼前，你把更正纸留在昭阳殿案上，等着署名。"
@@ -335,7 +330,7 @@
     },
     {
       "id": "ch01_s02_zhaoyang.cB",
-      "text": "逐张附改，我留名备查",
+      "text": "逐张补明改处，我签名备查",
       "effects": {
         "shi": 1,
         "ming": -1,

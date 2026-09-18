@@ -17,7 +17,7 @@
       "id": "ch03_s13_yeting.l1",
       "who": "narr",
       "kind": "aside",
-      "text": "受辞存件收在袖里，你回掖庭看阿荻收针包。"
+      "text": "你收好殿上答话的存件，回掖庭看阿荻收针包。"
     },
     {
       "id": "ch03_s13_yeting.l2",
@@ -148,7 +148,7 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "这旬。"
+      "text": "那还有这一旬的差要交。"
     },
     {
       "id": "ch03_s13_yeting.l20",
@@ -169,7 +169,7 @@
       "who": "adi",
       "expr": "default",
       "kind": "say",
-      "text": "外头的牒没催我。"
+      "text": "外头办文书的人没催我搬。"
     },
     {
       "id": "ch03_s13_yeting.l23",
@@ -182,41 +182,41 @@
       "id": "ch03_s13_yeting.l24",
       "who": "narr",
       "kind": "aside",
-      "text": "你把更正回执放在凳上。阿荻没有伸手，先问了纸是哪一份。"
+      "text": "你把各处收到更正的凭据放在凳上。阿荻没伸手，先问是哪份。"
     },
     {
       "id": "ch03_s13_yeting.l25",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "九件款领足了，这是各处更正，没抄私话。"
+      "text": "九件的钱领足了。这是各处更正的回话，没抄你的私话。"
     },
     {
       "id": "ch03_s13_yeting.l26",
       "who": "adi",
       "expr": "default",
       "kind": "say",
-      "text": "更正。"
+      "text": "改了什么，念给我听。"
     },
     {
       "id": "ch03_s13_yeting.l27",
       "who": "adi",
       "expr": "default",
       "kind": "say",
-      "text": "给我听听。"
+      "text": "慢些，我听着。"
     },
     {
       "id": "ch03_s13_yeting.l28",
       "who": "narr",
       "kind": "aside",
-      "text": "你念到擅引由提出人担责。阿荻把桌边翻卷的布压平，让你接着念。"
+      "text": "你念到擅用私话由你担责。阿荻压平桌边翻卷的布，让你接着念。"
     },
     {
       "id": "ch03_s13_yeting.l29",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "往下是收更正的各处。"
+      "text": "下面列着哪些地方收到了更正。"
     },
     {
       "id": "ch03_s13_yeting.l30",
@@ -230,7 +230,7 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "留一份，或者……找人再核。"
+      "text": "你可留一份，也可另找人，查我改得对不对。"
     },
     {
       "id": "ch03_s13_yeting.l32",

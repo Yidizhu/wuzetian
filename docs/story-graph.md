@@ -44,15 +44,15 @@ flowchart TD
   ch01_s00_zhaoyang --> ch01_s01_zhaoyang
   ch01_s01_zhaoyang --> ch01_s02_zhaoyang
   ch01_s02_zhaoyang -->|"A 全批重抄，我补误掉的抄工"| ch01_s03_yeting
-  ch01_s02_zhaoyang -->|"B 逐张附改，我留名备查"| ch01_s03_yeting
+  ch01_s02_zhaoyang -->|"B 逐张补明改处，我签名备查"| ch01_s03_yeting
   ch01_s03_yeting --> ch01_s04_shuge
   ch01_s04_shuge -->|"对诗·赢"| ch01_s05_yuanye
   ch01_s04_shuge -->|"对诗·输"| ch01_s05_yuanye
   ch01_s05_yuanye --> ch01_s06_yeting
-  ch01_s06_yeting -->|"A 先发已核的，我记余数追领"| ch01_s07_yuanye
-  ch01_s06_yeting -->|"B 等核齐，我来补夜里的抄工"| ch01_s07_yuanye
-  ch01_s07_yuanye -->|"A 我陪你催，但不替你许归期"| ch01_s08_shuge
-  ch01_s07_yuanye -->|"B 日子仍要问，我陪你逐项核"| ch01_s08_shuge
+  ch01_s06_yeting -->|"A 先领布，我记下缺线再追领"| ch01_s07_yuanye
+  ch01_s06_yeting -->|"B 等布线齐了，我留下补抄"| ch01_s07_yuanye
+  ch01_s07_yuanye -->|"A 陪你催欠钱，不替你许归期"| ch01_s08_shuge
+  ch01_s07_yuanye -->|"B 陪你逐项查清，再问归期"| ch01_s08_shuge
   ch01_s08_shuge -->|"A 先收六份，满额便明示"| ch01_s09_shuge
   ch01_s08_shuge -->|"B 午后前都收，评卷顺延"| ch01_s09_shuge
   ch01_s09_shuge -->|"A 我来当面挑，也听你驳我"| ch01_s10_yeting
@@ -69,7 +69,7 @@ flowchart TD
   ch01_s14_yuanye --> ch01_s17_yeting
   ch01_s15_shishe --> ch01_s17_yeting
   ch01_s16_yuanye --> ch01_s17_yeting
-  ch01_s17_yeting -->|"A 我先追原牒，请宋才人陪你"| ch01_s18_zhaoyang
+  ch01_s17_yeting -->|"A 先追呈文，请宋才人陪你"| ch01_s18_zhaoyang
   ch01_s17_yeting -->|"B 先把话说全，再带补说明去"| ch01_s18_zhaoyang
   ch01_s18_zhaoyang -.->|"章末"| ch02_s01_yeting
   ch02_s01_yeting["→ 第 2 章 01_yeting"]:::pending
@@ -110,30 +110,30 @@ flowchart TD
   ch02_s25_yeting["25_yeting 那天我在<br/>yeting"]:::ink
   ch02_s26_shuge["26_shuge 剩下的正好<br/>shuge"]:::ink
   ch02_s01_yeting --> ch02_s02_yeting
-  ch02_s02_yeting -->|"A 现在逐项核，门外散去"| ch02_s03_nvguan
-  ch02_s02_yeting -->|"B 午后再核，给她留半日"| ch02_s03_nvguan
+  ch02_s02_yeting -->|"A 现在逐项查清，请门外的人"| ch02_s03_nvguan
+  ch02_s02_yeting -->|"B 午后再查，给她留半日"| ch02_s03_nvguan
   ch02_s03_nvguan --> ch02_s04_shuge
   ch02_s04_shuge -->|"A 一起读。读完也想见你"| ch02_s05_yeting
   ch02_s04_shuge -->|"B 一起读，私下相见先缓缓"| ch02_s05_yeting
   ch02_s04_shuge -->|"C 我只核这卷，不约私见"| ch02_s05_yeting
   ch02_s04_shuge -->|"D 这次陪读我也接不下"| ch02_s05_yeting
   ch02_s05_yeting --> ch02_s06_yeting
-  ch02_s06_yeting -->|"A 暂垫补栏款，今日付清"| ch02_s07_yuanye
-  ch02_s06_yeting -->|"B 先付六件，余款催原项"| ch02_s07_yuanye
-  ch02_s07_yuanye -->|"A 我核欠项，你去问她"| ch02_s08_shuge
-  ch02_s07_yuanye -->|"B 我核脚程，你把粮数列齐"| ch02_s08_shuge
-  ch02_s07_yuanye -->|"C 我今日接不下，另请人核"| ch02_s08_shuge
+  ch02_s06_yeting -->|"A 先垫修栏的钱，今日付清"| ch02_s07_yuanye
+  ch02_s06_yeting -->|"B 先付六件，余下三件另催"| ch02_s07_yuanye
+  ch02_s07_yuanye -->|"A 我查欠了什么，你去问她"| ch02_s08_shuge
+  ch02_s07_yuanye -->|"B 我查行程，你列齐粮数"| ch02_s08_shuge
+  ch02_s07_yuanye -->|"C 这回不接，请另找人查"| ch02_s08_shuge
   ch02_s08_shuge -->|"A 连往返按半日给俸"| ch02_s09_shishe
   ch02_s08_shuge -->|"B 按次给俸，往返另记"| ch02_s09_shishe
   ch02_s09_shishe -->|"A 我陪读，有刺耳的就停"| ch02_s10_nvguan
   ch02_s09_shishe -->|"B 我先听完，再逐句说"| ch02_s10_nvguan
   ch02_s09_shishe -->|"C 这次我也没余力陪读"| ch02_s10_nvguan
   ch02_s10_nvguan --> ch02_s11_hanyuan
-  ch02_s11_hanyuan -->|"A 先收议抄，再一同验封"| ch02_s12_yeting
-  ch02_s11_hanyuan -->|"B 先验封原件，再收议抄"| ch02_s12_yeting
+  ch02_s11_hanyuan -->|"A 先收住议抄，再查原封"| ch02_s12_yeting
+  ch02_s11_hanyuan -->|"B 先查原封，再收住议抄"| ch02_s12_yeting
   ch02_s12_yeting --> ch02_s13_hanyuan
-  ch02_s13_hanyuan -->|"A 全笺限阅，另存公务摘录"| ch02_s14_zhaoyang
-  ch02_s13_hanyuan -->|"B 验存公务摘录，退还私笺"| ch02_s14_zhaoyang
+  ch02_s13_hanyuan -->|"A 整封限人查阅，另抄公务部"| ch02_s14_zhaoyang
+  ch02_s13_hanyuan -->|"B 核存公务部分，把私信退还"| ch02_s14_zhaoyang
   ch02_s14_zhaoyang -->|"🔒 A 去沈衡那里看墨渍"| ch02_s15_shuge
   ch02_s14_zhaoyang -->|"🔒 B 和裴照夜分一块饼"| ch02_s16_yuanye
   ch02_s14_zhaoyang -->|"🔒 C 去温荞那里看窗影"| ch02_s17_shishe
@@ -144,14 +144,14 @@ flowchart TD
   ch02_s17_shishe --> ch02_s20_hanyuan
   ch02_s18_yuanye --> ch02_s20_hanyuan
   ch02_s19_nvguan --> ch02_s20_hanyuan
-  ch02_s20_hanyuan -->|"A 试联署核验，列回避与申辩"| ch02_s21_nvguan
-  ch02_s20_hanyuan -->|"B 试限期问策，列旅费与评期"| ch02_s21_nvguan
+  ch02_s20_hanyuan -->|"A 三处联署，列清避嫌与申辩"| ch02_s21_nvguan
+  ch02_s20_hanyuan -->|"B 限期自行答问，列清路费与"| ch02_s21_nvguan
   ch02_s21_nvguan --> ch02_s25_yeting
   ch02_s25_yeting -->|"A 今夜交给你，我去备稿"| ch02_s22_shuge
   ch02_s25_yeting -->|"B 撤回代答，我自己另排时辰"| ch02_s22_shuge
   ch02_s22_shuge -->|"A 我在门边等你"| ch02_s23_hanyuan
   ch02_s22_shuge -->|"B 今日先走，你慢慢收"| ch02_s23_hanyuan
-  ch02_s23_hanyuan -->|"A 收下候选文牒，准备比较"| ch02_s26_shuge
+  ch02_s23_hanyuan -->|"A 收下候选文书，准备逐项比"| ch02_s26_shuge
   ch02_s26_shuge --> ch02_s24_shuge
   ch02_s24_shuge -.->|"章末"| ch03_s01_shuge
   ch03_s01_shuge["→ 第 3 章 01_shuge"]:::pending
@@ -192,23 +192,23 @@ flowchart TD
   ch03_s22_nvguan["22_nvguan 这屋不等诏来<br/>nvguan"]:::ink
   ch03_s23_yeting["23_yeting 一块方光<br/>yeting · 无用"]:::ink
   ch03_s24_shuge["24_shuge 案上第一件<br/>shuge · 章末"]:::ink
-  ch03_s01_shuge -->|"A 不利页与补答一同交核"| ch03_s02_shuge
-  ch03_s01_shuge -->|"B 暂缓公开，先补证"| ch03_s02_shuge
+  ch03_s01_shuge -->|"A 反对的话和我的说明一起送"| ch03_s02_shuge
+  ch03_s01_shuge -->|"B 先补证再公开，错过本轮查"| ch03_s02_shuge
   ch03_s02_shuge -->|"A 留下坐一会儿，异议照留"| ch03_s03_yeting
   ch03_s02_shuge -->|"B 今日先走，异议照留"| ch03_s03_yeting
   ch03_s03_yeting -->|"A 接下三夜，记清她原有的休"| ch03_s04_yuanye
-  ch03_s03_yeting -->|"B 撤回代答，我出工费并交班"| ch03_s04_yuanye
+  ch03_s03_yeting -->|"B 请另两人代班，我付钱并交"| ch03_s04_yuanye
   ch03_s04_yuanye -->|"A 抱一下。队列照样不添"| ch03_s05_shishe
   ch03_s04_yuanye -->|"B 陪我站一会儿，先不抱"| ch03_s05_shishe
   ch03_s05_shishe -->|"A 稿照实付，今夜一起唱"| ch03_s06_shuge
   ch03_s05_shishe -->|"B 稿照实付，合唱另约"| ch03_s06_shuge
-  ch03_s06_shuge -->|"A 收下合记摘要，底簿照留"| ch03_s07_yeting
-  ch03_s06_shuge -->|"B 并列她的经手，我只署总办"| ch03_s07_yeting
+  ch03_s06_shuge -->|"A 简录只列我，底簿留她的名"| ch03_s07_yeting
+  ch03_s06_shuge -->|"B 并列她做的事，我只署总管"| ch03_s07_yeting
   ch03_s07_yeting --> ch03_s08_hanyuan
-  ch03_s08_hanyuan -->|"A 缩为两处，先付钱并办实代"| ch03_s09_yuanye
-  ch03_s08_hanyuan -->|"🔒 B 缩办保经费，留人核卷"| ch03_s09_yuanye
-  ch03_s08_hanyuan -->|"🔒 C 先办代递，留人核卷"| ch03_s09_yuanye
-  ch03_s08_hanyuan -->|"D 保留六处扩办案，先交现有"| ch03_s09_yuanye
+  ch03_s08_hanyuan -->|"A 减为两处，付足钱并办好代"| ch03_s09_yuanye
+  ch03_s08_hanyuan -->|"🔒 B 先保经费，留人查卷，代送"| ch03_s09_yuanye
+  ch03_s08_hanyuan -->|"🔒 C 先办代送并查卷，下月经费"| ch03_s09_yuanye
+  ch03_s08_hanyuan -->|"D 六处提案不撤，先交已有凭"| ch03_s09_yuanye
   ch03_s08_hanyuan -->|"🔒 E 追问这笔支出的来源"| ch03_s08_hanyuan
   ch03_s09_yuanye -->|"🔒 A 想只同你相爱，我去说清楚"| ch03_s09a_yuanye
   ch03_s09_yuanye -->|"🔒 B 我还想见她，也想见你"| ch03_s09b_yuanye
@@ -230,7 +230,7 @@ flowchart TD
   ch03_s12_hanyuan -->|"🔒 B 辞受已办，去交清余项"| ch03_s13_yeting
   ch03_s12_hanyuan -->|"🔒 C 收好提案，去交清旧差"| ch03_s13_yeting
   ch03_s13_yeting --> ch03_s14_shuge
-  ch03_s14_shuge -->|"A 署下交讫，带走柳的凭据"| ch03_s15_yeting
+  ch03_s14_shuge -->|"A 签明交清，带走柳的凭据"| ch03_s15_yeting
   ch03_s15_yeting -->|"A 收好绳，把她的纸留在她手"| ch03_s16_shuge
   ch03_s16_shuge -->|"🔒 A 去沈衡那里听檐雨"| ch03_s17_shuge
   ch03_s16_shuge -->|"🔒 B 去园里和裴照夜坐坐"| ch03_s18_yuanye
@@ -348,20 +348,20 @@ flowchart TD
   ch04_s01_zhaoyang -->|"🔒 C 仍用添"| ch04_s02_hanyuan
   ch04_s01_zhaoyang -->|"🔒 D 领回自己的东西"| ch04_s02_hanyuan
   ch04_s01_zhaoyang -->|"🔒 E 带上自己的议件"| ch04_s02_hanyuan
-  ch04_s02_hanyuan -->|"🔒 A 原议与答复同收"| ch04_s03_shuge
-  ch04_s02_hanyuan -->|"🔒 B 议录只收答复，原议另存"| ch04_s03_shuge
-  ch04_s02_hanyuan -->|"🔒 C 递交本人意见，领回存件"| ch04_s08_shuge
-  ch04_s03_shuge -->|"🔒 A 原件归存，照权限查阅"| ch04_s04_zhaoyang
+  ch04_s02_hanyuan -->|"🔒 A 把反对原话与我的答复一起"| ch04_s03_shuge
+  ch04_s02_hanyuan -->|"🔒 B 议录只留我答的，反对原话"| ch04_s03_shuge
+  ch04_s02_hanyuan -->|"🔒 C 交自己的意见，取一份留存"| ch04_s08_shuge
+  ch04_s03_shuge -->|"🔒 A 保存原件，按准许的范围查"| ch04_s04_zhaoyang
   ch04_s03_shuge -->|"🔒 B 确认焚毁原案，不可恢复"| ch04_s04_zhaoyang
-  ch04_s03_shuge -->|"🔒 C 原件归存，照权限查阅"| ch04_s04_zhaoyang
+  ch04_s03_shuge -->|"🔒 C 保存原件，按准许的范围查"| ch04_s04_zhaoyang
   ch04_s03_shuge -->|"🔒 D 确认焚毁原案，不可恢复"| ch04_s04_zhaoyang
   ch04_s04_zhaoyang -->|"🔒 A 颁行双方自愿入籍的办法"| ch04_s05_yeting
   ch04_s04_zhaoyang -->|"🔒 B 颁行个人分别授权的办法"| ch04_s05_yeting
   ch04_s04_zhaoyang -->|"🔒 C 颁行双方自愿入籍的办法"| ch04_s05_yeting
   ch04_s04_zhaoyang -->|"🔒 D 颁行个人分别授权的办法"| ch04_s05_yeting
   ch04_s05_yeting --> ch04_s05p_shuge
-  ch04_s07_hanyuan -->|"A 颁行多方提名与异议办法"| ch04_s17_nvguan
-  ch04_s07_hanyuan -->|"B 颁行仅由在位者提名的办法"| ch04_s17_nvguan
+  ch04_s07_hanyuan -->|"A 许多处荐人，并收反对的话"| ch04_s17_nvguan
+  ch04_s07_hanyuan -->|"B 只许在位者荐人"| ch04_s17_nvguan
   ch04_s08_shuge --> ch04_s05p_shuge
   ch04_s10_yuanye --> ch04_s17_nvguan
   ch04_s05rl_yuanye -->|"🔒 A 约好再见，收好自己的稿"| ch04_s08z_shuge

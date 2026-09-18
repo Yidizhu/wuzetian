@@ -2,15 +2,15 @@
   "inputs": [
     {
       "file": "docs/C-2-第一章前六场.md",
-      "sha256": "91ec2ee6ea960197a71f284fb60aecad07c5187e3b62013c56f634722fc1520f"
+      "sha256": "4e0cfaf80d428bc58c6c5ff9c8e55312ab0b2267fa8ce6ff2cd1fcfd0a139798"
     },
     {
       "file": "docs/C-3-第一章后十二场.md",
-      "sha256": "c5baa060d8d49d381121896e11a9d1f8806ec2e53d3767b101504459475a316a"
+      "sha256": "8c7f1ac365dcabd2bd7a9da06f568267cac23b3298bd62732a5bcb2d31945831"
     },
     {
       "file": "docs/C-4-第一章书信.md",
-      "sha256": "4bcbae06dc1da337575db9e720d9675ca7a7b6627a83a039c51f7beb900616a4"
+      "sha256": "c1073c5c0b8391c1e0073e9a1e6289b078e53d582c0174d7ec8040989d3cf174"
     },
     {
       "file": "docs/C0-2-诗词库与对诗.md",
@@ -26,11 +26,11 @@
     },
     {
       "file": "docs/C-7-第二章前十二场.md",
-      "sha256": "03589a3377d320113bf4cbc2ffb33c6a7383c03aed16e3bc645c33a190a21f7b"
+      "sha256": "96145bc965563f36cf9f22a622af77ed1c46456281db73781b8f64678a8972c3"
     },
     {
       "file": "docs/C-8-第二章后十二场与书信.md",
-      "sha256": "d9d8d8d8e75af9b0c3b8416240afc3425869fa65efcb013d29e45500809fa411"
+      "sha256": "e88c87db56aa5b94ed460a743da62570a3d07f157cd646fe0ddc8e3993bb98b3"
     },
     {
       "file": "docs/C-9-第三章大纲.md",
@@ -38,11 +38,11 @@
     },
     {
       "file": "docs/C-10-第三章前十二场.md",
-      "sha256": "fea64a97848089d8e43ad45873863370f605d58bbcf15b2da498b4900690682b"
+      "sha256": "904217c93538d565e0a959632eec28ce5d2b2ceaa3dc09a8ba2dcc5a780767f6"
     },
     {
       "file": "docs/C-11-第三章后十二场与书信.md",
-      "sha256": "157032468fffa5b51631ea9c003901c8a2779ea13892609b1972665b5c49a377"
+      "sha256": "de98ba47e5d167d3f712be25528ecb862e21407022e6547cade3df912a036392"
     },
     {
       "file": "docs/C-12-第四章大纲.md",
@@ -50,11 +50,11 @@
     },
     {
       "file": "docs/C-13-第四章登基与不受.md",
-      "sha256": "a08e507ab37a57573ab3eed2ecd4e9729c4edaa58f8ca37f53e0da6c410aab37"
+      "sha256": "a8e2bd81d490d74ef01098deebc9c926174ff2219dd8b570c7208fb1e859370c"
     },
     {
       "file": "docs/C-14-第四章其余路线与书信.md",
-      "sha256": "252c5d7dd09603358946a2efb35b074ff85279c1df24254856f0e065d1b996e0"
+      "sha256": "2795c663dcc1a3378256ac2acfd7c4baeb5e97bcba5cd2347d10f17d913eafc9"
     }
   ],
   "scenes": [
@@ -216,6 +216,7 @@
     "lt_ch02_peizhaoye_01",
     "lt_ch02_wenqiao_01",
     "lt_ch02_liqinghe_01",
+    "lt_ch02_liuchenghuan_01",
     "lt_season_hanshi_shenheng",
     "lt_ch03_shenheng_01",
     "lt_ch03_peizhaoye_01",

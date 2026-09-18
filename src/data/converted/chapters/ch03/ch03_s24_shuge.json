@@ -23,7 +23,7 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "新送来的没写已办，可以先看，或留时辰答。"
+      "text": "新来的还没答。你可先看，也可定个时辰再回话。"
     },
     {
       "id": "ch03_s24_shuge.l3",
@@ -47,7 +47,7 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "有人问，新署仍由近人经手，是不是只换名。"
+      "text": "有人问，新署还是只用你身边的人，是不是只换了名目。"
     },
     {
       "id": "ch03_s24_shuge.l6",
@@ -57,7 +57,7 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "近人。"
+      "text": "问的正是用谁。"
     },
     {
       "id": "ch03_s24_shuge.l7",
@@ -77,7 +77,7 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "是。具名，还有两份同议。"
+      "text": "是，署了名字。另有两份也这样问。"
     },
     {
       "id": "ch03_s24_shuge.l9",
@@ -87,7 +87,7 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "两份。"
+      "text": "都拿来，不只看这一份。"
     },
     {
       "id": "ch03_s24_shuge.l10",
@@ -116,7 +116,7 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "同议放来，先读，不替我批。"
+      "text": "另外两份也放来。我先读，别替我批。"
     },
     {
       "id": "ch03_s24_shuge.l13",
@@ -135,7 +135,7 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "辞受、重推另存，这张问往后寄到哪儿。"
+      "text": "辞受和重新推选的另存。这张是问，往后文书给你送到哪儿。"
     },
     {
       "id": "ch03_s24_shuge.l15",
@@ -145,7 +145,7 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "寄到哪儿。"
+      "text": "还没想好住哪儿。"
     },
     {
       "id": "ch03_s24_shuge.l16",
@@ -214,7 +214,7 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "下次公议问扩办款，你的案仍列着。"
+      "text": "下次公议要问添办六处的钱。你的提案仍在。"
     },
     {
       "id": "ch03_s24_shuge.l23",
@@ -224,7 +224,7 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "扩办款。"
+      "text": "钱从哪里来，还等我答。"
     },
     {
       "id": "ch03_s24_shuge.l24",
@@ -234,7 +234,7 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "去听与领差，分开答。"
+      "text": "来听议，还是接新差，两件事分开答。"
     },
     {
       "id": "ch03_s24_shuge.l25",
@@ -254,7 +254,7 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "能，主持已签受理，时辰在末行。"
+      "text": "能。主持的人已签收，末行是让你来的时辰。"
     },
     {
       "id": "ch03_s24_shuge.l27",
@@ -264,7 +264,7 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "末行。"
+      "text": "那一行我看见了。"
     },
     {
       "id": "ch03_s24_shuge.l28",
@@ -283,7 +283,7 @@
       },
       "who": "narr",
       "kind": "aside",
-      "text": "你将邀请牒折到时辰那一行，放在自己的提案上。纸角没有再硌着掌心。"
+      "text": "你把邀你去议事的文书折到写时辰的那行，放在提案上。纸角不再硌手。"
     },
     {
       "id": "ch03_s24_shuge.l30",
@@ -357,7 +357,8 @@
       "id": "ch03_s24_shuge.l39",
       "who": "empty",
       "kind": "aside",
-      "text": "案脚一片薄木垫在砖缝上，暮光停在翘起的那一端。"
+      "text": "案脚一片薄木垫在砖缝上，暮光停在翘起的那一端。",
+      "image": "e39_ch03_s24_l39"
     },
     {
       "id": "ch03_s24_shuge.l40",

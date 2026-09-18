@@ -25,7 +25,8 @@
       "id": "ch04_s06_zhaoyang.l2",
       "who": "narr",
       "kind": "aside",
-      "text": "昭阳殿夜里只点一盏灯，灯油的气味留在垂下的帷幔内。"
+      "text": "昭阳殿夜里只点一盏灯，灯油的气味留在垂下的帷幔内。",
+      "image": "e39_ch04_s06_l2"
     },
     {
       "id": "ch04_s06_zhaoyang.l3",
@@ -196,16 +197,11 @@
       "id": "ch04_s06_zhaoyang.l27",
       "who": "narr",
       "kind": "aside",
-      "text": "旧景·重阳。塔栏上的茱萸囊横在风里，菊花酒还未饮尽。"
+      "text": "旧景·重阳。塔栏上的茱萸囊横在风里，菊花酒还未饮尽。",
+      "image": "wu_zhuyu"
     },
     {
       "id": "ch04_s06_zhaoyang.l28",
-      "who": "cg",
-      "kind": "aside",
-      "text": "wu_zhuyu"
-    },
-    {
-      "id": "ch04_s06_zhaoyang.l29",
       "who": "narr",
       "kind": "aside",
       "text": "眼前，她只添了半口油便停下，你没有把下一份荐牒拿进来。"

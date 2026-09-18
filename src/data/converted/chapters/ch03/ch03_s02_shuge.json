@@ -18,7 +18,7 @@
       "id": "ch03_s02_shuge.l1",
       "who": "narr",
       "kind": "aside",
-      "text": "交核的原页还在书阁，你又来找沈衡。"
+      "text": "你又到书阁找沈衡。交去查证的原稿还放在案上。"
     },
     {
       "id": "ch03_s02_shuge.l2",
@@ -45,14 +45,14 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "随议差？"
+      "text": "就是让你随公议收卷的差事？"
     },
     {
       "id": "ch03_s02_shuge.l6",
       "who": "shenheng",
       "expr": "default",
       "kind": "say",
-      "text": "嗯，今日交牌。"
+      "text": "是，今日要把差牌交回去。"
     },
     {
       "id": "ch03_s02_shuge.l7",
@@ -100,7 +100,7 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "我还没交复核。待核标记留着，原句也留着。"
+      "text": "我还没交去复查。反对的原话留着，也仍标着待查。"
     },
     {
       "id": "ch03_s02_shuge.l13",
@@ -127,7 +127,7 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "三年。"
+      "text": "你怎么没同我说过。"
     },
     {
       "id": "ch03_s02_shuge.l17",
@@ -155,7 +155,7 @@
       "who": "wuze",
       "expr": "guarded",
       "kind": "say",
-      "text": "在乎。"
+      "text": "我说错了。"
     },
     {
       "id": "ch03_s02_shuge.l21",
@@ -168,7 +168,8 @@
       "id": "ch03_s02_shuge.l22",
       "who": "narr",
       "kind": "aside",
-      "text": "你伸手扶住歪倒的牌。她也伸了手，停在你指边，没有覆上来。"
+      "text": "你伸手扶住歪倒的牌。她也伸了手，停在你指边，没有覆上来。",
+      "image": "e39_ch03_s02_l22"
     },
     {
       "id": "ch03_s02_shuge.l23",
@@ -182,7 +183,7 @@
       "who": "shenheng",
       "expr": "default",
       "kind": "say",
-      "text": "只想核卷，核完便走，门该开着。"
+      "text": "若只想来查卷，查完便走，也该让你来。"
     },
     {
       "id": "ch03_s02_shuge.l25",
@@ -235,32 +236,27 @@
       "id": "ch03_s02_shuge.l32",
       "who": "narr",
       "kind": "aside",
-      "text": "你看她在卷架边坐下，靠门那张凳子空着，凳脚朝着你。"
+      "text": "你看她在卷架边坐下，靠门那张凳子空着，凳脚朝着你。",
+      "image": "shenheng_2_rangzuo"
     },
     {
       "id": "ch03_s02_shuge.l33",
-      "who": "cg",
-      "kind": "aside",
-      "text": "shenheng_2_rangzuo"
-    },
-    {
-      "id": "ch03_s02_shuge.l34",
       "who": "self",
       "kind": "inner",
       "text": "（想坐过去。那句话，还得跟她争。）"
     },
     {
-      "id": "ch03_s02_shuge.l35",
+      "id": "ch03_s02_shuge.l34",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "撤差牒给我一份。我问，不拿你的字去换。"
+      "text": "撤你差事的文书给我一份。我去问，但不替你撤反对的话。"
     },
     {
-      "id": "ch03_s02_shuge.l36",
+      "id": "ch03_s02_shuge.l35",
       "who": "narr",
       "kind": "aside",
-      "text": "你将撤差牒收进自己的稿旁。"
+      "text": "你把撤差的文书收在自己稿子旁边。"
     }
   ],
   "choices": [

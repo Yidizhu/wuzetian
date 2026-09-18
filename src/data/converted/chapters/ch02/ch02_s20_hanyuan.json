@@ -32,56 +32,56 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "奉准试收材料，入候选册仍得等新条颁行。"
+      "text": "已经准许先收材料。收进候选的册子，要等新规颁下。"
     },
     {
       "id": "ch02_s20_hanyuan.l4",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "试收。"
+      "text": "今日先把荐谁的材料收来？"
     },
     {
       "id": "ch02_s20_hanyuan.l5",
       "who": "hetaihou",
       "expr": "default",
       "kind": "say",
-      "text": "今日只议谁能受荐，别当作已经得了哪一席。"
+      "text": "对，只议谁有资格受荐。收了材料，不是就得了位。"
     },
     {
       "id": "ch02_s20_hanyuan.l6",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "只许宗姓这行，先改掉。"
+      "text": "从前只许宗姓受荐，这一条要改。"
     },
     {
       "id": "ch02_s20_hanyuan.l7",
       "who": "liqinghe",
       "expr": "default",
       "kind": "say",
-      "text": "改掉以后，谁来核荐书？"
+      "text": "那么荐书由谁查？"
     },
     {
       "id": "ch02_s20_hanyuan.l8",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "谁核……"
+      "text": "不能只看谁肯署名。"
     },
     {
       "id": "ch02_s20_hanyuan.l9",
       "who": "shenheng",
       "expr": "default",
       "kind": "say",
-      "text": "甲法由三处联署，核履历与经办，各答所知。"
+      "text": "甲法：三处一同署名，各查她办过的事，各答自己知道的。"
     },
     {
       "id": "ch02_s20_hanyuan.l10",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "找不到三处的，还是进不来。"
+      "text": "可找不齐三处肯署名的人，连门都进不了。"
     },
     {
       "id": "ch02_s20_hanyuan.l11",
@@ -102,42 +102,42 @@
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "乙法限期试问，先收自呈，还得核实做过的事。"
+      "text": "乙法：不必等人举荐，自己呈文，限期来答问，再查做过的事。"
     },
     {
       "id": "ch02_s20_hanyuan.l14",
       "who": "liqinghe",
       "expr": "default",
       "kind": "say",
-      "text": "路远的——"
+      "text": "离得远的人，怎么赶来？"
     },
     {
       "id": "ch02_s20_hanyuan.l15",
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "得留旅费。"
+      "text": "得给路费，也得留时日。"
     },
     {
       "id": "ch02_s20_hanyuan.l16",
       "who": "liqinghe",
       "expr": "default",
       "kind": "say",
-      "text": "旅费。"
+      "text": "这笔钱从哪儿出？"
     },
     {
       "id": "ch02_s20_hanyuan.l17",
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "还有寄卷人手，评期也长。"
+      "text": "还要人手收外地寄来的卷子。查得完，日子就得放长。"
     },
     {
       "id": "ch02_s20_hanyuan.l18",
       "who": "hetaihou",
       "expr": "default",
       "kind": "say",
-      "text": "联署能结成旧门第的荐网；试问也得来得起。"
+      "text": "联署仍靠旧门第的人情；自己来答问，也得来得起。"
     },
     {
       "id": "ch02_s20_hanyuan.l19",
@@ -151,14 +151,14 @@
       "who": "hetaihou",
       "expr": "default",
       "kind": "say",
-      "text": "等得起的人，还会先占案前。"
+      "text": "能等得起的人，又先坐到了案前。"
     },
     {
       "id": "ch02_s20_hanyuan.l21",
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "门槛都写出来，别只写不问宗姓。"
+      "text": "这些拦住人的难处，一并写上，别藏着。"
     },
     {
       "id": "ch02_s20_hanyuan.l22",
@@ -172,14 +172,14 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "旧供给。"
+      "text": "你仍领宗室的供给。"
     },
     {
       "id": "ch02_s20_hanyuan.l24",
       "who": "wuze",
       "expr": "guarded",
       "kind": "say",
-      "text": "钱从哪来，谁没分到，也给我们看。"
+      "text": "钱从哪里来，谁没领到，也给我们看。"
     },
     {
       "id": "ch02_s20_hanyuan.l25",
@@ -206,14 +206,14 @@
       "who": "shenheng",
       "expr": "default",
       "kind": "say",
-      "text": "不得以兵代荐，往来利害各自申明。"
+      "text": "不能拿兵马替人举荐。有亲近往来、钱财牵连，都得说清。"
     },
     {
       "id": "ch02_s20_hanyuan.l29",
       "who": "tangjian",
       "expr": "default",
       "kind": "say",
-      "text": "两法都留异议，候选人反对的话也收。"
+      "text": "两法都收反对的话。候选的人反对，也不能压着。"
     },
     {
       "id": "ch02_s20_hanyuan.l30",
@@ -227,14 +227,14 @@
       "who": "wuze",
       "expr": "default",
       "kind": "say",
-      "text": "我的擅引也列，阿荻私话别随卷发。"
+      "text": "我擅用阿荻的话，也要列。她的私话，不跟着卷子发。"
     },
     {
       "id": "ch02_s20_hanyuan.l32",
       "who": "hetaihou",
       "expr": "default",
       "kind": "say",
-      "text": "先选试哪一法，再写清花多少钱、用谁的人手。"
+      "text": "先选怎么收，再说清要花多少、谁来办。"
     },
     {
       "id": "ch02_s20_hanyuan.l33",
@@ -252,7 +252,7 @@
   "choices": [
     {
       "id": "ch02_s20_hanyuan.cA",
-      "text": "试联署核验，列回避与申辩",
+      "text": "三处联署，列清避嫌与申辩办法",
       "effects": {
         "shi": 1,
         "flag.nomination_joint_review": true
@@ -262,7 +262,7 @@
     },
     {
       "id": "ch02_s20_hanyuan.cB",
-      "text": "试限期问策，列旅费与评期",
+      "text": "限期自行答问，列清路费与日期",
       "effects": {
         "ming": 1,
         "flag.nomination_open_questions": true
