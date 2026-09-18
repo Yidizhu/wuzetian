@@ -3,7 +3,7 @@
  *
  *   序幕＋第一章 → ch1，第二／三／四章 → ch2／ch3／ch4
  *
- * **文件**：`public/bgm/ch1–4.m4a`，每首从原件（`bgm/1–4.mp3`，54–66 MB，一小时上下的长曲，不进版本库）
+ * **文件**：`public/bgm/ch1–4.m4a`，每首从原件（`bgm/1–4.mp3`；第二章 B45 起换成 `bgm/2.1.mp3`，D-227；54–66 MB，一小时上下的长曲，不进版本库）
  * 里挑一段稳的剪成 2 分 45 秒，响度拉到 -22 LUFS（压在台词底下），首尾 5 秒等功率交叉淡化，AAC 96 kbps，一首约 2 MB。
  * 用 AAC 不用 MP3：机器上唯一的 ffmpeg 是剪映带的那一份，它的 MP3 编码器一跑就崩；AAC 在 iOS、微信、桌面浏览器都能放。
  *
@@ -95,6 +95,19 @@ export class Bgm {
   /** 该放哪一首（进章时定）。没开声也记着，开声那一刻才取 */
   private want: string | null = null;
   private entry: Entry = {};
+  /** 让位（D-226）：听雨的场配乐退后。1 是不让 */
+  private duck = 1;
+
+  /** 配乐让多少（乘在总音量上），慢慢过去。开着声才听得出来 */
+  setDuck(f: number): void {
+    if (f === this.duck) return;
+    this.duck = f;
+    const ctx = this.host.audio;
+    if (!ctx || !this.master || !this.on) return;
+    const t = ctx.currentTime;
+    this.master.gain.cancelScheduledValues(t);
+    this.master.gain.setTargetAtTime(LEVEL * this.duck, t, 0.6);
+  }
   private cur: Playing | null = null;
   /** 取图解码是异步的：换得快时，只让最后一次请求落地 */
   private token = 0;
@@ -112,7 +125,7 @@ export class Bgm {
     const m = this.out(ctx);
     const t = ctx.currentTime;
     m.gain.cancelScheduledValues(t);
-    m.gain.setTargetAtTime(on ? LEVEL : 0, t, 0.3);
+    m.gain.setTargetAtTime(on ? LEVEL * this.duck : 0, t, 0.3);
     if (on) void this.sync();
     else window.setTimeout(() => { if (!this.on) this.drop(0); }, 900);
   }
