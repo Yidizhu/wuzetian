@@ -9,11 +9,14 @@
  * **不写格号，写原句锚点**：C52 改稿、D32 重转会重排格号（D-231 第 2 条），锚点是那一句里一小段不会变的字。
  * 测试逐条核锚点在正式数据里找得到（找不到就是稿改了，要回来对）。
  *
- * 现在这张表只收两类，都照 E39 第 5 节：
+ * 三类，都照 E39 第 5 节：
  * 1. **十三场整场是约会的闲场**：进场就起（和布置夜雨一样在淡出那一刻），离场收。
  * 2. **承欢 ch02-26 受邀近坐那一段**：从她坐过来那一句起到场末。
- * 多人场里的私人段（ch04-05z／08z 四人各一段、ch02-13、ch04-10 等）**等 D32 最终数据再补**——
- * 那几段的起止句 C52 改过，照旧稿写锚点会落空。
+ * 3. **多人场里的私人段**（B46 后半，D32 正式数据上核的）：这一句的条件写着 `love.<人>: true`，就放那个人的曲。
+ *    D32 里这样的句子正好就是 E39 列的那几段：ch04-05z 四人、ch04-08z 三人、ch04-10 李令仪，外加 ch04-09 李令仪那四句。
+ *    `love.<人>: false` 的句子（不爱那一支）不放。句子能显示出来就说明条件满足了，所以只看这一句自己的条件就够。
+ * **不收的**：ch02-13 答应留身旁那支只有两句，夹在公议念信后面，为两句切曲太突兀；
+ * ch04-05qa—qd 听答复，整场都在等她开口，「愿意」在最后一两句，先放约会曲等于替她答了。
  */
 export const DATE_TRACKS = ["shenheng", "peizhaoye", "wenqiao", "liqinghe", "liuchenghuan"] as const;
 export type DateTrack = (typeof DATE_TRACKS)[number];
@@ -59,8 +62,11 @@ export function dateTrackUrl(t: DateTrack): string {
  * `lines` 是这一场的格（按剧本顺序）；`at` 是当前格在里面的下标，**进场那一刻（还没到第一格）给 -1**。
  * 锚点找不到：这一段当它不存在（放章曲），不猜
  */
-export function dateTrackAt(sceneId: string | undefined, lines: readonly { text: string }[], at: number): DateTrack | null {
+export function dateTrackAt(sceneId: string | undefined, lines: readonly { text: string; when?: object }[], at: number): DateTrack | null {
   if (!sceneId) return null;
+  // 第 3 类：按恋爱状态才出现的那一句
+  const w = at >= 0 ? (lines[at]?.when as Record<string, unknown> | undefined) : undefined;
+  if (w) for (const t of DATE_TRACKS) if (w[`love.${t}`] === true) return t;
   for (const seg of DATE_SEGMENTS) {
     if (seg.scene !== sceneId) continue;
     const from = seg.from === undefined ? -1 : lines.findIndex((l) => l.text.includes(seg.from!));

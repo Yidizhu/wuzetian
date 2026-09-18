@@ -207,6 +207,20 @@ test("D-231 约会配乐：十三场整场约会＋承欢近坐一段；锚点�
   assert.equal(dateTrackAt(undefined, [], 0), null);
   // 锚点落空（稿改了）：这一段当不存在，不猜
   assert.equal(dateTrackAt("ch02_s26_shuge", [{ text: "改过的稿" }], 0), null);
+  // 多人场里的私人段（B46 后半）：带 love.<人>=true 的句子放那个人的曲；love=false、公务句不放
+  const z = load("ch04_s05z_yeting") as unknown as { lines: { id: string; text: string; when?: Record<string, unknown> }[] };
+  const per: Record<string, number> = {};
+  z.lines.forEach((l, i) => { const t = dateTrackAt("ch04_s05z_yeting", z.lines, i); if (t) per[t] = (per[t] ?? 0) + 1; });
+  assert.deepEqual(Object.keys(per).sort(), ["liqinghe", "peizhaoye", "shenheng", "wenqiao"], "05z 四人各一段");
+  const pub = z.lines.findIndex((l) => !l.when);
+  assert.equal(dateTrackAt("ch04_s05z_yeting", z.lines, pub), null, "没条件的公务句：章曲");
+  const s09 = load("ch04_s09_yuanye") as unknown as { lines: { text: string; when?: Record<string, unknown> }[] };
+  const notLove = s09.lines.findIndex((l) => l.when?.["love.liqinghe"] === false);
+  assert.ok(notLove >= 0);
+  assert.equal(dateTrackAt("ch04_s09_yuanye", s09.lines, notLove), null, "不爱那一支：不放");
+  // 听答复不放（等她开口）
+  const qa = load("ch04_s05qa_shuge");
+  assert.equal(qa.lines.every((_, i) => dateTrackAt("ch04_s05qa_shuge", qa.lines, i) === null), true, "05qa 听答复：章曲");
   // 信：只有承欢那封换曲
   assert.equal(letterTrack("liuchenghuan"), "liuchenghuan");
   assert.equal(letterTrack("shenheng"), null);
