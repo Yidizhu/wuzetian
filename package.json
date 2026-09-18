@@ -27,7 +27,8 @@
     "tripo": "node --experimental-strip-types tools/tripo.ts",
     "art:post": "node --experimental-strip-types tools/art-post.ts",
     "routes": "node --experimental-strip-types tools/convert-routes.ts",
-    "check:art": "node --experimental-strip-types tools/check-art.ts"
+    "check:art": "node --experimental-strip-types tools/check-art.ts",
+    "release": "node --experimental-strip-types tools/release-snapshot.ts"
   },
   "devDependencies": {
     "@types/three": "^0.170.0",
