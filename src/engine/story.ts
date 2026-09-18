@@ -53,7 +53,10 @@ export interface ChoiceView {
 }
 
 export type StoryEvent =
-  | { kind: "line"; who: string; expr: string; text: string; lineKind: string; first: boolean }
+  /**
+   * 一格台词。`id` 是格 id（`<场>.l<n>`，音景按格号起止用）；`image` 是这一格同一拍的画面 key（D-223），没有就是退回舞台
+   */
+  | { kind: "line"; id: string; who: string; expr: string; text: string; lineKind: string; first: boolean; image?: string }
   | { kind: "choices"; items: ChoiceView[] }
   /**
    * 进了一场。`castHeld` 为真时台上先空着，人等 castEnter 再上（D-076，见 engine/entrances.ts）
@@ -326,6 +329,8 @@ export class Story {
       const first = this.store.markSeen(line.id);
       this.emit({
         kind: "line",
+        id: line.id,
+        image: line.image,
         who: line.who,
         expr: line.expr ?? "default",
         text: subst(line.text, this.store.state),
@@ -478,7 +483,7 @@ export class Story {
     if (outcome?.line) {
       const l = outcome.line;
       this.store.markSeen(l.id);
-      this.emit({ kind: "line", who: l.who, expr: l.expr ?? "default", text: subst(l.text, this.store.state), lineKind: l.kind ?? "say", first: true });
+      this.emit({ kind: "line", id: l.id, who: l.who, expr: l.expr ?? "default", text: subst(l.text, this.store.state), lineKind: l.kind ?? "say", first: true });
       this.resume = () => void next();
       return;
     }

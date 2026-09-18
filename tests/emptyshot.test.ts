@@ -63,3 +63,26 @@ test("校验：空镜要写旁白、不带表情、不连着两格、不做选�
   assert.ok(bad([say("a.l1"), empty("a.l2")], { choices: [{ id: "a.cA", text: "走", goto: "b", irreversible: false }] }), "选项前最后一格");
   assert.ok(!bad([say("a.l1"), empty("a.l2")]), "场末接 goto 可以");
 });
+
+test("D-223 同一拍的画面：格事件带 id 和 image；条件跳过的格不带出它的画面；旧稿没这一栏照常", async () => {
+  const lines: L[] = [
+    { ...say("p.l1"), image: "wu_lengzao" } as L,
+    { ...empty("p.l2"), image: "wu_lengzao" } as L,
+    { ...say("p.l3"), when: { "flag.never": true }, image: "wu_yuejiu" } as L,
+    say("p.l4"),
+  ];
+  // schema 认这一栏；旧稿（没有 image）也照样过
+  assert.equal(SceneSchema.safeParse(scene("p", lines, { goto: "p" })).success, true);
+  assert.equal(SceneSchema.safeParse(scene("q", [say("q.l1")], { goto: "q" })).success, true);
+  mem.clear();
+  const got: { id: string; image?: string }[] = [];
+  const story = new Story([scene("p", lines, { goto: "p" })], [], [], [], new Store(), noopRenderer, { async duel() { return true; }, async chapterEnd() {} }, "p");
+  story.on((e) => { if (e.kind === "line") got.push({ id: e.id, image: e.image }); });
+  await story.start();
+  for (let i = 0; i < 3; i++) { story.advance(); await drain(); }
+  assert.deepEqual(got.slice(0, 3), [
+    { id: "p.l1", image: "wu_lengzao" },
+    { id: "p.l2", image: "wu_lengzao" },   // 连着同一个 key：UI 那头不重铺
+    { id: "p.l4", image: undefined },      // l3 条件不满足跳过，它的画面也不出；l4 没写就退回舞台
+  ]);
+});

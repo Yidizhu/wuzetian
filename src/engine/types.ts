@@ -87,6 +87,11 @@ export interface Line {
   expr?: Expr;
   kind?: LineKind;
   text: string;
+  /**
+   * 这一格同时铺的画面（D-223，B45）：`cgs.ts` 里的 key，和文字**同一拍**出现，不等点击、不另占一格。
+   * 下一格没写就退回舞台；连着几格写同一个 key，图不闪。剧本台词表的「画面」列转出来。见 docs/story-schema.md
+   */
+  image?: string;
 }
 
 export interface Choice {

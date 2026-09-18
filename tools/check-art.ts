@@ -81,8 +81,12 @@ if (missing.length) console.log(`    还没有图，走渐变：${missing.join("
   // 剧本里真的写到的事件图
   const used = new Map<string, string[]>();
   for (const { raw } of loadDir(join(DATA, "chapters"))) {
-    const s = raw as { id: string; lines: { who: string; text: string }[] };
-    for (const l of s.lines) if (l.who === "cg") used.set(l.text, [...(used.get(l.text) ?? []), s.id]);
+    const s = raw as { id: string; lines: { who: string; text: string; image?: string }[] };
+    for (const l of s.lines) {
+      if (l.who === "cg") used.set(l.text, [...(used.get(l.text) ?? []), s.id]);
+      // 同一拍的画面（D-223）也算剧本写到了
+      if (l.image) used.set(l.image, [...(used.get(l.image) ?? []), `${s.id}（画面）`]);
+    }
   }
   const usedMissing = [...used].filter(([k]) => !cgFiles.has(k));
   if (used.size) console.log(`    剧本写到 ${used.size} 张`);

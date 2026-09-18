@@ -12,7 +12,7 @@ import { CGS, CG_FEI_SUFFIX, isFeiVariant } from "./cgs.ts";
 export interface GalleryScene {
   id: string;
   chapter: number;
-  lines: { who: string; text: string }[];
+  lines: { who: string; text: string; image?: string }[];
 }
 
 export interface GallerySection {
@@ -28,9 +28,12 @@ export function galleryLayout(scenes: GalleryScene[], endingKeys: string[]): Gal
   const order: string[] = [];
   for (const s of sorted) {
     for (const l of s.lines) {
-      if (l.who !== "cg" || chapterOf.has(l.text) || !CGS[l.text] || CGS[l.text]!.ending) continue;
-      chapterOf.set(l.text, s.chapter);
-      order.push(l.text);
+      // 事件图格和同一拍的画面（D-223）都算：玩家看到过，回廊就该有它的位置
+      for (const k of [l.who === "cg" ? l.text : null, l.image ?? null]) {
+        if (!k || chapterOf.has(k) || !CGS[k] || CGS[k]!.ending) continue;
+        chapterOf.set(k, s.chapter);
+        order.push(k);
+      }
     }
   }
   const chapters = [...new Set(order.map((k) => chapterOf.get(k)!))].sort((a, b) => a - b);

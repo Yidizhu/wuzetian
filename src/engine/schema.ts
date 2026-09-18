@@ -126,6 +126,8 @@ export const Line = z.object({
     errorMap: () => ({ message: "类型只有 say（说）、inner（内心）、aside（旁白）、poem（诗）" }),
   }).default("say"),
   text: z.string().min(1, "台词不能是空的").max(40, "一句台词不超过 40 字，手机装不下"),
+  /** 同一拍的画面（D-223，B45）：cgs.ts 的 key。key 在不在表里、能不能用，校验器查（validate-story） */
+  image: z.string().min(1, "画面一栏写了就要写 key").optional(),
 });
 
 export const Choice = z.object({

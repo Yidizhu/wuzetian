@@ -1,5 +1,6 @@
 import { RasterCatalog } from "../scene/raster.ts";
 import { CGS, placeOnImage } from "../scene/cgs.ts";
+import "../styles/picture.css";
 
 /**
  * 事件图层（D-142，B23）。**复用背景整图那一套**：一张整图盖住画面、一拍墨晕过渡、点一下退回。不新建渲染器。
@@ -70,7 +71,49 @@ export class CgLayer {
     return true;
   }
 
-  private async mount(key: string, sealText: string | null): Promise<{ el: HTMLElement; unfit: () => void } | null> {
+  // ------------------------------------------------------------ 同一拍的画面（D-223，B45）
+
+  /** 台词格上铺着的那张画面，和上面的事件图（this.el）是两个元素，互不干扰 */
+  private picture: { key: string; el: HTMLElement; unfit: () => void } | null = null;
+  /** 解码是异步的：格翻得快时只让最后一次落地 */
+  private pictureToken = 0;
+
+  /**
+   * 这一格要铺 `key`（D-223）。**同一个 key 已经铺着就不动**——连着几格同一张图不闪。
+   * 换了 key：新图解码好了铺在旧图上面，淡入后拿掉旧的（和换景同一个办法，不先空一下）。
+   * 返回这张图是不是真的铺上了（图没有、读不出来、被下一格抢先：false）
+   */
+  async hold(key: string): Promise<boolean> {
+    if (this.picture?.key === key) return true;
+    const token = ++this.pictureToken;
+    const m = await this.mount(key, null, false);
+    if (!m) return false;
+    if (token !== this.pictureToken) { m.unfit(); m.el.remove(); return false; }
+    m.el.dataset.role = "line";
+    const old = this.picture;
+    this.picture = { key, el: m.el, unfit: m.unfit };
+    if (old) this.fadeOut(old);
+    return true;
+  }
+
+  /** 这一格没有画面：收掉，退回舞台 */
+  drop(): void {
+    this.pictureToken += 1;
+    const old = this.picture;
+    this.picture = null;
+    if (old) this.fadeOut(old);
+  }
+
+  /** 现在铺着的画面 key，没有是 null */
+  get holding(): string | null { return this.picture?.key ?? null; }
+
+  private fadeOut(p: { el: HTMLElement; unfit: () => void }): void {
+    p.unfit();
+    p.el.dataset.state = "out";
+    window.setTimeout(() => p.el.remove(), FADE_MS);
+  }
+
+  private async mount(key: string, sealText: string | null, own = true): Promise<{ el: HTMLElement; unfit: () => void } | null> {
     if (!this.raster.hasCg(key)) return null;
     const url = this.raster.cgUrl(key);
     const img = new Image();
@@ -121,7 +164,7 @@ export class CgLayer {
     fit();
     window.addEventListener("resize", fit);
     this.root.appendChild(el);
-    this.el = el;
+    if (own) this.el = el;
     void el.offsetWidth;
     el.dataset.state = "shown";
     return { el, unfit: () => window.removeEventListener("resize", fit) };
@@ -132,5 +175,7 @@ export class CgLayer {
     this.releaseFn = null;
     this.el?.remove();
     this.el = null;
+    this.pictureToken += 1;
+    if (this.picture) { this.picture.unfit(); this.picture.el.remove(); this.picture = null; }
   }
 }

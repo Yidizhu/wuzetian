@@ -19,7 +19,8 @@ import { AFFINITY_BANDS } from "../src/engine/types.ts";
 import { IDENTITY_RANKS } from "../src/engine/identity.ts";
 import { PORTRAITS } from "../src/char/portraits.ts";
 import { BACKDROPS, VISTAS, backdropKey } from "../src/scene/backdrops.ts";
-import { CGS } from "../src/scene/cgs.ts";
+import { CGS, isFeiVariant } from "../src/scene/cgs.ts";
+import { LOVE_KEYS } from "../src/engine/pact.ts";
 import { readdirSync } from "node:fs";
 
 /**
@@ -145,6 +146,17 @@ if (mainRun) {
         if (/^(told|answer|asked|intent)(\.|$)/.test(k)) err(`letters/${l.id}`, at, `回信写了 ${k}。回信只能动 pact（私约有效／暂缓／停），告知、答复、意向要在当面的场景里写`);
       }
     }
+  }
+  // D-225（B45）：四条恋爱线以外的人来信（柳承欢那封告白信）——回信**不带任何效果、不跳场**。
+  // 零新增数值、不开新的恋爱路线；而且她的信写在归还之前、可能晚读，回信要是能写 flag／关系，
+  // 就可能把已经发生的拒绝、归还盖掉。六种回法只留她的反应（reaction）
+  for (const l of letters) {
+    if ((LOVE_KEYS as readonly string[]).includes(l.from)) continue;
+    for (const [at, eff] of effectsIn(l.replies, "replies")) {
+      if (Object.keys(eff).length) err(`letters/${l.id}`, at, `${l.from} 不是恋爱线，回信不能带效果（${Object.keys(eff).join("、")}）。六种回法只写她的反应（D-225）`);
+    }
+    const gotos = JSON.stringify(l.replies).match(/"goto"\s*:/g);
+    if (gotos) err(`letters/${l.id}`, "replies", `${l.from} 的回信写了去向。回一封信不该把玩家带去别的场（D-225）`);
   }
 }
 
@@ -493,6 +505,21 @@ if (mainRun) {
     for (const l of s.lines) {
       if (l.who !== "cg") continue;
       if (!CGS[l.text]) err(file, l.id, `事件图「${l.text}」不在 src/scene/cgs.ts 的表里。文本一栏写的是图的 key，不是描述`);
+    }
+  }
+
+  // 同一拍的画面（D-223，B45）：「画面」一栏写的 key 表里要有、不能是结局图和绯版、不能挂在题记和事件图格上；
+  // 图还没上线是合法状态（这一格照常读字），只提醒
+  const cgImgs = new Set(webps("cg"));
+  for (const { file, s } of scenes.values()) {
+    for (const l of s.lines as { id: string; who: string; image?: string }[]) {
+      if (!l.image) continue;
+      const k = l.image;
+      if (!CGS[k]) { err(file, l.id, `画面「${k}」不在 src/scene/cgs.ts 的表里。画面一栏写图的 key，不是描述；新图先请 CC1 登记`); continue; }
+      if (CGS[k]!.ending) err(file, l.id, `画面「${k}」是结局图。结局图由引擎在结局卡第一拍铺，台词格不能借用`);
+      if (isFeiVariant(k)) err(file, l.id, `画面写了绯版「${k}」。写原图的 key，主角是绯时引擎自己换（D-216）`);
+      if (l.who === "cg" || l.who === "tiji") err(file, l.id, `${l.who === "cg" ? "事件图" : "题记"}格不能再写画面：它自己就是一整屏`);
+      if (!cgImgs.has(k) && !(k + "_fei" in CGS && cgImgs.has(k + "_fei"))) warn(file, l.id, `画面「${k}」的图还没上线（public/cg/${k}.webp 不在），这一格照常读字、舞台不换`);
     }
   }
 

@@ -848,3 +848,37 @@ test("B42 柳承欢归还朱绳后换 _bare 能落到光栅图上：图到了就
   assert.equal(withoutBare.pickPortrait(rasterCandidates("liuchenghuan", returned)), "liuchenghuan_default", "现在（图没到）：底那一套");
   assert.equal(withBare.portraitUrl("liuchenghuan_default_bare", "knee").url, "/char/knee/liuchenghuan_default_bare.webp");
 });
+
+test("D-225 承欢告白信的接口：常笺、ch02-26 后第 1 场＋5 分钟、不可截；六种回法都不动数值和 flag，晚读不盖掉归还", async () => {
+  const { Letters } = await import("../src/engine/letters.ts");
+  const { readFileSync } = await import("node:fs");
+  const base = JSON.parse(readFileSync(new URL("../src/data/letters/lt_ch02_shenheng_01.json", import.meta.url), "utf8"));
+  const noEffects = (o: { reaction: string }) => ({ reaction: o.reaction });
+  // 照 C52 要写的样子造一封：from、纸、触发、延迟、不可截，回信只留反应
+  const letter = LetterSchema.parse({
+    ...base, id: "lt_ch02_liuchenghuan_01", from: "liuchenghuan", paper: "chang",
+    trigger: { kind: "scene", sceneId: "ch02_s26_shuge", afterScenes: 1 }, delayMinutes: 5,
+    interceptable: false, interceptAt: undefined, onIntercept: undefined, sheMayNotReply: undefined,
+    replies: {
+      plain: base.replies.plain.map((p: { id: string; text: string; reaction: string }) => ({ id: p.id, text: p.text, reaction: p.reaction })),
+      poem: { resonantTags: base.replies.poem.resonantTags, onResonant: noEffects(base.replies.poem.onResonant), onMismatch: noEffects(base.replies.poem.onMismatch) },
+      silence: noEffects(base.replies.silence),
+    },
+  });
+  assert.equal(letter.interceptable, false);
+  for (const kind of ["plainA", "plainB", "plainC", "poemResonant", "poemMismatch", "silence"] as const) {
+    const store = new Store();
+    store.state.flags.chenghuan_returned = true;       // 晚读：归还已经发生过了
+    store.state.affinity.liuchenghuan = 4;
+    const before = JSON.stringify({ a: store.state.affinity, f: store.state.flags, r: store.state.relation });
+    const inbox = new Letters([letter], store);
+    assert.deepEqual(inbox.onSceneEnd("ch02_s26_shuge"), [], "近坐那一场结束：触发，还没到");
+    const realNow = Date.now;
+    Date.now = () => realNow() + 5 * 60_000 + 1000;
+    try { assert.deepEqual(inbox.onSceneEnd("ch03_s01_shuge"), ["lt_ch02_liuchenghuan_01"], "之后第 1 场、五分钟后到"); } finally { Date.now = realNow; }
+    const r = inbox.reply("lt_ch02_liuchenghuan_01", kind, kind === "poemResonant" ? letter.replies.poem.resonantTags : []);
+    assert.ok(r?.reaction, `${kind}：有她的反应`);
+    assert.equal(r?.goto, undefined, `${kind}：不跳场`);
+    assert.equal(JSON.stringify({ a: store.state.affinity, f: store.state.flags, r: store.state.relation }), before, `${kind}：数值、flag、关系一样没动`);
+  }
+});

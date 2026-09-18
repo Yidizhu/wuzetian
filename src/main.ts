@@ -28,8 +28,9 @@ import { Ambient } from "./audio/ambient.ts";
 import { Bgm, bgmForChapter } from "./audio/bgm.ts";
 import { loadTuning } from "./audio/tuning.ts";
 import { MediaKeepAlive } from "./audio/keepalive.ts";
+import { ambienceAt, lineNo } from "./audio/soundscape.ts";
 import { vistaFor, BACKDROPS, backdropKey } from "./scene/backdrops.ts";
-import { cuesForScene, cuesForLine, newCueState, type Cue, ambienceForScene, cuesForShot, cuesForPaper, cuesAfterEpigraph, newEpigraphCueState, cuesForCg, cuesForEndingCg, cuesForEnter, newEnterCueState, cuesForEnding, type SfxName } from "./audio/cues.ts";
+import { cuesForScene, cuesForLine, newCueState, type Cue, ambienceForScene, rainCue, cuesForShot, cuesForPaper, cuesAfterEpigraph, newEpigraphCueState, cuesForCg, cuesForEndingCg, cuesForEnter, newEnterCueState, cuesForEnding, type SfxName } from "./audio/cues.ts";
 import { Sfx } from "./audio/sfx.ts";
 import endingData from "./data/endings.json";
 import adultScenes from "virtual:adult-scenes";
@@ -191,7 +192,7 @@ let chapterNo = -1;
 const story = new Story(
   scenes, endings, duels, letters, store, renderer,
   {
-    duel: (d) => { dlg.setVisible(false); return duelUi.play(d).finally(() => dlg.setVisible(true)); },
+    duel: (d) => { showPicture(null); dlg.setVisible(false); return duelUi.play(d).finally(() => dlg.setVisible(true)); },
     chapterEnd: (ch, ps) => {
       dlg.setVisible(false);
       const closest = closestThisChapter(chapterAffinity, store.state.affinity);
@@ -200,6 +201,7 @@ const story = new Story(
     // 题记（D-063）：CC3 的那张纸，和标题同一套版式。看它的时候对话框和选项都收起来
     // 章首风景（D-181）：这一章有图就先解码好（最多等 0.8 秒），铺在纸底下；没有、读不出、太慢都照旧纸色底
     epigraph: (lines) => new Promise<void>((resolve) => {
+      showPicture(null);
       dlg.setVisible(false);
       choices.hide();
       const key = vistaFor(story.currentScene?.chapter ?? 1);
@@ -244,6 +246,7 @@ const story = new Story(
     // 排版归 CC3：这一拍 #app 上是 data-ending="picture"，第二拍是 "text"，按这两个值写样式
     // 有结局图（D-160）就在这一拍铺上；印（D-067）只给无字之碑，引擎按表决定，印文是她选的那一个字（和正文同一条规则）
     endingPicture: (ending) => new Promise<string | null>((resolve) => {
+      showPicture(null);
       choices.hide();
       dlg.setVisible(false);
       app.dataset.ending = "picture";
@@ -285,6 +288,35 @@ const cueState = newCueState();
 const sfx = new Sfx(ambient, rasterList.sfx ?? [], import.meta.env.BASE_URL);
 /** iPhone 静音键（D-218）：开着声时放一段循环的静音 <audio>，页面算「媒体播放」，Web Audio 不再听静音键 */
 const keepAlive = new MediaKeepAlive(import.meta.env.BASE_URL + "sfx/silence.m4a");
+
+/** 现在读到这一场第几格（音景按格号起止；开声时补上这一格该有的雨） */
+let curLine = 0;
+/** 这一场这一格的雨和配乐让位（D-226，`soundscape.ts`） */
+const applyAmbience = (cues: (a: ReturnType<typeof ambienceAt>) => SoundCueList, sceneId: string | undefined, dressing: string | undefined, line: number): void => {
+  const a = ambienceAt(sceneId, dressing, line);
+  sfx.run(cues(a));
+  bgm.setDuck(a.bgmDuck);
+};
+type SoundCueList = Parameters<typeof sfx.run>[0];
+
+/**
+ * 同一拍的画面（D-223，B45）。台词格写了 `image`：图和字一起出来，立绘收起；下一格没写就退回舞台；连着同一个 key 不闪。
+ * 主角是绯、有绯版图就铺绯版（D-216，和剧本事件图格同一个规则）。**真的铺上了**才记进回廊和存档（原 key；绯版另记一笔）。
+ * 图没有、读不出来：这一格照常读字，舞台不动
+ */
+const showPicture = (scriptKey: string | null): void => {
+  if (!scriptKey) { cgLayer.drop(); delete app.dataset.picture; return; }
+  const key = cgFor(scriptKey, protagonistRank((f) => store.state.flags[f] === true, (k) => store.state.cgsSeen.has(k)), (k) => raster.hasCg(k));
+  if (!raster.hasCg(key)) { cgLayer.drop(); delete app.dataset.picture; return; }
+  if (cgLayer.holding === key) return;
+  app.dataset.picture = key;
+  void cgLayer.hold(key).then((ok) => {
+    if (ok) {
+      store.state.cgsSeen.add(scriptKey);
+      if (key !== scriptKey) store.state.cgsSeen.add(key);
+    } else if (app.dataset.picture === key) delete app.dataset.picture;
+  });
+};
 const epigraphCues = newEpigraphCueState();
 /** 章首进声的两个开关（D-209）：`?intro=plain|soft`、`?epihit=drum|bell`，这台设备记住 */
 const tuning = loadTuning();
@@ -321,7 +353,10 @@ story.on((e) => {
         e.scene.chapter <= 1 && tuning.intro === "soft" ? { fadeIn: 4, quietStart: true } : {});
       app.querySelectorAll(".ending-title").forEach((n) => n.remove());
       play(cuesForScene(e.scene, cueState, performance.now()));
-      sfx.run(ambienceForScene(e.scene.dressing));      // 声音桥 ①：这一场的环境声，淡出开始就起
+      // 声音桥 ①：这一场的环境声，淡出开始就起。场次音景表优先（D-226：书阁听夜雨），其次布置夜雨
+      curLine = 0;
+      applyAmbience(ambienceForScene, e.scene.id, e.scene.dressing, 0);
+      showPicture(null);
       sfx.run(cuesForEnter(e.scene, enterCues));         // 受位那一场：空殿里几步脚步（D-202）
       sfx.preload(hitsForScene(e.scene));
       // 阵容必须同步定下来：紧跟着的 line 事件会马上问「说话的人在不在台上」。
@@ -351,6 +386,9 @@ story.on((e) => {
       // 空镜那一格照旁白显示：没有名字、没有人开口
       const who = e.who === "empty" ? "narr" : e.who;
       sfx.run(cuesForShot(e.who));                       // 声音桥 ②：空镜这一格起风，下一格有人说话就收
+      curLine = lineNo(e.id);
+      applyAmbience((a) => [rainCue(a)], story.currentScene?.id, story.currentScene?.dressing, curLine);   // 场次表：从第几格起雨
+      showPicture(e.image ?? null);                      // 同一拍的画面（D-223）：这一格有就铺，没有就退回舞台
       play(cuesForLine(who, e.lineKind, e.text, cueState, performance.now()));
       choices.hide();
       dlg.setVisible(true);
@@ -370,6 +408,7 @@ story.on((e) => {
       break;
     }
     case "choices":
+      showPicture(null);                                 // 做决定时看的是人：画面收起
       sfx.run(cuesForShot(""));                          // 出选项：空镜的风收掉（校验器本来就不许空镜做选项前最后一格）
       cast.setFraming(framingFor("choices"));          // 要做决定：镜头退开，全身（D-108 第 2 条）
       dlg.setVisible(false);
@@ -379,7 +418,9 @@ story.on((e) => {
       app.dataset.ending = "text";
       sfx.run(cuesForEnding());                          // 规则 ⑤：配乐淡到无声之前，远寺一声钟（D-202）
       bgm.stop(3);
-      sfx.run(ambienceForScene(undefined));              // 落幕：环境声跟配乐一起收
+      sfx.run(ambienceForScene({ rain: false, level: 1 }));   // 落幕：环境声跟配乐一起收
+      bgm.setDuck(1);
+      showPicture(null);
       choices.hide();
       dlg.setVisible(true);
       dlg.show("narr", e.body, "aside", store.state, true);
@@ -509,7 +550,7 @@ soundBtn.addEventListener("click", (e) => {
   keepAlive.set(on);                     // iPhone 静音键（D-218）：开声就把页面切成媒体播放
   setSoundOn(on);
   // 刚打开的时候，这一场该有的环境声现在补上
-  if (on) sfx.run(ambienceForScene(story.currentScene?.dressing));
+  if (on) applyAmbience(ambienceForScene, story.currentScene?.id, story.currentScene?.dressing, curLine);
   paintSound();
 });
 paintSound();
