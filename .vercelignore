@@ -18,3 +18,16 @@ src/data/adult/
 
 # 没过 validate 的预览数据，只给本地 ?data=converted 用
 src/data/converted/
+
+# 本地素材和工作目录（D-232，B46续）：构建一样不读，而且有的目录 CLI 扫都扫不动——
+# 宣传视频/工具/ 里一套 Python 环境让 vercel 在上传前扫目录时报 EPERM scandir，整次部署起不来。
+# 上线的是 public/ 里转好的成品；原件留在本机
+/宣传视频/
+/bgm/
+/sfx/
+/assets/
+.agents/
+.claude/
+
+# 凭证（D-075）：Vercel CLI 自己写的 .env.local 里是 OIDC token，不上传
+.env*
