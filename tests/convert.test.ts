@@ -1403,3 +1403,34 @@ test('D32 图文同格落盘，连续两次转换逐字节相同', () => {
     assert.deepEqual(parsed.lines[0].when, r.scenes[0].lines[0].when);
   } finally { rmSync(dir, { recursive: true, force: true }); }
 });
+
+test('D32 C52 实际承欢信：六回法在归还前后都不改数值、flag、关系或跳场', async () => {
+  const { Store } = await import('../src/engine/state.ts');
+  const { Letters } = await import('../src/engine/letters.ts');
+  const r = convertBatch(['C-7-第二章前十二场.md', 'C-8-第二章后十二场与书信.md', 'C0-2-诗词库与对诗.md'].map(readDoc));
+  const l = r.letters.find(l => l.id === 'lt_ch02_liuchenghuan_01');
+  assert.ok(l, '实际源稿必须转出承欢信');
+  assert.deepEqual(l.trigger, { kind: 'scene', sceneId: 'ch02_s26_shuge', afterScenes: 1 });
+  assert.equal(l.delayMinutes, 5);
+  assert.equal(l.paper, 'chang');
+  assert.equal(l.interceptable, false);
+  assert.equal(l.interceptAt, undefined);
+  assert.equal(l.onIntercept, undefined);
+  assert.ok(r.scenes.find(s => s.id === 'ch02_s26_shuge')?.leavesLetter.includes('liuchenghuan'));
+  const kinds = ['plainA', 'plainB', 'plainC', 'poemResonant', 'poemMismatch', 'silence'] as const;
+  for (const returned of [false, true]) for (const kind of kinds) {
+    const store = new Store();
+    store.state.flags.chenghuan_returned = returned;
+    store.state.affinity.liuchenghuan = 4;
+    const before = JSON.stringify([store.state.stats, store.state.affinity, store.state.flags, store.state.relation]);
+    // 这里只验证已经送到的旧信，投递场次门由 CC1 管；不以此测试声称时间门正确。
+    store.state.letters.push({ id: l.id, state: 'arrived', dueAt: 1, repliedWith: null });
+    const inbox = new Letters([l], store);
+    inbox.markRead(l.id);
+    const reply = inbox.reply(l.id, kind, kind === 'poemResonant' ? l.replies.poem.resonantTags : []);
+    assert.ok(reply?.reaction, `${kind} 有反应`);
+    assert.equal(reply.goto, undefined);
+    assert.equal(JSON.stringify([store.state.stats, store.state.affinity, store.state.flags, store.state.relation]), before);
+    assert.equal(inbox.reply(l.id, 'plainA'), null, '六回法互斥，不能再结算');
+  }
+});
