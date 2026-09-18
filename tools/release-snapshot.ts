@@ -15,7 +15,7 @@
  * 没有就停在上传前，说一句缺什么。
  */
 import { execFileSync, spawnSync } from "node:child_process";
-import { existsSync, mkdirSync, copyFileSync, rmSync, symlinkSync } from "node:fs";
+import { existsSync, mkdirSync, copyFileSync, rmSync, symlinkSync, lstatSync, rmdirSync } from "node:fs";
 import { join } from "node:path";
 import { ROOT } from "./load.ts";
 
@@ -29,7 +29,21 @@ const commit = git("rev-parse", ref);
 const subject = git("log", "-1", "--format=%s", commit);
 console.log(`\n发布快照：${commit.slice(0, 7)}  ${subject}\n  目录 ${DIR}`);
 
+/**
+ * **先拆联接，再删目录。** B46续出过一次事故：快照里的 node_modules 是指向主仓库的目录联接，
+ * `git worktree remove --force` 顺着联接进去，把主仓库的 node_modules 删空了（npm ci 装回）。
+ * 联接只用 rmdir 拆（拆的是链接本身，不碰目标）；不是联接的不拆，也不递归删
+ */
+const unlinkDeps = (): void => {
+  const nm = join(DIR, "node_modules");
+  try {
+    if (lstatSync(nm).isSymbolicLink()) rmdirSync(nm);
+    else if (existsSync(nm)) { console.error(`  ${nm} 不是联接，不敢删，停下。请人工看一眼`); process.exit(3); }
+  } catch { /* 不存在 */ }
+};
+
 // 旧快照拿掉再检出（worktree 登记一起清）
+unlinkDeps();
 if (existsSync(DIR)) {
   try { git("worktree", "remove", "--force", DIR); } catch { rmSync(DIR, { recursive: true, force: true }); }
 }
@@ -45,6 +59,7 @@ if (existsSync(link)) { mkdirSync(join(DIR, ".vercel"), { recursive: true }); co
 
 // 发布前检查：和线上 buildCommand 同一条
 const build = spawnSync("npm", ["run", "build:web"], { cwd: DIR, stdio: "inherit", shell: true });
+unlinkDeps();                                  // 构建完就拆，成败都拆：快照里不留指向主仓库的东西（上传也用不着本地依赖）
 if (build.status !== 0) { console.error("\n  build:web 没过，不上传。"); process.exit(1); }
 console.log(`\n  快照 ${commit.slice(0, 7)} 的 build:web 过了。`);
 
