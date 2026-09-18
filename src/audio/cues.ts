@@ -121,16 +121,18 @@ export function cuesAfterEpigraph(chapter: number, st: EpigraphCueState, hit: "d
 
 // ------------------------------------------------------------ 四条之外的落点（D-202，B37）
 
-/** 事件图那一行里声音要看的两样（`cgs.ts` 的 Cg 的子集；cues.ts 不引数据表，保持纯函数） */
-export interface CgSound { beat: string; sfx?: SfxName }
+/** 事件图那一行里声音要看的三样（`cgs.ts` 的 Cg 的子集；cues.ts 不引数据表，保持纯函数） */
+export interface CgSound { beat: string; who?: string[]; sfx?: SfxName }
 
 /**
- * 规则 ③ 的细化：剧本里一格事件图铺开时响什么。
- * 表里写了 `sfx` 用它（衣料、马铃），没写是纸响；风物图不响——它们不是纸，也不是动作。表里没有这张图也不响（那一格会跳过）
+ * 图铺开那一下响什么（D-229，B46 改）：**默认不响**。
+ * 原来没写 `sfx` 的一律纸响——写景、物件、单人、群像都「翻一下纸」，YIDI 说不对：图不是纸。
+ * 现在只有**表里明确写了 `sfx`、画里又正好是两个人**（双人 CG，动作声合画面）才响；别的都不响。
+ * 剧本事件图格和台词格「画面」列两条入口都走这一条。风声（空镜）、雨声、拆信纸响是各自的规则，不受影响
  */
 export function cuesForCg(cg: CgSound | undefined): SoundCue[] {
-  if (!cg || cg.beat === "风物") return [];
-  return [{ kind: "hit", name: cg.sfx ?? "paper_unfold" }];
+  if (!cg?.sfx || cg.beat === "风物" || (cg.who?.length ?? 0) !== 2) return [];
+  return [{ kind: "hit", name: cg.sfx }];
 }
 
 /** 结局图（结局卡第一拍）：只响表里写明的（关山有信的马铃）；没写不响，结局卡不是「翻开一张纸」 */

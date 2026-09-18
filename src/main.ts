@@ -227,7 +227,7 @@ const story = new Story(
       // 主角是绯、有绯版的图就铺绯版（D-216）；解锁照旧记剧本写的那个 key（story.ts），回廊按它认
       const key = cgFor(scriptKey, protagonistRank((f) => store.state.flags[f] === true, (k) => store.state.cgsSeen.has(k)), (k) => raster.hasCg(k));
       // 声音桥 ③：图铺开那一下响——表里写了衣料、马铃就用它，风物图不响，其余纸响（D-202）。没图这一格跳过，不响
-      if (raster.hasCg(key)) sfx.run(cuesForCg(CGS[key]));
+      if (raster.hasCg(key)) sfx.run(cuesForCg(CGS[key]));   // D-229：只有写了 sfx 的双人图响
       // HUD 和数值框随图收（D-207）：有图才收，收图那一下（淡出开始）回来
       if (raster.hasCg(key)) app.dataset.cg = key;
       // 点下去、图还盖着舞台时就记下解锁，台上的人跟着对一遍：受位那张图收起来，她已经穿绯（D-205）
@@ -304,12 +304,14 @@ type SoundCueList = Parameters<typeof sfx.run>[0];
  * 主角是绯、有绯版图就铺绯版（D-216，和剧本事件图格同一个规则）。**真的铺上了**才记进回廊和存档（原 key；绯版另记一笔）。
  * 图没有、读不出来：这一格照常读字，舞台不动
  */
-const showPicture = (scriptKey: string | null): void => {
+const showPicture = (scriptKey: string | null, firstRead = false): void => {
   if (!scriptKey) { cgLayer.drop(); delete app.dataset.picture; return; }
   const key = cgFor(scriptKey, protagonistRank((f) => store.state.flags[f] === true, (k) => store.state.cgsSeen.has(k)), (k) => raster.hasCg(k));
   if (!raster.hasCg(key)) { cgLayer.drop(); delete app.dataset.picture; return; }
-  if (cgLayer.holding === key) return;
+  if (cgLayer.holding === key) return;                 // 连着同一张：不重铺、不再响
   app.dataset.picture = key;
+  // 出图音效（D-229）：和事件图格同一条规则；只在第一次读到这一格时响——读过的格（读档回来、回看）不重复
+  if (firstRead) sfx.run(cuesForCg(CGS[key]));
   void cgLayer.hold(key).then((ok) => {
     if (ok) {
       store.state.cgsSeen.add(scriptKey);
@@ -325,7 +327,12 @@ const enterCues = newEnterCueState();
 const hitsForScene = (s: Scene): SfxName[] => {
   const out = new Set<SfxName>(["paper_unfold", "drum_far", "bell_far"]);
   if (s.dressing === "shouwei") out.add("steps_hall");
-  for (const l of s.lines) if (l.who === "cg") { const x = CGS[l.text]?.sfx; if (x) out.add(x); }
+  for (const l of s.lines) {
+    for (const k of [l.who === "cg" ? l.text : null, l.image ?? null]) {
+      const c = k ? cuesForCg(CGS[k]) : [];                // D-229：会响的才预取
+      for (const q of c) if (q.kind === "hit") out.add(q.name);
+    }
+  }
   return [...out];
 };
 /**
@@ -388,7 +395,7 @@ story.on((e) => {
       sfx.run(cuesForShot(e.who));                       // 声音桥 ②：空镜这一格起风，下一格有人说话就收
       curLine = lineNo(e.id);
       applyAmbience((a) => [rainCue(a)], story.currentScene?.id, story.currentScene?.dressing, curLine);   // 场次表：从第几格起雨
-      showPicture(e.image ?? null);                      // 同一拍的画面（D-223）：这一格有就铺，没有就退回舞台
+      showPicture(e.image ?? null, e.first);             // 同一拍的画面（D-223）：这一格有就铺，没有就退回舞台
       play(cuesForLine(who, e.lineKind, e.text, cueState, performance.now()));
       choices.hide();
       dlg.setVisible(true);

@@ -40,8 +40,9 @@ export interface Cg {
   /** 印的中心，占图宽、高的百分比（D-067）。**只有无字之碑那张能写**，数由 CC3 看图后填 */
   seal?: { x: number; y: number };
   /**
-   * 这张图铺开那一下响什么（D-202，B37）。不写就是规则 ③ 的纸响；风物图（`beat: "风物"`）不响——它们不是纸，也不是动作。
-   * 身体、衣料动的写 `cloth_rustle`，有马的写 `horse_bell`
+   * 这张图铺开那一下响什么（D-202，B37；D-229，B46 改）。**不写就不响**（原来不写是纸响）。
+   * 写了也只有画里正好两个人才响（双人 CG，`cues.ts` 的 `cuesForCg`）；写景、物件、单人、群像都不响。
+   * 身体、衣料动的写 `cloth_rustle`；`horse_bell` 只给画里的马真戴着铃的
    */
   sfx?: "cloth_rustle" | "horse_bell";
   /** 给人看：画的是什么、在哪一场 */
@@ -50,7 +51,7 @@ export interface Cg {
 
 export const CGS: Record<string, Cg> = {
   // E19／E20：先试的两张（D-146）
-  peizhaoye_1_xunma:  { who: ["peizhaoye"],            beat: "本行",       focus: { x: 45, y: 30 }, sfx: "horse_bell", where: "裴照夜驯马（单人）。ch01-07 苑野。主体本身是宽的，按 D-150 横构图。焦点 CC3 E22 按 v2 量：她的脸 x 520–660、马头 760–960，手机那一条 478–951 都装得下（CC3 加，待协调）" },
+  peizhaoye_1_xunma:  { who: ["peizhaoye"],            beat: "本行",       focus: { x: 45, y: 30 }, where: "裴照夜驯马（单人；B46 按 D-229 去掉马铃：单人图不响，而且图里的马只戴笼头没有铃）。ch01-07 苑野。主体本身是宽的，按 D-150 横构图。焦点 CC3 E22 按 v2 量：她的脸 x 520–660、马头 760–960，手机那一条 478–951 都装得下（CC3 加，待协调）" },
   adi_1_buxiu:        { who: ["adi", "wuze"],          beat: "关系",       where: "阿荻替主角补袖（双人，有接触）。ch01-03" },
   // E21：四种类型各一张，位置来自 C32 样稿（样稿写回正文之前，剧本里还没有这四句）
   wenqiao_1_chaozhi:  { who: ["wenqiao"],              beat: "本行",       where: "温荞在纸坊提帘抄纸（单人，竖）。D-151／D-158；剧本还没有格子（CC3 加，待协调）" },

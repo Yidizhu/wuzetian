@@ -145,17 +145,18 @@ test("文件没到不报错：真文件 → 合成 → 静音", () => {
 import { cuesForCg, cuesForEndingCg, cuesForEnter, newEnterCueState, cuesForEnding } from "../src/audio/cues.ts";
 import { CGS } from "../src/scene/cgs.ts";
 
-test("D-202 事件图铺开：表里写了衣料／马铃用它，没写纸响，风物图不响，表里没有不响", () => {
-  assert.deepEqual(cuesForCg(CGS.wuze_shouwei), [{ kind: "hit", name: "cloth_rustle" }]);
-  assert.deepEqual(cuesForCg(CGS.peizhaoye_1_xunma), [{ kind: "hit", name: "horse_bell" }]);
-  assert.deepEqual(cuesForCg(CGS.liqinghe_2_diye), [{ kind: "hit", name: "paper_unfold" }]);
-  assert.deepEqual(cuesForCg(CGS.wu_chaipai), [], "风物不是纸，也不是动作");
+test("D-229 图铺开：默认不响；只有写了 sfx 的双人图响；写景、物件、单人、群像都不响纸", () => {
+  assert.deepEqual(cuesForCg(CGS.wuze_shouwei), [{ kind: "hit", name: "cloth_rustle" }], "双人、写了衣料");
+  assert.deepEqual(cuesForCg(CGS.peizhaoye_1_xunma), [], "单人（马也没戴铃）：不响");
+  assert.deepEqual(cuesForCg(CGS.liqinghe_2_diye), [], "没写 sfx：原来是纸响，现在不响");
+  assert.deepEqual(cuesForCg(CGS.wu_chaipai), [], "风物");
+  assert.deepEqual(cuesForCg(CGS.wu_shangsi_liuquan), [], "E39 新写景");
+  assert.deepEqual(cuesForCg({ beat: "关系", who: ["a", "b", "c"], sfx: "cloth_rustle" }), [], "群像：写了也不响");
+  assert.deepEqual(cuesForCg({ beat: "关系", who: ["a"], sfx: "cloth_rustle" }), [], "单人：写了也不响");
   assert.deepEqual(cuesForCg(undefined), []);
-  // 落点照 D-202 一张不多一张不少
-  const rustle = Object.keys(CGS).filter((k) => CGS[k]!.sfx === "cloth_rustle").sort();
-  assert.deepEqual(rustle, ["peizhaoye_2_dangfeng", "peizhaoye_3_woshou", "shenheng_4_bingzuo", "wuze_juwei", "wuze_shouwei"]);
-  const bell = Object.keys(CGS).filter((k) => CGS[k]!.sfx === "horse_bell").sort();
-  assert.deepEqual(bell, ["ending_guanshanyouxin", "peizhaoye_1_xunma"]);
+  // 会响的一张不多一张不少：D-202 那五张衣料（都是双人）；E39 新登记的一行都没写 sfx，等 CC3 E40 列名单
+  const sounding = Object.keys(CGS).filter((k) => !CGS[k]!.ending && cuesForCg(CGS[k]).length).sort();   // 结局图走结局卡自己那条（cuesForEndingCg）
+  assert.deepEqual(sounding, ["peizhaoye_2_dangfeng", "peizhaoye_3_woshou", "shenheng_4_bingzuo", "wuze_juwei", "wuze_shouwei"]);
 });
 
 test("D-202 结局图：只有表里写明的响（关山有信马铃），别的结局图不响纸", () => {
