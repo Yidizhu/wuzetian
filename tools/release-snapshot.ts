@@ -15,7 +15,7 @@
  * 没有就停在上传前，说一句缺什么。
  */
 import { execFileSync, spawnSync } from "node:child_process";
-import { existsSync, mkdirSync, copyFileSync, rmSync } from "node:fs";
+import { existsSync, mkdirSync, copyFileSync, rmSync, symlinkSync } from "node:fs";
 import { join } from "node:path";
 import { ROOT } from "./load.ts";
 
@@ -38,7 +38,8 @@ git("worktree", "add", "--detach", DIR, commit);
 
 // 构建要的两样不在版本库里：依赖（链过去，不重装）、vercel link 的项目信息
 const nm = join(DIR, "node_modules");
-if (!existsSync(nm)) execFileSync("cmd", ["/c", "mklink", "/J", nm, join(ROOT, "node_modules")], { stdio: "ignore" });
+// 用 Node 自己建目录联接：cmd /c mklink 传中文路径会把目标路径的编码弄坏，链接建出来了却指到不存在的地方
+if (!existsSync(nm)) symlinkSync(join(ROOT, "node_modules"), nm, "junction");
 const link = join(ROOT, ".vercel", "project.json");
 if (existsSync(link)) { mkdirSync(join(DIR, ".vercel"), { recursive: true }); copyFileSync(link, join(DIR, ".vercel", "project.json")); }
 
