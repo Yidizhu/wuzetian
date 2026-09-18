@@ -1,0 +1,11 @@
+
+美术覆盖：
+  立绘 14/14 套是光栅图：wuze_default、wuze_default_fei、shenheng_default、peizhaoye_default、wenqiao_default、liqinghe_default、liqinghe_default_zi、songhuizhen_default、hetaihou_default、xujinghe_default、tangjian_default、adi_default、liuchenghuan_default、liuchenghuan_default_bare
+  背景 22/22 条有图（自己的 17 条，借图的 5 条）
+    借图：yeting_ink_yedeng ← yeting_ink、zhaoyang_ink ← zhaoyang_gold、shuge_gold ← shuge_ink、shuge_gold_gongyi ← shuge_ink、shuge_ink_yedeng ← shuge_ink
+  章首风景 4/4 张有图
+  事件图 46/46 张有图：peizhaoye_1_xunma、adi_1_buxiu、wenqiao_1_chaozhi、wenqiao_1_cangzhi、liqinghe_2_diye、peizhaoye_3_woshou、shenheng_4_bingzuo、wuze_shouwei、wuze_juwei、shenheng_6_dafu、peizhaoye_6_dafu、wenqiao_6_dafu、liqinghe_6_dafu、shenheng_6_dafu_fei、peizhaoye_6_dafu_fei、wenqiao_6_dafu_fei、liqinghe_6_dafu_fei、liqinghe_5_suanshenme、wuze_huian、liuchenghuan_1_guihuan、shenheng_3_zhibei、wenqiao_3_tiejian、liqinghe_3_xiangying、shenheng_1_tengxie、liqinghe_1_boyi、peizhaoye_2_dangfeng、wenqiao_2_dengju、shenheng_2_rangzuo、songhuizhen_1_diwen、wu_denglun、wu_lengzao、wu_yuejiu、wu_zhuyu、wu_sushan、wu_lengtao、wu_chaipai、wu_cishoudie、wu_yinshou、ending_mandianwusheng、ending_wuzibei、ending_weijingzhizhao、ending_liangxizhijian、ending_kaimenshouzi、ending_bushou、ending_guanshanyouxin、ending_zhishangyouming
+    剧本写到 34 张
+    结局图 8/8 张有图
+  音效 9 条上线，账本里许可都填了
+  已入表的 198 个文件（图、配乐、音效）都在版本库里。

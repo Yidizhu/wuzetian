@@ -1,10 +1,71 @@
-/* 同一拍的画面（D-223，B45，CC1 加）。台词格上的「画面」列：图和字一起出来，对话框照常在图上面。
-   图本身就是 .cg（cg.css 那一套：铺法、焦点、宽屏虚化两侧都一样），这里只管两件：
+/* 同一拍的画面（D-223，B45，CC1 加；E40 调布局）。台词格上的「画面」列：图和字一起出来。
+   图本身复用 .cg；这里管理立绘隐显、过渡，以及为完整动作保留的图文区域：
    1. 画面铺着时**台上的立绘收起**——双人事件图上再叠一个站着的人，就是截图里那种「图里有人、台前又有人」；
    2. 画面那一层的墨晕进出比点开的事件图稍快，读字的节奏不被它拖住。
-   数（多快、要不要把对话框压淡一点）E40 看整屏再调，改这里 */
+   3. E40 将同拍对白放在图外，避免它遮住手、脸和低处物件。 */
 #app[data-picture] .cast { opacity: 0; transition: opacity 400ms var(--ease); }
 /* 层级：点开的事件图（z 3）会把对话框（z 2）收起来，所以它压在对话框上面没关系；
    画面要和字同时读，得在对话框底下——降到立绘那一层（z 1，DOM 在立绘之后，所以压得住立绘；立绘本来也收着） */
 .cg[data-role="line"] { z-index: 1; transition-duration: 420ms; }
 .cast { transition: opacity 400ms var(--ease); }   /* 画面收起、人回来时也淡入，不跳 */
+/* drop 后元素仍等待清理；不要在这半秒内退回全屏 cover，突然放大残影。 */
+#app:not([data-picture]) > .cg[data-role="line"] { visibility: hidden; }
+
+/* E40：同句配图保留完整动作。对白实际高度参与布局，不用固定百分比猜遮挡区。
+   仅改变 line 图，独立事件图与结局图仍沿用原来的铺法。 */
+#app[data-picture] {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: max(112px, calc(env(safe-area-inset-top) + 96px)) minmax(0, 1fr) auto;
+}
+#app[data-picture] > .hud {
+  max-width: calc(100% - 144px);
+  flex-wrap: wrap;
+}
+#app[data-picture] > .dlg {
+  position: relative;
+  grid-area: 3 / 1;
+  bottom: auto;
+  margin-bottom: max(24px, env(safe-area-inset-bottom));
+}
+#app[data-picture] > .cg[data-role="line"] {
+  position: relative;
+  grid-area: 2 / 1;
+  inset: auto;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+  background-size: 0 0;
+}
+#app[data-picture] > .cg[data-role="line"]::before,
+#app[data-picture] > .cg[data-role="line"]::after {
+  content: "";
+  position: absolute;
+  background-image: inherit;
+  background-repeat: no-repeat;
+}
+#app[data-picture] > .cg[data-role="line"]::before {
+  inset: -6%;
+  background-size: cover;
+  background-position: center;
+  filter: blur(28px) brightness(0.78) saturate(0.85);
+}
+#app[data-picture] > .cg[data-role="line"]::after {
+  inset: 0;
+  background-size: contain;
+  background-position: center;
+}
+/* 矮横屏把对白移到画旁，避免竖画被压成邮票。 */
+@media (min-aspect-ratio: 1/1) and (max-height: 540px) {
+  #app[data-picture] {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-rows: max(112px, calc(env(safe-area-inset-top) + 96px)) minmax(0, 1fr);
+    padding-bottom: max(24px, env(safe-area-inset-bottom));
+  }
+  #app[data-picture] > .dlg {
+    grid-area: 2 / 2;
+    align-self: end;
+    margin-bottom: 0;
+    padding-inline: 20px;
+  }
+}
