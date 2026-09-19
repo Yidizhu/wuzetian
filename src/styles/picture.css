@@ -31,30 +31,16 @@
 #app[data-picture] > .cg[data-role="line"] {
   position: relative;
   grid-area: 2 / 1;
-  inset: auto;
+  top: auto; right: auto; bottom: auto; left: auto;
   min-width: 0;
   min-height: 0;
   overflow: hidden;
-  background-size: 0 0;
 }
-#app[data-picture] > .cg[data-role="line"]::before,
-#app[data-picture] > .cg[data-role="line"]::after {
-  content: "";
-  position: absolute;
-  background-image: inherit;
-  background-repeat: no-repeat;
-}
-#app[data-picture] > .cg[data-role="line"]::before {
-  inset: -6%;
-  background-size: cover;
-  background-position: center;
-  filter: blur(28px) brightness(0.78) saturate(0.85);
-}
-#app[data-picture] > .cg[data-role="line"]::after {
-  inset: 0;
-  background-size: contain;
-  background-position: center;
-}
+/* CC3 E41 改，待协调：同拍画面永远整张放进格子里（不管 CgLayer 按全屏算出来的 data-fit），
+   两边的空处用同一张图虚化垫着。图是两张真的 <img>（CgLayer），不再用伪元素 inherit 背景图——
+   微信 WebKit 里那一套只画出了原图左上角一块。 */
+#app[data-picture] > .cg[data-role="line"] .cg__img { object-fit: contain; object-position: 50% 50% !important; }
+#app[data-picture] > .cg[data-role="line"] .cg__fill { display: block; }
 /* 矮横屏把对白移到画旁，避免竖画被压成邮票。 */
 @media (min-aspect-ratio: 1/1) and (max-height: 540px) {
   #app[data-picture] {

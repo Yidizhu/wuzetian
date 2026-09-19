@@ -3,30 +3,37 @@
    过渡用墨晕一样的淡入淡出，数（多久、推不推近）归 CC3 调 */
 
 .cg {
-  position: absolute; inset: 0; z-index: 3;
+  position: absolute; top: 0; right: 0; bottom: 0; left: 0; z-index: 3;
   isolation: isolate;
-  background: var(--c-ground) var(--cg-x, 50%) var(--cg-y, 50%) / cover no-repeat;
+  overflow: hidden;                     /* 虚化底比框大一圈，不许溢出 */
+  background-color: var(--c-ground);
   opacity: 0;
   transition: opacity 520ms var(--ease);
   pointer-events: none;                 /* 点击由 tap.ts 在 window 上接，这一层不挡 */
 }
 .cg[data-state="shown"] { opacity: 1; }
 
-/* 竖图上宽屏（D-150）：整张放进来，两侧用同一张图放大虚化填满。数由 CC3 看图调。
-   两层都用伪元素叠：本体的背景不画（尺寸 0），只留着给两层 inherit；
-   虚化那层在下、整张那层在上——虚化写在本体上面会把整张盖住（B25 截图里出过） */
-.cg[data-fit="contain"] { background-size: 0 0; }
-.cg[data-fit="contain"]::before,
-.cg[data-fit="contain"]::after {
-  content: ""; position: absolute; background-image: inherit; background-repeat: no-repeat;
+/* 图本身（CC3 E41 改，待协调）：两张真的 <img>，不再用本体背景图 + 伪元素 inherit。
+   那一套在微信 WebKit 里失效：本体背景按原图尺寸从左上角画出来，只看得见图的一角（E41 线上截图）。
+   偏移全写 top/left/width/height，不用 inset 简写（老 iOS 不认） */
+.cg__img,
+.cg__fill {
+  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+  display: block; max-width: none;
+  pointer-events: none; user-select: none; -webkit-user-select: none; -webkit-user-drag: none;
 }
-.cg[data-fit="contain"]::before {
-  inset: -6%; background-size: cover; background-position: center;
+.cg__img { object-fit: cover; }        /* 铺满时按焦点对齐：object-position 由 CgLayer 按 cgs.ts 的 focus 写 */
+.cg__fill {                            /* 虚化底：只在整张放进来时露出来 */
+  display: none;
+  top: -6%; left: -6%; width: 112%; height: 112%;
+  object-fit: cover; object-position: 50% 50%;
   filter: blur(28px) brightness(0.78) saturate(0.85);
 }
-.cg[data-fit="contain"]::after {
-  inset: 0; background-size: contain; background-position: center;
-}
+
+/* 竖图上宽屏（D-150）：整张放进来，两侧用同一张图放大虚化填满。数由 CC3 看图调。
+   虚化那张在下、整张那张在上（DOM 顺序就是这样） */
+.cg[data-fit="contain"] .cg__img { object-fit: contain; object-position: 50% 50% !important; }
+.cg[data-fit="contain"] .cg__fill { display: block; }
 .cg[data-state="out"]   { opacity: 0; }
 
 /* 结局图（D-160，B27，CC1 加）：结局卡第一拍铺上。**默认只在第一拍**：第二拍（题名正文）收掉。

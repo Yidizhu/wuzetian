@@ -130,14 +130,25 @@ export class CgLayer {
     const el = document.createElement("div");
     el.className = "cg";
     el.dataset.state = "in";
-    el.style.backgroundImage = `url("${url}")`;
     // 怎么铺（D-150）：看图本身的宽高和屏幕的宽高，不看表。
     //   图比屏幕「瘦」得多（竖图上宽屏）：整张放进来，两侧用同一张图虚化填满——留白可解，裁掉人不可解；
     //   其余（横图上手机、竖图上手机、横图上宽屏）：铺满，按焦点对齐，横图在手机上裁的是焦点两边
     const row = CGS[key];
     const focus = row?.focus ?? { x: 50, y: 50 };
-    el.style.setProperty("--cg-x", `${focus.x}%`);
-    el.style.setProperty("--cg-y", `${focus.y}%`);
+    // CC3 E41 改，待协调：图用两张真的 <img> 铺（object-fit），不再用「本体背景图 + 伪元素 inherit」。
+    // 微信里的 WebKit 把本体那张背景按原图尺寸从左上角画了出来（background-size: 0 0 没把它藏住），
+    // 伪元素上 contain 的那张没显示——手机上只看得见图的左上角一块（E41 两张线上截图）。
+    // 虚化底那张只在 contain 时露出来（cg.css / picture.css 管）
+    const fill = document.createElement("img");
+    fill.className = "cg__fill";
+    fill.alt = "";
+    fill.setAttribute("aria-hidden", "true");
+    fill.src = url;
+    img.className = "cg__img";
+    img.alt = "";
+    img.setAttribute("aria-hidden", "true");
+    img.style.objectPosition = `${focus.x}% ${focus.y}%`;
+    el.append(fill, img);
     // 印（D-067）：跟着图走，不跟着屏幕走。表里没写位置就不盖——盖错地方比不盖更糟，check:art 会拦下没写的
     let seal: HTMLElement | null = null;
     if (sealText && row?.seal) {
