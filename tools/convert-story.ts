@@ -423,7 +423,7 @@ function lineTable(b: Block): { table: Table; at: (row: Row, name: string) => st
   const ok = (t: Table) => {
     const names = new Set(t.header);
     return names.size === t.header.length && LINE_COLUMNS.every(c => names.has(c)) &&
-      [...names].every(c => (LINE_COLUMNS as readonly string[]).includes(c) || c === "条件" || c === "画面");
+      [...names].every(c => (LINE_COLUMNS as readonly string[]).includes(c) || c === "条件" || c === "画面" || c === "收诗");
   };
   const table = b.tables.find(ok);
   if (table) {
@@ -431,7 +431,7 @@ function lineTable(b: Block): { table: Table; at: (row: Row, name: string) => st
     return { table, at: (row, name) => (index.has(name) ? row.cells[index.get(name)!] : "") };
   }
   const near = b.tables.find(t => t.header[0] === "#" && t.header.includes("台词"));
-  if (near) throw new Error(`台词表列名不合规范：要有且只有「# | 说话人 | 表情 | 类型 | 台词」，可另加「条件」（D-026）和「画面」（D-223）各一列；实际「${near.header.join(" | ")}」`);
+  if (near) throw new Error(`台词表列名不合规范：要有且只有「# | 说话人 | 表情 | 类型 | 台词」，可另加「条件」（D-026）、「画面」（D-223）和「收诗」（D-238）各一列；实际「${near.header.join(" | ")}」`);
   throw new Error("缺少规范台词表（# | 说话人 | 表情 | 类型 | 条件 | 台词）。承接段正文请按 D-026 合并进本表，用「条件」列标条件");
 }
 type ZodLike = { issues: { path: (string | number)[]; message: string }[] };
@@ -725,6 +725,9 @@ export function convertBatch(inputs: { markdown: string; file: string }[]): Conv
       // B45：图与本句同拍，不插入 cg 格；空列不输出。key 合法性归 validate-story。
       const image = cell("画面").trim();
       if (image) line.image = image;
+      // B47：只标记实际阅读的这一格；诗 key 合法性由正式校验器检查。
+      const poem = cell("收诗").trim();
+      if (poem) line.poem = poem;
       // Validate each line at its own source row for precise diagnostics.
       const checked = Line.safeParse(line);
       if (!checked.success) throw new Error(zodMessage(checked.error));
@@ -922,8 +925,6 @@ export function convertBatch(inputs: { markdown: string; file: string }[]): Conv
     };
     // schema 的数值边界（story-schema 2.4）不是转换器定的。报错时说清两条路，别让人以为只能改原文。
     const bounds: Record<string, string> = {
-      delayMinutes: "送信延迟 schema 定为 10–180 分钟。要么改 markdown 填 10 以上，要么请 CC1 定夺是否放宽下限（军中素笺本就该快）",
-      "trigger.afterScenes": "触发场数 schema 定为 2–4 场。要么改 markdown 填 2 以上，要么请 CC1 定夺是否允许隔 1 场就送到",
       "replies.plain": "直言必须正好三条（story-schema 1.8.2）",
     };
     const parsed = take(b, undefined, Letter, value,

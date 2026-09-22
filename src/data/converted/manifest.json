@@ -2,7 +2,7 @@
   "inputs": [
     {
       "file": "docs/C-2-第一章前六场.md",
-      "sha256": "4e0cfaf80d428bc58c6c5ff9c8e55312ab0b2267fa8ce6ff2cd1fcfd0a139798"
+      "sha256": "fca02f73cea4f1ad0d50b3883f91049a3ed0fcd080290beaacb55404d4e3abdf"
     },
     {
       "file": "docs/C-3-第一章后十二场.md",
@@ -10,7 +10,7 @@
     },
     {
       "file": "docs/C-4-第一章书信.md",
-      "sha256": "c1073c5c0b8391c1e0073e9a1e6289b078e53d582c0174d7ec8040989d3cf174"
+      "sha256": "df107233d9c3bfa168ea905e9298acea0e3a14d69dc9cd076b2c6f80cf782fb7"
     },
     {
       "file": "docs/C0-2-诗词库与对诗.md",
@@ -26,11 +26,11 @@
     },
     {
       "file": "docs/C-7-第二章前十二场.md",
-      "sha256": "96145bc965563f36cf9f22a622af77ed1c46456281db73781b8f64678a8972c3"
+      "sha256": "f206bc817993976611e31742f9274310c4c3cd44810bfbf2b5306b9c877b42d8"
     },
     {
       "file": "docs/C-8-第二章后十二场与书信.md",
-      "sha256": "e88c87db56aa5b94ed460a743da62570a3d07f157cd646fe0ddc8e3993bb98b3"
+      "sha256": "88b2ceae0bc6c0ff47baee08f56fe7ae81d8ae80222d2976e94f7a25bcac40b4"
     },
     {
       "file": "docs/C-9-第三章大纲.md",
@@ -38,11 +38,11 @@
     },
     {
       "file": "docs/C-10-第三章前十二场.md",
-      "sha256": "904217c93538d565e0a959632eec28ce5d2b2ceaa3dc09a8ba2dcc5a780767f6"
+      "sha256": "e319b097f95831af4021d5117e4d3c23769fb5fb9ba7dbdf1609afeb2320de91"
     },
     {
       "file": "docs/C-11-第三章后十二场与书信.md",
-      "sha256": "de98ba47e5d167d3f712be25528ecb862e21407022e6547cade3df912a036392"
+      "sha256": "2a327a6dccbac2e60822514bd09203663a664b451da44725410b09bb0c28bcae"
     },
     {
       "file": "docs/C-12-第四章大纲.md",
@@ -50,11 +50,11 @@
     },
     {
       "file": "docs/C-13-第四章登基与不受.md",
-      "sha256": "a8e2bd81d490d74ef01098deebc9c926174ff2219dd8b570c7208fb1e859370c"
+      "sha256": "94f4eab189340ba207a8a8cb466286fb62985d24097c7e4489a467911ec08401"
     },
     {
       "file": "docs/C-14-第四章其余路线与书信.md",
-      "sha256": "2795c663dcc1a3378256ac2acfd7c4baeb5e97bcba5cd2347d10f17d913eafc9"
+      "sha256": "4cb8c241f439cddf62b3b0bde9b81f6adefffa43bc02875885d6985df60b42c1"
     }
   ],
   "scenes": [

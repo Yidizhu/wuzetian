@@ -1,0 +1,379 @@
+{
+  "task": "CC2 D34",
+  "sourceCommit": "8a53b402f1da7a4b481001499c0839f37fdd1b78",
+  "unlockCommit": "279de49",
+  "unlockUTC": "2026-09-22T10:11:33Z",
+  "fingerprint": "a156f6191d52",
+  "scenes": 107,
+  "lines": 3925,
+  "letters": [
+    {
+      "id": "lt_ch01_liqinghe_01",
+      "oldMinutes": 26,
+      "newMinutes": 6,
+      "trigger": {
+        "kind": "scene",
+        "sceneId": "ch01_s09_shuge",
+        "afterScenes": 2
+      }
+    },
+    {
+      "id": "lt_ch01_peizhaoye_01",
+      "oldMinutes": 8,
+      "newMinutes": 3,
+      "trigger": {
+        "kind": "scene",
+        "sceneId": "ch01_s07_yuanye",
+        "afterScenes": 2
+      }
+    },
+    {
+      "id": "lt_ch01_shenheng_01",
+      "oldMinutes": 18,
+      "newMinutes": 5,
+      "trigger": {
+        "kind": "scene",
+        "sceneId": "ch01_s04_shuge",
+        "afterScenes": 3
+      }
+    },
+    {
+      "id": "lt_ch01_wenqiao_01",
+      "oldMinutes": 12,
+      "newMinutes": 4,
+      "trigger": {
+        "kind": "scene",
+        "sceneId": "ch01_s11_shishe",
+        "afterScenes": 1
+      }
+    },
+    {
+      "id": "lt_ch02_liqinghe_01",
+      "oldMinutes": 26,
+      "newMinutes": 6,
+      "trigger": {
+        "kind": "scene",
+        "sceneId": "ch02_s24_shuge",
+        "afterScenes": 2
+      }
+    },
+    {
+      "id": "lt_ch02_liuchenghuan_01",
+      "oldMinutes": 5,
+      "newMinutes": 3,
+      "trigger": {
+        "kind": "scene",
+        "sceneId": "ch02_s26_shuge",
+        "afterScenes": 1
+      }
+    },
+    {
+      "id": "lt_ch02_peizhaoye_01",
+      "oldMinutes": 8,
+      "newMinutes": 3,
+      "trigger": {
+        "kind": "scene",
+        "sceneId": "ch02_s07_yuanye",
+        "afterScenes": 2
+      }
+    },
+    {
+      "id": "lt_ch02_shenheng_01",
+      "oldMinutes": 15,
+      "newMinutes": 5,
+      "trigger": {
+        "kind": "scene",
+        "sceneId": "ch02_s04_shuge",
+        "afterScenes": 2
+      }
+    },
+    {
+      "id": "lt_ch02_wenqiao_01",
+      "oldMinutes": 12,
+      "newMinutes": 4,
+      "trigger": {
+        "kind": "scene",
+        "sceneId": "ch02_s09_shishe",
+        "afterScenes": 2
+      }
+    },
+    {
+      "id": "lt_ch03_liqinghe_01",
+      "oldMinutes": 26,
+      "newMinutes": 6,
+      "trigger": {
+        "kind": "scene",
+        "sceneId": "ch03_s09_yuanye",
+        "afterScenes": 1
+      }
+    },
+    {
+      "id": "lt_ch03_peizhaoye_01",
+      "oldMinutes": 8,
+      "newMinutes": 3,
+      "trigger": {
+        "kind": "scene",
+        "sceneId": "ch03_s04_yuanye",
+        "afterScenes": 1
+      }
+    },
+    {
+      "id": "lt_ch03_shenheng_01",
+      "oldMinutes": 18,
+      "newMinutes": 5,
+      "trigger": {
+        "kind": "scene",
+        "sceneId": "ch03_s02_shuge",
+        "afterScenes": 2
+      }
+    },
+    {
+      "id": "lt_ch03_wenqiao_01",
+      "oldMinutes": 12,
+      "newMinutes": 4,
+      "trigger": {
+        "kind": "scene",
+        "sceneId": "ch03_s05_shishe",
+        "afterScenes": 1
+      }
+    },
+    {
+      "id": "lt_ch04_liqinghe_01",
+      "oldMinutes": 16,
+      "newMinutes": 6,
+      "trigger": {
+        "kind": "scene",
+        "sceneId": "ch04_s02_hanyuan",
+        "afterScenes": 2
+      }
+    },
+    {
+      "id": "lt_ch04_peizhaoye_01",
+      "oldMinutes": 5,
+      "newMinutes": 3,
+      "trigger": {
+        "kind": "scene",
+        "sceneId": "ch04_s02_hanyuan",
+        "afterScenes": 1
+      }
+    },
+    {
+      "id": "lt_ch04_shenheng_01",
+      "oldMinutes": 8,
+      "newMinutes": 5,
+      "trigger": {
+        "kind": "scene",
+        "sceneId": "ch04_s02_hanyuan",
+        "afterScenes": 1
+      }
+    },
+    {
+      "id": "lt_ch04_wenqiao_01",
+      "oldMinutes": 10,
+      "newMinutes": 4,
+      "trigger": {
+        "kind": "scene",
+        "sceneId": "ch04_s02_hanyuan",
+        "afterScenes": 2
+      }
+    },
+    {
+      "id": "lt_season_chongyang_liqinghe",
+      "oldMinutes": 5,
+      "newMinutes": 3,
+      "trigger": {
+        "kind": "solarTerm",
+        "term": "chongyang",
+        "minAffinity": 5
+      }
+    },
+    {
+      "id": "lt_season_hanshi_shenheng",
+      "oldMinutes": 5,
+      "newMinutes": 3,
+      "trigger": {
+        "kind": "solarTerm",
+        "term": "hanshi",
+        "minAffinity": 4
+      }
+    },
+    {
+      "id": "lt_season_shangyuan_wenqiao",
+      "oldMinutes": 5,
+      "newMinutes": 3,
+      "trigger": {
+        "kind": "solarTerm",
+        "term": "shangyuan",
+        "minAffinity": 3
+      }
+    },
+    {
+      "id": "lt_season_zhongqiu_peizhaoye",
+      "oldMinutes": 5,
+      "newMinutes": 3,
+      "trigger": {
+        "kind": "solarTerm",
+        "term": "zhongqiu",
+        "minAffinity": 5
+      }
+    }
+  ],
+  "images": 121,
+  "marks": [
+    [
+      "ch01_s03_yeting",
+      "ch01_s03_yeting.l66",
+      "yuxuanji_youchongzhenguan"
+    ],
+    [
+      "ch02_s10_nvguan",
+      "ch02_s10_nvguan.l3",
+      "liye_bazhi"
+    ],
+    [
+      "ch03_s10_nvguan",
+      "ch03_s10_nvguan.l14",
+      "poem_236e745594cc1f8d"
+    ],
+    [
+      "ch04_s01_zhaoyang",
+      "ch04_s01_zhaoyang.l30",
+      "yuxuanji_tiyinwuting"
+    ]
+  ],
+  "changed": [
+    "chapters/ch01/ch01_s03_yeting.json",
+    "chapters/ch02/ch02_s10_nvguan.json",
+    "chapters/ch03/ch03_s10_nvguan.json",
+    "chapters/ch04/ch04_s01_zhaoyang.json",
+    "letters/lt_ch01_liqinghe_01.json",
+    "letters/lt_ch01_peizhaoye_01.json",
+    "letters/lt_ch01_shenheng_01.json",
+    "letters/lt_ch01_wenqiao_01.json",
+    "letters/lt_ch02_liqinghe_01.json",
+    "letters/lt_ch02_liuchenghuan_01.json",
+    "letters/lt_ch02_peizhaoye_01.json",
+    "letters/lt_ch02_shenheng_01.json",
+    "letters/lt_ch02_wenqiao_01.json",
+    "letters/lt_ch03_liqinghe_01.json",
+    "letters/lt_ch03_peizhaoye_01.json",
+    "letters/lt_ch03_shenheng_01.json",
+    "letters/lt_ch03_wenqiao_01.json",
+    "letters/lt_ch04_liqinghe_01.json",
+    "letters/lt_ch04_peizhaoye_01.json",
+    "letters/lt_ch04_shenheng_01.json",
+    "letters/lt_ch04_wenqiao_01.json",
+    "letters/lt_season_chongyang_liqinghe.json",
+    "letters/lt_season_hanshi_shenheng.json",
+    "letters/lt_season_shangyuan_wenqiao.json",
+    "letters/lt_season_zhongqiu_peizhaoye.json",
+    "manifest.json"
+  ],
+  "inputs": [
+    {
+      "file": "docs/C-2-第一章前六场.md",
+      "sha256": "fca02f73cea4f1ad0d50b3883f91049a3ed0fcd080290beaacb55404d4e3abdf"
+    },
+    {
+      "file": "docs/C-3-第一章后十二场.md",
+      "sha256": "8c7f1ac365dcabd2bd7a9da06f568267cac23b3298bd62732a5bcb2d31945831"
+    },
+    {
+      "file": "docs/C-4-第一章书信.md",
+      "sha256": "df107233d9c3bfa168ea905e9298acea0e3a14d69dc9cd076b2c6f80cf782fb7"
+    },
+    {
+      "file": "docs/C0-2-诗词库与对诗.md",
+      "sha256": "9f3aaf782b4a6c69943858aa80aa74e8de36be446f2ded94e2c1a8614f1881d1"
+    },
+    {
+      "file": "docs/C-B-结局树.md",
+      "sha256": "6ea82d7dc1e00e5a78fd46d48e9654ce0a4895b36e91f7787df022cd86164a56"
+    },
+    {
+      "file": "docs/C-6-第二章大纲.md",
+      "sha256": "cbf9639c7ba612b0c41fed62c9c2b6dd987234622e54457363113680b2971d04"
+    },
+    {
+      "file": "docs/C-7-第二章前十二场.md",
+      "sha256": "f206bc817993976611e31742f9274310c4c3cd44810bfbf2b5306b9c877b42d8"
+    },
+    {
+      "file": "docs/C-8-第二章后十二场与书信.md",
+      "sha256": "88b2ceae0bc6c0ff47baee08f56fe7ae81d8ae80222d2976e94f7a25bcac40b4"
+    },
+    {
+      "file": "docs/C-9-第三章大纲.md",
+      "sha256": "8ddf490a67c05a2d2c9518ff5948aa2d637ee718d046be75e7a637baf4358503"
+    },
+    {
+      "file": "docs/C-10-第三章前十二场.md",
+      "sha256": "e319b097f95831af4021d5117e4d3c23769fb5fb9ba7dbdf1609afeb2320de91"
+    },
+    {
+      "file": "docs/C-11-第三章后十二场与书信.md",
+      "sha256": "2a327a6dccbac2e60822514bd09203663a664b451da44725410b09bb0c28bcae"
+    },
+    {
+      "file": "docs/C-12-第四章大纲.md",
+      "sha256": "cde4a21ce67888411caf7e527555cbc9dd298040f5d5976cd59a0c134ca38797"
+    },
+    {
+      "file": "docs/C-13-第四章登基与不受.md",
+      "sha256": "94f4eab189340ba207a8a8cb466286fb62985d24097c7e4489a467911ec08401"
+    },
+    {
+      "file": "docs/C-14-第四章其余路线与书信.md",
+      "sha256": "4cb8c241f439cddf62b3b0bde9b81f6adefffa43bc02875885d6985df60b42c1"
+    }
+  ],
+  "checks": {
+    "unitTests": {
+      "passed": 231,
+      "failed": 0
+    },
+    "typescript": true,
+    "validator": {
+      "errors": 0,
+      "warnings": 56
+    },
+    "deterministicFiles": 132,
+    "runtime": {
+      "timelines": 21,
+      "oldQueues": 126,
+      "poemReplies": 84,
+      "lateReplies": 18,
+      "fixedStates": 5,
+      "poemReplay": 4
+    },
+    "poemSmoke": {
+      "completed": 1476,
+      "allDuelsLost": 709,
+      "endings": {
+        "wuzibei": 100,
+        "zhishangyouming": 874,
+        "guanshanyouxin": 67,
+        "bushou": 209,
+        "kaimenshouzi": 55,
+        "weijingzhizhao": 139,
+        "mandianwusheng": 31,
+        "liangxizhijian": 1
+      },
+      "identities": {
+        "enthroned": 270,
+        "liqinghe_won": 997,
+        "declined_crown": 209
+      },
+      "lostEndings": {
+        "wuzibei": 44,
+        "zhishangyouming": 432,
+        "bushou": 97,
+        "kaimenshouzi": 27,
+        "weijingzhizhao": 63,
+        "guanshanyouxin": 35,
+        "mandianwusheng": 11
+      },
+      "exitCode": 0
+    }
+  }
+}

@@ -507,12 +507,12 @@ test('胜负反馈写成散文：要求改成「台词」列；改了就不再�
 });
 
 test('信件：延迟与场数越界报到那一行，并译成中文；留信指向转换失败的信要说明', () => {
-  // R-006 之后下限是 5 分钟、隔 1 场；这里用真正越界的值
-  const md = scene('ch01-01', '| 留信 | shenheng |') + '\n' + letter.replace('| 延迟分钟 | 18 |', '| 延迟分钟 | 4 |').replace('之后第 3 场', '之后第 5 场');
+  // D-239 之后下限是 3 分钟、隔 1 场；这里用真正越界的值
+  const md = scene('ch01-01', '| 留信 | shenheng |') + '\n' + letter.replace('| 延迟分钟 | 18 |', '| 延迟分钟 | 2 |').replace('之后第 3 场', '之后第 5 场');
   const r = convert(md, 'l');
   assert.equal(r.letters.length, 0);
   const at = (needle: string) => md.split('\n').findIndex(l => l.includes(needle)) + 1;
-  assert.ok(r.issues.some(i => i.line === at('| 延迟分钟 | 4 |') && i.message.includes('须 ≥ 5')));
+  assert.ok(r.issues.some(i => i.line === at('| 延迟分钟 | 2 |') && i.message.includes('须 ≥ 3')));
   assert.ok(r.issues.some(i => i.line === at('之后第 5 场') && i.message.includes('须 ≤ 4')));
   assert.ok(r.issues.some(i => i.line === at('| 留信 | shenheng |') && i.message.includes('未通过转换')));
   assert.ok(!r.issues.some(i => i.message.includes('一同转换 C-4')), '信交了，就不要再说没交');
@@ -1411,7 +1411,7 @@ test('D32 C52 实际承欢信：六回法在归还前后都不改数值、flag�
   const l = r.letters.find(l => l.id === 'lt_ch02_liuchenghuan_01');
   assert.ok(l, '实际源稿必须转出承欢信');
   assert.deepEqual(l.trigger, { kind: 'scene', sceneId: 'ch02_s26_shuge', afterScenes: 1 });
-  assert.equal(l.delayMinutes, 5);
+  assert.equal(l.delayMinutes, 3);
   assert.equal(l.paper, 'chang');
   assert.equal(l.interceptable, false);
   assert.equal(l.interceptAt, undefined);
@@ -1433,4 +1433,43 @@ test('D32 C52 实际承欢信：六回法在归还前后都不改数值、flag�
     assert.equal(JSON.stringify([store.state.stats, store.state.affinity, store.state.flags, store.state.relation]), before);
     assert.equal(inbox.reply(l.id, 'plainA'), null, '六回法互斥，不能再结算');
   }
+});
+
+test('D34 收诗列按名称取值，与画面和条件同格，空列及旧稿无字段', () => {
+  const rows: Record<string, string>[] = [
+    { '#': '1', '说话人': 'narr', '类型': '诗', '台词': '声声似相接。', '条件': 'flag.read_poem', '画面': 'wu_yuejiu', '收诗': 'xuetao_chan' },
+    { '#': '2', '说话人': 'wuze', '类型': '说', '台词': '收好了。' },
+  ];
+  const build = (cols: string[]) => scene().split('| # | 说话人')[0] + '| ' + cols.join(' | ') + ' |\n| ' + cols.map(() => '---').join(' | ') + ' |\n' + rows.map(r => '| ' + cols.map(c => r[c] ?? '').join(' | ') + ' |').join('\n');
+  const cols = ['#', '说话人', '表情', '类型', '条件', '台词', '画面', '收诗'];
+  const r = convert(build(cols), 'poem.md');
+  assert.deepEqual(r.issues, []);
+  assert.equal(r.scenes[0].lines.length, 2);
+  assert.deepEqual(r.scenes[0].lines[0], { id: 'ch01_s01_shuge.l1', who: 'narr', kind: 'poem', text: '声声似相接。', when: { 'flag.read_poem': true }, image: 'wu_yuejiu', poem: 'xuetao_chan' });
+  assert.ok(!('poem' in r.scenes[0].lines[1]));
+  assert.deepEqual(convert(build([...cols].reverse()), 'poem.md'), r);
+  assert.ok(convert(build(cols.filter(c => c !== '收诗')), 'poem.md').scenes[0].lines.every(l => !('poem' in l)));
+  const unknown = convert(build(cols).replace('xuetao_chan', 'unknown_poem_d34'), 'poem.md');
+  assert.equal(unknown.scenes[0].lines[0].poem, 'unknown_poem_d34', '未知key不丢弃，交正式校验器报错');
+  assert.equal(convert(build([...cols, '收诗']), 'poem.md').scenes.length, 0);
+  const dir = mkdtempSync(join(tmpdir(), 'wuzetian-d34-'));
+  try {
+    writeOut(r, dir);
+    const path = outputPathFor(r.scenes[0].id, dir);
+    const first = readFileSync(path);
+    assert.equal(JSON.parse(first.toString()).lines[0].poem, 'xuetao_chan');
+    writeOut(convert(build(cols), 'poem.md'), dir);
+    assert.deepEqual(readFileSync(path), first);
+  } finally { rmSync(dir, { recursive: true, force: true }); }
+});
+
+test('D34 三分钟下限：3/4/5/6均可转，2分钟指回原文且不报旧10分钟提示', () => {
+  for (const minutes of [3, 4, 5, 6]) {
+    const r = convert(scene('ch01-01', '| 留信 | shenheng |') + '\n' + letter.replace('| 延迟分钟 | 18 |', `| 延迟分钟 | ${minutes} |`), 'letter.md');
+    assert.deepEqual(r.issues, []);
+    assert.equal(r.letters[0].delayMinutes, minutes);
+  }
+  const r = convert(scene('ch01-01', '| 留信 | shenheng |') + '\n' + letter.replace('| 延迟分钟 | 18 |', '| 延迟分钟 | 2 |'), 'letter.md');
+  assert.ok(r.issues.some(i => i.excerpt.includes('延迟分钟') && i.message.includes('须 ≥ 3')));
+  assert.ok(r.issues.every(i => !i.message.includes('10–180')));
 });
