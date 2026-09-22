@@ -130,7 +130,8 @@ test("军中素笺可以隔一场就到，延迟可以短到五分钟（R-006）
 
 test("下限之下仍然拦：零场、四分钟都不行", () => {
   assert.ok(!LetterSchema.safeParse(letter({ trigger: { kind: "scene", sceneId: "a", afterScenes: 0 } })).success);
-  assert.ok(!LetterSchema.safeParse(letter({ delayMinutes: 4 })).success);
+  assert.ok(LetterSchema.safeParse(letter({ delayMinutes: 3 })).success, "D-239：下限从 5 降到 3（21 封信压到 3—6 分钟）");
+  assert.ok(!LetterSchema.safeParse(letter({ delayMinutes: 2 })).success);
 });
 
 /**

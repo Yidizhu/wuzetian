@@ -330,8 +330,9 @@ export const Letter = z.object({
   id: z.string().min(1),
   from: CharacterKey,
   trigger: LetterTrigger,
-  // 下限 5 分钟（R-006）。再短就不像「过了一会儿」，像系统弹窗
-  delayMinutes: z.number().int().min(5).max(180),
+  // 下限 3 分钟（D-239，B47 补充；原来是 5，R-006）。D-239 把 21 封信压到 3—6 分钟，
+  // 下限不跟着放开，C54 那 13 封 3／4 分钟的信一转就会被拦下
+  delayMinutes: z.number().int().min(3).max(180),
   paper: z.enum(["huangma", "junzhong", "nijin", "huajian", "chang"]),
   body: z.object({
     surface: z.string().min(1),
