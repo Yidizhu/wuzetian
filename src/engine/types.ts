@@ -89,6 +89,11 @@ export interface Line {
   kind?: LineKind;
   text: string;
   /**
+   * 这一格读到的诗（D-238，B47）：`poems.json` 的 key。**读到这一格就收进收藏**，不用赢对诗；
+   * 重复读不重复收（第一次才记这一章）。条件不满足、这一格没显示出来，就不收。剧本台词表的「收诗」列转出来
+   */
+  poem?: string;
+  /**
    * 这一格同时铺的画面（D-223，B45）：`cgs.ts` 里的 key，和文字**同一拍**出现，不等点击、不另占一格。
    * 下一格没写就退回舞台；连着几格写同一个 key，图不闪。剧本台词表的「画面」列转出来。见 docs/story-schema.md
    */
@@ -155,6 +160,8 @@ export interface LetterSlot {
   repliedWith: string | null;
   /** 场次门：还要走几场才开始计时。C-4：按实际经过的主场次计 */
   scenesLeft?: number;
+  /** 时间门是什么时候开始计的（D-239，B47）。信的分钟数改短了，按它重算到期时刻；老档没有就按「不延长剩余」算 */
+  startedAt?: number;
   /** 这封信触发那一刻的关系时钟（pact.ts 规则 3）：晚拆的旧信不冲掉后来的谈话。老档没有，按 0 */
   rev?: number;
 }

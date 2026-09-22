@@ -80,7 +80,7 @@ export class Letters {
       }
       if (scene.chapter !== want || !scene.weightless) continue;
       if ((s.affinity[l.from] ?? 0) < l.trigger.minAffinity) continue;   // 交情还不到，等这一章下一个闲场
-      s.letters.push({ id: l.id, state: "pending", dueAt: Date.now() + l.delayMinutes * 60_000, repliedWith: null, rev: s.relation.clock });
+      s.letters.push({ id: l.id, state: "pending", startedAt: Date.now(), dueAt: Date.now() + l.delayMinutes * 60_000, repliedWith: null, rev: s.relation.clock });
     }
   }
 
@@ -104,7 +104,8 @@ export class Letters {
       slot.scenesLeft -= 1;
       if (slot.scenesLeft <= 0) {
         const l = this.byId.get(slot.id);
-        slot.dueAt = Date.now() + (l?.delayMinutes ?? 10) * 60_000;   // 时间门开始计时
+        slot.startedAt = Date.now();                                  // 时间门从这一刻起算（D-239 迁移要用）
+        slot.dueAt = slot.startedAt + (l?.delayMinutes ?? 10) * 60_000;
       }
     }
     // 触发
@@ -115,9 +116,31 @@ export class Letters {
     return this.deliver();
   }
 
+  /**
+   * 信的分钟数改短了，在路上的旧信跟着提速（D-239，B47）。
+   *
+   * - **只提前，不推后**：分钟数改长了，已经在等的那一封照旧按原来的时刻到（不延长剩余）。
+   * - **不从头重等**：知道时间门是什么时候开始计的（`startedAt`，B47 起记），就按「开始时刻＋新分钟数」算。
+   * - **老档没有 `startedAt`**：按「最多再等新分钟数」算——剩的比新分钟数还短就不动，
+   *   剩得比它长就缩到新分钟数。既不重开，也不会比新玩家等得久。
+   * - 场次门还没过（`dueAt` 是 0）、已经到案上、已经回过的，一律不动。
+   */
+  private speedUpQueue(): void {
+    const now = Date.now();
+    for (const slot of this.store.state.letters) {
+      if (slot.state !== "pending" || !slot.dueAt) continue;
+      const l = this.byId.get(slot.id);
+      if (!l) continue;
+      const want = l.delayMinutes * 60_000;
+      const target = slot.startedAt ? slot.startedAt + want : Math.min(slot.dueAt, now + want);
+      if (target < slot.dueAt) slot.dueAt = target;
+    }
+  }
+
   /** 把 dueAt 已过的信送到案上。启动时也要调一次：不在的这段时间到的信一次收齐 */
   deliver(): string[] {
     const s = this.store.state;
+    this.speedUpQueue();                      // 旧队列按现在的分钟数提速（D-239）
     const now = Date.now();
     const arrived: string[] = [];
     for (const slot of s.letters) {

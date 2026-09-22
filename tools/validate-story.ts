@@ -508,6 +508,15 @@ if (mainRun) {
     }
   }
 
+  // 收诗（D-238，B47）：「收诗」一栏写的是诗库的 key；读到那一格就收进收藏，不用赢对诗
+  for (const { file, s } of scenes.values()) {
+    for (const l of s.lines as { id: string; who: string; poem?: string }[]) {
+      if (!l.poem) continue;
+      if (!poems.has(l.poem)) err(file, l.id, `收诗「${l.poem}」不在诗词库里（src/data/poems.json）。收诗一栏写诗的 key`);
+      if (l.who === "cg" || l.who === "tiji") err(file, l.id, `${l.who === "cg" ? "事件图" : "题记"}格不能写收诗：收诗要落在玩家读到的那一句上`);
+    }
+  }
+
   // 同一拍的画面（D-223，B45）：「画面」一栏写的 key 表里要有、不能是结局图和绯版、不能挂在题记和事件图格上；
   // 图还没上线是合法状态（这一格照常读字），只提醒
   const cgImgs = new Set(webps("cg"));

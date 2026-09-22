@@ -21,6 +21,12 @@ export interface GameState {
   /** skip 只跳读过的文本，所以要记住读过哪些句 */
   seenLineIds: Set<string>;
   poemsCollected: Set<string>;
+  /**
+   * 每首诗是在第几章收的（D-238，B47）。章末结算页的「本章所得」读它，不再靠内存里的一个数组——
+   * 读档回来那一章的统计就不会空掉。**老档没有这一份**：那些诗照旧在收藏里，只是算不出是哪一章收的，
+   * 章末不编造归属（D-238）
+   */
+  poemChapter: Record<string, number>;
   endingsUnlocked: Set<string>;
   /** 信箱。投递逻辑在 M4，M1 只是把它带进存档。 */
   letters: LetterSlot[];
@@ -49,6 +55,7 @@ export function newState(): GameState {
     protagonistName: DEFAULT_NAME,
     seenLineIds: new Set(),
     poemsCollected: new Set(),
+    poemChapter: {},
     endingsUnlocked: new Set(),
     letters: [],
     lastSeenAt: Date.now(),

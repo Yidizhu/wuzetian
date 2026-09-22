@@ -128,6 +128,8 @@ export const Line = z.object({
   text: z.string().min(1, "台词不能是空的").max(40, "一句台词不超过 40 字，手机装不下"),
   /** 同一拍的画面（D-223，B45）：cgs.ts 的 key。key 在不在表里、能不能用，校验器查（validate-story） */
   image: z.string().min(1, "画面一栏写了就要写 key").optional(),
+  /** 这一格读到的诗（D-238，B47）：poems.json 的 key。在不在诗库里，校验器查 */
+  poem: z.string().min(1, "收诗一栏写了就要写诗的 key").optional(),
 });
 
 export const Choice = z.object({

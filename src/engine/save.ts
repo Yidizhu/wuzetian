@@ -34,6 +34,8 @@ export interface SaveV1 {
   protagonistName: string;
   seenLineIds: string[];
   poemsCollected: string[];
+  /** 每首诗收在第几章（D-238，B47）。老档没有，按空算：那些诗还在收藏里，只是章末不算进「本章所得」 */
+  poemChapter?: Record<string, number>;
   endingsUnlocked: string[];
   letters: LetterSlot[];
   lastSeenAt: number;
@@ -69,6 +71,7 @@ export function serialize(s: GameState, sceneId: string, lineIndex: number): Sav
     protagonistName: s.protagonistName,
     seenLineIds: [...s.seenLineIds],
     poemsCollected: [...s.poemsCollected],
+    poemChapter: { ...s.poemChapter },
     endingsUnlocked: [...s.endingsUnlocked],
     letters: s.letters.map((l) => ({ ...l })),
     lastSeenAt: Date.now(),
@@ -87,6 +90,7 @@ export function deserialize(d: SaveV1): { state: GameState; sceneId: string; lin
   state.protagonistName = d.protagonistName || state.protagonistName;
   state.seenLineIds = new Set(d.seenLineIds ?? []);
   state.poemsCollected = new Set(d.poemsCollected ?? []);
+  state.poemChapter = { ...(d.poemChapter ?? {}) };
   state.introsSeen = new Set(d.introsSeen ?? []);
   state.cgsSeen = new Set(d.cgsSeen ?? []);
   state.endingsUnlocked = new Set(d.endingsUnlocked ?? []);

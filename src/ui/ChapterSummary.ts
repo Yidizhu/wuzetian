@@ -94,7 +94,7 @@ export class ChapterSummary {
       poems.className = "summary__block";
       poems.innerHTML = `<div class="summary__head">本章所得</div>`;
       if (!d.poemsThisChapter.length) {
-        poems.innerHTML += `<div class="summary__empty">这一章没有诗。</div>`;
+        poems.innerHTML += `<div class="summary__empty">本章尚未收录新的诗。</div>`;
       } else {
         for (const id of d.poemsThisChapter) {
           const p = this.poems.get(id);

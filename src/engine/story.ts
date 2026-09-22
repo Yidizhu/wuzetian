@@ -69,6 +69,8 @@ export type StoryEvent =
   | { kind: "ending"; ending: Ending; body: string }
   | { kind: "flare"; who: string }
   | { kind: "letters"; unread: number; arrived: string[] }
+  /** 收了一首诗（D-238，B47）：**第一次收到那一下发一次**，重复读到同一首不再发 */
+  | { kind: "poem"; id: string }
   /** 一章走完了，下一章的数据还没有。不是错误，是当前这版的边界（D-034） */
   | { kind: "toBeContinued"; chapter: number }
   /** 旧档遇上改过结构的剧本，位置被退回章首（D-037 第 3 条） */
@@ -91,7 +93,24 @@ export class Story {
 
   private duels = new Map<string, PoemDuelT>();
   /** 本章收到的诗，章末结算页用。跨章清空。 */
-  private poemsThisChapter: string[] = [];
+  /**
+   * 这一章收了哪几首诗（D-238，B47）。**不再存在内存数组里**：存档里记着每首诗收在第几章，
+   * 这里按章挑出来，读档回来章末统计不会空。老档没有那一份，就只能算空（不编造归属）
+   */
+  private poemsOfChapter(chapter: number): string[] {
+    return Object.entries(this.store.state.poemChapter).filter(([, c]) => c === chapter).map(([id]) => id);
+  }
+
+  /**
+   * 收一首诗。已经收过的不重复收、不重复发提示；第一次收时记下是哪一章。
+   * 主线读到就收（不用赢对诗），对诗赢了照旧收（D-238）
+   */
+  private collectPoem(id: string, chapter: number): void {
+    if (this.store.state.poemsCollected.has(id)) return;
+    this.store.state.poemsCollected.add(id);
+    this.store.state.poemChapter[id] = chapter;
+    this.emit({ kind: "poem", id });
+  }
   readonly letters: Letters;
   /** 对诗之后先播一句胜负台词，玩家点一下再往下走 */
   private resume: (() => void) | null = null;
@@ -223,8 +242,7 @@ export class Story {
     // 换章就先结算。章号变了就是章末——除非上一场自己标了 chapterEnd，
     // 那一场已经在 runChapterEnd() 里结算过，这里再来一次就是连出两页。
     if (this.cur && !this.cur.chapterEnd && this.cur.chapter !== scene.chapter) {
-      await this.hooks.chapterEnd(this.cur.chapter, this.poemsThisChapter);
-      this.poemsThisChapter = [];
+      await this.hooks.chapterEnd(this.cur.chapter, this.poemsOfChapter(this.cur.chapter));
     }
 
     this.cur = scene;
@@ -327,6 +345,8 @@ export class Story {
       // 事件图不进对话框：铺整图，点一下退回，再读下一句
       if (line.who === "cg") { void this.runCg(scene, line); return; }
       const first = this.store.markSeen(line.id);
+      // 收诗（D-238）：这一格真的显示出来才收（条件不满足的格上面已经跳过了）
+      if (line.poem) this.collectPoem(line.poem, scene.chapter);
       this.emit({
         kind: "line",
         id: line.id,
@@ -455,8 +475,7 @@ export class Story {
    * 那句话是给我看的，不是给她看的。
    */
   private async runChapterEnd(scene: Scene): Promise<void> {
-    await this.hooks.chapterEnd(scene.chapter, this.poemsThisChapter);
-    this.poemsThisChapter = [];
+    await this.hooks.chapterEnd(scene.chapter, this.poemsOfChapter(scene.chapter));
     if (scene.goto && this.scenes.has(scene.goto)) { await this.enter(scene.goto, 0); return; }
     if (scene.goto) console.info(`[story] 第 ${scene.chapter} 章走完，下一章 ${scene.goto} 还没有数据`);
     this.emit({ kind: "toBeContinued", chapter: scene.chapter });
@@ -471,10 +490,7 @@ export class Story {
     this.duelDone.add(sceneId);
     const outcome = won ? d.onWin : d.onLose;
     this.store.apply(outcome?.effects);
-    if (won && !this.store.state.poemsCollected.has(d.poemRef)) {
-      this.store.state.poemsCollected.add(d.poemRef);
-      this.poemsThisChapter.push(d.poemRef);
-    }
+    if (won) this.collectPoem(d.poemRef, this.cur?.chapter ?? 1);
     const next = async () => {
       if (outcome?.goto) { await this.enter(outcome.goto, 0); return; }
       this.present();
@@ -654,7 +670,6 @@ export class Story {
     this.cur = null;                    // 读档不触发章末结算
     this.duelDone.clear();
     this.chapterDone.clear();
-    this.poemsThisChapter = [];
     const at = this.reconcile(s, sceneId, lineIndex);
     await this.enter(at.sceneId, at.lineIndex);
   }

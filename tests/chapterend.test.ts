@@ -892,3 +892,74 @@ test("D-225 承欢告白信的接口：常笺、ch02-26 后第 1 场＋5 分钟�
     assert.equal(JSON.stringify({ a: store.state.affinity, f: store.state.flags, r: store.state.relation }), before, `${kind}：数值、flag、关系一样没动`);
   }
 });
+
+test("D-238 主线收诗：读到那一格就收，不用赢对诗；重复读不再收也不再提示；条件没满足的格不收", async () => {
+  mem.clear();
+  const s = scene("p1", 2, { goto: "p2" });
+  s.lines = [
+    { id: "p1.l1", who: "narr", kind: "aside", text: "她把诗念了一遍。", poem: "xuetao_chan" },
+    { id: "p1.l2", who: "narr", kind: "aside", text: "没念出来的那一首。", when: { "flag.never": true }, poem: "xuetao_chishangshuangniao" },
+    { id: "p1.l3", who: "narr", kind: "aside", text: "她收了纸。" },
+  ] as Scene["lines"];
+  const s2 = scene("p2", 2, { goto: "p1" });
+  s2.lines = [{ id: "p2.l1", who: "narr", kind: "aside", text: "回来又读了一遍。", poem: "xuetao_chan" }] as Scene["lines"];
+  const store = new Store();
+  const got: string[] = [];
+  const story = new Story([s, s2], [], [], [], store, noopRenderer, { async duel() { return true; }, async chapterEnd() {} }, "p1");
+  story.on((e) => { if (e.kind === "poem") got.push(e.id); });
+  await story.start(); await drain();
+  assert.deepEqual(got, ["xuetao_chan"], "读到就收，提示一次");
+  assert.equal(store.state.poemChapter.xuetao_chan, 2, "记下是第二章收的");
+  for (let i = 0; i < 4; i++) { story.advance(); await drain(); }   // 走完这一场、进下一场再读一遍
+  assert.deepEqual(got, ["xuetao_chan"], "再读到同一首：不再提示");
+  assert.equal(store.state.poemsCollected.has("xuetao_chishangshuangniao"), false, "条件没满足的那一格不收");
+  assert.deepEqual([...store.state.poemsCollected], ["xuetao_chan"]);
+});
+
+test("D-238 章末「本章所得」从存档算，读档回来不丢；老档没有归属就不算，不编造", async () => {
+  const { serialize, deserialize } = await import("../src/engine/save.ts");
+  mem.clear();
+  const store = new Store();
+  store.state.poemsCollected = new Set(["xuetao_chan", "xuetao_chishangshuangniao"]);
+  store.state.poemChapter = { xuetao_chan: 2 };
+  const round = deserialize(serialize(store.state, "p1", 0));
+  assert.deepEqual(round.state.poemChapter, { xuetao_chan: 2 }, "收诗归属进存档");
+  assert.equal(round.state.poemsCollected.has("xuetao_chishangshuangniao"), true, "老档收过的诗还在收藏里");
+  // 章末统计：只算记了归属的那一首
+  const old = JSON.parse(JSON.stringify(serialize(store.state, "p1", 0))) as Record<string, unknown>;
+  delete old.poemChapter;                                     // 老档：没有这一份
+  assert.deepEqual(deserialize(old as never).state.poemChapter, {}, "老档按空算");
+});
+
+test("D-239 旧信队列提速：分钟数改短了在路上的信跟着提前；不重等、不延后；场次门没过和已到的不动", async () => {
+  const { Letters } = await import("../src/engine/letters.ts");
+  const { readFileSync } = await import("node:fs");
+  const base = JSON.parse(readFileSync(new URL("../src/data/letters/lt_ch02_shenheng_01.json", import.meta.url), "utf8"));
+  const mk = (id: string, minutes: number) => LetterSchema.parse({
+    ...base, id, trigger: { kind: "scene", sceneId: "a", afterScenes: 1 }, delayMinutes: minutes,
+    interceptable: false, interceptAt: undefined, onIntercept: undefined,
+  });
+  const now = Date.now();
+  const store = new Store();
+  store.state.letters = [
+    { id: "old", state: "pending", dueAt: now + 26 * 60_000, repliedWith: null },                       // 老档：等 26 分钟，没记开始时刻
+    { id: "soon", state: "pending", dueAt: now + 60_000, repliedWith: null },                           // 老档：只剩 1 分钟
+    { id: "known", state: "pending", dueAt: now + 20 * 60_000, startedAt: now - 60_000, repliedWith: null }, // 记了开始时刻
+    { id: "gate", state: "pending", dueAt: 0, scenesLeft: 2, repliedWith: null },                       // 场次门还没过
+    { id: "here", state: "arrived", dueAt: now - 1000, repliedWith: null },
+  ];
+  // 新数据：都改成 5 分钟
+  const inbox = new Letters([mk("old", 5), mk("soon", 5), mk("known", 5), mk("gate", 5), mk("here", 5)], store);
+  inbox.deliver();
+  const at = (id: string) => store.state.letters.find((x) => x.id === id)!;
+  assert.ok(at("old").dueAt <= now + 5 * 60_000 + 1000 && at("old").dueAt > now, "老档长队列缩到最多再等新分钟数，不是从头重等");
+  assert.equal(at("soon").dueAt, now + 60_000, "剩得比新分钟数还短：不动，不会被推后");
+  assert.equal(at("known").dueAt, now - 60_000 + 5 * 60_000, "记了开始时刻：开始时刻＋新分钟数");
+  assert.equal(at("gate").dueAt, 0, "场次门还没过：不动");
+  assert.equal(at("here").state, "arrived", "已经到案上的不动");
+  // 分钟数改长：在路上的那封不跟着延长
+  const store2 = new Store();
+  store2.state.letters = [{ id: "x", state: "pending", dueAt: now + 5 * 60_000, startedAt: now, repliedWith: null }];
+  new Letters([mk("x", 30)], store2).deliver();
+  assert.equal(store2.state.letters[0]!.dueAt, now + 5 * 60_000, "改长不延长剩余");
+});

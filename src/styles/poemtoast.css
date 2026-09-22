@@ -1,0 +1,31 @@
+/* 得诗提示（D-238，B47，CC1 加）。一行小字，和 HUD、题跋区同一套语言：纸底、淡墨、2px 圆角。
+   位置在顶上正中、HUD 那一带下面：不压底下的对白，也不压画面中间的人和手（CC3 E42）。
+   不收点击；2.8 秒自己淡掉。数（多久、多淡）CC3 要调就改这里 */
+.poemtoast {
+  position: absolute; z-index: 6;
+  top: max(58px, calc(env(safe-area-inset-top) + 46px));
+  left: 50%; translate: -50% 0;
+  max-width: min(86vw, 420px);
+  display: flex; align-items: baseline; gap: 10px;
+  padding: 6px 14px;
+  background: color-mix(in srgb, var(--c-ground) 88%, transparent);
+  border: 1px solid color-mix(in srgb, var(--c-line) 60%, transparent);
+  border-radius: 2px;
+  font-family: var(--font); font-size: 14px; letter-spacing: 0.08em;
+  color: var(--c-text);
+  text-shadow: 0 0 2px var(--c-ground), 0 0 1px var(--c-ground);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 320ms var(--ease);
+}
+.poemtoast[data-state="in"] { opacity: 1; }
+.poemtoast[data-state="out"] { opacity: 0; }
+.poemtoast__label { font-size: 12px; color: var(--c-text-soft); }
+
+/* 看全图、结局卡的时候不出现：那两屏是给玩家看画的 */
+#app[data-peek] .poemtoast,
+#app[data-ending] .poemtoast { opacity: 0; }
+
+@media (prefers-reduced-motion: reduce) {
+  .poemtoast { transition: none; }
+}

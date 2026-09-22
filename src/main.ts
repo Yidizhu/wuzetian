@@ -28,6 +28,7 @@ import { Ambient } from "./audio/ambient.ts";
 import { Bgm, bgmForChapter } from "./audio/bgm.ts";
 import { loadTuning } from "./audio/tuning.ts";
 import { MediaKeepAlive } from "./audio/keepalive.ts";
+import { PoemToast } from "./ui/PoemToast.ts";
 import { ambienceAt, lineNo } from "./audio/soundscape.ts";
 import { dateTrackAt, dateTrackUrl, letterTrack } from "./audio/datemusic.ts";
 import { vistaFor, BACKDROPS, backdropKey } from "./scene/backdrops.ts";
@@ -180,6 +181,7 @@ const store = new Store();
 const cast = new CharacterLayer(app, sprites, (f) => store.state.flags[f] === true, raster, (k) => store.state.cgsSeen.has(k));
 const cgLayer = new CgLayer(app, raster);
 const status = new StatusBar(app);
+const poemToast = new PoemToast(app);
 const dlg = new DialogueBox(app);
 
 const duelUi = new PoemDuel(app);
@@ -404,6 +406,12 @@ story.on((e) => {
     case "flare":
       cast.flare(e.who);
       break;
+    // 得诗（D-238）：第一次收到一首诗，顶上一行小字，不打断读字
+    case "poem": {
+      const p = poems.get(e.id);
+      poemToast.show(p ? `${p.author}《${p.title}》` : e.id);
+      break;
+    }
     case "letters":
       inbox?.setUnread(e.unread, story.letters.onDesk().length + e.unread);
       break;
