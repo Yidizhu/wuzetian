@@ -1,5 +1,204 @@
 # 生图验收账本
 
+
+## CC3 · E42 验收：C44 十张 v2 全过，同 key 上线（D-200、D-233）
+
+> 判定人 CC3。D-233 的限范围纠错例外：只查硬伤（不该有的人、可读的字、现代物件）和这一项写明要改的那一处；其余记账不退。
+
+| # | key | 要改的那一处 | 结果 |
+|---|---|---|---|
+| 1 | `e39_ch01_s01_l38` | 去掉右侧陌生人 | 人没了，补成卷架和窗；沈衡、纸、香炉都在 → 过 |
+| 2 | `e39_ch01_s18_l27` | 「昭阳殿」抹成素匾 | 匾心一片素石青，放大无笔画；马、湿地、铜盆都在 → 过 |
+| 3 | `e39_ch02_s17_l30` | 去掉右侧陌生人和他的纸 | 人和纸都没了；温荞缃衣、竹影、她自己那张纸都在 → 过 |
+| 4 | `e39_ch04_s12_l2` | 只剩主角、不许递纸 | 一个人，抱着一叠空白纸，席没铺满，门外日光 → 过 |
+| 5 | `e39_ch04_s07_l2` | 「含元殿」抹成素匾 | 匾心素深色，放大无笔画；石压两纸、龙尾道都在 → 过 |
+| 6 | `e39_ch02_s24_l40` | 李令仪两手推稿、没坐下 | 两手推一叠纸，站着俯身；主角青在左，李郁金 → 过 |
+| 7 | `e39_ch03_s02_l22` | 扶案上小木牌、两手差一指 | 案上小木牌，主角指尖扶着，沈衡手停在旁；四手；卷架直立 → 过 |
+| 8 | `e39_ch03_s24_l39` | 主体是案脚下的薄木片 | 近景案脚压着薄木片，翘端接暮光；无人、无编席 → 过 |
+| 9 | `e39_ch03_s12_l66` | 含元殿、木片、平水碗 | 铅丹柱、石青彩画、蓝案褡、平水碗、案脚木片；无人、无卷架 → 过 |
+| 10 | `shenheng_3_zhibei` | 白天改夜雨、人不动 | 窗外深蓝夜雨，屋里暖灯；两人姿势一致，主角仍是青 → 过 |
+
+**记账不退**：
+- **局部编辑的五项不是逐像素只动一处**：Codex 已在账里交代，编辑工具会重渲染整张。实测目标区外也有差异（第 1 项 x<600 有 9.5% 像素通道差 >10，第 2 项匾框外 34.4%，第 3 项 x<660 有 20.4%）。肉眼看人、脸、器物没有走形，按 D-200 认。
+- 第 6 项李令仪是俯身推纸，席只露一角，不是原句里那张「半张席」的正面；
+- 第 9 项木片偏厚，像一小块短板；
+- 第 8 项木片边缘有多层纹理；
+- 第 10 项脸、手、衣纹被重渲染过，和 v1 不是同一笔触。
+
+**上线**：十张都跑了 `art:post -- cg <key> --v 2`，同 key 覆盖 `public/cg/`，v1 原件保留。`check:art` 事件图 141/145 有图（之前 132），已入表的 208 个文件都在版本库里。隔离期留在 `docs/art-e41-quarantine/` 的四张 v1 webp 留作证据，不删。
+
+## C44 第二、三批｜2026-09-19｜七项 v2 已落盘，待 E41
+
+内置 imagegen；逐字使用 `docs/art-c44-prompts.md` 对应冻结提示词，每项仅一版。输出均 `assets/cg/<key>_v2.png`，1024×1536；未覆盖 v1。重生成五项均未附自身 v1；无人风物未附人物定妆图，第 9 项只按冻结要求用 `wuze_juwei_v1` 作殿内场所参考，不采用其中人物。
+
+| key | 方式、实际改变与待核对处 | 输入/参考顺序 |
+|---|---|---|
+| e39_ch04_s12_l2 | 重生成；仅主角一人，持一叠空白纸；右侧日光、未铺满的席。纸边接腕的具体位置交 E41 核对。 | `assets/portraits/wuze_cairen_qing_default_v5.png` → `assets/scenes/nvguan_ink_kaike_v1.png` |
+| e39_ch04_s07_l2 | 原图编辑；匾额三字已移除，保留框；旗面纹样仍在。匾额外存在像素变化，并非严格无损局部编辑。 | `assets/cg/e39_ch04_s07_l2_v1.png` |
+| shenheng_3_zhibei | 原图编辑（重新打光）；窗外改深蓝夜雨、室内左侧暖光，青衣保留，未增加可见灯具；脸、手和衣纹有重渲染，不能保证几何细节完全不变。 | `assets/cg/shenheng_3_zhibei_v1.png` → `assets/cg/shenheng_3_zhibei_fei_v1.png` |
+| e39_ch02_s24_l40 | 重生成；李令仪双手推纸稿，主角在侧，露出席面；画中李令仪呈低身姿态，是否仍符合未坐下待 E41 核对。 | `assets/portraits/liqinghe_gongzhu_yujin_default_v1.png` → `assets/portraits/wuze_cairen_qing_default_v5.png` → `assets/scenes/shuge_ink_v1.png` |
+| e39_ch03_s02_l22 | 重生成；扶案上小木牌，沈衡手停在旁未覆手；双人四手可见，背景卷架直立。 | `assets/portraits/shenheng_siji_shenlv_default_v2.png` → `assets/portraits/wuze_cairen_qing_default_v5.png` → `assets/scenes/shuge_ink_v1.png` |
+| e39_ch03_s24_l39 | 重生成无人风物；近景案脚、砖缝和翘端薄木垫；木片边缘有多层状纹理，非编席。 | `assets/scenes/shuge_ink_v1.png` |
+| e39_ch03_s12_l66 | 重生成无人风物；含元殿柱梁、蓝色案布、水碗及案脚木垫；未出现书阁卷架或人物。木垫表现偏短板状，交 E41 核对厚薄。 | `assets/cg/wuze_juwei_v1.png` |
+
+本轮合计 10/10 个 v2 PNG 均可打开，1024×1536，十个 v1 均仍存在。只新增这十张和更新本账；不判过退，不重做 95 张。局部编辑工具会重渲染非目标区域，已交回此限制，未另行使用整张重生成替代编辑。
+
+
+
+## C44 第一批｜2026-09-19｜三项编辑输出，待 E41 验收
+
+使用内置 imagegen 图编辑，逐字使用 `docs/art-c44-prompts.md` 对应提示词。输出均为 `assets/cg/<key>_v2.png`，1024×1536，v1 保留。没有改用无原图重生成。
+
+| key | 输入及参考顺序 | 实际改变及限制 |
+|---|---|---|
+| e39_ch01_s01_l38 | 仅同名 v1 | 移除右侧灰蓝衣人，补低案、卷架与窗。左侧区域亦有像素变化；x<600 区域 99.08% 像素不同，9.50% 最大通道差>10；不能声明沈衡逐像素不变。 |
+| e39_ch01_s18_l27 | 仅同名 v1；无人物参考 | 去除匾额文字，保留金框及蓝底。匾额框外 99.81% 像素不同，34.41% 最大通道差>10；并非严格局部无损编辑。 |
+| e39_ch02_s17_l30 | 仅同名 v1 | 移除右侧人及其纸，补窗、木墙与家具。x<660 区域 99.70% 像素不同，20.35% 最大通道差>10；人物与衣纹局部亦发生变化，未做到冻结区域逐像素保留。 |
+
+以上是工具限制记录，不作通过/退回判定。每项只出一版，未擅自二次重画。
+
+
+## Codex · C43 冻结批次 C：39 张写景分拍原件交验（2026-09-18）
+
+依据 [E39 冻结提示词](art-c43-prompts.md) 的 C 表与各 key 代码块，使用内置 imagegen 生成。39 个原件现均落 `assets/cg/`，逐张核验 **1024×1536 PNG** 且非空；A/B/C 合计 **95/95 个冻结 key 均有原件**。生成是 AI 生图，非手绘。
+
+用户在本批进行中明确要求：**“写了无人”的图片不要用人物模版**。冻结文档把人物安全区、发髻、脸手、两人动作等公共模板句混入了无人条目；我在实际调用时对后续无人条目改成纯物景构图，去除这些人物句，不附人物参考，也未改冻结文档。前段十张在纠正前用了原模板且确实生出了人物，已用改正的纯物景提示词重出并**替换不准确的 v1 原件**（仅保留一份最终原件）；这十张是：
+
+- `e39_ch01_s00_l4_v1.png`
+- `e39_ch01_s11_l2_v1.png`
+- `e39_ch01_s11_l34_v1.png`
+- `e39_ch01_s13_l2_v1.png`
+- `e39_ch01_s17_l28_v1.png`
+- `e39_ch01_s18_l27_v1.png`
+- `e39_ch01_s18_l50_v1.png`
+- `e39_ch02_s05_l2_v1.png`
+- `e39_ch02_s24_l39_v1.png`
+- `e39_ch03_s24_l39_v1.png`
+
+这十张重出是响应用户明确纠错，**不是 D-200 的常规多版挑选**；初始错误图不作为交付。柳圈 `wu_shangsi_liuquan_v1.png` 属 A 批，图面无人，因此保留。C 批所有无人条目均未附人物定妆参考；纠错后的无人图已目视核对无人像，余下的文字／形制／裁切风险交 E40 检查。
+
+C 批完整原件清单：
+
+- `assets/cg/e39_ch01_s00_l4_v1.png`
+- `assets/cg/e39_ch01_s01_l38_v1.png`
+- `assets/cg/e39_ch01_s11_l2_v1.png`
+- `assets/cg/e39_ch01_s11_l34_v1.png`
+- `assets/cg/e39_ch01_s11_l73_v1.png`
+- `assets/cg/e39_ch01_s12_l16_v1.png`
+- `assets/cg/e39_ch01_s13_l2_v1.png`
+- `assets/cg/e39_ch01_s16_l2_v1.png`
+- `assets/cg/e39_ch01_s17_l2_v1.png`
+- `assets/cg/e39_ch01_s17_l28_v1.png`
+- `assets/cg/e39_ch01_s18_l27_v1.png`
+- `assets/cg/e39_ch01_s18_l50_v1.png`
+- `assets/cg/e39_ch02_s05_l2_v1.png`
+- `assets/cg/e39_ch02_s11_l3_v1.png`
+- `assets/cg/e39_ch02_s17_l30_v1.png`
+- `assets/cg/e39_ch02_s24_l39_v1.png`
+- `assets/cg/e39_ch03_s10_l25_v1.png`
+- `assets/cg/e39_ch03_s17_l2_v1.png`
+- `assets/cg/e39_ch03_s17_l2_fei_v1.png`
+- `assets/cg/e39_ch03_s17_l30_v1.png`
+- `assets/cg/e39_ch03_s17_l30_fei_v1.png`
+- `assets/cg/e39_ch03_s18_l2_v1.png`
+- `assets/cg/e39_ch03_s18_l2_fei_v1.png`
+- `assets/cg/e39_ch03_s24_l39_v1.png`
+- `assets/cg/e39_ch04_s02_l40_v1.png`
+- `assets/cg/e39_ch04_s04_l2_v1.png`
+- `assets/cg/e39_ch04_s06_l2_v1.png`
+- `assets/cg/e39_ch04_s12_l2_v1.png`
+- `assets/cg/e39_ch04_s15_l2_v1.png`
+- `assets/cg/e39_ch04_s17_l5_v1.png`
+- `assets/cg/e39_ch01_s05_l2_v1.png`
+- `assets/cg/e39_ch01_s09_l2_v1.png`
+- `assets/cg/e39_ch02_s03_l2_v1.png`
+- `assets/cg/e39_ch03_s12_l66_v1.png`
+- `assets/cg/e39_ch03_s19_l8_v1.png`
+- `assets/cg/e39_ch04_s07_l2_v1.png`
+- `assets/cg/e39_ch04_s11_l2_v1.png`
+- `assets/cg/e39_ch04_s18_l2_v1.png`
+- `assets/cg/e39_ch03_s23_l4_v1.png`
+
+本批只做生图、落盘、存在和尺寸核验，**不判过退、不作十项评分**。未写 public，未改引擎、故事原文或指挥日志；后处理、实测裁切、验收与上线交 CC3 E40。
+
+
+
+## Codex · C43 冻结批次 B：44 张关系段原件交验（2026-09-18）
+
+依据 [E39 冻结提示词](art-c43-prompts.md) 的 B 表与各 key 完整代码块，使用内置 imagegen 逐 key **一版**，附文档逐项列出的定妆与旧动作参考。44 个目标原件生成前均不存在，现均落 `assets/cg/`；PNG 头逐张核验为 **1024×1536** 且非空。AI 生成，非手绘。
+
+- `assets/cg/e39_ch01_s07_l20_v1.png`
+- `assets/cg/e39_ch01_s09_l37_v1.png`
+- `assets/cg/e39_ch01_s11_l17_v1.png`
+- `assets/cg/e39_ch02_s04_l41_v1.png`
+- `assets/cg/e39_ch02_s07_l22_v1.png`
+- `assets/cg/e39_ch02_s13_l39_v1.png`
+- `assets/cg/e39_ch02_s22_l54_v1.png`
+- `assets/cg/e39_ch02_s24_l40_v1.png`
+- `assets/cg/e39_ch03_s02_l22_v1.png`
+- `assets/cg/e39_ch03_s04_l18_v1.png`
+- `assets/cg/e39_ch03_s05_l1_v1.png`
+- `assets/cg/e39_ch03_s05_l32_v1.png`
+- `assets/cg/e39_ch03_s06_l1_v1.png`
+- `assets/cg/e39_ch03_s09_l6_v1.png`
+- `assets/cg/e39_ch03_s09a_l6_v1.png`
+- `assets/cg/e39_ch03_s09b_l7_v1.png`
+- `assets/cg/e39_ch03_s09c_l5_v1.png`
+- `assets/cg/liuchenghuan_1_guihuan_fei_v1.png`
+- `assets/cg/e39_ch03_s19_l30_v1.png`
+- `assets/cg/e39_ch03_s19_l30_fei_v1.png`
+- `assets/cg/e39_ch03_s20_l7_v1.png`
+- `assets/cg/e39_ch03_s20_l7_fei_v1.png`
+- `assets/cg/shenheng_3_zhibei_fei_v1.png`
+- `assets/cg/liqinghe_3_xiangying_fei_v1.png`
+- `assets/cg/e39_ch04_s05ca_l3_v1.png`
+- `assets/cg/e39_ch04_s05ca_l3_fei_v1.png`
+- `assets/cg/e39_ch04_s05cb_l3_v1.png`
+- `assets/cg/e39_ch04_s05cb_l3_fei_v1.png`
+- `assets/cg/e39_ch04_s05cc_l5_v1.png`
+- `assets/cg/e39_ch04_s05cc_l5_fei_v1.png`
+- `assets/cg/e39_ch04_s05cd_l3_v1.png`
+- `assets/cg/e39_ch04_s05cd_l3_fei_v1.png`
+- `assets/cg/e39_ch04_s05rl_l2_v1.png`
+- `assets/cg/e39_ch04_s05rl_l2_fei_v1.png`
+- `assets/cg/e39_ch04_s05z_l31_fei_v1.png`
+- `assets/cg/e39_ch04_s08z_l30_v1.png`
+- `assets/cg/e39_ch04_s05z_l70_fei_v1.png`
+- `assets/cg/e39_ch04_s08z_l64_v1.png`
+- `assets/cg/e39_ch04_s05z_l100_fei_v1.png`
+- `assets/cg/e39_ch04_s08z_l94_v1.png`
+- `assets/cg/e39_ch04_s05z_l139_fei_v1.png`
+- `assets/cg/e39_ch04_s09_l12_v1.png`
+- `assets/cg/e39_ch04_s10_l22_v1.png`
+- `assets/cg/wenqiao_3_tiejian_fei_v1.png`
+
+本批只做落盘及尺寸检查，**不判过退、不作评分**；后处理、手机裁切和上线交 CC3 E40。未改提示词文档、public、引擎、故事原文或指挥日志。此节仅交 B 批账；C 批另记。
+
+
+
+## Codex · C43 冻结批次 A：12 张原件交验（2026-09-18）
+
+依据 [E39 冻结提示词](art-c43-prompts.md) 的 A 表与各 key 完整代码块，使用内置 imagegen **逐 key 一版**，按文档顺序附人物参考图。柳圈无需人物参考；驿旁附《关山有信》结局图作出行参考。未改提示词文档、引擎、原文或指挥日志；未写 public。生成为 AI 生图，非手绘。
+
+A 批原件均已落 `assets/cg/`，每张 **1024×1536 PNG**，非空且未覆盖既有原件：
+
+- `assets/cg/shenheng_7_jieyu_v1.png`
+- `assets/cg/shenheng_7_jieyu_fei_v1.png`
+- `assets/cg/wu_shangsi_liuquan_v1.png`
+- `assets/cg/shenheng_8_mozi_v1.png`
+- `assets/cg/peizhaoye_7_baibing_v1.png`
+- `assets/cg/wenqiao_7_chuangying_v1.png`
+- `assets/cg/liqinghe_7_dizhi_v1.png`
+- `assets/cg/shenheng_9_liangcha_v1.png`
+- `assets/cg/peizhaoye_8_shuying_v1.png`
+- `assets/cg/peizhaoye_8_shuying_fei_v1.png`
+- `assets/cg/peizhaoye_9_yipang_v1.png`
+- `assets/cg/liuchenghuan_2_jinzuo_v1.png`
+
+仅做原件存在、尺寸与文件非空检查。**不判过退、不作评分**；手机裁切、后处理、上线交 CC3 E40。本节只释放 A 批生成账，不代表 B/C 已生成或全量覆盖。
+
+
+
 ## Codex · C42：四张答复绯版＋柳承欢 bare 原件交验（2026-09-17）
 
 按 [CC3 E37 提示词](art-c42-prompts.md) 五份一批，每份一版，使用内置 imagegen。四张绯版是参考原图的 AI 换色变体；柳承欢是原件输入的 AI 图编辑，不是从文字另起立绘，也不是手绘。五个代码块逐字使用；四张 CG 仅追加「输出单张1024×1536 PNG，不要拼图。」。提示词文件未改。

@@ -1,8 +1,9 @@
-/* 同一拍的画面（D-223，B45，CC1 加；E40 调布局）。台词格上的「画面」列：图和字一起出来。
-   图本身复用 .cg；这里管理立绘隐显、过渡，以及为完整动作保留的图文区域：
+/* 同一拍的画面（D-223，B45，CC1 加；E40 调布局，E42 改全屏）。台词格上的「画面」列：图和字一起出来。
+   图本身复用 .cg；这里管理立绘隐显、过渡，以及铺满整屏之后对白怎么叠在图上：
    1. 画面铺着时**台上的立绘收起**——双人事件图上再叠一个站着的人，就是截图里那种「图里有人、台前又有人」；
    2. 画面那一层的墨晕进出比点开的事件图稍快，读字的节奏不被它拖住。
-   3. E40 将同拍对白放在图外，避免它遮住手、脸和低处物件。 */
+   3. **E42（D-235）：画面铺满整个游戏区，对白和角上的字叠在图上**。
+      E40 那版把屏幕切成「顶栏—图—字」三段，图被压成中间一块，上面还露着旧舞台；用户要的是全屏。 */
 #app[data-picture] .cast { opacity: 0; transition: opacity 400ms var(--ease); }
 /* 层级：点开的事件图（z 3）会把对话框（z 2）收起来，所以它压在对话框上面没关系；
    画面要和字同时读，得在对话框底下——降到立绘那一层（z 1，DOM 在立绘之后，所以压得住立绘；立绘本来也收着） */
@@ -11,47 +12,29 @@
 /* drop 后元素仍等待清理；不要在这半秒内退回全屏 cover，突然放大残影。 */
 #app:not([data-picture]) > .cg[data-role="line"] { visibility: hidden; }
 
-/* E40：同句配图保留完整动作。对白实际高度参与布局，不用固定百分比猜遮挡区。
-   仅改变 line 图，独立事件图与结局图仍沿用原来的铺法。 */
-#app[data-picture] {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr);
-  grid-template-rows: max(112px, calc(env(safe-area-inset-top) + 96px)) minmax(0, 1fr) auto;
-}
-#app[data-picture] > .hud {
-  max-width: calc(100% - 144px);
-  flex-wrap: wrap;
-}
-#app[data-picture] > .dlg {
-  position: relative;
-  grid-area: 3 / 1;
-  bottom: auto;
-  margin-bottom: max(24px, env(safe-area-inset-bottom));
-}
-#app[data-picture] > .cg[data-role="line"] {
-  position: relative;
-  grid-area: 2 / 1;
-  top: auto; right: auto; bottom: auto; left: auto;
-  min-width: 0;
-  min-height: 0;
-  overflow: hidden;
-}
-/* CC3 E41 改，待协调：同拍画面永远整张放进格子里（不管 CgLayer 按全屏算出来的 data-fit），
-   两边的空处用同一张图虚化垫着。图是两张真的 <img>（CgLayer），不再用伪元素 inherit 背景图——
-   微信 WebKit 里那一套只画出了原图左上角一块。 */
-#app[data-picture] > .cg[data-role="line"] .cg__img { object-fit: contain; object-position: 50% 50% !important; }
-#app[data-picture] > .cg[data-role="line"] .cg__fill { display: block; }
-/* 矮横屏把对白移到画旁，避免竖画被压成邮票。 */
+/* E42（D-235）：同拍画面和点开的事件图铺法一致——整屏，不再自己排版。
+   铺满还是整张放进来，由 CgLayer 按图和屏幕的宽高算（data-fit，cg.css 管）：
+   手机竖屏是铺满，按 cgs.ts 的 focus 对齐；横屏、宽屏是整张放进来，同一张图虚化把四周填满。
+   这里只把 E40 那三行网格收掉，回到 #app 默认的层叠：对白（z 2）、角上的字（z 5）本来就叠在图上。 */
+#app[data-picture] { display: block; }
+
+/* 对白叠在图上读得出来靠 .dlg 自己那块纸（92% 不透明，app.css），不另加暗角、不加毛玻璃（negative.md）。 */
+
+/* 矮横屏（手机横过来）：竖图整张放进来只占中间一条，对白横在底下正好压住画心。
+   把对白收到右边那一条留白里，画往左让——两边都不裁、不叠。 */
 @media (min-aspect-ratio: 1/1) and (max-height: 540px) {
-  #app[data-picture] {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-    grid-template-rows: max(112px, calc(env(safe-area-inset-top) + 96px)) minmax(0, 1fr);
-    padding-bottom: max(24px, env(safe-area-inset-bottom));
-  }
   #app[data-picture] > .dlg {
-    grid-area: 2 / 2;
-    align-self: end;
-    margin-bottom: 0;
-    padding-inline: 20px;
+    left: auto; right: 0; width: min(46%, 520px);
+    bottom: max(16px, env(safe-area-inset-bottom));
+    padding-inline: clamp(16px, 3vw, 32px);
   }
+  #app[data-picture] > .cg .cg__img { object-position: 27% 50% !important; }
 }
+
+/* 「看全图」（D-235，入口和开关归 CC1 B47）：#app 上挂 data-peek 时——
+   角上的字和对白收起来，图整张放进来，四周用同一张图虚化垫满。不推进剧情、不重播声音，那是 B47 的事。 */
+#app[data-peek] > .hud,
+#app[data-peek] > .status,
+#app[data-peek] > .dlg { opacity: 0; pointer-events: none; transition: opacity 240ms var(--ease); }
+#app[data-peek] > .cg .cg__img { object-fit: contain; object-position: 50% 50% !important; }
+#app[data-peek] > .cg .cg__fill { display: block; }
