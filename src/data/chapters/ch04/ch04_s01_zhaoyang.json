@@ -236,6 +236,32 @@
       "who": "narr",
       "kind": "aside",
       "text": "眼前，你把素帕压回袖底，留笔在手里。"
+    },
+    {
+      "id": "ch04_s01_zhaoyang.l29",
+      "who": "narr",
+      "kind": "aside",
+      "text": "你从私物里取出旧诗笺，指腹抚开折痕。"
+    },
+    {
+      "id": "ch04_s01_zhaoyang.l30",
+      "who": "wuze",
+      "expr": "default",
+      "kind": "poem",
+      "text": "空卷珠帘不曾下，长移一榻对山眠。",
+      "poem": "yuxuanji_tiyinwuting"
+    },
+    {
+      "id": "ch04_s01_zhaoyang.l31",
+      "who": "self",
+      "kind": "inner",
+      "text": "（我也想有半日，谁都不来催。）"
+    },
+    {
+      "id": "ch04_s01_zhaoyang.l32",
+      "who": "narr",
+      "kind": "aside",
+      "text": "你把诗笺折回原样，抬眼看案上等着落笔的纸。"
     }
   ],
   "choices": [
