@@ -38,16 +38,20 @@ import { STAGE_TUNE, tuneKey } from "./stage-tune.ts";
  * - `accent` 朱砂。金碧板没有 `--c-accent`（palette.css 里置为 initial），自动落到泥金，
  *           与立绘的 `var(--c-accent, var(--c-ink-4))` 同一规则。
  */
-type Tone = "flat" | "paper" | "pale" | "light" | "mid" | "dark" | "line" | "wash" | "accent";
+/**
+ * - `pillar` E9（D-082）加的：柱子。唐代殿柱是土朱／铅丹刷的，不是石青。旧色板没有这个变量，退回 `dark`，
+ *           画面和原来一样；重彩色板集里是铅丹——**不是朱砂**，朱砂只给她自己拿主意那一下
+ */
+type Tone = "flat" | "paper" | "pale" | "light" | "mid" | "dark" | "line" | "wash" | "accent" | "pillar";
 
 const TONE_VAR: Record<Palette, Record<Tone, string>> = {
   ink: {
     flat: "--c-ground", paper: "--c-ground", pale: "--c-ink-4", light: "--c-ink-3", mid: "--c-ink-2",
-    dark: "--c-ink-1", line: "--c-line", wash: "--c-ink-wash", accent: "--c-accent",
+    dark: "--c-ink-1", line: "--c-line", wash: "--c-ink-wash", accent: "--c-accent", pillar: "--c-pillar",
   },
   gold: {
     flat: "--c-ground", paper: "--c-ground", pale: "--c-ink-4", light: "--c-ink-2", mid: "--c-ink-3",
-    dark: "--c-ink-1", line: "--c-line", wash: "--c-ink-wash", accent: "--c-accent",
+    dark: "--c-ink-1", line: "--c-line", wash: "--c-ink-wash", accent: "--c-accent", pillar: "--c-pillar",
   },
 };
 
@@ -482,7 +486,7 @@ export class ThreeStageRenderer implements SceneRenderer {
   private readPalette(): void {
     const cs = getComputedStyle(document.documentElement);
     for (const k of ["--c-line", "--c-ink-1", "--c-ink-2", "--c-ink-3", "--c-ink-4",
-      "--c-ground", "--c-ground-night", "--c-ink-wash", "--c-accent"]) {
+      "--c-ground", "--c-ground-night", "--c-ink-wash", "--c-accent", "--c-pillar"]) {
       this.cssVars[k] = cs.getPropertyValue(k).trim();
     }
   }
@@ -498,6 +502,7 @@ export class ThreeStageRenderer implements SceneRenderer {
     const v = this.cssVars[TONE_VAR[this.palette][tone]];
     if (v) return v;
     if (tone === "accent") return this.cssVars["--c-ink-4"] || "#B8964F";
+    if (tone === "pillar") return this.hex("dark");
     if (tone === "wash") return "#33302B";
     return "#888888";
   }
@@ -805,7 +810,7 @@ export class ThreeStageRenderer implements SceneRenderer {
         // 而金碧板里主角的主调也是石青，人和柱同色同位，剪影就糊了（E2 的叠合检查）
         const cx = side * (1.66 + (i === 0 ? 0.52 : 0) + i * 0.14), cz = -0.7 - i * 2.3;
         // 水墨版柱子按远近退墨：近浓、中重、远淡。金碧版三对都是石青——那是「规定好的」，不分远近
-        const colTone: Tone = ink ? (["dark", "dark", "mid"] as const)[i]! : "dark";
+        const colTone: Tone = ink ? (["dark", "dark", "mid"] as const)[i]! : "pillar";
         // 柱子加高到 6.7：横梁抬上去了（见下），柱子要够得着它
         this.put(g, new THREE.CylinderGeometry(0.15 - i * 0.01, 0.185 - i * 0.01, 6.7, 8), colTone,
           [cx, 3.35, cz], { lineW: LINE_W * (1.1 - i * 0.1) });

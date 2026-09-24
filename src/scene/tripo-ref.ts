@@ -23,6 +23,11 @@ import { RoundedBoxGeometry } from "three/examples/jsm/geometries/RoundedBoxGeom
 
 const qs = new URLSearchParams(location.search);
 const sheet = qs.get("view") === "sheet";
+/**
+ * 版本。v2 是 E8 交过、并被拿去生成过的那一版，**几何保持能原样重渲**；
+ * v3 按 D-080 改四处（剑去掉、手收进袖子、领子过渡、缺胯开衩），再加 D-077 的识别点（硬脚幞头、两腿分开）
+ */
+const V = Number(qs.get("v") ?? 2);
 const SIZE = 1024;
 
 /** 灰阶四档。不是色板色：这张图只给生成工具读体积，贴图一律丢弃（规格第 3 条） */
@@ -42,9 +47,23 @@ function figure(material?: THREE.Material): THREE.Group {
     [0.0, 0.32], [0.19, 0.32], [0.2, 0.4], [0.185, 0.7], [0.165, 0.98], [0.175, 1.1],
     [0.2, 1.26], [0.21, 1.37], [0.16, 1.43], [0.07, 1.46], [0.0, 1.46],
   ].map(([r, y]) => new THREE.Vector2(r, y));
-  const robe = new THREE.Mesh(new THREE.LatheGeometry(profile, 32), m(G.robe));
+  // v3：缺胯袍。旋转体只到膝（0.56），往下是前后两片，两侧开衩，腿从缝里露出来。
+  // 第二版的下摆是一圈硬边，生成出来是一只筒；开衩之后下半截才是一个「人」字（D-077 的识别点）
+  const prof = V >= 3 ? [[0.0, 0.56], [0.195, 0.56], ...profile.slice(3).map((p) => [p.x, p.y])].map(([r, y]) => new THREE.Vector2(r!, y!)) : profile;
+  const robe = new THREE.Mesh(new THREE.LatheGeometry(prof, 32), m(G.robe));
   robe.scale.set(1.3, 1, 0.74);
   g.add(robe);
+  if (V >= 3) {
+    // 下摆：同一个旋转体的前后两段弧，侧面各空出一段——开衩就是这两道缝，缝里是腿。
+    // 第一次试的是两块平板挂在袍身外，四分之三视角里读成胸前拎着一只公文包
+    const skirt = [[0.198, 0.6], [0.2, 0.46], [0.205, 0.34]].map(([r, y]) => new THREE.Vector2(r!, y!));
+    for (const start of [-1.05, Math.PI - 1.05]) {
+      const arc = new THREE.Mesh(new THREE.LatheGeometry(skirt, 20, start, 2.1), m(G.robe));
+      (arc.material as THREE.Material).side = THREE.DoubleSide;
+      arc.scale.set(1.3, 1, 0.74);
+      g.add(arc);
+    }
+  }
   // 圆领：领口一圈，比袍深一档
   const collar = new THREE.Mesh(new THREE.TorusGeometry(0.085, 0.018, 8, 24), m(G.belt));
   collar.position.set(0, 1.44, 0.01);
@@ -65,15 +84,18 @@ function figure(material?: THREE.Material): THREE.Group {
     g.add(pouch);
   }
   // 腿与靴：两脚与肩同宽，靴筒到膝下
+  // v3 两脚分得更开，腿在开衩里看得见（D-077「站姿最开」）
+  const footX = V >= 3 ? 0.19 : 0.13;
   for (const s of [-1, 1]) {
-    const leg = new THREE.Mesh(new THREE.CylinderGeometry(0.065, 0.06, 0.2, 16), m(G.robe));
-    leg.position.set(s * 0.12, 0.4, 0);
+    const leg = new THREE.Mesh(new THREE.CylinderGeometry(0.065, 0.06, V >= 3 ? 0.4 : 0.2, 16), m(G.robe));
+    leg.position.set(s * (V >= 3 ? 0.155 : 0.12), V >= 3 ? 0.5 : 0.4, 0);
+    if (V >= 3) leg.rotation.z = s * 0.14;
     g.add(leg);
     const boot = new THREE.Mesh(new THREE.CylinderGeometry(0.064, 0.07, 0.36, 16), m(G.boot));
-    boot.position.set(s * 0.13, 0.2, 0);
+    boot.position.set(s * footX, 0.2, 0);
     g.add(boot);
     const toe = new THREE.Mesh(new RoundedBoxGeometry(0.12, 0.07, 0.22, 3, 0.03), m(G.boot));
-    toe.position.set(s * 0.13, 0.035, 0.05);
+    toe.position.set(s * footX, 0.035, 0.05);
     g.add(toe);
   }
   // 臂：A 字，离身约三十度。窄袖——袖口不比上臂宽
@@ -87,16 +109,37 @@ function figure(material?: THREE.Material): THREE.Group {
     const lower = new THREE.Mesh(new THREE.CapsuleGeometry(0.052, 0.24, 6, 16), m(G.robe));
     lower.position.set(0, -0.44, 0.02);
     arm.add(lower);
-    const hand = new THREE.Mesh(new THREE.SphereGeometry(0.045, 16, 12), m(G.skin));
-    hand.scale.set(0.8, 1.15, 0.7);
-    hand.position.set(0, -0.63, 0.02);
-    arm.add(hand);
+    if (V >= 3) {
+      // v3：手收进袖子。第二版手是一只白椭圆，生成出来会是一个球（D-080）。袖口略放、口朝下，里面是暗的
+      const cuff = new THREE.Mesh(new THREE.CylinderGeometry(0.058, 0.068, 0.12, 16, 1, true), m(G.robe));
+      cuff.position.set(0, -0.64, 0.02);
+      arm.add(cuff);
+      const inside = new THREE.Mesh(new THREE.CircleGeometry(0.062, 16), m(G.belt));
+      inside.rotation.x = Math.PI / 2;
+      inside.position.set(0, -0.695, 0.02);
+      arm.add(inside);
+    } else {
+      const hand = new THREE.Mesh(new THREE.SphereGeometry(0.045, 16, 12), m(G.skin));
+      hand.scale.set(0.8, 1.15, 0.7);
+      hand.position.set(0, -0.63, 0.02);
+      arm.add(hand);
+    }
     g.add(arm);
   }
   // 颈与头：头是一只光滑的蛋，没有五官
   const neck = new THREE.Mesh(new THREE.CylinderGeometry(0.045, 0.05, 0.08, 16), m(G.skin));
   neck.position.y = 1.49;
   g.add(neck);
+  if (V >= 3) {
+    // v3：领子一圈从肩收到下巴底下，把那根白圆柱的脖子包住（D-080）
+    const collarUp = new THREE.Mesh(new THREE.CylinderGeometry(0.058, 0.1, 0.09, 24), m(G.robe));
+    collarUp.position.y = 1.48;
+    g.add(collarUp);
+    const rim = new THREE.Mesh(new THREE.TorusGeometry(0.058, 0.012, 8, 24), m(G.belt));
+    rim.rotation.x = Math.PI / 2;
+    rim.position.y = 1.525;
+    g.add(rim);
+  }
   // 头比第一版大一圈：小头配宽袍更显得矮
   const head = new THREE.Mesh(new THREE.SphereGeometry(0.108, 32, 24), m(G.skin));
   head.scale.set(0.88, 1.12, 0.98);
@@ -111,8 +154,17 @@ function figure(material?: THREE.Material): THREE.Group {
   const knot = new THREE.Mesh(new RoundedBoxGeometry(0.1, 0.12, 0.09, 3, 0.035), m(G.cap));
   knot.position.set(0, 1.77, -0.04);
   g.add(knot);
+  if (V >= 3) {
+    // v3：硬脚幞头（D-077 的识别点）。两脚从巾子后面平伸，比 v1 那一对短而靠后、靠上——v1 贴着帽口伸，读成帽檐。
+    // 做得比剑粗：细长附件会被生成成独立的棍子（D-080），所以宽一指、根部埋进巾子里
+    for (const s of [-1, 1]) {
+      const wing = new THREE.Mesh(new RoundedBoxGeometry(0.2, 0.03, 0.035, 2, 0.012), m(G.cap));
+      wing.position.set(s * 0.14, 1.69, -0.08);
+      g.add(wing);
+    }
+  }
   // 两脚：从脑后正中垂下、贴着颈后，短而硬。第一版向两侧平伸，四分之三视角里读成一顶棒球帽的帽檐
-  for (const s of [-1, 1]) {
+  if (V < 3) for (const s of [-1, 1]) {
     const tail = new THREE.Mesh(new RoundedBoxGeometry(0.03, 0.12, 0.018, 2, 0.006), m(G.cap));
     tail.position.set(s * 0.025, 1.56, -0.11);
     tail.rotation.set(0.25, 0, s * 0.12);
@@ -131,7 +183,8 @@ function figure(material?: THREE.Material): THREE.Group {
   sword.add(hilt);
   const guard = new THREE.Mesh(new RoundedBoxGeometry(0.08, 0.02, 0.04, 2, 0.006), m(G.belt));
   sword.add(guard);
-  g.add(sword);
+  // v3：剑去掉。细长附件生成出来是一根浮在身侧的独立细杆（D-080，网页端那一次就是），剑在引擎里单独挂
+  if (V < 3) g.add(sword);
   return g;
 }
 
@@ -191,7 +244,7 @@ if (!sheet) {
   add(ref, "参考图（四分之三，带明暗）");
   add(render({ silhouette: true, yaw: -0.62, w: 320, h: 320 }), "参考图 · 纯剪影 · 四分之三");
   add(render({ silhouette: true, yaw: 0, w: 320, h: 320 }), "参考图 · 纯剪影 · 正面");
-  for (const [k, cap] of [["peizhaoye", "现 SVG 裴照夜（束发·明光铠）"], ["shenheng", "沈衡（幞头圆领袍）"], ["tangjian", "唐简（幞头圆领袍）"]] as const) {
+  for (const [k, cap] of [["peizhaoye", "现 SVG 裴照夜（D-077 新版）"], ["shenheng", "沈衡（幞头圆领袍）"], ["tangjian", "唐简（幞头圆领袍）"]] as const) {
     const box = document.createElement("div");
     box.innerHTML = files[`../char/${k}_default.svg`] ?? "";
     add(box, cap, "sil");

@@ -27,14 +27,19 @@ import { DATA_VERSION } from "../src/engine/types.ts";
 import { decodePng, launch, sleep } from "./cdp.ts";
 
 const ROOT = join(import.meta.dirname, "..");
-const OUT = join(ROOT, "Claude outputs", "art-screens");
+const OUT_BASE = join(ROOT, "Claude outputs", "art-screens");
+
 const PORT = 5179;
 const VIEW = { width: 390, height: 844, dpr: 2 };
 
 const argv = process.argv.slice(2);
 const chIdx = argv.indexOf("--chapter");
 const onlyChapter = chIdx >= 0 ? argv[chIdx + 1] : undefined;
-const picked = argv.filter((a, i) => !a.startsWith("--") && (chIdx < 0 || i !== chIdx + 1));
+const setIdx = argv.indexOf("--set");
+/** 色板集（E9）：`--set tang` 在页面脚本跑之前给根元素加 data-palette-set，截图落到 art-screens-tang/ */
+const paletteSet = setIdx >= 0 ? argv[setIdx + 1] : undefined;
+const OUT = paletteSet ? `${OUT_BASE}-${paletteSet}` : OUT_BASE;
+const picked = argv.filter((a, i) => !a.startsWith("--") && (chIdx < 0 || i !== chIdx + 1) && (setIdx < 0 || i !== setIdx + 1));
 
 interface SceneFile { id: string; chapter: number; scene: string; palette: string; cast: string[]; dressing?: string;
   lines: { id: string; who: string; kind?: string }[] }
@@ -138,6 +143,15 @@ async function main(): Promise<void> {
   try {
     await cdp.send("Page.enable");
     await cdp.send("Emulation.setDeviceMetricsOverride", { width: VIEW.width, height: VIEW.height, deviceScaleFactor: VIEW.dpr, mobile: true });
+    if (paletteSet) {
+      await cdp.send("Page.addScriptToEvaluateOnNewDocument", {
+        // 不能在这里直接写：注入的时候 <html> 还没被解析器建出来，写上去的属性会丢。
+        // 解析完（interactive）到模块脚本开跑之前有一拍，在那一拍写
+        source: `document.addEventListener("readystatechange", () => {
+          if (document.readyState === "interactive") document.documentElement.dataset.paletteSet = ${JSON.stringify(paletteSet)};
+        });`,
+      });
+    }
     for (const s of scenes) {
       const line = pickLine(s);
       const save = {

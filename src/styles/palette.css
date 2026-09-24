@@ -59,3 +59,73 @@
   --c-accent: initial;
   --c-purple: initial;
 }
+
+/* ================================================================ 唐代矿物重彩（E9，D-082）
+
+   **还没启用。** 根元素加 data-palette-set="tang" 才生效，给 Cowork 看对照图用；审过了再改成默认。
+   值与出处见 art-style/references/palette.md「唐代矿物重彩」。
+
+   两块板的名字不变（ink / gold），数据里的 palette 字段一个不改，换的只是每块板里装的颜料：
+   - ink  →「素彩」：纸底、墨线、淡设色。她的地方。
+   - gold →「重彩」：绢底、石青石绿泥金满铺、柱子铅丹。朝廷的地方。
+
+   朱砂的排他性（D-082 第 2 条）：画面上的红分三种——铅丹（偏橙，柱、器物）、胭脂（偏紫红，绯袍）、
+   朱砂（正红，只给不可逆选择、印、每人一处身份锚）。三者色相拉开，机器闸门能分开数。 */
+
+[data-palette-set="tang"]:not([data-palette="gold"]) {
+  --c-line:   #1A1815;   /* 焦墨：线描勾勒 */
+  --c-ink-1:  #34454F;   /* 墨青：石青调墨，暗处 */
+  --c-ink-2:  #8A5A3B;   /* 赭石：木、案 */
+  --c-ink-3:  #86A58F;   /* 淡石绿：墙、柱的底色 */
+  --c-ink-4:  #D6C3A1;   /* 淡赭：远处 */
+  --c-accent: #B2282C;   /* 朱砂 */
+  --c-ground: #EDE7DA;   /* 纸 */
+  --c-ground-night: #D8D2C4;
+}
+
+[data-palette-set="tang"][data-palette="gold"] {
+  --c-line:   #1A1815;
+  --c-ink-1:  #1F5A96;   /* 石青（蓝铜矿） */
+  --c-ink-2:  #2E8B6A;   /* 石绿（氯铜矿） */
+  --c-ink-3:  #9A4A2A;   /* 赭石（赤铁矿） */
+  --c-ink-4:  #C9A24A;   /* 泥金 */
+  --c-pillar: #D8702F;   /* 铅丹：殿柱 */
+  --c-ground: #E8D9B5;   /* 绢 */
+  --c-ground-night: #D6C6A0;
+  --c-text: #1A1815;
+  --c-text-soft: #8B4A2F;
+  --c-accent: initial;
+  --c-purple: initial;
+}
+
+/* 人：一人一种主色，从唐代品色服取（C0-3 第五节：三品以上紫、四五品绯、六七品绿、八九品青）。
+   头、发、剪影脸仍是墨。**两块板下同一个人是同一种颜色**——E4「人不随色板变」那条照旧成立，
+   只是「人的颜色」从墨五色换成了她自己的那一种。分配理由见 art-cc3-e9.md 第三节 */
+[data-palette-set="tang"] {
+  --c-robe-wuze:         #4F7FA8;   /* 青：才人新入宫，从最低一格起 */
+  --c-robe-liuchenghuan: #8FA3B0;   /* 灰青：和主角同一族，淡一截——她是主角差点成为的那种人 */
+  --c-robe-shenheng:     #2F6F55;   /* 深绿：尚宫局司记，正六品 */
+  --c-robe-tangjian:     #6E9A7C;   /* 浅绿：尚宫局典记，正七品 */
+  --c-robe-peizhaoye:    #8E2F52;   /* 绯（胭脂，不是朱砂）：女将，比四五品 */
+  --c-robe-liqinghe:     #D2A035;   /* 郁金（藤黄）：公主的裙，不入品色 */
+  --c-robe-hetaihou:     #1F3F6E;   /* 深石青：太后，朝廷的颜色本身 */
+  --c-robe-songhuizhen:  #9A6A45;   /* 赭：资深才人的常服，旧；一点紫在簪头 */
+  --c-robe-wenqiao:      #D8702F;   /* 铅丹：石榴裙，民间，最亮 */
+  --c-robe-xujinghe:     #E6E0CE;   /* 蛤白：女冠，墨线加粗保轮廓 */
+  --c-robe-adi:          #BFA27C;   /* 本色麻：宫人，没染 */
+}
+
+/* 线描勾勒（D-082）：袍子上了色，边上要有一道墨线，才是「线描 + 填色」而不是剪纸。
+   只描走 --c-robe-* 的那几块；paint-order: stroke 让线压在填色下面，露出来的是外沿半道 */
+[data-palette-set="tang"] .cast__slot svg [fill^="var(--c-robe"] {
+  stroke: var(--c-char-line, #1A1815);
+  stroke-width: 9px;
+  stroke-linejoin: round;
+  paint-order: stroke;
+}
+
+/* 数值墨线用墨的浓淡表示高低（ui.md）。素彩板里 --c-ink-* 成了赭、绿、墨青，
+   四根线就成了四种颜色、读不出高低——这几根线改走不随色板变的人的墨色 */
+[data-palette-set="tang"] .status__line[data-tone="0"] { color: var(--c-char-3); }
+[data-palette-set="tang"] .status__line[data-tone="1"] { color: var(--c-char-2); }
+[data-palette-set="tang"] .status__line[data-tone="2"] { color: var(--c-char-1); }

@@ -629,10 +629,14 @@ function render(c: Char, expr: Expr, bare = false): string {
   const f = frame(c, pose);
   const fill = v(c.tone);
   const line = v("line");
+  // E9（D-082）：袍、袖、帔帛的颜色走 --c-robe-<key>，没定义就退回原来的墨色档——
+  // 旧色板下这一行什么都不变；换成重彩的色板集（palette.css 的 data-palette-set="tang"）才上色。
+  // 头、颈、发髻仍是墨：剪影脸的规矩不因为衣服上了色就改
+  const robe = `var(--c-robe-${c.key}, ${fill})`;
   const parts = [
-    c.peibo ? peibo(f, fill) : "",
-    body(c, f, fill),
-    arms(c, f, fill),
+    c.peibo ? peibo(f, robe) : "",
+    body(c, f, robe),
+    arms(c, f, robe),
     // 颈与头
     // D-072（CC1 改）：颈原来收在 neckY+16，肩线在 neckY+30。领口高的袍子盖得住这 14 像素，
     // 阿荻的短襦领口低，头和身子之间就露出一道纸色——看上去头是飘着的。伸到肩线以下，身子会盖住多出来的那截
